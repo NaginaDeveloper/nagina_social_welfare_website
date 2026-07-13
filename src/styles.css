@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Nagina Social Welfare - brand design tokens (Tailwind v4 @theme)
+   Emerald / forest greens, royal gold accents, warm premium neutrals.
+   ========================================================================== */
+@theme {
+  --color-forest: #022c22;
+  --color-forest-800: #043b2e;
+  --color-emerald: #064e3b;
+  --color-emerald-600: #047857;
+  --color-emerald-500: #059669;
+
+  --color-gold: #d97706;
+  --color-gold-600: #b45309;
+  --color-gold-300: #fbbf24;
+
+  --color-cream: #fafaf9;
+  --color-sand: #f5f2ea;
+  --color-mist: #e7e5e4;
+  --color-ink: #1c1917;
+  --color-slate-warm: #57534e;
+
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Amiri", "Noto Naskh Arabic", "Scheherazade New", serif;
+
+  --shadow-portal: 0 20px 50px -20px rgba(2, 44, 34, 0.35);
+  --shadow-soft: 0 10px 30px -12px rgba(2, 44, 34, 0.25);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 8rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle Islamic geometric atmosphere (repeating eight-point star lattice). */
+.geo-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.14' stroke-width='1'%3E%3Cpath d='M40 8 55 23 72 23 72 40 55 55 40 72 25 55 8 55 8 40 25 23z'/%3E%3Cpath d='M40 22 49 31 58 40 49 49 40 58 31 49 22 40 31 31z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 88px 88px;
+}
+
+.geo-pattern-dense {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.08' stroke-width='1'%3E%3Cpath d='M30 4 42 16 56 16 56 30 42 42 30 56 18 42 4 42 4 30 18 16z'/%3E%3Ccircle cx='30' cy='30' r='9'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 64px 64px;
+}
+
+/* Gold gradient text used for the brand wordmark and key accents. */
+.text-gold-gradient {
+  background: linear-gradient(120deg, #fbbf24 0%, #d97706 45%, #b45309 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-float-slow {
+  animation: floatSlow 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-up,
+  .animate-float-slow {
+    animation: none;
+  }
+}
+
+/* Focus visibility for keyboard users across the site. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
