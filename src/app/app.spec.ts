@@ -21,12 +21,13 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Nagina');
   });
 
-  it('should render the about, spiritual guide, work, guidance, apps and contact sections', async () => {
+  it('should render the spiritual guide, ahle bait, about, work, guidance, apps and contact sections', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('#about')).toBeTruthy();
     expect(compiled.querySelector('#spiritual-guide')).toBeTruthy();
+    expect(compiled.querySelector('#ahle-bait')).toBeTruthy();
+    expect(compiled.querySelector('#about')).toBeTruthy();
     expect(compiled.querySelector('#work')).toBeTruthy();
     expect(compiled.querySelector('#guidance')).toBeTruthy();
     expect(compiled.querySelector('#apps')).toBeTruthy();

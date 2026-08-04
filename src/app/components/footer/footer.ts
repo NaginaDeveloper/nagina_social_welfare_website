@@ -15,6 +15,7 @@ export class Footer {
 
   protected readonly quickLinks = [
     { label: 'Spiritual Guide', href: '#spiritual-guide' },
+    { label: 'Ahle Bait', href: '#ahle-bait' },
     { label: 'About', href: '#about' },
     { label: 'Our Work', href: '#work' },
     { label: 'Guidance', href: '#guidance' },
