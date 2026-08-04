@@ -14,8 +14,10 @@ export class Footer {
   protected readonly year = new Date().getFullYear();
 
   protected readonly quickLinks = [
+    { label: 'Spiritual Guide', href: '#spiritual-guide' },
     { label: 'About', href: '#about' },
     { label: 'Our Work', href: '#work' },
+    { label: 'Guidance', href: '#guidance' },
     { label: 'Apps', href: '#apps' },
     { label: 'Contact', href: '#contact' },
   ] as const;

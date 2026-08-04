@@ -23,8 +23,10 @@ export class Header {
   }
 
   protected readonly links: readonly NavLink[] = [
+    { label: 'Spiritual Guide', fragment: 'spiritual-guide' },
     { label: 'About', fragment: 'about' },
     { label: 'Our Work', fragment: 'work' },
+    { label: 'Guidance', fragment: 'guidance' },
     { label: 'Apps', fragment: 'apps' },
     { label: 'Contact', fragment: 'contact' },
   ];
