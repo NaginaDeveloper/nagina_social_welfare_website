@@ -19,6 +19,7 @@ export class Footer {
     { label: 'About', href: '#about' },
     { label: 'Our Work', href: '#work' },
     { label: 'Guidance', href: '#guidance' },
+    { label: 'Gallery', href: '#gallery' },
     { label: 'Apps', href: '#apps' },
     { label: 'Contact', href: '#contact' },
   ] as const;

@@ -6,13 +6,26 @@ import { AhleBait } from './components/ahle-bait/ahle-bait';
 import { About } from './components/about/about';
 import { OurWork } from './components/our-work/our-work';
 import { Guidance } from './components/guidance/guidance';
+import { Gallery } from './components/gallery/gallery';
 import { Apps } from './components/apps/apps';
 import { Contact } from './components/contact/contact';
 import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Hero, SpiritualGuide, AhleBait, About, OurWork, Guidance, Apps, Contact, Footer],
+  imports: [
+    Header,
+    Hero,
+    SpiritualGuide,
+    AhleBait,
+    About,
+    OurWork,
+    Guidance,
+    Gallery,
+    Apps,
+    Contact,
+    Footer,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

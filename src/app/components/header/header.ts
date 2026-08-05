@@ -28,6 +28,7 @@ export class Header {
     { label: 'About', fragment: 'about' },
     { label: 'Our Work', fragment: 'work' },
     { label: 'Guidance', fragment: 'guidance' },
+    { label: 'Gallery', fragment: 'gallery' },
     { label: 'Apps', fragment: 'apps' },
     { label: 'Contact', fragment: 'contact' },
   ];
