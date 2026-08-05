@@ -35,7 +35,8 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 8rem;
+  /* Matches compact sticky header (salawat + nav) */
+  scroll-padding-top: 7.25rem;
 }
 
 body {

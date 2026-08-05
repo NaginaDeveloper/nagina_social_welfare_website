@@ -15,16 +15,13 @@ export class Header {
 
   protected readonly scrolled = signal(false);
   protected readonly menuOpen = signal(false);
+  protected readonly activeFragment = signal('top');
 
-  constructor() {
-    // Initialise state so deep links (e.g. /#work) render the solid header
-    // even before the first scroll event fires.
-    afterNextRender(() => this.onScroll());
-  }
-
+  /**
+   * Desktop primary nav — short list for a calm, professional bar.
+   * Spiritual Guide & Ahle Bait remain in the page and footer.
+   */
   protected readonly links: readonly NavLink[] = [
-    { label: 'Spiritual Guide', fragment: 'spiritual-guide' },
-    { label: 'Ahle Bait', fragment: 'ahle-bait' },
     { label: 'About', fragment: 'about' },
     { label: 'Our Work', fragment: 'work' },
     { label: 'Guidance', fragment: 'guidance' },
@@ -33,9 +30,40 @@ export class Header {
     { label: 'Contact', fragment: 'contact' },
   ];
 
+  /** Full mobile menu, including faith sections. */
+  protected readonly mobileLinks: readonly NavLink[] = [
+    { label: 'Spiritual Guide', fragment: 'spiritual-guide' },
+    { label: 'Ahle Bait', fragment: 'ahle-bait' },
+    ...this.links,
+  ];
+
+  private readonly sectionIds = [
+    'top',
+    'spiritual-guide',
+    'ahle-bait',
+    'about',
+    'work',
+    'guidance',
+    'gallery',
+    'apps',
+    'contact',
+  ] as const;
+
+  constructor() {
+    afterNextRender(() => {
+      this.onScroll();
+      this.updateActiveSection();
+    });
+  }
+
   @HostListener('window:scroll')
   protected onScroll(): void {
-    this.scrolled.set(window.scrollY > 24);
+    this.scrolled.set(window.scrollY > 16);
+    this.updateActiveSection();
+  }
+
+  protected isActive(fragment: string): boolean {
+    return this.activeFragment() === fragment;
   }
 
   protected toggleMenu(): void {
@@ -44,5 +72,20 @@ export class Header {
 
   protected closeMenu(): void {
     this.menuOpen.set(false);
+  }
+
+  private updateActiveSection(): void {
+    const offset = 140;
+    let current: string = 'top';
+
+    for (const id of this.sectionIds) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      if (el.getBoundingClientRect().top - offset <= 0) {
+        current = id;
+      }
+    }
+
+    this.activeFragment.set(current);
   }
 }

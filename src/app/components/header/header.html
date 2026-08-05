@@ -1,149 +1,178 @@
 <header
   class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
-  [class.bg-forest/95]="scrolled()"
-  [class.backdrop-blur-md]="scrolled()"
+  [class.bg-forest/97]="scrolled()"
+  [class.backdrop-blur-xl]="scrolled()"
   [class.shadow-soft]="scrolled()"
-  [class.py-2]="scrolled()"
-  [class.py-4]="!scrolled()"
+  [class.border-b]="scrolled()"
+  [class.border-gold/10]="scrolled()"
   [class.bg-transparent]="!scrolled()"
 >
-  <!-- Salawat / Durood banner -->
-  <div class="border-b border-gold/15 px-5 pb-2 text-center sm:px-8">
+  <!-- Compact salawat strip -->
+  <div
+    class="border-b border-gold/10 px-5 text-center transition-all duration-300 sm:px-8"
+    [class.py-1.5]="scrolled()"
+    [class.py-2]="!scrolled()"
+  >
     <p
-      class="font-arabic text-lg leading-tight text-gold-300 sm:text-xl"
+      class="font-arabic leading-tight text-gold-300 transition-[font-size] duration-300"
+      [class.text-base]="scrolled()"
+      [class.text-lg]="!scrolled()"
       lang="ar"
       dir="rtl"
     >
       اَلصَّلٰوةُ وَالسَّلَامُ عَلَيْكَ يَا سَيِّدِى يَا رَسُوْلَ اللّٰه
     </p>
-    <p class="mt-0.5 text-[0.6rem] font-medium uppercase tracking-[0.18em] text-cream/60 sm:text-[0.68rem]">
-      May endless peace &amp; blessings be upon you, our Master, O Beloved Messenger of Allah
-    </p>
+    @if (!scrolled()) {
+      <p class="mt-0.5 text-[0.58rem] font-medium uppercase tracking-[0.2em] text-cream/55 sm:text-[0.65rem]">
+        May endless peace &amp; blessings be upon you, our Master, O Beloved Messenger of Allah
+      </p>
+    }
   </div>
 
-  <div class="mx-auto mt-2 flex max-w-7xl items-center justify-between px-5 sm:px-8">
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 transition-all duration-300 sm:px-8"
+    [class.py-2.5]="scrolled()"
+    [class.py-3.5]="!scrolled()"
+  >
     <!-- Brand -->
     <a
       href="#top"
-      class="group flex items-center gap-3"
+      class="group flex min-w-0 shrink items-center gap-3"
       aria-label="Nagina Social Welfare home"
+      (click)="closeMenu()"
     >
       <span
-        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/40 transition-transform duration-300 group-hover:scale-105"
+        class="flex shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/35 transition-all duration-300 group-hover:ring-gold/60"
+        [class.h-10]="scrolled()"
+        [class.w-10]="scrolled()"
+        [class.h-11]="!scrolled()"
+        [class.w-11]="!scrolled()"
       >
         <img
           src="brand/nagina.png"
           alt="Nagina Social Welfare UK logo"
           class="h-full w-full object-contain"
-          width="48"
-          height="48"
+          width="44"
+          height="44"
         />
       </span>
-      <span class="flex flex-col leading-tight">
-        <span class="font-display text-xl font-bold tracking-wide text-cream">
+      <span class="flex min-w-0 flex-col leading-tight">
+        <span
+          class="font-display font-bold tracking-wide text-cream transition-all duration-300"
+          [class.text-lg]="scrolled()"
+          [class.text-xl]="!scrolled()"
+        >
           Nagina <span class="text-gold-gradient">Social Welfare</span>
         </span>
-        <span class="text-[0.62rem] font-medium uppercase tracking-[0.28em] text-gold-300/80">
+        <span class="hidden text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/75 sm:block">
           Education &amp; Welfare &middot; UK
         </span>
       </span>
     </a>
 
-    <!-- Desktop nav -->
-    <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
-      @for (link of links; track link.fragment) {
-        <a
-          [href]="'#' + link.fragment"
-          class="relative text-sm font-medium text-cream/85 transition-colors duration-200 hover:text-gold-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
-        >
-          {{ link.label }}
-        </a>
-      }
-      <a
-        href="#contact"
-        class="rounded-full border border-cream/25 px-5 py-2.5 text-sm font-medium text-cream transition-all duration-300 hover:border-gold/50 hover:text-gold-300"
-      >
-        Get in Touch
-      </a>
+    <!-- Desktop nav: xl+ only so links never crowd -->
+    <nav class="hidden items-center xl:flex" aria-label="Primary">
+      <ul class="flex items-center gap-1">
+        @for (link of links; track link.fragment) {
+          <li>
+            <a
+              [href]="'#' + link.fragment"
+              class="relative inline-flex px-3.5 py-2 text-[0.8125rem] font-medium tracking-wide transition-colors duration-200"
+              [class.text-gold-300]="isActive(link.fragment)"
+              [class.text-cream/75]="!isActive(link.fragment)"
+              [class.hover:text-cream]="!isActive(link.fragment)"
+              [attr.aria-current]="isActive(link.fragment) ? 'true' : null"
+            >
+              {{ link.label }}
+              <span
+                class="absolute inset-x-3.5 -bottom-0.5 h-px origin-left bg-gold transition-transform duration-300"
+                [class.scale-x-100]="isActive(link.fragment)"
+                [class.scale-x-0]="!isActive(link.fragment)"
+              ></span>
+            </a>
+          </li>
+        }
+      </ul>
+
+      <span class="mx-4 h-5 w-px bg-cream/15" aria-hidden="true"></span>
+
       <a
         [href]="loginUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="group inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest shadow-soft transition-all duration-300 hover:shadow-portal hover:brightness-105"
+        class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2 text-[0.8125rem] font-semibold text-forest shadow-soft transition-all duration-300 hover:brightness-105"
         aria-label="Login as admin, teacher or parent (opens in a new tab)"
       >
-        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10 17l5-5-5-5M15 12H3" />
-        </svg>
         Login
+        <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+        </svg>
       </a>
     </nav>
 
-    <!-- Mobile toggle -->
+    <!-- Tablet / mobile toggle -->
     <button
       type="button"
-      class="flex h-10 w-10 items-center justify-center rounded-lg text-cream md:hidden"
+      class="flex h-10 w-10 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5 xl:hidden"
       [attr.aria-expanded]="menuOpen()"
       aria-label="Toggle navigation menu"
       (click)="toggleMenu()"
     >
       @if (!menuOpen()) {
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
         </svg>
       } @else {
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
         </svg>
       }
     </button>
   </div>
 
-  <!-- Mobile menu -->
+  <!-- Compact panel for tablet & mobile -->
   @if (menuOpen()) {
     <nav
-      class="mx-4 mt-3 rounded-2xl border border-gold/20 bg-forest/98 p-4 shadow-portal backdrop-blur-md md:hidden"
+      class="mx-4 mb-4 overflow-hidden rounded-2xl border border-gold/15 bg-forest/98 shadow-portal backdrop-blur-xl xl:hidden"
       aria-label="Mobile"
     >
-      <ul class="flex flex-col">
-        @for (link of links; track link.fragment) {
+      <ul class="flex flex-col p-2">
+        @for (link of mobileLinks; track link.fragment) {
           <li>
             <a
               [href]="'#' + link.fragment"
               (click)="closeMenu()"
-              class="block rounded-lg px-4 py-3 text-cream/90 transition-colors hover:bg-emerald/60 hover:text-gold-300"
+              class="flex items-center justify-between rounded-xl px-4 py-3 text-sm transition-colors"
+              [class.bg-white/5]="isActive(link.fragment)"
+              [class.text-gold-300]="isActive(link.fragment)"
+              [class.text-cream/85]="!isActive(link.fragment)"
+              [class.hover:bg-white/5]="!isActive(link.fragment)"
+              [class.hover:text-gold-300]="!isActive(link.fragment)"
+              [attr.aria-current]="isActive(link.fragment) ? 'true' : null"
             >
               {{ link.label }}
+              @if (isActive(link.fragment)) {
+                <span class="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true"></span>
+              }
             </a>
           </li>
         }
-        <li class="mt-2">
-          <a
-            href="#contact"
-            (click)="closeMenu()"
-            class="block rounded-full border border-cream/25 px-4 py-3 text-center font-medium text-cream"
-          >
-            Get in Touch
-          </a>
-        </li>
-        <li class="mt-2">
-          <a
-            [href]="loginUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            (click)="closeMenu()"
-            class="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 py-3 text-center font-semibold text-forest"
-            aria-label="Login as admin, teacher or parent (opens in a new tab)"
-          >
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 17l5-5-5-5M15 12H3" />
-            </svg>
-            Login
-          </a>
-        </li>
       </ul>
+      <div class="border-t border-white/10 p-3">
+        <a
+          [href]="loginUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          (click)="closeMenu()"
+          class="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 py-3 text-sm font-semibold text-forest"
+          aria-label="Login as admin, teacher or parent (opens in a new tab)"
+        >
+          Login
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+          </svg>
+        </a>
+      </div>
     </nav>
   }
 </header>
