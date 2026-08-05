@@ -26,9 +26,9 @@ export class AhleBait {
       source: 'Sahih Muslim & related collections',
     },
     {
-      title: 'Love of Ahl al-Bayt',
-      text: 'Love of the Prophet\u2019s family is part of faith. To honour Aal-e-Pak is to honour the Beloved ﷺ himself — and enmity toward them has no place in a believer\u2019s heart.',
-      source: 'Narrations on love of Ahl al-Bayt',
+      title: 'Hadith Sharif',
+      text: 'The Messenger of Allah ﷺ said: I have left two things among you. You will never go astray as long as you hold fast to them: the Book of Allah and the Sunnah of His Prophet.',
+      source: 'Authentic (Sahih)',
     },
   ];
 

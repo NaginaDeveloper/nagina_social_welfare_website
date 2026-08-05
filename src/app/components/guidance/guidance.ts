@@ -54,6 +54,15 @@ export class Guidance {
       width: 736,
       height: 944,
     },
+    {
+      id: 'actions',
+      title: 'Actions Speak Louder',
+      subtitle: 'Generations learn from your character',
+      alt: 'Students of Markaz seated in a gathering, with the quote: Generations learn more from your actions than from your advice, in Urdu and English',
+      src: 'media/actions-over-advice.jpg',
+      width: 725,
+      height: 761,
+    },
   ];
 
   protected openPoster(poster: GuidancePoster): void {
