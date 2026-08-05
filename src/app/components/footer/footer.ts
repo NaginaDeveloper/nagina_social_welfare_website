@@ -11,6 +11,9 @@ export class Footer {
   /** Official Facebook page. */
   protected readonly facebookUrl = 'https://www.facebook.com/naginasocial.welfare.5';
 
+  /** Official Instagram profile. */
+  protected readonly instagramUrl = 'https://www.instagram.com/naginasocialwelfare/';
+
   protected readonly year = new Date().getFullYear();
 
   protected readonly quickLinks = [
@@ -19,7 +22,8 @@ export class Footer {
     { label: 'About', href: '#about' },
     { label: 'Our Work', href: '#work' },
     { label: 'Guidance', href: '#guidance' },
-    { label: 'Gallery', href: '#gallery' },
+    { label: 'Events', href: '#events' },
+    { label: 'Donate', href: '#donate' },
     { label: 'Apps', href: '#apps' },
     { label: 'Contact', href: '#contact' },
   ] as const;

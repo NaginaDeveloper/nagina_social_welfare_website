@@ -1,5 +1,4 @@
-import { Component, HostListener, computed, inject, signal } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component, HostListener, signal } from '@angular/core';
 import { GALLERY_ITEMS, type GalleryItem } from './gallery-data';
 
 @Component({
@@ -7,30 +6,12 @@ import { GALLERY_ITEMS, type GalleryItem } from './gallery-data';
   templateUrl: './gallery.html',
 })
 export class Gallery {
-  private readonly sanitizer = inject(DomSanitizer);
-  private readonly pageSize = 24;
-
   protected readonly facebookUrl = 'https://www.facebook.com/naginasocial.welfare.5';
   protected readonly facebookPhotosUrl = 'https://www.facebook.com/naginasocial.welfare.5/photos';
-
-  protected readonly facebookEmbedUrl: SafeResourceUrl =
-    this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnaginasocial.welfare.5&tabs=timeline&width=500&height=640&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true',
-    );
+  protected readonly instagramUrl = 'https://www.instagram.com/naginasocialwelfare/';
 
   protected readonly activeItem = signal<GalleryItem | null>(null);
-  protected readonly visibleCount = signal(this.pageSize);
-
-  protected readonly allItems = GALLERY_ITEMS;
-  protected readonly totalCount = GALLERY_ITEMS.length;
-
-  protected readonly items = computed(() => this.allItems.slice(0, this.visibleCount()));
-
-  protected readonly hasMore = computed(() => this.visibleCount() < this.totalCount);
-
-  protected showMore(): void {
-    this.visibleCount.update((n) => Math.min(n + this.pageSize, this.totalCount));
-  }
+  protected readonly items = GALLERY_ITEMS;
 
   protected openItem(item: GalleryItem): void {
     this.activeItem.set(item);

@@ -24,8 +24,8 @@ export class Header {
   protected readonly links: readonly NavLink[] = [
     { label: 'About', fragment: 'about' },
     { label: 'Our Work', fragment: 'work' },
-    { label: 'Guidance', fragment: 'guidance' },
-    { label: 'Gallery', fragment: 'gallery' },
+    { label: 'Events', fragment: 'events' },
+    { label: 'Donate', fragment: 'donate' },
     { label: 'Apps', fragment: 'apps' },
     { label: 'Contact', fragment: 'contact' },
   ];
@@ -34,7 +34,13 @@ export class Header {
   protected readonly mobileLinks: readonly NavLink[] = [
     { label: 'Spiritual Guide', fragment: 'spiritual-guide' },
     { label: 'Ahle Bait', fragment: 'ahle-bait' },
-    ...this.links,
+    { label: 'About', fragment: 'about' },
+    { label: 'Our Work', fragment: 'work' },
+    { label: 'Guidance', fragment: 'guidance' },
+    { label: 'Events', fragment: 'events' },
+    { label: 'Donate', fragment: 'donate' },
+    { label: 'Apps', fragment: 'apps' },
+    { label: 'Contact', fragment: 'contact' },
   ];
 
   private readonly sectionIds = [
@@ -44,7 +50,8 @@ export class Header {
     'about',
     'work',
     'guidance',
-    'gallery',
+    'events',
+    'donate',
     'apps',
     'contact',
   ] as const;

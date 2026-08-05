@@ -7,6 +7,7 @@ import { About } from './components/about/about';
 import { OurWork } from './components/our-work/our-work';
 import { Guidance } from './components/guidance/guidance';
 import { Gallery } from './components/gallery/gallery';
+import { Donations } from './components/donations/donations';
 import { Apps } from './components/apps/apps';
 import { Contact } from './components/contact/contact';
 import { Footer } from './components/footer/footer';
@@ -22,6 +23,7 @@ import { Footer } from './components/footer/footer';
     OurWork,
     Guidance,
     Gallery,
+    Donations,
     Apps,
     Contact,
     Footer,
