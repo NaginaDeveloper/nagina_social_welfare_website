@@ -24,6 +24,7 @@ export class Header {
   protected readonly links: readonly NavLink[] = [
     { label: 'About', fragment: 'about' },
     { label: 'Our Work', fragment: 'work' },
+    { label: 'Books', fragment: 'books' },
     { label: 'Events', fragment: 'events' },
     { label: 'Donate', fragment: 'donate' },
     { label: 'Apps', fragment: 'apps' },
@@ -37,6 +38,7 @@ export class Header {
     { label: 'About', fragment: 'about' },
     { label: 'Our Work', fragment: 'work' },
     { label: 'Guidance', fragment: 'guidance' },
+    { label: 'Books', fragment: 'books' },
     { label: 'Events', fragment: 'events' },
     { label: 'Donate', fragment: 'donate' },
     { label: 'Apps', fragment: 'apps' },
@@ -50,6 +52,7 @@ export class Header {
     'about',
     'work',
     'guidance',
+    'books',
     'events',
     'donate',
     'apps',

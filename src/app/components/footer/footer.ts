@@ -14,6 +14,9 @@ export class Footer {
   /** Official Instagram profile. */
   protected readonly instagramUrl = 'https://www.instagram.com/naginasocialwelfare/';
 
+  /** Official YouTube channel. */
+  protected readonly youtubeUrl = 'https://www.youtube.com/@naginasocialwelfareuk7419';
+
   protected readonly year = new Date().getFullYear();
 
   protected readonly quickLinks = [
@@ -22,6 +25,7 @@ export class Footer {
     { label: 'About', href: '#about' },
     { label: 'Our Work', href: '#work' },
     { label: 'Guidance', href: '#guidance' },
+    { label: 'Books', href: '#books' },
     { label: 'Events', href: '#events' },
     { label: 'Donate', href: '#donate' },
     { label: 'Apps', href: '#apps' },

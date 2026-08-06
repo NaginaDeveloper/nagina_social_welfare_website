@@ -6,6 +6,7 @@ import { AhleBait } from './components/ahle-bait/ahle-bait';
 import { About } from './components/about/about';
 import { OurWork } from './components/our-work/our-work';
 import { Guidance } from './components/guidance/guidance';
+import { Books } from './components/books/books';
 import { Gallery } from './components/gallery/gallery';
 import { Donations } from './components/donations/donations';
 import { Apps } from './components/apps/apps';
@@ -22,6 +23,7 @@ import { Footer } from './components/footer/footer';
     About,
     OurWork,
     Guidance,
+    Books,
     Gallery,
     Donations,
     Apps,

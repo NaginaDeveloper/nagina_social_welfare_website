@@ -9,6 +9,7 @@ export class Gallery {
   protected readonly facebookUrl = 'https://www.facebook.com/naginasocial.welfare.5';
   protected readonly facebookPhotosUrl = 'https://www.facebook.com/naginasocial.welfare.5/photos';
   protected readonly instagramUrl = 'https://www.instagram.com/naginasocialwelfare/';
+  protected readonly youtubeUrl = 'https://www.youtube.com/@naginasocialwelfareuk7419';
 
   protected readonly activeItem = signal<GalleryItem | null>(null);
   protected readonly items = GALLERY_ITEMS;
