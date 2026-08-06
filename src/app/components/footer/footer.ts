@@ -25,6 +25,7 @@ export class Footer {
     { label: 'About', href: '#about' },
     { label: 'Our Work', href: '#work' },
     { label: 'Guidance', href: '#guidance' },
+    { label: 'Namaz', href: '#prayer-times' },
     { label: 'Books', href: '#books' },
     { label: 'Events', href: '#events' },
     { label: 'Donate', href: '#donate' },

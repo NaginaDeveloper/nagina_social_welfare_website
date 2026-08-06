@@ -1,0 +1,142 @@
+<section id="prayer-times" class="relative overflow-hidden bg-sand py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        Namaz Times
+      </span>
+      <h2 class="font-display text-4xl font-bold leading-tight text-forest sm:text-5xl">
+        Today in
+        <span class="text-gold-gradient">Peterborough, UK</span>
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+        Daily prayer windows for our city — Begins and Ends, updated live for
+        Europe/London time.
+      </p>
+    </div>
+
+    @if (prayer.loading() && !prayer.today()) {
+      <div class="mx-auto mt-14 max-w-xl rounded-[1.75rem] border border-mist bg-white/90 px-8 py-16 text-center shadow-soft">
+        <p class="text-sm font-medium text-slate-warm">Loading today’s prayer times…</p>
+      </div>
+    } @else if (prayer.error() && !prayer.today()) {
+      <div class="mx-auto mt-14 max-w-xl rounded-[1.75rem] border border-mist bg-white/90 px-8 py-16 text-center shadow-soft">
+        <p class="text-sm font-medium text-forest">{{ prayer.error() }}</p>
+        <button
+          type="button"
+          class="mt-5 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
+          (click)="prayer.load()"
+        >
+          Try again
+        </button>
+      </div>
+    } @else if (prayer.today(); as day) {
+      <div class="mx-auto mt-12 max-w-3xl">
+        <!-- Date + live status -->
+        <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            @if (prayer.dateInfo(); as date) {
+              <p class="text-sm font-medium text-forest">{{ date.gregorian }}</p>
+              <p class="mt-1 font-arabic text-base text-slate-warm">{{ date.hijri }}</p>
+            }
+          </div>
+
+          <div
+            class="rounded-2xl border border-mist bg-white/90 px-5 py-3.5 text-left shadow-soft sm:text-right"
+            aria-live="polite"
+          >
+            @if (prayer.currentPrayer(); as current) {
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+                Now
+              </p>
+              <p class="mt-0.5 font-display text-2xl font-bold text-forest">{{ current }}</p>
+            } @else {
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-warm">
+                Between prayers
+              </p>
+              <p class="mt-0.5 font-display text-xl font-bold text-forest">Awaiting next namaz</p>
+            }
+            @if (prayer.nextPrayer(); as next) {
+              <p class="mt-1.5 text-sm text-slate-warm">
+                Next:
+                <span class="font-semibold text-gold-600">{{ next.name }}</span>
+                in {{ prayer.countdown() }}
+                @if (next.isTomorrow) {
+                  <span class="text-slate-warm/80">(tomorrow)</span>
+                }
+              </p>
+            }
+          </div>
+        </div>
+
+        <!-- Today table -->
+        <div class="overflow-hidden rounded-[1.75rem] border border-mist bg-white shadow-soft">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-mist px-5 py-4 sm:px-7">
+            <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
+              Today’s namaz
+            </h3>
+            <p class="text-xs font-medium text-slate-warm">
+              Sunrise {{ prayer.sunrise() }}
+            </p>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[20rem] text-left">
+              <thead>
+                <tr class="border-b border-mist bg-sand/60 text-xs font-semibold uppercase tracking-[0.18em] text-slate-warm">
+                  <th scope="col" class="px-5 py-3.5 sm:px-7">Prayer</th>
+                  <th scope="col" class="px-5 py-3.5 sm:px-7">Begins</th>
+                  <th scope="col" class="px-5 py-3.5 sm:px-7">Ends</th>
+                  <th scope="col" class="px-5 py-3.5 text-right sm:px-7">
+                    <span class="sr-only">Status</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-mist">
+                @for (slot of prayer.slots(); track slot.name) {
+                  <tr
+                    class="transition-colors duration-300"
+                    [ngClass]="{
+                      'bg-emerald/10 ring-1 ring-inset ring-emerald-500/25': isCurrent(slot.name),
+                      'bg-gold/10 ring-1 ring-inset ring-gold/30': isNext(slot.name) && !isCurrent(slot.name)
+                    }"
+                  >
+                    <th scope="row" class="px-5 py-4 font-display text-lg font-bold text-forest sm:px-7 sm:text-xl">
+                      {{ slot.name }}
+                    </th>
+                    <td class="px-5 py-4 font-mono text-base tabular-nums text-ink sm:px-7">
+                      {{ slot.begins }}
+                    </td>
+                    <td class="px-5 py-4 font-mono text-base tabular-nums text-slate-warm sm:px-7">
+                      {{ slot.ends }}
+                      @if (slot.name === 'Isha') {
+                        <span class="ml-1 text-xs text-slate-warm/70">(+1)</span>
+                      }
+                    </td>
+                    <td class="px-5 py-4 text-right sm:px-7">
+                      @if (isCurrent(slot.name)) {
+                        <span class="inline-block rounded-full bg-emerald-500/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-emerald-600">
+                          Now
+                        </span>
+                      } @else if (isNext(slot.name)) {
+                        <span class="inline-block rounded-full bg-gold/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-600">
+                          Next
+                        </span>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="mt-5 text-center text-xs leading-relaxed text-slate-warm/90">
+          Calculated for Peterborough (MWL method, Hanafi Asr). Times are begin
+          and end windows — confirm congregation times with your local mosque.
+        </p>
+      </div>
+    }
+  </div>
+</section>
