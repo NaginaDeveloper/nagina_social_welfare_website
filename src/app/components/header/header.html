@@ -96,6 +96,40 @@
 
       <span class="mx-4 h-5 w-px bg-cream/15" aria-hidden="true"></span>
 
+      @if (prayer.headerStatus(); as status) {
+        <a
+          href="#prayer-times"
+          class="mr-3 inline-flex max-w-[11rem] flex-col items-start rounded-xl border border-gold/25 bg-white/5 px-3 py-1.5 text-left transition-colors hover:border-gold/45 hover:bg-white/10"
+          [attr.aria-label]="
+            status.kind === 'current'
+              ? status.name + ' now, ends in ' + status.remaining
+              : 'Next ' + status.name + ' in ' + status.remaining
+          "
+        >
+          @if (status.kind === 'current') {
+            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-emerald-500">
+              Now
+            </span>
+            <span class="font-display text-sm font-bold leading-tight text-cream">
+              {{ status.name }}
+            </span>
+            <span class="text-[0.65rem] text-gold-300/90">
+              Ends {{ status.ends }} · {{ status.remaining }}
+            </span>
+          } @else {
+            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-gold-300">
+              Next
+            </span>
+            <span class="font-display text-sm font-bold leading-tight text-cream">
+              {{ status.name }}
+            </span>
+            <span class="text-[0.65rem] text-cream/65">
+              in {{ status.remaining }}
+            </span>
+          }
+        </a>
+      }
+
       <a
         [href]="loginUrl"
         target="_blank"
@@ -110,10 +144,39 @@
       </a>
     </nav>
 
-    <!-- Tablet / mobile toggle -->
+    <!-- Compact live namaz + menu (tablet / mobile) -->
+    <div class="flex items-center gap-2 xl:hidden">
+      @if (prayer.headerStatus(); as status) {
+        <a
+          href="#prayer-times"
+          class="inline-flex max-w-[8.5rem] flex-col items-end rounded-lg border border-gold/20 bg-white/5 px-2.5 py-1 text-right"
+          [attr.aria-label]="
+            status.kind === 'current'
+              ? status.name + ' now, ends in ' + status.remaining
+              : 'Next ' + status.name + ' in ' + status.remaining
+          "
+        >
+          @if (status.kind === 'current') {
+            <span class="text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-emerald-500">
+              Now · {{ status.name }}
+            </span>
+            <span class="text-[0.62rem] tabular-nums text-gold-300">
+              Ends {{ status.remaining }}
+            </span>
+          } @else {
+            <span class="text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-gold-300">
+              Next · {{ status.name }}
+            </span>
+            <span class="text-[0.62rem] tabular-nums text-cream/70">
+              in {{ status.remaining }}
+            </span>
+          }
+        </a>
+      }
+
     <button
       type="button"
-      class="flex h-10 w-10 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5 xl:hidden"
+      class="flex h-10 w-10 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5"
       [attr.aria-expanded]="menuOpen()"
       aria-label="Toggle navigation menu"
       (click)="toggleMenu()"
@@ -128,6 +191,7 @@
         </svg>
       }
     </button>
+    </div>
   </div>
 
   <!-- Compact panel for tablet & mobile -->

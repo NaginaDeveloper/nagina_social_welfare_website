@@ -1,4 +1,5 @@
-import { Component, HostListener, afterNextRender, signal } from '@angular/core';
+import { Component, HostListener, OnInit, afterNextRender, inject, signal } from '@angular/core';
+import { PrayerTimesService } from '../../services/prayer-times.service';
 
 interface NavLink {
   readonly label: string;
@@ -9,13 +10,19 @@ interface NavLink {
   selector: 'app-header',
   templateUrl: './header.html',
 })
-export class Header {
+export class Header implements OnInit {
   /** Shared portal where admins, teachers and parents sign in. */
   protected readonly loginUrl = 'https://admin.naginasocialwelfare.co.uk/';
+
+  protected readonly prayer = inject(PrayerTimesService);
 
   protected readonly scrolled = signal(false);
   protected readonly menuOpen = signal(false);
   protected readonly activeFragment = signal('top');
+
+  ngOnInit(): void {
+    void this.prayer.load();
+  }
 
   /**
    * Desktop primary nav — short list for a calm, professional bar.

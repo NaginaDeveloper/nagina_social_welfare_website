@@ -90,6 +90,49 @@ export class PrayerTimesService {
     return formatDuration(diff);
   });
 
+  /** Current prayer slot, if one is in progress. */
+  readonly currentSlot = computed(() => {
+    const name = this.currentPrayer();
+    const day = this.todaySignal();
+    if (!name || !day) return null;
+    return day.slots.find((s) => s.name === name) ?? null;
+  });
+
+  /** Countdown until the current prayer window ends (empty if none). */
+  readonly endsCountdown = computed(() => {
+    const slot = this.currentSlot();
+    const day = this.todaySignal();
+    if (!slot || !day) return '';
+    const nowMin = this.londonMinutes(this.nowSignal());
+    let end = this.endMinutes(slot, day);
+    if (end <= nowMin) end += 24 * 60;
+    return formatDuration(Math.max(0, end - nowMin));
+  });
+
+  /**
+   * Compact header status: current namaz + time left, or next namaz if between.
+   */
+  readonly headerStatus = computed(() => {
+    const current = this.currentSlot();
+    if (current) {
+      return {
+        kind: 'current' as const,
+        name: current.name,
+        ends: current.ends,
+        remaining: this.endsCountdown(),
+      };
+    }
+    const next = this.nextPrayer();
+    if (!next) return null;
+    return {
+      kind: 'next' as const,
+      name: next.name,
+      begins: next.begins,
+      remaining: this.countdown(),
+      isTomorrow: next.isTomorrow,
+    };
+  });
+
   constructor(private readonly http: HttpClient) {}
 
   async load(): Promise<void> {
