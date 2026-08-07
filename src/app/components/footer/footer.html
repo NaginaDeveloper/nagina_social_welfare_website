@@ -1,91 +1,102 @@
 <footer class="relative overflow-hidden bg-forest-800 text-cream">
-  <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
-  <div class="relative mx-auto max-w-6xl px-5 py-16 sm:px-8">
-    <div class="grid gap-12 lg:grid-cols-[1.35fr_1.75fr_1fr] lg:gap-10">
-      <!-- Brand + mission -->
-      <div>
+  <div class="relative mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
+    <!-- Top: brand + equal link columns + contact -->
+    <div
+      class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_repeat(4,minmax(0,1fr))_1.25fr] lg:gap-8"
+    >
+      <!-- Brand -->
+      <div class="sm:col-span-2 lg:col-span-1">
         <div class="flex items-center gap-3">
-          <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/40">
-            <img src="brand/nagina.png" alt="Nagina Social Welfare UK logo" class="h-full w-full object-contain" width="48" height="48" loading="lazy" />
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/40">
+            <img
+              src="brand/nagina.png"
+              alt="Nagina Social Welfare UK logo"
+              class="h-full w-full object-contain"
+              width="44"
+              height="44"
+              loading="lazy"
+            />
           </span>
-          <span class="font-display text-xl font-bold tracking-wide">
+          <span class="font-display text-lg font-bold tracking-wide sm:text-xl">
             Nagina <span class="text-gold-gradient">Social Welfare</span>
           </span>
         </div>
-        <p class="mt-5 max-w-sm text-sm leading-relaxed text-cream/65">
-          A UK organisation uniting faith and compassion — educating hearts
-          through Markaz Deen-e-Islam and uplifting lives through community welfare.
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-cream/60">
+          Faith and compassion in action — Islamic education through Markaz Deen-e-Islam,
+          and community welfare across the UK.
         </p>
         <a
           [href]="loginUrl"
           target="_blank"
           rel="noopener noreferrer"
-          class="group mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-gold/30 bg-white/5 px-4 py-2.5 text-sm font-medium text-gold-300 transition-all duration-300 hover:border-gold/60 hover:bg-white/10"
-          aria-label="Login as admin, teacher or parent (opens in a new tab)"
+          class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-gold-300 transition-colors hover:text-gold"
+          aria-label="Member portal login for admin, teacher or parent (opens in a new tab)"
         >
-          <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 17l5-5-5-5M15 12H3" />
+          Member portal
+          <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
           </svg>
-          <span class="sm:hidden">Member Login</span>
-          <span class="hidden sm:inline">Member Login — Admin, Teacher or Parent</span>
         </a>
       </div>
 
-      <!-- Grouped explore links -->
-      <nav aria-label="Footer site sections">
-        <h3 class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">Explore</h3>
-        <div class="mt-5 grid gap-8 sm:grid-cols-2">
-          @for (group of linkGroups; track group.id) {
-            <div>
-              <h4 class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-cream/45">
-                {{ group.label }}
-              </h4>
-              <ul class="mt-2.5 space-y-0.5">
-                @for (link of group.items; track link.href) {
-                  <li>
-                    <a
-                      [href]="link.href"
-                      class="inline-flex min-h-10 items-center text-sm text-cream/70 transition-colors hover:text-gold-300"
-                    >
-                      {{ link.label }}
-                    </a>
-                  </li>
-                }
-              </ul>
-            </div>
-          }
-        </div>
-      </nav>
+      <!-- Four equal section columns -->
+      @for (group of linkGroups; track group.id) {
+        <nav [attr.aria-label]="group.label">
+          <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
+            {{ group.label }}
+          </h3>
+          <ul class="mt-3 space-y-2">
+            @for (link of group.items; track link.label) {
+              <li>
+                <a
+                  [routerLink]="link.path"
+                  [fragment]="link.fragment"
+                  class="text-sm text-cream/65 transition-colors hover:text-gold-300"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+      }
 
       <!-- Contact -->
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">Get in Touch</h3>
-        <ul class="mt-4 space-y-1 text-sm text-cream/70">
+        <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
+          Contact
+        </h3>
+        <ul class="mt-3 space-y-2.5 text-sm text-cream/65">
           <li>
-            <a href="mailto:info@naginasocialwelfare.co.uk" class="inline-flex min-h-11 max-w-full items-center break-all transition-colors hover:text-gold-300">
+            <a
+              href="mailto:info@naginasocialwelfare.co.uk"
+              class="break-all transition-colors hover:text-gold-300"
+            >
               info&#64;naginasocialwelfare.co.uk
             </a>
           </li>
           <li>
-            <a href="tel:+447831684738" class="inline-flex min-h-11 items-center transition-colors hover:text-gold-300">
+            <a href="tel:+447831684738" class="transition-colors hover:text-gold-300">
               +44 7831 684738
             </a>
           </li>
-          <li class="py-2 text-cream/55">103 Burmer Road, Peterborough PE1 3HT, United Kingdom</li>
+          <li class="leading-relaxed text-cream/50">
+            103 Burmer Road<br />
+            Peterborough PE1 3HT
+          </li>
         </ul>
 
-        <h3 class="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">Follow Us</h3>
-        <div class="mt-3 flex items-center gap-3">
+        <div class="mt-5 flex items-center gap-2.5">
           <a
             [href]="facebookUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:bg-white/10 hover:text-gold-300"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
             aria-label="Nagina Social Welfare on Facebook (opens in a new tab)"
           >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v1.9H8v3h2.6V22H14v-8.5h2.5l.4-3H14Z" />
             </svg>
           </a>
@@ -93,10 +104,10 @@
             [href]="instagramUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:bg-white/10 hover:text-gold-300"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
             aria-label="Nagina Social Welfare on Instagram (opens in a new tab)"
           >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.25-3.75a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z" />
             </svg>
           </a>
@@ -104,10 +115,10 @@
             [href]="youtubeUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:bg-white/10 hover:text-gold-300"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
             aria-label="Nagina Social Welfare on YouTube (opens in a new tab)"
           >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.8 15.5v-7l6.3 3.5-6.3 3.5Z" />
             </svg>
           </a>
@@ -115,14 +126,11 @@
       </div>
     </div>
 
-    <!-- Legal bar -->
-    <div class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
+    <div
+      class="mt-10 flex flex-col gap-2 border-t border-white/10 pt-5 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between"
+    >
       <p>&copy; {{ year }} Nagina Social Welfare UK Limited. All rights reserved.</p>
-      <p>
-        <a href="#privacy" class="transition-colors hover:text-gold-300">Privacy notice</a>
-        <span class="mx-2 text-cream/30" aria-hidden="true">·</span>
-        A UK welfare organisation dedicated to education &amp; community enablement.
-      </p>
+      <a routerLink="/" fragment="privacy" class="transition-colors hover:text-gold-300">Privacy notice</a>
     </div>
   </div>
 </footer>

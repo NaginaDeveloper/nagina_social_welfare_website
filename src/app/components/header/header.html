@@ -1,11 +1,11 @@
 <header
   class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
-  [class.bg-forest/97]="scrolled() || menuOpen()"
-  [class.backdrop-blur-xl]="scrolled() || menuOpen()"
+  [class.bg-forest/97]="scrolled() || menuOpen() || currentPath() !== '/'"
+  [class.backdrop-blur-xl]="scrolled() || menuOpen() || currentPath() !== '/'"
   [class.shadow-soft]="scrolled()"
-  [class.border-b]="scrolled() || menuOpen()"
-  [class.border-gold/10]="scrolled() || menuOpen()"
-  [class.bg-transparent]="!scrolled() && !menuOpen()"
+  [class.border-b]="scrolled() || menuOpen() || currentPath() !== '/'"
+  [class.border-gold/10]="scrolled() || menuOpen() || currentPath() !== '/'"
+  [class.bg-transparent]="!scrolled() && !menuOpen() && currentPath() === '/'"
   (click)="closeGroups()"
 >
   <!-- Compact salawat strip -->
@@ -39,10 +39,11 @@
   >
     <!-- Brand -->
     <a
-      href="#top"
+      routerLink="/"
+      fragment="top"
       class="group flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3 lg:flex-none"
       aria-label="Nagina Social Welfare home"
-      (click)="closeMenu()"
+      (click)="onNavClick()"
     >
       <span
         class="flex shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/35 transition-all duration-300 group-hover:ring-gold/60"
@@ -108,22 +109,23 @@
             @if (isGroupOpen(group.id)) {
               <div
                 [id]="'nav-panel-' + group.id"
-                class="absolute left-1/2 top-full z-50 mt-2 w-64 -translate-x-1/2 overflow-hidden rounded-2xl border border-gold/20 bg-forest/98 py-2 shadow-portal backdrop-blur-xl"
+                class="absolute left-0 top-full z-50 mt-2 w-60 overflow-hidden rounded-xl border border-gold/20 bg-forest/98 py-1.5 shadow-portal backdrop-blur-xl"
                 role="menu"
                 [attr.aria-label]="group.label"
               >
-                @for (item of group.items; track item.fragment) {
+                @for (item of group.items; track item.label) {
                   <a
-                    [href]="'#' + item.fragment"
+                    [routerLink]="item.path"
+                    [fragment]="item.fragment"
                     role="menuitem"
-                    class="flex flex-col gap-0.5 px-4 py-2.5 transition-colors"
-                    [class.bg-white/10]="isActive(item.fragment)"
-                    [class.text-gold-300]="isActive(item.fragment)"
-                    [class.text-cream/90]="!isActive(item.fragment)"
-                    [class.hover:bg-white/5]="!isActive(item.fragment)"
-                    [class.hover:text-gold-300]="!isActive(item.fragment)"
-                    [attr.aria-current]="isActive(item.fragment) ? 'true' : null"
-                    (click)="navigate(item.fragment)"
+                    class="flex flex-col gap-0.5 px-3.5 py-2 transition-colors"
+                    [class.bg-white/10]="isLinkActive(item)"
+                    [class.text-gold-300]="isLinkActive(item)"
+                    [class.text-cream/90]="!isLinkActive(item)"
+                    [class.hover:bg-white/5]="!isLinkActive(item)"
+                    [class.hover:text-gold-300]="!isLinkActive(item)"
+                    [attr.aria-current]="isLinkActive(item) ? 'page' : null"
+                    (click)="onNavClick()"
                   >
                     <span class="text-sm font-medium leading-snug">{{ item.label }}</span>
                     @if (item.hint) {
@@ -141,14 +143,14 @@
 
       @if (prayer.headerStatus(); as status) {
         <a
-          href="#prayer-times"
+          routerLink="/namaz"
           class="mr-2 inline-flex items-center gap-2 rounded-full border border-gold/25 bg-white/5 px-3 py-1.5 transition-colors hover:border-gold/45 hover:bg-white/10"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining
               : 'Next ' + status.name + ' in ' + status.remaining
           "
-          (click)="navigate('prayer-times')"
+          (click)="onNavClick()"
         >
           @if (status.kind === 'current') {
             <span class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-emerald-500">
@@ -184,14 +186,14 @@
     <div class="flex shrink-0 items-center gap-2 lg:hidden">
       @if (prayer.headerStatus(); as status) {
         <a
-          href="#prayer-times"
+          routerLink="/namaz"
           class="hidden min-h-10 max-w-[8.5rem] flex-col items-end justify-center rounded-full border border-gold/20 bg-white/5 px-3 py-1 text-right sm:inline-flex"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining
               : 'Next ' + status.name + ' in ' + status.remaining
           "
-          (click)="navigate('prayer-times')"
+          (click)="onNavClick()"
         >
           @if (status.kind === 'current') {
             <span class="text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-emerald-500">
@@ -243,18 +245,19 @@
               {{ group.label }}
             </p>
             <ul class="flex flex-col">
-              @for (item of group.items; track item.fragment) {
+              @for (item of group.items; track item.label) {
                 <li>
                   <a
-                    [href]="'#' + item.fragment"
-                    (click)="navigate(item.fragment)"
+                    [routerLink]="item.path"
+                    [fragment]="item.fragment"
+                    (click)="onNavClick()"
                     class="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors"
-                    [class.bg-white/10]="isActive(item.fragment)"
-                    [class.text-gold-300]="isActive(item.fragment)"
-                    [class.text-cream/85]="!isActive(item.fragment)"
-                    [class.hover:bg-white/5]="!isActive(item.fragment)"
-                    [class.hover:text-gold-300]="!isActive(item.fragment)"
-                    [attr.aria-current]="isActive(item.fragment) ? 'true' : null"
+                    [class.bg-white/10]="isLinkActive(item)"
+                    [class.text-gold-300]="isLinkActive(item)"
+                    [class.text-cream/85]="!isLinkActive(item)"
+                    [class.hover:bg-white/5]="!isLinkActive(item)"
+                    [class.hover:text-gold-300]="!isLinkActive(item)"
+                    [attr.aria-current]="isLinkActive(item) ? 'page' : null"
                   >
                     <span class="flex min-w-0 flex-col">
                       <span class="font-medium">{{ item.label }}</span>
@@ -262,7 +265,7 @@
                         <span class="text-[0.68rem] text-cream/40">{{ item.hint }}</span>
                       }
                     </span>
-                    @if (isActive(item.fragment)) {
+                    @if (isLinkActive(item)) {
                       <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
                     }
                   </a>

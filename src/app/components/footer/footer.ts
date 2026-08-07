@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface FooterLink {
   readonly label: string;
-  readonly href: string;
+  readonly path: string;
+  readonly fragment?: string;
 }
 
 interface FooterGroup {
@@ -13,6 +15,7 @@ interface FooterGroup {
 
 @Component({
   selector: 'app-footer',
+  imports: [RouterLink],
   templateUrl: './footer.html',
 })
 export class Footer {
@@ -30,43 +33,43 @@ export class Footer {
 
   protected readonly year = new Date().getFullYear();
 
-  /** Same groupings as the header — calm, scannable sections. */
+  /** Same groupings as the header — homepage sections + tool routes. */
   protected readonly linkGroups: readonly FooterGroup[] = [
     {
       id: 'about',
       label: 'About',
       items: [
-        { label: 'About us', href: '#about' },
-        { label: 'Our Work', href: '#work' },
-        { label: 'Spiritual Guide', href: '#spiritual-guide' },
-        { label: 'Ahle Bait', href: '#ahle-bait' },
-        { label: 'Guidance', href: '#guidance' },
+        { label: 'About us', path: '/', fragment: 'about' },
+        { label: 'Our Work', path: '/', fragment: 'work' },
+        { label: 'Spiritual Guide', path: '/', fragment: 'spiritual-guide' },
+        { label: 'Ahle Bait', path: '/', fragment: 'ahle-bait' },
+        { label: 'Guidance', path: '/', fragment: 'guidance' },
       ],
     },
     {
       id: 'worship',
       label: 'Worship',
       items: [
-        { label: 'Namaz Times', href: '#prayer-times' },
-        { label: 'Blessed Quran Majeed', href: '#quran' },
+        { label: 'Namaz Times', path: '/namaz' },
+        { label: 'Quran Majeed', path: '/quran' },
       ],
     },
     {
       id: 'learn',
       label: 'Learn',
       items: [
-        { label: 'Books', href: '#books' },
-        { label: 'Apps', href: '#apps' },
+        { label: 'Books', path: '/books' },
+        { label: 'Apps', path: '/', fragment: 'apps' },
       ],
     },
     {
       id: 'connect',
       label: 'Connect',
       items: [
-        { label: 'Events', href: '#events' },
-        { label: 'Donate', href: '#donate' },
-        { label: 'Contact', href: '#contact' },
-        { label: 'Privacy', href: '#privacy' },
+        { label: 'Events', path: '/', fragment: 'events' },
+        { label: 'Donate', path: '/', fragment: 'donate' },
+        { label: 'Contact', path: '/', fragment: 'contact' },
+        { label: 'Privacy', path: '/', fragment: 'privacy' },
       ],
     },
   ];

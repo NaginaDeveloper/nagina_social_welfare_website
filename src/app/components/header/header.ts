@@ -6,11 +6,14 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 
 interface NavLink {
   readonly label: string;
-  readonly fragment: string;
+  readonly path: string;
+  readonly fragment?: string;
   readonly hint?: string;
 }
 
@@ -22,6 +25,7 @@ interface NavGroup {
 
 @Component({
   selector: 'app-header',
+  imports: [RouterLink],
   templateUrl: './header.html',
 })
 export class Header implements OnInit {
@@ -29,70 +33,69 @@ export class Header implements OnInit {
   protected readonly loginUrl = 'https://admin.naginasocialwelfare.co.uk/';
 
   protected readonly prayer = inject(PrayerTimesService);
+  private readonly router = inject(Router);
 
   protected readonly scrolled = signal(false);
   protected readonly menuOpen = signal(false);
   protected readonly openGroupId = signal<string | null>(null);
   protected readonly activeFragment = signal('top');
+  protected readonly currentPath = signal('/');
 
   /**
-   * Concise grouped navigation — keeps the bar calm on desktop
-   * and reads as clear sections on mobile.
+   * Concise grouped navigation — homepage sections + dedicated tool routes.
    */
   protected readonly groups: readonly NavGroup[] = [
     {
       id: 'about',
       label: 'About',
       items: [
-        { label: 'About us', fragment: 'about', hint: 'Who we are' },
-        { label: 'Our Work', fragment: 'work', hint: 'Education & welfare' },
-        { label: 'Spiritual Guide', fragment: 'spiritual-guide', hint: 'Pir-o-Murshid' },
-        { label: 'Ahle Bait', fragment: 'ahle-bait', hint: 'The blessed family' },
-        { label: 'Guidance', fragment: 'guidance', hint: 'Teachings & counsel' },
+        { label: 'About us', path: '/', fragment: 'about', hint: 'Who we are' },
+        { label: 'Our Work', path: '/', fragment: 'work', hint: 'Education & welfare' },
+        {
+          label: 'Spiritual Guide',
+          path: '/',
+          fragment: 'spiritual-guide',
+          hint: 'Pir-o-Murshid',
+        },
+        { label: 'Ahle Bait', path: '/', fragment: 'ahle-bait', hint: 'The blessed family' },
+        { label: 'Guidance', path: '/', fragment: 'guidance', hint: 'Teachings & counsel' },
       ],
     },
     {
       id: 'worship',
       label: 'Worship',
       items: [
-        { label: 'Namaz Times', fragment: 'prayer-times', hint: 'Peterborough, UK' },
-        {
-          label: 'Blessed Quran Majeed',
-          fragment: 'quran',
-          hint: 'Kanzul Iman translation',
-        },
+        { label: 'Namaz Times', path: '/namaz', hint: 'Peterborough, UK' },
+        { label: 'Quran Majeed', path: '/quran', hint: 'Kanzul Iman translation' },
       ],
     },
     {
       id: 'learn',
       label: 'Learn',
       items: [
-        { label: 'Books', fragment: 'books', hint: 'Seedha Rasta library' },
-        { label: 'Apps', fragment: 'apps', hint: 'Mobile learning' },
+        { label: 'Books', path: '/books', hint: 'Seedha Rasta library' },
+        { label: 'Apps', path: '/', fragment: 'apps', hint: 'Mobile learning' },
       ],
     },
     {
       id: 'connect',
       label: 'Connect',
       items: [
-        { label: 'Events', fragment: 'events', hint: 'Gatherings & programmes' },
-        { label: 'Donate', fragment: 'donate', hint: 'Support our work' },
-        { label: 'Contact', fragment: 'contact', hint: 'Get in touch' },
-        { label: 'Privacy', fragment: 'privacy', hint: 'How we use data' },
+        { label: 'Events', path: '/', fragment: 'events', hint: 'Gatherings & programmes' },
+        { label: 'Donate', path: '/', fragment: 'donate', hint: 'Support our work' },
+        { label: 'Contact', path: '/', fragment: 'contact', hint: 'Get in touch' },
+        { label: 'Privacy', path: '/', fragment: 'privacy', hint: 'How we use data' },
       ],
     },
   ];
 
-  private readonly sectionIds = [
+  private readonly homeSectionIds = [
     'top',
     'spiritual-guide',
     'ahle-bait',
     'about',
     'work',
     'guidance',
-    'prayer-times',
-    'quran',
-    'books',
     'events',
     'donate',
     'apps',
@@ -102,6 +105,15 @@ export class Header implements OnInit {
 
   ngOnInit(): void {
     void this.prayer.load();
+    this.syncPath(this.router.url);
+
+    this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((e) => {
+        this.syncPath(e.urlAfterRedirects);
+        this.closeMenu();
+        queueMicrotask(() => this.updateActiveSection());
+      });
   }
 
   constructor() {
@@ -123,12 +135,17 @@ export class Header implements OnInit {
     this.menuOpen.set(false);
   }
 
-  protected isActive(fragment: string): boolean {
-    return this.activeFragment() === fragment;
+  protected isLinkActive(item: NavLink): boolean {
+    const path = this.currentPath();
+    if (item.path !== '/' && path === item.path) return true;
+    if (item.path === '/' && path === '/' && item.fragment) {
+      return this.activeFragment() === item.fragment;
+    }
+    return false;
   }
 
   protected isGroupActive(group: NavGroup): boolean {
-    return group.items.some((item) => item.fragment === this.activeFragment());
+    return group.items.some((item) => this.isLinkActive(item));
   }
 
   protected isGroupOpen(id: string): boolean {
@@ -154,16 +171,25 @@ export class Header implements OnInit {
     this.openGroupId.set(null);
   }
 
-  protected navigate(fragment: string): void {
+  protected onNavClick(): void {
     this.closeMenu();
-    this.activeFragment.set(fragment);
+  }
+
+  private syncPath(url: string): void {
+    const path = url.split('?')[0].split('#')[0] || '/';
+    this.currentPath.set(path === '' ? '/' : path);
   }
 
   private updateActiveSection(): void {
+    if (this.currentPath() !== '/') {
+      this.activeFragment.set('');
+      return;
+    }
+
     const offset = 140;
     let current: string = 'top';
 
-    for (const id of this.sectionIds) {
+    for (const id of this.homeSectionIds) {
       const el = document.getElementById(id);
       if (!el) continue;
       if (el.getBoundingClientRect().top - offset <= 0) {

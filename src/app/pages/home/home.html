@@ -1,0 +1,73 @@
+<app-hero />
+<app-spiritual-guide />
+<app-ahle-bait />
+<app-about />
+<app-our-work />
+<app-guidance />
+
+<!-- Gateway to dedicated worship & learning tools -->
+<section class="relative overflow-hidden bg-forest py-16 text-cream sm:py-20" aria-labelledby="tools-heading">
+  <div class="geo-pattern-dense absolute inset-0 opacity-40" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">
+        Worship &amp; learning
+      </span>
+      <h2 id="tools-heading" class="font-display text-3xl font-bold sm:text-4xl">
+        Dedicated spaces for
+        <span class="text-gold-gradient">daily practice</span>
+      </h2>
+      <p class="mt-4 text-base leading-relaxed text-cream/70 sm:text-lg">
+        Namaz times, the Blessed Quran Majeed, and our book library each have their own page —
+        quieter to use, easier to share.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-3">
+      <a
+        routerLink="/namaz"
+        class="group rounded-2xl border border-white/10 bg-white/5 px-6 py-7 transition-all hover:border-gold/35 hover:bg-white/10"
+      >
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">Worship</p>
+        <h3 class="mt-2 font-display text-2xl font-bold text-cream group-hover:text-gold-300">
+          Namaz Times
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-cream/60">
+          Today’s prayer windows for Peterborough, with live now &amp; next.
+        </p>
+      </a>
+
+      <a
+        routerLink="/quran"
+        class="group rounded-2xl border border-white/10 bg-white/5 px-6 py-7 transition-all hover:border-gold/35 hover:bg-white/10"
+      >
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">Worship</p>
+        <h3 class="mt-2 font-display text-2xl font-bold text-cream group-hover:text-gold-300">
+          Quran Majeed
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-cream/60">
+          Arabic with Kanzul Iman, English toggle, and blessed recitation.
+        </p>
+      </a>
+
+      <a
+        routerLink="/books"
+        class="group rounded-2xl border border-white/10 bg-white/5 px-6 py-7 transition-all hover:border-gold/35 hover:bg-white/10"
+      >
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">Learn</p>
+        <h3 class="mt-2 font-display text-2xl font-bold text-cream group-hover:text-gold-300">
+          Books
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-cream/60">
+          The Seedha Rasta library — open and download Islamic titles.
+        </p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<app-gallery />
+<app-donations />
+<app-apps />
+<app-contact />
+<app-privacy />

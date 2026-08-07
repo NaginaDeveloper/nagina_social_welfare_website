@@ -6,6 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   QiblaService,
   cardinalFromBearing,
@@ -13,6 +14,7 @@ import {
 
 @Component({
   selector: 'app-qibla',
+  imports: [RouterLink],
   templateUrl: './qibla.html',
 })
 export class Qibla implements OnInit, OnDestroy {
