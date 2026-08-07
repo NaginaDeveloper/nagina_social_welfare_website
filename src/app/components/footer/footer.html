@@ -21,24 +21,25 @@
           [href]="loginUrl"
           target="_blank"
           rel="noopener noreferrer"
-          class="group mt-6 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-white/5 px-4 py-2 text-sm font-medium text-gold-300 transition-all duration-300 hover:border-gold/60 hover:bg-white/10"
+          class="group mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-gold/30 bg-white/5 px-4 py-2.5 text-sm font-medium text-gold-300 transition-all duration-300 hover:border-gold/60 hover:bg-white/10"
           aria-label="Login as admin, teacher or parent (opens in a new tab)"
         >
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M10 17l5-5-5-5M15 12H3" />
           </svg>
-          Member Login — Admin, Teacher or Parent
+          <span class="sm:hidden">Member Login</span>
+          <span class="hidden sm:inline">Member Login — Admin, Teacher or Parent</span>
         </a>
       </div>
 
       <!-- Quick links -->
       <nav aria-label="Footer quick links">
         <h3 class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">Explore</h3>
-        <ul class="mt-4 space-y-2.5">
+        <ul class="mt-4 space-y-1">
           @for (link of quickLinks; track link.href) {
             <li>
-              <a [href]="link.href" class="text-sm text-cream/70 transition-colors hover:text-gold-300">
+              <a [href]="link.href" class="inline-flex min-h-11 items-center text-sm text-cream/70 transition-colors hover:text-gold-300">
                 {{ link.label }}
               </a>
             </li>
@@ -49,18 +50,18 @@
       <!-- Contact -->
       <div>
         <h3 class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">Get in Touch</h3>
-        <ul class="mt-4 space-y-2.5 text-sm text-cream/70">
+        <ul class="mt-4 space-y-1 text-sm text-cream/70">
           <li>
-            <a href="mailto:info@naginasocialwelfare.co.uk" class="transition-colors hover:text-gold-300">
+            <a href="mailto:info@naginasocialwelfare.co.uk" class="inline-flex min-h-11 max-w-full items-center break-all transition-colors hover:text-gold-300">
               info&#64;naginasocialwelfare.co.uk
             </a>
           </li>
           <li>
-            <a href="tel:+447831684738" class="transition-colors hover:text-gold-300">
+            <a href="tel:+447831684738" class="inline-flex min-h-11 items-center transition-colors hover:text-gold-300">
               +44 7831 684738
             </a>
           </li>
-          <li class="text-cream/55">103 Burmer Road, Peterborough PE1 3HT, United Kingdom</li>
+          <li class="py-2 text-cream/55">103 Burmer Road, Peterborough PE1 3HT, United Kingdom</li>
         </ul>
 
         <h3 class="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">Follow Us</h3>

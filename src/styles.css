@@ -134,6 +134,7 @@ html {
   scroll-behavior: smooth;
   /* Matches compact sticky header (salawat + nav) */
   scroll-padding-top: 7.25rem;
+  overflow-x: clip;
 }
 
 body {
@@ -143,6 +144,7 @@ body {
   background-color: var(--color-cream);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 /* Subtle Islamic geometric atmosphere (repeating eight-point star lattice). */

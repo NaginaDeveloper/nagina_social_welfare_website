@@ -113,7 +113,7 @@
         @if (result.source === 'peterborough') {
           <button
             type="button"
-            class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-forest/15 bg-sand px-4 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 disabled:opacity-60"
+            class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-forest/15 bg-sand px-4 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 disabled:opacity-60"
             [disabled]="qibla.locating()"
             (click)="useMyLocation()"
           >
@@ -134,7 +134,7 @@
         } @else {
           <button
             type="button"
-            class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-forest/15 bg-sand px-4 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600"
+            class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-forest/15 bg-sand px-4 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600"
             (click)="usePeterborough()"
           >
             Reset to Peterborough
@@ -144,7 +144,7 @@
         @if (orientationSupported()) {
           <button
             type="button"
-            class="inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors"
+            class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold transition-colors"
             [class.bg-forest]="liveMode()"
             [class.text-cream]="liveMode()"
             [class.border]="!liveMode()"

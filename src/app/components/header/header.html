@@ -14,9 +14,11 @@
     [class.py-2]="!scrolled()"
   >
     <p
-      class="font-arabic leading-tight text-gold-300 transition-[font-size] duration-300"
-      [class.text-base]="scrolled()"
-      [class.text-lg]="!scrolled()"
+      class="font-arabic break-words leading-tight text-gold-300 transition-[font-size] duration-300"
+      [class.text-sm]="scrolled()"
+      [class.text-base]="!scrolled()"
+      [class.sm:text-base]="scrolled()"
+      [class.sm:text-lg]="!scrolled()"
       lang="ar"
       dir="rtl"
     >
@@ -30,14 +32,14 @@
   </div>
 
   <div
-    class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 transition-all duration-300 sm:px-8"
+    class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 transition-all duration-300 sm:gap-6 sm:px-8"
     [class.py-2.5]="scrolled()"
     [class.py-3.5]="!scrolled()"
   >
     <!-- Brand -->
     <a
       href="#top"
-      class="group flex min-w-0 shrink items-center gap-3"
+      class="group flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3"
       aria-label="Nagina Social Welfare home"
       (click)="closeMenu()"
     >
@@ -58,9 +60,11 @@
       </span>
       <span class="flex min-w-0 flex-col leading-tight">
         <span
-          class="font-display font-bold tracking-wide text-cream transition-all duration-300"
-          [class.text-lg]="scrolled()"
-          [class.text-xl]="!scrolled()"
+          class="truncate font-display font-bold tracking-wide text-cream transition-all duration-300"
+          [class.text-base]="scrolled()"
+          [class.text-lg]="!scrolled()"
+          [class.sm:text-lg]="scrolled()"
+          [class.sm:text-xl]="!scrolled()"
         >
           Nagina <span class="text-gold-gradient">Social Welfare</span>
         </span>
@@ -145,11 +149,11 @@
     </nav>
 
     <!-- Compact live namaz + menu (tablet / mobile) -->
-    <div class="flex items-center gap-2 xl:hidden">
+    <div class="flex shrink-0 items-center gap-2 xl:hidden">
       @if (prayer.headerStatus(); as status) {
         <a
           href="#prayer-times"
-          class="inline-flex max-w-[8.5rem] flex-col items-end rounded-lg border border-gold/20 bg-white/5 px-2.5 py-1 text-right"
+          class="hidden min-h-11 max-w-[9rem] flex-col items-end justify-center rounded-lg border border-gold/20 bg-white/5 px-3 py-1.5 text-right sm:inline-flex"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining
@@ -176,7 +180,7 @@
 
     <button
       type="button"
-      class="flex h-10 w-10 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5"
+      class="flex h-11 w-11 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5"
       [attr.aria-expanded]="menuOpen()"
       aria-label="Toggle navigation menu"
       (click)="toggleMenu()"

@@ -1,4 +1,4 @@
-<section id="prayer-times" class="relative overflow-hidden bg-sand py-24 sm:py-32">
+<section id="prayer-times" class="relative overflow-hidden bg-sand py-20 sm:py-32">
   <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
@@ -6,7 +6,7 @@
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
         Namaz Times
       </span>
-      <h2 class="font-display text-4xl font-bold leading-tight text-forest sm:text-5xl">
+      <h2 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
         Today in
         <span class="text-gold-gradient">Peterborough, UK</span>
       </h2>
@@ -17,22 +17,22 @@
     </div>
 
     @if (prayer.loading() && !prayer.today()) {
-      <div class="mx-auto mt-14 max-w-xl rounded-[1.75rem] border border-mist bg-white/90 px-8 py-16 text-center shadow-soft">
+      <div class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14 sm:rounded-[1.75rem] sm:px-8 sm:py-16">
         <p class="text-sm font-medium text-slate-warm">Loading today’s prayer times…</p>
       </div>
     } @else if (prayer.error() && !prayer.today()) {
-      <div class="mx-auto mt-14 max-w-xl rounded-[1.75rem] border border-mist bg-white/90 px-8 py-16 text-center shadow-soft">
+      <div class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14 sm:rounded-[1.75rem] sm:px-8 sm:py-16">
         <p class="text-sm font-medium text-forest">{{ prayer.error() }}</p>
         <button
           type="button"
-          class="mt-5 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
+          class="mt-5 inline-flex min-h-11 items-center rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
           (click)="prayer.load()"
         >
           Try again
         </button>
       </div>
     } @else if (prayer.today(); as day) {
-      <div class="mx-auto mt-12 max-w-5xl">
+      <div class="mx-auto mt-10 max-w-5xl sm:mt-12">
         <!-- Date + live status -->
         <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -70,10 +70,10 @@
           </div>
         </div>
 
-        <div class="grid items-stretch gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-          <!-- Today table -->
-          <div class="overflow-hidden rounded-[1.75rem] border border-mist bg-white shadow-soft">
-            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-mist px-5 py-4 sm:px-7">
+        <div class="grid items-stretch gap-6 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+          <!-- Today timetable -->
+          <div class="overflow-hidden rounded-[1.5rem] border border-mist bg-white shadow-soft sm:rounded-[1.75rem]">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-mist px-4 py-4 sm:px-7">
               <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
                 Today’s namaz
               </h3>
@@ -82,8 +82,50 @@
               </p>
             </div>
 
-            <div class="overflow-x-auto">
-              <table class="w-full min-w-[20rem] text-left">
+            <!-- Mobile: stacked rows -->
+            <ul class="divide-y divide-mist sm:hidden">
+              @for (slot of prayer.slots(); track slot.name) {
+                <li
+                  class="px-4 py-4 transition-colors duration-300"
+                  [ngClass]="{
+                    'bg-emerald/10': isCurrent(slot.name),
+                    'bg-gold/10': isNext(slot.name) && !isCurrent(slot.name)
+                  }"
+                >
+                  <div class="flex items-center justify-between gap-3">
+                    <p class="font-display text-lg font-bold text-forest">{{ slot.name }}</p>
+                    @if (isCurrent(slot.name)) {
+                      <span class="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-emerald-600">
+                        Now
+                      </span>
+                    } @else if (isNext(slot.name)) {
+                      <span class="rounded-full bg-gold/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-600">
+                        Next
+                      </span>
+                    }
+                  </div>
+                  <div class="mt-2 flex gap-6 text-sm">
+                    <p>
+                      <span class="text-slate-warm">Begins</span>
+                      <span class="ml-2 font-mono tabular-nums font-semibold text-ink">{{ slot.begins }}</span>
+                    </p>
+                    <p>
+                      <span class="text-slate-warm">Ends</span>
+                      <span class="ml-2 font-mono tabular-nums font-semibold text-ink">
+                        {{ slot.ends }}
+                        @if (slot.name === 'Isha') {
+                          <span class="text-xs text-slate-warm/70">(+1)</span>
+                        }
+                      </span>
+                    </p>
+                  </div>
+                </li>
+              }
+            </ul>
+
+            <!-- Desktop/tablet table -->
+            <div class="hidden overflow-x-auto sm:block">
+              <table class="w-full text-left">
                 <thead>
                   <tr class="border-b border-mist bg-sand/60 text-xs font-semibold uppercase tracking-[0.18em] text-slate-warm">
                     <th scope="col" class="px-5 py-3.5 sm:px-7">Prayer</th>
