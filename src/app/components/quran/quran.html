@@ -1,0 +1,362 @@
+<section id="quran" class="relative overflow-hidden bg-cream py-20 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        Blessed Quran e Pak
+      </span>
+      <h2 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        The Blessed Quran Majeed with
+        <span class="text-gold-gradient">Kanzul Iman</span>
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+        Recite and reflect upon the Holy Quran with the blessed translation of
+        Aala Hazrat Imam Ahmed Raza Khan
+        <span class="font-arabic text-forest/80" lang="ar" dir="rtl">(رحمة الله عليه)</span>
+        — Kanzul Iman.
+      </p>
+    </div>
+
+    <!-- Surah picker -->
+    @if (!quran.currentSurah() && !quran.loadingSurah()) {
+      <div class="mx-auto mt-10 max-w-md">
+        <label class="sr-only" for="quran-search">Search the Holy Quran by surah</label>
+        <input
+          id="quran-search"
+          type="search"
+          [ngModel]="search"
+          (ngModelChange)="onSearch($event)"
+          placeholder="Search a blessed surah by name or number…"
+          class="w-full rounded-2xl border border-mist bg-white px-5 py-3.5 text-sm text-forest shadow-soft outline-none ring-gold/0 transition focus:border-gold/40 focus:ring-2 focus:ring-gold/20"
+        />
+      </div>
+
+      @if (quran.loadingList() && !quran.listLoaded()) {
+        <div
+          class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14"
+          role="status"
+        >
+          <p class="text-sm font-medium text-slate-warm">Loading the Blessed Quran Majeed…</p>
+        </div>
+      } @else if (quran.error() && quran.surahs().length === 0) {
+        <div
+          class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14"
+        >
+          <p class="text-sm font-medium text-forest">{{ quran.error() }}</p>
+          <button
+            type="button"
+            class="mt-5 inline-flex min-h-11 items-center rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
+            (click)="quran.loadSurahs()"
+          >
+            Try again
+          </button>
+        </div>
+      } @else if (quran.filteredSurahs().length === 0) {
+        <p class="mt-14 text-center text-sm text-slate-warm">No blessed surahs match your search.</p>
+      } @else {
+        <p class="mt-8 text-center text-sm text-slate-warm">
+          {{ quran.filteredSurahs().length }}
+          {{ quran.filteredSurahs().length === 1 ? 'blessed surah' : 'blessed surahs' }}
+        </p>
+
+        <div
+          class="mt-6 grid max-h-[36rem] grid-cols-1 gap-2 overflow-y-auto rounded-[1.5rem] border border-mist bg-white/80 p-3 shadow-soft sm:grid-cols-2 sm:p-4 lg:grid-cols-3"
+          role="list"
+          aria-label="Blessed surahs of the Holy Quran"
+        >
+          @for (surah of quran.filteredSurahs(); track surah.number) {
+            <button
+              type="button"
+              role="listitem"
+              class="group flex items-center gap-3 rounded-2xl border border-transparent bg-sand/60 px-3.5 py-3 text-left transition-all hover:border-gold/30 hover:bg-white hover:shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              (click)="openSurah(surah)"
+              [attr.aria-label]="'Open blessed Surah ' + surah.englishName"
+            >
+              <span
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-sm font-semibold tabular-nums text-gold-300 ring-1 ring-gold/25"
+              >
+                {{ surah.number }}
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="flex items-baseline justify-between gap-2">
+                  <span class="font-display text-base font-bold text-forest group-hover:text-emerald">
+                    {{ surah.englishName }}
+                  </span>
+                  <span
+                    class="font-arabic shrink-0 text-lg leading-none text-forest/90"
+                    lang="ar"
+                    dir="rtl"
+                  >
+                    {{ surah.name }}
+                  </span>
+                </span>
+                <span class="mt-0.5 flex flex-wrap items-center gap-2 text-[0.7rem] text-slate-warm">
+                  <span>{{ surah.englishNameTranslation }}</span>
+                  <span class="text-mist" aria-hidden="true">·</span>
+                  <span>{{ surah.numberOfAyahs }} ayahs</span>
+                  <span
+                    class="rounded-full bg-gold/10 px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-wider text-gold-600"
+                  >
+                    {{ revelationLabel(surah.revelationType) }}
+                  </span>
+                </span>
+              </span>
+            </button>
+          }
+        </div>
+      }
+    }
+
+    <!-- Loading surah -->
+    @if (quran.loadingSurah()) {
+      <div
+        class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14"
+        role="status"
+      >
+        <p class="text-sm font-medium text-slate-warm">Opening the blessed Surah…</p>
+      </div>
+    }
+
+    <!-- Surah load error (when no current surah) -->
+    @if (quran.error() && !quran.currentSurah() && !quran.loadingSurah() && quran.surahs().length > 0) {
+      <div
+        class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14"
+      >
+        <p class="text-sm font-medium text-forest">{{ quran.error() }}</p>
+        <button
+          type="button"
+          class="mt-5 inline-flex min-h-11 items-center rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
+          (click)="backToList()"
+        >
+          Back to the Holy Quran
+        </button>
+      </div>
+    }
+
+    <!-- Reader -->
+    @if (quran.currentSurah(); as surah) {
+      <div class="mt-10 sm:mt-12">
+        <!-- Toolbar -->
+        <div
+          class="mb-6 flex flex-col gap-4 rounded-[1.5rem] border border-mist bg-white p-4 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:rounded-[1.75rem] sm:px-6 sm:py-5"
+        >
+          <div class="flex min-w-0 items-start gap-3">
+            <button
+              type="button"
+              class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-mist text-forest transition-colors hover:border-gold/40 hover:bg-sand"
+              (click)="backToList()"
+              aria-label="Back to the Holy Quran surah list"
+            >
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <div class="min-w-0">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
+                Blessed Surah {{ surah.number }}
+              </p>
+              <h3 class="font-display text-2xl font-bold text-forest sm:text-3xl">
+                {{ surah.englishName }}
+              </h3>
+              <p
+                class="mt-1 font-arabic text-xl leading-relaxed text-forest/90 sm:text-2xl"
+                lang="ar"
+                dir="rtl"
+              >
+                {{ surah.name }}
+              </p>
+              <p class="mt-1 text-sm text-slate-warm">
+                {{ surah.englishNameTranslation }} · {{ surah.numberOfAyahs }} ayahs ·
+                {{ revelationLabel(surah.revelationType) }}
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 sm:justify-end">
+            <button
+              type="button"
+              class="inline-flex min-h-11 items-center gap-2 rounded-full border border-mist bg-sand/80 px-4 py-2 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:bg-white"
+              (click)="quran.toggleEnglish()"
+              [attr.aria-pressed]="quran.showEnglish()"
+            >
+              <span
+                class="h-2 w-2 rounded-full"
+                [class.bg-emerald-500]="quran.showEnglish()"
+                [class.bg-mist]="!quran.showEnglish()"
+                aria-hidden="true"
+              ></span>
+              English
+            </button>
+
+            @if (quran.playingSurah() || quran.playingAyah()) {
+              <button
+                type="button"
+                class="inline-flex min-h-11 items-center gap-2 rounded-full border border-mist bg-white px-4 py-2 text-sm font-semibold text-forest transition-colors hover:border-gold/40"
+                (click)="stopAudio()"
+              >
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="6" y="6" width="12" height="12" rx="1" />
+                </svg>
+                Stop
+              </button>
+            }
+
+            <button
+              type="button"
+              class="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
+              (click)="playSurah()"
+              [attr.aria-label]="quran.playingSurah() ? 'Pause blessed Surah recitation' : 'Play blessed Surah recitation'"
+            >
+              @if (quran.playingSurah()) {
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z" />
+                </svg>
+                Pause
+              } @else {
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7L8 5z" />
+                </svg>
+                Play Surah
+              }
+            </button>
+          </div>
+        </div>
+
+        <!-- Attribution -->
+        <p class="mb-6 text-center text-xs leading-relaxed text-slate-warm sm:text-sm">
+          Blessed translation:
+          <span class="font-medium text-forest">Kanzul Iman</span>
+          by Aala Hazrat Imam Ahmed Raza Khan
+          <span class="font-arabic" lang="ar" dir="rtl">(رحمة الله عليه)</span>
+          · Blessed recitation: Mishary Rashid Alafasy
+        </p>
+
+        <!-- Bismillah -->
+        @if (quran.showsBismillah(surah.number)) {
+          <div
+            class="mb-6 rounded-[1.5rem] border border-gold/20 bg-gradient-to-b from-sand to-white px-6 py-8 text-center shadow-soft sm:mb-8 sm:rounded-[1.75rem]"
+          >
+            <p
+              class="font-arabic text-2xl leading-loose text-forest sm:text-3xl"
+              lang="ar"
+              dir="rtl"
+            >
+              {{ bismillah }}
+            </p>
+            <p class="mt-2 text-xs font-medium uppercase tracking-[0.22em] text-gold-600">
+              In the name of Allah, the Most Gracious, the Most Merciful
+            </p>
+          </div>
+        }
+
+        <!-- Ayahs -->
+        <div class="flex flex-col gap-4" role="list" aria-label="Blessed ayahs of Surah {{ surah.englishName }}">
+          @for (ayah of surah.ayahs; track ayah.number) {
+            <article
+              #ayahCard
+              role="listitem"
+              [attr.data-ayah]="ayah.numberInSurah"
+              class="rounded-[1.5rem] border bg-white p-5 shadow-soft transition-all sm:rounded-[1.75rem] sm:p-7"
+              [class.border-gold/45]="isPlaying(ayah)"
+              [class.ring-2]="isPlaying(ayah)"
+              [class.ring-gold/25]="isPlaying(ayah)"
+              [class.bg-sand/40]="isPlaying(ayah)"
+              [class.border-mist]="!isPlaying(ayah)"
+            >
+              <div class="mb-4 flex items-center justify-between gap-3">
+                <span
+                  class="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-forest px-2.5 text-sm font-semibold tabular-nums text-gold-300 ring-1 ring-gold/30"
+                  [attr.aria-label]="'Blessed ayah ' + ayah.numberInSurah"
+                >
+                  {{ ayah.numberInSurah }}
+                </span>
+
+                <div class="flex items-center gap-2">
+                  @if (ayah.sajda) {
+                    <span
+                      class="rounded-full bg-gold/15 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-gold-600"
+                      title="Place of sajda"
+                    >
+                      Sajda
+                    </span>
+                  }
+                  <button
+                    type="button"
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-mist text-forest transition-colors hover:border-gold/40 hover:bg-sand"
+                    (click)="playAyah(ayah)"
+                    [attr.aria-label]="
+                      isPlaying(ayah) && !quran.playingSurah()
+                        ? 'Stop blessed ayah ' + ayah.numberInSurah
+                        : 'Play blessed ayah ' + ayah.numberInSurah
+                    "
+                  >
+                    @if (isPlaying(ayah)) {
+                      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z" />
+                      </svg>
+                    } @else {
+                      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8 5v14l11-7L8 5z" />
+                      </svg>
+                    }
+                  </button>
+                </div>
+              </div>
+
+              <p
+                class="font-arabic text-right text-2xl leading-[2.1] text-forest sm:text-[1.75rem]"
+                lang="ar"
+                dir="rtl"
+              >
+                {{ ayah.arabic }}
+              </p>
+
+              <div class="my-5 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" aria-hidden="true"></div>
+
+              <p
+                class="font-urdu text-right text-xl leading-[2.4] text-ink/90 sm:text-[1.35rem]"
+                lang="ur"
+                dir="rtl"
+              >
+                {{ ayah.urdu }}
+              </p>
+
+              @if (quran.showEnglish() && ayah.english) {
+                <p class="mt-4 border-t border-mist pt-4 text-sm leading-relaxed text-slate-warm sm:text-base">
+                  {{ ayah.english }}
+                </p>
+              }
+            </article>
+          }
+        </div>
+
+        <!-- Prev / Next -->
+        <div class="mt-8 flex flex-wrap items-center justify-between gap-3">
+          <button
+            type="button"
+            class="inline-flex min-h-11 items-center gap-2 rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-gold/40 disabled:cursor-not-allowed disabled:opacity-40"
+            (click)="prevSurah()"
+            [disabled]="surah.number <= 1"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Previous Surah
+          </button>
+          <button
+            type="button"
+            class="inline-flex min-h-11 items-center gap-2 rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-gold/40 disabled:cursor-not-allowed disabled:opacity-40"
+            (click)="nextSurah()"
+            [disabled]="surah.number >= 114"
+          >
+            Next Surah
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</section>

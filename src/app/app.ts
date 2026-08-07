@@ -7,6 +7,7 @@ import { About } from './components/about/about';
 import { OurWork } from './components/our-work/our-work';
 import { Guidance } from './components/guidance/guidance';
 import { PrayerTimes } from './components/prayer-times/prayer-times';
+import { Quran } from './components/quran/quran';
 import { Books } from './components/books/books';
 import { Gallery } from './components/gallery/gallery';
 import { Donations } from './components/donations/donations';
@@ -26,6 +27,7 @@ import { Footer } from './components/footer/footer';
     OurWork,
     Guidance,
     PrayerTimes,
+    Quran,
     Books,
     Gallery,
     Donations,
