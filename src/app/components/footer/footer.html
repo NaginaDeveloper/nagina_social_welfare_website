@@ -2,7 +2,7 @@
   <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 py-16 sm:px-8">
-    <div class="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr]">
+    <div class="grid gap-12 lg:grid-cols-[1.35fr_1.75fr_1fr] lg:gap-10">
       <!-- Brand + mission -->
       <div>
         <div class="flex items-center gap-3">
@@ -33,18 +33,30 @@
         </a>
       </div>
 
-      <!-- Quick links -->
-      <nav aria-label="Footer quick links">
+      <!-- Grouped explore links -->
+      <nav aria-label="Footer site sections">
         <h3 class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">Explore</h3>
-        <ul class="mt-4 space-y-1">
-          @for (link of quickLinks; track link.href) {
-            <li>
-              <a [href]="link.href" class="inline-flex min-h-11 items-center text-sm text-cream/70 transition-colors hover:text-gold-300">
-                {{ link.label }}
-              </a>
-            </li>
+        <div class="mt-5 grid gap-8 sm:grid-cols-2">
+          @for (group of linkGroups; track group.id) {
+            <div>
+              <h4 class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-cream/45">
+                {{ group.label }}
+              </h4>
+              <ul class="mt-2.5 space-y-0.5">
+                @for (link of group.items; track link.href) {
+                  <li>
+                    <a
+                      [href]="link.href"
+                      class="inline-flex min-h-10 items-center text-sm text-cream/70 transition-colors hover:text-gold-300"
+                    >
+                      {{ link.label }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            </div>
           }
-        </ul>
+        </div>
       </nav>
 
       <!-- Contact -->
