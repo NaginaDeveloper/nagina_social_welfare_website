@@ -26,7 +26,7 @@ export class Footer {
     { label: 'Our Work', href: '#work' },
     { label: 'Guidance', href: '#guidance' },
     { label: 'Namaz', href: '#prayer-times' },
-    { label: 'Holy Quran', href: '#quran' },
+    { label: 'Blessed Quran Majeed', href: '#quran' },
     { label: 'Books', href: '#books' },
     { label: 'Events', href: '#events' },
     { label: 'Donate', href: '#donate' },

@@ -1,11 +1,12 @@
 <header
   class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
-  [class.bg-forest/97]="scrolled()"
-  [class.backdrop-blur-xl]="scrolled()"
+  [class.bg-forest/97]="scrolled() || menuOpen()"
+  [class.backdrop-blur-xl]="scrolled() || menuOpen()"
   [class.shadow-soft]="scrolled()"
-  [class.border-b]="scrolled()"
-  [class.border-gold/10]="scrolled()"
-  [class.bg-transparent]="!scrolled()"
+  [class.border-b]="scrolled() || menuOpen()"
+  [class.border-gold/10]="scrolled() || menuOpen()"
+  [class.bg-transparent]="!scrolled() && !menuOpen()"
+  (click)="closeGroups()"
 >
   <!-- Compact salawat strip -->
   <div
@@ -32,14 +33,14 @@
   </div>
 
   <div
-    class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 transition-all duration-300 sm:gap-6 sm:px-8"
+    class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 transition-all duration-300 sm:gap-5 sm:px-8"
     [class.py-2.5]="scrolled()"
     [class.py-3.5]="!scrolled()"
   >
     <!-- Brand -->
     <a
       href="#top"
-      class="group flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3"
+      class="group flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3 lg:flex-none"
       aria-label="Nagina Social Welfare home"
       (click)="closeMenu()"
     >
@@ -74,62 +75,93 @@
       </span>
     </a>
 
-    <!-- Desktop nav: xl+ only so links never crowd -->
-    <nav class="hidden items-center xl:flex" aria-label="Primary">
-      <ul class="flex items-center gap-1">
-        @for (link of links; track link.fragment) {
-          <li>
-            <a
-              [href]="'#' + link.fragment"
-              class="relative inline-flex px-3.5 py-2 text-[0.8125rem] font-medium tracking-wide transition-colors duration-200"
-              [class.text-gold-300]="isActive(link.fragment)"
-              [class.text-cream/75]="!isActive(link.fragment)"
-              [class.hover:text-cream]="!isActive(link.fragment)"
-              [attr.aria-current]="isActive(link.fragment) ? 'true' : null"
+    <!-- Desktop: 4 grouped menus -->
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary" (click)="$event.stopPropagation()">
+      <ul class="flex items-center gap-0.5">
+        @for (group of groups; track group.id) {
+          <li class="relative">
+            <button
+              type="button"
+              class="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-[0.8125rem] font-medium tracking-wide transition-colors duration-200"
+              [class.text-gold-300]="isGroupActive(group) || isGroupOpen(group.id)"
+              [class.text-cream/75]="!isGroupActive(group) && !isGroupOpen(group.id)"
+              [class.hover:text-cream]="!isGroupActive(group) && !isGroupOpen(group.id)"
+              [class.bg-white/5]="isGroupOpen(group.id)"
+              [attr.aria-expanded]="isGroupOpen(group.id)"
+              [attr.aria-controls]="'nav-panel-' + group.id"
+              (click)="toggleGroup(group.id, $event)"
             >
-              {{ link.label }}
-              <span
-                class="absolute inset-x-3.5 -bottom-0.5 h-px origin-left bg-gold transition-transform duration-300"
-                [class.scale-x-100]="isActive(link.fragment)"
-                [class.scale-x-0]="!isActive(link.fragment)"
-              ></span>
-            </a>
+              {{ group.label }}
+              <svg
+                class="h-3 w-3 opacity-70 transition-transform duration-200"
+                [class.rotate-180]="isGroupOpen(group.id)"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.2"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+
+            @if (isGroupOpen(group.id)) {
+              <div
+                [id]="'nav-panel-' + group.id"
+                class="absolute left-1/2 top-full z-50 mt-2 w-64 -translate-x-1/2 overflow-hidden rounded-2xl border border-gold/20 bg-forest/98 py-2 shadow-portal backdrop-blur-xl"
+                role="menu"
+                [attr.aria-label]="group.label"
+              >
+                @for (item of group.items; track item.fragment) {
+                  <a
+                    [href]="'#' + item.fragment"
+                    role="menuitem"
+                    class="flex flex-col gap-0.5 px-4 py-2.5 transition-colors"
+                    [class.bg-white/10]="isActive(item.fragment)"
+                    [class.text-gold-300]="isActive(item.fragment)"
+                    [class.text-cream/90]="!isActive(item.fragment)"
+                    [class.hover:bg-white/5]="!isActive(item.fragment)"
+                    [class.hover:text-gold-300]="!isActive(item.fragment)"
+                    [attr.aria-current]="isActive(item.fragment) ? 'true' : null"
+                    (click)="navigate(item.fragment)"
+                  >
+                    <span class="text-sm font-medium leading-snug">{{ item.label }}</span>
+                    @if (item.hint) {
+                      <span class="text-[0.68rem] text-cream/45">{{ item.hint }}</span>
+                    }
+                  </a>
+                }
+              </div>
+            }
           </li>
         }
       </ul>
 
-      <span class="mx-4 h-5 w-px bg-cream/15" aria-hidden="true"></span>
+      <span class="mx-3 h-5 w-px bg-cream/15" aria-hidden="true"></span>
 
       @if (prayer.headerStatus(); as status) {
         <a
           href="#prayer-times"
-          class="mr-3 inline-flex max-w-[11rem] flex-col items-start rounded-xl border border-gold/25 bg-white/5 px-3 py-1.5 text-left transition-colors hover:border-gold/45 hover:bg-white/10"
+          class="mr-2 inline-flex items-center gap-2 rounded-full border border-gold/25 bg-white/5 px-3 py-1.5 transition-colors hover:border-gold/45 hover:bg-white/10"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining
               : 'Next ' + status.name + ' in ' + status.remaining
           "
+          (click)="navigate('prayer-times')"
         >
           @if (status.kind === 'current') {
-            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-emerald-500">
+            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-emerald-500">
               Now
             </span>
-            <span class="font-display text-sm font-bold leading-tight text-cream">
-              {{ status.name }}
-            </span>
-            <span class="text-[0.65rem] text-gold-300/90">
-              Ends {{ status.ends }} · {{ status.remaining }}
-            </span>
+            <span class="font-display text-sm font-bold text-cream">{{ status.name }}</span>
+            <span class="text-[0.65rem] tabular-nums text-gold-300/90">{{ status.remaining }}</span>
           } @else {
-            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-gold-300">
+            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-gold-300">
               Next
             </span>
-            <span class="font-display text-sm font-bold leading-tight text-cream">
-              {{ status.name }}
-            </span>
-            <span class="text-[0.65rem] text-cream/65">
-              in {{ status.remaining }}
-            </span>
+            <span class="font-display text-sm font-bold text-cream">{{ status.name }}</span>
+            <span class="text-[0.65rem] tabular-nums text-cream/65">{{ status.remaining }}</span>
           }
         </a>
       }
@@ -148,84 +180,99 @@
       </a>
     </nav>
 
-    <!-- Compact live namaz + menu (tablet / mobile) -->
-    <div class="flex shrink-0 items-center gap-2 xl:hidden">
+    <!-- Tablet / mobile: compact namaz + menu -->
+    <div class="flex shrink-0 items-center gap-2 lg:hidden">
       @if (prayer.headerStatus(); as status) {
         <a
           href="#prayer-times"
-          class="hidden min-h-11 max-w-[9rem] flex-col items-end justify-center rounded-lg border border-gold/20 bg-white/5 px-3 py-1.5 text-right sm:inline-flex"
+          class="hidden min-h-10 max-w-[8.5rem] flex-col items-end justify-center rounded-full border border-gold/20 bg-white/5 px-3 py-1 text-right sm:inline-flex"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining
               : 'Next ' + status.name + ' in ' + status.remaining
           "
+          (click)="navigate('prayer-times')"
         >
           @if (status.kind === 'current') {
             <span class="text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-emerald-500">
               Now · {{ status.name }}
             </span>
-            <span class="text-[0.62rem] tabular-nums text-gold-300">
-              Ends {{ status.remaining }}
-            </span>
+            <span class="text-[0.62rem] tabular-nums text-gold-300">{{ status.remaining }}</span>
           } @else {
             <span class="text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-gold-300">
               Next · {{ status.name }}
             </span>
-            <span class="text-[0.62rem] tabular-nums text-cream/70">
-              in {{ status.remaining }}
-            </span>
+            <span class="text-[0.62rem] tabular-nums text-cream/70">{{ status.remaining }}</span>
           }
         </a>
       }
 
-    <button
-      type="button"
-      class="flex h-11 w-11 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5"
-      [attr.aria-expanded]="menuOpen()"
-      aria-label="Toggle navigation menu"
-      (click)="toggleMenu()"
-    >
-      @if (!menuOpen()) {
-        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
-        </svg>
-      } @else {
-        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
-        </svg>
-      }
-    </button>
+      <button
+        type="button"
+        class="flex h-11 w-11 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Toggle navigation menu"
+        (click)="toggleMenu(); $event.stopPropagation()"
+      >
+        @if (!menuOpen()) {
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        } @else {
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        }
+      </button>
     </div>
   </div>
 
-  <!-- Compact panel for tablet & mobile -->
+  <!-- Mobile / tablet: sectioned panel -->
   @if (menuOpen()) {
     <nav
-      class="mx-4 mb-4 overflow-hidden rounded-2xl border border-gold/15 bg-forest/98 shadow-portal backdrop-blur-xl xl:hidden"
-      aria-label="Mobile"
+      class="mx-4 mb-4 max-h-[min(70vh,36rem)] overflow-y-auto rounded-2xl border border-gold/15 bg-forest/98 shadow-portal backdrop-blur-xl lg:hidden"
+      aria-label="Site sections"
+      (click)="$event.stopPropagation()"
     >
-      <ul class="flex flex-col p-2">
-        @for (link of mobileLinks; track link.fragment) {
-          <li>
-            <a
-              [href]="'#' + link.fragment"
-              (click)="closeMenu()"
-              class="flex items-center justify-between rounded-xl px-4 py-3 text-sm transition-colors"
-              [class.bg-white/5]="isActive(link.fragment)"
-              [class.text-gold-300]="isActive(link.fragment)"
-              [class.text-cream/85]="!isActive(link.fragment)"
-              [class.hover:bg-white/5]="!isActive(link.fragment)"
-              [class.hover:text-gold-300]="!isActive(link.fragment)"
-              [attr.aria-current]="isActive(link.fragment) ? 'true' : null"
+      <div class="flex flex-col gap-1 p-3">
+        @for (group of groups; track group.id) {
+          <div class="rounded-xl bg-white/[0.03] p-2">
+            <p
+              class="px-2 pb-1.5 pt-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300/80"
             >
-              {{ link.label }}
-              @if (isActive(link.fragment)) {
-                <span class="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true"></span>
+              {{ group.label }}
+            </p>
+            <ul class="flex flex-col">
+              @for (item of group.items; track item.fragment) {
+                <li>
+                  <a
+                    [href]="'#' + item.fragment"
+                    (click)="navigate(item.fragment)"
+                    class="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors"
+                    [class.bg-white/10]="isActive(item.fragment)"
+                    [class.text-gold-300]="isActive(item.fragment)"
+                    [class.text-cream/85]="!isActive(item.fragment)"
+                    [class.hover:bg-white/5]="!isActive(item.fragment)"
+                    [class.hover:text-gold-300]="!isActive(item.fragment)"
+                    [attr.aria-current]="isActive(item.fragment) ? 'true' : null"
+                  >
+                    <span class="flex min-w-0 flex-col">
+                      <span class="font-medium">{{ item.label }}</span>
+                      @if (item.hint) {
+                        <span class="text-[0.68rem] text-cream/40">{{ item.hint }}</span>
+                      }
+                    </span>
+                    @if (isActive(item.fragment)) {
+                      <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
+                    }
+                  </a>
+                </li>
               }
-            </a>
-          </li>
+            </ul>
+          </div>
         }
-      </ul>
+      </div>
+
       <div class="border-t border-white/10 p-3">
         <a
           [href]="loginUrl"
