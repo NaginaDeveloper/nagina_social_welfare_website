@@ -32,7 +32,7 @@
         </button>
       </div>
     } @else if (prayer.today(); as day) {
-      <div class="mx-auto mt-12 max-w-3xl">
+      <div class="mx-auto mt-12 max-w-5xl">
         <!-- Date + live status -->
         <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -70,66 +70,70 @@
           </div>
         </div>
 
-        <!-- Today table -->
-        <div class="overflow-hidden rounded-[1.75rem] border border-mist bg-white shadow-soft">
-          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-mist px-5 py-4 sm:px-7">
-            <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
-              Today’s namaz
-            </h3>
-            <p class="text-xs font-medium text-slate-warm">
-              Sunrise {{ prayer.sunrise() }}
-            </p>
+        <div class="grid items-stretch gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+          <!-- Today table -->
+          <div class="overflow-hidden rounded-[1.75rem] border border-mist bg-white shadow-soft">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-mist px-5 py-4 sm:px-7">
+              <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
+                Today’s namaz
+              </h3>
+              <p class="text-xs font-medium text-slate-warm">
+                Sunrise {{ prayer.sunrise() }}
+              </p>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[20rem] text-left">
+                <thead>
+                  <tr class="border-b border-mist bg-sand/60 text-xs font-semibold uppercase tracking-[0.18em] text-slate-warm">
+                    <th scope="col" class="px-5 py-3.5 sm:px-7">Prayer</th>
+                    <th scope="col" class="px-5 py-3.5 sm:px-7">Begins</th>
+                    <th scope="col" class="px-5 py-3.5 sm:px-7">Ends</th>
+                    <th scope="col" class="px-5 py-3.5 text-right sm:px-7">
+                      <span class="sr-only">Status</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-mist">
+                  @for (slot of prayer.slots(); track slot.name) {
+                    <tr
+                      class="transition-colors duration-300"
+                      [ngClass]="{
+                        'bg-emerald/10 ring-1 ring-inset ring-emerald-500/25': isCurrent(slot.name),
+                        'bg-gold/10 ring-1 ring-inset ring-gold/30': isNext(slot.name) && !isCurrent(slot.name)
+                      }"
+                    >
+                      <th scope="row" class="px-5 py-4 font-display text-lg font-bold text-forest sm:px-7 sm:text-xl">
+                        {{ slot.name }}
+                      </th>
+                      <td class="px-5 py-4 font-mono text-base tabular-nums text-ink sm:px-7">
+                        {{ slot.begins }}
+                      </td>
+                      <td class="px-5 py-4 font-mono text-base tabular-nums text-slate-warm sm:px-7">
+                        {{ slot.ends }}
+                        @if (slot.name === 'Isha') {
+                          <span class="ml-1 text-xs text-slate-warm/70">(+1)</span>
+                        }
+                      </td>
+                      <td class="px-5 py-4 text-right sm:px-7">
+                        @if (isCurrent(slot.name)) {
+                          <span class="inline-block rounded-full bg-emerald-500/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-emerald-600">
+                            Now
+                          </span>
+                        } @else if (isNext(slot.name)) {
+                          <span class="inline-block rounded-full bg-gold/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-600">
+                            Next
+                          </span>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <div class="overflow-x-auto">
-            <table class="w-full min-w-[20rem] text-left">
-              <thead>
-                <tr class="border-b border-mist bg-sand/60 text-xs font-semibold uppercase tracking-[0.18em] text-slate-warm">
-                  <th scope="col" class="px-5 py-3.5 sm:px-7">Prayer</th>
-                  <th scope="col" class="px-5 py-3.5 sm:px-7">Begins</th>
-                  <th scope="col" class="px-5 py-3.5 sm:px-7">Ends</th>
-                  <th scope="col" class="px-5 py-3.5 text-right sm:px-7">
-                    <span class="sr-only">Status</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-mist">
-                @for (slot of prayer.slots(); track slot.name) {
-                  <tr
-                    class="transition-colors duration-300"
-                    [ngClass]="{
-                      'bg-emerald/10 ring-1 ring-inset ring-emerald-500/25': isCurrent(slot.name),
-                      'bg-gold/10 ring-1 ring-inset ring-gold/30': isNext(slot.name) && !isCurrent(slot.name)
-                    }"
-                  >
-                    <th scope="row" class="px-5 py-4 font-display text-lg font-bold text-forest sm:px-7 sm:text-xl">
-                      {{ slot.name }}
-                    </th>
-                    <td class="px-5 py-4 font-mono text-base tabular-nums text-ink sm:px-7">
-                      {{ slot.begins }}
-                    </td>
-                    <td class="px-5 py-4 font-mono text-base tabular-nums text-slate-warm sm:px-7">
-                      {{ slot.ends }}
-                      @if (slot.name === 'Isha') {
-                        <span class="ml-1 text-xs text-slate-warm/70">(+1)</span>
-                      }
-                    </td>
-                    <td class="px-5 py-4 text-right sm:px-7">
-                      @if (isCurrent(slot.name)) {
-                        <span class="inline-block rounded-full bg-emerald-500/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-emerald-600">
-                          Now
-                        </span>
-                      } @else if (isNext(slot.name)) {
-                        <span class="inline-block rounded-full bg-gold/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-600">
-                          Next
-                        </span>
-                      }
-                    </td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          </div>
+          <app-qibla />
         </div>
 
         <p class="mt-5 text-center text-xs leading-relaxed text-slate-warm/90">

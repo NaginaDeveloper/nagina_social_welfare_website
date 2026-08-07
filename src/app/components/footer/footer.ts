@@ -31,5 +31,6 @@ export class Footer {
     { label: 'Donate', href: '#donate' },
     { label: 'Apps', href: '#apps' },
     { label: 'Contact', href: '#contact' },
+    { label: 'Privacy', href: '#privacy' },
   ] as const;
 }

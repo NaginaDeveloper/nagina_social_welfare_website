@@ -12,6 +12,7 @@ import { Gallery } from './components/gallery/gallery';
 import { Donations } from './components/donations/donations';
 import { Apps } from './components/apps/apps';
 import { Contact } from './components/contact/contact';
+import { Privacy } from './components/privacy/privacy';
 import { Footer } from './components/footer/footer';
 
 @Component({
@@ -30,6 +31,7 @@ import { Footer } from './components/footer/footer';
     Donations,
     Apps,
     Contact,
+    Privacy,
     Footer,
   ],
   templateUrl: './app.html',

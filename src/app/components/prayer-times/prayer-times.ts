@@ -2,10 +2,11 @@ import { NgClass } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import type { PrayerName } from '../../models/prayer-time';
+import { Qibla } from '../qibla/qibla';
 
 @Component({
   selector: 'app-prayer-times',
-  imports: [NgClass],
+  imports: [NgClass, Qibla],
   templateUrl: './prayer-times.html',
 })
 export class PrayerTimes implements OnInit, OnDestroy {

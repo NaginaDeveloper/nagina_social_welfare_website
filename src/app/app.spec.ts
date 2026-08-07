@@ -23,7 +23,7 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Nagina');
   });
 
-  it('should render the spiritual guide, ahle bait, about, work, guidance, prayer times, books, events, donate, apps and contact sections', async () => {
+  it('should render the spiritual guide, ahle bait, about, work, guidance, prayer times, books, events, donate, apps, contact and privacy sections', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -38,6 +38,7 @@ describe('App', () => {
     expect(compiled.querySelector('#donate')).toBeTruthy();
     expect(compiled.querySelector('#apps')).toBeTruthy();
     expect(compiled.querySelector('#contact')).toBeTruthy();
+    expect(compiled.querySelector('#privacy')).toBeTruthy();
   });
 
   it('should render both programme arms', async () => {

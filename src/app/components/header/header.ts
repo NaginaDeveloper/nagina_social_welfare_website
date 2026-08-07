@@ -52,6 +52,7 @@ export class Header implements OnInit {
     { label: 'Donate', fragment: 'donate' },
     { label: 'Apps', fragment: 'apps' },
     { label: 'Contact', fragment: 'contact' },
+    { label: 'Privacy', fragment: 'privacy' },
   ];
 
   private readonly sectionIds = [
@@ -67,6 +68,7 @@ export class Header implements OnInit {
     'donate',
     'apps',
     'contact',
+    'privacy',
   ] as const;
 
   constructor() {
