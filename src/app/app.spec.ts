@@ -48,9 +48,10 @@ describe('App', () => {
     expect(compiled.querySelector('#prayer-times')).toBeNull();
     expect(compiled.querySelector('#quran')).toBeNull();
     expect(compiled.querySelector('#books')).toBeNull();
+    expect(compiled.querySelector('#sermons')).toBeNull();
   });
 
-  it('should navigate to dedicated namaz, quran and books routes', async () => {
+  it('should navigate to dedicated namaz, quran, books and sermons routes', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     const compiled = fixture.nativeElement as HTMLElement;
@@ -69,6 +70,11 @@ describe('App', () => {
     fixture.detectChanges();
     await fixture.whenStable();
     expect(compiled.querySelector('#books')).toBeTruthy();
+
+    await router.navigateByUrl('/sermons');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(compiled.querySelector('#sermons')).toBeTruthy();
   });
 
   it('should render both programme arms on the home page', async () => {

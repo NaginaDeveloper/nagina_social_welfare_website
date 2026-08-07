@@ -42,6 +42,13 @@ const pages = [
     description:
       'Browse and download Islamic books from the Seedha Rasta library — free PDFs for learning and guidance from Nagina Social Welfare UK.',
   },
+  {
+    dir: 'sermons',
+    path: '/sermons',
+    title: 'Sermons by Baba Ji Sarkar | Bayanat | Nagina Social Welfare',
+    description:
+      'Watch blessed bayanat and sermons by Baba Ji Sarkar from the Seedha Rasta collection — searchable video library via Nagina TV on YouTube.',
+  },
 ];
 
 function escapeHtml(value) {

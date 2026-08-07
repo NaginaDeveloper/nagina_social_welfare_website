@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { BOOKS_SEO, HOME_SEO, NAMAZ_SEO, QURAN_SEO } from './seo/seo.config';
+import { BOOKS_SEO, HOME_SEO, NAMAZ_SEO, QURAN_SEO, SERMONS_SEO } from './seo/seo.config';
 
 export const routes: Routes = [
   {
@@ -25,6 +25,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/books/books-page').then((m) => m.BooksPage),
     title: BOOKS_SEO.title,
     data: { seo: BOOKS_SEO },
+  },
+  {
+    path: 'sermons',
+    loadComponent: () => import('./pages/sermons/sermons-page').then((m) => m.SermonsPage),
+    title: SERMONS_SEO.title,
+    data: { seo: SERMONS_SEO },
   },
   { path: '**', redirectTo: '' },
 ];

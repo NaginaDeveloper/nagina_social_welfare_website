@@ -59,6 +59,7 @@ export class Footer {
       label: 'Learn',
       items: [
         { label: 'Books', path: '/books' },
+        { label: 'Sermons', path: '/sermons' },
         { label: 'Apps', path: '/', fragment: 'apps' },
       ],
     },

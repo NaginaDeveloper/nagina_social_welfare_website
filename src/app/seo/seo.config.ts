@@ -52,3 +52,13 @@ export const BOOKS_SEO: PageSeo = {
   keywords: 'Islamic books PDF, Seedha Rasta, free Islamic library UK, Urdu Islamic books',
   type: 'website',
 };
+
+export const SERMONS_SEO: PageSeo = {
+  title: 'Sermons by Baba Ji Sarkar | Bayanat | Nagina Social Welfare',
+  description:
+    'Watch blessed bayanat and sermons by Baba Ji Sarkar from the Seedha Rasta collection — searchable video library via Nagina TV on YouTube.',
+  path: '/sermons',
+  keywords:
+    'Baba Ji Sarkar bayanat, Seedha Rasta sermons, Nagina TV, Islamic lectures UK, Ahle Sunnat bayan',
+  type: 'website',
+};

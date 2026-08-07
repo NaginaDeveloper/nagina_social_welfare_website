@@ -74,6 +74,7 @@ export class Header implements OnInit {
       label: 'Learn',
       items: [
         { label: 'Books', path: '/books', hint: 'Seedha Rasta library' },
+        { label: 'Sermons', path: '/sermons', hint: 'Baba Ji Sarkar bayanat' },
         { label: 'Apps', path: '/', fragment: 'apps', hint: 'Mobile learning' },
       ],
     },
