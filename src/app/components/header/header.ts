@@ -57,7 +57,12 @@ export class Header implements OnInit {
           fragment: 'spiritual-guide',
           hint: 'Pir-o-Murshid',
         },
-        { label: 'Ahle Bait', path: '/', fragment: 'ahle-bait', hint: 'The blessed family' },
+        {
+          label: 'Ahle Bait & Sahabah',
+          path: '/',
+          fragment: 'ahle-bait',
+          hint: 'Family & Companions',
+        },
         {
           label: 'Khatme Nabuwwat',
           path: '/khatme-nabuwwat',
