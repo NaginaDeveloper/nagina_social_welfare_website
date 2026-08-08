@@ -57,6 +57,20 @@ const pages = [
       'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — Khatam-un-Nabiyyin — the cornerstone of Islamic faith, with Quran and Hadith on the Seal of the Prophets.',
   },
   {
+    dir: 'ahle-bait',
+    path: '/ahle-bait',
+    title: 'Ahle Bait | Honouring Aal-e-Pak | Nagina Social Welfare',
+    description:
+      'Honouring the Ahl al-Bayt — the blessed family of the Prophet ﷺ — with Hadith al-Thaqalayn and the creed of Ahl al-Sunnah wal-Jama’ah.',
+  },
+  {
+    dir: 'sahaba-ikram',
+    path: '/sahaba-ikram',
+    title: 'Sahaba Ikram | Belief Regarding the Companions | Nagina Social Welfare',
+    description:
+      'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Prophet ﷺ, loved and respected as an integral part of Islamic faith.',
+  },
+  {
     dir: 'donate/thanks',
     path: '/donate/thanks',
     title: 'Thank You for Your Donation | Nagina Social Welfare UK',

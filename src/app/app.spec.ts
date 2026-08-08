@@ -36,7 +36,6 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('#spiritual-guide')).toBeTruthy();
-    expect(compiled.querySelector('#ahle-bait')).toBeTruthy();
     expect(compiled.querySelector('#about')).toBeTruthy();
     expect(compiled.querySelector('#work')).toBeTruthy();
     expect(compiled.querySelector('#guidance')).toBeTruthy();
@@ -45,6 +44,9 @@ describe('App', () => {
     expect(compiled.querySelector('#apps')).toBeTruthy();
     expect(compiled.querySelector('#contact')).toBeTruthy();
     expect(compiled.querySelector('#privacy')).toBeTruthy();
+    expect(compiled.querySelector('#ahle-bait')).toBeNull();
+    expect(compiled.querySelector('#sahaba-ikram')).toBeNull();
+    expect(compiled.querySelector('#khatme-nabuwwat')).toBeNull();
     expect(compiled.querySelector('#prayer-times')).toBeNull();
     expect(compiled.querySelector('#quran')).toBeNull();
     expect(compiled.querySelector('#books')).toBeNull();
@@ -75,6 +77,27 @@ describe('App', () => {
     fixture.detectChanges();
     await fixture.whenStable();
     expect(compiled.querySelector('#sermons')).toBeTruthy();
+  });
+
+  it('should navigate to khatme-nabuwwat, ahle-bait and sahaba-ikram routes', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    await router.navigateByUrl('/khatme-nabuwwat');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(compiled.querySelector('#khatme-nabuwwat')).toBeTruthy();
+
+    await router.navigateByUrl('/ahle-bait');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(compiled.querySelector('#ahle-bait')).toBeTruthy();
+
+    await router.navigateByUrl('/sahaba-ikram');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(compiled.querySelector('#sahaba-ikram')).toBeTruthy();
   });
 
   it('should render both programme arms on the home page', async () => {

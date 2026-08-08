@@ -74,6 +74,28 @@ export const KHATME_NABUWWAT_SEO: PageSeo = {
   type: 'article',
 };
 
+export const AHLE_BAIT_SEO: PageSeo = {
+  title: 'Ahle Bait | Honouring Aal-e-Pak | Nagina Social Welfare',
+  description:
+    'Honouring the Ahl al-Bayt — the blessed family of the Prophet ﷺ — with Hadith al-Thaqalayn and the creed of Ahl al-Sunnah wal-Jama’ah.',
+  path: '/ahle-bait',
+  keywords:
+    'Ahle Bait, Ahl al-Bayt, Aal-e-Pak, Hadith al-Thaqalayn, Shan Ahle Bait, Ahle Sunnat',
+  image: `${SITE_ORIGIN}/media/shan-ahle-bait.jpg`,
+  type: 'article',
+};
+
+export const SAHABA_IKRAM_SEO: PageSeo = {
+  title: 'Sahaba Ikram | Belief Regarding the Companions | Nagina Social Welfare',
+  description:
+    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Prophet ﷺ, loved and respected as an integral part of Islamic faith.',
+  path: '/sahaba-ikram',
+  keywords:
+    'Sahaba Ikram, Sahabah, Companions of the Prophet, Ahl al-Sunnah, Khulafa ar-Rashidun, Ahle Sunnat',
+  image: `${SITE_ORIGIN}/media/sahaba-ikram.jpg`,
+  type: 'article',
+};
+
 export const DONATE_THANKS_SEO: PageSeo = {
   title: 'Thank You for Your Donation | Nagina Social Welfare UK',
   description:

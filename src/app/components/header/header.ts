@@ -58,15 +58,19 @@ export class Header implements OnInit {
           hint: 'Pir-o-Murshid',
         },
         {
-          label: 'Ahle Bait & Sahabah',
-          path: '/',
-          fragment: 'ahle-bait',
-          hint: 'Family & Companions',
-        },
-        {
           label: 'Khatme Nabuwwat',
           path: '/khatme-nabuwwat',
           hint: 'Finality of Prophethood',
+        },
+        {
+          label: 'Ahle Bait',
+          path: '/ahle-bait',
+          hint: 'The blessed family',
+        },
+        {
+          label: 'Sahaba Ikram',
+          path: '/sahaba-ikram',
+          hint: 'The noble Companions',
         },
         { label: 'Guidance', path: '/', fragment: 'guidance', hint: 'Teachings & counsel' },
       ],
@@ -103,7 +107,6 @@ export class Header implements OnInit {
   private readonly homeSectionIds = [
     'top',
     'spiritual-guide',
-    'ahle-bait',
     'about',
     'work',
     'guidance',

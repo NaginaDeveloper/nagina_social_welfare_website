@@ -5,8 +5,20 @@ export interface GalleryItem {
   readonly caption: string;
 }
 
-/** Curated event & commemorative posters from Facebook. */
+/** Curated event photos & commemorative posters from Facebook. */
 export const GALLERY_ITEMS: readonly GalleryItem[] = [
+  {
+    id: 'teachers-gathering',
+    src: 'media/ahle-bait-gathering.jpg',
+    alt: 'Teachers and well-wishers gathered together at Markaz Deen-e-Islam',
+    caption: 'Teachers & well-wishers',
+  },
+  {
+    id: 'students-certificates',
+    src: 'media/ahle-bait-students.jpg',
+    alt: 'Students of Markaz Deen-e-Islam holding certificates with their teachers',
+    caption: 'Students with certificates',
+  },
   {
     id: 'zikr-fikr-july',
     src: 'gallery/poster-zikr-fikr-july.jpg',

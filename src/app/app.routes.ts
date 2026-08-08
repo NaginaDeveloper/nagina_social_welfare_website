@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
 import {
+  AHLE_BAIT_SEO,
   BOOKS_SEO,
   DONATE_THANKS_SEO,
   HOME_SEO,
   KHATME_NABUWWAT_SEO,
   NAMAZ_SEO,
   QURAN_SEO,
+  SAHABA_IKRAM_SEO,
   SERMONS_SEO,
 } from './seo/seo.config';
 
@@ -46,6 +48,20 @@ export const routes: Routes = [
       import('./pages/khatme-nabuwwat/khatme-nabuwwat-page').then((m) => m.KhatmeNabuwwatPage),
     title: KHATME_NABUWWAT_SEO.title,
     data: { seo: KHATME_NABUWWAT_SEO },
+  },
+  {
+    path: 'ahle-bait',
+    loadComponent: () =>
+      import('./pages/ahle-bait/ahle-bait-page').then((m) => m.AhleBaitPage),
+    title: AHLE_BAIT_SEO.title,
+    data: { seo: AHLE_BAIT_SEO },
+  },
+  {
+    path: 'sahaba-ikram',
+    loadComponent: () =>
+      import('./pages/sahaba-ikram/sahaba-ikram-page').then((m) => m.SahabaIkramPage),
+    title: SAHABA_IKRAM_SEO.title,
+    data: { seo: SAHABA_IKRAM_SEO },
   },
   {
     path: 'donate/thanks',

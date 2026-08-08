@@ -4,42 +4,26 @@
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
     <div class="mx-auto max-w-3xl text-center">
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Ahl al-Sunnah wal-Jama&rsquo;ah
+        Ahle Bait-e-Athaar
       </span>
       <p
         class="font-arabic text-2xl leading-relaxed text-forest sm:text-3xl"
         lang="ur"
         dir="rtl"
       >
-        اہلِ بیتِ اطہار اور صحابہ کرام
+        اہلِ بیتِ اطہار
       </p>
-      <h2 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+      <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
         Honouring
         <span class="text-gold-gradient">Aal-e-Pak</span>
-        &amp; the Sahabah
-      </h2>
+      </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Our creed holds the blessed family of the Prophet ﷺ and his noble Companions in love
-        and reverence — two lights we honour together as Ahl al-Sunnah wal-Jama&rsquo;ah.
-      </p>
-    </div>
-
-    <!-- Ahle Bait -->
-    <div class="mx-auto mt-16 max-w-3xl text-center">
-      <span class="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Ahle Bait-e-Athaar
-      </span>
-      <h3 class="font-display text-2xl font-bold text-forest sm:text-3xl">
-        The rank of the
-        <span class="text-gold-gradient">blessed family</span>
-      </h3>
-      <p class="mt-4 text-base leading-relaxed text-slate-warm sm:text-lg">
         Brief words from the Prophet ﷺ on the rank of his blessed family —
         a light we hold dear alongside the Qur&rsquo;an.
       </p>
     </div>
 
-    <figure class="mx-auto mt-10 max-w-4xl">
+    <figure class="mx-auto mt-12 max-w-4xl">
       <div class="overflow-hidden rounded-2xl bg-sand shadow-soft ring-1 ring-mist">
         <img
           src="media/shan-ahle-bait.jpg"
@@ -47,7 +31,7 @@
           width="1024"
           height="558"
           class="w-full object-cover"
-          loading="lazy"
+          loading="eager"
           decoding="async"
         />
       </div>
@@ -56,7 +40,7 @@
       </figcaption>
     </figure>
 
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
+    <div class="mt-14 grid gap-6 md:grid-cols-2">
       @for (hadith of ahadith; track hadith.title) {
         <blockquote
           class="rounded-2xl border border-mist border-l-4 border-l-gold bg-white/80 px-6 py-7 shadow-soft sm:px-8"
@@ -70,106 +54,6 @@
           <footer class="mt-5 text-sm text-slate-warm">{{ hadith.source }}</footer>
         </blockquote>
       }
-    </div>
-
-    <div class="mt-14 grid gap-6 sm:grid-cols-2">
-      @for (photo of photos; track photo.src) {
-        <figure class="group">
-          <div
-            class="overflow-hidden rounded-2xl bg-sand shadow-soft ring-1 ring-mist transition-all duration-500 group-hover:ring-gold/40"
-          >
-            <img
-              [src]="photo.src"
-              [alt]="photo.alt"
-              [width]="photo.width"
-              [height]="photo.height"
-              class="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <figcaption class="mt-3 text-center text-sm text-slate-warm">
-            {{ photo.caption }}
-          </figcaption>
-        </figure>
-      }
-    </div>
-
-    <!-- Sahabah -->
-    <div id="sahabah" class="mx-auto mt-24 max-w-3xl text-center scroll-mt-28">
-      <span class="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        The Companions
-      </span>
-      <p
-        class="font-arabic text-xl leading-relaxed text-forest sm:text-2xl"
-        lang="ur"
-        dir="rtl"
-      >
-        صحابہ کرام رضی اللہ عنہم
-      </p>
-      <h3 class="mt-3 font-display text-2xl font-bold leading-tight text-forest sm:text-3xl">
-        Belief regarding the
-        <span class="text-gold-gradient">Sahabah</span>
-      </h3>
-      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        According to the consensus of Sunni Islam (Ahl al-Sunnah wal-Jama&rsquo;ah), all
-        Companions (Sahabah) of the Prophet Muhammad ﷺ are considered upright (&lsquo;adil),
-        sincere, and the noble generation of the Muslim Ummah. Loving and respecting them is
-        regarded as an integral part of Islamic faith.
-      </p>
-    </div>
-
-    <figure class="mx-auto mt-10 max-w-4xl">
-      <div class="overflow-hidden rounded-2xl bg-sand shadow-soft ring-1 ring-mist">
-        <img
-          src="media/sahaba-ikram.jpg"
-          alt="Sahaba Ikram — love for the Companions is part of faith; their dignity elevated by Quran and Hadith, with Al-Masjid an-Nabawi"
-          width="1024"
-          height="558"
-          class="w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-      <figcaption class="mt-3 text-center text-sm text-slate-warm">
-        Sahaba Ikram — love of the Companions in the light of Quran and Hadith
-      </figcaption>
-    </figure>
-
-    <div class="mx-auto mt-12 max-w-4xl space-y-8">
-      @for (point of sahabahPoints; track point.number) {
-        <article class="border-t border-mist/80 pt-8 first:border-t-0 first:pt-0">
-          <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-            <span class="font-display text-sm font-semibold tracking-[0.2em] text-gold-600">
-              {{ point.number }}
-            </span>
-            <h4 class="font-display text-xl font-bold text-forest sm:text-2xl">
-              {{ point.title }}
-            </h4>
-          </div>
-          <p class="mt-3 text-base leading-relaxed text-slate-warm sm:text-lg">
-            {{ point.lead }}
-          </p>
-          <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-warm sm:text-base">
-            @for (detail of point.details; track detail) {
-              <li class="flex gap-3">
-                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
-                <span>{{ detail }}</span>
-              </li>
-            }
-          </ul>
-        </article>
-      }
-    </div>
-
-    <div
-      class="mx-auto mt-16 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-8 text-center sm:px-10"
-    >
-      <p class="font-display text-xl leading-relaxed text-forest sm:text-2xl">
-        In summary, while the Sahabah are not considered infallible (ma&lsquo;sum), they are
-        revered as God-fearing, trustworthy role models for the entire Muslim nation —
-        honoured alongside the Ahl al-Bayt in the creed of Ahl al-Sunnah wal-Jama&rsquo;ah.
-      </p>
     </div>
   </div>
 </section>
