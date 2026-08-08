@@ -40,7 +40,6 @@
     <!-- Brand -->
     <a
       routerLink="/"
-      fragment="top"
       class="group flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3 lg:flex-none"
       aria-label="Nagina Social Welfare home"
       (click)="onNavClick()"
@@ -116,7 +115,6 @@
                 @for (item of group.items; track item.label) {
                   <a
                     [routerLink]="item.path"
-                    [fragment]="item.fragment"
                     role="menuitem"
                     class="flex flex-col gap-0.5 px-3.5 py-2 transition-colors"
                     [class.bg-white/10]="isLinkActive(item)"
@@ -249,7 +247,6 @@
                 <li>
                   <a
                     [routerLink]="item.path"
-                    [fragment]="item.fragment"
                     (click)="onNavClick()"
                     class="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors"
                     [class.bg-white/10]="isLinkActive(item)"

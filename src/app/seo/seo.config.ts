@@ -25,6 +25,42 @@ export const HOME_SEO: PageSeo = {
   type: 'website',
 };
 
+export const ABOUT_SEO: PageSeo = {
+  title: 'About Us | Nagina Social Welfare UK',
+  description:
+    'Learn about Nagina Social Welfare UK — building a legacy of knowledge and compassion through Markaz Deen-e-Islam and community welfare.',
+  path: '/about',
+  keywords: 'About Nagina Social Welfare, Markaz Deen-e-Islam, Islamic charity UK',
+  type: 'website',
+};
+
+export const WORK_SEO: PageSeo = {
+  title: 'Our Work | Markaz Deen-e-Islam & Welfare | Nagina Social Welfare',
+  description:
+    'One mission carried by two dedicated arms — Islamic education at Markaz Deen-e-Islam and community welfare across the UK.',
+  path: '/work',
+  keywords: 'Our Work, Markaz Deen-e-Islam, community welfare UK, Islamic education',
+  type: 'website',
+};
+
+export const SPIRITUAL_GUIDE_SEO: PageSeo = {
+  title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',
+  description:
+    'Honouring Allama Munir Ahmed Yusufi — Munir-e-Islam — spiritual guide of Markaz Deen-e-Islam and Nagina Social Welfare.',
+  path: '/spiritual-guide',
+  keywords: 'Spiritual Guide, Munir-e-Islam, Allama Munir Ahmed Yusufi, Pir-o-Murshid',
+  type: 'website',
+};
+
+export const GUIDANCE_SEO: PageSeo = {
+  title: 'Guidance | Teachings & Counsel | Nagina Social Welfare',
+  description:
+    'Timeless teachings that guide character, knowledge and charity — counsel from Munir-e-Islam for preachers, students and supporters.',
+  path: '/guidance',
+  keywords: 'Islamic guidance, Munir-e-Islam teachings, character and charity',
+  type: 'website',
+};
+
 export const NAMAZ_SEO: PageSeo = {
   title: 'Namaz Times Peterborough | Nagina Social Welfare UK',
   description:
@@ -63,6 +99,51 @@ export const SERMONS_SEO: PageSeo = {
   type: 'website',
 };
 
+export const APPS_SEO: PageSeo = {
+  title: 'Mobile Apps | Nagina Social Welfare',
+  description:
+    'Purpose-built mobile apps for parents, teachers, administrators and collectors — available on the Google Play Store.',
+  path: '/apps',
+  keywords: 'Nagina apps, Markaz Deen-e-Islam app, Islamic school app UK',
+  type: 'website',
+};
+
+export const EVENTS_SEO: PageSeo = {
+  title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
+  description:
+    'Event photos and posters from Markaz Deen-e-Islam and Nagina Social Welfare — gatherings, programmes and commemorations.',
+  path: '/events',
+  keywords: 'Islamic events Peterborough, Markaz Deen-e-Islam gatherings, Nagina events',
+  type: 'website',
+};
+
+export const DONATE_SEO: PageSeo = {
+  title: 'Donate | Support Our Mission | Nagina Social Welfare UK',
+  description:
+    'Donate securely with SumUp or by UK bank transfer to support Islamic education and community welfare.',
+  path: '/donate',
+  keywords: 'Donate Nagina Social Welfare, SumUp donation UK, Islamic charity Peterborough',
+  type: 'website',
+};
+
+export const CONTACT_SEO: PageSeo = {
+  title: 'Contact | Nagina Social Welfare UK',
+  description:
+    'Get in touch with Nagina Social Welfare UK in Peterborough — email, phone and address for Markaz Deen-e-Islam and welfare enquiries.',
+  path: '/contact',
+  keywords: 'Contact Nagina Social Welfare, Peterborough Islamic centre contact',
+  type: 'website',
+};
+
+export const PRIVACY_SEO: PageSeo = {
+  title: 'Privacy Notice | Nagina Social Welfare UK',
+  description:
+    'How Nagina Social Welfare handles information when you use this website, including donations via SumUp.',
+  path: '/privacy',
+  keywords: 'Privacy notice, GDPR, Nagina Social Welfare data protection',
+  type: 'website',
+};
+
 export const KHATME_NABUWWAT_SEO: PageSeo = {
   title: 'Khatme Nabuwwat | Finality of Prophethood | Nagina Social Welfare',
   description:
@@ -75,12 +156,12 @@ export const KHATME_NABUWWAT_SEO: PageSeo = {
 };
 
 export const AHLE_BAIT_SEO: PageSeo = {
-  title: 'Ahle Bait | Honouring Aal-e-Pak | Nagina Social Welfare',
+  title: 'Ahle Bait | Elevated Status of Ahl al-Bayt | Nagina Social Welfare',
   description:
-    'Honouring the Ahl al-Bayt — the blessed family of the Prophet ﷺ — with Hadith al-Thaqalayn and the creed of Ahl al-Sunnah wal-Jama’ah.',
+    'The elevated status of Ahl al-Bayt in the Quran and Sunnah — a Sunni perspective on love, honour and reverence for the Blessed Household of the Prophet ﷺ.',
   path: '/ahle-bait',
   keywords:
-    'Ahle Bait, Ahl al-Bayt, Aal-e-Pak, Hadith al-Thaqalayn, Shan Ahle Bait, Ahle Sunnat',
+    'Ahle Bait, Ahl al-Bayt, Aal-e-Pak, Ayat al-Tathir, Hadith al-Thaqalayn, Ahl al-Kisa, Ahle Sunnat',
   image: `${SITE_ORIGIN}/media/shan-ahle-bait.jpg`,
   type: 'article',
 };

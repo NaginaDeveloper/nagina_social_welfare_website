@@ -13,7 +13,6 @@ import { PrayerTimesService } from '../../services/prayer-times.service';
 interface NavLink {
   readonly label: string;
   readonly path: string;
-  readonly fragment?: string;
   readonly hint?: string;
 }
 
@@ -38,41 +37,27 @@ export class Header implements OnInit {
   protected readonly scrolled = signal(false);
   protected readonly menuOpen = signal(false);
   protected readonly openGroupId = signal<string | null>(null);
-  protected readonly activeFragment = signal('top');
   protected readonly currentPath = signal('/');
 
   /**
-   * Concise grouped navigation — homepage sections + dedicated tool routes.
+   * Grouped navigation — every destination is a dedicated route (no hash links).
    */
   protected readonly groups: readonly NavGroup[] = [
     {
       id: 'about',
       label: 'About',
       items: [
-        { label: 'About us', path: '/', fragment: 'about', hint: 'Who we are' },
-        { label: 'Our Work', path: '/', fragment: 'work', hint: 'Education & welfare' },
-        {
-          label: 'Spiritual Guide',
-          path: '/',
-          fragment: 'spiritual-guide',
-          hint: 'Pir-o-Murshid',
-        },
+        { label: 'About us', path: '/about', hint: 'Who we are' },
+        { label: 'Our Work', path: '/work', hint: 'Education & welfare' },
+        { label: 'Spiritual Guide', path: '/spiritual-guide', hint: 'Pir-o-Murshid' },
         {
           label: 'Khatme Nabuwwat',
           path: '/khatme-nabuwwat',
           hint: 'Finality of Prophethood',
         },
-        {
-          label: 'Ahle Bait',
-          path: '/ahle-bait',
-          hint: 'The blessed family',
-        },
-        {
-          label: 'Sahaba Ikram',
-          path: '/sahaba-ikram',
-          hint: 'The noble Companions',
-        },
-        { label: 'Guidance', path: '/', fragment: 'guidance', hint: 'Teachings & counsel' },
+        { label: 'Ahle Bait', path: '/ahle-bait', hint: 'The blessed family' },
+        { label: 'Sahaba Ikram', path: '/sahaba-ikram', hint: 'The noble Companions' },
+        { label: 'Guidance', path: '/guidance', hint: 'Teachings & counsel' },
       ],
     },
     {
@@ -89,33 +74,20 @@ export class Header implements OnInit {
       items: [
         { label: 'Books', path: '/books', hint: 'Seedha Rasta library' },
         { label: 'Sermons', path: '/sermons', hint: 'Baba Ji Sarkar bayanat' },
-        { label: 'Apps', path: '/', fragment: 'apps', hint: 'Mobile learning' },
+        { label: 'Apps', path: '/apps', hint: 'Mobile learning' },
       ],
     },
     {
       id: 'connect',
       label: 'Connect',
       items: [
-        { label: 'Events', path: '/', fragment: 'events', hint: 'Gatherings & programmes' },
-        { label: 'Donate', path: '/', fragment: 'donate', hint: 'Support our work' },
-        { label: 'Contact', path: '/', fragment: 'contact', hint: 'Get in touch' },
-        { label: 'Privacy', path: '/', fragment: 'privacy', hint: 'How we use data' },
+        { label: 'Events', path: '/events', hint: 'Gatherings & programmes' },
+        { label: 'Donate', path: '/donate', hint: 'Support our work' },
+        { label: 'Contact', path: '/contact', hint: 'Get in touch' },
+        { label: 'Privacy', path: '/privacy', hint: 'How we use data' },
       ],
     },
   ];
-
-  private readonly homeSectionIds = [
-    'top',
-    'spiritual-guide',
-    'about',
-    'work',
-    'guidance',
-    'events',
-    'donate',
-    'apps',
-    'contact',
-    'privacy',
-  ] as const;
 
   ngOnInit(): void {
     void this.prayer.load();
@@ -126,21 +98,18 @@ export class Header implements OnInit {
       .subscribe((e) => {
         this.syncPath(e.urlAfterRedirects);
         this.closeMenu();
-        queueMicrotask(() => this.updateActiveSection());
       });
   }
 
   constructor() {
     afterNextRender(() => {
       this.onScroll();
-      this.updateActiveSection();
     });
   }
 
   @HostListener('window:scroll')
   protected onScroll(): void {
     this.scrolled.set(window.scrollY > 16);
-    this.updateActiveSection();
   }
 
   @HostListener('document:keydown.escape')
@@ -150,12 +119,7 @@ export class Header implements OnInit {
   }
 
   protected isLinkActive(item: NavLink): boolean {
-    const path = this.currentPath();
-    if (item.path !== '/' && path === item.path) return true;
-    if (item.path === '/' && path === '/' && item.fragment) {
-      return this.activeFragment() === item.fragment;
-    }
-    return false;
+    return this.currentPath() === item.path;
   }
 
   protected isGroupActive(group: NavGroup): boolean {
@@ -192,25 +156,5 @@ export class Header implements OnInit {
   private syncPath(url: string): void {
     const path = url.split('?')[0].split('#')[0] || '/';
     this.currentPath.set(path === '' ? '/' : path);
-  }
-
-  private updateActiveSection(): void {
-    if (this.currentPath() !== '/') {
-      this.activeFragment.set('');
-      return;
-    }
-
-    const offset = 140;
-    let current: string = 'top';
-
-    for (const id of this.homeSectionIds) {
-      const el = document.getElementById(id);
-      if (!el) continue;
-      if (el.getBoundingClientRect().top - offset <= 0) {
-        current = id;
-      }
-    }
-
-    this.activeFragment.set(current);
   }
 }

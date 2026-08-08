@@ -26,8 +26,7 @@ import { PageShell } from '../page-shell';
           </p>
           <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
             <a
-              routerLink="/"
-              fragment="donate"
+              routerLink="/donate"
               class="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
             >
               Back to donate

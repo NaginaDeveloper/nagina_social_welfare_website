@@ -1,31 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Hero } from '../../components/hero/hero';
-import { SpiritualGuide } from '../../components/spiritual-guide/spiritual-guide';
-import { About } from '../../components/about/about';
-import { OurWork } from '../../components/our-work/our-work';
-import { Guidance } from '../../components/guidance/guidance';
-import { Gallery } from '../../components/gallery/gallery';
-import { Donations } from '../../components/donations/donations';
-import { Apps } from '../../components/apps/apps';
-import { Contact } from '../../components/contact/contact';
-import { Privacy } from '../../components/privacy/privacy';
 
 @Component({
   selector: 'app-home',
-  imports: [
-    RouterLink,
-    Hero,
-    SpiritualGuide,
-    About,
-    OurWork,
-    Guidance,
-    Gallery,
-    Donations,
-    Apps,
-    Contact,
-    Privacy,
-  ],
+  imports: [RouterLink, Hero],
   templateUrl: './home.html',
 })
 export class Home {}

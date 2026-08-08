@@ -52,7 +52,6 @@
               <li>
                 <a
                   [routerLink]="link.path"
-                  [fragment]="link.fragment"
                   class="text-sm text-cream/65 transition-colors hover:text-gold-300"
                 >
                   {{ link.label }}
@@ -130,7 +129,7 @@
       class="mt-10 flex flex-col gap-2 border-t border-white/10 pt-5 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between"
     >
       <p>&copy; {{ year }} Nagina Social Welfare UK Limited. All rights reserved.</p>
-      <a routerLink="/" fragment="privacy" class="transition-colors hover:text-gold-300">Privacy notice</a>
+      <a routerLink="/privacy" class="transition-colors hover:text-gold-300">Privacy notice</a>
     </div>
   </div>
 </footer>

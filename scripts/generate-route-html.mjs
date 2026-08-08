@@ -22,6 +22,55 @@ const pages = [
       'Nagina Social Welfare UK unites faith and compassion — Markaz Deen-e-Islam education, community welfare, Namaz times, Quran Majeed with Kanzul Iman, and Islamic books in Peterborough.',
   },
   {
+    dir: 'about',
+    path: '/about',
+    title: 'About Us | Nagina Social Welfare UK',
+    description:
+      'Learn about Nagina Social Welfare UK — building a legacy of knowledge and compassion through Markaz Deen-e-Islam and community welfare.',
+  },
+  {
+    dir: 'work',
+    path: '/work',
+    title: 'Our Work | Markaz Deen-e-Islam & Welfare | Nagina Social Welfare',
+    description:
+      'One mission carried by two dedicated arms — Islamic education at Markaz Deen-e-Islam and community welfare across the UK.',
+  },
+  {
+    dir: 'spiritual-guide',
+    path: '/spiritual-guide',
+    title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',
+    description:
+      'Honouring Allama Munir Ahmed Yusufi — Munir-e-Islam — spiritual guide of Markaz Deen-e-Islam and Nagina Social Welfare.',
+  },
+  {
+    dir: 'khatme-nabuwwat',
+    path: '/khatme-nabuwwat',
+    title: 'Khatme Nabuwwat | Finality of Prophethood | Nagina Social Welfare',
+    description:
+      'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — Khatam-un-Nabiyyin — the cornerstone of Islamic faith, with Quran and Hadith on the Seal of the Prophets.',
+  },
+  {
+    dir: 'ahle-bait',
+    path: '/ahle-bait',
+    title: 'Ahle Bait | Elevated Status of Ahl al-Bayt | Nagina Social Welfare',
+    description:
+      'The elevated status of Ahl al-Bayt in the Quran and Sunnah — a Sunni perspective on love, honour and reverence for the Blessed Household of the Prophet ﷺ.',
+  },
+  {
+    dir: 'sahaba-ikram',
+    path: '/sahaba-ikram',
+    title: 'Sahaba Ikram | Belief Regarding the Companions | Nagina Social Welfare',
+    description:
+      'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Prophet ﷺ, loved and respected as an integral part of Islamic faith.',
+  },
+  {
+    dir: 'guidance',
+    path: '/guidance',
+    title: 'Guidance | Teachings & Counsel | Nagina Social Welfare',
+    description:
+      'Timeless teachings that guide character, knowledge and charity — counsel from Munir-e-Islam for preachers, students and supporters.',
+  },
+  {
     dir: 'namaz',
     path: '/namaz',
     title: 'Namaz Times Peterborough | Nagina Social Welfare UK',
@@ -50,25 +99,25 @@ const pages = [
       'Watch blessed bayanat and sermons by Baba Ji Sarkar from the Seedha Rasta collection — searchable video library via Nagina TV on YouTube.',
   },
   {
-    dir: 'khatme-nabuwwat',
-    path: '/khatme-nabuwwat',
-    title: 'Khatme Nabuwwat | Finality of Prophethood | Nagina Social Welfare',
+    dir: 'apps',
+    path: '/apps',
+    title: 'Mobile Apps | Nagina Social Welfare',
     description:
-      'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — Khatam-un-Nabiyyin — the cornerstone of Islamic faith, with Quran and Hadith on the Seal of the Prophets.',
+      'Purpose-built mobile apps for parents, teachers, administrators and collectors — available on the Google Play Store.',
   },
   {
-    dir: 'ahle-bait',
-    path: '/ahle-bait',
-    title: 'Ahle Bait | Honouring Aal-e-Pak | Nagina Social Welfare',
+    dir: 'events',
+    path: '/events',
+    title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
     description:
-      'Honouring the Ahl al-Bayt — the blessed family of the Prophet ﷺ — with Hadith al-Thaqalayn and the creed of Ahl al-Sunnah wal-Jama’ah.',
+      'Event photos and posters from Markaz Deen-e-Islam and Nagina Social Welfare — gatherings, programmes and commemorations.',
   },
   {
-    dir: 'sahaba-ikram',
-    path: '/sahaba-ikram',
-    title: 'Sahaba Ikram | Belief Regarding the Companions | Nagina Social Welfare',
+    dir: 'donate',
+    path: '/donate',
+    title: 'Donate | Support Our Mission | Nagina Social Welfare UK',
     description:
-      'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Prophet ﷺ, loved and respected as an integral part of Islamic faith.',
+      'Donate securely with SumUp or by UK bank transfer to support Islamic education and community welfare.',
   },
   {
     dir: 'donate/thanks',
@@ -76,6 +125,20 @@ const pages = [
     title: 'Thank You for Your Donation | Nagina Social Welfare UK',
     description:
       'Thank you for supporting Nagina Social Welfare UK — your gift helps Islamic education and community welfare.',
+  },
+  {
+    dir: 'contact',
+    path: '/contact',
+    title: 'Contact | Nagina Social Welfare UK',
+    description:
+      'Get in touch with Nagina Social Welfare UK in Peterborough — email, phone and address for Markaz Deen-e-Islam and welfare enquiries.',
+  },
+  {
+    dir: 'privacy',
+    path: '/privacy',
+    title: 'Privacy Notice | Nagina Social Welfare UK',
+    description:
+      'How Nagina Social Welfare handles information when you use this website, including donations via SumUp.',
   },
 ];
 

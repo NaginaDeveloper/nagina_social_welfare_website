@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router';
 interface FooterLink {
   readonly label: string;
   readonly path: string;
-  readonly fragment?: string;
 }
 
 interface FooterGroup {
@@ -33,19 +32,19 @@ export class Footer {
 
   protected readonly year = new Date().getFullYear();
 
-  /** Same groupings as the header — homepage sections + tool routes. */
+  /** Same groupings as the header — dedicated routes only. */
   protected readonly linkGroups: readonly FooterGroup[] = [
     {
       id: 'about',
       label: 'About',
       items: [
-        { label: 'About us', path: '/', fragment: 'about' },
-        { label: 'Our Work', path: '/', fragment: 'work' },
-        { label: 'Spiritual Guide', path: '/', fragment: 'spiritual-guide' },
+        { label: 'About us', path: '/about' },
+        { label: 'Our Work', path: '/work' },
+        { label: 'Spiritual Guide', path: '/spiritual-guide' },
         { label: 'Khatme Nabuwwat', path: '/khatme-nabuwwat' },
         { label: 'Ahle Bait', path: '/ahle-bait' },
         { label: 'Sahaba Ikram', path: '/sahaba-ikram' },
-        { label: 'Guidance', path: '/', fragment: 'guidance' },
+        { label: 'Guidance', path: '/guidance' },
       ],
     },
     {
@@ -62,17 +61,17 @@ export class Footer {
       items: [
         { label: 'Books', path: '/books' },
         { label: 'Sermons', path: '/sermons' },
-        { label: 'Apps', path: '/', fragment: 'apps' },
+        { label: 'Apps', path: '/apps' },
       ],
     },
     {
       id: 'connect',
       label: 'Connect',
       items: [
-        { label: 'Events', path: '/', fragment: 'events' },
-        { label: 'Donate', path: '/', fragment: 'donate' },
-        { label: 'Contact', path: '/', fragment: 'contact' },
-        { label: 'Privacy', path: '/', fragment: 'privacy' },
+        { label: 'Events', path: '/events' },
+        { label: 'Donate', path: '/donate' },
+        { label: 'Contact', path: '/contact' },
+        { label: 'Privacy', path: '/privacy' },
       ],
     },
   ];

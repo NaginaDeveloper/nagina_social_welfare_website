@@ -28,95 +28,56 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Nagina');
   });
 
-  it('should render home marketing sections without tool pages embedded', async () => {
+  it('should keep home as hero plus explore gateway without embedded sections', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/');
     fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('#spiritual-guide')).toBeTruthy();
-    expect(compiled.querySelector('#about')).toBeTruthy();
-    expect(compiled.querySelector('#work')).toBeTruthy();
-    expect(compiled.querySelector('#guidance')).toBeTruthy();
-    expect(compiled.querySelector('#events')).toBeTruthy();
-    expect(compiled.querySelector('#donate')).toBeTruthy();
-    expect(compiled.querySelector('#apps')).toBeTruthy();
-    expect(compiled.querySelector('#contact')).toBeTruthy();
-    expect(compiled.querySelector('#privacy')).toBeTruthy();
-    expect(compiled.querySelector('#ahle-bait')).toBeNull();
-    expect(compiled.querySelector('#sahaba-ikram')).toBeNull();
-    expect(compiled.querySelector('#khatme-nabuwwat')).toBeNull();
+    expect(compiled.querySelector('#top')).toBeTruthy();
+    expect(compiled.querySelector('#explore-heading')).toBeTruthy();
+    expect(compiled.querySelector('#about')).toBeNull();
+    expect(compiled.querySelector('#work')).toBeNull();
+    expect(compiled.querySelector('#spiritual-guide')).toBeNull();
+    expect(compiled.querySelector('#guidance')).toBeNull();
+    expect(compiled.querySelector('#events')).toBeNull();
+    expect(compiled.querySelector('#donate')).toBeNull();
+    expect(compiled.querySelector('#apps')).toBeNull();
+    expect(compiled.querySelector('#contact')).toBeNull();
+    expect(compiled.querySelector('#privacy')).toBeNull();
     expect(compiled.querySelector('#prayer-times')).toBeNull();
-    expect(compiled.querySelector('#quran')).toBeNull();
-    expect(compiled.querySelector('#books')).toBeNull();
-    expect(compiled.querySelector('#sermons')).toBeNull();
   });
 
-  it('should navigate to dedicated namaz, quran, books and sermons routes', async () => {
+  it('should navigate to dedicated content routes', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     const compiled = fixture.nativeElement as HTMLElement;
 
-    await router.navigateByUrl('/namaz');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(compiled.querySelector('#prayer-times')).toBeTruthy();
+    const checks: ReadonlyArray<[string, string]> = [
+      ['/about', '#about'],
+      ['/work', '#work'],
+      ['/spiritual-guide', '#spiritual-guide'],
+      ['/khatme-nabuwwat', '#khatme-nabuwwat'],
+      ['/ahle-bait', '#ahle-bait'],
+      ['/sahaba-ikram', '#sahaba-ikram'],
+      ['/guidance', '#guidance'],
+      ['/namaz', '#prayer-times'],
+      ['/quran', '#quran'],
+      ['/books', '#books'],
+      ['/sermons', '#sermons'],
+      ['/apps', '#apps'],
+      ['/events', '#events'],
+      ['/donate', '#donate'],
+      ['/contact', '#contact'],
+      ['/privacy', '#privacy'],
+    ];
 
-    await router.navigateByUrl('/quran');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(compiled.querySelector('#quran')).toBeTruthy();
-
-    await router.navigateByUrl('/books');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(compiled.querySelector('#books')).toBeTruthy();
-
-    await router.navigateByUrl('/sermons');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(compiled.querySelector('#sermons')).toBeTruthy();
-  });
-
-  it('should navigate to khatme-nabuwwat, ahle-bait and sahaba-ikram routes', async () => {
-    const fixture = TestBed.createComponent(App);
-    const router = TestBed.inject(Router);
-    const compiled = fixture.nativeElement as HTMLElement;
-
-    await router.navigateByUrl('/khatme-nabuwwat');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(compiled.querySelector('#khatme-nabuwwat')).toBeTruthy();
-
-    await router.navigateByUrl('/ahle-bait');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(compiled.querySelector('#ahle-bait')).toBeTruthy();
-
-    await router.navigateByUrl('/sahaba-ikram');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(compiled.querySelector('#sahaba-ikram')).toBeTruthy();
-  });
-
-  it('should render both programme arms on the home page', async () => {
-    const fixture = TestBed.createComponent(App);
-    const router = TestBed.inject(Router);
-    await router.navigateByUrl('/');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('#work article').length).toBe(2);
-  });
-
-  it('should render all three app install cards on the home page', async () => {
-    const fixture = TestBed.createComponent(App);
-    const router = TestBed.inject(Router);
-    await router.navigateByUrl('/');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('#apps article').length).toBe(3);
+    for (const [path, selector] of checks) {
+      await router.navigateByUrl(path);
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(compiled.querySelector(selector), `expected ${selector} on ${path}`).toBeTruthy();
+    }
   });
 });
