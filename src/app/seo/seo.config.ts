@@ -62,3 +62,12 @@ export const SERMONS_SEO: PageSeo = {
     'Baba Ji Sarkar bayanat, Seedha Rasta sermons, Nagina TV, Islamic lectures UK, Ahle Sunnat bayan',
   type: 'website',
 };
+
+export const DONATE_THANKS_SEO: PageSeo = {
+  title: 'Thank You for Your Donation | Nagina Social Welfare UK',
+  description:
+    'Thank you for supporting Nagina Social Welfare UK — your gift helps Islamic education and community welfare.',
+  path: '/donate/thanks',
+  keywords: 'donate Nagina Social Welfare, thank you donation UK',
+  type: 'website',
+};

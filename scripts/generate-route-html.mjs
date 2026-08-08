@@ -49,6 +49,13 @@ const pages = [
     description:
       'Watch blessed bayanat and sermons by Baba Ji Sarkar from the Seedha Rasta collection — searchable video library via Nagina TV on YouTube.',
   },
+  {
+    dir: 'donate/thanks',
+    path: '/donate/thanks',
+    title: 'Thank You for Your Donation | Nagina Social Welfare UK',
+    description:
+      'Thank you for supporting Nagina Social Welfare UK — your gift helps Islamic education and community welfare.',
+  },
 ];
 
 function escapeHtml(value) {

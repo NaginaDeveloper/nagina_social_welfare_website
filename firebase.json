@@ -1,0 +1,36 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "donations",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run build"]
+    }
+  ],
+  "hosting": {
+    "public": "hosting-api",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/createDonationCheckout",
+        "function": {
+          "functionId": "createDonationCheckout",
+          "region": "europe-west2"
+        }
+      },
+      {
+        "source": "/sumupWebhook",
+        "function": {
+          "functionId": "sumupWebhook",
+          "region": "europe-west2"
+        }
+      }
+    ]
+  }
+}

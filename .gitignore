@@ -8,6 +8,8 @@
 
 # Node
 /node_modules
+functions/node_modules
+functions/lib
 npm-debug.log
 yarn-error.log
 
@@ -42,3 +44,16 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Secrets & Firebase
+.env
+.env.*
+!.env.example
+functions/.env
+functions/.env.*
+!functions/.env.example
+functions/.secret.local
+functions/*.secret.local
+*-firebase-adminsdk-*.json
+serviceAccount*.json
+.firebase/

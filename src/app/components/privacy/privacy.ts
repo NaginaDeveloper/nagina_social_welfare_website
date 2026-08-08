@@ -10,7 +10,7 @@ interface PrivacyBlock {
   templateUrl: './privacy.html',
 })
 export class Privacy {
-  protected readonly updated = '7 August 2026';
+  protected readonly updated = '8 August 2026';
 
   protected readonly blocks: readonly PrivacyBlock[] = [
     {
@@ -26,7 +26,12 @@ export class Privacy {
     {
       title: 'Information we process',
       body:
-        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email or call us, we process the details you choose to send so we can respond. Bank donation details shown on this site are for you to use with your own bank — we do not collect card payments through this page.',
+        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email or call us, we process the details you choose to send so we can respond. Bank donation details shown on this site are for you to use with your own bank. Online card or wallet donations are started on this site (donation amount only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp processes the payment under its own privacy notice.',
+    },
+    {
+      title: 'Donations via SumUp',
+      body:
+        'When you choose “Donate securely with SumUp”, your browser contacts our payment server to create a checkout session, then you are redirected to SumUp (sumup.com) to pay. Payment status may also be confirmed via encrypted server-to-server messages from SumUp. Bank transfer remains available if you prefer not to pay by card.',
     },
     {
       title: 'Prayer times & Qibla',
@@ -46,7 +51,7 @@ export class Privacy {
     {
       title: 'Links to other services',
       body:
-        'Links to Facebook, Instagram, YouTube, Google Play, and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices.',
+        'Links to Facebook, Instagram, YouTube, Google Play, SumUp’s payment pages, and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices.',
     },
     {
       title: 'Your rights (UK GDPR)',

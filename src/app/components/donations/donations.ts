@@ -1,4 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { DonationService } from '../../services/donation.service';
 
 interface BankField {
   readonly label: string;
@@ -8,10 +10,19 @@ interface BankField {
 
 @Component({
   selector: 'app-donations',
+  imports: [FormsModule],
   templateUrl: './donations.html',
 })
 export class Donations {
+  private readonly donations = inject(DonationService);
+
   protected readonly copiedKey = signal<string | null>(null);
+  protected readonly selectedPreset = signal<number | 'custom'>(25);
+  protected readonly customAmount = signal('');
+  protected readonly checkoutLoading = signal(false);
+  protected readonly checkoutError = signal<string | null>(null);
+
+  protected readonly presets = [10, 25, 50, 100] as const;
 
   protected readonly fields: readonly BankField[] = [
     { label: 'Account name', value: 'NAGINA SOCIAL WELFAR' },
@@ -24,6 +35,56 @@ export class Donations {
 
   protected readonly referenceHint =
     'Please use your name as the payment reference so we can thank you.';
+
+  protected selectPreset(value: number | 'custom'): void {
+    this.selectedPreset.set(value);
+    this.checkoutError.set(null);
+  }
+
+  protected onCustomAmountInput(value: string): void {
+    this.customAmount.set(value);
+    this.selectedPreset.set('custom');
+    this.checkoutError.set(null);
+  }
+
+  protected resolvedAmount(): number | null {
+    if (this.selectedPreset() === 'custom') {
+      const n = Number(this.customAmount().trim());
+      return Number.isFinite(n) ? Math.round(n * 100) / 100 : null;
+    }
+    return this.selectedPreset() as number;
+  }
+
+  protected async startCardDonation(): Promise<void> {
+    if (this.checkoutLoading()) {
+      return;
+    }
+
+    const amount = this.resolvedAmount();
+    if (amount === null || amount < 1) {
+      this.checkoutError.set('Enter a valid donation amount of at least £1.');
+      return;
+    }
+    if (amount > 25_000) {
+      this.checkoutError.set('Maximum online donation is £25,000.');
+      return;
+    }
+
+    this.checkoutLoading.set(true);
+    this.checkoutError.set(null);
+
+    try {
+      const { hostedCheckoutUrl } = await this.donations.createHostedCheckout(amount);
+      window.location.href = hostedCheckoutUrl;
+    } catch (err) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : 'Could not start payment. Please try again or use bank transfer.';
+      this.checkoutError.set(message);
+      this.checkoutLoading.set(false);
+    }
+  }
 
   protected async copyValue(label: string, value: string): Promise<void> {
     let text = value;

@@ -2,6 +2,16 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.6.
 
+## Donations (SumUp Hosted Checkout)
+
+Online donations use SumUp Hosted Checkout. Card data never touches this Angular app; checkout sessions are created by Firebase Cloud Functions under `functions/`.
+
+1. Get sandbox keys: see [docs/sumup-sandbox.md](docs/sumup-sandbox.md).
+2. Set Firebase secrets (`SUMUP_API_KEY`, `SUMUP_MERCHANT_CODE`, `SUMUP_WEBHOOK_SECRET`).
+3. Deploy functions: `cd functions && npm install && npx -y firebase-tools@latest deploy --only functions`.
+4. Confirm `src/app/config/donation-api.config.ts` points at your Functions base URL.
+5. Sandbox: try £10 (success path) and £11 (SumUp deliberate fail). Bank transfer details on `/#donate` remain available.
+
 ## Development server
 
 To start a local development server, run:
