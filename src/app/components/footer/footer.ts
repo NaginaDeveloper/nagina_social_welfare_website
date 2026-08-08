@@ -43,6 +43,7 @@ export class Footer {
         { label: 'Our Work', path: '/', fragment: 'work' },
         { label: 'Spiritual Guide', path: '/', fragment: 'spiritual-guide' },
         { label: 'Ahle Bait', path: '/', fragment: 'ahle-bait' },
+        { label: 'Khatme Nabuwwat', path: '/khatme-nabuwwat' },
         { label: 'Guidance', path: '/', fragment: 'guidance' },
       ],
     },

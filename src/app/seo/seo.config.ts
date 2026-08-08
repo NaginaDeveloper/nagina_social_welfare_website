@@ -63,6 +63,17 @@ export const SERMONS_SEO: PageSeo = {
   type: 'website',
 };
 
+export const KHATME_NABUWWAT_SEO: PageSeo = {
+  title: 'Khatme Nabuwwat | Finality of Prophethood | Nagina Social Welfare',
+  description:
+    'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — Khatam-un-Nabiyyin — the cornerstone of Islamic faith, with Quran and Hadith on the Seal of the Prophets.',
+  path: '/khatme-nabuwwat',
+  keywords:
+    'Khatme Nabuwwat, Khatam-un-Nabiyyin, Finality of Prophethood, Seal of the Prophets, Quran 33:40, Ahle Sunnat',
+  image: `${SITE_ORIGIN}/media/khatme-nabuwwat.jpg`,
+  type: 'article',
+};
+
 export const DONATE_THANKS_SEO: PageSeo = {
   title: 'Thank You for Your Donation | Nagina Social Welfare UK',
   description:

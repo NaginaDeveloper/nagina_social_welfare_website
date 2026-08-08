@@ -50,6 +50,13 @@ const pages = [
       'Watch blessed bayanat and sermons by Baba Ji Sarkar from the Seedha Rasta collection — searchable video library via Nagina TV on YouTube.',
   },
   {
+    dir: 'khatme-nabuwwat',
+    path: '/khatme-nabuwwat',
+    title: 'Khatme Nabuwwat | Finality of Prophethood | Nagina Social Welfare',
+    description:
+      'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — Khatam-un-Nabiyyin — the cornerstone of Islamic faith, with Quran and Hadith on the Seal of the Prophets.',
+  },
+  {
     dir: 'donate/thanks',
     path: '/donate/thanks',
     title: 'Thank You for Your Donation | Nagina Social Welfare UK',

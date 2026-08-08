@@ -3,6 +3,7 @@ import {
   BOOKS_SEO,
   DONATE_THANKS_SEO,
   HOME_SEO,
+  KHATME_NABUWWAT_SEO,
   NAMAZ_SEO,
   QURAN_SEO,
   SERMONS_SEO,
@@ -38,6 +39,13 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/sermons/sermons-page').then((m) => m.SermonsPage),
     title: SERMONS_SEO.title,
     data: { seo: SERMONS_SEO },
+  },
+  {
+    path: 'khatme-nabuwwat',
+    loadComponent: () =>
+      import('./pages/khatme-nabuwwat/khatme-nabuwwat-page').then((m) => m.KhatmeNabuwwatPage),
+    title: KHATME_NABUWWAT_SEO.title,
+    data: { seo: KHATME_NABUWWAT_SEO },
   },
   {
     path: 'donate/thanks',

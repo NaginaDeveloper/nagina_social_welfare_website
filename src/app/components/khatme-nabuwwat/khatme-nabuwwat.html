@@ -1,0 +1,105 @@
+<section id="khatme-nabuwwat" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        Khatam-un-Nabiyyin
+      </span>
+      <p
+        class="font-arabic text-2xl leading-relaxed text-forest sm:text-3xl"
+        lang="ur"
+        dir="rtl"
+      >
+        ختمِ نبوّت
+      </p>
+      <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        The Unshakable Foundation of Islam:
+        <span class="text-gold-gradient">The Finality of Prophethood</span>
+      </h1>
+      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+        Belief in the absolute finality of the Prophethood of Muhammad ﷺ is not merely a
+        doctrine; it is the cornerstone of Islamic faith, the seal of divine guidance, and
+        the eternal bond unifying the global Ummah.
+      </p>
+    </div>
+
+    <figure class="mx-auto mt-12 max-w-4xl">
+      <div
+        class="overflow-hidden rounded-2xl bg-sand shadow-soft ring-1 ring-mist"
+      >
+        <img
+          src="media/khatme-nabuwwat.jpg"
+          alt="Khatme Nabuwwat — Surah Al-Ahzab, Ayat 40, with Urdu and English translations beside Al-Masjid an-Nabawi"
+          width="1024"
+          height="558"
+          class="w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <figcaption class="mt-3 text-center text-sm text-slate-warm">
+        Khatme Nabuwwat — the Seal of the Prophets ﷺ
+      </figcaption>
+    </figure>
+
+    <div class="mx-auto mt-14 max-w-3xl space-y-6 text-base leading-relaxed text-slate-warm sm:text-lg">
+      <p>
+        Allah Almighty declared the completion of His message to humanity through the Last of
+        the Prophets. Through Prophet Muhammad ﷺ, divine revelation reached its pinnacle. The
+        religion was perfected, the Quran preserved for all time, and the path to righteousness
+        forever illuminated.
+      </p>
+      <p>
+        The Messenger of Allah ﷺ affirmed this fundamental truth in explicit terms —
+        completing the house of prophethood as its final brick, and leaving no prophet after him.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-14 grid max-w-4xl gap-6">
+      @for (quote of quotes; track quote.label + quote.source) {
+        <blockquote
+          class="rounded-2xl border border-mist border-l-4 border-l-gold bg-white/80 px-6 py-7 shadow-soft sm:px-8"
+        >
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
+            {{ quote.label }}
+          </p>
+          <p class="mt-4 font-display text-xl leading-relaxed text-forest sm:text-2xl">
+            &ldquo;{{ quote.text }}&rdquo;
+          </p>
+          <footer class="mt-5 text-sm text-slate-warm">— {{ quote.source }}</footer>
+        </blockquote>
+      }
+    </div>
+
+    <div class="mx-auto mt-20 max-w-3xl text-center">
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        Why it matters
+      </span>
+      <h2 class="font-display text-2xl font-bold leading-tight text-forest sm:text-3xl">
+        Why Khatam-e-Nabuwat matters to
+        <span class="text-gold-gradient">every Muslim</span>
+      </h2>
+    </div>
+
+    <div class="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
+      @for (reason of reasons; track reason.title) {
+        <div class="rounded-2xl border border-mist bg-white/80 px-6 py-7 shadow-soft">
+          <h3 class="font-display text-xl font-bold text-forest">{{ reason.title }}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-warm sm:text-base">
+            {{ reason.text }}
+          </p>
+        </div>
+      }
+    </div>
+
+    <div
+      class="mx-auto mt-16 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-8 text-center sm:px-10"
+    >
+      <p class="font-display text-xl leading-relaxed text-forest sm:text-2xl">
+        Let us stand firm upon this essential creed, honouring the legacy of the Beloved
+        Prophet Muhammad ﷺ through devotion, unity, and steadfast adherence to his teachings.
+      </p>
+    </div>
+  </div>
+</section>
