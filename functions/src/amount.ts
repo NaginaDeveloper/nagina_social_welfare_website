@@ -1,4 +1,4 @@
-export const MIN_DONATION_GBP = 1;
+export const MIN_DONATION_GBP = 5;
 export const MAX_DONATION_GBP = 25_000;
 
 export type ParsedAmount =

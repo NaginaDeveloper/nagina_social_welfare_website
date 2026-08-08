@@ -61,8 +61,8 @@ export class Donations {
     }
 
     const amount = this.resolvedAmount();
-    if (amount === null || amount < 1) {
-      this.checkoutError.set('Enter a valid donation amount of at least £1.');
+    if (amount === null || amount < 5) {
+      this.checkoutError.set('Enter a valid donation amount of at least £5.');
       return;
     }
     if (amount > 25_000) {
