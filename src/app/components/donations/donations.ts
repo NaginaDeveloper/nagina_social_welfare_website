@@ -22,7 +22,9 @@ export class Donations {
   protected readonly checkoutLoading = signal(false);
   protected readonly checkoutError = signal<string | null>(null);
 
-  protected readonly presets = [10, 25, 50, 100] as const;
+  protected readonly presets = [5, 10, 25, 50, 100] as const;
+  protected readonly minDonationGbp = 5;
+  protected readonly maxDonationGbp = 25_000;
 
   protected readonly fields: readonly BankField[] = [
     { label: 'Account name', value: 'NAGINA SOCIAL WELFAR' },
@@ -41,18 +43,28 @@ export class Donations {
     this.checkoutError.set(null);
   }
 
-  protected onCustomAmountInput(value: string): void {
-    this.customAmount.set(value);
+  protected onCustomAmountInput(value: string | number | null): void {
+    this.customAmount.set(value == null ? '' : String(value));
     this.selectedPreset.set('custom');
     this.checkoutError.set(null);
   }
 
   protected resolvedAmount(): number | null {
     if (this.selectedPreset() === 'custom') {
-      const n = Number(this.customAmount().trim());
+      const n = Number(String(this.customAmount()).trim());
       return Number.isFinite(n) ? Math.round(n * 100) / 100 : null;
     }
     return this.selectedPreset() as number;
+  }
+
+  /** Used to disable the donate CTA when custom amount is below the minimum. */
+  protected canStartCheckout(): boolean {
+    const amount = this.resolvedAmount();
+    return (
+      amount !== null &&
+      amount >= this.minDonationGbp &&
+      amount <= this.maxDonationGbp
+    );
   }
 
   protected async startCardDonation(): Promise<void> {
@@ -61,12 +73,16 @@ export class Donations {
     }
 
     const amount = this.resolvedAmount();
-    if (amount === null || amount < 5) {
-      this.checkoutError.set('Enter a valid donation amount of at least £5.');
+    if (amount === null || amount < this.minDonationGbp) {
+      this.checkoutError.set(
+        `Minimum online donation is £${this.minDonationGbp}. Please enter £${this.minDonationGbp} or more.`,
+      );
       return;
     }
-    if (amount > 25_000) {
-      this.checkoutError.set('Maximum online donation is £25,000.');
+    if (amount > this.maxDonationGbp) {
+      this.checkoutError.set(
+        `Maximum online donation is £${this.maxDonationGbp.toLocaleString('en-GB')}.`,
+      );
       return;
     }
 

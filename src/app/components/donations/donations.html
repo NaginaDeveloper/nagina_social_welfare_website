@@ -85,16 +85,18 @@
               <input
                 type="number"
                 inputmode="decimal"
-                min="5"
-                max="25000"
+                [attr.min]="minDonationGbp"
+                [attr.max]="maxDonationGbp"
                 step="0.01"
                 name="customAmount"
+                required
                 class="w-full rounded-2xl border border-mist bg-sand/50 py-3 pl-9 pr-4 text-base font-semibold text-forest outline-none transition-colors focus:border-gold/50 focus:bg-white"
                 [ngModel]="customAmount()"
                 (ngModelChange)="onCustomAmountInput($event)"
-                placeholder="25.00"
+                placeholder="5.00"
               />
             </div>
+            <p class="mt-2 text-xs text-slate-warm">Minimum online donation £{{ minDonationGbp }}.</p>
           </label>
         }
       </fieldset>
@@ -108,7 +110,7 @@
       <button
         type="button"
         class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-        [disabled]="checkoutLoading()"
+        [disabled]="checkoutLoading() || !canStartCheckout()"
         (click)="startCardDonation()"
       >
         {{ checkoutLoading() ? 'Connecting securely…' : 'Donate securely with SumUp' }}
