@@ -27,31 +27,33 @@
           Faith and compassion in action — Islamic education through Markaz Deen-e-Islam,
           and community welfare across the UK.
         </p>
-        <a
-          routerLink="/donate"
-          class="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest shadow-soft transition-all duration-300 hover:brightness-105"
-        >
-          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z"
-            />
-          </svg>
-          Donate Now
-        </a>
-        <a
-          [href]="loginUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-gold-300 transition-colors hover:text-gold"
-          aria-label="Member portal login for admin, teacher or parent (opens in a new tab)"
-        >
-          Member portal
-          <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-          </svg>
-        </a>
+        <div class="mt-5 flex flex-col items-start gap-3">
+          <a
+            routerLink="/donate"
+            class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest shadow-soft transition-all duration-300 hover:brightness-105"
+          >
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z"
+              />
+            </svg>
+            Donate Now
+          </a>
+          <a
+            [href]="loginUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-sm font-medium text-gold-300 transition-colors hover:text-gold"
+            aria-label="Member portal login for admin, teacher or parent (opens in a new tab)"
+          >
+            Member portal
+            <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
+        </div>
       </div>
 
       <!-- Four equal section columns -->

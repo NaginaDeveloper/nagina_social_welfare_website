@@ -67,9 +67,10 @@
           [class.sm:text-lg]="scrolled()"
           [class.sm:text-xl]="!scrolled()"
         >
-          Nagina <span class="text-gold-gradient">Social Welfare</span>
+          Nagina
+          <span class="text-gold-gradient max-[360px]:hidden">Social Welfare</span>
         </span>
-        <span class="hidden text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90 sm:block">
+        <span class="hidden text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90 md:block">
           Education &amp; Welfare &middot; UK
         </span>
       </span>
@@ -202,23 +203,24 @@
       </a>
     </nav>
 
-    <!-- Tablet / mobile: compact namaz + donate + menu -->
+    <!-- Tablet / mobile: compact donate + namaz (md+) + menu -->
     <div class="flex shrink-0 items-center gap-1.5 sm:gap-2 lg:hidden">
       <a
         routerLink="/donate"
-        class="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-gradient-to-r from-gold-300 to-gold px-3 py-2 text-[0.7rem] font-semibold text-forest shadow-soft sm:px-3.5 sm:text-[0.75rem]"
+        class="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-gold-300 to-gold px-2.5 py-2 text-[0.7rem] font-semibold text-forest shadow-soft min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
+        aria-label="Donate Now"
         (click)="onNavClick()"
       >
-        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
         </svg>
-        Donate
+        <span class="max-[360px]:sr-only">Donate</span>
       </a>
 
       @if (prayer.headerStatus(); as status) {
         <a
           routerLink="/namaz"
-          class="hidden min-h-10 max-w-[8.5rem] flex-col items-end justify-center rounded-full border border-gold/20 bg-white/5 px-3 py-1 text-right sm:inline-flex"
+          class="hidden min-h-10 max-w-[8.5rem] flex-col items-end justify-center rounded-full border border-gold/20 bg-white/5 px-3 py-1 text-right md:inline-flex"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining

@@ -139,7 +139,7 @@
               [href]="payItUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
+              class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald sm:w-auto"
             >
               Open payment link
               <svg class="h-3.5 w-3.5 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -148,7 +148,7 @@
             </a>
             <button
               type="button"
-              class="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/15 bg-sand px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600"
+              class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-forest/15 bg-sand px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 sm:w-auto"
               (click)="copyValue('PayIt link', payItUrl)"
             >
               {{ copiedKey() === 'PayIt link' ? 'Link copied' : 'Copy link' }}
