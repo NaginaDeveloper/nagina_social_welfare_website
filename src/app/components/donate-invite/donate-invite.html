@@ -1,0 +1,54 @@
+<aside
+  class="relative overflow-hidden"
+  [class.bg-cream]="tone() === 'cream'"
+  [class.bg-forest]="tone() === 'forest'"
+  [class.text-forest]="tone() === 'cream'"
+  [class.text-cream]="tone() === 'forest'"
+  aria-label="Support Nagina Social Welfare"
+>
+  @if (tone() === 'forest') {
+    <div class="geo-pattern absolute inset-0 opacity-30" aria-hidden="true"></div>
+  }
+
+  <div
+    class="relative mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-10 sm:flex-row sm:items-center sm:px-8 sm:py-12"
+  >
+    <div class="max-w-xl">
+      <p
+        class="text-[0.65rem] font-semibold uppercase tracking-[0.22em]"
+        [class.text-gold-600]="tone() === 'cream'"
+        [class.text-gold-300]="tone() === 'forest'"
+      >
+        {{ eyebrow() }}
+      </p>
+      <h2
+        class="mt-2 font-display text-2xl font-bold leading-tight sm:text-3xl"
+        [class.text-forest]="tone() === 'cream'"
+        [class.text-cream]="tone() === 'forest'"
+      >
+        {{ headline() }}
+      </h2>
+      <p
+        class="mt-2 text-sm leading-relaxed sm:text-base"
+        [class.text-slate-warm]="tone() === 'cream'"
+        [class.text-cream/75]="tone() === 'forest'"
+      >
+        {{ lead() }}
+      </p>
+    </div>
+
+    <a
+      routerLink="/donate"
+      class="inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-3 text-sm font-semibold text-forest shadow-soft transition-all duration-300 hover:brightness-105"
+    >
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z"
+        />
+      </svg>
+      {{ ctaLabel() }}
+    </a>
+  </div>
+</aside>

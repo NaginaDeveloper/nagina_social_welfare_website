@@ -1,8 +1,10 @@
 import { Component, HostListener, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { GALLERY_ITEMS, type GalleryItem } from './gallery-data';
 
 @Component({
   selector: 'app-gallery',
+  imports: [RouterLink],
   templateUrl: './gallery.html',
 })
 export class Gallery {

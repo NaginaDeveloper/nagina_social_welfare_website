@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   HostListener,
@@ -10,21 +11,45 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 
+/** Simple stroke icons used in the nav. */
+export type NavIcon =
+  | 'about'
+  | 'work'
+  | 'guide'
+  | 'seal'
+  | 'family'
+  | 'companions'
+  | 'counsel'
+  | 'mosque'
+  | 'quran'
+  | 'book'
+  | 'sermon'
+  | 'apps'
+  | 'events'
+  | 'donate'
+  | 'contact'
+  | 'privacy'
+  | 'worship'
+  | 'learn'
+  | 'connect';
+
 interface NavLink {
   readonly label: string;
   readonly path: string;
   readonly hint?: string;
+  readonly icon: NavIcon;
 }
 
 interface NavGroup {
   readonly id: string;
   readonly label: string;
+  readonly icon: NavIcon;
   readonly items: readonly NavLink[];
 }
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [NgTemplateOutlet, RouterLink],
   templateUrl: './header.html',
 })
 export class Header implements OnInit {
@@ -46,45 +71,70 @@ export class Header implements OnInit {
     {
       id: 'about',
       label: 'About',
+      icon: 'about',
       items: [
-        { label: 'About us', path: '/about', hint: 'Who we are' },
-        { label: 'Our Work', path: '/work', hint: 'Education & welfare' },
-        { label: 'Spiritual Guide', path: '/spiritual-guide', hint: 'Pir-o-Murshid' },
+        { label: 'About us', path: '/about', hint: 'Who we are', icon: 'about' },
+        { label: 'Our Work', path: '/work', hint: 'Education & welfare', icon: 'work' },
+        {
+          label: 'Spiritual Guide',
+          path: '/spiritual-guide',
+          hint: 'Pir-o-Murshid',
+          icon: 'guide',
+        },
         {
           label: 'Khatme Nabuwwat',
           path: '/khatme-nabuwwat',
           hint: 'Finality of Prophethood',
+          icon: 'seal',
         },
-        { label: 'Ahle Bait', path: '/ahle-bait', hint: 'The blessed family' },
-        { label: 'Sahaba Ikram', path: '/sahaba-ikram', hint: 'The noble Companions' },
-        { label: 'Guidance', path: '/guidance', hint: 'Teachings & counsel' },
+        { label: 'Ahle Bait', path: '/ahle-bait', hint: 'The blessed family', icon: 'family' },
+        {
+          label: 'Sahaba Ikram',
+          path: '/sahaba-ikram',
+          hint: 'The noble Companions',
+          icon: 'companions',
+        },
+        { label: 'Guidance', path: '/guidance', hint: 'Teachings & counsel', icon: 'counsel' },
       ],
     },
     {
       id: 'worship',
       label: 'Worship',
+      icon: 'worship',
       items: [
-        { label: 'Namaz Times', path: '/namaz', hint: 'Peterborough, UK' },
-        { label: 'Quran Majeed', path: '/quran', hint: 'Kanzul Iman translation' },
+        { label: 'Namaz Times', path: '/namaz', hint: 'Peterborough, UK', icon: 'mosque' },
+        {
+          label: 'Quran Majeed',
+          path: '/quran',
+          hint: 'Kanzul Iman translation',
+          icon: 'quran',
+        },
       ],
     },
     {
       id: 'learn',
       label: 'Learn',
+      icon: 'learn',
       items: [
-        { label: 'Books', path: '/books', hint: 'Seedha Rasta library' },
-        { label: 'Sermons', path: '/sermons', hint: 'Baba Ji Sarkar bayanat' },
-        { label: 'Apps', path: '/apps', hint: 'Mobile learning' },
+        { label: 'Books', path: '/books', hint: 'Seedha Rasta library', icon: 'book' },
+        {
+          label: 'Sermons',
+          path: '/sermons',
+          hint: 'Baba Ji Sarkar bayanat',
+          icon: 'sermon',
+        },
+        { label: 'Apps', path: '/apps', hint: 'Mobile learning', icon: 'apps' },
       ],
     },
     {
       id: 'connect',
       label: 'Connect',
+      icon: 'connect',
       items: [
-        { label: 'Events', path: '/events', hint: 'Gatherings & programmes' },
-        { label: 'Donate', path: '/donate', hint: 'Support our work' },
-        { label: 'Contact', path: '/contact', hint: 'Get in touch' },
-        { label: 'Privacy', path: '/privacy', hint: 'How we use data' },
+        { label: 'Events', path: '/events', hint: 'Gatherings & programmes', icon: 'events' },
+        { label: 'Donate', path: '/donate', hint: 'Support our work', icon: 'donate' },
+        { label: 'Contact', path: '/contact', hint: 'Get in touch', icon: 'contact' },
+        { label: 'Privacy', path: '/privacy', hint: 'How we use data', icon: 'privacy' },
       ],
     },
   ];
