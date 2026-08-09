@@ -26,12 +26,12 @@ export class Privacy {
     {
       title: 'Information we process',
       body:
-        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email or call us, we process the details you choose to send so we can respond. Bank donation details and the NatWest PayIt QR / payment link shown on this site are for you to use with your own bank or banking app. Online card or wallet donations via SumUp are started on this site (donation amount only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp and NatWest process those payments under their own privacy notices.',
+        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email or call us, we process the details you choose to send so we can respond. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices.',
     },
     {
-      title: 'Donations via SumUp & NatWest PayIt',
+      title: 'Donations via SumUp, PayPal & NatWest PayIt',
       body:
-        'When you choose “Donate securely with SumUp”, your browser contacts our payment server to create a checkout session, then you are redirected to SumUp (sumup.com) to pay. Payment status may also be confirmed via encrypted server-to-server messages from SumUp. NatWest PayIt donations use NatWest’s secure payment link or QR code (paymentrequest.natwestpayit.com); that payment is completed on NatWest’s systems. Bank transfer details remain available if you prefer to pay from your own bank.',
+        'When you choose “Donate securely with SumUp”, your browser contacts our payment server to create a checkout session, then you are redirected to SumUp (sumup.com) to pay. Payment status may also be confirmed via encrypted server-to-server messages from SumUp. PayPal donations use PayPal’s secure link or QR code (paypal.com); that payment is completed on PayPal’s systems. NatWest PayIt donations use NatWest’s secure payment link or QR code (paymentrequest.natwestpayit.com). Bank transfer details remain available if you prefer to pay from your own bank.',
     },
     {
       title: 'Prayer times & Qibla',
@@ -51,7 +51,7 @@ export class Privacy {
     {
       title: 'Links to other services',
       body:
-        'Links to Facebook, Instagram, YouTube, Google Play, SumUp’s payment pages, NatWest PayIt, and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices.',
+        'Links to Facebook, Instagram, YouTube, Google Play, SumUp’s payment pages, PayPal, NatWest PayIt, and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices.',
     },
     {
       title: 'Your rights (UK GDPR)',

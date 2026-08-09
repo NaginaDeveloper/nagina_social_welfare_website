@@ -10,8 +10,9 @@
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
         Your generosity funds Islamic education at Markaz Deen-e-Islam and
-        community welfare across the UK. Give by card with SumUp, via NatWest
-        PayIt (link or QR), or transfer to our registered organisation account.
+        community welfare across the UK. Give by card with SumUp, PayPal,
+        NatWest PayIt (link or QR), or transfer to our registered organisation
+        account.
       </p>
     </div>
 
@@ -165,6 +166,62 @@
               alt="NatWest PayIt QR code — Scan to pay Nagina Social Welfare UK Ltd"
               width="640"
               height="806"
+              class="mx-auto h-auto w-full object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </figure>
+      </div>
+    </div>
+
+    <!-- PayPal -->
+    <div
+      class="mx-auto mt-8 max-w-3xl overflow-hidden rounded-[1.5rem] border border-mist bg-white shadow-soft sm:mt-10 sm:rounded-[1.75rem]"
+    >
+      <div class="grid items-stretch gap-0 lg:grid-cols-[1.15fr_minmax(15rem,17rem)]">
+        <div class="flex flex-col justify-center p-5 sm:p-10">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-600">
+            PayPal
+          </p>
+          <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
+            Pay with PayPal
+          </h3>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-warm">
+            Open our secure PayPal link, or scan the QR code with the PayPal app.
+            Scan. Pay. Go. — gifts go to Nagina Social Welfare UK Ltd.
+          </p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              [href]="payPalUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald sm:w-auto"
+            >
+              Open PayPal link
+              <svg class="h-3.5 w-3.5 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+              </svg>
+            </a>
+            <button
+              type="button"
+              class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-forest/15 bg-sand px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 sm:w-auto"
+              (click)="copyValue('PayPal link', payPalUrl)"
+            >
+              {{ copiedKey() === 'PayPal link' ? 'Link copied' : 'Copy link' }}
+            </button>
+          </div>
+        </div>
+
+        <figure
+          class="flex items-center justify-center border-t border-mist bg-sand/50 px-5 py-7 lg:border-l lg:border-t-0 lg:px-6"
+        >
+          <div class="w-44 rounded-2xl bg-white p-3 shadow-soft ring-1 ring-mist sm:w-52">
+            <img
+              src="media/paypal-qr.png"
+              alt="PayPal QR code — Scan to pay Nagina Social Welfare UK Ltd"
+              width="640"
+              height="709"
               class="mx-auto h-auto w-full object-contain"
               loading="lazy"
               decoding="async"

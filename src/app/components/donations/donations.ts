@@ -42,6 +42,10 @@ export class Donations {
   protected readonly payItUrl =
     'https://paymentrequest.natwestpayit.com/reusable-links/3fe8950a-0193-440a-b9c4-38deb3144a55';
 
+  /** PayPal managed QR / pay link for Nagina Social Welfare UK Ltd. */
+  protected readonly payPalUrl =
+    'https://www.paypal.com/qrcodes/managed/a41a6032-4bec-46fe-b9e9-91f58f35a36b';
+
   protected selectPreset(value: number | 'custom'): void {
     this.selectedPreset.set(value);
     this.checkoutError.set(null);
