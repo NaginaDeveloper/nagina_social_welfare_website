@@ -10,8 +10,8 @@
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
         Your generosity funds Islamic education at Markaz Deen-e-Islam and
-        community welfare across the UK. Give securely by card with SumUp, or
-        transfer directly to our registered organisation account.
+        community welfare across the UK. Give by card with SumUp, via NatWest
+        PayIt (link or QR), or transfer to our registered organisation account.
       </p>
     </div>
 
@@ -115,6 +115,64 @@
       >
         {{ checkoutLoading() ? 'Connecting securely…' : 'Donate securely with SumUp' }}
       </button>
+    </div>
+
+    <!-- NatWest PayIt -->
+    <div
+      class="mx-auto mt-8 max-w-3xl overflow-hidden rounded-[1.5rem] border border-mist bg-white shadow-soft sm:mt-10 sm:rounded-[1.75rem]"
+    >
+      <div class="grid items-center gap-0 lg:grid-cols-[1fr_auto]">
+        <div class="p-5 sm:p-10">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-600">
+            Bank app · NatWest PayIt
+          </p>
+          <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
+            Pay with a secure payment link
+          </h3>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-warm">
+            Open our NatWest PayIt link on your phone, or scan the QR code with
+            your banking app. Safe, quick, and paid straight to
+            Nagina Social Welfare UK Ltd.
+          </p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              [href]="payItUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
+            >
+              Open payment link
+              <svg class="h-3.5 w-3.5 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+              </svg>
+            </a>
+            <button
+              type="button"
+              class="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/15 bg-sand px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600"
+              (click)="copyValue('PayIt link', payItUrl)"
+            >
+              {{ copiedKey() === 'PayIt link' ? 'Link copied' : 'Copy link' }}
+            </button>
+          </div>
+        </div>
+
+        <figure
+          class="flex flex-col items-center justify-center border-t border-mist bg-sand/40 px-6 py-8 lg:border-l lg:border-t-0 lg:px-10"
+        >
+          <img
+            src="media/natwest-payit-qr.png"
+            alt="NatWest PayIt QR code — scan to pay Nagina Social Welfare UK Ltd"
+            width="512"
+            height="512"
+            class="h-auto w-48 max-w-full object-contain sm:w-56"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="mt-3 text-center text-xs font-medium text-slate-warm">
+            Scan to pay
+          </figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="mt-10 grid items-stretch gap-6 sm:mt-14 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr]">

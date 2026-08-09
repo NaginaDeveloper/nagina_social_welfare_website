@@ -38,6 +38,10 @@ export class Donations {
   protected readonly referenceHint =
     'Please use your name as the payment reference so we can thank you.';
 
+  /** NatWest PayIt reusable payment request (bank app / QR). */
+  protected readonly payItUrl =
+    'https://paymentrequest.natwestpayit.com/reusable-links/3fe8950a-0193-440a-b9c4-38deb3144a55';
+
   protected selectPreset(value: number | 'custom'): void {
     this.selectedPreset.set(value);
     this.checkoutError.set(null);
