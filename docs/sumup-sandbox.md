@@ -23,8 +23,10 @@ npx -y firebase-tools@latest use nagina-social-welfare-uk
 npx -y firebase-tools@latest functions:secrets:set SUMUP_API_KEY
 npx -y firebase-tools@latest functions:secrets:set SUMUP_MERCHANT_CODE
 npx -y firebase-tools@latest functions:secrets:set SUMUP_WEBHOOK_SECRET
-npx -y firebase-tools@latest deploy --only functions,hosting
+npx -y firebase-tools@latest deploy --only functions,hosting:nagina-donations
 ```
+
+Donation Hosting is the separate site `nagina-donations` (not Admin). Admin deploys from `Nagina_Social_Welfare_Admin` to site `nagina-social-welfare-uk`.
 
 Local emulator / local Node: use gitignored `functions/.secret.local` (never commit). Keep non-secret config in `functions/.env` (see `.env.example`).
 
@@ -32,7 +34,7 @@ Local emulator / local Node: use gitignored `functions/.secret.local` (never com
 
 This Google Cloud org enforces **Domain restricted sharing**, which blocks `allUsers` as Cloud Run Invoker. Until that is relaxed, browsers get **403 Forbidden** on:
 
-- `https://nagina-social-welfare-uk.web.app/createDonationCheckout`
+- `https://nagina-donations.web.app/createDonationCheckout`
 - `https://europe-west2-nagina-social-welfare-uk.cloudfunctions.net/createDonationCheckout`
 
 An Organisation Policy Admin should temporarily allow public invokers:
@@ -41,7 +43,7 @@ An Organisation Policy Admin should temporarily allow public invokers:
 2. Edit **Domain restricted sharing** → **Allow all** (project override), Save.
 3. In [Cloud Run](https://console.cloud.google.com/run?project=nagina-social-welfare-uk), open `createdonationcheckout` and `sumupwebhook` → **Permissions** → add principal `allUsers` with role **Cloud Run Invoker**.
 4. Optionally restore Domain restricted sharing afterward (existing `allUsers` bindings usually remain).
-5. Smoke-test: `curl -X POST https://nagina-social-welfare-uk.web.app/createDonationCheckout -H 'Content-Type: application/json' -d '{"amount":10}'` should return JSON with `hostedCheckoutUrl`.
+5. Smoke-test: `curl -X POST https://nagina-donations.web.app/createDonationCheckout -H 'Content-Type: application/json' -d '{"amount":10}'` should return JSON with `hostedCheckoutUrl`.
 
 ## 4. Sandbox testing tips
 
