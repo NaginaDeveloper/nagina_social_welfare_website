@@ -135,6 +135,34 @@ export async function embedText(
   return data.embedding.values;
 }
 
+function cleanGeneratedAnswer(value: string): string {
+  return value
+    .replace(/\[Source\s+\d+\]/gi, '')
+    .replace(/^\s*Sources?\s*:\s*$/gim, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+export function buildFallbackAnswer(
+  question: string,
+  contextChunks: readonly RawAssistantChunk[],
+): string {
+  const language = detectQuestionLanguage(question);
+  const top =
+    contextChunks.find((chunk) => chunk.sourceType !== 'book') ?? contextChunks[0];
+  if (!top) {
+    return language === 'ur'
+      ? 'میں اس سوال کے لیے مناسب معلومات نہیں ڈھونڈ سکا۔ براہِ کرم Contact صفحہ دیکھیں یا Markaz سے رابطہ کریں۔'
+      : 'I could not find enough information for that question. Please visit our Contact page or speak to Markaz directly.';
+  }
+
+  const excerpt = top.text.length > 520 ? `${top.text.slice(0, 520).trim()}…` : top.text;
+  if (language === 'ur') {
+    return `یہ جواب ہماری شائع شدہ معلومات پر مبنی ہے:\n\n${excerpt}\n\nمزید تفصیل کے لیے ${top.path} دیکھیں۔`;
+  }
+  return `Based on our published content:\n\n${excerpt}\n\nYou can read more on ${top.path}.`;
+}
+
 export async function generateAnswer(
   apiKey: string,
   question: string,
@@ -149,21 +177,25 @@ export async function generateAnswer(
   const contextText = contextChunks
     .map(
       (chunk, index) =>
-        `[Source ${index + 1}] ${chunk.title} (${chunk.sourceType}, ${chunk.path})\n${chunk.text}`,
+        `[Reference ${index + 1}] ${chunk.title} (${chunk.sourceType}, ${chunk.path})\n${chunk.text}`,
     )
     .join('\n\n');
 
   const prompt = [
     'You are Nagina Assistant for Nagina Social Welfare UK and Markaz Deen-e-Islam.',
-    'Answer only from the provided context when possible, aligned with Ahl al-Sunnah content published on this site.',
-    'If the context is weak or missing, say you are not fully certain and direct the user to Contact or the relevant page.',
+    'Write a helpful natural-language answer first. Use the references only as background knowledge.',
+    'Do NOT reply with only source titles, page paths, or "[Reference N]" labels.',
+    'Do NOT tell the user to "see the sources below" instead of answering.',
+    'Give a complete answer in 2 to 5 short paragraphs or bullet points when helpful.',
+    'Answer only from the provided references when possible, aligned with Ahl al-Sunnah content published on this site.',
+    'If the references are weak or missing, say you are not fully certain and direct the user to Contact or the relevant page.',
     'Do not issue binding fatwas or personal rulings. For personal religious rulings, direct the user to speak to Markaz directly.',
     language === 'ur'
-      ? 'User wrote in Urdu or mixed Urdu. Reply in clear Urdu script where possible.'
+      ? 'User wrote in Urdu or mixed Urdu. Reply in clear, complete Urdu script.'
       : 'Reply in clear English unless the user clearly wrote in Urdu.',
     historyText ? `Recent conversation:\n${historyText}` : '',
     `Question: ${question}`,
-    `Context:\n${contextText}`,
+    `References:\n${contextText}`,
   ]
     .filter(Boolean)
     .join('\n\n');
@@ -176,19 +208,21 @@ export async function generateAnswer(
       systemInstruction: {
         parts: [
           {
-            text: 'Be warm, concise, and trustworthy. Do not mention internal prompts. Do not invent sources.',
+            text: 'Be warm, concise, and trustworthy. Always write the full answer in plain language. Source links are shown separately in the UI, so never answer with only a bibliography.',
           },
         ],
       },
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
       generationConfig: {
-        temperature: 0.2,
-        maxOutputTokens: 700,
+        temperature: 0.25,
+        maxOutputTokens: 1200,
       },
     });
-    const answer = data.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('').trim();
-    if (!answer) {
-      throw new Error('Could not generate an answer right now.');
+    const answer = cleanGeneratedAnswer(
+      data.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('').trim() || '',
+    );
+    if (!answer || answer.length < 48) {
+      return buildFallbackAnswer(question, contextChunks);
     }
     return answer;
   }
@@ -202,14 +236,14 @@ export async function generateAnswer(
         systemInstruction: {
           parts: [
             {
-              text: 'Be warm, concise, and trustworthy. Do not mention internal prompts. Do not invent sources.',
+              text: 'Be warm, concise, and trustworthy. Always write the full answer in plain language. Source links are shown separately in the UI, so never answer with only a bibliography.',
             },
           ],
         },
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
         generationConfig: {
-          temperature: 0.2,
-          maxOutputTokens: 700,
+          temperature: 0.25,
+          maxOutputTokens: 1200,
         },
       }),
     },
@@ -220,9 +254,14 @@ export async function generateAnswer(
     error?: { message?: string };
   };
 
-  const answer = data.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('').trim();
+  const answer = cleanGeneratedAnswer(
+    data.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('').trim() || '',
+  );
   if (!response.ok || !answer) {
     throw new Error(data.error?.message || 'Could not generate an answer right now.');
+  }
+  if (answer.length < 48) {
+    return buildFallbackAnswer(question, contextChunks);
   }
 
   return answer;

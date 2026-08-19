@@ -73,6 +73,42 @@ function toCitation(chunk: RawAssistantChunk): AssistantCitation {
   };
 }
 
+function selectCitations(chunks: readonly StoredAssistantChunk[], query: string): AssistantCitation[] {
+  const queryLower = query.toLowerCase();
+  const navigational =
+    /donate|contact|namaz|prayer|books|assistant|portal|pay|email|phone|sumup|paypal|natwest/i.test(
+      queryLower,
+    ) || /رابط|عط|نماز|کتاب|مدد|رابطہ/.test(query);
+
+  if (navigational) {
+    const faqMatches = chunks.filter((chunk) => chunk.sourceType === 'faq');
+    if (faqMatches.length) {
+      return faqMatches.slice(0, 2).map(toCitation);
+    }
+  }
+
+  const prioritized = [
+    ...chunks.filter((chunk) => chunk.sourceType !== 'book'),
+    ...chunks.filter((chunk) => chunk.sourceType === 'book'),
+  ];
+
+  const unique: AssistantCitation[] = [];
+  const seen = new Set<string>();
+  for (const chunk of prioritized) {
+    const key = `${chunk.path}:${chunk.title}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    unique.push(toCitation(chunk));
+    if (unique.length === 3) {
+      break;
+    }
+  }
+
+  return unique;
+}
+
 export const askNaginaAssistant = onRequest(
   {
     region: 'europe-west2',
@@ -152,12 +188,8 @@ export const askNaginaAssistant = onRequest(
       const fallback = chunks
         .filter((chunk) => chunk.sourceType === 'faq')
         .slice(0, 4);
-      const answer = await generateAnswer(
-        apiKey,
-        cleanQuery,
-        history,
-        selected.length ? selected : fallback,
-      );
+      const contextChunks = selected.length ? selected : fallback;
+      const answer = await generateAnswer(apiKey, cleanQuery, history, contextChunks);
 
       res.status(200).json({
         answer,
@@ -165,7 +197,7 @@ export const askNaginaAssistant = onRequest(
           detectQuestionLanguage(cleanQuery) === 'ur'
             ? 'یہ معاون مفتی نہیں ہے۔ ذاتی یا شرعی فیصلوں کے لیے براہِ راست مرکز سے رابطہ کریں۔'
             : 'This assistant is not a mufti. For binding rulings or personal religious matters, please contact Markaz directly.',
-        citations: (selected.length ? selected : fallback).map(toCitation),
+        citations: selectCitations(contextChunks, cleanQuery),
         language: detectQuestionLanguage(cleanQuery),
       });
     } catch (err) {
