@@ -5,7 +5,7 @@ export type AnswerSourceMode = 'published' | 'general';
 
 const SITE_HELP_TOP_SCORE = 0.28;
 
-const GENERIC_QUERY_TOKENS = new Set([
+export const GENERIC_QUERY_TOKENS = new Set([
   'islam',
   'muslim',
   'islamic',
@@ -70,4 +70,16 @@ export function assessRetrievalConfidence(
   }
 
   return 'general';
+}
+
+export function hasMeaningfulLexicalOverlap(
+  chunk: StoredAssistantChunk,
+  queryTokens: readonly string[],
+): boolean {
+  const haystack =
+    `${chunk.title} ${chunk.path} ${chunk.text.slice(0, 500)} ${(chunk.tags ?? []).join(' ')}`.toLowerCase();
+  const meaningfulTokens = queryTokens.filter(
+    (token) => token.length > 2 && !GENERIC_QUERY_TOKENS.has(token),
+  );
+  return meaningfulTokens.some((token) => haystack.includes(token));
 }

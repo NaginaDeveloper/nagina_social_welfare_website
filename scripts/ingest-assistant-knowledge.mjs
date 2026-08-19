@@ -154,6 +154,36 @@ async function buildCuratedChunks() {
     );
   }
 
+  const auliaPoints = await extractClassProperty(
+    path.join(ROOT, 'src/app/components/aulia-karam/aulia-karam.ts'),
+    'auliaPoints',
+  );
+  for (const point of auliaPoints) {
+    chunks.push(
+      makeChunk({
+        title: `Aulia Karam: ${point.title}`,
+        sourceType: 'creed',
+        path: '/aulia-karam',
+        text: [point.title, point.lead, ...(point.details || [])].join(' '),
+        tags: ['aulia', 'awliya', 'creed'],
+      }),
+    );
+  }
+
+  const auliaQuotes = await extractClassProperty(
+    path.join(ROOT, 'src/app/components/aulia-karam/aulia-karam.ts'),
+    'quotes',
+  );
+  chunks.push(
+    makeChunk({
+      title: 'Aulia Karam: Quran and Hadith',
+      sourceType: 'creed',
+      path: '/aulia-karam',
+      text: auliaQuotes.flatMap((quote) => [quote.label, quote.text, quote.source]).join(' '),
+      tags: ['aulia', 'awliya', 'creed'],
+    }),
+  );
+
   const khatmeQuotes = await extractClassProperty(
     path.join(ROOT, 'src/app/components/khatme-nabuwwat/khatme-nabuwwat.ts'),
     'quotes',

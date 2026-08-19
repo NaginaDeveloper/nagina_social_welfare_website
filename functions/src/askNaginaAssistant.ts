@@ -25,7 +25,7 @@ import {
   scopeRetrievalBoost,
   standardDisclaimer,
 } from './assistantScope';
-import { assessRetrievalConfidence } from './assistantRetrieval';
+import { assessRetrievalConfidence, hasMeaningfulLexicalOverlap } from './assistantRetrieval';
 
 if (getApps().length === 0) {
   initializeApp();
@@ -249,9 +249,12 @@ export const askNaginaAssistant = onRequest(
           scope,
         );
         const topScore = ranked[0]?.score ?? 0;
+        const relevantOptional = optionalContext.filter((chunk) =>
+          hasMeaningfulLexicalOverlap(chunk, queryTokens),
+        );
         citations =
-          optionalContext.length && topScore >= 0.24
-            ? selectCitations(optionalContext.slice(0, 2), cleanQuery)
+          relevantOptional.length && topScore >= 0.24
+            ? selectCitations(relevantOptional.slice(0, 2), cleanQuery)
             : [];
       }
 

@@ -187,6 +187,17 @@ export const SAHABA_IKRAM_SEO: PageSeo = {
   type: 'article',
 };
 
+export const AULIA_KARAM_SEO: PageSeo = {
+  title: 'Aulia Karam | Belief Regarding the Awliya Allah | Nagina Social Welfare',
+  description:
+    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah — friends of Allah honoured through faith and taqwa, with Surah Yunus 10:62 and authentic Hadith on Aulia Karam.',
+  path: '/aulia-karam',
+  keywords:
+    'Aulia Karam, Awliya Allah, Awliya, Yunus 10:62, Ala inna awliya Allah, friends of Allah, Ahle Sunnat, Hanafi Barelvi',
+  image: `${SITE_ORIGIN}/media/aulia-karam.jpg`,
+  type: 'article',
+};
+
 export const DONATE_THANKS_SEO: PageSeo = {
   title: 'Thank You for Your Donation | Nagina Social Welfare UK',
   description:

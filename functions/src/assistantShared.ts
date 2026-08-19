@@ -8,8 +8,12 @@ export const ASSISTANT_COLLECTION = 'assistant_chunks';
 export const ASSISTANT_META_COLLECTION = 'assistant_meta';
 export const EMBEDDING_MODEL = 'gemini-embedding-001';
 export const GENERATION_MODEL = 'gemini-2.5-flash';
+export const GENERATION_MAX_OUTPUT_TOKENS = 4096;
 export const EMBEDDING_DIMENSIONS = 128;
 export const AI_REGION = 'us-central1';
+
+const ROMAN_URDU_HINT =
+  /\b(namaz|niyyah|dua|salah|salaat|wuzu|wudu|roza|ramzan|ramadan|quran|hadees|hadith|batao|bata|kya|kaise|kyun|hai|hain|allah|islam|masjid|imam|fatwa|halal|haram|fraez|faraiz|fard|sunna|sunnah|zakat|hajj|umrah|sawab|gunah|taubah|sabr|shukr|dil|dil\s*se)\b/i;
 
 const auth = new GoogleAuth({
   scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -72,7 +76,54 @@ export function cosineSimilarity(a: readonly number[], b: readonly number[]): nu
 }
 
 export function detectQuestionLanguage(value: string): 'en' | 'ur' {
-  return /[\u0600-\u06FF]/.test(value) ? 'ur' : 'en';
+  if (/[\u0600-\u06FF]/.test(value)) {
+    return 'ur';
+  }
+  return ROMAN_URDU_HINT.test(value) ? 'ur' : 'en';
+}
+
+interface GeminiPart {
+  readonly text?: string;
+  readonly thought?: boolean;
+}
+
+interface GeminiCandidate {
+  readonly content?: { readonly parts?: readonly GeminiPart[] };
+  readonly finishReason?: string;
+}
+
+interface GeminiGenerateResponse {
+  readonly candidates?: readonly GeminiCandidate[];
+  readonly error?: { readonly message?: string };
+}
+
+function extractVisibleCandidateText(candidate: GeminiCandidate | undefined): string {
+  const parts = candidate?.content?.parts ?? [];
+  return parts
+    .filter((part) => part.text && !part.thought)
+    .map((part) => part.text ?? '')
+    .join('')
+    .trim();
+}
+
+function looksTruncated(text: string, finishReason?: string): boolean {
+  if (finishReason === 'MAX_TOKENS') {
+    return true;
+  }
+  const trimmed = text.trim();
+  if (trimmed.length < 100) {
+    return false;
+  }
+  return !/[.!?۔…)\]"']\s*$/.test(trimmed);
+}
+
+function buildGenerationConfig(temperature: number, maxOutputTokens: number) {
+  return {
+    temperature,
+    maxOutputTokens,
+    // Gemini 2.5 spends most of the output budget on hidden "thinking" unless disabled.
+    thinkingConfig: { thinkingBudget: 0 },
+  };
 }
 
 function projectId(): string {
@@ -169,29 +220,29 @@ export function buildFallbackAnswer(
 
 type AnswerScope = 'islamic' | 'site_help' | 'personal_fatwa' | 'off_topic';
 
-async function runGeminiGeneration(
+async function callGeminiGeneration(
   apiKey: string,
   systemInstruction: string,
   prompt: string,
   temperature: number,
-): Promise<string> {
+  maxOutputTokens: number,
+): Promise<{ answer: string; finishReason?: string }> {
+  const generationConfig = buildGenerationConfig(temperature, maxOutputTokens);
+
   if (!apiKey) {
     const url = `https://${AI_REGION}-aiplatform.googleapis.com/v1/projects/${projectId()}/locations/${AI_REGION}/publishers/google/models/${GENERATION_MODEL}:generateContent`;
-    const data = await vertexRequest<{
-      candidates?: { content?: { parts?: { text?: string }[] } }[];
-    }>(url, {
+    const data = await vertexRequest<GeminiGenerateResponse>(url, {
       systemInstruction: {
         parts: [{ text: systemInstruction }],
       },
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature,
-        maxOutputTokens: 1200,
-      },
+      generationConfig,
     });
-    return cleanGeneratedAnswer(
-      data.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('').trim() || '',
-    );
+    const candidate = data.candidates?.[0];
+    return {
+      answer: cleanGeneratedAnswer(extractVisibleCandidateText(candidate)),
+      finishReason: candidate?.finishReason,
+    };
   }
 
   const response = await fetch(
@@ -204,26 +255,49 @@ async function runGeminiGeneration(
           parts: [{ text: systemInstruction }],
         },
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature,
-          maxOutputTokens: 1200,
-        },
+        generationConfig,
       }),
     },
   );
 
-  const data = (await response.json()) as {
-    candidates?: { content?: { parts?: { text?: string }[] } }[];
-    error?: { message?: string };
-  };
-
-  const answer = cleanGeneratedAnswer(
-    data.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('').trim() || '',
-  );
+  const data = (await response.json()) as GeminiGenerateResponse;
+  const candidate = data.candidates?.[0];
+  const answer = cleanGeneratedAnswer(extractVisibleCandidateText(candidate));
   if (!response.ok || !answer) {
     throw new Error(data.error?.message || 'Could not generate an answer right now.');
   }
-  return answer;
+  return { answer, finishReason: candidate?.finishReason };
+}
+
+async function runGeminiGeneration(
+  apiKey: string,
+  systemInstruction: string,
+  prompt: string,
+  temperature: number,
+): Promise<string> {
+  const attempts = [
+    { maxOutputTokens: GENERATION_MAX_OUTPUT_TOKENS, temperature },
+    { maxOutputTokens: 8192, temperature: Math.min(temperature + 0.05, 0.45) },
+  ];
+
+  let bestAnswer = '';
+  for (const attempt of attempts) {
+    const { answer, finishReason } = await callGeminiGeneration(
+      apiKey,
+      systemInstruction,
+      prompt,
+      attempt.temperature,
+      attempt.maxOutputTokens,
+    );
+    if (answer.length > bestAnswer.length) {
+      bestAnswer = answer;
+    }
+    if (answer && answer.length >= 48 && !looksTruncated(answer, finishReason)) {
+      return answer;
+    }
+  }
+
+  return bestAnswer;
 }
 
 function buildHybridFallback(question: string): string {
@@ -259,8 +333,9 @@ export async function generateHybridAnswer(
     'You are Nagina Assistant for Nagina Social Welfare UK and Markaz Deen-e-Islam.',
     'The user asked a question that was not fully covered by our published Nagina pages, so answer using your broader Islamic knowledge.',
     'Write a warm, respectful, complete answer in plain language — not just a list of sources.',
+    'Always finish the full answer. Never stop mid-sentence. Use bullet points when listing obligations or steps.',
     'Stay aligned with Hanafi fiqh and Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teachings.',
-    'Love for the Prophet ﷺ, Khatme Nabuwwat, respect for Ahle Bait and Sahaba, and Markaz-style spiritual guidance are important.',
+    'Love for the Prophet ﷺ, Khatme Nabuwwat, respect for Ahle Bait, Sahaba, and Awliya (Aulia Karam), and Markaz-style spiritual guidance are important.',
     'Do not present Salafi, Deobandi, Shia, Ahmadi, or secular views as equally valid for Nagina.',
     'Do not mention Seedha Rasta or the books library unless the question is clearly about books.',
     'Do not issue binding fatwas or personal rulings. Gently suggest Markaz for personal matters.',
@@ -271,7 +346,7 @@ export async function generateHybridAnswer(
       ? 'Optional Nagina references are provided below. Use them if helpful, but you may go beyond them when needed.'
       : 'No strong Nagina reference was found. Answer from general Hanafi Barelvi guidance.',
     language === 'ur'
-      ? 'User wrote in Urdu or mixed Urdu. Reply in clear, complete Urdu script.'
+      ? 'User wrote in Urdu or Roman Urdu. Reply in clear, complete Urdu script (not Roman Urdu).'
       : 'Reply in clear English unless the user clearly wrote in Urdu.',
     historyText ? `Recent conversation:\n${historyText}` : '',
     `Question: ${question}`,
@@ -281,7 +356,7 @@ export async function generateHybridAnswer(
     .join('\n\n');
 
   const systemInstruction =
-    'Be warm, gentle, and trustworthy. Provide fuller Islamic guidance when published Nagina references are weak, while staying within Hanafi Barelvi / Ahl al-Sunnah wa’l-Jama‘ah teaching. Never be harsh. This is general guidance, not a personal fatwa.';
+    'Be warm, gentle, and trustworthy. Provide fuller Islamic guidance when published Nagina references are weak, while staying within Hanafi Barelvi / Ahl al-Sunnah wa’l-Jama‘ah teaching. Never be harsh. This is general guidance, not a personal fatwa. Always complete your answer.';
 
   const answer = await runGeminiGeneration(apiKey, systemInstruction, prompt, 0.35);
   if (!answer || answer.length < 48) {
@@ -315,6 +390,7 @@ export async function generateAnswer(
     'Do NOT reply with only source titles, page paths, or "[Reference N]" labels.',
     'Do NOT tell the user to "see the sources below" instead of answering.',
     'Give a complete answer in 2 to 5 short paragraphs or bullet points when helpful.',
+    'Always finish the full answer. Never stop mid-sentence.',
     'Answer only from the provided references when possible.',
     'Stay within published Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teachings on this site. Do not present other masalik as equally valid for Nagina.',
     'For general Islamic questions, prefer creed pages, guidance, and published Nagina material. Do not mention the Seedha Rasta book library unless the question is clearly about books, PDFs, or a specific library title.',

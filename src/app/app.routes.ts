@@ -16,6 +16,7 @@ import {
   PRIVACY_SEO,
   QURAN_SEO,
   SAHABA_IKRAM_SEO,
+  AULIA_KARAM_SEO,
   SERMONS_SEO,
   SPIRITUAL_GUIDE_SEO,
   WORK_SEO,
@@ -67,6 +68,13 @@ export const routes: Routes = [
       import('./pages/sahaba-ikram/sahaba-ikram-page').then((m) => m.SahabaIkramPage),
     title: SAHABA_IKRAM_SEO.title,
     data: { seo: SAHABA_IKRAM_SEO },
+  },
+  {
+    path: 'aulia-karam',
+    loadComponent: () =>
+      import('./pages/aulia-karam/aulia-karam-page').then((m) => m.AuliaKaramPage),
+    title: AULIA_KARAM_SEO.title,
+    data: { seo: AULIA_KARAM_SEO },
   },
   {
     path: 'guidance',

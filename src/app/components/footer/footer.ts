@@ -44,6 +44,7 @@ export class Footer {
         { label: 'Khatme Nabuwwat', path: '/khatme-nabuwwat' },
         { label: 'Ahle Bait', path: '/ahle-bait' },
         { label: 'Sahaba Ikram', path: '/sahaba-ikram' },
+        { label: 'Aulia Karam', path: '/aulia-karam' },
         { label: 'Guidance', path: '/guidance' },
       ],
     },

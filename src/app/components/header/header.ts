@@ -97,6 +97,12 @@ export class Header implements OnInit {
           hint: 'The noble Companions',
           icon: 'companions',
         },
+        {
+          label: 'Aulia Karam',
+          path: '/aulia-karam',
+          hint: 'Friends of Allah',
+          icon: 'guide',
+        },
         { label: 'Guidance', path: '/guidance', hint: 'Teachings & counsel', icon: 'counsel' },
       ],
     },

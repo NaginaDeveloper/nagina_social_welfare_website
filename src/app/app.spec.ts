@@ -61,6 +61,7 @@ describe('App', () => {
       ['/khatme-nabuwwat', '#khatme-nabuwwat'],
       ['/ahle-bait', '#ahle-bait'],
       ['/sahaba-ikram', '#sahaba-ikram'],
+      ['/aulia-karam', '#aulia-karam'],
       ['/guidance', '#guidance'],
       ['/namaz', '#prayer-times'],
       ['/quran', '#quran'],

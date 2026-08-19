@@ -64,6 +64,13 @@ const pages = [
       'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Prophet ﷺ, loved and respected as an integral part of Islamic faith.',
   },
   {
+    dir: 'aulia-karam',
+    path: '/aulia-karam',
+    title: 'Aulia Karam | Belief Regarding the Awliya Allah | Nagina Social Welfare',
+    description:
+      'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah — friends of Allah honoured through faith and taqwa, with Surah Yunus 10:62 and authentic Hadith on Aulia Karam.',
+  },
+  {
     dir: 'guidance',
     path: '/guidance',
     title: 'Guidance | Teachings & Counsel | Nagina Social Welfare',
