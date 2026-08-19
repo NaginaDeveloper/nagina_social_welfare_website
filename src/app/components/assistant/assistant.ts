@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import {
   AssistantService,
   type AssistantCitation,
@@ -21,8 +22,25 @@ interface RenderMessage {
 })
 export class Assistant {
   private readonly assistant = inject(AssistantService);
+  private readonly launcher = inject(AssistantLauncherService);
 
   readonly mode = input<'floating' | 'page'>('floating');
+
+  private lastOpenTick = 0;
+
+  constructor() {
+    effect(() => {
+      const tick = this.launcher.openTick();
+      if (tick === this.lastOpenTick) {
+        return;
+      }
+      this.lastOpenTick = tick;
+      if (this.isFloating()) {
+        this.open.set(true);
+        this.error.set(null);
+      }
+    });
+  }
 
   protected readonly composer = signal('');
   protected readonly loading = signal(false);

@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 
 /** Simple stroke icons used in the nav. */
@@ -58,6 +59,7 @@ export class Header implements OnInit {
   protected readonly loginUrl = 'https://admin.naginasocialwelfare.co.uk/';
 
   protected readonly prayer = inject(PrayerTimesService);
+  private readonly assistantLauncher = inject(AssistantLauncherService);
   private readonly router = inject(Router);
 
   protected readonly scrolled = signal(false);
@@ -125,7 +127,7 @@ export class Header implements OnInit {
           icon: 'sermon',
         },
         {
-          label: 'Assistant',
+          label: 'Nagina Assistant',
           path: '/assistant',
           hint: 'Ask in English or Urdu',
           icon: 'assistant',
@@ -208,6 +210,14 @@ export class Header implements OnInit {
 
   protected onNavClick(): void {
     this.closeMenu();
+  }
+
+  protected openAssistant(): void {
+    if (this.currentPath() === '/assistant') {
+      return;
+    }
+    this.assistantLauncher.open();
+    this.onNavClick();
   }
 
   private syncPath(url: string): void {
