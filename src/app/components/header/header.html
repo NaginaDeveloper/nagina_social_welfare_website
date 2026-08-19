@@ -8,30 +8,6 @@
   [class.bg-transparent]="!scrolled() && !menuOpen() && currentPath() === '/'"
   (click)="closeGroups()"
 >
-  <!-- Compact salawat strip -->
-  <div
-    class="border-b border-gold/10 px-5 text-center transition-all duration-300 sm:px-8"
-    [class.py-1.5]="scrolled()"
-    [class.py-2]="!scrolled()"
-  >
-    <p
-      class="font-arabic break-words leading-tight text-gold-300 transition-[font-size] duration-300"
-      [class.text-sm]="scrolled()"
-      [class.text-base]="!scrolled()"
-      [class.sm:text-base]="scrolled()"
-      [class.sm:text-lg]="!scrolled()"
-      lang="ar"
-      dir="rtl"
-    >
-      اَلصَّلٰوةُ وَالسَّلَامُ عَلَيْكَ يَا سَيِّدِى يَا رَسُوْلَ اللّٰه
-    </p>
-    @if (!scrolled()) {
-      <p class="mt-0.5 text-[0.58rem] font-medium uppercase tracking-[0.2em] text-cream/80 sm:text-[0.65rem]">
-        May endless peace &amp; blessings be upon you, our Master, O Beloved Messenger of Allah
-      </p>
-    }
-  </div>
-
   <div
     class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 transition-all duration-300 sm:gap-5 sm:px-8"
     [class.py-2.5]="scrolled()"

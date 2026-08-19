@@ -147,8 +147,8 @@
 
 html {
   scroll-behavior: smooth;
-  /* Matches compact sticky header (salawat + nav) */
-  scroll-padding-top: 7.25rem;
+  /* Matches sticky header (nav only) */
+  scroll-padding-top: 4.5rem;
   overflow-x: clip;
 }
 
