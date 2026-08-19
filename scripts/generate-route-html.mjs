@@ -71,6 +71,13 @@ const pages = [
       'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah — friends of Allah honoured through faith and taqwa, with Surah Yunus 10:62 and authentic Hadith on Aulia Karam.',
   },
   {
+    dir: 'basic-beliefs',
+    path: '/basic-beliefs',
+    title: 'Basic Beliefs | Hanafi Barelvi Ahl al-Sunnah FAQ | Nagina Social Welfare',
+    description:
+      'Frequently asked questions on the basic aqeedah of Hanafi Barelvi Ahl al-Sunnah wa’l-Jama’ah — Tawhid, Khatme Nabuwwat, love for the Prophet ﷺ, Ahle Bait, Sahaba, and Awliya.',
+  },
+  {
     dir: 'guidance',
     path: '/guidance',
     title: 'Guidance | Teachings & Counsel | Nagina Social Welfare',

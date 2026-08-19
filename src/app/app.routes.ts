@@ -17,6 +17,7 @@ import {
   QURAN_SEO,
   SAHABA_IKRAM_SEO,
   AULIA_KARAM_SEO,
+  BASIC_BELIEFS_SEO,
   SERMONS_SEO,
   SPIRITUAL_GUIDE_SEO,
   WORK_SEO,
@@ -75,6 +76,13 @@ export const routes: Routes = [
       import('./pages/aulia-karam/aulia-karam-page').then((m) => m.AuliaKaramPage),
     title: AULIA_KARAM_SEO.title,
     data: { seo: AULIA_KARAM_SEO },
+  },
+  {
+    path: 'basic-beliefs',
+    loadComponent: () =>
+      import('./pages/basic-beliefs/basic-beliefs-page').then((m) => m.BasicBeliefsPage),
+    title: BASIC_BELIEFS_SEO.title,
+    data: { seo: BASIC_BELIEFS_SEO },
   },
   {
     path: 'guidance',

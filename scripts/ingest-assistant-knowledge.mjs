@@ -184,6 +184,48 @@ async function buildCuratedChunks() {
     }),
   );
 
+  const basicBeliefsIntro = await extractClassProperty(
+    path.join(ROOT, 'src/app/components/basic-beliefs/basic-beliefs.ts'),
+    'intro',
+  );
+  const basicBeliefsDisclaimer = await extractClassProperty(
+    path.join(ROOT, 'src/app/components/basic-beliefs/basic-beliefs.ts'),
+    'disclaimer',
+  );
+  const basicBeliefsClosing = await extractClassProperty(
+    path.join(ROOT, 'src/app/components/basic-beliefs/basic-beliefs.ts'),
+    'closing',
+  );
+  const beliefCategories = await extractClassProperty(
+    path.join(ROOT, 'src/app/components/basic-beliefs/basic-beliefs.ts'),
+    'beliefCategories',
+  );
+  chunks.push(
+    makeChunk({
+      title: 'Basic Beliefs: Hanafi Barelvi Ahl al-Sunnah overview',
+      sourceType: 'creed',
+      path: '/basic-beliefs',
+      text: [basicBeliefsIntro, basicBeliefsDisclaimer, basicBeliefsClosing].join(' '),
+      tags: ['aqeedah', 'beliefs', 'hanafi-barelvi', 'creed'],
+      maslak: 'hanafi_barelvi',
+    }),
+  );
+  for (const category of beliefCategories) {
+    const faqText = (category.faqs || [])
+      .flatMap((faq) => [faq.question, faq.answer, faq.relatedLabel].filter(Boolean))
+      .join(' ');
+    chunks.push(
+      makeChunk({
+        title: `Basic Beliefs: ${category.title}`,
+        sourceType: 'creed',
+        path: '/basic-beliefs',
+        text: [category.title, category.lead, faqText].filter(Boolean).join(' '),
+        tags: ['aqeedah', 'beliefs', 'hanafi-barelvi', 'creed'],
+        maslak: 'hanafi_barelvi',
+      }),
+    );
+  }
+
   const khatmeQuotes = await extractClassProperty(
     path.join(ROOT, 'src/app/components/khatme-nabuwwat/khatme-nabuwwat.ts'),
     'quotes',

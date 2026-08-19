@@ -103,6 +103,12 @@ export class Header implements OnInit {
           hint: 'Friends of Allah',
           icon: 'guide',
         },
+        {
+          label: 'Basic Beliefs',
+          path: '/basic-beliefs',
+          hint: 'Hanafi Barelvi aqeedah FAQ',
+          icon: 'counsel',
+        },
         { label: 'Guidance', path: '/guidance', hint: 'Teachings & counsel', icon: 'counsel' },
       ],
     },

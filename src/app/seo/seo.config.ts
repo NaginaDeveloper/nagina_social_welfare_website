@@ -198,6 +198,16 @@ export const AULIA_KARAM_SEO: PageSeo = {
   type: 'article',
 };
 
+export const BASIC_BELIEFS_SEO: PageSeo = {
+  title: 'Basic Beliefs | Hanafi Barelvi Ahl al-Sunnah FAQ | Nagina Social Welfare',
+  description:
+    'Frequently asked questions on the basic aqeedah of Hanafi Barelvi Ahl al-Sunnah wa’l-Jama’ah — Tawhid, Khatme Nabuwwat, love for the Prophet ﷺ, Ahle Bait, Sahaba, and Awliya.',
+  path: '/basic-beliefs',
+  keywords:
+    'Basic beliefs, aqeedah, Hanafi Barelvi, Ahl al-Sunnah, iman, Khatme Nabuwwat, Tawhid, Ahle Sunnat, Sunni creed FAQ',
+  type: 'article',
+};
+
 export const DONATE_THANKS_SEO: PageSeo = {
   title: 'Thank You for Your Donation | Nagina Social Welfare UK',
   description:

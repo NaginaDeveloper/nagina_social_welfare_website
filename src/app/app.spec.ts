@@ -62,6 +62,7 @@ describe('App', () => {
       ['/ahle-bait', '#ahle-bait'],
       ['/sahaba-ikram', '#sahaba-ikram'],
       ['/aulia-karam', '#aulia-karam'],
+      ['/basic-beliefs', '#basic-beliefs'],
       ['/guidance', '#guidance'],
       ['/namaz', '#prayer-times'],
       ['/quran', '#quran'],
