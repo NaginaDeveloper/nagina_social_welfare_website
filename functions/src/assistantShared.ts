@@ -15,6 +15,8 @@ const auth = new GoogleAuth({
   scopes: ['https://www.googleapis.com/auth/cloud-platform'],
 });
 
+export type AssistantMaslak = 'hanafi_barelvi' | 'site';
+
 export interface RawAssistantChunk {
   readonly id: string;
   readonly title: string;
@@ -23,6 +25,8 @@ export interface RawAssistantChunk {
   readonly text: string;
   readonly language: 'en' | 'ur' | 'mixed';
   readonly tags: readonly string[];
+  readonly maslak?: AssistantMaslak;
+  readonly approved?: boolean;
 }
 
 export interface StoredAssistantChunk extends RawAssistantChunk {
@@ -163,68 +167,31 @@ export function buildFallbackAnswer(
   return `Based on our published content:\n\n${excerpt}\n\nYou can read more on ${top.path}.`;
 }
 
-export async function generateAnswer(
+type AnswerScope = 'islamic' | 'site_help' | 'personal_fatwa' | 'off_topic';
+
+async function runGeminiGeneration(
   apiKey: string,
-  question: string,
-  history: readonly AssistantHistoryTurn[],
-  contextChunks: readonly RawAssistantChunk[],
+  systemInstruction: string,
+  prompt: string,
+  temperature: number,
 ): Promise<string> {
-  const language = detectQuestionLanguage(question);
-  const historyText = history
-    .slice(-6)
-    .map((turn) => `${turn.role === 'user' ? 'User' : 'Assistant'}: ${turn.content}`)
-    .join('\n');
-  const contextText = contextChunks
-    .map(
-      (chunk, index) =>
-        `[Reference ${index + 1}] ${chunk.title} (${chunk.sourceType}, ${chunk.path})\n${chunk.text}`,
-    )
-    .join('\n\n');
-
-  const prompt = [
-    'You are Nagina Assistant for Nagina Social Welfare UK and Markaz Deen-e-Islam.',
-    'Write a helpful natural-language answer first. Use the references only as background knowledge.',
-    'Do NOT reply with only source titles, page paths, or "[Reference N]" labels.',
-    'Do NOT tell the user to "see the sources below" instead of answering.',
-    'Give a complete answer in 2 to 5 short paragraphs or bullet points when helpful.',
-    'Answer only from the provided references when possible, aligned with Ahl al-Sunnah content published on this site.',
-    'If the references are weak or missing, say you are not fully certain and direct the user to Contact or the relevant page.',
-    'Do not issue binding fatwas or personal rulings. For personal religious rulings, direct the user to speak to Markaz directly.',
-    language === 'ur'
-      ? 'User wrote in Urdu or mixed Urdu. Reply in clear, complete Urdu script.'
-      : 'Reply in clear English unless the user clearly wrote in Urdu.',
-    historyText ? `Recent conversation:\n${historyText}` : '',
-    `Question: ${question}`,
-    `References:\n${contextText}`,
-  ]
-    .filter(Boolean)
-    .join('\n\n');
-
   if (!apiKey) {
     const url = `https://${AI_REGION}-aiplatform.googleapis.com/v1/projects/${projectId()}/locations/${AI_REGION}/publishers/google/models/${GENERATION_MODEL}:generateContent`;
     const data = await vertexRequest<{
       candidates?: { content?: { parts?: { text?: string }[] } }[];
     }>(url, {
       systemInstruction: {
-        parts: [
-          {
-            text: 'Be warm, concise, and trustworthy. Always write the full answer in plain language. Source links are shown separately in the UI, so never answer with only a bibliography.',
-          },
-        ],
+        parts: [{ text: systemInstruction }],
       },
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
       generationConfig: {
-        temperature: 0.25,
+        temperature,
         maxOutputTokens: 1200,
       },
     });
-    const answer = cleanGeneratedAnswer(
+    return cleanGeneratedAnswer(
       data.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('').trim() || '',
     );
-    if (!answer || answer.length < 48) {
-      return buildFallbackAnswer(question, contextChunks);
-    }
-    return answer;
   }
 
   const response = await fetch(
@@ -234,15 +201,11 @@ export async function generateAnswer(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         systemInstruction: {
-          parts: [
-            {
-              text: 'Be warm, concise, and trustworthy. Always write the full answer in plain language. Source links are shown separately in the UI, so never answer with only a bibliography.',
-            },
-          ],
+          parts: [{ text: systemInstruction }],
         },
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
         generationConfig: {
-          temperature: 0.25,
+          temperature,
           maxOutputTokens: 1200,
         },
       }),
@@ -260,9 +223,123 @@ export async function generateAnswer(
   if (!response.ok || !answer) {
     throw new Error(data.error?.message || 'Could not generate an answer right now.');
   }
-  if (answer.length < 48) {
+  return answer;
+}
+
+function buildHybridFallback(question: string): string {
+  const language = detectQuestionLanguage(question);
+  return language === 'ur'
+    ? 'جزاک اللہ۔ میں اس سوال کا مکمل جواب ابھی یقینی طور پر نہیں دے سکتا۔ براہِ کرم Markaz Deen-e-Islam سے رابطہ کریں، یا ہماری Guidance اور Contact صفحات دیکھیں۔'
+    : 'JazakAllah. I cannot answer that with full confidence right now. Please contact Markaz Deen-e-Islam, or visit our Guidance and Contact pages for help.';
+}
+
+export async function generateHybridAnswer(
+  apiKey: string,
+  question: string,
+  history: readonly AssistantHistoryTurn[],
+  optionalChunks: readonly RawAssistantChunk[],
+  scope: AnswerScope = 'islamic',
+): Promise<string> {
+  const language = detectQuestionLanguage(question);
+  const historyText = history
+    .slice(-6)
+    .map((turn) => `${turn.role === 'user' ? 'User' : 'Assistant'}: ${turn.content}`)
+    .join('\n');
+
+  const optionalContext = optionalChunks.length
+    ? optionalChunks
+        .map(
+          (chunk, index) =>
+            `[Optional Nagina reference ${index + 1}] ${chunk.title} (${chunk.sourceType}, ${chunk.path})\n${chunk.text}`,
+        )
+        .join('\n\n')
+    : '';
+
+  const prompt = [
+    'You are Nagina Assistant for Nagina Social Welfare UK and Markaz Deen-e-Islam.',
+    'The user asked a question that was not fully covered by our published Nagina pages, so answer using your broader Islamic knowledge.',
+    'Write a warm, respectful, complete answer in plain language — not just a list of sources.',
+    'Stay aligned with Hanafi fiqh and Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teachings.',
+    'Love for the Prophet ﷺ, Khatme Nabuwwat, respect for Ahle Bait and Sahaba, and Markaz-style spiritual guidance are important.',
+    'Do not present Salafi, Deobandi, Shia, Ahmadi, or secular views as equally valid for Nagina.',
+    'Do not mention Seedha Rasta or the books library unless the question is clearly about books.',
+    'Do not issue binding fatwas or personal rulings. Gently suggest Markaz for personal matters.',
+    scope === 'site_help'
+      ? 'This is a website help question. Give practical Nagina website guidance when you can.'
+      : 'This is an Islamic guidance question. Give helpful general Hanafi Barelvi guidance.',
+    optionalContext
+      ? 'Optional Nagina references are provided below. Use them if helpful, but you may go beyond them when needed.'
+      : 'No strong Nagina reference was found. Answer from general Hanafi Barelvi guidance.',
+    language === 'ur'
+      ? 'User wrote in Urdu or mixed Urdu. Reply in clear, complete Urdu script.'
+      : 'Reply in clear English unless the user clearly wrote in Urdu.',
+    historyText ? `Recent conversation:\n${historyText}` : '',
+    `Question: ${question}`,
+    optionalContext ? `Optional Nagina references:\n${optionalContext}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n\n');
+
+  const systemInstruction =
+    'Be warm, gentle, and trustworthy. Provide fuller Islamic guidance when published Nagina references are weak, while staying within Hanafi Barelvi / Ahl al-Sunnah wa’l-Jama‘ah teaching. Never be harsh. This is general guidance, not a personal fatwa.';
+
+  const answer = await runGeminiGeneration(apiKey, systemInstruction, prompt, 0.35);
+  if (!answer || answer.length < 48) {
+    return buildHybridFallback(question);
+  }
+  return answer;
+}
+
+export async function generateAnswer(
+  apiKey: string,
+  question: string,
+  history: readonly AssistantHistoryTurn[],
+  contextChunks: readonly RawAssistantChunk[],
+  scope: AnswerScope = 'islamic',
+): Promise<string> {
+  const language = detectQuestionLanguage(question);
+  const historyText = history
+    .slice(-6)
+    .map((turn) => `${turn.role === 'user' ? 'User' : 'Assistant'}: ${turn.content}`)
+    .join('\n');
+  const contextText = contextChunks
+    .map(
+      (chunk, index) =>
+        `[Reference ${index + 1}] ${chunk.title} (${chunk.sourceType}, ${chunk.path})\n${chunk.text}`,
+    )
+    .join('\n\n');
+
+  const prompt = [
+    'You are Nagina Assistant for Nagina Social Welfare UK and Markaz Deen-e-Islam.',
+    'Write a warm, respectful, helpful natural-language answer first. Use the references only as background knowledge.',
+    'Do NOT reply with only source titles, page paths, or "[Reference N]" labels.',
+    'Do NOT tell the user to "see the sources below" instead of answering.',
+    'Give a complete answer in 2 to 5 short paragraphs or bullet points when helpful.',
+    'Answer only from the provided references when possible.',
+    'Stay within published Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teachings on this site. Do not present other masalik as equally valid for Nagina.',
+    'For general Islamic questions, prefer creed pages, guidance, and published Nagina material. Do not mention the Seedha Rasta book library unless the question is clearly about books, PDFs, or a specific library title.',
+    'Do not answer non-Islamic general knowledge, coding, entertainment, politics, or unrelated worldly topics unless the question is clearly about this website.',
+    'If the references are weak or missing, gently say you are not fully certain and direct the user to Contact, the relevant page, or Markaz.',
+    'Do not issue binding fatwas or personal rulings. For personal religious rulings, kindly direct the user to speak to Markaz directly.',
+    scope === 'site_help'
+      ? 'This is a website help question. Answer practically from site references. Mention books or Seedha Rasta only if the user asked about books.'
+      : 'This is an Islamic guidance question. Answer from creed, guidance, and approved Hanafi Barelvi references. Mention Seedha Rasta or the books library only if the references or question are clearly book-related.',
+    language === 'ur'
+      ? 'User wrote in Urdu or mixed Urdu. Reply in clear, complete Urdu script.'
+      : 'Reply in clear English unless the user clearly wrote in Urdu.',
+    historyText ? `Recent conversation:\n${historyText}` : '',
+    `Question: ${question}`,
+    `References:\n${contextText}`,
+  ]
+    .filter(Boolean)
+    .join('\n\n');
+
+  const systemInstruction =
+    'Be warm, gentle, concise, and trustworthy. Always write the full answer in plain language. Stay within Hanafi Barelvi / Ahl al-Sunnah wa’l-Jama‘ah material from the references. Never be harsh when declining. Source links are shown separately in the UI, so never answer with only a bibliography.';
+
+  const answer = await runGeminiGeneration(apiKey, systemInstruction, prompt, 0.25);
+  if (!answer || answer.length < 48) {
     return buildFallbackAnswer(question, contextChunks);
   }
-
   return answer;
 }

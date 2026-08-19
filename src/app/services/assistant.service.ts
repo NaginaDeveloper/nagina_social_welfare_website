@@ -19,6 +19,7 @@ export interface AskAssistantResponse {
   readonly disclaimer: string;
   readonly citations: readonly AssistantCitation[];
   readonly language: 'en' | 'ur';
+  readonly sourceMode?: 'published' | 'general';
 }
 
 @Injectable({ providedIn: 'root' })

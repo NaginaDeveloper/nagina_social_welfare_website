@@ -83,7 +83,15 @@ async function extractClassProperty(filePath, propertyName) {
   return result;
 }
 
-function makeChunk({ title, sourceType, path: routePath, text, tags = [] }) {
+function makeChunk({
+  title,
+  sourceType,
+  path: routePath,
+  text,
+  tags = [],
+  maslak = sourceType === 'faq' ? 'site' : 'hanafi_barelvi',
+  approved = true,
+}) {
   const clean = normalizeText(text);
   return {
     id: hash(`${sourceType}:${routePath}:${title}:${clean.slice(0, 140)}`),
@@ -93,6 +101,8 @@ function makeChunk({ title, sourceType, path: routePath, text, tags = [] }) {
     text: clean,
     language: inferLanguage(clean),
     tags,
+    maslak,
+    approved,
   };
 }
 
@@ -209,7 +219,7 @@ async function buildCuratedChunks() {
     {
       title: 'Books library',
       path: '/books',
-      text: 'The Seedha Rasta library contains Islamic books that can be searched by title and opened as PDFs.',
+      text: 'The books page lists Islamic PDFs that can be searched by title and opened for reading or download.',
       tags: ['books'],
     },
     {
@@ -221,12 +231,22 @@ async function buildCuratedChunks() {
     {
       title: 'Assistant scope and disclaimer',
       path: '/assistant',
-      text: 'Nagina Assistant helps with published creed pages, guidance, books, donations, and site information in English and Urdu. It is not a mufti and should not be used for binding rulings or personal legal, medical, or marital decisions.',
-      tags: ['assistant', 'disclaimer'],
+      text: 'Nagina Assistant gently helps with published Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi creed pages, guidance, books, donations, and site information in English and Urdu. It is not a mufti and should not be used for binding rulings or personal legal, medical, or marital decisions.',
+      tags: ['assistant', 'disclaimer', 'maslak'],
+      maslak: 'site',
     },
   ];
   for (const item of faq) {
-    chunks.push(makeChunk({ title: item.title, sourceType: 'faq', path: item.path, text: item.text, tags: item.tags }));
+    chunks.push(
+      makeChunk({
+        title: item.title,
+        sourceType: 'faq',
+        path: item.path,
+        text: item.text,
+        tags: item.tags,
+        maslak: item.maslak ?? 'site',
+      }),
+    );
   }
 
   return chunks;
@@ -246,7 +266,7 @@ async function buildBookChunks() {
         title: `${book.title} (catalog)` ,
         sourceType: 'book',
         path: '/books',
-        text: `${book.title}. Language: ${book.language}. Available in the Seedha Rasta library as a downloadable PDF.`,
+        text: `${book.title}. Language: ${book.language}. Available on the books page as a downloadable PDF.`,
         tags: ['book', book.slug, book.language.toLowerCase()],
       }),
     );

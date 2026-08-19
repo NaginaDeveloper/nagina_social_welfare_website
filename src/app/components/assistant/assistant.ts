@@ -50,9 +50,9 @@ export class Assistant {
     {
       role: 'assistant',
       content:
-        'Assalamu alaikum. I can help with Nagina Social Welfare, donations, guidance, creed pages, books, and general site questions in English or Urdu.',
+        'Assalamu alaikum. I can gently help with Hanafi Barelvi / Ahl al-Sunnah creed and guidance — first from our published Nagina pages, and when needed from broader Gemini Islamic knowledge within the same maslak — plus website questions such as donations, contact, and namaz times, in English or Urdu.',
       disclaimer:
-        'I am not a mufti. For binding rulings or personal religious matters, please contact Markaz directly.',
+        'I am not a mufti. For personal religious rulings, please contact Markaz directly.',
     },
   ]);
 

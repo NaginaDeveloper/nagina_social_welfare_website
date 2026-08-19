@@ -130,7 +130,7 @@
       @if (prayer.headerStatus(); as status) {
         <a
           routerLink="/namaz"
-          class="mr-2 inline-flex items-center gap-2 rounded-full border border-gold/25 bg-white/5 px-3 py-1.5 transition-colors hover:border-gold/45 hover:bg-white/10"
+          class="mr-2 inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/25 bg-white/5 px-3 transition-colors hover:border-gold/45 hover:bg-white/10"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining
@@ -156,7 +156,7 @@
 
       <button
         type="button"
-        class="mr-2 inline-flex items-center gap-2 rounded-full border border-gold/35 bg-white/5 px-4 py-2 text-[0.8125rem] font-semibold text-cream transition-all duration-300 hover:border-gold/55 hover:bg-white/10 hover:text-gold-300"
+        class="mr-2 inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/35 bg-white/5 px-4 text-[0.78rem] font-semibold text-cream transition-all duration-300 hover:border-gold/55 hover:bg-white/10 hover:text-gold-300"
         aria-label="Open Nagina Assistant chat"
         (click)="openAssistant()"
       >
@@ -168,7 +168,7 @@
 
       <a
         routerLink="/donate"
-        class="mr-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2 text-[0.8125rem] font-semibold text-forest shadow-soft transition-all duration-300 hover:brightness-105"
+        class="mr-2 inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 text-[0.78rem] font-semibold text-forest shadow-soft transition-all duration-300 hover:brightness-105"
         (click)="onNavClick()"
       >
         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -181,7 +181,7 @@
         [href]="loginUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-full border border-cream/30 px-4 py-2 text-[0.8125rem] font-semibold text-cream transition-all duration-300 hover:border-gold/50 hover:text-gold-300"
+        class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-cream/30 px-4 text-[0.78rem] font-semibold text-cream transition-all duration-300 hover:border-gold/50 hover:text-gold-300"
         aria-label="Login as admin, teacher or parent (opens in a new tab)"
       >
         Login
