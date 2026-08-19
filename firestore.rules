@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Assistant data is served through Cloud Functions, not directly to browsers.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

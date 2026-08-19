@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {
   ABOUT_SEO,
   AHLE_BAIT_SEO,
+  ASSISTANT_SEO,
   APPS_SEO,
   BOOKS_SEO,
   CONTACT_SEO,
@@ -114,6 +115,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/donate/donate-page').then((m) => m.DonatePage),
     title: DONATE_SEO.title,
     data: { seo: DONATE_SEO },
+  },
+  {
+    path: 'assistant',
+    loadComponent: () => import('./pages/assistant/assistant-page').then((m) => m.AssistantPage),
+    title: ASSISTANT_SEO.title,
+    data: { seo: ASSISTANT_SEO },
   },
   {
     path: 'donate/thanks',

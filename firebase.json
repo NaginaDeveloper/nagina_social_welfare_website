@@ -13,6 +13,10 @@
       "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run build"]
     }
   ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
   "hosting": {
     "site": "nagina-donations",
     "public": "hosting-api",
@@ -29,6 +33,20 @@
         "source": "/sumupWebhook",
         "function": {
           "functionId": "sumupWebhook",
+          "region": "europe-west2"
+        }
+      },
+      {
+        "source": "/askNaginaAssistant",
+        "function": {
+          "functionId": "askNaginaAssistant",
+          "region": "europe-west2"
+        }
+      },
+      {
+        "source": "/syncAssistantKnowledge",
+        "function": {
+          "functionId": "syncAssistantKnowledge",
           "region": "europe-west2"
         }
       }

@@ -10,7 +10,7 @@ interface PrivacyBlock {
   templateUrl: './privacy.html',
 })
 export class Privacy {
-  protected readonly updated = '8 August 2026';
+  protected readonly updated = '19 August 2026';
 
   protected readonly blocks: readonly PrivacyBlock[] = [
     {
@@ -26,7 +26,7 @@ export class Privacy {
     {
       title: 'Information we process',
       body:
-        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email or call us, we process the details you choose to send so we can respond. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices.',
+        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email or call us, we process the details you choose to send so we can respond. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
     },
     {
       title: 'Donations via SumUp, PayPal & NatWest PayIt',
@@ -44,6 +44,11 @@ export class Privacy {
         'Book covers and PDFs are loaded from Google Firebase Storage so we can publish our library. Your browser contacts Google’s servers to download those files.',
     },
     {
+      title: 'Nagina Assistant',
+      body:
+        'Nagina Assistant is a chat-style helper trained on our published website content, guidance summaries, creed pages, and book-library extracts. Messages may be temporarily processed and logged on our Firebase infrastructure and sent to Google Gemini to generate a reply. The assistant is informational only and must not be relied on for binding fatwas, legal decisions, medical advice, or personal religious rulings.',
+    },
+    {
       title: 'Fonts',
       body:
         'Typefaces used on this site are self-hosted on our own domain. We do not load fonts from Google Fonts or other third-party font CDNs.',
@@ -51,7 +56,7 @@ export class Privacy {
     {
       title: 'Links to other services',
       body:
-        'Links to Facebook, Instagram, YouTube, Google Play, SumUp’s payment pages, PayPal, NatWest PayIt, and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices.',
+        'Links to Facebook, Instagram, YouTube, Google Play, SumUp’s payment pages, PayPal, NatWest PayIt, Google Gemini services, and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices.',
     },
     {
       title: 'Your rights (UK GDPR)',

@@ -120,6 +120,13 @@ const pages = [
       'Donate securely with SumUp or by UK bank transfer to support Islamic education and community welfare.',
   },
   {
+    dir: 'assistant',
+    path: '/assistant',
+    title: 'Nagina Assistant | Islamic Guidance & Site Help',
+    description:
+      'Ask Nagina Assistant in English or Urdu about creed pages, guidance, books, donations, and site information from Nagina Social Welfare UK.',
+  },
+  {
     dir: 'donate/thanks',
     path: '/donate/thanks',
     title: 'Thank You for Your Donation | Nagina Social Welfare UK',

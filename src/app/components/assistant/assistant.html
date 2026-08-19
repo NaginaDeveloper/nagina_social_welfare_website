@@ -1,0 +1,190 @@
+@if (isFloating()) {
+  <div class="fixed bottom-4 right-4 z-[70] sm:bottom-6 sm:right-6">
+    @if (open()) {
+      <section class="mb-3 flex h-[min(75vh,42rem)] w-[min(92vw,24rem)] flex-col overflow-hidden rounded-[1.5rem] border border-gold/20 bg-cream shadow-portal ring-1 ring-forest/10">
+        <div class="flex items-center justify-between border-b border-mist bg-forest px-4 py-3 text-cream">
+          <div>
+            <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300">Nagina Assistant</p>
+            <p class="mt-0.5 text-sm text-cream/80">English &amp; Urdu help</p>
+          </div>
+          <button
+            type="button"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-cream transition-colors hover:border-gold/40 hover:text-gold-300"
+            aria-label="Close assistant"
+            (click)="toggle()"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-4 py-4">
+          <div class="space-y-4">
+            @for (message of messages(); track $index) {
+              <div class="flex" [ngClass]="message.role === 'user' ? 'justify-end' : 'justify-start'">
+                <div
+                  class="max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-soft"
+                  [ngClass]="message.role === 'user' ? 'bg-forest text-cream' : 'bg-white text-forest ring-1 ring-mist'"
+                >
+                  <p dir="auto">{{ message.content }}</p>
+                  @if (message.citations?.length) {
+                    <div class="mt-3 border-t border-mist/80 pt-2 text-xs text-slate-warm">
+                      <p class="font-semibold text-forest">Sources</p>
+                      <ul class="mt-1 space-y-1">
+                        @for (citation of message.citations; track citation.title + citation.path) {
+                          <li>
+                            <a [href]="citation.path" class="underline decoration-gold/40 underline-offset-2 hover:text-gold-700">
+                              {{ citation.title }}
+                            </a>
+                          </li>
+                        }
+                      </ul>
+                    </div>
+                  }
+                  @if (message.disclaimer) {
+                    <p class="mt-3 text-xs text-slate-warm">{{ message.disclaimer }}</p>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+
+          @if (messages().length === 1) {
+            <div class="mt-5 flex flex-wrap gap-2">
+              @for (prompt of prompts; track prompt) {
+                <button
+                  type="button"
+                  class="rounded-full border border-forest/10 bg-white px-3 py-2 text-xs font-medium text-forest transition-colors hover:border-gold/40 hover:text-gold-700"
+                  (click)="choosePrompt(prompt)"
+                >
+                  {{ prompt }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="border-t border-mist bg-white px-4 py-3">
+          @if (error()) {
+            <p class="mb-2 text-xs text-red-700">{{ error() }}</p>
+          }
+          <form class="flex gap-2" (ngSubmit)="submit()">
+            <input
+              type="text"
+              name="assistantQuestion"
+              [ngModel]="composer()"
+              (ngModelChange)="composer.set($event)"
+              placeholder="Ask about guidance, books, donations…"
+              class="min-w-0 flex-1 rounded-full border border-mist bg-sand/50 px-4 py-3 text-sm text-forest outline-none transition focus:border-gold/40 focus:bg-white"
+            />
+            <button
+              type="submit"
+              class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 text-sm font-semibold text-forest shadow-soft transition hover:brightness-105 disabled:opacity-60"
+              [disabled]="loading()"
+            >
+              {{ loading() ? '…' : 'Ask' }}
+            </button>
+          </form>
+        </div>
+      </section>
+    }
+
+    <button
+      type="button"
+      class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold text-forest shadow-portal transition hover:brightness-105"
+      aria-label="Open Nagina Assistant"
+      (click)="toggle()"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4l-4 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+      </svg>
+    </button>
+  </div>
+} @else {
+  <section class="relative overflow-hidden bg-cream py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-5 sm:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">Nagina Assistant</span>
+        <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+          Ask in English or
+          <span class="text-gold-gradient">Urdu</span>
+        </h1>
+        <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+          Learn from our published creed pages, guidance, books library, and site information.
+          For binding religious rulings, please contact Markaz directly.
+        </p>
+      </div>
+
+      <div class="mx-auto mt-10 max-w-4xl rounded-[1.75rem] border border-mist bg-white shadow-soft">
+        <div class="border-b border-mist px-5 py-4 sm:px-8">
+          <div class="flex flex-wrap gap-2">
+            @for (prompt of prompts; track prompt) {
+              <button
+                type="button"
+                class="rounded-full border border-forest/10 bg-sand px-3 py-2 text-xs font-medium text-forest transition-colors hover:border-gold/40 hover:text-gold-700"
+                (click)="choosePrompt(prompt)"
+              >
+                {{ prompt }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="space-y-4 px-5 py-5 sm:px-8 sm:py-8">
+          @for (message of messages(); track $index) {
+            <div class="flex" [ngClass]="message.role === 'user' ? 'justify-end' : 'justify-start'">
+              <div
+                class="max-w-[90%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-soft"
+                [ngClass]="message.role === 'user' ? 'bg-forest text-cream' : 'bg-sand/60 text-forest ring-1 ring-mist'"
+              >
+                <p dir="auto">{{ message.content }}</p>
+                @if (message.citations?.length) {
+                  <div class="mt-3 border-t border-mist/80 pt-2 text-xs text-slate-warm">
+                    <p class="font-semibold text-forest">Sources</p>
+                    <ul class="mt-1 space-y-1">
+                      @for (citation of message.citations; track citation.title + citation.path) {
+                        <li>
+                          <a [href]="citation.path" class="underline decoration-gold/40 underline-offset-2 hover:text-gold-700">
+                            {{ citation.title }}
+                          </a>
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                }
+                @if (message.disclaimer) {
+                  <p class="mt-3 text-xs text-slate-warm">{{ message.disclaimer }}</p>
+                }
+              </div>
+            </div>
+          }
+
+          @if (error()) {
+            <p class="text-sm text-red-700">{{ error() }}</p>
+          }
+        </div>
+
+        <div class="border-t border-mist bg-cream/50 px-5 py-4 sm:px-8 sm:py-5">
+          <form class="flex flex-col gap-3 sm:flex-row" (ngSubmit)="submit()">
+            <input
+              type="text"
+              name="assistantQuestionPage"
+              [ngModel]="composer()"
+              (ngModelChange)="composer.set($event)"
+              placeholder="Ask about Khatme Nabuwwat, donations, books, guidance…"
+              class="min-w-0 flex-1 rounded-full border border-mist bg-white px-4 py-3 text-sm text-forest outline-none transition focus:border-gold/40"
+            />
+            <button
+              type="submit"
+              class="inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 text-sm font-semibold text-forest shadow-soft transition hover:brightness-105 disabled:opacity-60"
+              [disabled]="loading()"
+            >
+              {{ loading() ? 'Thinking…' : 'Ask Nagina Assistant' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+}

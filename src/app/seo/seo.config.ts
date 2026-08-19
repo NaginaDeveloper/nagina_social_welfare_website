@@ -126,6 +126,16 @@ export const DONATE_SEO: PageSeo = {
   type: 'website',
 };
 
+export const ASSISTANT_SEO: PageSeo = {
+  title: 'Nagina Assistant | Islamic Guidance & Site Help',
+  description:
+    'Ask Nagina Assistant in English or Urdu about creed pages, guidance, books, donations, and site information from Nagina Social Welfare UK.',
+  path: '/assistant',
+  keywords:
+    'Nagina Assistant, Islamic AI assistant, Urdu Islamic help, Nagina guidance assistant',
+  type: 'website',
+};
+
 export const CONTACT_SEO: PageSeo = {
   title: 'Contact | Nagina Social Welfare UK',
   description:

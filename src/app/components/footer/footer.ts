@@ -61,6 +61,7 @@ export class Footer {
       items: [
         { label: 'Books', path: '/books' },
         { label: 'Sermons', path: '/sermons' },
+        { label: 'Assistant', path: '/assistant' },
         { label: 'Apps', path: '/apps' },
       ],
     },

@@ -25,6 +25,7 @@ export type NavIcon =
   | 'book'
   | 'sermon'
   | 'apps'
+  | 'assistant'
   | 'events'
   | 'donate'
   | 'contact'
@@ -122,6 +123,12 @@ export class Header implements OnInit {
           path: '/sermons',
           hint: 'Baba Ji Sarkar bayanat',
           icon: 'sermon',
+        },
+        {
+          label: 'Assistant',
+          path: '/assistant',
+          hint: 'Ask in English or Urdu',
+          icon: 'assistant',
         },
         { label: 'Apps', path: '/apps', hint: 'Mobile learning', icon: 'apps' },
       ],
