@@ -15,7 +15,31 @@
       </p>
     </div>
 
-    <div class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <div class="mt-12 grid grid-cols-3 gap-2 sm:gap-4">
+      @for (photo of featured; track photo.id) {
+        <button
+          type="button"
+          class="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-mist transition-all duration-500 hover:-translate-y-1 hover:ring-gold/40 hover:shadow-portal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+          (click)="openPhoto(photo)"
+          [attr.aria-label]="'View: ' + photo.caption"
+        >
+          <img
+            [src]="photo.src"
+            [alt]="photo.alt"
+            class="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            loading="eager"
+            decoding="async"
+          />
+          <span
+            class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 to-transparent px-1.5 pb-2 pt-8 text-left text-[0.6rem] font-medium leading-snug text-cream sm:px-3 sm:pb-3 sm:pt-10 sm:text-xs"
+          >
+            {{ photo.caption }}
+          </span>
+        </button>
+      }
+    </div>
+
+    <div class="mt-4 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
       @for (photo of photos; track photo.id) {
         <button
           type="button"

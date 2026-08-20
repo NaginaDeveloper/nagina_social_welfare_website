@@ -8,18 +8,6 @@ export interface GalleryItem {
 /** Curated event photos & commemorative posters from Facebook. */
 export const GALLERY_ITEMS: readonly GalleryItem[] = [
   {
-    id: 'mashayikh-gathering',
-    src: 'gallery/mashayikh-gathering.jpg',
-    alt: 'Two mashayikh standing together at a gathering, wearing white turbans and shawls',
-    caption: 'Mashayikh at a gathering',
-  },
-  {
-    id: 'mashayikh-gathering-2',
-    src: 'gallery/mashayikh-gathering-2.jpg',
-    alt: 'Two mashayikh standing together in navy robes with gold embroidery, at a floral gathering',
-    caption: 'Mashayikh in honour',
-  },
-  {
     id: 'mehfil-naat-2026-poster',
     src: 'gallery/poster-mehfil-naat-2026.png',
     alt: 'Grand Annual Mehfil-e-Naat poster for Monday 24 August 2026 at Markaz Deen-e-Islam',

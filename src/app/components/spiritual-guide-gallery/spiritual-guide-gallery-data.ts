@@ -6,10 +6,28 @@ export interface SpiritualGuidePhoto {
 }
 
 /**
- * Curated photographs of Allama Munir Ahmed Yusufi from Nagina TV
- * and the charity’s own archive. Wikipedia has no portrait on file.
+ * Gathering photographs first, then Nagina TV stills of Allama Munir Ahmed Yusufi.
+ * Wikipedia has no portrait on file.
  */
 export const SPIRITUAL_GUIDE_PHOTOS: readonly SpiritualGuidePhoto[] = [
+  {
+    id: 'mashayikh-gathering',
+    src: 'gallery/mashayikh-gathering.jpg',
+    alt: 'Two mashayikh standing together at a gathering, wearing white turbans and shawls',
+    caption: 'Mashayikh at a gathering',
+  },
+  {
+    id: 'mashayikh-gathering-2',
+    src: 'gallery/mashayikh-gathering-2.jpg',
+    alt: 'Two mashayikh standing together in navy robes with gold embroidery, at a floral gathering',
+    caption: 'Mashayikh in honour',
+  },
+  {
+    id: 'faiz-e-nagina',
+    src: 'gallery/shajra/00-hero.jpg',
+    alt: 'Faiz-e-Nagina and Munir-e-Islam with the mashayikh, Nagina TV banner',
+    caption: 'Faiz-e-Nagina · Munir-e-Islam',
+  },
   {
     id: 'portrait',
     src: 'gallery/munir/01-portrait.jpg',

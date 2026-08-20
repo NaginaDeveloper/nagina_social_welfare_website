@@ -9,7 +9,8 @@ import {
   templateUrl: './spiritual-guide-gallery.html',
 })
 export class SpiritualGuideGallery {
-  protected readonly photos = SPIRITUAL_GUIDE_PHOTOS;
+  protected readonly featured = SPIRITUAL_GUIDE_PHOTOS.slice(0, 3);
+  protected readonly photos = SPIRITUAL_GUIDE_PHOTOS.slice(3);
   protected readonly activePhoto = signal<SpiritualGuidePhoto | null>(null);
   protected readonly naginaTvUrl = 'https://www.youtube.com/user/92nagina';
 
