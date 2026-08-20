@@ -360,6 +360,10 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'assistant.thinking': 'Thinking…',
     'assistant.welcome': 'Assalamu alaikum. I can gently help with Hanafi Barelvi / Ahl al-Sunnah creed and guidance — first from our published Nagina pages, and when needed from broader Gemini Islamic knowledge within the same maslak — plus website questions such as donations, contact, and namaz times, in English or Urdu.',
     'assistant.disclaimer': 'I am not a mufti. For personal religious rulings, please contact Markaz directly.',
+    'assistant.call': 'Call',
+    'assistant.whatsapp': 'WhatsApp',
+    'assistant.emailAction': 'Email',
+    'assistant.map': 'Map',
     'assistant.pageTitle': 'Nagina Assistant',
     'assistant.pageLead': 'Ask about creed, guidance, donations, contact, and namaz times — in English or Urdu.',
 
@@ -799,6 +803,10 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'assistant.thinking': 'سوچ رہا ہے…',
     'assistant.welcome': 'السلام علیکم۔ میں حنفی بریلوی / اہلِ سنت عقیدہ اور ہدایت میں نرمی سے مدد کر سکتا ہوں — پہلے ہماری شائع شدہ نگینہ صفحات سے، اور ضرورت پر اسی مسلک کے مطابق وسیع تر جیمنائی اسلامی علم سے — نیز عطیات، رابطہ اور نماز کے اوقات جیسے ویب سائٹ سوالات، انگریزی یا اردو میں۔',
     'assistant.disclaimer': 'میں مفتی نہیں ہوں۔ ذاتی شرعی احکام کے لیے براہِ کرم مرکز سے براہِ راست رابطہ کریں۔',
+    'assistant.call': 'کال کریں',
+    'assistant.whatsapp': 'واٹس ایپ',
+    'assistant.emailAction': 'ای میل',
+    'assistant.map': 'نقشہ',
     'assistant.pageTitle': 'نگینہ اسسٹنٹ',
     'assistant.pageLead': 'عقیدہ، ہدایت، عطیات، رابطہ اور نماز کے اوقات کے بارے میں پوچھیں — انگریزی یا اردو میں۔',
 

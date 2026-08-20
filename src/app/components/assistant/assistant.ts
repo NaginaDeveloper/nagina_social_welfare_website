@@ -2,12 +2,18 @@ import { NgClass } from '@angular/common';
 import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
 import { FormsModule } from '@angular/forms';
+import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import {
   AssistantService,
   type AssistantCitation,
   type AssistantTurn,
 } from '../../services/assistant.service';
+import {
+  looksLikeContactAnswer,
+  splitAssistantContent,
+  type AssistantContentPart,
+} from './assistant-content';
 
 interface RenderMessage {
   readonly role: 'user' | 'assistant';
@@ -23,6 +29,13 @@ interface RenderMessage {
 })
 export class Assistant {
   protected readonly i18n = inject(LanguageService);
+  protected readonly org = ORGANIZATION;
+  protected readonly callHref = `tel:${ORGANIZATION.phoneTel}`;
+  protected readonly emailHref = `mailto:${ORGANIZATION.email}`;
+  protected readonly whatsappUrl = whatsappHref(
+    'Assalamu alaikum, I would like to get in touch with Nagina Social Welfare.',
+  );
+  protected readonly mapHref = ORGANIZATION.mapsDirectionsUrl;
 
   private readonly assistant = inject(AssistantService);
   private readonly launcher = inject(AssistantLauncherService);
@@ -97,6 +110,14 @@ export class Assistant {
 
   protected choosePrompt(prompt: string): void {
     this.composer.set(prompt);
+  }
+
+  protected contentParts(content: string): readonly AssistantContentPart[] {
+    return splitAssistantContent(content);
+  }
+
+  protected showContactActions(message: RenderMessage): boolean {
+    return message.role === 'assistant' && looksLikeContactAnswer(message.content);
   }
 
   protected async submit(): Promise<void> {

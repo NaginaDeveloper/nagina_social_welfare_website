@@ -346,7 +346,7 @@ export async function generateHybridAnswer(
       ? 'Optional Nagina references are provided below. Use them if helpful, but you may go beyond them when needed.'
       : 'No strong Nagina reference was found. Answer from general Hanafi Barelvi guidance.',
     language === 'ur'
-      ? 'User wrote in Urdu or Roman Urdu. Reply in clear, complete Urdu script (not Roman Urdu).'
+      ? 'User wrote in Urdu or Roman Urdu. Reply in clear, complete Urdu script (not Roman Urdu). For contact details: put email, phone, WhatsApp and address each on their own line; keep phone digits and Latin addresses in normal left-to-right order (for example +44 7831 684738 and 103 Burmer Road, Peterborough PE1 3HT) — never reverse digit order.'
       : 'Reply in clear English unless the user clearly wrote in Urdu.',
     historyText ? `Recent conversation:\n${historyText}` : '',
     `Question: ${question}`,
@@ -401,7 +401,7 @@ export async function generateAnswer(
       ? 'This is a website help question. Answer practically from site references. Mention books or Seedha Rasta only if the user asked about books.'
       : 'This is an Islamic guidance question. Answer from the Basic Beliefs FAQ, creed, guidance, and approved Hanafi Barelvi references. Mention Seedha Rasta or the books library only if the references or question are clearly book-related.',
     language === 'ur'
-      ? 'User wrote in Urdu or mixed Urdu. Reply in clear, complete Urdu script.'
+      ? 'User wrote in Urdu or mixed Urdu. Reply in clear, complete Urdu script. For contact details in Urdu: put email, phone, WhatsApp and address each on their own line; keep phone digits and Latin addresses in normal left-to-right order (for example +44 7831 684738 and 103 Burmer Road, Peterborough PE1 3HT) — never reverse digit order.'
       : 'Reply in clear English unless the user clearly wrote in Urdu.',
     historyText ? `Recent conversation:\n${historyText}` : '',
     `Question: ${question}`,

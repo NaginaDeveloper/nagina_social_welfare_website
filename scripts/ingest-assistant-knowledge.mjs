@@ -279,7 +279,7 @@ async function buildCuratedChunks() {
     {
       title: 'Contact Nagina Social Welfare',
       path: '/contact',
-      text: 'Contact Nagina Social Welfare UK by email at info@naginasocialwelfare.co.uk, by phone on +44 7831 684738, or visit 103 Burmer Road Peterborough PE1 3HT.',
+      text: 'Contact Nagina Social Welfare UK by email at info@naginasocialwelfare.co.uk, by phone or WhatsApp on +44 7831 684738 (tel:+447831684738, https://wa.me/447831684738), or visit 103 Burmer Road, Peterborough PE1 3HT (Google Maps: https://www.google.com/maps/search/?api=1&query=103%20Burmer%20Road%2C%20Peterborough%20PE1%203HT). Keep phone digits and the English address in left-to-right order in every language.',
       tags: ['contact'],
     },
     {
