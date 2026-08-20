@@ -1,6 +1,27 @@
 export const MIN_DONATION_GBP = 5;
 export const MAX_DONATION_GBP = 25_000;
 
+export const DONATION_FUNDS = ['zakat', 'sadaqah', 'lillah', 'fitrana'] as const;
+export type DonationFund = (typeof DONATION_FUNDS)[number];
+
+const FUND_DESCRIPTIONS: Record<DonationFund, string> = {
+  zakat: 'Zakat - Nagina Social Welfare UK',
+  sadaqah: 'Sadaqah - Nagina Social Welfare UK',
+  lillah: 'Lillah - Nagina Social Welfare UK',
+  fitrana: 'Fitrana - Nagina Social Welfare UK',
+};
+
+export function parseDonationFund(raw: unknown): DonationFund {
+  if (typeof raw === 'string' && (DONATION_FUNDS as readonly string[]).includes(raw)) {
+    return raw as DonationFund;
+  }
+  return 'sadaqah';
+}
+
+export function donationDescription(fund: DonationFund): string {
+  return FUND_DESCRIPTIONS[fund];
+}
+
 export type ParsedAmount =
   | { ok: true; amount: number }
   | { ok: false; error: string };

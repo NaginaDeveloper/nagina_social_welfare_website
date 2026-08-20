@@ -22,6 +22,7 @@ import {
   SPIRITUAL_GUIDE_SEO,
   WORK_SEO,
   MADRASA_SEO,
+  SAFEGUARDING_SEO,
 } from './seo/seo.config';
 
 export const routes: Routes = [
@@ -163,6 +164,13 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/privacy/privacy-page').then((m) => m.PrivacyPage),
     title: PRIVACY_SEO.title,
     data: { seo: PRIVACY_SEO },
+  },
+  {
+    path: 'safeguarding',
+    loadComponent: () =>
+      import('./pages/safeguarding/safeguarding-page').then((m) => m.SafeguardingPage),
+    title: SAFEGUARDING_SEO.title,
+    data: { seo: SAFEGUARDING_SEO },
   },
   { path: '**', redirectTo: '' },
 ];

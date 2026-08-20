@@ -2,18 +2,123 @@
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Support our mission
+        {{ i18n.t('donate.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Donate with
-        <span class="text-gold-gradient">confidence</span>
+        {{ i18n.t('donate.title') }}
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Your generosity funds Islamic education at Markaz Deen-e-Islam and
-        community welfare across the UK. Give by card with SumUp, PayPal,
-        NatWest PayIt (link or QR), or transfer to our registered organisation
-        account.
+        {{ i18n.t('donate.lead') }}
       </p>
+      <p class="mt-3 text-sm text-slate-warm">{{ i18n.t('donate.trust') }}</p>
+    </div>
+
+    <fieldset class="mx-auto mt-10 max-w-3xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <legend class="text-sm font-semibold text-forest">{{ i18n.t('donate.fund') }}</legend>
+      <div class="mt-3 grid gap-3 sm:grid-cols-2">
+        @for (option of funds; track option.id) {
+          <button
+            type="button"
+            class="rounded-2xl border px-4 py-3.5 text-left transition-colors"
+            [class.border-forest]="fund() === option.id"
+            [class.bg-forest]="fund() === option.id"
+            [class.text-cream]="fund() === option.id"
+            [class.border-mist]="fund() !== option.id"
+            [class.bg-white]="fund() !== option.id"
+            [class.text-forest]="fund() !== option.id"
+            (click)="selectFund(option.id)"
+          >
+            <span class="block font-display text-lg font-bold">{{ i18n.t(option.titleKey) }}</span>
+            <span
+              class="mt-1 block text-sm leading-relaxed"
+              [class.text-cream/75]="fund() === option.id"
+              [class.text-slate-warm]="fund() !== option.id"
+            >
+              {{ i18n.t(option.hintKey) }}
+            </span>
+          </button>
+        }
+      </div>
+    </fieldset>
+
+    <div
+      class="mx-auto mt-8 max-w-3xl rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft sm:rounded-[1.75rem] sm:p-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-600">
+        {{ i18n.t('donate.zakatCalc') }}
+      </p>
+      <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('donate.zakatLead') }}</p>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2">
+        <label class="block text-sm font-medium text-slate-warm">
+          {{ i18n.t('donate.savings') }}
+          <input
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="0.01"
+            class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+            [ngModel]="savings()"
+            (ngModelChange)="setMoney('savings', $event)"
+          />
+        </label>
+        <label class="block text-sm font-medium text-slate-warm">
+          {{ i18n.t('donate.gold') }}
+          <input
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="0.01"
+            class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+            [ngModel]="gold()"
+            (ngModelChange)="setMoney('gold', $event)"
+          />
+        </label>
+        <label class="block text-sm font-medium text-slate-warm">
+          {{ i18n.t('donate.silver') }}
+          <input
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="0.01"
+            class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+            [ngModel]="silver()"
+            (ngModelChange)="setMoney('silver', $event)"
+          />
+        </label>
+        <label class="block text-sm font-medium text-slate-warm">
+          {{ i18n.t('donate.liabilities') }}
+          <input
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="0.01"
+            class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+            [ngModel]="liabilities()"
+            (ngModelChange)="setMoney('liabilities', $event)"
+          />
+        </label>
+      </div>
+      <p class="mt-5 font-display text-xl font-bold text-forest">
+        {{ i18n.t('donate.due') }}:
+        £{{ zakatDue().toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+      </p>
+      @if (zakatDue() === 0) {
+        <p class="mt-2 text-sm text-slate-warm">{{ i18n.t('donate.belowNisab') }}</p>
+      }
+      <p class="mt-2 text-xs text-slate-warm">
+        {{ i18n.t('donate.nisabNote') }}
+        (£{{ silverNisabGbp }} · {{ nisabUpdated }})
+      </p>
+      @if (zakatDue() >= minDonationGbp) {
+        <button
+          type="button"
+          class="mt-4 inline-flex min-h-11 items-center rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream hover:bg-emerald"
+          (click)="applyZakatAmount()"
+        >
+          {{ i18n.t('donate.applyAmount') }}
+        </button>
+      }
     </div>
 
     <!-- Card / SumUp -->
@@ -273,7 +378,8 @@
         </dl>
 
         <p class="mt-2 rounded-2xl bg-sand/80 px-4 py-3 text-sm leading-relaxed text-slate-warm">
-          {{ referenceHint }}
+          {{ i18n.t('donate.reference') }}
+          <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
         </p>
       </div>
 
@@ -303,18 +409,26 @@
         </div>
 
         <div class="border-t border-white/10 pt-6">
-          <p class="text-sm text-cream/70">Questions about giving?</p>
+          <p class="text-sm text-cream/70">{{ i18n.t('donate.whatsapp') }}</p>
           <a
-            href="mailto:info@naginasocialwelfare.co.uk"
-            class="mt-2 inline-flex max-w-full items-center gap-2 break-all text-sm font-semibold text-gold-300 transition-colors hover:text-gold"
+            [href]="givingWhatsApp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-gold-300 transition-colors hover:text-gold"
           >
-            info&#64;naginasocialwelfare.co.uk
-            <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-            </svg>
+            {{ i18n.t('header.whatsapp') }}
+          </a>
+          <a
+            [href]="'mailto:' + org.email"
+            class="mt-2 flex max-w-full items-center gap-2 break-all text-sm font-semibold text-gold-300 transition-colors hover:text-gold"
+          >
+            {{ org.email }}
           </a>
           <p class="mt-4 text-xs leading-relaxed text-cream/50">
-            103 Burmer Road, Peterborough PE1 3HT, United Kingdom
+            {{ org.addressFull }}
+          </p>
+          <p class="mt-2 text-xs leading-relaxed text-cream/45">
+            {{ i18n.t('donate.trust') }}
           </p>
         </div>
       </aside>

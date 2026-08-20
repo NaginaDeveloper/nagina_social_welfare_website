@@ -51,37 +51,83 @@
       </div>
     </div>
 
+    <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
+        {{ i18n.t('madrasa.timetable') }}
+      </h2>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('madrasa.timetableLead') }}
+      </p>
+      <div class="mt-8 overflow-hidden rounded-2xl border border-mist bg-white shadow-soft">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-sand/70 text-xs font-semibold uppercase tracking-[0.16em] text-slate-warm">
+            <tr>
+              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.timetable') }}</th>
+              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.days') }}</th>
+              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.time') }}</th>
+              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.ages') }}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-mist">
+            @for (session of sessions; track session.id) {
+              <tr>
+                <th scope="row" class="px-4 py-4 font-display text-base font-bold text-forest sm:px-6">
+                  {{ sessionTitle(session.id) }}
+                </th>
+                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionDays(session.id) }}</td>
+                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionTime(session.id) }}</td>
+                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionAges(session.id) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <div
       class="mx-auto mt-16 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-8 text-center sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">Visit &amp; enrol</h2>
       <p class="mt-4 text-base leading-relaxed text-slate-warm">
-        Markaz Deen-e-Islam · 103 Burmer Road, Peterborough PE1 3HT, United Kingdom
+        Markaz Deen-e-Islam · {{ org.addressFull }}
       </p>
       <p class="mt-2 text-sm text-slate-warm">
-        Phone:
-        <a href="tel:+447831684738" class="font-semibold text-gold-700 hover:underline">07831 684738</a>
-        · Email:
-        <a
-          href="mailto:info@naginasocialwelfare.co.uk"
-          class="font-semibold text-gold-700 hover:underline"
-          >info&#64;naginasocialwelfare.co.uk</a
-        >
+        <a [href]="'tel:' + org.phoneTel" class="font-semibold text-gold-700 hover:underline">{{ org.phoneDisplay }}</a>
+        ·
+        <a [href]="'mailto:' + org.email" class="font-semibold text-gold-700 hover:underline">{{ org.email }}</a>
       </p>
-      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
         <a
-          routerLink="/contact"
-          class="inline-flex items-center justify-center rounded-full border border-gold/40 bg-white px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold hover:bg-gold/10"
+          [href]="enrolWhatsApp"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-3 text-sm font-semibold text-forest shadow-soft"
         >
-          Contact for class times
+          {{ i18n.t('madrasa.enrol') }}
         </a>
         <a
-          routerLink="/work"
-          class="inline-flex items-center justify-center rounded-full border border-mist px-6 py-3 text-sm font-medium text-slate-warm transition-colors hover:border-gold/40 hover:text-forest"
+          [href]="org.loginUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full border border-gold/40 bg-white px-6 py-3 text-sm font-semibold text-forest"
         >
-          Our Work overview
+          {{ i18n.t('madrasa.portalCta') }}
+        </a>
+        <a
+          routerLink="/safeguarding"
+          class="inline-flex items-center justify-center rounded-full border border-mist px-6 py-3 text-sm font-medium text-slate-warm"
+        >
+          {{ i18n.t('madrasa.safeguardingCta') }}
         </a>
       </div>
+      <p class="mt-5 text-sm text-slate-warm">{{ i18n.t('madrasa.portal') }}</p>
+      <p class="mt-2 text-sm text-slate-warm">{{ i18n.t('madrasa.safeguarding') }}</p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <h2 class="mb-4 text-center font-display text-2xl font-bold text-forest">{{ i18n.t('madrasa.map') }}</h2>
+      <app-venue-map />
     </div>
   </div>
 </section>

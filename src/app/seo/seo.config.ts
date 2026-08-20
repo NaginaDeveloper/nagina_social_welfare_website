@@ -20,7 +20,7 @@ export interface PageSeo {
 export const HOME_SEO: PageSeo = {
   title: 'Nagina Social Welfare UK | Islamic Education & Community Welfare',
   description:
-    'Nagina Social Welfare UK unites faith and compassion — Markaz Deen-e-Islam education, community welfare, Namaz times, Quran Majeed with Kanzul Iman, and Islamic books in Peterborough.',
+    'Nagina Social Welfare UK unites faith and compassion — Markaz Deen-e-Islam education, community welfare, Namaz times, Quran Majeed with Kanzul Iman, and Islamic books in Peterborough. Registered charity 1196514.',
   path: '/',
   keywords:
     'Nagina Social Welfare, Markaz Deen-e-Islam, madrasa Peterborough, Islamic education UK, Peterborough Islamic institute, Ahle Sunnat, community welfare',
@@ -48,7 +48,7 @@ export const WORK_SEO: PageSeo = {
 export const MADRASA_SEO: PageSeo = {
   title: 'Madrasa & Islamic Institute Peterborough | Markaz Deen-e-Islam',
   description:
-    'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — evening and weekend learning at 103 Burmer Road, PE1 3HT.',
+    'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — enrol on WhatsApp. 103 Burmer Road, PE1 3HT.',
   path: '/madrasa/',
   keywords:
     'madrasa Peterborough, Islamic school Peterborough, Quran classes for children Peterborough, Islamic classes for kids Peterborough, evening madrasa, weekend Islamic school, Islamic institute Peterborough, Markaz Deen-e-Islam',
@@ -76,7 +76,7 @@ export const GUIDANCE_SEO: PageSeo = {
 export const NAMAZ_SEO: PageSeo = {
   title: 'Namaz Times Peterborough | Nagina Social Welfare UK',
   description:
-    'Daily Namaz (salah) times for Peterborough, UK with live now and next prayer, plus a Qibla compass — from Nagina Social Welfare.',
+    'Daily Namaz (salah) times for Peterborough, UK with live now and next prayer windows and a Qibla compass. These are personal begin and end times, not Jamaat.',
   path: '/namaz/',
   keywords: 'Namaz times Peterborough, prayer times UK, salah timetable, Qibla compass',
   type: 'website',
@@ -123,7 +123,7 @@ export const APPS_SEO: PageSeo = {
 export const EVENTS_SEO: PageSeo = {
   title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
   description:
-    'Event photos and posters from Markaz Deen-e-Islam and Nagina Social Welfare — gatherings, programmes and commemorations.',
+    'Event photos, posters and programmes from Markaz Deen-e-Islam — including the Grand Annual Mehfil-e-Naat. Message us on WhatsApp for the next date.',
   path: '/events/',
   keywords: 'Islamic events Peterborough, Markaz Deen-e-Islam gatherings, Nagina events',
   type: 'website',
@@ -132,7 +132,7 @@ export const EVENTS_SEO: PageSeo = {
 export const DONATE_SEO: PageSeo = {
   title: 'Donate | Support Our Mission | Nagina Social Welfare UK',
   description:
-    'Donate securely with SumUp or by UK bank transfer to support Islamic education and community welfare.',
+    'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514) by SumUp, PayPal, NatWest PayIt or bank transfer.',
   path: '/donate/',
   keywords: 'Donate Nagina Social Welfare, SumUp donation UK, Islamic charity Peterborough',
   type: 'website',
@@ -151,7 +151,7 @@ export const ASSISTANT_SEO: PageSeo = {
 export const CONTACT_SEO: PageSeo = {
   title: 'Contact | Nagina Social Welfare UK',
   description:
-    'Get in touch with Nagina Social Welfare UK in Peterborough — email, phone and address for Markaz Deen-e-Islam and welfare enquiries.',
+    'Contact Nagina Social Welfare UK in Peterborough on WhatsApp, phone or email — madrasa enrolment, donations and general enquiries.',
   path: '/contact/',
   keywords: 'Contact Nagina Social Welfare, Peterborough Islamic centre contact',
   type: 'website',
@@ -163,6 +163,15 @@ export const PRIVACY_SEO: PageSeo = {
     'How Nagina Social Welfare handles information when you use this website, including donations via SumUp.',
   path: '/privacy/',
   keywords: 'Privacy notice, GDPR, Nagina Social Welfare data protection',
+  type: 'website',
+};
+
+export const SAFEGUARDING_SEO: PageSeo = {
+  title: 'Safeguarding | Nagina Social Welfare UK',
+  description:
+    'How Nagina Social Welfare and Markaz Deen-e-Islam keep children and adults at risk safe — contact us on WhatsApp or email, or request the full policy.',
+  path: '/safeguarding/',
+  keywords: 'Safeguarding, child protection, Markaz Deen-e-Islam, Nagina Social Welfare',
   type: 'website',
 };
 

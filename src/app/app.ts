@@ -40,7 +40,8 @@ export class App implements OnInit {
       path === '/donate' ||
       path === '/assistant' ||
       path.startsWith('/donate/') ||
-      path === '/privacy';
+      path === '/privacy' ||
+      path === '/safeguarding';
     this.showDonateInvite.set(!hide);
   }
 

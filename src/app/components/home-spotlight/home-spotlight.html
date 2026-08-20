@@ -1,0 +1,80 @@
+<section class="relative bg-cream py-12 sm:py-16" aria-labelledby="spotlight-heading">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="mb-8 flex items-end justify-between gap-4">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+          {{ i18n.t('spotlight.eyebrow') }}
+        </p>
+        <h2 id="spotlight-heading" class="sr-only">Today at Nagina</h2>
+      </div>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <a
+        routerLink="/namaz"
+        class="group rounded-2xl border border-mist bg-white p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold/40"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        @if (prayer.headerStatus(); as status) {
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+            {{ status.kind === 'current' ? i18n.t('spotlight.namazNow') : i18n.t('spotlight.namazNext') }}
+          </p>
+          <p class="mt-2 font-display text-2xl font-bold text-forest">{{ status.name }}</p>
+          <p class="mt-1 text-sm tabular-nums text-slate-warm">{{ status.remaining }}</p>
+        } @else {
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+            {{ i18n.t('spotlight.namazNext') }}
+          </p>
+          <p class="mt-2 font-display text-2xl font-bold text-forest">Peterborough</p>
+        }
+        <p class="mt-4 text-sm font-semibold text-gold-700 group-hover:underline">
+          {{ i18n.t('spotlight.namazCta') }}
+        </p>
+      </a>
+
+      @if (event) {
+        <a
+          routerLink="/events"
+          class="group rounded-2xl border border-mist bg-white p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold/40"
+          [class.border-gold/40]="eventIsToday()"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        >
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+            {{ eventIsToday() ? i18n.t('spotlight.eventToday') : i18n.t('spotlight.eventEyebrow') }}
+          </p>
+          <p class="mt-2 font-display text-2xl font-bold text-forest">{{ eventTitle() }}</p>
+          <p class="mt-1 text-sm text-slate-warm">{{ eventMeta() }}</p>
+          <p class="mt-4 text-sm font-semibold text-gold-700 group-hover:underline">
+            {{ i18n.t('spotlight.eventCta') }}
+          </p>
+        </a>
+      }
+
+      <a
+        routerLink="/donate"
+        class="group rounded-2xl border border-gold/30 bg-gold/10 p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold/50"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+          {{ i18n.t('spotlight.donateCta') }}
+        </p>
+        <p class="mt-2 font-display text-2xl font-bold text-forest">{{ i18n.t('spotlight.donateTitle') }}</p>
+        <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('spotlight.donateLead') }}</p>
+      </a>
+
+      <a
+        [href]="enrolWhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group rounded-2xl border border-mist bg-white p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold/40"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+          {{ i18n.t('spotlight.madrasaCta') }}
+        </p>
+        <p class="mt-2 font-display text-2xl font-bold text-forest">{{ i18n.t('spotlight.madrasaTitle') }}</p>
+        <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('spotlight.madrasaLead') }}</p>
+      </a>
+    </div>
+  </div>
+</section>

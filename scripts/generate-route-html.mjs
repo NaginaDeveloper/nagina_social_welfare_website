@@ -35,7 +35,7 @@ const pages = [
     path: '/',
     title: 'Nagina Social Welfare UK | Islamic Education & Community Welfare',
     description:
-      'Nagina Social Welfare UK unites faith and compassion — Markaz Deen-e-Islam education, community welfare, Namaz times, Quran Majeed with Kanzul Iman, and Islamic books in Peterborough.',
+      'Nagina Social Welfare UK unites faith and compassion — Markaz Deen-e-Islam education, community welfare, Namaz times, Quran Majeed with Kanzul Iman, and Islamic books in Peterborough. Registered charity 1196514.',
   },
   {
     dir: 'about',
@@ -56,7 +56,7 @@ const pages = [
     path: '/madrasa/',
     title: 'Madrasa & Islamic Institute Peterborough | Markaz Deen-e-Islam',
     description:
-      'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — evening and weekend learning at 103 Burmer Road, PE1 3HT.',
+      'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — enrol on WhatsApp. 103 Burmer Road, PE1 3HT.',
   },
   {
     dir: 'spiritual-guide',
@@ -112,7 +112,7 @@ const pages = [
     path: '/namaz/',
     title: 'Namaz Times Peterborough | Nagina Social Welfare UK',
     description:
-      'Daily Namaz (salah) times for Peterborough, UK with live now and next prayer, plus a Qibla compass — from Nagina Social Welfare.',
+      'Daily Namaz (salah) times for Peterborough, UK with live now and next prayer windows and a Qibla compass. These are personal begin and end times, not Jamaat.',
   },
   {
     dir: 'quran',
@@ -147,14 +147,14 @@ const pages = [
     path: '/events/',
     title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
     description:
-      'Event photos and posters from Markaz Deen-e-Islam and Nagina Social Welfare — gatherings, programmes and commemorations.',
+      'Programmes at Markaz Deen-e-Islam plus event photos and posters — message us on WhatsApp for the next date.',
   },
   {
     dir: 'donate',
     path: '/donate/',
     title: 'Donate | Support Our Mission | Nagina Social Welfare UK',
     description:
-      'Donate securely with SumUp or by UK bank transfer to support Islamic education and community welfare.',
+      'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514) by SumUp, PayPal, NatWest PayIt or bank transfer.',
   },
   {
     dir: 'assistant',
@@ -176,7 +176,7 @@ const pages = [
     path: '/contact/',
     title: 'Contact | Nagina Social Welfare UK',
     description:
-      'Get in touch with Nagina Social Welfare UK in Peterborough — email, phone and address for Markaz Deen-e-Islam and welfare enquiries.',
+      'Contact Nagina Social Welfare UK in Peterborough on WhatsApp, phone or email — madrasa enrolment, donations and general enquiries.',
   },
   {
     dir: 'privacy',
@@ -184,6 +184,13 @@ const pages = [
     title: 'Privacy Notice | Nagina Social Welfare UK',
     description:
       'How Nagina Social Welfare handles information when you use this website, including donations via SumUp.',
+  },
+  {
+    dir: 'safeguarding',
+    path: '/safeguarding/',
+    title: 'Safeguarding | Nagina Social Welfare UK',
+    description:
+      'How Nagina Social Welfare and Markaz Deen-e-Islam keep children and adults at risk safe — contact us on WhatsApp or email, or request the full policy.',
   },
 ];
 

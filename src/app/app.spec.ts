@@ -46,6 +46,7 @@ describe('App', () => {
     expect(compiled.querySelector('#apps')).toBeNull();
     expect(compiled.querySelector('#contact')).toBeNull();
     expect(compiled.querySelector('#privacy')).toBeNull();
+    expect(compiled.querySelector('#safeguarding')).toBeNull();
     expect(compiled.querySelector('#prayer-times')).toBeNull();
   });
 
@@ -74,6 +75,7 @@ describe('App', () => {
       ['/donate', '#donate'],
       ['/contact', '#contact'],
       ['/privacy', '#privacy'],
+      ['/safeguarding', '#safeguarding'],
     ];
 
     for (const [path, selector] of checks) {

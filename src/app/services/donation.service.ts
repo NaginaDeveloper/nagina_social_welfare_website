@@ -13,10 +13,13 @@ export interface CreateCheckoutResponse {
 export class DonationService {
   private readonly http = inject(HttpClient);
 
-  async createHostedCheckout(amount: number): Promise<CreateCheckoutResponse> {
+  async createHostedCheckout(
+    amount: number,
+    fund: 'zakat' | 'sadaqah' | 'lillah' | 'fitrana' = 'sadaqah',
+  ): Promise<CreateCheckoutResponse> {
     try {
       return await firstValueFrom(
-        this.http.post<CreateCheckoutResponse>(CREATE_DONATION_CHECKOUT_URL, { amount }),
+        this.http.post<CreateCheckoutResponse>(CREATE_DONATION_CHECKOUT_URL, { amount, fund }),
       );
     } catch (err) {
       if (err instanceof HttpErrorResponse) {

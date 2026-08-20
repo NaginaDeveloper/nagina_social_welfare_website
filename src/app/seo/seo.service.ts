@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { ORGANIZATION } from '../config/organization.config';
 import {
   DEFAULT_OG_IMAGE,
   HOME_SEO,
@@ -108,22 +109,37 @@ export class SeoService {
       '@type': 'NGO',
       '@id': `${SITE_ORIGIN}/#organization`,
       name: SITE_NAME,
-      alternateName: 'Nagina Social Welfare UK',
+      legalName: ORGANIZATION.legalName,
+      alternateName: ORGANIZATION.charityName,
       url: SITE_ORIGIN,
       logo: DEFAULT_OG_IMAGE,
-      email: 'info@naginasocialwelfare.co.uk',
-      telephone: '+44-7831-684738',
+      email: ORGANIZATION.email,
+      telephone: ORGANIZATION.phoneTel,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '103 Burmer Road',
-        addressLocality: 'Peterborough',
-        postalCode: 'PE1 3HT',
-        addressCountry: 'GB',
+        streetAddress: ORGANIZATION.streetAddress,
+        addressLocality: ORGANIZATION.addressLocality,
+        postalCode: ORGANIZATION.postalCode,
+        addressCountry: ORGANIZATION.addressCountry,
       },
+      identifier: [
+        {
+          '@type': 'PropertyValue',
+          name: 'Charity number',
+          value: ORGANIZATION.charityNumber,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Company number',
+          value: ORGANIZATION.companyNumber,
+        },
+      ],
       sameAs: [
-        'https://www.facebook.com/naginasocial.welfare.5',
-        'https://www.instagram.com/naginasocialwelfare/',
-        'https://www.youtube.com/@naginasocialwelfareuk7419',
+        ORGANIZATION.facebookUrl,
+        ORGANIZATION.instagramUrl,
+        ORGANIZATION.youtubeUrl,
+        ORGANIZATION.charityCommissionUrl,
+        ORGANIZATION.companiesHouseUrl,
       ],
     };
 

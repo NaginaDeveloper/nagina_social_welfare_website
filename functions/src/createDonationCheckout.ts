@@ -3,7 +3,7 @@ import { onRequest } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { logger } from 'firebase-functions';
 import { applyCors } from './cors';
-import { parseDonationAmount } from './amount';
+import { donationDescription, parseDonationAmount, parseDonationFund } from './amount';
 
 const sumupApiKey = defineSecret('SUMUP_API_KEY');
 const sumupMerchantCode = defineSecret('SUMUP_MERCHANT_CODE');
@@ -43,6 +43,8 @@ export const createDonationCheckout = onRequest(
       return;
     }
 
+    const fund = parseDonationFund(req.body?.fund);
+
     // Prefer Secret Manager; fall back to local emulator / .env values.
     const apiKey = sumupApiKey.value() || process.env.SUMUP_API_KEY || '';
     const merchantCode = sumupMerchantCode.value() || process.env.SUMUP_MERCHANT_CODE || '';
@@ -67,7 +69,7 @@ export const createDonationCheckout = onRequest(
           amount: parsed.amount,
           currency: 'GBP',
           checkout_reference: checkoutReference,
-          description: 'Donation - Nagina Social Welfare UK',
+          description: donationDescription(fund),
           merchant_code: merchantCode,
           redirect_url: redirectUrl,
           hosted_checkout: { enabled: true },

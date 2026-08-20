@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
+import { LanguageService } from '../../i18n/language.service';
 
 interface FooterLink {
   readonly label: string;
@@ -18,21 +20,11 @@ interface FooterGroup {
   templateUrl: './footer.html',
 })
 export class Footer {
-  /** Shared portal where admins, teachers and parents sign in. */
-  protected readonly loginUrl = 'https://admin.naginasocialwelfare.co.uk/';
-
-  /** Official Facebook page. */
-  protected readonly facebookUrl = 'https://www.facebook.com/naginasocial.welfare.5';
-
-  /** Official Instagram profile. */
-  protected readonly instagramUrl = 'https://www.instagram.com/naginasocialwelfare/';
-
-  /** Official YouTube channel. */
-  protected readonly youtubeUrl = 'https://www.youtube.com/@naginasocialwelfareuk7419';
-
+  protected readonly org = ORGANIZATION;
+  protected readonly i18n = inject(LanguageService);
+  protected readonly whatsapp = whatsappHref();
   protected readonly year = new Date().getFullYear();
 
-  /** Same groupings as the header — dedicated routes only. */
   protected readonly linkGroups: readonly FooterGroup[] = [
     {
       id: 'about',
@@ -76,6 +68,7 @@ export class Footer {
         { label: 'Donate', path: '/donate' },
         { label: 'Contact', path: '/contact' },
         { label: 'Privacy', path: '/privacy' },
+        { label: 'Safeguarding', path: '/safeguarding' },
       ],
     },
   ];

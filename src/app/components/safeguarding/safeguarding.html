@@ -1,0 +1,56 @@
+<section id="safeguarding" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-15" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-3xl px-5 sm:px-8">
+    <div class="text-center">
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        Children &amp; families
+      </span>
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        Safeguarding
+      </h1>
+      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+        How Nagina Social Welfare and Markaz Deen-e-Islam keep children and adults at risk safe.
+      </p>
+    </div>
+
+    <div class="mt-12 space-y-8 rounded-[1.75rem] border border-mist bg-white px-6 py-8 shadow-soft sm:px-10 sm:py-10">
+      @for (block of blocks; track block.title) {
+        <article>
+          <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">
+            {{ block.title }}
+          </h2>
+          <p class="mt-2.5 text-sm leading-relaxed text-slate-warm sm:text-base">
+            {{ block.body }}
+          </p>
+        </article>
+      }
+    </div>
+
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <a
+        [href]="concernWhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-3 text-sm font-semibold text-forest shadow-soft"
+      >
+        Raise a concern on WhatsApp
+      </a>
+      <a
+        [href]="policyWhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/15 bg-white px-6 py-3 text-sm font-semibold text-forest"
+      >
+        Request the full policy
+      </a>
+    </div>
+
+    <p class="mt-6 text-center text-xs text-slate-warm/80">
+      Charity {{ org.charityNumber }} ·
+      <a [href]="'mailto:' + org.email" class="font-medium text-gold-600 hover:underline">
+        {{ org.email }}
+      </a>
+    </p>
+  </div>
+</section>

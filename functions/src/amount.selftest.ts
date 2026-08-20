@@ -1,4 +1,4 @@
-import { parseDonationAmount } from './amount';
+import { donationDescription, parseDonationAmount, parseDonationFund } from './amount';
 
 function assert(cond: unknown, message: string): void {
   if (!cond) {
@@ -23,5 +23,12 @@ assert(!bad.ok, 'Non-numeric should be rejected');
 
 const rounded = parseDonationAmount(10.456);
 assert(rounded.ok && rounded.amount === 10.46, 'Should round to 2dp');
+
+assert(parseDonationFund('zakat') === 'zakat', 'zakat fund should parse');
+assert(parseDonationFund('unknown') === 'sadaqah', 'unknown fund should default to sadaqah');
+assert(
+  donationDescription('lillah') === 'Lillah - Nagina Social Welfare UK',
+  'lillah description should be labelled',
+);
 
 console.log('amount.selftest: all passed');

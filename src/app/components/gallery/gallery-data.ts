@@ -8,6 +8,12 @@ export interface GalleryItem {
 /** Curated event photos & commemorative posters from Facebook. */
 export const GALLERY_ITEMS: readonly GalleryItem[] = [
   {
+    id: 'mehfil-naat-2026-poster',
+    src: 'gallery/poster-mehfil-naat-2026.png',
+    alt: 'Grand Annual Mehfil-e-Naat poster for Monday 24 August 2026 at Markaz Deen-e-Islam',
+    caption: 'Grand Annual Mehfil-e-Naat · 24 August 2026',
+  },
+  {
     id: 'teachers-gathering',
     src: 'media/ahle-bait-gathering.jpg',
     alt: 'Teachers and well-wishers gathered together at Markaz Deen-e-Islam',

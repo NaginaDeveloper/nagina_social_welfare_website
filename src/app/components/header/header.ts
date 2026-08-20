@@ -11,6 +11,8 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import { PrayerTimesService } from '../../services/prayer-times.service';
+import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
+import { LanguageService } from '../../i18n/language.service';
 
 /** Simple stroke icons used in the nav. */
 export type NavIcon =
@@ -55,8 +57,9 @@ interface NavGroup {
   templateUrl: './header.html',
 })
 export class Header implements OnInit {
-  /** Shared portal where admins, teachers and parents sign in. */
-  protected readonly loginUrl = 'https://admin.naginasocialwelfare.co.uk/';
+  protected readonly org = ORGANIZATION;
+  protected readonly whatsapp = whatsappHref();
+  protected readonly i18n = inject(LanguageService);
 
   protected readonly prayer = inject(PrayerTimesService);
   private readonly assistantLauncher = inject(AssistantLauncherService);
@@ -161,6 +164,7 @@ export class Header implements OnInit {
         { label: 'Events', path: '/events', hint: 'Gatherings & programmes', icon: 'events' },
         { label: 'Donate', path: '/donate', hint: 'Support our work', icon: 'donate' },
         { label: 'Contact', path: '/contact', hint: 'Get in touch', icon: 'contact' },
+        { label: 'Safeguarding', path: '/safeguarding', hint: 'Children & families', icon: 'privacy' },
         { label: 'Privacy', path: '/privacy', hint: 'How we use data', icon: 'privacy' },
       ],
     },

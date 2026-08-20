@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import type { PrayerName } from '../../models/prayer-time';
 import { Qibla } from '../qibla/qibla';
+import { LanguageService } from '../../i18n/language.service';
 
 @Component({
   selector: 'app-prayer-times',
@@ -11,6 +12,7 @@ import { Qibla } from '../qibla/qibla';
 })
 export class PrayerTimes implements OnInit, OnDestroy {
   protected readonly prayer = inject(PrayerTimesService);
+  protected readonly i18n = inject(LanguageService);
 
   ngOnInit(): void {
     void this.prayer.load();

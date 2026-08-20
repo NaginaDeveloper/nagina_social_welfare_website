@@ -163,8 +163,21 @@
         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4l-4 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
         </svg>
-        Ask Assistant
+        {{ i18n.t('header.assistant') }}
       </button>
+
+      <a
+        [href]="whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mr-2 inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/35 bg-white/5 px-4 text-[0.78rem] font-semibold text-cream transition-all duration-300 hover:border-gold/55 hover:bg-white/10 hover:text-gold-300"
+        [attr.aria-label]="i18n.t('header.whatsapp')"
+      >
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.79 14.18c-.24.68-1.42 1.25-1.97 1.33-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.66-.61-2.92-1.26-4.83-4.21-4.98-4.41-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.77-.36h.55c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.15.12.32.02.51-.1.2-.15.32-.3.49-.14.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.26 1.64 2.04 1.13 1.01 2.08 1.32 2.37 1.47.29.15.46.13.63-.08.17-.2.73-.85.93-1.14.2-.29.39-.24.66-.14.27.1 1.71.81 2.01.95.29.15.49.22.56.34.07.12.07.7-.17 1.38Z" />
+        </svg>
+        {{ i18n.t('header.whatsapp') }}
+      </a>
 
       <a
         routerLink="/donate"
@@ -174,17 +187,42 @@
         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
         </svg>
-        Donate Now
+        {{ i18n.t('header.donate') }}
       </a>
 
+      <div class="mr-2 flex h-10 items-center rounded-full border border-cream/25 p-0.5 text-[0.68rem] font-semibold">
+        <button
+          type="button"
+          class="rounded-full px-2.5 py-1.5 transition-colors"
+          [class.bg-white/15]="i18n.lang() === 'en'"
+          [class.text-gold-300]="i18n.lang() === 'en'"
+          [class.text-cream/70]="i18n.lang() !== 'en'"
+          [attr.aria-pressed]="i18n.lang() === 'en'"
+          (click)="i18n.setLang('en')"
+        >
+          {{ i18n.t('header.langEn') }}
+        </button>
+        <button
+          type="button"
+          class="rounded-full px-2.5 py-1.5 transition-colors"
+          [class.bg-white/15]="i18n.lang() === 'ur'"
+          [class.text-gold-300]="i18n.lang() === 'ur'"
+          [class.text-cream/70]="i18n.lang() !== 'ur'"
+          [attr.aria-pressed]="i18n.lang() === 'ur'"
+          (click)="i18n.setLang('ur')"
+        >
+          {{ i18n.t('header.langUr') }}
+        </button>
+      </div>
+
       <a
-        [href]="loginUrl"
+        [href]="org.loginUrl"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-cream/30 px-4 text-[0.78rem] font-semibold text-cream transition-all duration-300 hover:border-gold/50 hover:text-gold-300"
         aria-label="Login as admin, teacher or parent (opens in a new tab)"
       >
-        Login
+        {{ i18n.t('header.login') }}
         <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
         </svg>
@@ -205,6 +243,18 @@
       </button>
 
       <a
+        [href]="whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-10 items-center justify-center rounded-full border border-gold/30 bg-white/5 px-2.5 py-2 text-gold-300"
+        [attr.aria-label]="i18n.t('header.whatsapp')"
+      >
+        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.79 14.18c-.24.68-1.42 1.25-1.97 1.33-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.66-.61-2.92-1.26-4.83-4.21-4.98-4.41-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.77-.36h.55c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.15.12.32.02.51-.1.2-.15.32-.3.49-.14.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.26 1.64 2.04 1.13 1.01 2.08 1.32 2.37 1.47.29.15.46.13.63-.08.17-.2.73-.85.93-1.14.2-.29.39-.24.66-.14.27.1 1.71.81 2.01.95.29.15.49.22.56.34.07.12.07.7-.17 1.38Z" />
+        </svg>
+      </a>
+
+      <a
         routerLink="/donate"
         class="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-gold-300 to-gold px-2.5 py-2 text-[0.7rem] font-semibold text-forest shadow-soft min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
         aria-label="Donate Now"
@@ -213,7 +263,7 @@
         <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
         </svg>
-        <span class="max-[360px]:sr-only">Donate</span>
+        <span class="max-[360px]:sr-only">{{ i18n.t('header.donateShort') }}</span>
       </a>
 
       @if (prayer.headerStatus(); as status) {
@@ -278,7 +328,7 @@
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4l-4 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
             </svg>
-            Ask Assistant
+            {{ i18n.t('header.assistant') }}
           </button>
           <a
             routerLink="/donate"
@@ -288,7 +338,16 @@
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
             </svg>
-            Donate Now
+            {{ i18n.t('header.donate') }}
+          </a>
+          <a
+            [href]="whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="closeMenu()"
+            class="flex items-center justify-center gap-2 rounded-full border border-gold/35 bg-white/5 px-4 py-3 text-sm font-semibold text-cream sm:col-span-2"
+          >
+            {{ i18n.t('header.whatsapp') }}
           </a>
         </div>
       </div>
@@ -344,15 +403,35 @@
       </div>
 
       <div class="border-t border-white/10 p-3">
+        <div class="mb-3 flex items-center justify-center gap-1 rounded-full border border-cream/20 p-1 text-sm font-semibold">
+          <button
+            type="button"
+            class="flex-1 rounded-full px-3 py-2"
+            [class.bg-white/15]="i18n.lang() === 'en'"
+            [class.text-gold-300]="i18n.lang() === 'en'"
+            (click)="i18n.setLang('en')"
+          >
+            {{ i18n.t('header.langEn') }}
+          </button>
+          <button
+            type="button"
+            class="flex-1 rounded-full px-3 py-2"
+            [class.bg-white/15]="i18n.lang() === 'ur'"
+            [class.text-gold-300]="i18n.lang() === 'ur'"
+            (click)="i18n.setLang('ur')"
+          >
+            {{ i18n.t('header.langUr') }}
+          </button>
+        </div>
         <a
-          [href]="loginUrl"
+          [href]="org.loginUrl"
           target="_blank"
           rel="noopener noreferrer"
           (click)="closeMenu()"
           class="flex items-center justify-center gap-2 rounded-full border border-cream/25 px-4 py-3 text-sm font-semibold text-cream"
           aria-label="Login as admin, teacher or parent (opens in a new tab)"
         >
-          Login
+          {{ i18n.t('header.login') }}
           <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
           </svg>
