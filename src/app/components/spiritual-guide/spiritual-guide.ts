@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-spiritual-guide',
+  imports: [RouterLink],
   templateUrl: './spiritual-guide.html',
 })
 export class SpiritualGuide {

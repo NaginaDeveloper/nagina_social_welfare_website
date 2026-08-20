@@ -1,0 +1,90 @@
+<section id="photographs" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        Photographs
+      </span>
+      <h2 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">
+        Allama Munir Ahmed Yusufi
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+        A selection of photographs from Nagina TV, the official archive of his
+        lectures and gatherings. May Allah elevate his rank. Ameen.
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+      @for (photo of photos; track photo.id) {
+        <button
+          type="button"
+          class="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-mist transition-all duration-500 hover:-translate-y-1 hover:ring-gold/40 hover:shadow-portal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+          (click)="openPhoto(photo)"
+          [attr.aria-label]="'View: ' + photo.caption"
+        >
+          <img
+            [src]="photo.src"
+            [alt]="photo.alt"
+            class="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+          <span
+            class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 to-transparent px-2.5 pb-2.5 pt-8 text-left text-[0.65rem] font-medium leading-snug text-cream sm:px-3 sm:pb-3 sm:pt-10 sm:text-xs sm:opacity-0 sm:group-hover:opacity-100"
+          >
+            {{ photo.caption }}
+          </span>
+        </button>
+      }
+    </div>
+
+    <p class="mt-10 text-center text-sm text-slate-warm">
+      Photographs from
+      <a
+        [href]="naginaTvUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-semibold text-forest underline decoration-gold/50 underline-offset-2 hover:text-gold-600"
+      >
+        Nagina TV
+      </a>
+      and the Nagina archive.
+    </p>
+  </div>
+</section>
+
+@if (activePhoto(); as photo) {
+  <div
+    class="fixed inset-0 z-[80] flex items-center justify-center bg-forest/90 p-4 backdrop-blur-md sm:p-8"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="photo.caption"
+    (click)="closePhoto()"
+  >
+    <button
+      type="button"
+      class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-white/10 text-cream transition-colors hover:border-gold/50 hover:bg-white/15 hover:text-gold-300 sm:right-8 sm:top-8"
+      (click)="closePhoto(); $event.stopPropagation()"
+      aria-label="Close photograph"
+    >
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+
+    <figure
+      class="relative flex max-h-full w-full max-w-5xl flex-col items-center"
+      (click)="$event.stopPropagation()"
+    >
+      <img
+        [src]="photo.src"
+        [alt]="photo.alt"
+        class="max-h-[min(85vh,900px)] w-auto max-w-full rounded-xl object-contain shadow-portal ring-1 ring-white/15"
+      />
+      <figcaption class="mt-4 text-center text-sm text-cream/80 sm:text-base">
+        {{ photo.caption }}
+      </figcaption>
+    </figure>
+  </div>
+}

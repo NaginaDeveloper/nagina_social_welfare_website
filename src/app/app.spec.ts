@@ -43,6 +43,7 @@ describe('App', () => {
     expect(compiled.querySelector('#apps')).toBeTruthy();
     expect(compiled.querySelector('#contact')).toBeTruthy();
     expect(compiled.querySelector('iframe[title^="Map of"]')).toBeTruthy();
+    expect(compiled.querySelector('#photographs')).toBeNull();
     expect(compiled.querySelector('#privacy')).toBeNull();
     expect(compiled.querySelector('#safeguarding')).toBeNull();
   });
@@ -57,6 +58,7 @@ describe('App', () => {
       ['/work', '#work'],
       ['/madrasa', '#madrasa'],
       ['/spiritual-guide', '#spiritual-guide'],
+      ['/spiritual-guide', '#photographs'],
       ['/khatme-nabuwwat', '#khatme-nabuwwat'],
       ['/ahle-bait', '#ahle-bait'],
       ['/sahaba-ikram', '#sahaba-ikram'],
@@ -81,5 +83,15 @@ describe('App', () => {
       await fixture.whenStable();
       expect(compiled.querySelector(selector), `expected ${selector} on ${path}`).toBeTruthy();
     }
+  });
+
+  it('should show at least 20 photographs of Munir-e-Islam on the spiritual guide page', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/spiritual-guide');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelectorAll('#photographs img').length).toBeGreaterThanOrEqual(20);
   });
 });
