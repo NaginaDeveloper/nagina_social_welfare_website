@@ -29,7 +29,12 @@ export class Privacy {
     {
       title: 'Information we process',
       body:
-        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email, call, or open WhatsApp from this website, the message is sent in your own phone or email app — we do not store that form on our servers. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount and chosen fund only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
+        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email, call, or open WhatsApp from this website, the message is sent in your own phone or email app — we do not store that WhatsApp/email draft on our servers. Online madrasa admission applications submitted via /apply are stored in our Firebase/Google Cloud Firestore and processed by our staff; acknowledgement and decision emails are sent from info@naginasocialwelfare.co.uk. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount and chosen fund only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
+    },
+    {
+      title: 'Online admissions',
+      body:
+        'When you submit the Markaz Deen-e-Islam online admission form, we collect student and parent/guardian contact details, address, medical and emergency information, class preference, and your consents/declaration. We use this to review enrolment, create school records if accepted, and contact you. Access is limited to authorised staff. You may email info@naginasocialwelfare.co.uk to exercise UK GDPR rights relating to an application we hold.',
     },
     {
       title: 'Donations via SumUp, PayPal & NatWest PayIt',

@@ -18,6 +18,12 @@
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <a
+          routerLink="/apply"
+          class="inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-7 py-3.5 font-semibold text-forest shadow-soft"
+        >
+          {{ i18n.t('contact.applyCta') }}
+        </a>
+        <a
           [href]="whatsapp"
           target="_blank"
           rel="noopener noreferrer"

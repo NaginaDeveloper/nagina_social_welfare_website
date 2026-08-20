@@ -56,7 +56,14 @@ const pages = [
     path: '/madrasa/',
     title: 'Madrasa & Islamic Institute Peterborough | Markaz Deen-e-Islam',
     description:
-      'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — enrol on WhatsApp. 103 Burmer Road, PE1 3HT.',
+      'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — apply online. 103 Burmer Road, PE1 3HT.',
+  },
+  {
+    dir: 'apply',
+    path: '/apply/',
+    title: 'Online Admission | Markaz Deen-e-Islam | Nagina Social Welfare',
+    description:
+      'Apply online for Markaz Deen-e-Islam madrasa admission in Peterborough — student details, parent contacts, medical information, class preference and parent declaration.',
   },
   {
     dir: 'spiritual-guide',

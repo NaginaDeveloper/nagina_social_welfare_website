@@ -23,6 +23,8 @@ import {
   WORK_SEO,
   MADRASA_SEO,
   SAFEGUARDING_SEO,
+  APPLY_SEO,
+  APPLY_SUCCESS_SEO,
 } from './seo/seo.config';
 
 export const routes: Routes = [
@@ -49,6 +51,19 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/madrasa/madrasa-page').then((m) => m.MadrasaPage),
     title: MADRASA_SEO.title,
     data: { seo: MADRASA_SEO },
+  },
+  {
+    path: 'apply',
+    loadComponent: () => import('./pages/apply/apply-page').then((m) => m.ApplyPage),
+    title: APPLY_SEO.title,
+    data: { seo: APPLY_SEO },
+  },
+  {
+    path: 'apply/success',
+    loadComponent: () =>
+      import('./pages/apply-success/apply-success-page').then((m) => m.ApplySuccessPage),
+    title: APPLY_SUCCESS_SEO.title,
+    data: { seo: APPLY_SUCCESS_SEO },
   },
   {
     path: 'spiritual-guide',

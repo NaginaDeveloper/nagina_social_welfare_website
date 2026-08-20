@@ -48,11 +48,30 @@ export const WORK_SEO: PageSeo = {
 export const MADRASA_SEO: PageSeo = {
   title: 'Madrasa & Islamic Institute Peterborough | Markaz Deen-e-Islam',
   description:
-    'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — enrol on WhatsApp. 103 Burmer Road, PE1 3HT.',
+    'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — apply online. 103 Burmer Road, PE1 3HT.',
   path: '/madrasa/',
   keywords:
     'madrasa Peterborough, Islamic school Peterborough, Quran classes for children Peterborough, Islamic classes for kids Peterborough, evening madrasa, weekend Islamic school, Islamic institute Peterborough, Markaz Deen-e-Islam',
   type: 'website',
+};
+
+export const APPLY_SEO: PageSeo = {
+  title: 'Online Admission | Markaz Deen-e-Islam | Nagina Social Welfare',
+  description:
+    'Apply online for Markaz Deen-e-Islam madrasa admission in Peterborough — student details, parent contacts, medical information, class preference and parent declaration.',
+  path: '/apply/',
+  keywords:
+    'madrasa admission Peterborough, Markaz Deen-e-Islam apply, online enrolment Islamic school Peterborough',
+  type: 'website',
+};
+
+export const APPLY_SUCCESS_SEO: PageSeo = {
+  title: 'Application Received | Markaz Deen-e-Islam',
+  description:
+    'Thank you — your Markaz Deen-e-Islam admission application has been received and will be reviewed shortly.',
+  path: '/apply/success/',
+  type: 'website',
+  robots: 'noindex, follow',
 };
 
 export const SPIRITUAL_GUIDE_SEO: PageSeo = {
@@ -152,9 +171,9 @@ export const ASSISTANT_SEO: PageSeo = {
 export const CONTACT_SEO: PageSeo = {
   title: 'Contact | Nagina Social Welfare UK',
   description:
-    'Contact Nagina Social Welfare UK in Peterborough on WhatsApp, phone or email — madrasa enrolment, donations and general enquiries.',
+    'Contact Nagina Social Welfare UK in Peterborough — apply online for madrasa admission, or reach us on WhatsApp, phone or email for donations and general enquiries.',
   path: '/contact/',
-  keywords: 'Contact Nagina Social Welfare, Peterborough Islamic centre contact',
+  keywords: 'Contact Nagina Social Welfare, Peterborough Islamic centre contact, madrasa admission',
   type: 'website',
 };
 

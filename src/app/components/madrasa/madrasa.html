@@ -97,12 +97,18 @@
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
         <a
-          [href]="enrolWhatsApp"
-          target="_blank"
-          rel="noopener noreferrer"
+          routerLink="/apply"
           class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-3 text-sm font-semibold text-forest shadow-soft"
         >
           {{ i18n.t('madrasa.enrol') }}
+        </a>
+        <a
+          [href]="enrolWhatsApp"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full border border-gold/40 bg-white px-6 py-3 text-sm font-semibold text-forest"
+        >
+          {{ i18n.t('madrasa.enrolSecondary') }}
         </a>
         <a
           [href]="org.loginUrl"
