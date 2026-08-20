@@ -61,8 +61,8 @@ export class GoogleTranslateService {
     queueMicrotask(() => this.mountPreferred(preferredHostId));
   }
 
-  /** Remount into a newly visible host (e.g. mobile menu opened). */
   remount(preferredHostId?: string): void {
+    this.ensureScript();
     this.mountPreferred(preferredHostId);
   }
 
@@ -91,10 +91,9 @@ export class GoogleTranslateService {
     if (!host) {
       return;
     }
-    if (this.mountedHostId === host.id && host.childElementCount > 0) {
+    if (this.mountedHostId === host.id && host.querySelector('.goog-te-combo')) {
       return;
     }
-    // Clear any previous widget hosts so only one combo exists.
     for (const id of HOST_IDS) {
       const el = document.getElementById(id);
       if (el && el !== host) {
@@ -114,21 +113,6 @@ export class GoogleTranslateService {
       host.id,
     );
     this.mountedHostId = host.id;
-    this.tightenHost(host);
-  }
-
-  /** Keep only the language select — strip Google branding that inflates height. */
-  private tightenHost(host: HTMLElement): void {
-    queueMicrotask(() => {
-      host.querySelectorAll('img, a, .goog-logo-link, .goog-te-gadget-icon').forEach((el) => {
-        el.remove();
-      });
-      host.querySelectorAll('.goog-te-gadget > span').forEach((span) => {
-        if (!span.querySelector('.goog-te-combo')) {
-          span.remove();
-        }
-      });
-    });
   }
 
   private resolveHost(preferredHostId?: string): HTMLElement | null {
