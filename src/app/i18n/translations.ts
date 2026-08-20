@@ -123,6 +123,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'events.viewPoster': 'View poster',
 
     'translate.label': 'Translate',
+    'translate.select': 'Select language',
 
     'nav.about': 'About',
     'nav.worship': 'Worship',
@@ -561,6 +562,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'events.viewPoster': 'پوسٹر دیکھیں',
 
     'translate.label': 'ترجمہ',
+    'translate.select': 'زبان منتخب کریں',
 
     'nav.about': 'تعارف',
     'nav.worship': 'عبادت',

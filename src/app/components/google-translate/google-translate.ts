@@ -1,16 +1,14 @@
-import { AfterViewInit, Component, Input, inject } from '@angular/core';
-import { GoogleTranslateService } from '../../i18n/google-translate.service';
+import { Component, inject } from '@angular/core';
+import {
+  GOOGLE_TRANSLATE_OPTIONS,
+  GoogleTranslateService,
+} from '../../i18n/google-translate.service';
 import { LanguageService } from '../../i18n/language.service';
 
 @Component({
   selector: 'app-google-translate',
   template: `
-    <div
-      class="nagina-translate flex flex-wrap items-center gap-2.5 rounded-full border border-gold/35 bg-white/[0.07] px-3 py-2"
-      (focusin)="prepare()"
-      (pointerdown)="prepare()"
-    >
-      <!-- Google Translate icon (coloured, always visible) -->
+    <div class="nagina-translate flex flex-wrap items-center gap-2.5 rounded-full border border-gold/35 bg-white/[0.07] px-3 py-2">
       <span
         class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white"
         aria-hidden="true"
@@ -39,23 +37,30 @@ import { LanguageService } from '../../i18n/language.service';
         <span class="text-[0.7rem] text-cream/75">Google Translate</span>
       </div>
 
-      <label class="sr-only" [attr.for]="hostId">{{ i18n.t('translate.label') }}</label>
-      <div [id]="hostId" class="nagina-translate-host min-h-9 min-w-[10.5rem]"></div>
+      <label class="sr-only" for="nagina-translate-select">{{ i18n.t('translate.label') }}</label>
+      <select
+        id="nagina-translate-select"
+        class="nagina-translate-select min-h-9 min-w-[11rem] cursor-pointer rounded-full border border-gold/45 bg-white px-3 py-1.5 text-sm font-medium text-forest outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30"
+        (change)="onChange($event)"
+      >
+        <option value="" [selected]="!selected">{{ i18n.t('translate.select') }}</option>
+        @for (lang of languages; track lang.code) {
+          <option [value]="lang.code" [selected]="selected === lang.code">{{ lang.label }}</option>
+        }
+      </select>
     </div>
   `,
 })
-export class GoogleTranslate implements AfterViewInit {
-  @Input() hostId = 'nagina-google-translate-footer';
-
+export class GoogleTranslate {
   protected readonly i18n = inject(LanguageService);
   private readonly translate = inject(GoogleTranslateService);
 
-  ngAfterViewInit(): void {
-    // Mount as soon as the footer host exists (do not wait for a click).
-    queueMicrotask(() => this.translate.remount(this.hostId));
-  }
+  protected readonly languages = GOOGLE_TRANSLATE_OPTIONS;
+  protected selected = this.translate.currentCode();
 
-  protected prepare(): void {
-    this.translate.prepareForInternational(this.hostId);
+  protected onChange(event: Event): void {
+    const value = (event.target as HTMLSelectElement).value;
+    this.selected = value;
+    this.translate.applyLanguage(value);
   }
 }
