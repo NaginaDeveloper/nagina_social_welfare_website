@@ -51,7 +51,23 @@ Full URL: `https://www.naginasocialwelfare.co.uk/sitemap.xml`
 
 `robots.txt` already points Google to this sitemap.
 
-## 4. What you can see
+## 4. Why pages aren't indexed (and what we can fix)
+
+Search Console’s “Why pages aren’t indexed” report is **not always an error**. Typical rows for this site:
+
+| Reason | Meaning | Action |
+|--------|---------|--------|
+| **Page with redirect** | GitHub Pages redirects `/about` to `/about/`, and `naginasocialwelfare.co.uk` to `www`. Google indexes the final URL only. | Sitemap and canonical tags now use trailing slashes. Old redirect URLs should drop from this list over time. |
+| **Not found (404)** | Old or mistyped URLs Google still remembers. | Leave them. They should not be indexed. |
+| **Alternative page with proper canonical** | Duplicate URL that already points to the canonical page. | Working as intended. |
+| **Discovered / Crawled – currently not indexed** | Google found the page but chose not to index it yet (new or low-priority). | Use **URL Inspection → Request indexing** on important pages such as `/basic-beliefs/`. This can take days or weeks. |
+| **Duplicate without user-selected canonical** | Duplicate with no canonical. | Should stay at 0 with canonical tags in place. |
+
+Do **not** click “Validate fix” on 404s or redirects unless you have removed those URLs from the sitemap. Redirects and 404s are often correct.
+
+Thank-you page `/donate/thanks/` is marked `noindex` so Google should not treat it as a public content page.
+
+## 5. What you can see
 
 After a few days, Search Console shows:
 

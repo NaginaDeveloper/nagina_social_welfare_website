@@ -39,140 +39,141 @@ const pages = [
   },
   {
     dir: 'about',
-    path: '/about',
+    path: '/about/',
     title: 'About Us | Nagina Social Welfare UK',
     description:
       'Learn about Nagina Social Welfare UK — building a legacy of knowledge and compassion through Markaz Deen-e-Islam and community welfare.',
   },
   {
     dir: 'work',
-    path: '/work',
+    path: '/work/',
     title: 'Our Work | Markaz Deen-e-Islam & Welfare | Nagina Social Welfare',
     description:
       'One mission carried by two dedicated arms — Islamic education at Markaz Deen-e-Islam and community welfare across the UK.',
   },
   {
     dir: 'spiritual-guide',
-    path: '/spiritual-guide',
+    path: '/spiritual-guide/',
     title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',
     description:
       'Honouring Allama Munir Ahmed Yusufi — Munir-e-Islam — spiritual guide of Markaz Deen-e-Islam and Nagina Social Welfare.',
   },
   {
     dir: 'khatme-nabuwwat',
-    path: '/khatme-nabuwwat',
+    path: '/khatme-nabuwwat/',
     title: 'Khatme Nabuwwat | Finality of Prophethood | Nagina Social Welfare',
     description:
       'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — Khatam-un-Nabiyyin — the cornerstone of Islamic faith, with Quran and Hadith on the Seal of the Prophets.',
   },
   {
     dir: 'ahle-bait',
-    path: '/ahle-bait',
+    path: '/ahle-bait/',
     title: 'Ahle Bait | Elevated Status of Ahl al-Bayt | Nagina Social Welfare',
     description:
       'The elevated status of Ahl al-Bayt in the Quran and Sunnah — a Sunni perspective on love, honour and reverence for the Blessed Household of the Prophet ﷺ.',
   },
   {
     dir: 'sahaba-ikram',
-    path: '/sahaba-ikram',
+    path: '/sahaba-ikram/',
     title: 'Sahaba Ikram | Belief Regarding the Companions | Nagina Social Welfare',
     description:
       'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Prophet ﷺ, loved and respected as an integral part of Islamic faith.',
   },
   {
     dir: 'aulia-karam',
-    path: '/aulia-karam',
+    path: '/aulia-karam/',
     title: 'Aulia Karam | Belief Regarding the Awliya Allah | Nagina Social Welfare',
     description:
       'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah — friends of Allah honoured through faith and taqwa, with Surah Yunus 10:62 and authentic Hadith on Aulia Karam.',
   },
   {
     dir: 'basic-beliefs',
-    path: '/basic-beliefs',
+    path: '/basic-beliefs/',
     title: 'Basic Beliefs | Hanafi Barelvi Ahl al-Sunnah FAQ | Nagina Social Welfare',
     description:
       'Frequently asked questions on the basic aqeedah of Hanafi Barelvi Ahl al-Sunnah wa’l-Jama’ah — Tawhid, Khatme Nabuwwat, love for the Prophet ﷺ, Ahle Bait, Sahaba, and Awliya.',
   },
   {
     dir: 'guidance',
-    path: '/guidance',
+    path: '/guidance/',
     title: 'Guidance | Teachings & Counsel | Nagina Social Welfare',
     description:
       'Timeless teachings that guide character, knowledge and charity — counsel from Munir-e-Islam for preachers, students and supporters.',
   },
   {
     dir: 'namaz',
-    path: '/namaz',
+    path: '/namaz/',
     title: 'Namaz Times Peterborough | Nagina Social Welfare UK',
     description:
       'Daily Namaz (salah) times for Peterborough, UK with live now and next prayer, plus a Qibla compass — from Nagina Social Welfare.',
   },
   {
     dir: 'quran',
-    path: '/quran',
+    path: '/quran/',
     title: 'Blessed Quran Majeed with Kanzul Iman | Nagina Social Welfare',
     description:
       'Read the Blessed Quran Majeed in Arabic with Kanzul Iman Urdu translation by Aala Hazrat Imam Ahmed Raza Khan, English toggle, and Alafasy recitation.',
   },
   {
     dir: 'books',
-    path: '/books',
+    path: '/books/',
     title: 'Islamic Books Library | Seedha Rasta | Nagina Social Welfare',
     description:
       'Browse and download Islamic books from the Seedha Rasta library — free PDFs for learning and guidance from Nagina Social Welfare UK.',
   },
   {
     dir: 'sermons',
-    path: '/sermons',
+    path: '/sermons/',
     title: 'Sermons by Baba Ji Sarkar | Bayanat | Nagina Social Welfare',
     description:
       'Watch blessed bayanat and sermons by Baba Ji Sarkar from the Seedha Rasta collection — searchable video library via Nagina TV on YouTube.',
   },
   {
     dir: 'apps',
-    path: '/apps',
+    path: '/apps/',
     title: 'Mobile Apps | Nagina Social Welfare',
     description:
       'Purpose-built mobile apps for parents, teachers, administrators and collectors — available on the Google Play Store.',
   },
   {
     dir: 'events',
-    path: '/events',
+    path: '/events/',
     title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
     description:
       'Event photos and posters from Markaz Deen-e-Islam and Nagina Social Welfare — gatherings, programmes and commemorations.',
   },
   {
     dir: 'donate',
-    path: '/donate',
+    path: '/donate/',
     title: 'Donate | Support Our Mission | Nagina Social Welfare UK',
     description:
       'Donate securely with SumUp or by UK bank transfer to support Islamic education and community welfare.',
   },
   {
     dir: 'assistant',
-    path: '/assistant',
+    path: '/assistant/',
     title: 'Nagina Assistant | Islamic Guidance & Site Help',
     description:
       'Ask Nagina Assistant in English or Urdu about creed pages, guidance, books, donations, and site information from Nagina Social Welfare UK.',
   },
   {
     dir: 'donate/thanks',
-    path: '/donate/thanks',
+    path: '/donate/thanks/',
     title: 'Thank You for Your Donation | Nagina Social Welfare UK',
     description:
       'Thank you for supporting Nagina Social Welfare UK — your gift helps Islamic education and community welfare.',
+    robots: 'noindex, follow',
   },
   {
     dir: 'contact',
-    path: '/contact',
+    path: '/contact/',
     title: 'Contact | Nagina Social Welfare UK',
     description:
       'Get in touch with Nagina Social Welfare UK in Peterborough — email, phone and address for Markaz Deen-e-Islam and welfare enquiries.',
   },
   {
     dir: 'privacy',
-    path: '/privacy',
+    path: '/privacy/',
     title: 'Privacy Notice | Nagina Social Welfare UK',
     description:
       'How Nagina Social Welfare handles information when you use this website, including donations via SumUp.',
@@ -187,10 +188,19 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;');
 }
 
+function canonicalUrl(path) {
+  if (!path || path === '/') {
+    return `${ORIGIN}/`;
+  }
+  const withSlash = path.endsWith('/') ? path : `${path}/`;
+  return `${ORIGIN}${withSlash.startsWith('/') ? withSlash : `/${withSlash}`}`;
+}
+
 function patchHtml(html, page) {
-  const url = page.path === '/' ? `${ORIGIN}/` : `${ORIGIN}${page.path}`;
+  const url = canonicalUrl(page.path);
   const title = escapeHtml(page.title);
   const description = escapeHtml(page.description);
+  const robots = page.robots || 'index, follow, max-image-preview:large';
 
   let next = html;
   next = injectSearchConsoleMeta(next);
@@ -198,6 +208,10 @@ function patchHtml(html, page) {
   next = next.replace(
     /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
     `<meta name="description" content="${description}">`,
+  );
+  next = next.replace(
+    /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="robots" content="${escapeHtml(robots)}">`,
   );
   next = next.replace(
     /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,

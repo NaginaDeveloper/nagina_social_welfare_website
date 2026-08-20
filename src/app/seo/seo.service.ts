@@ -41,7 +41,7 @@ export class SeoService {
     this.upsertName('description', seo.description);
     this.upsertName('keywords', seo.keywords ?? '');
     this.upsertName('author', SITE_NAME);
-    this.upsertName('robots', 'index, follow, max-image-preview:large');
+    this.upsertName('robots', seo.robots ?? 'index, follow, max-image-preview:large');
 
     this.upsertProperty('og:type', type);
     this.upsertProperty('og:site_name', SITE_NAME);
