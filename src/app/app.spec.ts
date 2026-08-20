@@ -95,6 +95,7 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('#photographs img').length).toBeGreaterThanOrEqual(20);
-    expect(compiled.querySelectorAll('#shajra img').length).toBe(4);
+    expect(compiled.querySelector('#shajra-hero')).toBeTruthy();
+    expect(compiled.querySelectorAll('#shajra img').length).toBe(6);
   });
 });
