@@ -31,7 +31,7 @@ export class BasicBeliefs {
   protected readonly intro =
     'These questions summarise the basic aqeedah (beliefs) of Ahl al-Sunnah wa\'l-Jama\'ah as understood at Nagina Social Welfare and Markaz Deen-e-Islam — Hanafi fiqh with love for the Prophet ﷺ, the Ahle Bait, the Sahaba, and the Awliya, always upon the Quran and authentic Sunnah.';
   protected readonly introUr =
-    'یہ سوالات اہلِ سنت والجماعت کے بنیادی عقائد کا خلاصہ ہیں جیسا کہ ناگینا سوشل ویلفیئر اور مرکز دینِ اسلام میں سمجھا جاتا ہے — حنفی فقہ، محبتِ رسول ﷺ، اہل بیت، صحابہ اور اولیاء، ہمیشہ قرآن و صحیح سنت پر۔';
+    'یہ سوالات اہلِ سنت والجماعت کے بنیادی عقائد کا خلاصہ ہیں جیسا کہ نگینہ سوشل ویلفیئر اور مرکز دینِ اسلام میں سمجھا جاتا ہے — حنفی فقہ، محبتِ رسول ﷺ، اہل بیت، صحابہ اور اولیاء، ہمیشہ قرآن و صحیح سنت پر۔';
 
   protected readonly disclaimer =
     'This page offers gentle general creed guidance, not personal fatwas. For individual religious rulings, please speak to Markaz Deen-e-Islam directly.';
@@ -60,7 +60,7 @@ export class BasicBeliefs {
         },
         {
           question: 'What does Hanafi Barelvi mean at Nagina Social Welfare?',
-          questionUr: 'ناگینا سوشل ویلفیئر میں حنفی بریلوی کا کیا مطلب ہے؟',
+          questionUr: 'نگینہ سوشل ویلفیئر میں حنفی بریلوی کا کیا مطلب ہے؟',
           answer:
             'Hanafi means we follow the fiqh of Imam Abu Hanifah (may Allah have mercy on him) in worship and daily Islamic practice. Barelvi refers to the spiritual emphasis of love for the Prophet ﷺ, Khatme Nabuwwat, respect for Ahle Bait, Sahaba, and Awliya, and Markaz-style guidance rooted in Ahl al-Sunnah — not a separate religion, but a recognised Sunni spiritual tradition.',
           answerUr:
@@ -199,7 +199,7 @@ export class BasicBeliefs {
           answer:
             'Imam Abu Hanifah\'s school is followed by the majority of Muslims in South Asia and many parts of the world. At Nagina, salah, fasting, and related rulings are understood according to Hanafi fiqh — for example, Hanafi Asr time on our Namaz page.',
           answerUr:
-            'امام ابو حنیفہ رحمۃ اللہ علیہ کا مکتب جنوبی ایشیا اور دنیا کے بہت سے علاقوں میں اکثریت کی پیروی ہے۔ ناگینا پر نماز، روزہ اور متعلقہ احکام حنفی فقہ کے مطابق سمجھے جاتے ہیں — مثلاً نماز کے صفحے پر حنفی عصر۔',
+            'امام ابو حنیفہ رحمۃ اللہ علیہ کا مکتب جنوبی ایشیا اور دنیا کے بہت سے علاقوں میں اکثریت کی پیروی ہے۔ نگینہ پر نماز، روزہ اور متعلقہ احکام حنفی فقہ کے مطابق سمجھے جاتے ہیں — مثلاً نماز کے صفحے پر حنفی عصر۔',
           relatedPath: '/namaz',
           relatedLabel: 'Namaz times (Hanafi Asr)',
           relatedLabelUr: 'نماز کے اوقات (حنفی عصر)',
@@ -253,18 +253,18 @@ export class BasicBeliefs {
           answer:
             'No. This page, and the Nagina Assistant, offer general creed and site information — not binding personal fatwas. For marriage, divorce, inheritance, or any individual ruling, please contact Markaz Deen-e-Islam directly.',
           answerUr:
-            'نہیں۔ یہ صفحہ اور ناگینا اسسٹنٹ عمومی عقیدہ اور سائٹ کی معلومات دیتے ہیں — ذاتی پابند فتاویٰ نہیں۔ نکاح، طلاق، وراثت یا کسی انفرادی حکم کے لیے براہِ راست مرکز دینِ اسلام سے رابطہ کریں۔',
+            'نہیں۔ یہ صفحہ اور نگینہ اسسٹنٹ عمومی عقیدہ اور سائٹ کی معلومات دیتے ہیں — ذاتی پابند فتاویٰ نہیں۔ نکاح، طلاق، وراثت یا کسی انفرادی حکم کے لیے براہِ راست مرکز دینِ اسلام سے رابطہ کریں۔',
           relatedPath: '/contact',
           relatedLabel: 'Contact Markaz',
           relatedLabelUr: 'مرکز سے رابطہ',
         },
         {
           question: 'Does Nagina present all Islamic groups as equally valid?',
-          questionUr: 'کیا ناگینا تمام اسلامی گروہوں کو یکساں درست پیش کرتی ہے؟',
+          questionUr: 'کیا نگینہ تمام اسلامی گروہوں کو یکساں درست پیش کرتی ہے؟',
           answer:
             'Nagina Social Welfare teaches and publishes from the Hanafi Barelvi / Ahl al-Sunnah wa\'l-Jama\'ah perspective. We explain our beliefs with respect and without harsh sectarian language, but we do not treat every maslak or modern claim as equally valid for our community.',
           answerUr:
-            'ناگینا سوشل ویلفیئر حنفی بریلوی / اہلِ سنت والجماعت کے نقطۂ نظر سے تعلیم دیتی اور شائع کرتی ہے۔ ہم اپنے عقائد احترام سے بیان کرتے ہیں بغیر تلخ فرقہ وارانہ زبان کے، مگر ہر مسلک یا جدید دعوے کو اپنی کمیونٹی کے لیے یکساں درست نہیں سمجھتے۔',
+            'نگینہ سوشل ویلفیئر حنفی بریلوی / اہلِ سنت والجماعت کے نقطۂ نظر سے تعلیم دیتی اور شائع کرتی ہے۔ ہم اپنے عقائد احترام سے بیان کرتے ہیں بغیر تلخ فرقہ وارانہ زبان کے، مگر ہر مسلک یا جدید دعوے کو اپنی کمیونٹی کے لیے یکساں درست نہیں سمجھتے۔',
         },
         {
           question: 'Where can I read the detailed creed pages?',

@@ -421,18 +421,20 @@
         >
           <button
             type="button"
-            class="flex-1 rounded-full px-3 py-2"
+            class="flex-1 rounded-full px-3 py-2 text-cream/75 transition-colors"
             [class.bg-white/15]="i18n.lang() === 'en'"
             [class.text-gold-300]="i18n.lang() === 'en'"
+            [attr.aria-pressed]="i18n.lang() === 'en'"
             (click)="i18n.setLang('en')"
           >
             {{ i18n.t('header.langEn') }}
           </button>
           <button
             type="button"
-            class="flex-1 rounded-full px-3 py-2"
+            class="flex-1 rounded-full px-3 py-2 text-cream/75 transition-colors"
             [class.bg-white/15]="i18n.lang() === 'ur'"
             [class.text-gold-300]="i18n.lang() === 'ur'"
+            [attr.aria-pressed]="i18n.lang() === 'ur'"
             (click)="i18n.setLang('ur')"
           >
             {{ i18n.t('header.langUr') }}

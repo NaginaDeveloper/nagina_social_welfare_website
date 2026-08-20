@@ -169,6 +169,14 @@ html.urdu body {
 
 html.urdu .font-display {
   font-family: var(--font-urdu), var(--font-display);
+  /* Nastaliq has tall strokes — avoid colliding with the line above. */
+  line-height: 1.55;
+}
+
+/* Urdu labels: Latin-style wide tracking causes glyph clash. */
+html.urdu .spotlight-label {
+  letter-spacing: 0.06em;
+  text-transform: none;
 }
 
 /* Hide Google's full-page top banner / tooltips — keep our footer select. */

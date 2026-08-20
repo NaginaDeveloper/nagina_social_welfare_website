@@ -114,7 +114,7 @@ export const SPIRITUAL_GUIDE_PHOTOS: readonly SpiritualGuidePhoto[] = [
     src: 'gallery/munir/12-studio-gold.jpg',
     alt: 'Allama Munir Ahmed Yusufi teaching in the Nagina TV studio',
     caption: 'Nagina TV studio',
-    captionUr: 'ناگینا ٹی وی اسٹوڈیو',
+    captionUr: 'نگینہ ٹی وی اسٹوڈیو',
   },
   {
     id: 'deen-e-islam',

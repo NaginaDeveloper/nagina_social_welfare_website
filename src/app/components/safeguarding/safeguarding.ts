@@ -38,7 +38,7 @@ export class Safeguarding {
       body:
         'Nagina Social Welfare UK is a registered charity. We keep a full safeguarding policy, which trustees review. This page is a public summary, not the complete policy.',
       bodyUr:
-        'ناگینا سوشل ویلفیئر یو کے ایک رجسٹرڈ چیریٹی ہے۔ ہمارے پاس مکمل حفاظتی پالیسی ہے جس کا ٹرسٹیز جائزہ لیتے ہیں۔ یہ صفحہ عوامی خلاصہ ہے، مکمل پالیسی نہیں۔',
+        'نگینہ سوشل ویلفیئر (برطانیہ) ایک رجسٹرڈ چیریٹی ہے۔ ہمارے پاس مکمل حفاظتی پالیسی ہے جس کا ٹرسٹیز جائزہ لیتے ہیں۔ یہ صفحہ عوامی خلاصہ ہے، مکمل پالیسی نہیں۔',
     },
     {
       title: 'If you are worried',
