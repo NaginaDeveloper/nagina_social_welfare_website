@@ -2,16 +2,19 @@
   <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-2xl text-center">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Photographs
+        {{ i18n.t('photos.eyebrow') }}
       </span>
       <h2 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">
-        Allama Munir Ahmed Yusufi
+        {{ i18n.t('photos.title') }}
       </h2>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        A selection of photographs from Nagina TV, the official archive of his
-        lectures and gatherings. May Allah elevate his rank. Ameen.
+        {{ i18n.t('photos.lead') }}
       </p>
     </div>
 
@@ -21,7 +24,7 @@
           type="button"
           class="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-mist transition-all duration-500 hover:-translate-y-1 hover:ring-gold/40 hover:shadow-portal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           (click)="openPhoto(photo)"
-          [attr.aria-label]="'View: ' + photo.caption"
+          [attr.aria-label]="'View: ' + i18n.pick(photo.caption, photo.captionUr)"
         >
           <img
             [src]="photo.src"
@@ -32,8 +35,9 @@
           />
           <span
             class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 to-transparent px-1.5 pb-2 pt-8 text-left text-[0.6rem] font-medium leading-snug text-cream sm:px-3 sm:pb-3 sm:pt-10 sm:text-xs"
+            [attr.dir]="i18n.isUr() ? 'rtl' : null"
           >
-            {{ photo.caption }}
+            {{ i18n.pick(photo.caption, photo.captionUr) }}
           </span>
         </button>
       }
@@ -45,7 +49,7 @@
           type="button"
           class="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-mist transition-all duration-500 hover:-translate-y-1 hover:ring-gold/40 hover:shadow-portal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           (click)="openPhoto(photo)"
-          [attr.aria-label]="'View: ' + photo.caption"
+          [attr.aria-label]="'View: ' + i18n.pick(photo.caption, photo.captionUr)"
         >
           <img
             [src]="photo.src"
@@ -56,15 +60,20 @@
           />
           <span
             class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 to-transparent px-2.5 pb-2.5 pt-8 text-left text-[0.65rem] font-medium leading-snug text-cream sm:px-3 sm:pb-3 sm:pt-10 sm:text-xs sm:opacity-0 sm:group-hover:opacity-100"
+            [attr.dir]="i18n.isUr() ? 'rtl' : null"
           >
-            {{ photo.caption }}
+            {{ i18n.pick(photo.caption, photo.captionUr) }}
           </span>
         </button>
       }
     </div>
 
-    <p class="mt-10 text-center text-sm text-slate-warm">
-      Photographs from
+    <p
+      class="mt-10 text-center text-sm text-slate-warm"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      {{ i18n.t('photos.credit') }}
       <a
         [href]="naginaTvUrl"
         target="_blank"
@@ -73,7 +82,7 @@
       >
         Nagina TV
       </a>
-      and the Nagina archive.
+      {{ i18n.t('photos.creditEnd') }}
     </p>
   </div>
 </section>
@@ -83,14 +92,14 @@
     class="fixed inset-0 z-[80] flex items-center justify-center bg-forest/90 p-4 backdrop-blur-md sm:p-8"
     role="dialog"
     aria-modal="true"
-    [attr.aria-label]="photo.caption"
+    [attr.aria-label]="i18n.pick(photo.caption, photo.captionUr)"
     (click)="closePhoto()"
   >
     <button
       type="button"
       class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-white/10 text-cream transition-colors hover:border-gold/50 hover:bg-white/15 hover:text-gold-300 sm:right-8 sm:top-8"
       (click)="closePhoto(); $event.stopPropagation()"
-      aria-label="Close photograph"
+      [attr.aria-label]="i18n.t('photos.close')"
     >
       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
@@ -106,8 +115,11 @@
         [alt]="photo.alt"
         class="max-h-[min(85vh,900px)] w-auto max-w-full rounded-xl object-contain shadow-portal ring-1 ring-white/15"
       />
-      <figcaption class="mt-4 text-center text-sm text-cream/80 sm:text-base">
-        {{ photo.caption }}
+      <figcaption
+        class="mt-4 text-center text-sm text-cream/80 sm:text-base"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        {{ i18n.pick(photo.caption, photo.captionUr) }}
       </figcaption>
     </figure>
   </div>

@@ -63,7 +63,7 @@
           @for (link of exploreLinks; track link.path) {
             <li>
               <a [routerLink]="link.path" class="text-sm text-cream/65 transition-colors hover:text-gold-300">
-                {{ link.label }}
+                {{ i18n.t(link.labelKey) }}
               </a>
             </li>
           }

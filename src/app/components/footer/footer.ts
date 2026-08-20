@@ -5,7 +5,7 @@ import { LanguageService } from '../../i18n/language.service';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 
 interface FooterLink {
-  readonly label: string;
+  readonly labelKey: string;
   readonly path: string;
 }
 
@@ -21,15 +21,15 @@ export class Footer {
   protected readonly year = new Date().getFullYear();
 
   protected readonly exploreLinks: readonly FooterLink[] = [
-    { label: 'Spiritual Guide', path: '/spiritual-guide' },
-    { label: 'About us', path: '/about' },
-    { label: 'Our Work', path: '/work' },
-    { label: 'Madrasa', path: '/madrasa' },
-    { label: 'Guidance', path: '/guidance' },
-    { label: 'Namaz Times', path: '/namaz' },
-    { label: 'Events', path: '/events' },
-    { label: 'Apps', path: '/apps' },
-    { label: 'Donate', path: '/donate' },
-    { label: 'Contact', path: '/contact' },
+    { labelKey: 'nav.spiritualGuide', path: '/spiritual-guide' },
+    { labelKey: 'nav.aboutUs', path: '/about' },
+    { labelKey: 'nav.ourWork', path: '/work' },
+    { labelKey: 'nav.madrasa', path: '/madrasa' },
+    { labelKey: 'nav.guidance', path: '/guidance' },
+    { labelKey: 'nav.namazTimes', path: '/namaz' },
+    { labelKey: 'nav.events', path: '/events' },
+    { labelKey: 'nav.apps', path: '/apps' },
+    { labelKey: 'nav.donate', path: '/donate' },
+    { labelKey: 'nav.contact', path: '/contact' },
   ];
 }

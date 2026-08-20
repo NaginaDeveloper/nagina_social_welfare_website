@@ -7,6 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../../i18n/language.service';
 import {
   QiblaService,
   cardinalFromBearing,
@@ -18,6 +19,7 @@ import {
   templateUrl: './qibla.html',
 })
 export class Qibla implements OnInit, OnDestroy {
+  protected readonly i18n = inject(LanguageService);
   protected readonly qibla = inject(QiblaService);
 
   protected readonly liveMode = signal(false);
@@ -41,7 +43,8 @@ export class Qibla implements OnInit, OnDestroy {
   protected readonly directionLabel = computed(() => {
     const result = this.qibla.result();
     if (!result) return '';
-    return `${result.direction.toFixed(1)}° from North`;
+    const deg = result.direction.toFixed(1);
+    return this.i18n.t('qibla.fromNorth').replace('{deg}', deg);
   });
 
   protected readonly cardinalLabel = computed(() => {
@@ -53,13 +56,18 @@ export class Qibla implements OnInit, OnDestroy {
   protected readonly distanceLabel = computed(() => {
     const result = this.qibla.result();
     if (!result) return '';
-    return `~${Math.round(result.distanceKm).toLocaleString('en-GB')} km to Makkah`;
+    const km = Math.round(result.distanceKm).toLocaleString(
+      this.i18n.isUr() ? 'ur-PK' : 'en-GB',
+    );
+    return this.i18n.t('qibla.distance').replace('{km}', km);
   });
 
   protected readonly locationLabel = computed(() => {
     const result = this.qibla.result();
-    if (!result) return '';
-    return result.source === 'visitor' ? 'Your location' : 'Peterborough, UK';
+    if (!result) return this.i18n.t('qibla.peterborough');
+    return result.source === 'visitor'
+      ? this.i18n.t('qibla.yourLocation')
+      : this.i18n.t('qibla.peterborough');
   });
 
   ngOnInit(): void {
@@ -96,7 +104,7 @@ export class Qibla implements OnInit, OnDestroy {
 
   private async startOrientation(): Promise<boolean> {
     if (typeof window === 'undefined' || !('DeviceOrientationEvent' in window)) {
-      this.orientationError.set('Device compass is not available on this device.');
+      this.orientationError.set(this.i18n.t('qibla.compassUnavailable'));
       return false;
     }
 
@@ -108,11 +116,11 @@ export class Qibla implements OnInit, OnDestroy {
       try {
         const state = await DOE.requestPermission();
         if (state !== 'granted') {
-          this.orientationError.set('Compass permission was not granted.');
+          this.orientationError.set(this.i18n.t('qibla.compassDenied'));
           return false;
         }
       } catch {
-        this.orientationError.set('Unable to access the device compass.');
+        this.orientationError.set(this.i18n.t('qibla.compassError'));
         return false;
       }
     }
@@ -124,7 +132,6 @@ export class Qibla implements OnInit, OnDestroy {
       }
     };
 
-    // Absolute events preferred when available (Android); iOS uses webkitCompassHeading on orientation.
     window.addEventListener('deviceorientationabsolute', this.orientationHandler as EventListener, true);
     window.addEventListener('deviceorientation', this.orientationHandler as EventListener, true);
     return true;
@@ -149,7 +156,6 @@ function readCompassHeading(event: DeviceOrientationEvent): number | null {
   if (typeof webkit.webkitCompassHeading === 'number' && !Number.isNaN(webkit.webkitCompassHeading)) {
     return webkit.webkitCompassHeading;
   }
-  // Absolute alpha: 0 = North when absolute is true; convert to compass heading.
   if (event.absolute && typeof event.alpha === 'number' && !Number.isNaN(event.alpha)) {
     return normalizeDegrees(360 - event.alpha);
   }

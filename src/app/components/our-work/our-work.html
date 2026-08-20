@@ -6,17 +6,20 @@
   ></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-2xl text-center">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">
-        Our Work
+        {{ i18n.t('work.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-        One mission, carried by
-        <span class="text-gold-gradient">two dedicated arms</span>
+        {{ i18n.t('work.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('work.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-cream/70 sm:text-lg">
-        Nagina Social Welfare UK unites faith and compassion — educating hearts
-        through knowledge and uplifting lives through charity.
+        {{ i18n.t('work.lead') }}
       </p>
     </div>
 
@@ -24,6 +27,8 @@
       @for (programme of programmes; track programme.id) {
         <article
           class="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:bg-white/[0.07] hover:shadow-portal sm:p-8"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+          [attr.lang]="i18n.isUr() ? 'ur' : null"
         >
           <div
             class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gold/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
@@ -47,14 +52,18 @@
               <span
                 class="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-gold-300"
               >
-                {{ programme.tag }}
+                {{ i18n.pick(programme.tag, programme.tagUr) }}
               </span>
               <h3 class="mt-3 font-display text-xl font-bold text-cream sm:text-2xl">{{ programme.name }}</h3>
-              <p class="text-sm font-medium text-gold-300/90">{{ programme.summary }}</p>
+              <p class="text-sm font-medium text-gold-300/90">
+                {{ i18n.pick(programme.summary, programme.summaryUr) }}
+              </p>
             </div>
           </div>
 
-          <p class="mt-6 text-sm leading-relaxed text-cream/75">{{ programme.description }}</p>
+          <p class="mt-6 text-sm leading-relaxed text-cream/75">
+            {{ i18n.pick(programme.description, programme.descriptionUr) }}
+          </p>
 
           @if (programme.id === 'mdi') {
             <p class="mt-4">
@@ -62,13 +71,13 @@
                 routerLink="/madrasa"
                 class="text-sm font-semibold text-gold-300 underline decoration-gold/40 underline-offset-2 hover:text-gold-200"
               >
-                Madrasa &amp; Quran classes in Peterborough →
+                {{ i18n.t('work.madrasaLink') }}
               </a>
             </p>
           }
 
           <ul class="mt-6 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            @for (highlight of programme.highlights; track highlight) {
+            @for (highlight of i18n.isUr() ? programme.highlightsUr : programme.highlights; track highlight) {
               <li class="flex items-center gap-2 text-sm text-cream/75">
                 <svg class="h-4 w-4 shrink-0 text-gold-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />

@@ -1,4 +1,5 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
+import { LanguageService } from '../../i18n/language.service';
 import {
   SPIRITUAL_GUIDE_PHOTOS,
   type SpiritualGuidePhoto,
@@ -9,6 +10,7 @@ import {
   templateUrl: './spiritual-guide-gallery.html',
 })
 export class SpiritualGuideGallery {
+  protected readonly i18n = inject(LanguageService);
   protected readonly featured = SPIRITUAL_GUIDE_PHOTOS.slice(0, 3);
   protected readonly photos = SPIRITUAL_GUIDE_PHOTOS.slice(3);
   protected readonly activePhoto = signal<SpiritualGuidePhoto | null>(null);

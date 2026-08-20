@@ -1,26 +1,28 @@
 <section id="about" class="relative bg-cream py-24 sm:py-32">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-3xl text-center">
+    <div
+      class="mx-auto max-w-3xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Our Vision
+        {{ i18n.t('about.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Building a legacy of
-        <span class="text-gold-gradient">knowledge and compassion</span>
+        {{ i18n.t('about.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('about.titleAccent') }}</span>
       </h1>
       <p class="mt-6 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Nagina Social Welfare exists to serve communities across the UK through
-        knowledge and compassion. We believe that authentic learning and sincere
-        charity transform lives — nurturing not only the mind, but character, faith
-        and belonging. Our two arms, Markaz Deen-e-Islam and Nagina Social Welfare,
-        carry this mission forward together.
+        {{ i18n.t('about.lead') }}
       </p>
     </div>
 
     <div class="mt-16 grid gap-6 sm:grid-cols-3">
-      @for (pillar of pillars; track pillar.title) {
+      @for (pillar of pillars; track pillar.titleKey) {
         <div
           class="group rounded-2xl border border-mist bg-white p-5 text-center shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 sm:p-8"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+          [attr.lang]="i18n.isUr() ? 'ur' : null"
         >
           <span
             class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald to-forest text-gold-300 transition-transform duration-300 group-hover:scale-110"
@@ -45,8 +47,8 @@
               }
             }
           </span>
-          <h3 class="font-display text-xl font-bold text-forest">{{ pillar.title }}</h3>
-          <p class="mt-3 text-sm leading-relaxed text-slate-warm">{{ pillar.text }}</p>
+          <h3 class="font-display text-xl font-bold text-forest">{{ i18n.t(pillar.titleKey) }}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-warm">{{ i18n.t(pillar.textKey) }}</p>
         </div>
       }
     </div>

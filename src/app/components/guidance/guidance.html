@@ -2,17 +2,20 @@
   <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-2xl text-center">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Guidance
+        {{ i18n.t('guidance.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Wisdom that shapes
-        <span class="text-gold-gradient">character and charity</span>
+        {{ i18n.t('guidance.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('guidance.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Reflect on timeless teachings that guide our preachers, students and
-        supporters — from character to knowledge and sadaqah.
+        {{ i18n.t('guidance.lead') }}
       </p>
 
       <div class="mt-8 flex flex-col items-center gap-3">
@@ -30,7 +33,7 @@
           />
         </span>
         <p class="text-sm font-medium text-forest">
-          Teachings of
+          {{ i18n.t('guidance.teachingsOf') }}
           <span class="text-gold-gradient">Munir-e-Islam</span>
         </p>
       </div>
@@ -43,7 +46,7 @@
             type="button"
             class="relative flex h-full w-full flex-col overflow-hidden rounded-3xl border border-mist bg-gradient-to-b from-sand to-cream p-4 text-left shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-portal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold sm:p-5"
             (click)="openPoster(poster)"
-            [attr.aria-label]="'View full size: ' + poster.title"
+            [attr.aria-label]="i18n.t('guidance.viewFull') + ': ' + i18n.pick(poster.title, poster.titleUr)"
           >
             <span
               class="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -70,13 +73,21 @@
               <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
               </svg>
-              View full size
+              {{ i18n.t('guidance.viewFull') }}
             </span>
           </button>
 
-          <figcaption class="mt-5 px-2 text-center">
-            <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">{{ poster.title }}</h3>
-            <p class="mt-1.5 text-sm text-slate-warm">{{ poster.subtitle }}</p>
+          <figcaption
+            class="mt-5 px-2 text-center"
+            [attr.dir]="i18n.isUr() ? 'rtl' : null"
+            [attr.lang]="i18n.isUr() ? 'ur' : null"
+          >
+            <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
+              {{ i18n.pick(poster.title, poster.titleUr) }}
+            </h3>
+            <p class="mt-1.5 text-sm text-slate-warm">
+              {{ i18n.pick(poster.subtitle, poster.subtitleUr) }}
+            </p>
           </figcaption>
         </figure>
       }
@@ -89,14 +100,14 @@
     class="fixed inset-0 z-[80] flex items-center justify-center bg-forest/90 p-4 backdrop-blur-md sm:p-8"
     role="dialog"
     aria-modal="true"
-    [attr.aria-label]="poster.title"
+    [attr.aria-label]="i18n.pick(poster.title, poster.titleUr)"
     (click)="closePoster()"
   >
     <button
       type="button"
       class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-white/10 text-cream transition-colors hover:border-gold/50 hover:bg-white/15 hover:text-gold-300 sm:right-8 sm:top-8"
       (click)="closePoster(); $event.stopPropagation()"
-      aria-label="Close full-size poster"
+      [attr.aria-label]="i18n.t('guidance.close')"
     >
       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
@@ -114,9 +125,16 @@
         [height]="poster.height"
         class="max-h-[min(85vh,900px)] w-auto max-w-full rounded-xl object-contain shadow-portal ring-1 ring-white/15"
       />
-      <figcaption class="mt-4 text-center">
-        <p class="font-display text-lg font-semibold text-cream sm:text-xl">{{ poster.title }}</p>
-        <p class="mt-1 text-sm text-cream/65">{{ poster.subtitle }}</p>
+      <figcaption
+        class="mt-4 text-center"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <p class="font-display text-lg font-semibold text-cream sm:text-xl">
+          {{ i18n.pick(poster.title, poster.titleUr) }}
+        </p>
+        <p class="mt-1 text-sm text-cream/65">
+          {{ i18n.pick(poster.subtitle, poster.subtitleUr) }}
+        </p>
       </figcaption>
     </figure>
   </div>

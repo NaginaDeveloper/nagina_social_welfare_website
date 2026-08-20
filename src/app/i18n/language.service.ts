@@ -13,6 +13,8 @@ export class LanguageService {
       const stored = window.localStorage.getItem(STORAGE_KEY);
       if (stored === 'en' || stored === 'ur') {
         this.setLang(stored);
+      } else {
+        this.applyDocument(this.lang());
       }
     });
   }
@@ -22,10 +24,16 @@ export class LanguageService {
     return TRANSLATIONS[lang][key] ?? TRANSLATIONS.en[key] ?? key;
   }
 
+  /** Pick English or Urdu text for bilingual fields. */
+  pick(en: string, ur: string): string {
+    return this.isUr() ? ur : en;
+  }
+
   setLang(lang: UiLang): void {
     this.lang.set(lang);
-    if (typeof document !== 'undefined') {
-      document.documentElement.lang = lang === 'ur' ? 'ur' : 'en-GB';
+    this.applyDocument(lang);
+    if (lang === 'ur') {
+      this.clearGoogleTranslate();
     }
     try {
       window.localStorage.setItem(STORAGE_KEY, lang);
@@ -36,5 +44,31 @@ export class LanguageService {
 
   toggle(): void {
     this.setLang(this.lang() === 'en' ? 'ur' : 'en');
+  }
+
+  /** Remove Google Translate cookie/hash so native Urdu is shown cleanly. */
+  clearGoogleTranslate(): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
+    document.cookie = 'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+    document.cookie =
+      'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=' +
+      window.location.hostname;
+    const root = document.documentElement;
+    root.classList.remove('translated-ltr', 'translated-rtl');
+    if (window.location.hash.startsWith('#googtrans')) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }
+
+  private applyDocument(lang: UiLang): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
+    const root = document.documentElement;
+    root.lang = lang === 'ur' ? 'ur' : 'en-GB';
+    root.dir = lang === 'ur' ? 'rtl' : 'ltr';
+    root.classList.toggle('urdu', lang === 'ur');
   }
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../i18n/language.service';
 
 interface PrivacyBlock {
   readonly title: string;
@@ -10,6 +11,8 @@ interface PrivacyBlock {
   templateUrl: './privacy.html',
 })
 export class Privacy {
+  protected readonly i18n = inject(LanguageService);
+
   protected readonly updated = '20 August 2026';
 
   protected readonly blocks: readonly PrivacyBlock[] = [

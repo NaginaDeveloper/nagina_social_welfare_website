@@ -2,17 +2,20 @@
   <div class="geo-pattern absolute inset-0 opacity-30" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-2xl text-center">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Our Apps
+        {{ i18n.t('apps.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Manage everything, right from
-        <span class="text-gold-gradient">your pocket</span>
+        {{ i18n.t('apps.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('apps.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Purpose-built mobile apps for parents, teachers, administrators and
-        collectors — available now on the Google Play Store.
+        {{ i18n.t('apps.lead') }}
       </p>
     </div>
 
@@ -20,6 +23,7 @@
       @for (app of apps; track app.id) {
         <article
           class="group flex flex-col rounded-3xl border border-mist bg-white p-5 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-portal sm:p-8"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
         >
           <div class="flex items-center gap-4">
             <span
@@ -48,12 +52,12 @@
             <span
               class="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-gold-600"
             >
-              {{ app.role }}
+              {{ i18n.pick(app.role, app.roleUr) }}
             </span>
           </div>
 
           <h3 class="mt-6 font-display text-xl font-bold text-forest sm:text-2xl">{{ app.name }}</h3>
-          <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-warm">{{ app.description }}</p>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-warm">{{ i18n.pick(app.description, app.descriptionUr) }}</p>
 
           <a
             [href]="app.url"
@@ -68,9 +72,8 @@
               <path fill="#f87171" d="M48 24.6 286.4 255.9l75.1-80.3z" />
               <path fill="#60a5fa" d="M48 487.4 361.5 336.2l-75.1-80.3z" />
             </svg>
-            <span class="flex flex-col leading-tight text-left">
-              <span class="text-[0.6rem] uppercase tracking-wide text-cream/70">Get it on</span>
-              <span class="font-semibold">Google Play</span>
+            <span class="flex flex-col leading-tight text-left" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+              <span class="font-semibold">{{ i18n.t('apps.play') }}</span>
             </span>
           </a>
         </article>

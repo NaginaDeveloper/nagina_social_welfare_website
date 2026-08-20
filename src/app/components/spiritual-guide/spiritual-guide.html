@@ -3,7 +3,7 @@
 
   <div class="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
     <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-      Spiritual Guide
+      {{ i18n.t('guide.eyebrow') }}
     </span>
 
     <div class="relative mx-auto mt-8 w-44 sm:w-52">
@@ -27,7 +27,7 @@
     </div>
 
     <p
-      class="mt-8 font-arabic text-2xl leading-relaxed text-forest sm:text-3xl"
+      class="mt-8 font-arabic text-2xl leading-relaxed text-forest notranslate sm:text-3xl"
       lang="ur"
       dir="rtl"
     >
@@ -35,21 +35,23 @@
     </p>
 
     <h1 class="mt-4 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">
-      Allama Munir Ahmed Yusufi
+      {{ i18n.pick('Allama Munir Ahmed Yusufi', 'علامہ منیر احمد یوسفی') }}
     </h1>
 
     <p class="mt-2 text-sm font-medium italic tracking-wide text-gold-600 sm:text-base">
-      Munir-e-Islam
+      {{ i18n.pick('Munir-e-Islam', 'منیرِ اسلام') }}
     </p>
 
     <p class="mt-1 text-xs font-semibold uppercase tracking-[0.22em] text-slate-warm/70">
       1945 &ndash; 2019
     </p>
 
-    <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-warm sm:text-lg">
-      A beloved scholar and Sufi guide whose teaching of sweet manner, patience,
-      knowledge and charity continues to light the work of Nagina Social Welfare
-      and Markaz Deen-e-Islam. May Allah elevate his rank. Ameen.
+    <p
+      class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-warm sm:text-lg"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      {{ i18n.t('guide.lead') }}
     </p>
 
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -58,14 +60,14 @@
         fragment="shajra"
         class="inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream shadow-soft transition-all duration-300 hover:bg-emerald"
       >
-        Shajra Sharif
+        {{ i18n.t('guide.shajra') }}
       </a>
       <a
         routerLink="/spiritual-guide"
         fragment="photographs"
         class="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-white px-6 py-3 text-sm font-semibold text-forest shadow-soft transition-all duration-300 hover:border-gold/40 hover:text-gold-600"
       >
-        Photographs
+        {{ i18n.t('guide.photos') }}
       </a>
       <a
         [href]="wikipediaUrl"
@@ -74,7 +76,7 @@
         class="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-white px-6 py-3 text-sm font-semibold text-forest shadow-soft transition-all duration-300 hover:border-gold/40 hover:text-gold-600"
         aria-label="Read Allama Munir Ahmed Yusufi on Wikipedia (opens in a new tab)"
       >
-        View on Wikipedia
+        {{ i18n.t('guide.wikipedia') }}
         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
         </svg>

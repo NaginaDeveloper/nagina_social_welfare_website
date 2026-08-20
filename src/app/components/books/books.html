@@ -2,42 +2,45 @@
   <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-2xl text-center">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Books
+        {{ i18n.t('books.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Seedha Rasta
-        <span class="text-gold-gradient">library</span>
+        {{ i18n.t('books.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('books.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Islamic books from the Seedha Rasta collection — open any title to read or
-        download the PDF.
+        {{ i18n.t('books.lead') }}
       </p>
     </div>
 
     <div class="mx-auto mt-10 max-w-md">
-      <label class="sr-only" for="books-search">Search books</label>
+      <label class="sr-only" for="books-search">{{ i18n.t('books.searchLabel') }}</label>
       <input
         id="books-search"
         type="search"
         [ngModel]="search"
         (ngModelChange)="onSearch($event)"
-        placeholder="Search by title…"
+        [placeholder]="i18n.t('books.search')"
         class="w-full rounded-2xl border border-mist bg-white px-5 py-3.5 text-sm text-forest shadow-soft outline-none ring-gold/0 transition focus:border-gold/40 focus:ring-2 focus:ring-gold/20"
       />
     </div>
 
     @if (!books.loaded()) {
-      <p class="mt-14 text-center text-sm text-slate-warm" role="status">Loading books…</p>
+      <p class="mt-14 text-center text-sm text-slate-warm" role="status">{{ i18n.t('books.loading') }}</p>
     } @else if (books.error()) {
       <p class="mt-14 text-center text-sm text-slate-warm">{{ books.error() }}</p>
     } @else if (books.filteredBooks().length === 0) {
-      <p class="mt-14 text-center text-sm text-slate-warm">No books match your search.</p>
+      <p class="mt-14 text-center text-sm text-slate-warm">{{ i18n.t('books.empty') }}</p>
     } @else {
       <p class="mt-10 text-center text-sm text-slate-warm">
         {{ books.filteredBooks().length }}
-        {{ books.filteredBooks().length === 1 ? 'book' : 'books' }}
+        {{ books.filteredBooks().length === 1 ? i18n.t('books.one') : i18n.t('books.many') }}
       </p>
 
       <div class="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">

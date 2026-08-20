@@ -128,14 +128,13 @@
       <div class="flex flex-col gap-3 border-b border-mist pb-5 sm:flex-row sm:items-start sm:justify-between sm:pb-6">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-600">
-            Card or wallet
+            {{ i18n.t('donate.cardTitle') }}
           </p>
           <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
-            Donate online with SumUp
+            {{ i18n.t('donate.cardLead') }}
           </h3>
           <p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-warm">
-            You will be taken to SumUp’s secure payment page. We never see or
-            store your card details on this website.
+{{ i18n.t('donate.cardHint') }}
           </p>
         </div>
         <span class="w-fit rounded-full bg-sand px-3.5 py-1.5 text-xs font-medium text-slate-warm">
@@ -144,7 +143,7 @@
       </div>
 
       <fieldset class="mt-6">
-        <legend class="sr-only">Donation amount</legend>
+        <legend class="sr-only">{{ i18n.t('donate.amountLegend') }}</legend>
         <div class="flex flex-wrap gap-2 sm:gap-3">
           @for (preset of presets; track preset) {
             <button
@@ -174,13 +173,13 @@
             [class.hover:border-gold/40]="selectedPreset() !== 'custom'"
             (click)="selectPreset('custom')"
           >
-            Custom
+            {{ i18n.t('donate.custom') }}
           </button>
         </div>
 
         @if (selectedPreset() === 'custom') {
           <label class="mt-4 block">
-            <span class="text-sm font-medium text-slate-warm">Amount (GBP)</span>
+            <span class="text-sm font-medium text-slate-warm">{{ i18n.t('donate.amountGbp') }}</span>
             <div class="relative mt-2">
               <span
                 class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-warm"
@@ -202,7 +201,7 @@
                 placeholder="5.00"
               />
             </div>
-            <p class="mt-2 text-xs text-slate-warm">Minimum online donation £{{ minDonationGbp }}.</p>
+            <p class="mt-2 text-xs text-slate-warm">{{ i18n.t('donate.minOnline').replace('{n}', '' + minDonationGbp) }}</p>
           </label>
         }
       </fieldset>
@@ -219,7 +218,7 @@
         [disabled]="checkoutLoading() || !canStartCheckout()"
         (click)="startCardDonation()"
       >
-        {{ checkoutLoading() ? 'Connecting securely…' : 'Donate securely with SumUp' }}
+        {{ checkoutLoading() ? i18n.t('donate.connecting') : i18n.t('donate.sumupCta') }}
       </button>
     </div>
 
@@ -230,15 +229,13 @@
       <div class="grid items-stretch gap-0 lg:grid-cols-[1.15fr_minmax(15rem,17rem)]">
         <div class="flex flex-col justify-center p-5 sm:p-10">
           <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-600">
-            Bank app · NatWest PayIt
+            {{ i18n.t('donate.payitTitle') }}
           </p>
           <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
-            Pay with a secure payment link
+            {{ i18n.t('donate.payitLead') }}
           </h3>
           <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-warm">
-            Open our NatWest PayIt link on your phone, or scan the QR code with
-            your banking app. Safe, quick, and paid straight to
-            Nagina Social Welfare UK Ltd.
+{{ i18n.t('donate.payitHint') }}
           </p>
           <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
@@ -247,7 +244,7 @@
               rel="noopener noreferrer"
               class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald sm:w-auto"
             >
-              Open payment link
+              {{ i18n.t('donate.openPayit') }}
               <svg class="h-3.5 w-3.5 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
               </svg>
@@ -257,7 +254,7 @@
               class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-forest/15 bg-sand px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 sm:w-auto"
               (click)="copyValue('PayIt link', payItUrl)"
             >
-              {{ copiedKey() === 'PayIt link' ? 'Link copied' : 'Copy link' }}
+              {{ copiedKey() === 'PayIt link' ? i18n.t('donate.linkCopied') : i18n.t('donate.copyLink') }}
             </button>
           </div>
         </div>
@@ -290,11 +287,10 @@
             PayPal
           </p>
           <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
-            Pay with PayPal
+            {{ i18n.t('donate.paypalTitle') }}
           </h3>
           <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-warm">
-            Open our secure PayPal link, or scan the QR code with the PayPal app.
-            Scan. Pay. Go. — gifts go to Nagina Social Welfare UK Ltd.
+{{ i18n.t('donate.paypalHint') }}
           </p>
           <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
@@ -303,7 +299,7 @@
               rel="noopener noreferrer"
               class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald sm:w-auto"
             >
-              Open PayPal link
+              {{ i18n.t('donate.openPaypal') }}
               <svg class="h-3.5 w-3.5 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
               </svg>
@@ -313,7 +309,7 @@
               class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-forest/15 bg-sand px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 sm:w-auto"
               (click)="copyValue('PayPal link', payPalUrl)"
             >
-              {{ copiedKey() === 'PayPal link' ? 'Link copied' : 'Copy link' }}
+              {{ copiedKey() === 'PayPal link' ? i18n.t('donate.linkCopied') : i18n.t('donate.copyLink') }}
             </button>
           </div>
         </div>
@@ -342,10 +338,10 @@
         <div class="flex flex-col gap-3 border-b border-mist pb-5 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-4 sm:pb-6">
           <div>
             <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-600">
-              Bank transfer
+              {{ i18n.t('donate.bankTitle') }}
             </p>
             <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
-              UK account details
+              {{ i18n.t('donate.ukAccount') }}
             </h3>
           </div>
           <span class="w-fit rounded-full bg-sand px-3.5 py-1.5 text-xs font-medium text-slate-warm">
@@ -354,9 +350,9 @@
         </div>
 
         <dl class="mt-2 divide-y divide-mist">
-          @for (field of fields; track field.label) {
+          @for (field of fields; track field.labelKey) {
             <div class="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-5">
-              <dt class="text-sm font-medium text-slate-warm">{{ field.label }}</dt>
+              <dt class="text-sm font-medium text-slate-warm">{{ i18n.t(field.labelKey) }}</dt>
               <dd class="flex min-w-0 flex-col gap-2.5 sm:max-w-[22rem] sm:flex-row sm:items-center sm:justify-end sm:gap-3">
                 <span
                   class="min-w-0 break-all text-left text-base font-semibold text-forest sm:text-right"
@@ -367,10 +363,10 @@
                 <button
                   type="button"
                   class="inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-full border border-forest/10 bg-sand px-4 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 sm:min-h-0 sm:w-auto sm:px-3 sm:py-1.5 sm:text-xs"
-                  (click)="copyValue(field.label, field.value)"
-                  [attr.aria-label]="'Copy ' + field.label"
+                  (click)="copyValue(field.labelKey, field.value)"
+                  [attr.aria-label]="i18n.t(field.labelKey)"
                 >
-                  {{ copiedKey() === field.label ? 'Copied' : 'Copy' }}
+                  {{ copiedKey() === field.labelKey ? i18n.t('donate.copied') : i18n.t('donate.copy') }}
                 </button>
               </dd>
             </div>
@@ -387,23 +383,23 @@
       <aside class="flex flex-col justify-between gap-8 rounded-[1.5rem] bg-gradient-to-br from-forest via-emerald to-forest-800 p-5 text-cream shadow-portal sm:rounded-[1.75rem] sm:p-10">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">
-            Where it goes
+            {{ i18n.t('donate.whereTitle') }}
           </p>
           <h3 class="mt-3 font-display text-xl font-bold leading-snug sm:text-3xl">
-            Education, welfare &amp; community care
+            {{ i18n.t('donate.whereHeadline') }}
           </h3>
           <ul class="mt-6 space-y-3 text-sm leading-relaxed text-cream/75">
             <li class="flex gap-3">
               <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>
-              Qur’an and Islamic studies at Markaz Deen-e-Islam
+              {{ i18n.t('donate.where1') }}
             </li>
             <li class="flex gap-3">
               <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>
-              Organised charity collections across the UK
+              {{ i18n.t('donate.where2') }}
             </li>
             <li class="flex gap-3">
               <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>
-              Community gatherings, langar and pastoral support
+              {{ i18n.t('donate.where3') }}
             </li>
           </ul>
         </div>

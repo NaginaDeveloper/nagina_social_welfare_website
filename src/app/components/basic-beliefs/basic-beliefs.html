@@ -2,44 +2,50 @@
   <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-3xl text-center">
+    <div
+      class="mx-auto max-w-3xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Aqeedah
+        {{ i18n.t('beliefs.eyebrow') }}
       </span>
       <p
-        class="font-arabic text-2xl leading-relaxed text-forest sm:text-3xl"
+        class="font-arabic text-2xl leading-relaxed text-forest sm:text-3xl notranslate"
         lang="ur"
         dir="rtl"
       >
         بنیادی عقائد
       </p>
       <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Basic Beliefs of
-        <span class="text-gold-gradient">Hanafi Barelvi Ahl al-Sunnah</span>
+        {{ i18n.t('beliefs.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('beliefs.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        {{ intro }}
+        {{ i18n.pick(intro, introUr) }}
       </p>
     </div>
 
     <div
       class="mx-auto mt-10 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-5 text-center sm:px-8"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
       <p class="text-sm leading-relaxed text-slate-warm sm:text-base">
-        {{ disclaimer }}
+        {{ i18n.pick(disclaimer, disclaimerUr) }}
       </p>
     </div>
 
     <div class="mx-auto mt-16 max-w-4xl space-y-14">
       @for (category of beliefCategories; track category.title) {
-        <section>
+        <section [attr.dir]="i18n.isUr() ? 'rtl' : null" [attr.lang]="i18n.isUr() ? 'ur' : null">
           <div class="text-center sm:text-left">
             <h2 class="font-display text-2xl font-bold text-forest sm:text-3xl">
-              {{ category.title }}
+              {{ i18n.pick(category.title, category.titleUr) }}
             </h2>
-            @if (category.lead) {
+            @if (category.lead && category.leadUr) {
               <p class="mt-3 text-base leading-relaxed text-slate-warm sm:text-lg">
-                {{ category.lead }}
+                {{ i18n.pick(category.lead, category.leadUr) }}
               </p>
             }
           </div>
@@ -53,7 +59,7 @@
                   class="cursor-pointer list-none px-6 py-5 font-display text-lg font-semibold leading-snug text-forest marker:hidden sm:text-xl [&::-webkit-details-marker]:hidden"
                 >
                   <span class="flex items-start justify-between gap-4">
-                    <span>{{ faq.question }}</span>
+                    <span>{{ i18n.pick(faq.question, faq.questionUr) }}</span>
                     <span
                       class="mt-1 shrink-0 text-gold-600 transition-transform group-open:rotate-45"
                       aria-hidden="true"
@@ -62,15 +68,15 @@
                 </summary>
                 <div class="border-t border-mist/80 px-6 pb-6 pt-4">
                   <p class="text-base leading-relaxed text-slate-warm sm:text-lg">
-                    {{ faq.answer }}
+                    {{ i18n.pick(faq.answer, faq.answerUr) }}
                   </p>
-                  @if (faq.relatedPath && faq.relatedLabel) {
+                  @if (faq.relatedPath && faq.relatedLabel && faq.relatedLabelUr) {
                     <p class="mt-4">
                       <a
                         [routerLink]="faq.relatedPath"
                         class="text-sm font-semibold text-gold-700 underline decoration-gold/40 underline-offset-2 hover:text-gold-600"
                       >
-                        {{ faq.relatedLabel }} →
+                        {{ i18n.pick(faq.relatedLabel, faq.relatedLabelUr) }} →
                       </a>
                     </p>
                   }
@@ -84,16 +90,18 @@
 
     <div
       class="mx-auto mt-16 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-8 text-center sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
       <p class="font-display text-xl leading-relaxed text-forest sm:text-2xl">
-        {{ closing }}
+        {{ i18n.pick(closing, closingUr) }}
       </p>
       <p class="mt-6">
         <a
           routerLink="/contact"
           class="inline-flex items-center justify-center rounded-full border border-gold/40 bg-white px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold hover:bg-gold/10"
         >
-          Contact Markaz for personal guidance
+          {{ i18n.t('beliefs.contactCta') }}
         </a>
       </p>
     </div>

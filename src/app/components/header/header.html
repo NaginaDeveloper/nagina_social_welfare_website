@@ -71,7 +71,7 @@
               <span class="hidden 2xl:inline-flex">
                 <ng-container *ngTemplateOutlet="navIcon; context: { $implicit: group.icon, size: 'h-3.5 w-3.5' }" />
               </span>
-              {{ group.label }}
+              {{ i18n.t(group.labelKey) }}
               <svg
                 class="h-3 w-3 opacity-70 transition-transform duration-200"
                 [class.rotate-180]="isGroupOpen(group.id)"
@@ -93,14 +93,14 @@
                 [class.right-0]="group.id === 'connect'"
                 [style.width]="menuPanelWidth(group)"
                 role="menu"
-                [attr.aria-label]="group.label"
+                [attr.aria-label]="i18n.t(group.labelKey)"
               >
                 <div
                   class="grid"
                   [class.grid-cols-1]="group.items.length <= 4"
                   [class.grid-cols-2]="group.items.length > 4"
                 >
-                @for (item of group.items; track item.label) {
+                @for (item of group.items; track item.labelKey) {
                   <a
                     [routerLink]="item.path"
                     role="menuitem"
@@ -122,9 +122,9 @@
                       />
                     </span>
                     <span class="flex min-w-0 flex-col gap-0.5">
-                      <span class="text-sm font-medium leading-snug">{{ item.label }}</span>
-                      @if (item.hint) {
-                        <span class="text-[0.7rem] leading-snug text-cream/70">{{ item.hint }}</span>
+                      <span class="text-sm font-medium leading-snug">{{ i18n.t(item.labelKey) }}</span>
+                      @if (item.hintKey) {
+                        <span class="text-[0.7rem] leading-snug text-cream/70">{{ i18n.t(item.hintKey) }}</span>
                       }
                     </span>
                   </a>
@@ -200,7 +200,12 @@
         <span class="hidden 2xl:inline">{{ i18n.t('header.donate') }}</span>
       </a>
 
-      <div class="flex h-10 items-center rounded-full border border-cream/25 p-0.5 text-[0.68rem] font-semibold">
+      <app-google-translate hostId="nagina-google-translate-desktop" />
+
+      <div
+        class="flex h-10 items-center rounded-full border border-cream/25 p-0.5 text-[0.68rem] font-semibold"
+        [attr.aria-label]="i18n.t('header.langAria')"
+      >
         <button
           type="button"
           class="rounded-full px-2.5 py-1.5 transition-colors"
@@ -370,10 +375,10 @@
               <ng-container
                 *ngTemplateOutlet="navIcon; context: { $implicit: group.icon, size: 'h-3.5 w-3.5' }"
               />
-              {{ group.label }}
+              {{ i18n.t(group.labelKey) }}
             </p>
             <ul class="flex flex-col">
-              @for (item of group.items; track item.label) {
+              @for (item of group.items; track item.labelKey) {
                 <li>
                   <a
                     [routerLink]="item.path"
@@ -395,9 +400,9 @@
                       />
                     </span>
                     <span class="flex min-w-0 flex-1 flex-col">
-                      <span class="font-medium">{{ item.label }}</span>
-                      @if (item.hint) {
-                        <span class="text-[0.72rem] leading-snug text-cream/70">{{ item.hint }}</span>
+                      <span class="font-medium">{{ i18n.t(item.labelKey) }}</span>
+                      @if (item.hintKey) {
+                        <span class="text-[0.72rem] leading-snug text-cream/70">{{ i18n.t(item.hintKey) }}</span>
                       }
                     </span>
                     @if (isLinkActive(item)) {
@@ -412,7 +417,13 @@
       </div>
 
       <div class="border-t border-white/10 p-3">
-        <div class="mb-3 flex items-center justify-center gap-1 rounded-full border border-cream/20 p-1 text-sm font-semibold">
+        <div class="mb-3 flex justify-center">
+          <app-google-translate hostId="nagina-google-translate-mobile" />
+        </div>
+        <div
+          class="mb-3 flex items-center justify-center gap-1 rounded-full border border-cream/20 p-1 text-sm font-semibold"
+          [attr.aria-label]="i18n.t('header.langAria')"
+        >
           <button
             type="button"
             class="flex-1 rounded-full px-3 py-2"

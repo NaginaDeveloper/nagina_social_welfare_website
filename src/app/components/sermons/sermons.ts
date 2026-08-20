@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit, inject, signal } from '@angular/core';
+import { LanguageService } from '../../i18n/language.service';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, type SafeResourceUrl } from '@angular/platform-browser';
 import { SermonsService } from '../../services/sermons.service';
@@ -10,6 +11,8 @@ import type { Sermon } from '../../models/sermon';
   templateUrl: './sermons.html',
 })
 export class Sermons implements OnInit {
+  protected readonly i18n = inject(LanguageService);
+
   protected readonly sermons = inject(SermonsService);
   private readonly sanitizer = inject(DomSanitizer);
 

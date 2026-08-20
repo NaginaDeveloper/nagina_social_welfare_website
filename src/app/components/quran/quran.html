@@ -2,32 +2,34 @@
   <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-2xl text-center">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Blessed Quran e Pak
+        {{ i18n.t('quran.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        The Blessed Quran Majeed with
-        <span class="text-gold-gradient">Kanzul Iman</span>
+        {{ i18n.t('quran.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('quran.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Recite and reflect upon the Holy Quran with the blessed translation of
-        Aala Hazrat Imam Ahmed Raza Khan
-        <span class="font-arabic text-forest/80" lang="ar" dir="rtl">(رحمة الله عليه)</span>
-        — Kanzul Iman.
+        {{ i18n.t('quran.lead') }}
+        <span class="font-arabic text-forest/80 notranslate" lang="ar" dir="rtl">(رحمة الله عليه)</span>
       </p>
     </div>
 
     <!-- Surah picker -->
     @if (!quran.currentSurah() && !quran.loadingSurah()) {
       <div class="mx-auto mt-10 max-w-md">
-        <label class="sr-only" for="quran-search">Search the Holy Quran by surah</label>
+        <label class="sr-only" for="quran-search">{{ i18n.t('quran.searchLabel') }}</label>
         <input
           id="quran-search"
           type="search"
           [ngModel]="search"
           (ngModelChange)="onSearch($event)"
-          placeholder="Search a blessed surah by name or number…"
+          [placeholder]="i18n.t('quran.search')"
           class="w-full rounded-2xl border border-mist bg-white px-5 py-3.5 text-sm text-forest shadow-soft outline-none ring-gold/0 transition focus:border-gold/40 focus:ring-2 focus:ring-gold/20"
         />
       </div>
@@ -37,7 +39,7 @@
           class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14"
           role="status"
         >
-          <p class="text-sm font-medium text-slate-warm">Loading the Blessed Quran Majeed…</p>
+          <p class="text-sm font-medium text-slate-warm">{{ i18n.t('quran.loading') }}</p>
         </div>
       } @else if (quran.error() && quran.surahs().length === 0) {
         <div
@@ -84,7 +86,7 @@
                     {{ surah.englishName }}
                   </span>
                   <span
-                    class="font-arabic shrink-0 text-lg leading-none text-forest/90"
+                    class="font-arabic shrink-0 text-lg leading-none text-forest/90 notranslate"
                     lang="ar"
                     dir="rtl"
                   >
@@ -228,7 +230,7 @@
           Blessed translation:
           <span class="font-medium text-forest">Kanzul Iman</span>
           by Aala Hazrat Imam Ahmed Raza Khan
-          <span class="font-arabic" lang="ar" dir="rtl">(رحمة الله عليه)</span>
+          <span class="font-arabic notranslate" lang="ar" dir="rtl">(رحمة الله عليه)</span>
           · Blessed recitation: Mishary Rashid Alafasy
         </p>
 
@@ -238,7 +240,7 @@
             class="mb-6 rounded-[1.5rem] border border-gold/20 bg-gradient-to-b from-sand to-white px-6 py-8 text-center shadow-soft sm:mb-8 sm:rounded-[1.75rem]"
           >
             <p
-              class="font-arabic text-2xl leading-loose text-forest sm:text-3xl"
+              class="font-arabic text-2xl leading-loose text-forest sm:text-3xl notranslate"
               lang="ar"
               dir="rtl"
             >
@@ -305,7 +307,7 @@
               </div>
 
               <p
-                class="font-arabic text-right text-2xl leading-[2.1] text-forest sm:text-[1.75rem]"
+                class="font-arabic text-right text-2xl leading-[2.1] text-forest sm:text-[1.75rem] notranslate"
                 lang="ar"
                 dir="rtl"
               >

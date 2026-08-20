@@ -2,23 +2,35 @@
   <div class="geo-pattern absolute inset-0 opacity-15" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-3xl px-5 sm:px-8">
-    <div class="text-center">
+    <div
+      class="text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Legal
+        {{ i18n.t('privacy.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Privacy
-        <span class="text-gold-gradient">notice</span>
+        {{ i18n.t('privacy.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('privacy.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        How Nagina Social Welfare handles information when you use this website.
+        {{ i18n.t('privacy.lead') }}
       </p>
       <p class="mt-3 text-xs font-medium uppercase tracking-[0.18em] text-slate-warm/80">
-        Last updated · {{ updated }}
+        {{ i18n.t('privacy.updated') }} · {{ updated }}
       </p>
     </div>
 
     <div class="mt-12 space-y-8 rounded-[1.75rem] border border-mist bg-white px-6 py-8 shadow-soft sm:px-10 sm:py-10">
+      <article [attr.dir]="i18n.isUr() ? 'rtl' : null" [attr.lang]="i18n.isUr() ? 'ur' : null">
+        <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
+          {{ i18n.t('privacy.googleTranslateTitle') }}
+        </h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-slate-warm sm:text-base">
+          {{ i18n.t('privacy.googleTranslateBody') }}
+        </p>
+      </article>
       @for (block of blocks; track block.title) {
         <article>
           <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
@@ -31,8 +43,8 @@
       }
     </div>
 
-    <p class="mt-6 text-center text-xs text-slate-warm/80">
-      Questions?
+    <p class="mt-6 text-center text-xs text-slate-warm/80" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      {{ i18n.t('privacy.questions') }}
       <a href="mailto:info@naginasocialwelfare.co.uk" class="font-medium text-gold-600 hover:underline">
         info&#64;naginasocialwelfare.co.uk
       </a>

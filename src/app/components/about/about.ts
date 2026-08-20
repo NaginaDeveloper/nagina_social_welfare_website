@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../i18n/language.service';
 
 interface Pillar {
-  readonly title: string;
-  readonly text: string;
+  readonly titleKey: string;
+  readonly textKey: string;
   readonly icon: 'crescent' | 'hands' | 'globe';
 }
 
@@ -11,21 +12,11 @@ interface Pillar {
   templateUrl: './about.html',
 })
 export class About {
+  protected readonly i18n = inject(LanguageService);
+
   protected readonly pillars: readonly Pillar[] = [
-    {
-      title: 'Authentic Knowledge',
-      text: 'Learning rooted in the Qur\u2019an, Sunnah and the classical scholarly tradition.',
-      icon: 'crescent',
-    },
-    {
-      title: 'Compassion in Action',
-      text: 'Serving those in need through organised, transparent charity and community welfare.',
-      icon: 'hands',
-    },
-    {
-      title: 'Accessible to All',
-      text: 'Removing barriers so that quality education reaches every learner, everywhere.',
-      icon: 'globe',
-    },
+    { titleKey: 'about.pillar1Title', textKey: 'about.pillar1Text', icon: 'crescent' },
+    { titleKey: 'about.pillar2Title', textKey: 'about.pillar2Text', icon: 'hands' },
+    { titleKey: 'about.pillar3Title', textKey: 'about.pillar3Text', icon: 'globe' },
   ];
 }

@@ -11,7 +11,7 @@
   }
 
   <div
-    class="relative mx-auto flex max-w-6xl flex-col items-stretch justify-between gap-5 px-5 py-10 sm:flex-row sm:items-center sm:gap-6 sm:px-8 sm:py-12"
+    class="relative mx-auto flex max-w-6xl flex-col items-stretch justify-between gap-5 px-5 py-10 sm:flex-row sm:items-center sm:gap-6 sm:px-8 sm:py-12" [attr.dir]="i18n.isUr() ? 'rtl' : null"
   >
     <div class="min-w-0 max-w-xl">
       <p
@@ -19,21 +19,21 @@
         [class.text-gold-600]="tone() === 'cream'"
         [class.text-gold-300]="tone() === 'forest'"
       >
-        {{ eyebrow() }}
+        {{ eyebrow() ?? i18n.t('donateInvite.eyebrow') }}
       </p>
       <h2
         class="mt-2 font-display text-2xl font-bold leading-tight sm:text-3xl"
         [class.text-forest]="tone() === 'cream'"
         [class.text-cream]="tone() === 'forest'"
       >
-        {{ headline() }}
+        {{ headline() ?? i18n.t('donateInvite.headline') }}
       </h2>
       <p
         class="mt-2 text-sm leading-relaxed sm:text-base"
         [class.text-slate-warm]="tone() === 'cream'"
         [class.text-cream/75]="tone() === 'forest'"
       >
-        {{ lead() }}
+        {{ lead() ?? i18n.t('donateInvite.lead') }}
       </p>
     </div>
 
@@ -48,7 +48,7 @@
           d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z"
         />
       </svg>
-      {{ ctaLabel() }}
+      {{ ctaLabel() ?? i18n.t('donateInvite.cta') }}
     </a>
   </div>
 </aside>

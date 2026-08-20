@@ -8,7 +8,7 @@ import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 export type DonationFund = 'zakat' | 'sadaqah' | 'lillah' | 'fitrana';
 
 interface BankField {
-  readonly label: string;
+  readonly labelKey: string;
   readonly value: string;
   readonly mono?: boolean;
 }
@@ -73,12 +73,12 @@ export class Donations {
   ];
 
   protected readonly fields: readonly BankField[] = [
-    { label: 'Account name', value: 'NAGINA SOCIAL WELFAR' },
-    { label: 'Bank', value: 'NatWest' },
-    { label: 'Sort code', value: '54-21-38', mono: true },
-    { label: 'Account number', value: '29135877', mono: true },
-    { label: 'BIC', value: 'NWBKGB2L', mono: true },
-    { label: 'IBAN', value: 'GB09 NWBK 5421 3829 1358 77', mono: true },
+    { labelKey: 'donate.accountName', value: 'NAGINA SOCIAL WELFAR' },
+    { labelKey: 'donate.bank', value: 'NatWest' },
+    { labelKey: 'donate.sortCode', value: '54-21-38', mono: true },
+    { labelKey: 'donate.accountNumber', value: '29135877', mono: true },
+    { labelKey: 'donate.bic', value: 'NWBKGB2L', mono: true },
+    { labelKey: 'donate.iban', value: 'GB09 NWBK 5421 3829 1358 77', mono: true },
   ];
 
   protected readonly payItUrl =
@@ -192,9 +192,9 @@ export class Donations {
 
   protected async copyValue(label: string, value: string): Promise<void> {
     let text = value;
-    if (label === 'Sort code') {
+    if (label === 'donate.sortCode' || label === 'Sort code') {
       text = value.replace(/-/g, '');
-    } else if (label === 'IBAN') {
+    } else if (label === 'donate.iban' || label === 'IBAN') {
       text = value.replace(/\s/g, '');
     }
     try {

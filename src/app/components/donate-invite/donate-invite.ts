@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../../i18n/language.service';
 
 /**
  * Soft, non-intrusive donate prompt — used once near the end of a page
@@ -11,16 +12,14 @@ import { RouterLink } from '@angular/router';
   templateUrl: './donate-invite.html',
 })
 export class DonateInvite {
+  protected readonly i18n = inject(LanguageService);
+
   /** Visual surface — cream sits above the forest footer; forest suits cream pages. */
   readonly tone = input<'cream' | 'forest'>('cream');
 
-  readonly eyebrow = input('Give with intention');
-
-  readonly headline = input('Help us continue this work');
-
-  readonly lead = input(
-    'Your gift supports Islamic education and community welfare across the UK.',
-  );
-
-  readonly ctaLabel = input('Donate Now');
+  /** Optional overrides; when unset, native EN/UR keys are used. */
+  readonly eyebrow = input<string | undefined>(undefined);
+  readonly headline = input<string | undefined>(undefined);
+  readonly lead = input<string | undefined>(undefined);
+  readonly ctaLabel = input<string | undefined>(undefined);
 }

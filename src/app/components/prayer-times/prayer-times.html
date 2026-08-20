@@ -2,23 +2,26 @@
   <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-2xl text-center">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Namaz Times
+        {{ i18n.t('namaz.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Today in
-        <span class="text-gold-gradient">Peterborough, UK</span>
+        {{ i18n.t('namaz.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('namaz.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Daily prayer windows for our city — Begins and Ends, updated live for
-        Europe/London time.
+        {{ i18n.t('namaz.lead') }}
       </p>
     </div>
 
     @if (prayer.loading() && !prayer.today()) {
       <div class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14 sm:rounded-[1.75rem] sm:px-8 sm:py-16">
-        <p class="text-sm font-medium text-slate-warm">Loading today’s prayer times…</p>
+        <p class="text-sm font-medium text-slate-warm">{{ i18n.t('namaz.loading') }}</p>
       </div>
     } @else if (prayer.error() && !prayer.today()) {
       <div class="mx-auto mt-10 max-w-xl rounded-[1.5rem] border border-mist bg-white/90 px-6 py-12 text-center shadow-soft sm:mt-14 sm:rounded-[1.75rem] sm:px-8 sm:py-16">
@@ -48,22 +51,22 @@
           >
             @if (prayer.currentPrayer(); as current) {
               <p class="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
-                Now
+                {{ i18n.t('namaz.now') }}
               </p>
               <p class="mt-0.5 font-display text-2xl font-bold text-forest">{{ current }}</p>
             } @else {
               <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-warm">
-                Between prayers
+                {{ i18n.t('namaz.between') }}
               </p>
-              <p class="mt-0.5 font-display text-xl font-bold text-forest">Awaiting next namaz</p>
+              <p class="mt-0.5 font-display text-xl font-bold text-forest">{{ i18n.t('namaz.awaiting') }}</p>
             }
             @if (prayer.nextPrayer(); as next) {
               <p class="mt-1.5 text-sm text-slate-warm">
-                Next:
+                {{ i18n.t('namaz.next') }}:
                 <span class="font-semibold text-gold-600">{{ next.name }}</span>
                 in {{ prayer.countdown() }}
                 @if (next.isTomorrow) {
-                  <span class="text-slate-warm/80">(tomorrow)</span>
+                  <span class="text-slate-warm/80">({{ i18n.t('namaz.tomorrow') }})</span>
                 }
               </p>
             }
@@ -75,10 +78,10 @@
           <div class="overflow-hidden rounded-[1.5rem] border border-mist bg-white shadow-soft sm:rounded-[1.75rem]">
             <div class="flex flex-wrap items-center justify-between gap-3 border-b border-mist px-4 py-4 sm:px-7">
               <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
-                Today’s namaz
+                {{ i18n.t('namaz.todayTitle') }}
               </h3>
               <p class="text-xs font-medium text-slate-warm">
-                Sunrise {{ prayer.sunrise() }}
+                {{ i18n.t('namaz.sunrise') }} {{ prayer.sunrise() }}
               </p>
             </div>
 
@@ -96,21 +99,21 @@
                     <p class="font-display text-lg font-bold text-forest">{{ slot.name }}</p>
                     @if (isCurrent(slot.name)) {
                       <span class="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-emerald-600">
-                        Now
+                        {{ i18n.t('namaz.now') }}
                       </span>
                     } @else if (isNext(slot.name)) {
                       <span class="rounded-full bg-gold/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-600">
-                        Next
+                        {{ i18n.t('namaz.next') }}
                       </span>
                     }
                   </div>
                   <div class="mt-2 flex gap-6 text-sm">
                     <p>
-                      <span class="text-slate-warm">Begins</span>
+                      <span class="text-slate-warm">{{ i18n.t('namaz.begins') }}</span>
                       <span class="ml-2 font-mono tabular-nums font-semibold text-ink">{{ slot.begins }}</span>
                     </p>
                     <p>
-                      <span class="text-slate-warm">Ends</span>
+                      <span class="text-slate-warm">{{ i18n.t('namaz.ends') }}</span>
                       <span class="ml-2 font-mono tabular-nums font-semibold text-ink">
                         {{ slot.ends }}
                         @if (slot.name === 'Isha') {
@@ -128,9 +131,9 @@
               <table class="w-full text-left">
                 <thead>
                   <tr class="border-b border-mist bg-sand/60 text-xs font-semibold uppercase tracking-[0.18em] text-slate-warm">
-                    <th scope="col" class="px-5 py-3.5 sm:px-7">Prayer</th>
-                    <th scope="col" class="px-5 py-3.5 sm:px-7">Begins</th>
-                    <th scope="col" class="px-5 py-3.5 sm:px-7">Ends</th>
+                    <th scope="col" class="px-5 py-3.5 sm:px-7">{{ i18n.t('namaz.prayer') }}</th>
+                    <th scope="col" class="px-5 py-3.5 sm:px-7">{{ i18n.t('namaz.begins') }}</th>
+                    <th scope="col" class="px-5 py-3.5 sm:px-7">{{ i18n.t('namaz.ends') }}</th>
                     <th scope="col" class="px-5 py-3.5 text-right sm:px-7">
                       <span class="sr-only">Status</span>
                     </th>
@@ -160,11 +163,11 @@
                       <td class="px-5 py-4 text-right sm:px-7">
                         @if (isCurrent(slot.name)) {
                           <span class="inline-block rounded-full bg-emerald-500/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-emerald-600">
-                            Now
+                            {{ i18n.t('namaz.now') }}
                           </span>
                         } @else if (isNext(slot.name)) {
                           <span class="inline-block rounded-full bg-gold/15 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-600">
-                            Next
+                            {{ i18n.t('namaz.next') }}
                           </span>
                         }
                       </td>

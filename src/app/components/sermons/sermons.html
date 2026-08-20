@@ -2,42 +2,45 @@
   <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="mx-auto max-w-2xl text-center">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        Bayanat
+        {{ i18n.t('sermons.eyebrow') }}
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
-        Sermons by
-        <span class="text-gold-gradient">Baba Ji Sarkar</span>
+        {{ i18n.t('sermons.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('sermons.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-        Blessed bayanat from the Seedha Rasta collection — search by title and watch on YouTube
-        (Nagina TV).
+        {{ i18n.t('sermons.lead') }}
       </p>
     </div>
 
     <div class="mx-auto mt-10 max-w-md">
-      <label class="sr-only" for="sermons-search">Search sermons</label>
+      <label class="sr-only" for="sermons-search">{{ i18n.t('sermons.searchLabel') }}</label>
       <input
         id="sermons-search"
         type="search"
         [ngModel]="search"
         (ngModelChange)="onSearch($event)"
-        placeholder="Search sermons by title…"
+        [placeholder]="i18n.t('sermons.search')"
         class="w-full rounded-2xl border border-mist bg-white px-5 py-3.5 text-sm text-forest shadow-soft outline-none transition focus:border-gold/40 focus:ring-2 focus:ring-gold/20"
       />
     </div>
 
     @if (!sermons.loaded()) {
-      <p class="mt-14 text-center text-sm text-slate-warm" role="status">Loading sermons…</p>
+      <p class="mt-14 text-center text-sm text-slate-warm" role="status">{{ i18n.t('sermons.loading') }}</p>
     } @else if (sermons.error()) {
       <p class="mt-14 text-center text-sm text-slate-warm">{{ sermons.error() }}</p>
     } @else if (sermons.filteredSermons().length === 0) {
-      <p class="mt-14 text-center text-sm text-slate-warm">No sermons match your search.</p>
+      <p class="mt-14 text-center text-sm text-slate-warm">{{ i18n.t('sermons.empty') }}</p>
     } @else {
       <p class="mt-8 text-center text-sm text-slate-warm">
         {{ sermons.filteredSermons().length }}
-        {{ sermons.filteredSermons().length === 1 ? 'sermon' : 'sermons' }}
+        {{ sermons.filteredSermons().length === 1 ? i18n.t('sermons.one') : i18n.t('sermons.many') }}
       </p>
 
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -154,7 +157,7 @@
             type="button"
             class="shrink-0 rounded-lg p-2 text-cream/80 transition-colors hover:bg-white/10 hover:text-cream"
             (click)="closePlayer()"
-            aria-label="Close player"
+            [attr.aria-label]="i18n.t('sermons.close')"
           >
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />

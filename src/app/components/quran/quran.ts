@@ -7,6 +7,7 @@ import {
   inject,
   viewChildren,
 } from '@angular/core';
+import { LanguageService } from '../../i18n/language.service';
 import { FormsModule } from '@angular/forms';
 import { BISMILLAH_ARABIC, QuranService } from '../../services/quran.service';
 import type { QuranAyah, SurahSummary } from '../../models/quran';
@@ -17,6 +18,8 @@ import type { QuranAyah, SurahSummary } from '../../models/quran';
   templateUrl: './quran.html',
 })
 export class Quran implements OnInit, OnDestroy {
+  protected readonly i18n = inject(LanguageService);
+
   protected readonly quran = inject(QuranService);
   protected readonly bismillah = BISMILLAH_ARABIC;
   protected search = '';

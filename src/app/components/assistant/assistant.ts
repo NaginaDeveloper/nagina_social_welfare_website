@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { LanguageService } from '../../i18n/language.service';
 import { FormsModule } from '@angular/forms';
 import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import {
@@ -21,6 +22,8 @@ interface RenderMessage {
   templateUrl: './assistant.html',
 })
 export class Assistant {
+  protected readonly i18n = inject(LanguageService);
+
   private readonly assistant = inject(AssistantService);
   private readonly launcher = inject(AssistantLauncherService);
 
@@ -29,6 +32,10 @@ export class Assistant {
   private lastOpenTick = 0;
 
   constructor() {
+    effect(() => {
+      this.i18n.lang();
+      this.syncWelcome();
+    });
     effect(() => {
       const tick = this.launcher.openTick();
       if (tick === this.lastOpenTick) {
@@ -49,14 +56,27 @@ export class Assistant {
   protected readonly messages = signal<readonly RenderMessage[]>([
     {
       role: 'assistant',
-      content:
-        'Assalamu alaikum. I can gently help with Hanafi Barelvi / Ahl al-Sunnah creed and guidance — first from our published Nagina pages, and when needed from broader Gemini Islamic knowledge within the same maslak — plus website questions such as donations, contact, and namaz times, in English or Urdu.',
-      disclaimer:
-        'I am not a mufti. For personal religious rulings, please contact Markaz directly.',
+      content: '',
+      disclaimer: '',
     },
   ]);
 
   protected readonly isFloating = computed(() => this.mode() === 'floating');
+
+  private syncWelcome(): void {
+    this.messages.update((messages) => {
+      if (messages.length !== 1 || messages[0]?.role !== 'assistant') {
+        return messages;
+      }
+      return [
+        {
+          role: 'assistant',
+          content: this.i18n.t('assistant.welcome'),
+          disclaimer: this.i18n.t('assistant.disclaimer'),
+        },
+      ];
+    });
+  }
 
   protected readonly prompts = [
     'What is Khatme Nabuwwat?',

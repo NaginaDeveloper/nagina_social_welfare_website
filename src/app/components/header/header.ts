@@ -13,6 +13,8 @@ import { AssistantLauncherService } from '../../services/assistant-launcher.serv
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
+import { GoogleTranslateService } from '../../i18n/google-translate.service';
+import { GoogleTranslate } from '../google-translate/google-translate';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 
 /** Simple stroke icons used in the nav. */
@@ -39,28 +41,29 @@ export type NavIcon =
   | 'connect';
 
 interface NavLink {
-  readonly label: string;
+  readonly labelKey: string;
+  readonly hintKey?: string;
   readonly path: string;
-  readonly hint?: string;
   readonly icon: NavIcon;
 }
 
 interface NavGroup {
   readonly id: string;
-  readonly label: string;
+  readonly labelKey: string;
   readonly icon: NavIcon;
   readonly items: readonly NavLink[];
 }
 
 @Component({
   selector: 'app-header',
-  imports: [NgTemplateOutlet, RouterLink, WhatsappIcon],
+  imports: [NgTemplateOutlet, RouterLink, WhatsappIcon, GoogleTranslate],
   templateUrl: './header.html',
 })
 export class Header implements OnInit {
   protected readonly org = ORGANIZATION;
   protected readonly whatsapp = whatsappHref();
   protected readonly i18n = inject(LanguageService);
+  private readonly googleTranslate = inject(GoogleTranslateService);
 
   protected readonly prayer = inject(PrayerTimesService);
   private readonly assistantLauncher = inject(AssistantLauncherService);
@@ -77,96 +80,101 @@ export class Header implements OnInit {
   protected readonly groups: readonly NavGroup[] = [
     {
       id: 'about',
-      label: 'About',
+      labelKey: 'nav.about',
       icon: 'about',
       items: [
-        { label: 'About us', path: '/about', hint: 'Who we are', icon: 'about' },
-        { label: 'Our Work', path: '/work', hint: 'Education & welfare', icon: 'work' },
+        { labelKey: 'nav.aboutUs', path: '/about', hintKey: 'nav.aboutUsHint', icon: 'about' },
+        { labelKey: 'nav.ourWork', path: '/work', hintKey: 'nav.ourWorkHint', icon: 'work' },
         {
-          label: 'Madrasa',
+          labelKey: 'nav.madrasa',
           path: '/madrasa',
-          hint: 'Islamic institute Peterborough',
+          hintKey: 'nav.madrasaHint',
           icon: 'mosque',
         },
         {
-          label: 'Spiritual Guide',
+          labelKey: 'nav.spiritualGuide',
           path: '/spiritual-guide',
-          hint: 'Shajra & photographs',
+          hintKey: 'nav.spiritualGuideHint',
           icon: 'guide',
         },
         {
-          label: 'Khatme Nabuwwat',
+          labelKey: 'nav.khatmeNabuwwat',
           path: '/khatme-nabuwwat',
-          hint: 'Finality of Prophethood',
+          hintKey: 'nav.khatmeNabuwwatHint',
           icon: 'seal',
         },
-        { label: 'Ahle Bait', path: '/ahle-bait', hint: 'The blessed family', icon: 'family' },
+        { labelKey: 'nav.ahleBait', path: '/ahle-bait', hintKey: 'nav.ahleBaitHint', icon: 'family' },
         {
-          label: 'Sahaba Ikram',
+          labelKey: 'nav.sahabaIkram',
           path: '/sahaba-ikram',
-          hint: 'The noble Companions',
+          hintKey: 'nav.sahabaIkramHint',
           icon: 'companions',
         },
         {
-          label: 'Aulia Karam',
+          labelKey: 'nav.auliaKaram',
           path: '/aulia-karam',
-          hint: 'Friends of Allah',
+          hintKey: 'nav.auliaKaramHint',
           icon: 'guide',
         },
         {
-          label: 'Basic Beliefs',
+          labelKey: 'nav.basicBeliefs',
           path: '/basic-beliefs',
-          hint: 'Hanafi Barelvi aqeedah FAQ',
+          hintKey: 'nav.basicBeliefsHint',
           icon: 'counsel',
         },
-        { label: 'Guidance', path: '/guidance', hint: 'Teachings & counsel', icon: 'counsel' },
+        { labelKey: 'nav.guidance', path: '/guidance', hintKey: 'nav.guidanceHint', icon: 'counsel' },
       ],
     },
     {
       id: 'worship',
-      label: 'Worship',
+      labelKey: 'nav.worship',
       icon: 'worship',
       items: [
-        { label: 'Namaz Times', path: '/namaz', hint: 'Peterborough, UK', icon: 'mosque' },
+        { labelKey: 'nav.namazTimes', path: '/namaz', hintKey: 'nav.namazTimesHint', icon: 'mosque' },
         {
-          label: 'Quran Majeed',
+          labelKey: 'nav.quranMajeed',
           path: '/quran',
-          hint: 'Kanzul Iman translation',
+          hintKey: 'nav.quranMajeedHint',
           icon: 'quran',
         },
       ],
     },
     {
       id: 'learn',
-      label: 'Learn',
+      labelKey: 'nav.learn',
       icon: 'learn',
       items: [
-        { label: 'Books', path: '/books', hint: 'Seedha Rasta library', icon: 'book' },
+        { labelKey: 'nav.books', path: '/books', hintKey: 'nav.booksHint', icon: 'book' },
         {
-          label: 'Sermons',
+          labelKey: 'nav.sermons',
           path: '/sermons',
-          hint: 'Baba Ji Sarkar bayanat',
+          hintKey: 'nav.sermonsHint',
           icon: 'sermon',
         },
         {
-          label: 'Nagina Assistant',
+          labelKey: 'nav.assistant',
           path: '/assistant',
-          hint: 'Ask in English or Urdu',
+          hintKey: 'nav.assistantHint',
           icon: 'assistant',
         },
-        { label: 'Apps', path: '/apps', hint: 'Mobile learning', icon: 'apps' },
+        { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
       ],
     },
     {
       id: 'connect',
-      label: 'Connect',
+      labelKey: 'nav.connect',
       icon: 'connect',
       items: [
-        { label: 'Events', path: '/events', hint: 'Gatherings & programmes', icon: 'events' },
-        { label: 'Donate', path: '/donate', hint: 'Support our work', icon: 'donate' },
-        { label: 'Contact', path: '/contact', hint: 'Get in touch', icon: 'contact' },
-        { label: 'Safeguarding', path: '/safeguarding', hint: 'Children & families', icon: 'privacy' },
-        { label: 'Privacy', path: '/privacy', hint: 'How we use data', icon: 'privacy' },
+        { labelKey: 'nav.events', path: '/events', hintKey: 'nav.eventsHint', icon: 'events' },
+        { labelKey: 'nav.donate', path: '/donate', hintKey: 'nav.donateHint', icon: 'donate' },
+        { labelKey: 'nav.contact', path: '/contact', hintKey: 'nav.contactHint', icon: 'contact' },
+        {
+          labelKey: 'nav.safeguarding',
+          path: '/safeguarding',
+          hintKey: 'nav.safeguardingHint',
+          icon: 'privacy',
+        },
+        { labelKey: 'nav.privacy', path: '/privacy', hintKey: 'nav.privacyHint', icon: 'privacy' },
       ],
     },
   ];
@@ -226,8 +234,14 @@ export class Header implements OnInit {
   }
 
   protected toggleMenu(): void {
+    const opening = !this.menuOpen();
     this.menuOpen.update((open) => !open);
     this.openGroupId.set(null);
+    if (opening) {
+      queueMicrotask(() =>
+        this.googleTranslate.remount('nagina-google-translate-mobile'),
+      );
+    }
   }
 
   protected closeMenu(): void {
