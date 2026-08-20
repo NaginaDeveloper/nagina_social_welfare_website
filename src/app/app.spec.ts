@@ -57,6 +57,7 @@ describe('App', () => {
     const checks: ReadonlyArray<[string, string]> = [
       ['/about', '#about'],
       ['/work', '#work'],
+      ['/madrasa', '#madrasa'],
       ['/spiritual-guide', '#spiritual-guide'],
       ['/khatme-nabuwwat', '#khatme-nabuwwat'],
       ['/ahle-bait', '#ahle-bait'],

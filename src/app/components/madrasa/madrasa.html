@@ -1,0 +1,87 @@
+<section id="madrasa" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        Markaz Deen-e-Islam
+      </span>
+      <p
+        class="font-arabic text-2xl leading-relaxed text-forest sm:text-3xl"
+        lang="ur"
+        dir="rtl"
+      >
+        مرکز دینِ اسلام
+      </p>
+      <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        Madrasa &amp; Islamic Institute in
+        <span class="text-gold-gradient">Peterborough</span>
+      </h1>
+      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+        Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough, offering Quran
+        classes and Islamic education for children — nurturing the next generation in knowledge,
+        faith, and good character at 103 Burmer Road, PE1 3HT.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+      <p>
+        Parents searching for a local madrasa, Islamic school, or Islamic classes for kids often
+        want a trusted place close to home. At Markaz Deen-e-Islam we welcome children and families
+        for structured Qur’an learning and Islamic studies in a warm, disciplined environment —
+        aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.
+      </p>
+      <p>
+        Whether you need evening madrasa sessions, weekend Islamic school, or ongoing Quran classes
+        for children in Peterborough, please contact us to ask about current classes and enrolment.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-4xl">
+      <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
+        What children learn with us
+      </h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        @for (item of offerings; track item.title) {
+          <article class="border-t border-mist/80 pt-6 first:border-t-0 first:pt-0 sm:border-t sm:pt-6">
+            <h3 class="font-display text-xl font-bold text-forest">{{ item.title }}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-warm sm:text-base">{{ item.text }}</p>
+          </article>
+        }
+      </div>
+    </div>
+
+    <div
+      class="mx-auto mt-16 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-8 text-center sm:px-10"
+    >
+      <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">Visit &amp; enrol</h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-warm">
+        Markaz Deen-e-Islam · 103 Burmer Road, Peterborough PE1 3HT, United Kingdom
+      </p>
+      <p class="mt-2 text-sm text-slate-warm">
+        Phone:
+        <a href="tel:+447831684738" class="font-semibold text-gold-700 hover:underline">07831 684738</a>
+        · Email:
+        <a
+          href="mailto:info@naginasocialwelfare.co.uk"
+          class="font-semibold text-gold-700 hover:underline"
+          >info&#64;naginasocialwelfare.co.uk</a
+        >
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          routerLink="/contact"
+          class="inline-flex items-center justify-center rounded-full border border-gold/40 bg-white px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold hover:bg-gold/10"
+        >
+          Contact for class times
+        </a>
+        <a
+          routerLink="/work"
+          class="inline-flex items-center justify-center rounded-full border border-mist px-6 py-3 text-sm font-medium text-slate-warm transition-colors hover:border-gold/40 hover:text-forest"
+        >
+          Our Work overview
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

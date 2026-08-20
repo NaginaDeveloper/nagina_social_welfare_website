@@ -40,6 +40,7 @@ export class Footer {
       items: [
         { label: 'About us', path: '/about' },
         { label: 'Our Work', path: '/work' },
+        { label: 'Madrasa', path: '/madrasa' },
         { label: 'Spiritual Guide', path: '/spiritual-guide' },
         { label: 'Khatme Nabuwwat', path: '/khatme-nabuwwat' },
         { label: 'Ahle Bait', path: '/ahle-bait' },

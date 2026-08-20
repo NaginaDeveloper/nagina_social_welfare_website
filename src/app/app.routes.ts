@@ -21,6 +21,7 @@ import {
   SERMONS_SEO,
   SPIRITUAL_GUIDE_SEO,
   WORK_SEO,
+  MADRASA_SEO,
 } from './seo/seo.config';
 
 export const routes: Routes = [
@@ -41,6 +42,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/work/work-page').then((m) => m.WorkPage),
     title: WORK_SEO.title,
     data: { seo: WORK_SEO },
+  },
+  {
+    path: 'madrasa',
+    loadComponent: () => import('./pages/madrasa/madrasa-page').then((m) => m.MadrasaPage),
+    title: MADRASA_SEO.title,
+    data: { seo: MADRASA_SEO },
   },
   {
     path: 'spiritual-guide',

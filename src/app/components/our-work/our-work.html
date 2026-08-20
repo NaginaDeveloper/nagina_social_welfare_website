@@ -56,6 +56,17 @@
 
           <p class="mt-6 text-sm leading-relaxed text-cream/75">{{ programme.description }}</p>
 
+          @if (programme.id === 'mdi') {
+            <p class="mt-4">
+              <a
+                routerLink="/madrasa"
+                class="text-sm font-semibold text-gold-300 underline decoration-gold/40 underline-offset-2 hover:text-gold-200"
+              >
+                Madrasa &amp; Quran classes in Peterborough →
+              </a>
+            </p>
+          }
+
           <ul class="mt-6 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
             @for (highlight of programme.highlights; track highlight) {
               <li class="flex items-center gap-2 text-sm text-cream/75">

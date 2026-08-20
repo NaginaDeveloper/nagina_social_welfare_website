@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface Programme {
   readonly id: string;
@@ -12,6 +13,7 @@ interface Programme {
 
 @Component({
   selector: 'app-our-work',
+  imports: [RouterLink],
   templateUrl: './our-work.html',
 })
 export class OurWork {

@@ -52,6 +52,13 @@ const pages = [
       'One mission carried by two dedicated arms — Islamic education at Markaz Deen-e-Islam and community welfare across the UK.',
   },
   {
+    dir: 'madrasa',
+    path: '/madrasa/',
+    title: 'Madrasa & Islamic Institute Peterborough | Markaz Deen-e-Islam',
+    description:
+      'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — evening and weekend learning at 103 Burmer Road, PE1 3HT.',
+  },
+  {
     dir: 'spiritual-guide',
     path: '/spiritual-guide/',
     title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',

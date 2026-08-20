@@ -79,6 +79,12 @@ export class Header implements OnInit {
         { label: 'About us', path: '/about', hint: 'Who we are', icon: 'about' },
         { label: 'Our Work', path: '/work', hint: 'Education & welfare', icon: 'work' },
         {
+          label: 'Madrasa',
+          path: '/madrasa',
+          hint: 'Islamic institute Peterborough',
+          icon: 'mosque',
+        },
+        {
           label: 'Spiritual Guide',
           path: '/spiritual-guide',
           hint: 'Pir-o-Murshid',

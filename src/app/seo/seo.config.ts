@@ -23,7 +23,7 @@ export const HOME_SEO: PageSeo = {
     'Nagina Social Welfare UK unites faith and compassion — Markaz Deen-e-Islam education, community welfare, Namaz times, Quran Majeed with Kanzul Iman, and Islamic books in Peterborough.',
   path: '/',
   keywords:
-    'Nagina Social Welfare, Markaz Deen-e-Islam, Islamic education UK, Peterborough mosque welfare, Ahle Sunnat, community welfare',
+    'Nagina Social Welfare, Markaz Deen-e-Islam, madrasa Peterborough, Islamic education UK, Peterborough Islamic institute, Ahle Sunnat, community welfare',
   type: 'website',
 };
 
@@ -42,6 +42,16 @@ export const WORK_SEO: PageSeo = {
     'One mission carried by two dedicated arms — Islamic education at Markaz Deen-e-Islam and community welfare across the UK.',
   path: '/work/',
   keywords: 'Our Work, Markaz Deen-e-Islam, community welfare UK, Islamic education',
+  type: 'website',
+};
+
+export const MADRASA_SEO: PageSeo = {
+  title: 'Madrasa & Islamic Institute Peterborough | Markaz Deen-e-Islam',
+  description:
+    'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough offering Quran classes and Islamic education for children — evening and weekend learning at 103 Burmer Road, PE1 3HT.',
+  path: '/madrasa/',
+  keywords:
+    'madrasa Peterborough, Islamic school Peterborough, Quran classes for children Peterborough, Islamic classes for kids Peterborough, evening madrasa, weekend Islamic school, Islamic institute Peterborough, Markaz Deen-e-Islam',
   type: 'website',
 };
 
