@@ -22,6 +22,7 @@
           @for (event of programmes; track event.id) {
             <article
               class="overflow-hidden rounded-2xl border border-mist bg-white shadow-soft"
+              [class.lg:col-span-2]="!!event.image"
               [class.border-gold/40]="isToday(event)"
             >
               @if (event.image) {
@@ -34,7 +35,7 @@
                   <img
                     [src]="event.image"
                     [alt]="event.imageAlt ?? event.title"
-                    class="mx-auto max-h-[32rem] w-full bg-sand object-contain object-top"
+                    class="mx-auto max-h-[36rem] w-full max-w-xl bg-sand object-contain object-top"
                     loading="lazy"
                     decoding="async"
                   />

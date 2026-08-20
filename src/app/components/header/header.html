@@ -44,9 +44,9 @@
           [class.sm:text-xl]="!scrolled()"
         >
           Nagina
-          <span class="text-gold-gradient max-[360px]:hidden xl:hidden 2xl:inline">Social Welfare</span>
+          <span class="text-gold-gradient max-[360px]:hidden">Social Welfare</span>
         </span>
-        <span class="hidden text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90 md:block xl:hidden 2xl:block">
+        <span class="hidden text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90 md:block">
           Education &amp; Welfare &middot; UK
         </span>
       </span>
@@ -88,10 +88,18 @@
             @if (isGroupOpen(group.id)) {
               <div
                 [id]="'nav-panel-' + group.id"
-                class="absolute left-0 top-full z-50 mt-2 w-64 overflow-hidden rounded-xl border border-gold/20 bg-forest/98 py-1.5 shadow-portal backdrop-blur-xl"
+                class="absolute top-full z-50 mt-2 max-h-[min(28rem,70vh)] overflow-y-auto rounded-xl border border-gold/20 bg-forest/98 py-1.5 shadow-portal backdrop-blur-xl"
+                [class.left-0]="group.id !== 'connect'"
+                [class.right-0]="group.id === 'connect'"
+                [style.width]="menuPanelWidth(group)"
                 role="menu"
                 [attr.aria-label]="group.label"
               >
+                <div
+                  class="grid"
+                  [class.grid-cols-1]="group.items.length <= 4"
+                  [class.grid-cols-2]="group.items.length > 4"
+                >
                 @for (item of group.items; track item.label) {
                   <a
                     [routerLink]="item.path"
@@ -121,6 +129,7 @@
                     </span>
                   </a>
                 }
+                </div>
               </div>
             }
           </li>

@@ -25,6 +25,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'footer.registered': 'Registered in England and Wales',
     'footer.copyright': 'All rights reserved.',
     'footer.giftAid': 'Gift Aid is not currently claimed.',
+    'footer.explore': 'Explore',
+    'footer.map': 'View map & directions',
 
     'spotlight.eyebrow': 'Today at Nagina',
     'spotlight.namazNow': 'Now',
@@ -144,6 +146,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'footer.registered': 'انگلینڈ اور ویلز میں رجسٹرڈ',
     'footer.copyright': 'جملہ حقوق محفوظ ہیں۔',
     'footer.giftAid': 'گیفٹ ایڈ فی الحال کلیم نہیں کیا جاتا۔',
+    'footer.explore': 'مزید دیکھیں',
+    'footer.map': 'نقشہ اور راستہ',
 
     'spotlight.eyebrow': 'آج ناگینا پر',
     'spotlight.namazNow': 'اب',

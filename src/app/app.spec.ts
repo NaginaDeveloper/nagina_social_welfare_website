@@ -28,7 +28,7 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Nagina');
   });
 
-  it('should keep home as hero plus explore gateway without embedded sections', async () => {
+  it('should restore the original homepage sections with map', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/');
@@ -36,18 +36,15 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('#top')).toBeTruthy();
-    expect(compiled.querySelector('#explore-heading')).toBeTruthy();
-    expect(compiled.querySelector('#about')).toBeNull();
-    expect(compiled.querySelector('#work')).toBeNull();
-    expect(compiled.querySelector('#spiritual-guide')).toBeNull();
-    expect(compiled.querySelector('#guidance')).toBeNull();
-    expect(compiled.querySelector('#events')).toBeNull();
-    expect(compiled.querySelector('#donate')).toBeNull();
-    expect(compiled.querySelector('#apps')).toBeNull();
-    expect(compiled.querySelector('#contact')).toBeNull();
+    expect(compiled.querySelector('#spiritual-guide')).toBeTruthy();
+    expect(compiled.querySelector('#about')).toBeTruthy();
+    expect(compiled.querySelector('#work')).toBeTruthy();
+    expect(compiled.querySelector('#guidance')).toBeTruthy();
+    expect(compiled.querySelector('#apps')).toBeTruthy();
+    expect(compiled.querySelector('#contact')).toBeTruthy();
+    expect(compiled.querySelector('iframe[title^="Map of"]')).toBeTruthy();
     expect(compiled.querySelector('#privacy')).toBeNull();
     expect(compiled.querySelector('#safeguarding')).toBeNull();
-    expect(compiled.querySelector('#prayer-times')).toBeNull();
   });
 
   it('should navigate to dedicated content routes', async () => {

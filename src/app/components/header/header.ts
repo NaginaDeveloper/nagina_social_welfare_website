@@ -212,6 +212,10 @@ export class Header implements OnInit {
     return this.openGroupId() === id;
   }
 
+  protected menuPanelWidth(group: NavGroup): string {
+    return group.items.length > 4 ? 'min(36rem, calc(100vw - 2rem))' : '16rem';
+  }
+
   protected toggleGroup(id: string, event?: Event): void {
     event?.stopPropagation();
     this.openGroupId.update((current) => (current === id ? null : id));

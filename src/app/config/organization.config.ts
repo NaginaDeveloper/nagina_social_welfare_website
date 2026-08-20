@@ -22,6 +22,8 @@ export const ORGANIZATION = {
   mapsQuery: '103 Burmer Road, Peterborough PE1 3HT',
   mapsEmbedUrl:
     'https://maps.google.com/maps?q=103%20Burmer%20Road%20Peterborough%20PE1%203HT&output=embed',
+  mapsDirectionsUrl:
+    'https://www.google.com/maps/search/?api=1&query=103%20Burmer%20Road%2C%20Peterborough%20PE1%203HT',
   loginUrl: 'https://admin.naginasocialwelfare.co.uk/',
   facebookUrl: 'https://www.facebook.com/naginasocial.welfare.5',
   facebookPhotosUrl: 'https://www.facebook.com/naginasocial.welfare.5/photos',
