@@ -13,6 +13,22 @@ const outDir = join(root, 'dist', 'nagina-social-welfare-website', 'browser');
 const ORIGIN = 'https://www.naginasocialwelfare.co.uk';
 const IMAGE = `${ORIGIN}/brand/nagina.png`;
 
+function loadSearchConsoleToken() {
+  const configPath = join(root, 'search-console.config.json');
+  if (!existsSync(configPath)) {
+    return '';
+  }
+  try {
+    const config = JSON.parse(readFileSync(configPath, 'utf8'));
+    return String(config.googleSiteVerification ?? '').trim();
+  } catch {
+    console.warn('SEO shells: could not read search-console.config.json');
+    return '';
+  }
+}
+
+const GOOGLE_SITE_VERIFICATION = loadSearchConsoleToken();
+
 const pages = [
   {
     dir: '',
@@ -177,6 +193,7 @@ function patchHtml(html, page) {
   const description = escapeHtml(page.description);
 
   let next = html;
+  next = injectSearchConsoleMeta(next);
   next = next.replace(/<title>[^<]*<\/title>/i, `<title>${title}</title>`);
   next = next.replace(
     /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
@@ -217,6 +234,22 @@ function patchHtml(html, page) {
   return next;
 }
 
+function injectSearchConsoleMeta(html) {
+  if (!GOOGLE_SITE_VERIFICATION) {
+    return html;
+  }
+  if (/name="google-site-verification"/i.test(html)) {
+    return html.replace(
+      /<meta\s+name="google-site-verification"\s+content="[^"]*"\s*\/?>/i,
+      `<meta name="google-site-verification" content="${escapeHtml(GOOGLE_SITE_VERIFICATION)}">`,
+    );
+  }
+  return html.replace(
+    '</head>',
+    `  <meta name="google-site-verification" content="${escapeHtml(GOOGLE_SITE_VERIFICATION)}">\n</head>`,
+  );
+}
+
 if (!existsSync(join(outDir, 'index.html'))) {
   console.error('SEO shells: build output not found at', outDir);
   process.exit(1);
@@ -238,4 +271,11 @@ for (const page of pages) {
 
 // SPA fallback for client-side routes / deep links
 copyFileSync(join(outDir, 'index.html'), join(outDir, '404.html'));
+if (GOOGLE_SITE_VERIFICATION) {
+  console.log('SEO shells: Google Search Console verification meta injected');
+} else {
+  console.log(
+    'SEO shells: add googleSiteVerification to search-console.config.json for Search Console',
+  );
+}
 console.log('SEO shells: done (including 404.html fallback)');

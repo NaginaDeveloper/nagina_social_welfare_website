@@ -21,7 +21,7 @@ export class Privacy {
     {
       title: 'What this site does not do',
       body:
-        'We do not use advertising cookies, analytics trackers, or marketing pixels on this website. We do not sell your personal data.',
+        'We do not use advertising cookies, on-site analytics trackers, or marketing pixels on this website. We do not sell your personal data. We may use Google Search Console to see how our pages appear in Google Search (search queries and clicks); that service is operated by Google and does not place advertising trackers on visitors’ browsers.',
     },
     {
       title: 'Information we process',
