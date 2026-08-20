@@ -171,33 +171,58 @@ html.urdu .font-display {
   font-family: var(--font-urdu), var(--font-display);
 }
 
-/* Hide Google Translate's default top banner; we use our own compact control. */
+/* Hide Google Translate chrome that inflates layout height. */
 .goog-te-banner-frame,
 .goog-te-balloon-frame,
 #goog-gt-tt,
-.goog-te-spinner-pos {
+.goog-te-spinner-pos,
+.goog-te-gadget-icon,
+.goog-logo-link,
+.goog-te-gadget img,
+.goog-te-gadget a {
   display: none !important;
 }
 
 body {
   top: 0 !important;
+  position: static !important;
 }
 
-.goog-te-gadget {
+/* Footer Translate: one compact row — dropdown only. */
+.nagina-translate,
+.nagina-translate-host,
+.nagina-translate .goog-te-gadget,
+.nagina-translate .goog-te-gadget > span {
+  height: 2rem !important;
+  max-height: 2rem !important;
+  overflow: hidden !important;
+  line-height: 2rem !important;
+}
+
+.nagina-translate .goog-te-gadget {
+  display: inline-flex !important;
+  align-items: center !important;
   font-size: 0 !important;
+  color: transparent !important;
+  white-space: nowrap !important;
 }
 
-.goog-te-gadget .goog-te-combo {
+.nagina-translate .goog-te-gadget .goog-te-combo {
+  display: inline-block !important;
   font-size: 0.75rem !important;
-  max-width: 9.5rem;
+  line-height: 1.1 !important;
+  height: 2rem !important;
+  max-width: 11rem;
+  margin: 0 !important;
   border-radius: 9999px;
-  border: 1px solid rgba(250, 250, 249, 0.25);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fafaf9;
-  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5f0e6 !important;
+  padding: 0 0.75rem;
+  vertical-align: middle;
 }
 
-.goog-te-gadget .goog-te-combo option {
+.nagina-translate .goog-te-gadget .goog-te-combo option {
   color: #1c1917;
 }
 

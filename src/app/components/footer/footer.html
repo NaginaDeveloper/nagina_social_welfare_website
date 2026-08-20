@@ -138,7 +138,7 @@
     </div>
 
     <div
-      class="mt-10 flex flex-col gap-3 border-t border-white/10 pt-5 text-xs text-cream/45 sm:flex-row sm:items-start sm:justify-between"
+      class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-5 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between"
     >
       <div class="space-y-1.5">
         <p>&copy; {{ year }} {{ org.legalName }}. {{ i18n.t('footer.copyright') }}</p>
@@ -167,9 +167,12 @@
         <p>{{ org.addressFull }}</p>
         <p>{{ i18n.t('footer.giftAid') }}</p>
       </div>
-      <div class="flex flex-wrap gap-x-4 gap-y-1">
-        <a routerLink="/privacy" class="transition-colors hover:text-gold-300">{{ i18n.t('footer.privacy') }}</a>
-        <a routerLink="/safeguarding" class="transition-colors hover:text-gold-300">{{ i18n.t('footer.safeguarding') }}</a>
+      <div class="flex flex-col items-start gap-3 sm:items-end">
+        <app-google-translate hostId="nagina-google-translate-footer" />
+        <div class="flex flex-wrap gap-x-4 gap-y-1">
+          <a routerLink="/privacy" class="transition-colors hover:text-gold-300">{{ i18n.t('footer.privacy') }}</a>
+          <a routerLink="/safeguarding" class="transition-colors hover:text-gold-300">{{ i18n.t('footer.safeguarding') }}</a>
+        </div>
       </div>
     </div>
   </div>

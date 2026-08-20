@@ -6,20 +6,20 @@ import { LanguageService } from '../../i18n/language.service';
   selector: 'app-google-translate',
   template: `
     <div
-      class="flex items-center gap-1.5"
+      class="nagina-translate inline-flex h-8 max-h-8 items-center gap-2 overflow-hidden"
       (focusin)="prepare()"
       (pointerdown)="prepare()"
     >
       <label class="sr-only" [attr.for]="hostId">{{ i18n.t('translate.label') }}</label>
-      <span class="hidden text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-cream/55 sm:inline">
+      <span class="shrink-0 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-gold-300/90">
         {{ i18n.t('translate.label') }}
       </span>
-      <div [id]="hostId" class="min-h-8 min-w-[6.5rem]"></div>
+      <div [id]="hostId" class="nagina-translate-host h-8 max-h-8 min-w-[8.5rem] overflow-hidden"></div>
     </div>
   `,
 })
 export class GoogleTranslate {
-  @Input() hostId = 'nagina-google-translate-desktop';
+  @Input() hostId = 'nagina-google-translate-footer';
 
   protected readonly i18n = inject(LanguageService);
   private readonly translate = inject(GoogleTranslateService);

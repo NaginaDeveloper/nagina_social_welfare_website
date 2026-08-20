@@ -8,7 +8,7 @@ declare global {
     googleTranslateElementInit?: () => void;
     google?: {
       translate?: {
-        TranslateElement: new (
+        TranslateElement: (new (
           options: {
             pageLanguage: string;
             includedLanguages: string;
@@ -16,17 +16,16 @@ declare global {
             autoDisplay?: boolean;
           },
           elementId: string,
-        ) => void;
+        ) => void) & {
+          InlineLayout?: { SIMPLE?: number; HORIZONTAL?: number };
+        };
       };
     };
   }
 }
 
 const SCRIPT_ID = 'google-translate-script';
-const HOST_IDS = [
-  'nagina-google-translate-desktop',
-  'nagina-google-translate-mobile',
-] as const;
+const HOST_IDS = ['nagina-google-translate-footer'] as const;
 const LANGS = 'ar,fr,es,de,it,tr,bn,ps,so,pl,ro,pt,nl,zh-CN';
 
 /**
@@ -103,15 +102,33 @@ export class GoogleTranslateService {
       }
     }
     host.innerHTML = '';
-    new window.google.translate.TranslateElement(
+    const TranslateElement = window.google.translate.TranslateElement;
+    const simpleLayout = TranslateElement.InlineLayout?.SIMPLE;
+    new TranslateElement(
       {
         pageLanguage: 'en',
         includedLanguages: LANGS,
         autoDisplay: false,
+        ...(simpleLayout != null ? { layout: simpleLayout } : {}),
       },
       host.id,
     );
     this.mountedHostId = host.id;
+    this.tightenHost(host);
+  }
+
+  /** Keep only the language select — strip Google branding that inflates height. */
+  private tightenHost(host: HTMLElement): void {
+    queueMicrotask(() => {
+      host.querySelectorAll('img, a, .goog-logo-link, .goog-te-gadget-icon').forEach((el) => {
+        el.remove();
+      });
+      host.querySelectorAll('.goog-te-gadget > span').forEach((span) => {
+        if (!span.querySelector('.goog-te-combo')) {
+          span.remove();
+        }
+      });
+    });
   }
 
   private resolveHost(preferredHostId?: string): HTMLElement | null {

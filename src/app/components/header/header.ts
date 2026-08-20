@@ -13,8 +13,6 @@ import { AssistantLauncherService } from '../../services/assistant-launcher.serv
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
-import { GoogleTranslateService } from '../../i18n/google-translate.service';
-import { GoogleTranslate } from '../google-translate/google-translate';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 
 /** Simple stroke icons used in the nav. */
@@ -56,14 +54,13 @@ interface NavGroup {
 
 @Component({
   selector: 'app-header',
-  imports: [NgTemplateOutlet, RouterLink, WhatsappIcon, GoogleTranslate],
+  imports: [NgTemplateOutlet, RouterLink, WhatsappIcon],
   templateUrl: './header.html',
 })
 export class Header implements OnInit {
   protected readonly org = ORGANIZATION;
   protected readonly whatsapp = whatsappHref();
   protected readonly i18n = inject(LanguageService);
-  private readonly googleTranslate = inject(GoogleTranslateService);
 
   protected readonly prayer = inject(PrayerTimesService);
   private readonly assistantLauncher = inject(AssistantLauncherService);
@@ -234,14 +231,8 @@ export class Header implements OnInit {
   }
 
   protected toggleMenu(): void {
-    const opening = !this.menuOpen();
     this.menuOpen.update((open) => !open);
     this.openGroupId.set(null);
-    if (opening) {
-      queueMicrotask(() =>
-        this.googleTranslate.remount('nagina-google-translate-mobile'),
-      );
-    }
   }
 
   protected closeMenu(): void {
