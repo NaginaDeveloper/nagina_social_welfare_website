@@ -13,6 +13,7 @@ import { AssistantLauncherService } from '../../services/assistant-launcher.serv
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
+import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 
 /** Simple stroke icons used in the nav. */
 export type NavIcon =
@@ -53,7 +54,7 @@ interface NavGroup {
 
 @Component({
   selector: 'app-header',
-  imports: [NgTemplateOutlet, RouterLink],
+  imports: [NgTemplateOutlet, RouterLink, WhatsappIcon],
   templateUrl: './header.html',
 })
 export class Header implements OnInit {

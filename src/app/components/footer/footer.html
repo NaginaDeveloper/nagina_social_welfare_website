@@ -4,10 +4,10 @@
   <div class="relative mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
     <!-- Top: brand + equal link columns + contact -->
     <div
-      class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.85fr_repeat(4,minmax(0,0.9fr))_1.5fr] lg:gap-6"
+      class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.85fr_repeat(4,minmax(0,0.9fr))_1.5fr] lg:gap-6"
     >
       <!-- Brand -->
-      <div class="sm:col-span-2 lg:col-span-1 lg:pr-3">
+      <div class="sm:col-span-2 xl:col-span-1 xl:pr-3">
         <div class="flex items-center gap-3">
           <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/40">
             <img
@@ -44,8 +44,9 @@
             [href]="whatsapp"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full border border-gold/35 px-5 py-2.5 text-sm font-semibold text-gold-300 transition-all duration-300 hover:border-gold/55 hover:bg-white/5 hover:text-gold"
+            class="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all duration-300 hover:brightness-110"
           >
+            <app-whatsapp-icon class="h-4 w-4" [inverse]="true" />
             {{ i18n.t('footer.whatsapp') }}
           </a>
           <a

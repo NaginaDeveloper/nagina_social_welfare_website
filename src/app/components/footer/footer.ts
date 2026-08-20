@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
+import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 
 interface FooterLink {
   readonly label: string;
@@ -16,7 +17,7 @@ interface FooterGroup {
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, WhatsappIcon],
   templateUrl: './footer.html',
 })
 export class Footer {

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { DonationService } from '../../services/donation.service';
+import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 
 export type DonationFund = 'zakat' | 'sadaqah' | 'lillah' | 'fitrana';
 
@@ -25,7 +26,7 @@ const ZAKAT_RATE = 0.025;
 
 @Component({
   selector: 'app-donations',
-  imports: [FormsModule],
+  imports: [FormsModule, WhatsappIcon],
   templateUrl: './donations.html',
 })
 export class Donations {
