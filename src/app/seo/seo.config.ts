@@ -58,9 +58,10 @@ export const MADRASA_SEO: PageSeo = {
 export const SPIRITUAL_GUIDE_SEO: PageSeo = {
   title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',
   description:
-    'Honouring Allama Munir Ahmed Yusufi — Munir-e-Islam — spiritual guide of Markaz Deen-e-Islam and Nagina Social Welfare, with photographs from Nagina TV.',
+    'Honouring Allama Munir Ahmed Yusufi — Munir-e-Islam — with the Naqshbandi Mujaddidi Yusufi Shajra Sharif and photographs from Nagina TV.',
   path: '/spiritual-guide/',
-  keywords: 'Spiritual Guide, Munir-e-Islam, Allama Munir Ahmed Yusufi, Pir-o-Murshid',
+  keywords:
+    'Spiritual Guide, Munir-e-Islam, Allama Munir Ahmed Yusufi, Pir-o-Murshid, Shajra Sharif, Naqshbandi Mujaddidi Yusufi',
   type: 'website',
 };
 

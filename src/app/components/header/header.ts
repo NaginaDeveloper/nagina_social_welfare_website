@@ -91,7 +91,7 @@ export class Header implements OnInit {
         {
           label: 'Spiritual Guide',
           path: '/spiritual-guide',
-          hint: 'Pir-o-Murshid',
+          hint: 'Shajra & photographs',
           icon: 'guide',
         },
         {

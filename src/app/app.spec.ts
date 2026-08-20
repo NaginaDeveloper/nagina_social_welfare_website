@@ -44,6 +44,7 @@ describe('App', () => {
     expect(compiled.querySelector('#contact')).toBeTruthy();
     expect(compiled.querySelector('iframe[title^="Map of"]')).toBeTruthy();
     expect(compiled.querySelector('#photographs')).toBeNull();
+    expect(compiled.querySelector('#shajra')).toBeNull();
     expect(compiled.querySelector('#privacy')).toBeNull();
     expect(compiled.querySelector('#safeguarding')).toBeNull();
   });
@@ -58,6 +59,7 @@ describe('App', () => {
       ['/work', '#work'],
       ['/madrasa', '#madrasa'],
       ['/spiritual-guide', '#spiritual-guide'],
+      ['/spiritual-guide', '#shajra'],
       ['/spiritual-guide', '#photographs'],
       ['/khatme-nabuwwat', '#khatme-nabuwwat'],
       ['/ahle-bait', '#ahle-bait'],
@@ -93,5 +95,6 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('#photographs img').length).toBeGreaterThanOrEqual(20);
+    expect(compiled.querySelectorAll('#shajra img').length).toBe(4);
   });
 });
