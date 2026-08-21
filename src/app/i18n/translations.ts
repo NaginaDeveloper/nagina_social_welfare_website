@@ -261,9 +261,6 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'events.host': 'Host',
     'events.viewPoster': 'View poster',
 
-    'translate.label': 'Translate',
-    'translate.select': 'Select language',
-
     'nav.about': 'About',
     'nav.worship': 'Worship',
     'nav.learn': 'Learn',
@@ -522,8 +519,6 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'privacy.lead': 'How Nagina Social Welfare handles information when you use this website.',
     'privacy.updated': 'Last updated',
     'privacy.questions': 'Questions?',
-    'privacy.googleTranslateTitle': 'Google Translate (optional)',
-    'privacy.googleTranslateBody': 'The Translate menu is optional. It only runs if you choose a language there. English (EN) and Urdu (اردو) on this site are native translations and do not use Google Translate.',
 
     'assistant.eyebrow': 'Nagina Assistant',
     'assistant.subtitle': 'English & Urdu help',
@@ -879,9 +874,6 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'events.host': 'میزبان',
     'events.viewPoster': 'پوسٹر دیکھیں',
 
-    'translate.label': 'ترجمہ',
-    'translate.select': 'زبان منتخب کریں',
-
     'nav.about': 'تعارف',
     'nav.worship': 'عبادت',
     'nav.learn': 'علم',
@@ -1140,8 +1132,6 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'privacy.lead': 'اس ویب سائٹ کے استعمال پر نگینہ سوشل ویلفیئر معلومات کیسے سنبھالتی ہے۔',
     'privacy.updated': 'آخری تازہ کاری',
     'privacy.questions': 'سوالات؟',
-    'privacy.googleTranslateTitle': 'گوگل ٹرانسلیٹ (اختیاری)',
-    'privacy.googleTranslateBody': 'ترجمہ مینو اختیاری ہے۔ یہ صرف اس وقت چلتا ہے جب آپ وہاں کوئی زبان منتخب کریں۔ اس سائٹ پر انگریزی (EN) اور اردو مقامی تراجم ہیں اور گوگل ٹرانسلیٹ استعمال نہیں کرتے۔',
 
     'assistant.eyebrow': 'نگینہ اسسٹنٹ',
     'assistant.subtitle': 'انگریزی اور اردو مدد',

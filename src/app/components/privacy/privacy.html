@@ -23,14 +23,6 @@
     </div>
 
     <div class="mt-12 space-y-8 rounded-[1.75rem] border border-mist bg-white px-6 py-8 shadow-soft sm:px-10 sm:py-10">
-      <article [attr.dir]="i18n.isUr() ? 'rtl' : null" [attr.lang]="i18n.isUr() ? 'ur' : null">
-        <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">
-          {{ i18n.t('privacy.googleTranslateTitle') }}
-        </h3>
-        <p class="mt-2.5 text-sm leading-relaxed text-slate-warm sm:text-base">
-          {{ i18n.t('privacy.googleTranslateBody') }}
-        </p>
-      </article>
       @for (block of blocks; track block.title) {
         <article>
           <h3 class="font-display text-xl font-bold text-forest sm:text-2xl">

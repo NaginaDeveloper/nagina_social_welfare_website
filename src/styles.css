@@ -179,37 +179,6 @@ html.urdu .spotlight-label {
   text-transform: none;
 }
 
-/* Hide Google's full-page top banner / tooltips — keep our footer select. */
-.goog-te-banner-frame,
-.goog-te-balloon-frame,
-#goog-gt-tt,
-.goog-te-spinner-pos,
-body > .skiptranslate,
-.VIpgJd-ZVi9od-ORHb-OEVmcd {
-  display: none !important;
-}
-
-body {
-  top: 0 !important;
-  position: static !important;
-}
-
-/* Hide the off-screen Google engine host (we use our own select UI). */
-#nagina-google-translate-engine,
-#nagina-google-translate-engine .goog-te-gadget {
-  position: absolute !important;
-  left: -9999px !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-.nagina-translate-select option {
-  color: #1c1917;
-}
-
 /* Subtle Islamic geometric atmosphere (repeating eight-point star lattice). */
 .geo-pattern {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.14' stroke-width='1'%3E%3Cpath d='M40 8 55 23 72 23 72 40 55 55 40 72 25 55 8 55 8 40 25 23z'/%3E%3Cpath d='M40 22 49 31 58 40 49 49 40 58 31 49 22 40 31 31z'/%3E%3C/g%3E%3C/svg%3E");

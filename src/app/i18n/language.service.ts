@@ -10,6 +10,7 @@ export class LanguageService {
 
   constructor() {
     afterNextRender(() => {
+      this.stripLeftoverMachineTranslate();
       const stored = window.localStorage.getItem(STORAGE_KEY);
       if (stored === 'en' || stored === 'ur') {
         this.setLang(stored);
@@ -32,9 +33,6 @@ export class LanguageService {
   setLang(lang: UiLang): void {
     this.lang.set(lang);
     this.applyDocument(lang);
-    if (lang === 'ur') {
-      this.clearGoogleTranslate();
-    }
     try {
       window.localStorage.setItem(STORAGE_KEY, lang);
     } catch {
@@ -46,8 +44,8 @@ export class LanguageService {
     this.setLang(this.lang() === 'en' ? 'ur' : 'en');
   }
 
-  /** Remove Google Translate cookie/hash so native Urdu is shown cleanly. */
-  clearGoogleTranslate(): void {
+  /** Clear leftover Google Translate cookies from older site versions. */
+  private stripLeftoverMachineTranslate(): void {
     if (typeof document === 'undefined') {
       return;
     }
@@ -55,8 +53,7 @@ export class LanguageService {
     document.cookie =
       'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=' +
       window.location.hostname;
-    const root = document.documentElement;
-    root.classList.remove('translated-ltr', 'translated-rtl');
+    document.documentElement.classList.remove('translated-ltr', 'translated-rtl');
     if (window.location.hash.startsWith('#googtrans')) {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
