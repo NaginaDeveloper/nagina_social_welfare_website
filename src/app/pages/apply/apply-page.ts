@@ -6,7 +6,7 @@ import { ApplyForm } from '../../components/apply/apply-form';
   selector: 'app-apply-page',
   imports: [PageShell, ApplyForm],
   template: `
-    <app-page-shell title="Apply">
+    <app-page-shell title="Online admission">
       <app-apply-form />
     </app-page-shell>
   `,

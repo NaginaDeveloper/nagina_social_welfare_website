@@ -74,6 +74,15 @@ export const APPLY_SUCCESS_SEO: PageSeo = {
   robots: 'noindex, follow',
 };
 
+export const APPLY_TRACK_SEO: PageSeo = {
+  title: 'Track Application | Markaz Deen-e-Islam',
+  description:
+    'Check the status of your Markaz Deen-e-Islam admission application using the application ID from your confirmation email or submission screen.',
+  path: '/apply/track/',
+  type: 'website',
+  robots: 'noindex, follow',
+};
+
 export const SPIRITUAL_GUIDE_SEO: PageSeo = {
   title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',
   description:

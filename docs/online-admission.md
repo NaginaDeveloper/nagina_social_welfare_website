@@ -1,6 +1,6 @@
 # Online Admission System
 
-Public parents apply at **https://www.naginasocialwelfare.co.uk/apply/**. Staff review applications in **Markaz e Deen e Islam Admin → Applications**.
+Public parents apply at **https://www.naginasocialwelfare.co.uk/apply/**. Staff review applications in **Markaz e Deen e Islam Admin → Admission Applications**.
 
 ## Architecture
 
@@ -8,6 +8,7 @@ Public parents apply at **https://www.naginasocialwelfare.co.uk/apply/**. Staff 
 |-------|----------|
 | Public form | Website Angular `/apply` |
 | Submit API | Cloud Function `submitAdmission` (Admin functions codebase, `europe-west2`) |
+| Public status | `getApplicationStatus` (application ID only; limited fields) |
 | Accept / status | `acceptApplication`, `updateApplicationStatus` (admin token) |
 | Storage | Firestore `applications` |
 | Directory on accept | Existing `students` + `parents` (legacy flat shape) |
@@ -18,10 +19,10 @@ Public parents apply at **https://www.naginasocialwelfare.co.uk/apply/**. Staff 
 1. Deploy Admin functions (includes admission endpoints):
    ```bash
    cd Nagina_Social_Welfare_Admin/functions && npm run build
-   firebase deploy --only functions:submitAdmission,functions:acceptApplication,functions:updateApplicationStatus --project nagina-social-welfare-uk
+   firebase deploy --only functions:submitAdmission,functions:getApplicationStatus,functions:acceptApplication,functions:updateApplicationStatus --project nagina-social-welfare-uk
    ```
 2. Deploy / publish the public website (GitHub Pages or your usual pipeline).
-3. Deploy / publish the Flutter admin web build so the **Applications** tab is live.
+3. Deploy / publish the Flutter admin web build so the **Admission Applications** tab is live.
 
 ## Smoke test
 
@@ -39,7 +40,7 @@ The previous manual form:
 
 https://docs.google.com/forms/d/e/1FAIpQLSfRKg4Aa54VI0N7YYFhXsnvLmhkXtCqgJg92Rns3gi4gHYXqw/viewform
 
-After staff UAT of `/apply` + Applications tab:
+After staff UAT of `/apply` + Admission Applications tab:
 
 1. Close responses on the Google Form (or unpublish the link).
 2. Keep a short redirect note in any printed leaflets: use the website **Apply online** button / `/apply`.

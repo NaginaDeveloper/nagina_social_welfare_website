@@ -58,6 +58,22 @@ export interface SubmitAdmissionResponse {
   applicationId: string;
 }
 
+export type ApplicationPublicStatus =
+  | 'PENDING'
+  | 'ACCEPTED'
+  | 'REJECTED'
+  | 'NEEDS_INFO';
+
+export interface ApplicationStatusResponse {
+  ok: boolean;
+  applicationId: string;
+  status: ApplicationPublicStatus;
+  studentName?: string;
+  submittedAt?: string;
+  updatedAt?: string;
+  note?: string;
+}
+
 export const CLASS_SLOT_OPTIONS: readonly {
   value: ClassSlot;
   label: string;

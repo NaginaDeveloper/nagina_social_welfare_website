@@ -66,6 +66,22 @@ const pages = [
       'Apply online for Markaz Deen-e-Islam madrasa admission in Peterborough — student details, parent contacts, medical information, class preference and parent declaration.',
   },
   {
+    dir: 'apply/success',
+    path: '/apply/success/',
+    title: 'Application Received | Markaz Deen-e-Islam',
+    description:
+      'Thank you — your Markaz Deen-e-Islam admission application has been received and will be reviewed shortly.',
+    robots: 'noindex, follow',
+  },
+  {
+    dir: 'apply/track',
+    path: '/apply/track/',
+    title: 'Track Application | Markaz Deen-e-Islam',
+    description:
+      'Check the status of your Markaz Deen-e-Islam admission application using your application ID.',
+    robots: 'noindex, follow',
+  },
+  {
     dir: 'spiritual-guide',
     path: '/spiritual-guide/',
     title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',

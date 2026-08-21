@@ -1,28 +1,65 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { PageShell } from '../page-shell';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { LAST_APPLICATION_ID_KEY } from '../../config/admission-api.config';
 import { LanguageService } from '../../i18n/language.service';
-import { inject } from '@angular/core';
+import { PageShell } from '../page-shell';
+import { ApplicationStatusPanel } from '../../components/apply/application-status-panel';
 
 @Component({
   selector: 'app-apply-success-page',
-  imports: [PageShell, RouterLink],
+  imports: [PageShell, RouterLink, ApplicationStatusPanel],
   template: `
     <app-page-shell title="Application sent">
       <section class="bg-cream py-16 sm:py-24">
         <div
-          class="mx-auto max-w-2xl px-5 text-center sm:px-8"
+          class="mx-auto max-w-2xl px-5 sm:px-8"
           [attr.dir]="i18n.isUr() ? 'rtl' : null"
         >
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-            {{ i18n.t('applySuccess.eyebrow') }}
-          </p>
-          <h1 class="mt-4 font-display text-3xl font-bold text-forest sm:text-4xl">
-            {{ i18n.t('applySuccess.title') }}
-          </h1>
-          <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
-            {{ i18n.t('applySuccess.lead') }}
-          </p>
+          <div class="text-center">
+            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+              {{ i18n.t('applySuccess.eyebrow') }}
+            </p>
+            <h1 class="mt-4 font-display text-3xl font-bold text-forest sm:text-4xl">
+              {{ i18n.t('applySuccess.title') }}
+            </h1>
+            <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+              {{ i18n.t('applySuccess.lead') }}
+            </p>
+          </div>
+
+          @if (applicationId()) {
+            <div class="mt-8 rounded-[1.5rem] border border-mist bg-white px-5 py-6 text-center shadow-soft sm:px-8">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold-600">
+                {{ i18n.t('applySuccess.idLabel') }}
+              </p>
+              <p class="mt-3 break-all font-mono text-lg font-semibold tracking-wide text-forest sm:text-xl">
+                {{ applicationId() }}
+              </p>
+              <button
+                type="button"
+                class="mt-4 inline-flex min-h-11 items-center justify-center rounded-full border border-mist px-5 text-sm font-semibold text-forest"
+                (click)="copyId()"
+              >
+                {{ copied() ? i18n.t('applySuccess.copied') : i18n.t('applySuccess.copy') }}
+              </button>
+              <p class="mt-4 text-sm leading-relaxed text-slate-warm">
+                {{ i18n.t('applySuccess.idHelp') }}
+              </p>
+            </div>
+          }
+
+          <div class="mt-8 rounded-[1.5rem] border border-mist bg-white px-5 py-6 shadow-soft sm:px-8">
+            <h2 class="font-display text-xl font-bold text-forest">
+              {{ i18n.t('applyTrack.title') }}
+            </h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-warm">
+              {{ i18n.t('applySuccess.trackLead') }}
+            </p>
+            <div class="mt-5">
+              <app-application-status-panel [initialId]="applicationId()" [autoLookup]="true" />
+            </div>
+          </div>
+
           <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
             <a
               routerLink="/madrasa"
@@ -42,6 +79,35 @@ import { inject } from '@angular/core';
     </app-page-shell>
   `,
 })
-export class ApplySuccessPage {
+export class ApplySuccessPage implements OnInit {
   protected readonly i18n = inject(LanguageService);
+  private readonly route = inject(ActivatedRoute);
+  protected readonly applicationId = signal('');
+  protected readonly copied = signal(false);
+
+  ngOnInit(): void {
+    const fromQuery = this.route.snapshot.queryParamMap.get('id')?.trim() ?? '';
+    const stored = this.readStored();
+    this.applicationId.set(fromQuery || stored);
+  }
+
+  protected async copyId(): Promise<void> {
+    const id = this.applicationId();
+    if (!id) return;
+    try {
+      await navigator.clipboard.writeText(id);
+      this.copied.set(true);
+      setTimeout(() => this.copied.set(false), 2000);
+    } catch {
+      this.copied.set(false);
+    }
+  }
+
+  private readStored(): string {
+    try {
+      return sessionStorage.getItem(LAST_APPLICATION_ID_KEY)?.trim() ?? '';
+    } catch {
+      return '';
+    }
+  }
 }

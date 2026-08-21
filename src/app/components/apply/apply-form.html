@@ -1,4 +1,4 @@
-<section class="relative overflow-hidden bg-cream py-16 sm:py-24">
+<section class="relative overflow-hidden bg-cream pb-28 pt-10 sm:pb-24 sm:pt-16">
   <div class="geo-pattern absolute inset-0 opacity-15" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-3xl px-5 sm:px-8">
@@ -10,345 +10,638 @@
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
         {{ i18n.t('apply.eyebrow') }}
       </span>
-      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
         {{ i18n.t('apply.title') }}
       </h1>
-      <p class="mt-4 text-base leading-relaxed text-slate-warm sm:text-lg">
+      <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-warm sm:text-lg">
         {{ i18n.t('apply.lead') }}
       </p>
     </div>
 
-    <ol
-      class="mx-auto mt-10 flex max-w-xl flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-warm"
-      aria-label="Application steps"
-    >
-      @for (label of ['apply.step1', 'apply.step2', 'apply.step3', 'apply.step4']; track label; let i = $index) {
-        <li
-          class="rounded-full px-3 py-1.5"
-          [class.bg-forest]="step() === i"
-          [class.text-cream]="step() === i"
-          [class.bg-white]="step() !== i"
-          [class.border]="step() !== i"
-          [class.border-mist]="step() !== i"
-        >
-          {{ i18n.t(label) }}
-        </li>
-      }
-    </ol>
-
-    <form
-      class="mt-10 space-y-6 rounded-[1.75rem] border border-mist bg-white px-5 py-8 shadow-soft sm:px-10 sm:py-10"
-      [formGroup]="form"
-      (ngSubmit)="step() === 3 ? submit() : next()"
+    <ul
+      class="mx-auto mt-8 grid max-w-xl grid-cols-3 gap-2 text-center text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-slate-warm sm:text-xs"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
-      @if (error()) {
-        <p class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
-          {{ error() }}
-        </p>
-      }
+      <li class="rounded-2xl border border-mist bg-white/80 px-2 py-3">{{ i18n.t('apply.trustReview') }}</li>
+      <li class="rounded-2xl border border-mist bg-white/80 px-2 py-3">{{ i18n.t('apply.trustEmail') }}</li>
+      <li class="rounded-2xl border border-mist bg-white/80 px-2 py-3">{{ i18n.t('apply.trustPrivate') }}</li>
+    </ul>
 
-      @if (step() === 0) {
-        <div formGroupName="student" class="space-y-5">
-          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('apply.studentHeading') }}</h2>
+    <nav class="mx-auto mt-10 max-w-xl" [attr.aria-label]="i18n.t('apply.progress')">
+      <ol class="grid grid-cols-4 gap-2">
+        @for (meta of stepMeta; track meta.key; let i = $index) {
+          <li>
+            <button
+              type="button"
+              class="flex w-full flex-col items-center gap-2 rounded-2xl px-1 py-2 text-center transition-colors"
+              [disabled]="i > step()"
+              [attr.aria-current]="step() === i ? 'step' : null"
+              (click)="goTo(i)"
+            >
+              <span
+                class="flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold"
+                [class.bg-forest]="i <= step()"
+                [class.text-cream]="i <= step()"
+                [class.bg-white]="i > step()"
+                [class.text-slate-warm]="i > step()"
+                [class.border]="i > step()"
+                [class.border-mist]="i > step()"
+              >
+                {{ i + 1 }}
+              </span>
+              <span
+                class="text-[0.65rem] font-semibold uppercase tracking-[0.12em] sm:text-xs"
+                [class.text-forest]="i === step()"
+                [class.text-slate-warm]="i !== step()"
+              >
+                {{ i18n.t(meta.key) }}
+              </span>
+            </button>
+          </li>
+        }
+      </ol>
+      <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-mist/80">
+        <div
+          class="h-full rounded-full bg-gradient-to-r from-gold-300 to-gold transition-all duration-300"
+          [style.width.%]="((step() + 1) / 4) * 100"
+        ></div>
+      </div>
+      <p class="mt-3 text-center text-sm text-slate-warm">
+        {{ i18n.t('apply.progress') }} {{ step() + 1 }} {{ i18n.t('apply.progressOf') }} 4
+        · {{ i18n.t(stepMeta[step()].hint) }}
+      </p>
+    </nav>
 
-          <label class="block">
-            <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.studentName') }} *</span>
-            <input
-              type="text"
-              formControlName="fullName"
-              class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold"
-              autocomplete="name"
-            />
-          </label>
-
-          <label class="block">
-            <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.dob') }} *</span>
-            <input
-              type="date"
-              formControlName="dateOfBirth"
-              class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold"
-            />
-          </label>
-
-          <fieldset>
-            <legend class="mb-2 text-sm font-medium text-forest">{{ i18n.t('apply.gender') }} *</legend>
-            <div class="flex flex-wrap gap-4">
-              <label class="inline-flex items-center gap-2 text-sm text-slate-warm">
-                <input type="radio" formControlName="gender" value="Male" />
-                {{ i18n.t('apply.male') }}
-              </label>
-              <label class="inline-flex items-center gap-2 text-sm text-slate-warm">
-                <input type="radio" formControlName="gender" value="Female" />
-                {{ i18n.t('apply.female') }}
-              </label>
+    <form
+      class="relative mt-8 overflow-hidden rounded-[1.75rem] border border-mist bg-white shadow-soft"
+      [formGroup]="form"
+      novalidate
+      (ngSubmit)="onFormSubmit()"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <div class="h-1.5 bg-gradient-to-r from-gold-300 via-gold to-forest" aria-hidden="true"></div>
+      <div class="px-5 py-8 sm:px-10 sm:py-10">
+        @if (error()) {
+          <div
+            class="mb-6 flex gap-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900"
+            role="alert"
+          >
+            <span class="mt-0.5 font-bold" aria-hidden="true">!</span>
+            <div>
+              <p class="font-semibold">{{ i18n.t('apply.error.banner') }}</p>
+              <p class="mt-1 leading-relaxed">{{ error() }}</p>
             </div>
-          </fieldset>
+          </div>
+        }
 
-          <fieldset>
-            <legend class="mb-2 text-sm font-medium text-forest">{{ i18n.t('apply.prevEdu') }} *</legend>
-            <div class="space-y-2">
-              @for (opt of prevEduOptions; track opt.value) {
-                <label class="flex items-center gap-2 text-sm text-slate-warm">
-                  <input type="radio" formControlName="previousEducation" [value]="opt.value" />
-                  {{ i18n.t(opt.labelKey) }}
-                </label>
+        @if (step() === 0) {
+          <div formGroupName="student" class="space-y-6">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('apply.studentHeading') }}</h2>
+              <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.step1Hint') }}</p>
+            </div>
+
+            <div [attr.data-error]="invalid(form.controls.student.controls.fullName) || null">
+              <label class="block text-sm font-medium text-forest" for="student-name">
+                {{ i18n.t('apply.studentName') }} *
+              </label>
+              <input
+                id="student-name"
+                type="text"
+                formControlName="fullName"
+                autocomplete="name"
+                [class]="inputClass(form.controls.student.controls.fullName)"
+              />
+              @if (message(form.controls.student.controls.fullName); as msg) {
+                <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
               }
             </div>
-          </fieldset>
 
-          @if (needsPrevDetail()) {
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.prevDetail') }} *</span>
-              <textarea
-                formControlName="previousEducationDetail"
-                rows="3"
-                class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold"
-              ></textarea>
-            </label>
-          }
-        </div>
-      }
-
-      @if (step() === 1) {
-        <div class="space-y-5">
-          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('apply.parentHeading') }}</h2>
-
-          <div formGroupName="primaryParent" class="space-y-4">
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.parentName') }} *</span>
-              <input type="text" formControlName="fullName" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-            </label>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.parentPhone') }} *</span>
-              <input type="tel" formControlName="phone" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" autocomplete="tel" />
-            </label>
-            <div class="grid gap-4 sm:grid-cols-2">
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.fatherPhone') }}</span>
-                <input type="tel" formControlName="fatherPhone" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-              </label>
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.motherPhone') }}</span>
-                <input type="tel" formControlName="motherPhone" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-              </label>
-            </div>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.primaryEmail') }} *</span>
-              <input type="email" formControlName="email" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" autocomplete="email" />
-            </label>
-            <div class="grid gap-4 sm:grid-cols-2">
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.fatherEmail') }}</span>
-                <input type="email" formControlName="fatherEmail" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-              </label>
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.motherEmail') }}</span>
-                <input type="email" formControlName="motherEmail" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-              </label>
-            </div>
-          </div>
-
-          <div formGroupName="address" class="space-y-4 border-t border-mist pt-5">
-            <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('apply.addressHeading') }}</h3>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.line1') }} *</span>
-              <input type="text" formControlName="line1" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" autocomplete="address-line1" />
-            </label>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.line2') }}</span>
-              <input type="text" formControlName="line2" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" autocomplete="address-line2" />
-            </label>
-            <div class="grid gap-4 sm:grid-cols-2">
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.city') }} *</span>
-                <input type="text" formControlName="city" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" autocomplete="address-level2" />
-              </label>
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.postcode') }} *</span>
-                <input type="text" formControlName="postcode" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" autocomplete="postal-code" />
-              </label>
-            </div>
-          </div>
-
-          <label class="flex items-center gap-2 text-sm text-slate-warm">
-            <input
-              type="checkbox"
-              [checked]="includeSecondary()"
-              (change)="toggleSecondary($any($event.target).checked)"
-            />
-            {{ i18n.t('apply.secondaryToggle') }}
-          </label>
-
-          @if (includeSecondary()) {
-            <div formGroupName="secondaryParent" class="space-y-4 rounded-2xl border border-mist bg-cream/30 p-4">
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.secondaryName') }} *</span>
-                <input type="text" formControlName="fullName" class="w-full rounded-2xl border border-mist bg-white px-4 py-3 text-forest outline-none focus:border-gold" />
-              </label>
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.secondaryRelationship') }} *</span>
-                <input type="text" formControlName="relationship" class="w-full rounded-2xl border border-mist bg-white px-4 py-3 text-forest outline-none focus:border-gold" />
-              </label>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <label class="block">
-                  <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.secondaryPhone') }}</span>
-                  <input type="tel" formControlName="phone" class="w-full rounded-2xl border border-mist bg-white px-4 py-3 text-forest outline-none focus:border-gold" />
+            <fieldset [attr.data-error]="invalid(form.controls.student.controls.dateOfBirth) || null">
+              <legend class="text-sm font-medium text-forest">{{ i18n.t('apply.dob') }} *</legend>
+              <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.dobHint') }}</p>
+              <div class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <label class="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-warm">
+                  {{ i18n.t('apply.dobDay') }}
+                  <select
+                    [class]="selectClass(form.controls.student.controls.dateOfBirth)"
+                    [value]="dobD()"
+                    (change)="setDobPart('d', $any($event.target).value)"
+                  >
+                    <option value="">—</option>
+                    @for (d of daysInMonth(); track d) {
+                      <option [value]="d">{{ d }}</option>
+                    }
+                  </select>
                 </label>
-                <label class="block">
-                  <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.secondaryEmail') }}</span>
-                  <input type="email" formControlName="email" class="w-full rounded-2xl border border-mist bg-white px-4 py-3 text-forest outline-none focus:border-gold" />
+                <label class="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-warm">
+                  {{ i18n.t('apply.dobMonth') }}
+                  <select
+                    [class]="selectClass(form.controls.student.controls.dateOfBirth)"
+                    [value]="dobM()"
+                    (change)="setDobPart('m', $any($event.target).value)"
+                  >
+                    <option value="">—</option>
+                    @for (month of months; track month.value) {
+                      <option [value]="month.value">{{ month.label }}</option>
+                    }
+                  </select>
+                </label>
+                <label class="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-warm">
+                  {{ i18n.t('apply.dobYear') }}
+                  <select
+                    [class]="selectClass(form.controls.student.controls.dateOfBirth)"
+                    [value]="dobY()"
+                    (change)="setDobPart('y', $any($event.target).value)"
+                  >
+                    <option value="">—</option>
+                    @for (y of years; track y) {
+                      <option [value]="y">{{ y }}</option>
+                    }
+                  </select>
                 </label>
               </div>
-            </div>
-          }
-        </div>
-      }
+              <label class="mt-4 block text-sm font-medium text-forest">
+                {{ i18n.t('apply.dobCalendar') }}
+                <input
+                  type="date"
+                  [min]="minDob"
+                  [max]="maxDob"
+                  [value]="form.controls.student.controls.dateOfBirth.value"
+                  (change)="onCalendarDob($any($event.target).value)"
+                  [class]="inputClass(form.controls.student.controls.dateOfBirth)"
+                />
+              </label>
+              @if (message(form.controls.student.controls.dateOfBirth); as msg) {
+                <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+              }
+            </fieldset>
 
-      @if (step() === 2) {
-        <div class="space-y-5">
-          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('apply.medicalHeading') }}</h2>
-
-          <div formGroupName="medical" class="space-y-4">
             <fieldset>
-              <legend class="mb-2 text-sm font-medium text-forest">{{ i18n.t('apply.medicalQ') }} *</legend>
-              <div class="flex flex-wrap gap-4">
-                <label class="inline-flex items-center gap-2 text-sm text-slate-warm">
-                  <input type="radio" formControlName="hasCondition" value="yes" />
-                  {{ i18n.t('apply.yes') }}
+              <legend class="mb-3 text-sm font-medium text-forest">{{ i18n.t('apply.gender') }} *</legend>
+              <div class="grid grid-cols-2 gap-3">
+                <label [class]="choiceClass(form.controls.student.controls.gender.value === 'Male', true)">
+                  <input type="radio" class="sr-only" formControlName="gender" value="Male" />
+                  {{ i18n.t('apply.male') }}
                 </label>
-                <label class="inline-flex items-center gap-2 text-sm text-slate-warm">
-                  <input type="radio" formControlName="hasCondition" value="no" />
-                  {{ i18n.t('apply.no') }}
+                <label [class]="choiceClass(form.controls.student.controls.gender.value === 'Female', true)">
+                  <input type="radio" class="sr-only" formControlName="gender" value="Female" />
+                  {{ i18n.t('apply.female') }}
                 </label>
               </div>
             </fieldset>
-            @if (form.controls.medical.controls.hasCondition.value === 'yes') {
-              <label class="block">
-                <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.medicalDetails') }} *</span>
-                <textarea formControlName="details" rows="3" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold"></textarea>
-              </label>
-            }
-          </div>
 
-          <div formGroupName="emergencyContact" class="space-y-4 border-t border-mist pt-5">
-            <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('apply.emergencyHeading') }}</h3>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.emergencyName') }} *</span>
-              <input type="text" formControlName="name" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-            </label>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.emergencyAddress') }} *</span>
-              <input type="text" formControlName="address" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-            </label>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.emergencyPhone') }} *</span>
-              <input type="tel" formControlName="phone" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-            </label>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.emergencyRelationship') }}</span>
-              <input type="text" formControlName="relationship" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-            </label>
-          </div>
-        </div>
-      }
-
-      @if (step() === 3) {
-        <div class="space-y-5">
-          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('apply.finalHeading') }}</h2>
-
-          <div formGroupName="preferences">
             <fieldset>
-              <legend class="mb-2 text-sm font-medium text-forest">{{ i18n.t('apply.classSlot') }} *</legend>
-              <p class="mb-3 text-xs text-slate-warm">{{ i18n.t('apply.classSlotNote') }}</p>
-              <div class="space-y-2">
-                @for (slot of classSlots; track slot.value) {
-                  <label class="flex items-center gap-2 text-sm text-slate-warm">
-                    <input type="radio" formControlName="classSlot" [value]="slot.value" />
-                    {{ slot.label }}
+              <legend class="mb-3 text-sm font-medium text-forest">{{ i18n.t('apply.prevEdu') }} *</legend>
+              <div class="grid gap-3 sm:grid-cols-2">
+                @for (opt of prevEduOptions; track opt.value) {
+                  <label [class]="choiceClass(form.controls.student.controls.previousEducation.value === opt.value)">
+                    <input type="radio" class="sr-only" formControlName="previousEducation" [value]="opt.value" />
+                    {{ i18n.t(opt.labelKey) }}
                   </label>
                 }
               </div>
             </fieldset>
+
+            @if (needsPrevDetail()) {
+              <div [attr.data-error]="invalid(form.controls.student.controls.previousEducationDetail) || null">
+                <label class="block text-sm font-medium text-forest" for="prev-detail">
+                  {{ i18n.t('apply.prevDetail') }} *
+                </label>
+                <textarea
+                  id="prev-detail"
+                  formControlName="previousEducationDetail"
+                  rows="3"
+                  [class]="inputClass(form.controls.student.controls.previousEducationDetail)"
+                ></textarea>
+                @if (message(form.controls.student.controls.previousEducationDetail); as msg) {
+                  <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                }
+              </div>
+            }
           </div>
-
-          <div class="rounded-2xl border border-mist bg-cream/40 p-4">
-            <h3 class="text-sm font-semibold text-forest">{{ i18n.t('apply.termsHeading') }}</h3>
-            <pre class="mt-3 max-h-48 overflow-y-auto whitespace-pre-wrap font-sans text-xs leading-relaxed text-slate-warm">{{ termsText }}</pre>
-          </div>
-
-          <div formGroupName="consents" class="space-y-3">
-            <label class="flex items-start gap-2 text-sm text-slate-warm">
-              <input type="checkbox" formControlName="gdpr" class="mt-1" />
-              <span>{{ i18n.t('apply.consentGdpr') }} *</span>
-            </label>
-            <label class="flex items-start gap-2 text-sm text-slate-warm">
-              <input type="checkbox" formControlName="media" class="mt-1" />
-              <span>{{ i18n.t('apply.consentMedia') }}</span>
-            </label>
-            <label class="flex items-start gap-2 text-sm text-slate-warm">
-              <input type="checkbox" formControlName="medicalFirstAid" class="mt-1" />
-              <span>{{ i18n.t('apply.consentMedical') }} *</span>
-            </label>
-            <label class="flex items-start gap-2 text-sm text-slate-warm">
-              <input type="checkbox" formControlName="termsAgreed" class="mt-1" />
-              <span>{{ i18n.t('apply.consentTerms') }} *</span>
-            </label>
-          </div>
-
-          <div formGroupName="declaration" class="grid gap-4 sm:grid-cols-2">
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.signedBy') }} *</span>
-              <input type="text" formControlName="signedBy" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-            </label>
-            <label class="block">
-              <span class="mb-1.5 block text-sm font-medium text-forest">{{ i18n.t('apply.signedAt') }} *</span>
-              <input type="date" formControlName="signedAt" class="w-full rounded-2xl border border-mist bg-cream/40 px-4 py-3 text-forest outline-none focus:border-gold" />
-            </label>
-          </div>
-        </div>
-      }
-
-      <div class="flex flex-col-reverse gap-3 border-t border-mist pt-6 sm:flex-row sm:items-center sm:justify-between">
-        <div class="flex gap-3">
-          @if (step() > 0) {
-            <button
-              type="button"
-              (click)="back()"
-              class="inline-flex items-center justify-center rounded-full border border-mist px-5 py-2.5 text-sm font-semibold text-forest"
-            >
-              {{ i18n.t('apply.back') }}
-            </button>
-          }
-          <a routerLink="/madrasa" class="inline-flex items-center justify-center px-2 py-2.5 text-sm text-slate-warm hover:underline">
-            {{ i18n.t('apply.cancel') }}
-          </a>
-        </div>
-
-        @if (step() < 3) {
-          <button
-            type="submit"
-            class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-3 text-sm font-semibold text-forest shadow-soft"
-          >
-            {{ i18n.t('apply.next') }}
-          </button>
-        } @else {
-          <button
-            type="submit"
-            [disabled]="submitting()"
-            class="inline-flex items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream shadow-soft disabled:opacity-60"
-          >
-            {{ submitting() ? i18n.t('apply.submitting') : i18n.t('apply.submit') }}
-          </button>
         }
+
+        @if (step() === 1) {
+          <div class="space-y-6">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('apply.parentHeading') }}</h2>
+              <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.step2Hint') }}</p>
+            </div>
+
+            <div formGroupName="primaryParent" class="space-y-5">
+              <div [attr.data-error]="invalid(form.controls.primaryParent.controls.fullName) || null">
+                <label class="block text-sm font-medium text-forest" for="parent-name">
+                  {{ i18n.t('apply.parentName') }} *
+                </label>
+                <input
+                  id="parent-name"
+                  type="text"
+                  formControlName="fullName"
+                  autocomplete="name"
+                  [class]="inputClass(form.controls.primaryParent.controls.fullName)"
+                />
+                @if (message(form.controls.primaryParent.controls.fullName); as msg) {
+                  <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                }
+              </div>
+
+              <div [attr.data-error]="invalid(form.controls.primaryParent.controls.phone) || null">
+                <label class="block text-sm font-medium text-forest" for="parent-phone">
+                  {{ i18n.t('apply.parentPhone') }} *
+                </label>
+                <input
+                  id="parent-phone"
+                  type="tel"
+                  formControlName="phone"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  [class]="inputClass(form.controls.primaryParent.controls.phone)"
+                />
+                <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('apply.phoneHint') }}</p>
+                @if (message(form.controls.primaryParent.controls.phone); as msg) {
+                  <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                }
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div [attr.data-error]="invalid(form.controls.primaryParent.controls.fatherPhone) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.fatherPhone') }}
+                    <span class="font-normal text-slate-warm">({{ i18n.t('apply.optional') }})</span>
+                    <input type="tel" formControlName="fatherPhone" [class]="inputClass(form.controls.primaryParent.controls.fatherPhone)" />
+                  </label>
+                  @if (message(form.controls.primaryParent.controls.fatherPhone); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+                <div [attr.data-error]="invalid(form.controls.primaryParent.controls.motherPhone) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.motherPhone') }}
+                    <span class="font-normal text-slate-warm">({{ i18n.t('apply.optional') }})</span>
+                    <input type="tel" formControlName="motherPhone" [class]="inputClass(form.controls.primaryParent.controls.motherPhone)" />
+                  </label>
+                  @if (message(form.controls.primaryParent.controls.motherPhone); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+              </div>
+
+              <div [attr.data-error]="invalid(form.controls.primaryParent.controls.email) || null">
+                <label class="block text-sm font-medium text-forest" for="parent-email">
+                  {{ i18n.t('apply.primaryEmail') }} *
+                </label>
+                <input
+                  id="parent-email"
+                  type="email"
+                  formControlName="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  [class]="inputClass(form.controls.primaryParent.controls.email)"
+                />
+                <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('apply.emailHint') }}</p>
+                @if (message(form.controls.primaryParent.controls.email); as msg) {
+                  <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                }
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div [attr.data-error]="invalid(form.controls.primaryParent.controls.fatherEmail) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.fatherEmail') }}
+                    <span class="font-normal text-slate-warm">({{ i18n.t('apply.optional') }})</span>
+                    <input type="email" formControlName="fatherEmail" [class]="inputClass(form.controls.primaryParent.controls.fatherEmail)" />
+                  </label>
+                  @if (message(form.controls.primaryParent.controls.fatherEmail); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+                <div [attr.data-error]="invalid(form.controls.primaryParent.controls.motherEmail) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.motherEmail') }}
+                    <span class="font-normal text-slate-warm">({{ i18n.t('apply.optional') }})</span>
+                    <input type="email" formControlName="motherEmail" [class]="inputClass(form.controls.primaryParent.controls.motherEmail)" />
+                  </label>
+                  @if (message(form.controls.primaryParent.controls.motherEmail); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div formGroupName="address" class="space-y-5 border-t border-mist pt-6">
+              <h3 class="font-display text-xl font-bold text-forest">{{ i18n.t('apply.addressHeading') }}</h3>
+              <div [attr.data-error]="invalid(form.controls.address.controls.line1) || null">
+                <label class="block text-sm font-medium text-forest">
+                  {{ i18n.t('apply.line1') }} *
+                  <input type="text" formControlName="line1" autocomplete="address-line1" [class]="inputClass(form.controls.address.controls.line1)" />
+                </label>
+                @if (message(form.controls.address.controls.line1); as msg) {
+                  <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                }
+              </div>
+              <label class="block text-sm font-medium text-forest">
+                {{ i18n.t('apply.line2') }}
+                <span class="font-normal text-slate-warm">({{ i18n.t('apply.optional') }})</span>
+                <input type="text" formControlName="line2" autocomplete="address-line2" [class]="inputClass(form.controls.address.controls.line2)" />
+              </label>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div [attr.data-error]="invalid(form.controls.address.controls.city) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.city') }} *
+                    <input type="text" formControlName="city" autocomplete="address-level2" [class]="inputClass(form.controls.address.controls.city)" />
+                  </label>
+                  @if (message(form.controls.address.controls.city); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+                <div [attr.data-error]="invalid(form.controls.address.controls.postcode) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.postcode') }} *
+                    <input type="text" formControlName="postcode" autocomplete="postal-code" autocapitalize="characters" spellcheck="false" [class]="inputClass(form.controls.address.controls.postcode)" />
+                  </label>
+                  <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('apply.postcodeHint') }}</p>
+                  @if (message(form.controls.address.controls.postcode); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <label
+              class="flex cursor-pointer items-start gap-3 rounded-2xl border border-mist bg-sand/40 px-4 py-4 text-sm text-forest"
+            >
+              <input
+                type="checkbox"
+                class="mt-0.5"
+                [checked]="includeSecondary()"
+                (change)="toggleSecondary($any($event.target).checked)"
+              />
+              <span>{{ i18n.t('apply.secondaryToggle') }}</span>
+            </label>
+
+            @if (includeSecondary()) {
+              <div formGroupName="secondaryParent" class="space-y-4 rounded-2xl border border-mist bg-sand/30 p-4 sm:p-5">
+                <div [attr.data-error]="invalid(form.controls.secondaryParent.controls.fullName) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.secondaryName') }} *
+                    <input type="text" formControlName="fullName" [class]="inputClass(form.controls.secondaryParent.controls.fullName)" />
+                  </label>
+                  @if (message(form.controls.secondaryParent.controls.fullName); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+                <div [attr.data-error]="invalid(form.controls.secondaryParent.controls.relationship) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.secondaryRelationship') }} *
+                    <input type="text" formControlName="relationship" [class]="inputClass(form.controls.secondaryParent.controls.relationship)" />
+                  </label>
+                  @if (message(form.controls.secondaryParent.controls.relationship); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.secondaryPhone') }}
+                    <input type="tel" formControlName="phone" [class]="inputClass(form.controls.secondaryParent.controls.phone)" />
+                  </label>
+                  <div [attr.data-error]="invalid(form.controls.secondaryParent.controls.email) || null">
+                    <label class="block text-sm font-medium text-forest">
+                      {{ i18n.t('apply.secondaryEmail') }}
+                      <input type="email" formControlName="email" [class]="inputClass(form.controls.secondaryParent.controls.email)" />
+                    </label>
+                    @if (message(form.controls.secondaryParent.controls.email); as msg) {
+                      <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+
+        @if (step() === 2) {
+          <div class="space-y-6">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('apply.medicalHeading') }}</h2>
+              <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.step3Hint') }}</p>
+            </div>
+
+            <div formGroupName="medical" class="space-y-4">
+              <fieldset>
+                <legend class="mb-3 text-sm font-medium text-forest">{{ i18n.t('apply.medicalQ') }} *</legend>
+                <div class="grid grid-cols-2 gap-3">
+                  <label [class]="choiceClass(form.controls.medical.controls.hasCondition.value === 'no', true)">
+                    <input type="radio" class="sr-only" formControlName="hasCondition" value="no" />
+                    {{ i18n.t('apply.no') }}
+                  </label>
+                  <label [class]="choiceClass(form.controls.medical.controls.hasCondition.value === 'yes', true)">
+                    <input type="radio" class="sr-only" formControlName="hasCondition" value="yes" />
+                    {{ i18n.t('apply.yes') }}
+                  </label>
+                </div>
+              </fieldset>
+              @if (form.controls.medical.controls.hasCondition.value === 'yes') {
+                <div [attr.data-error]="invalid(form.controls.medical.controls.details) || null">
+                  <label class="block text-sm font-medium text-forest">
+                    {{ i18n.t('apply.medicalDetails') }} *
+                    <textarea formControlName="details" rows="3" [class]="inputClass(form.controls.medical.controls.details)"></textarea>
+                  </label>
+                  @if (message(form.controls.medical.controls.details); as msg) {
+                    <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                  }
+                </div>
+              }
+            </div>
+
+            <div formGroupName="emergencyContact" class="space-y-5 border-t border-mist pt-6">
+              <h3 class="font-display text-xl font-bold text-forest">{{ i18n.t('apply.emergencyHeading') }}</h3>
+              <div [attr.data-error]="invalid(form.controls.emergencyContact.controls.name) || null">
+                <label class="block text-sm font-medium text-forest">
+                  {{ i18n.t('apply.emergencyName') }} *
+                  <input type="text" formControlName="name" [class]="inputClass(form.controls.emergencyContact.controls.name)" />
+                </label>
+                @if (message(form.controls.emergencyContact.controls.name); as msg) {
+                  <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                }
+              </div>
+              <div [attr.data-error]="invalid(form.controls.emergencyContact.controls.address) || null">
+                <label class="block text-sm font-medium text-forest">
+                  {{ i18n.t('apply.emergencyAddress') }} *
+                  <input type="text" formControlName="address" [class]="inputClass(form.controls.emergencyContact.controls.address)" />
+                </label>
+                @if (message(form.controls.emergencyContact.controls.address); as msg) {
+                  <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                }
+              </div>
+              <div [attr.data-error]="invalid(form.controls.emergencyContact.controls.phone) || null">
+                <label class="block text-sm font-medium text-forest">
+                  {{ i18n.t('apply.emergencyPhone') }} *
+                  <input type="tel" formControlName="phone" [class]="inputClass(form.controls.emergencyContact.controls.phone)" />
+                </label>
+                @if (message(form.controls.emergencyContact.controls.phone); as msg) {
+                  <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+                }
+              </div>
+              <label class="block text-sm font-medium text-forest">
+                {{ i18n.t('apply.emergencyRelationship') }}
+                <span class="font-normal text-slate-warm">({{ i18n.t('apply.optional') }})</span>
+                <input type="text" formControlName="relationship" [class]="inputClass(form.controls.emergencyContact.controls.relationship)" />
+              </label>
+            </div>
+          </div>
+        }
+
+        @if (step() === 3) {
+          <div class="space-y-6">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('apply.finalHeading') }}</h2>
+              <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.step4Hint') }}</p>
+            </div>
+
+            <div formGroupName="preferences">
+              <fieldset>
+                <legend class="mb-1 text-sm font-medium text-forest">{{ i18n.t('apply.classSlot') }} *</legend>
+                <p class="mb-3 text-sm text-slate-warm">{{ i18n.t('apply.classSlotNote') }}</p>
+                <div class="grid gap-3">
+                  @for (slot of classSlots; track slot.value) {
+                    <label [class]="choiceClass(form.controls.preferences.controls.classSlot.value === slot.value)">
+                      <input type="radio" class="sr-only" formControlName="classSlot" [value]="slot.value" />
+                      {{ slot.label }}
+                    </label>
+                  }
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="rounded-2xl border border-mist bg-sand/40 p-5">
+              <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('apply.termsHeading') }}</h3>
+              <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.termsLead') }}</p>
+              <ol class="mt-4 max-h-56 space-y-3 overflow-y-auto pr-1 text-sm leading-relaxed text-slate-warm">
+                @for (term of terms; track term; let i = $index) {
+                  <li class="flex gap-3">
+                    <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-forest text-xs font-bold text-cream">{{ i + 1 }}</span>
+                    <span>{{ term }}</span>
+                  </li>
+                }
+              </ol>
+            </div>
+
+            <div formGroupName="consents" class="space-y-3">
+              <label
+                class="flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-4 text-sm leading-relaxed text-forest"
+                [class.border-red-400]="invalid(form.controls.consents.controls.gdpr)"
+                [class.border-mist]="!invalid(form.controls.consents.controls.gdpr)"
+                [attr.data-error]="invalid(form.controls.consents.controls.gdpr) || null"
+              >
+                <input type="checkbox" formControlName="gdpr" class="mt-0.5" />
+                <span>{{ i18n.t('apply.consentGdpr') }} *</span>
+              </label>
+              @if (message(form.controls.consents.controls.gdpr); as msg) {
+                <p class="text-sm font-medium text-red-700">{{ msg }}</p>
+              }
+
+              <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-mist px-4 py-4 text-sm leading-relaxed text-forest">
+                <input type="checkbox" formControlName="media" class="mt-0.5" />
+                <span>{{ i18n.t('apply.consentMedia') }} ({{ i18n.t('apply.optional') }})</span>
+              </label>
+
+              <label
+                class="flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-4 text-sm leading-relaxed text-forest"
+                [class.border-red-400]="invalid(form.controls.consents.controls.medicalFirstAid)"
+                [class.border-mist]="!invalid(form.controls.consents.controls.medicalFirstAid)"
+                [attr.data-error]="invalid(form.controls.consents.controls.medicalFirstAid) || null"
+              >
+                <input type="checkbox" formControlName="medicalFirstAid" class="mt-0.5" />
+                <span>{{ i18n.t('apply.consentMedical') }} *</span>
+              </label>
+              @if (message(form.controls.consents.controls.medicalFirstAid); as msg) {
+                <p class="text-sm font-medium text-red-700">{{ msg }}</p>
+              }
+
+              <label
+                class="flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-4 text-sm leading-relaxed text-forest"
+                [class.border-red-400]="invalid(form.controls.consents.controls.termsAgreed)"
+                [class.border-mist]="!invalid(form.controls.consents.controls.termsAgreed)"
+                [attr.data-error]="invalid(form.controls.consents.controls.termsAgreed) || null"
+              >
+                <input type="checkbox" formControlName="termsAgreed" class="mt-0.5" />
+                <span>{{ i18n.t('apply.consentTerms') }} *</span>
+              </label>
+              @if (message(form.controls.consents.controls.termsAgreed); as msg) {
+                <p class="text-sm font-medium text-red-700">{{ msg }}</p>
+              }
+            </div>
+
+            <div formGroupName="declaration" [attr.data-error]="invalid(form.controls.declaration.controls.signedBy) || null">
+              <label class="block text-sm font-medium text-forest" for="signed-by">
+                {{ i18n.t('apply.signedBy') }} *
+              </label>
+              <input
+                id="signed-by"
+                type="text"
+                formControlName="signedBy"
+                autocomplete="name"
+                [class]="inputClass(form.controls.declaration.controls.signedBy)"
+              />
+              <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('apply.signedAtNote') }}</p>
+              @if (message(form.controls.declaration.controls.signedBy); as msg) {
+                <p class="mt-1.5 text-sm font-medium text-red-700">{{ msg }}</p>
+              }
+            </div>
+          </div>
+        }
+
+        <div
+          class="sticky bottom-0 z-10 -mx-5 mt-8 border-t border-mist bg-white/95 px-5 py-4 backdrop-blur sm:-mx-10 sm:px-10"
+          style="padding-bottom: max(1rem, env(safe-area-inset-bottom))"
+        >
+          <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-3">
+              @if (step() > 0) {
+                <button
+                  type="button"
+                  (click)="back()"
+                  class="inline-flex min-h-12 items-center justify-center rounded-full border border-mist px-5 text-sm font-semibold text-forest"
+                >
+                  {{ i18n.t('apply.back') }}
+                </button>
+              }
+              <a routerLink="/madrasa" class="inline-flex min-h-12 items-center px-2 text-sm text-slate-warm hover:underline">
+                {{ i18n.t('apply.cancel') }}
+              </a>
+            </div>
+
+            @if (step() < 3) {
+              <button
+                type="submit"
+                class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-7 text-sm font-semibold text-forest shadow-soft sm:w-auto"
+              >
+                {{ i18n.t('apply.next') }}
+              </button>
+            } @else {
+              <button
+                type="submit"
+                [disabled]="submitting()"
+                class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-7 text-sm font-semibold text-cream shadow-soft disabled:opacity-60 sm:w-auto"
+              >
+                {{ submitting() ? i18n.t('apply.submitting') : i18n.t('apply.submit') }}
+              </button>
+            }
+          </div>
+        </div>
       </div>
     </form>
 
-    <p class="mt-8 text-center text-sm text-slate-warm">
+    <p class="mt-8 text-center text-sm text-slate-warm" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       {{ i18n.t('apply.help') }}
       <a [href]="whatsappAsk" target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-700 hover:underline">WhatsApp</a>
       ·
       <a [href]="'mailto:' + org.email" class="font-semibold text-gold-700 hover:underline">{{ org.email }}</a>
+      ·
+      <a routerLink="/apply/track" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('applyTrack.title') }}</a>
+      ·
+      <a routerLink="/privacy" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('apply.privacyLink') }}</a>
     </p>
   </div>
 </section>

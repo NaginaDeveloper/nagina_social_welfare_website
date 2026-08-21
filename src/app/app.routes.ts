@@ -25,6 +25,7 @@ import {
   SAFEGUARDING_SEO,
   APPLY_SEO,
   APPLY_SUCCESS_SEO,
+  APPLY_TRACK_SEO,
 } from './seo/seo.config';
 
 export const routes: Routes = [
@@ -64,6 +65,13 @@ export const routes: Routes = [
       import('./pages/apply-success/apply-success-page').then((m) => m.ApplySuccessPage),
     title: APPLY_SUCCESS_SEO.title,
     data: { seo: APPLY_SUCCESS_SEO },
+  },
+  {
+    path: 'apply/track',
+    loadComponent: () =>
+      import('./pages/apply-track/apply-track-page').then((m) => m.ApplyTrackPage),
+    title: APPLY_TRACK_SEO.title,
+    data: { seo: APPLY_TRACK_SEO },
   },
   {
     path: 'spiritual-guide',

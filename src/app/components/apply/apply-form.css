@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+:host input,
+:host select,
+:host textarea {
+  font-size: 16px;
+}
+
+:host input[type='date'] {
+  min-height: 3rem;
+  color-scheme: light;
+}
+
+:host input[type='checkbox'] {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  accent-color: #022c22;
+}
+
+:host select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23022c22' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.4rem;
+}
+
+:host form[dir='rtl'] select {
+  background-position: left 0.9rem center;
+  padding-right: 1rem;
+  padding-left: 2.4rem;
+}

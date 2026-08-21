@@ -1,0 +1,63 @@
+<div [attr.dir]="i18n.isUr() ? 'rtl' : null">
+  <form class="space-y-4" (submit)="$event.preventDefault(); lookup()">
+    <label class="block text-left text-sm font-medium text-forest">
+      {{ i18n.t('applyTrack.idLabel') }}
+      <input
+        type="text"
+        name="applicationId"
+        autocomplete="off"
+        spellcheck="false"
+        class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4 py-3 font-mono text-base tracking-wide text-forest outline-none focus:border-gold/60 focus:bg-white"
+        [ngModel]="id()"
+        (ngModelChange)="id.set($event)"
+        [attr.aria-invalid]="error() ? true : null"
+      />
+    </label>
+    <button
+      type="submit"
+      [disabled]="loading()"
+      class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-6 text-sm font-semibold text-cream shadow-soft disabled:opacity-60 sm:w-auto"
+    >
+      {{ loading() ? i18n.t('applyTrack.checking') : i18n.t('applyTrack.check') }}
+    </button>
+  </form>
+
+  @if (error()) {
+    <p class="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900" role="alert">
+      {{ error() }}
+    </p>
+  }
+
+  @if (result(); as app) {
+    <div class="mt-6 rounded-2xl border-2 px-5 py-5 text-left sm:px-6" [class]="tone(app.status)">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] opacity-80">
+        {{ i18n.t('applyTrack.resultEyebrow') }}
+      </p>
+      <p class="mt-2 font-display text-2xl font-bold">
+        {{ i18n.t(statusKey(app.status)) }}
+      </p>
+      <p class="mt-2 text-sm leading-relaxed opacity-90">
+        {{ i18n.t(statusHint(app.status)) }}
+      </p>
+      @if (app.studentName) {
+        <p class="mt-4 text-sm">
+          <span class="font-semibold">{{ i18n.t('applyTrack.student') }}:</span>
+          {{ app.studentName }}
+        </p>
+      }
+      @if (formatDate(app.submittedAt)) {
+        <p class="mt-1 text-sm opacity-80">
+          {{ i18n.t('applyTrack.submitted') }} · {{ formatDate(app.submittedAt) }}
+        </p>
+      }
+      @if (app.note) {
+        <div class="mt-4 rounded-xl bg-white/70 px-4 py-3 text-sm leading-relaxed text-forest">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-slate-warm">
+            {{ i18n.t('applyTrack.reason') }}
+          </p>
+          <p class="mt-1">{{ app.note }}</p>
+        </div>
+      }
+    </div>
+  }
+</div>

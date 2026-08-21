@@ -103,6 +103,12 @@
           {{ i18n.t('madrasa.enrol') }}
         </a>
         <a
+          routerLink="/apply/track"
+          class="inline-flex items-center justify-center rounded-full border border-gold/40 bg-white px-6 py-3 text-sm font-semibold text-forest"
+        >
+          {{ i18n.t('applyTrack.title') }}
+        </a>
+        <a
           [href]="enrolWhatsApp"
           target="_blank"
           rel="noopener noreferrer"
