@@ -15,6 +15,7 @@ import {
   NAMAZ_SEO,
   PRIVACY_SEO,
   QURAN_SEO,
+  HADITH_SEO,
   SAHABA_IKRAM_SEO,
   AULIA_KARAM_SEO,
   BASIC_BELIEFS_SEO,
@@ -132,6 +133,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/quran/quran-page').then((m) => m.QuranPage),
     title: QURAN_SEO.title,
     data: { seo: QURAN_SEO },
+  },
+  {
+    path: 'hadith',
+    loadComponent: () => import('./pages/hadith/hadith-page').then((m) => m.HadithPage),
+    title: HADITH_SEO.title,
+    data: { seo: HADITH_SEO },
   },
   {
     path: 'books',

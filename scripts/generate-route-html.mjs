@@ -145,6 +145,13 @@ const pages = [
       'Read the Blessed Quran Majeed in Arabic with Kanzul Iman Urdu translation by Aala Hazrat Imam Ahmed Raza Khan, English toggle, and Alafasy recitation.',
   },
   {
+    dir: 'hadith',
+    path: '/hadith/',
+    title: 'Kutub al-Sittah | Six Authentic Books of Hadith | Nagina Social Welfare',
+    description:
+      "Browse the six authentic books of Hadith — Sahih al-Bukhari, Sahih Muslim, Abu Dawud, Tirmidhi, Nasa'i, and Ibn Majah — in Arabic with Urdu and English translations.",
+  },
+  {
     dir: 'books',
     path: '/books/',
     title: 'Islamic Books Library | Seedha Rasta | Nagina Social Welfare',

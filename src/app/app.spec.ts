@@ -69,6 +69,7 @@ describe('App', () => {
       ['/guidance', '#guidance'],
       ['/namaz', '#prayer-times'],
       ['/quran', '#quran'],
+      ['/hadith', '#hadith'],
       ['/books', '#books'],
       ['/sermons', '#sermons'],
       ['/apps', '#apps'],

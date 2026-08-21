@@ -47,6 +47,11 @@ export class Privacy {
         'Prayer times are calculated for Peterborough using the AlAdhan service with fixed city coordinates (not your device location). The Qibla compass defaults to Peterborough. If you tap “Use my location”, your browser may share precise coordinates with us only long enough to request a Qibla bearing from AlAdhan; we do not store that location on our servers. Device compass (“Point to Qibla”) runs on your device and does not send heading data to us.',
     },
     {
+      title: 'Quran & Hadith text',
+      body:
+        'The Blessed Quran Majeed is loaded from the AlQuran Cloud API (Arabic text, Kanzul Iman translations, and audio). The Kutub al-Sittah Hadith reader loads Arabic, Urdu, and English chapter text from an open-source Hadith JSON dataset served via the jsDelivr CDN. Your browser contacts those providers to download the text; we do not store your reading history on our servers.',
+    },
+    {
       title: 'Books & files',
       body:
         'Book covers and PDFs are loaded from Google Firebase Storage so we can publish our library. Your browser contacts Google’s servers to download those files.',

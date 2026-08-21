@@ -26,6 +26,7 @@ export type NavIcon =
   | 'counsel'
   | 'mosque'
   | 'quran'
+  | 'hadith'
   | 'book'
   | 'sermon'
   | 'apps'
@@ -133,6 +134,12 @@ export class Header implements OnInit {
           path: '/quran',
           hintKey: 'nav.quranMajeedHint',
           icon: 'quran',
+        },
+        {
+          labelKey: 'nav.hadith',
+          path: '/hadith',
+          hintKey: 'nav.hadithHint',
+          icon: 'hadith',
         },
       ],
     },

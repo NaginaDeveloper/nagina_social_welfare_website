@@ -121,6 +121,16 @@ export const QURAN_SEO: PageSeo = {
   type: 'website',
 };
 
+export const HADITH_SEO: PageSeo = {
+  title: 'Kutub al-Sittah | Six Authentic Books of Hadith | Nagina Social Welfare',
+  description:
+    'Browse the six authentic books of Hadith — Sahih al-Bukhari, Sahih Muslim, Abu Dawud, Tirmidhi, Nasa\'i, and Ibn Majah — in Arabic with Urdu and English translations.',
+  path: '/hadith/',
+  keywords:
+    'Kutub al-Sittah, Sahih Bukhari, Sahih Muslim, Hadith Urdu, six authentic books, Sunan Abu Dawud, Tirmidhi, Nasa\'i, Ibn Majah',
+  type: 'website',
+};
+
 export const BOOKS_SEO: PageSeo = {
   title: 'Islamic Books Library | Seedha Rasta | Nagina Social Welfare',
   description:
