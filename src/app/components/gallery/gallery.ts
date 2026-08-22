@@ -1,14 +1,15 @@
-import { Component, HostListener, inject, signal } from '@angular/core';
+import { Component, HostListener, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import {
+  eventImageList,
   googleCalendarUrl,
   isEventToday,
-  listedEvents,
-  pastEvents,
   type UpcomingEvent,
 } from '../../config/upcoming-events.config';
 import { LanguageService } from '../../i18n/language.service';
+import { EventsService } from '../../services/events.service';
+import { eventDescriptionHtml } from '../../utils/event-html';
 import { GALLERY_ITEMS, type GalleryItem } from './gallery-data';
 
 @Component({
@@ -16,8 +17,9 @@ import { GALLERY_ITEMS, type GalleryItem } from './gallery-data';
   imports: [RouterLink],
   templateUrl: './gallery.html',
 })
-export class Gallery {
+export class Gallery implements OnInit {
   protected readonly i18n = inject(LanguageService);
+  protected readonly events = inject(EventsService);
   protected readonly facebookUrl = ORGANIZATION.facebookUrl;
   protected readonly facebookPhotosUrl = ORGANIZATION.facebookPhotosUrl;
   protected readonly instagramUrl = ORGANIZATION.instagramUrl;
@@ -25,8 +27,14 @@ export class Gallery {
 
   protected readonly activeItem = signal<GalleryItem | null>(null);
   protected readonly items = GALLERY_ITEMS;
-  protected readonly programmes = listedEvents();
-  protected readonly pastProgrammes = pastEvents();
+
+  protected readonly programmes = computed(() => this.events.latestEvents());
+  protected readonly pastProgrammes = computed(() => this.events.pastDatedEvents());
+  protected readonly regularProgrammes = computed(() => this.events.standingProgrammes());
+
+  ngOnInit(): void {
+    void this.events.load();
+  }
 
   protected openItem(item: GalleryItem): void {
     this.activeItem.set(item);
@@ -45,16 +53,24 @@ export class Gallery {
     }
   }
 
-  protected openPoster(event: UpcomingEvent): void {
-    if (!event.image) {
+  protected openPoster(event: UpcomingEvent, imageUrl?: string): void {
+    const images = eventImageList(event);
+    const target = imageUrl
+      ? images.find((img) => img.url === imageUrl) ?? images[0]
+      : images[0];
+    if (!target) {
       return;
     }
     this.openItem({
-      id: `${event.id}-poster`,
-      src: event.image,
-      alt: event.imageAlt ?? event.title,
+      id: target.id || `${event.id}-poster`,
+      src: target.url,
+      alt: target.alt ?? event.imageAlt ?? event.title,
       caption: event.title,
     });
+  }
+
+  protected imagesFor(event: UpcomingEvent) {
+    return eventImageList(event);
   }
 
   protected eventTitle(event: UpcomingEvent): string {
@@ -72,18 +88,12 @@ export class Gallery {
     return this.i18n.lang() === 'ur' ? event.audienceUr : event.audience;
   }
 
-  protected eventHighlights(event: UpcomingEvent): string {
-    return this.i18n.lang() === 'ur'
-      ? (event.highlightsUr ?? '')
-      : (event.highlights ?? '');
-  }
-
   protected eventSummary(event: UpcomingEvent): string {
     return this.i18n.lang() === 'ur' ? (event.summaryUr ?? '') : (event.summary ?? '');
   }
 
-  protected eventHost(event: UpcomingEvent): string {
-    return this.i18n.lang() === 'ur' ? (event.hostUr ?? '') : (event.host ?? '');
+  protected eventSummaryHtml(event: UpcomingEvent): string {
+    return eventDescriptionHtml(this.eventSummary(event));
   }
 
   protected isToday(event: UpcomingEvent): boolean {

@@ -271,10 +271,25 @@ async function buildCuratedChunks() {
 
   const faq = [
     {
+      title: 'About Nagina Social Welfare',
+      path: '/about',
+      text:
+        'Nagina Social Welfare UK Limited is a registered charity (1196514) and company (08342937) in England and Wales. We serve UK communities through knowledge and compassion, with two arms: Markaz Deen-e-Islam (Qur’an and Islamic education in Peterborough) and Nagina Social Welfare (community welfare). Our pillars are Faith (Ahl-e-Sunnat), Compassion, and Knowledge. Gift Aid is not currently claimed. More: https://www.naginasocialwelfare.co.uk/about/',
+      tags: ['about', 'charity', 'organisation'],
+    },
+    {
       title: 'Donate methods',
       path: '/donate',
-      text: 'Donations can be made by SumUp card checkout, PayPal, NatWest PayIt, or direct UK bank transfer on the donate page.',
+      text:
+        'Donations fund Islamic education at Markaz Deen-e-Islam and community welfare. Choose a fund first: Zakat, Sadaqah, Lillah, or Fitrana. Then give by SumUp card checkout (£5 to £25,000), PayPal, NatWest PayIt, or UK bank transfer on https://www.naginasocialwelfare.co.uk/donate/. Bank: NatWest. Account name NAGINA SOCIAL WELFAR. Sort code 54-21-38. Account 29135877. BIC NWBKGB2L. IBAN GB09 NWBK 5421 3829 1358 77. Use the fund name as the payment reference (ZAKAT, SADAQAH, LILLAH, or FITRANA). Registered charity 1196514. Gift Aid is not currently claimed.',
       tags: ['donate', 'payments'],
+    },
+    {
+      title: 'Madrasa admission form',
+      path: '/apply',
+      text:
+        'New madrasa places are applied for only on the website form https://www.naginasocialwelfare.co.uk/apply/ — do not send children’s details by WhatsApp or email. The form has four steps: student, parent, medical and emergency, then class preference and declaration. Ages 3–18. After submit we email from info@naginasocialwelfare.co.uk. Track status at https://www.naginasocialwelfare.co.uk/apply/track/ with the application ID. Fees are £5 every Monday or paid in advance. Uniform (white jooba for boys, black abaya for girls) is provided by the madrasa. WhatsApp is for questions only.',
+      tags: ['apply', 'admission', 'madrasa', 'form'],
     },
     {
       title: 'Contact Nagina Social Welfare',

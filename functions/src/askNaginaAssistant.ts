@@ -1,56 +1,18 @@
 import { getApps, initializeApp } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
 import { logger } from 'firebase-functions';
 import { onRequest } from 'firebase-functions/v2/https';
 import { applyCors } from './cors';
-import {
-  ASSISTANT_COLLECTION,
-  ASSISTANT_META_COLLECTION,
-  detectQuestionLanguage,
-  embedText,
-  generateAnswer,
-  generateHybridAnswer,
-  type AssistantCitation,
-  type AssistantHistoryTurn,
-  type RawAssistantChunk,
-  type StoredAssistantChunk,
-  cosineSimilarity,
-} from './assistantShared';
-import {
-  classifyQuestion,
-  filterChunksForScope,
-  generalGuidanceDisclaimer,
-  gentleScopeReply,
-  isBooksRelatedQuery,
-  scopeRetrievalBoost,
-  standardDisclaimer,
-} from './assistantScope';
-import { assessRetrievalConfidence, hasMeaningfulLexicalOverlap } from './assistantRetrieval';
-
-if (getApps().length === 0) {
-  initializeApp();
-}
-
-const db = getFirestore();
-const rateWindow = 60_000;
-const rateLimit = 12;
-const requests = new Map<string, { count: number; resetAt: number }>();
-
-let cacheUntil = 0;
-let cachedChunks: StoredAssistantChunk[] = [];
+import { answerNaginaQuestion } from './answerNaginaQuestion';
+import type { AssistantHistoryTurn } from './assistantShared';
 
 interface AskBody {
   readonly query?: string;
   readonly history?: readonly AssistantHistoryTurn[];
 }
 
-function tokenize(value: string): string[] {
-  return value
-    .toLowerCase()
-    .split(/[^a-z0-9\u0600-\u06FF]+/i)
-    .map((part) => part.trim())
-    .filter((part) => part.length > 1);
-}
+const rateWindow = 60_000;
+const rateLimit = 12;
+const requests = new Map<string, { count: number; resetAt: number }>();
 
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
@@ -66,70 +28,8 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-async function loadChunks(): Promise<StoredAssistantChunk[]> {
-  if (cacheUntil > Date.now() && cachedChunks.length) {
-    return cachedChunks;
-  }
-  const snapshot = await db.collection(ASSISTANT_COLLECTION).get();
-  cachedChunks = snapshot.docs.map((doc) => doc.data() as StoredAssistantChunk);
-  cacheUntil = Date.now() + 5 * 60_000;
-  return cachedChunks;
-}
-
-function toCitation(chunk: RawAssistantChunk): AssistantCitation {
-  return {
-    title: chunk.title,
-    path: chunk.path,
-    sourceType: chunk.sourceType,
-  };
-}
-
-function selectCitations(chunks: readonly StoredAssistantChunk[], query: string): AssistantCitation[] {
-  const queryLower = query.toLowerCase();
-  const booksQuery = isBooksRelatedQuery(query);
-  const navigational =
-    /donate|contact|namaz|prayer|assistant|portal|pay|email|phone|sumup|paypal|natwest/i.test(
-      queryLower,
-    ) || /رابط|عط|نماز|مدد|رابطہ/.test(query);
-
-  if (navigational && !booksQuery) {
-    const faqMatches = chunks.filter((chunk) => chunk.sourceType === 'faq');
-    if (faqMatches.length) {
-      return faqMatches.slice(0, 2).map(toCitation);
-    }
-  }
-
-  if (booksQuery) {
-    const bookMatches = chunks.filter(
-      (chunk) => chunk.sourceType === 'book' || chunk.path === '/books',
-    );
-    if (bookMatches.length) {
-      return bookMatches.slice(0, 3).map(toCitation);
-    }
-  }
-
-  const prioritized = chunks.filter((chunk) => {
-    if (booksQuery) {
-      return true;
-    }
-    return chunk.sourceType !== 'book' && chunk.path !== '/books';
-  });
-
-  const unique: AssistantCitation[] = [];
-  const seen = new Set<string>();
-  for (const chunk of prioritized) {
-    const key = `${chunk.path}:${chunk.title}`;
-    if (seen.has(key)) {
-      continue;
-    }
-    seen.add(key);
-    unique.push(toCitation(chunk));
-    if (unique.length === 3) {
-      break;
-    }
-  }
-
-  return unique;
+if (getApps().length === 0) {
+  initializeApp();
 }
 
 export const askNaginaAssistant = onRequest(
@@ -161,112 +61,20 @@ export const askNaginaAssistant = onRequest(
       return;
     }
 
-    const apiKey = process.env.GEMINI_API_KEY || '';
-
     try {
-      const meta = await db.collection(ASSISTANT_META_COLLECTION).doc('current').get();
-      if (!meta.exists) {
+      const result = await answerNaginaQuestion(cleanQuery, history);
+      if (result.error === 'unavailable') {
         res.status(503).json({
           error: 'Assistant knowledge is still being prepared. Please try again shortly.',
         });
         return;
       }
-
-      const scope = classifyQuestion(cleanQuery);
-      const scopeReply = gentleScopeReply(scope, cleanQuery);
-      if (scopeReply) {
-        res.status(200).json({
-          answer: scopeReply,
-          disclaimer: standardDisclaimer(cleanQuery),
-          citations: [],
-          language: detectQuestionLanguage(cleanQuery),
-        });
-        return;
-      }
-
-      const allChunks = await loadChunks();
-      if (!allChunks.length) {
-        res.status(503).json({
-          error: 'Assistant knowledge is still being prepared. Please try again shortly.',
-        });
-        return;
-      }
-
-      const chunks = filterChunksForScope(allChunks, scope, cleanQuery);
-
-      const queryEmbedding = await embedText(apiKey, cleanQuery, 'RETRIEVAL_QUERY');
-      const queryTokens = tokenize(cleanQuery);
-      const ranked = chunks
-        .map((chunk) => {
-          const semantic = cosineSimilarity(queryEmbedding, chunk.embedding);
-          const haystack = `${chunk.title} ${chunk.path} ${(chunk.tags ?? []).join(' ')}`.toLowerCase();
-          const lexicalHits = queryTokens.filter((token) => haystack.includes(token)).length;
-          const lexicalBoost = lexicalHits * 0.08;
-          const faqBoost = chunk.sourceType === 'faq' && lexicalHits > 0 ? 0.18 : 0;
-          const scopeBoost = scopeRetrievalBoost(chunk, scope, cleanQuery);
-          return { chunk, score: semantic + lexicalBoost + faqBoost + scopeBoost };
-        })
-        .sort((a, b) => b.score - a.score)
-        .filter((item) => item.score > 0.2);
-
-      const selected: StoredAssistantChunk[] = [];
-      const seenPaths = new Set<string>();
-      for (const item of ranked) {
-        const key = `${item.chunk.path}:${item.chunk.title}`;
-        if (seenPaths.has(key)) {
-          continue;
-        }
-        selected.push(item.chunk);
-        seenPaths.add(key);
-        if (selected.length === 6) {
-          break;
-        }
-      }
-
-      const fallback = chunks
-        .filter((chunk) => chunk.sourceType === 'faq')
-        .slice(0, 4);
-
-      const sourceMode = assessRetrievalConfidence(ranked, selected.length, scope, queryTokens);
-      let answer: string;
-      let responseContext: StoredAssistantChunk[];
-      let citations: AssistantCitation[];
-
-      if (sourceMode === 'published') {
-        responseContext = selected.length ? selected : fallback;
-        answer = await generateAnswer(apiKey, cleanQuery, history, responseContext, scope);
-        citations = selectCitations(responseContext, cleanQuery);
-      } else {
-        const optionalContext = selected.length
-          ? selected.slice(0, 3)
-          : ranked.slice(0, 2).map((item) => item.chunk);
-        responseContext = optionalContext;
-        answer = await generateHybridAnswer(
-          apiKey,
-          cleanQuery,
-          history,
-          optionalContext,
-          scope,
-        );
-        const topScore = ranked[0]?.score ?? 0;
-        const relevantOptional = optionalContext.filter((chunk) =>
-          hasMeaningfulLexicalOverlap(chunk, queryTokens),
-        );
-        citations =
-          relevantOptional.length && topScore >= 0.24
-            ? selectCitations(relevantOptional.slice(0, 2), cleanQuery)
-            : [];
-      }
-
       res.status(200).json({
-        answer,
-        disclaimer:
-          sourceMode === 'general'
-            ? generalGuidanceDisclaimer(cleanQuery)
-            : standardDisclaimer(cleanQuery),
-        citations,
-        sourceMode,
-        language: detectQuestionLanguage(cleanQuery),
+        answer: result.answer,
+        disclaimer: result.disclaimer,
+        citations: result.citations,
+        sourceMode: result.sourceMode,
+        language: result.language,
       });
     } catch (err) {
       logger.error('askNaginaAssistant failed', err);

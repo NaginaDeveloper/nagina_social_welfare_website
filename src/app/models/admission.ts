@@ -42,7 +42,8 @@ export interface AdmissionSubmitPayload {
   };
   preferences: { classSlot: ClassSlot };
   consents: {
-    gdpr: true;
+    privacyNoticeRead: true;
+    privacyNoticeVersion: string;
     media: boolean;
     medicalFirstAid: true;
     termsAgreed: true;

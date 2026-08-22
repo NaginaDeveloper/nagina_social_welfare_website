@@ -1,5 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { DonationService } from '../../services/donation.service';
@@ -26,7 +27,7 @@ const ZAKAT_RATE = 0.025;
 
 @Component({
   selector: 'app-donations',
-  imports: [FormsModule, WhatsappIcon],
+  imports: [FormsModule, WhatsappIcon, RouterLink],
   templateUrl: './donations.html',
 })
 export class Donations {

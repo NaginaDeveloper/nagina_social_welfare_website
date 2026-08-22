@@ -23,6 +23,7 @@ import {
 } from '../../validators/uk.validators';
 import { LAST_APPLICATION_ID_KEY } from '../../config/admission-api.config';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
+import { PRIVACY_NOTICE_VERSION } from '../../config/privacy-notice.config';
 
 const TERMS = [
   'Vehicles parked on the double yellow lines outside the madrasa will result in the child losing their place (city council risk).',
@@ -136,7 +137,7 @@ export class ApplyForm {
       classSlot: ['class1' as const, Validators.required],
     }),
     consents: this.fb.nonNullable.group({
-      gdpr: [false, Validators.requiredTrue],
+      privacyNoticeRead: [false, Validators.requiredTrue],
       media: [false],
       medicalFirstAid: [false, Validators.requiredTrue],
       termsAgreed: [false, Validators.requiredTrue],
@@ -446,7 +447,8 @@ export class ApplyForm {
       },
       preferences: { classSlot: v.preferences.classSlot },
       consents: {
-        gdpr: true,
+        privacyNoticeRead: true,
+        privacyNoticeVersion: PRIVACY_NOTICE_VERSION,
         media: v.consents.media === true,
         medicalFirstAid: true,
         termsAgreed: true,

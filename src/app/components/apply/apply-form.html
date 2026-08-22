@@ -26,6 +26,12 @@
       <li class="rounded-2xl border border-mist bg-white/80 px-2 py-3">{{ i18n.t('apply.trustEmail') }}</li>
       <li class="rounded-2xl border border-mist bg-white/80 px-2 py-3">{{ i18n.t('apply.trustPrivate') }}</li>
     </ul>
+    <p
+      class="mx-auto mt-2 max-w-xl text-center text-xs leading-relaxed text-slate-warm/90"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      {{ i18n.t('apply.trustGdprNote') }}
+    </p>
 
     <nav class="mx-auto mt-10 max-w-xl" [attr.aria-label]="i18n.t('apply.progress')">
       <ol class="grid grid-cols-4 gap-2">
@@ -530,14 +536,26 @@
             <div formGroupName="consents" class="space-y-3">
               <label
                 class="flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-4 text-sm leading-relaxed text-forest"
-                [class.border-red-400]="invalid(form.controls.consents.controls.gdpr)"
-                [class.border-mist]="!invalid(form.controls.consents.controls.gdpr)"
-                [attr.data-error]="invalid(form.controls.consents.controls.gdpr) || null"
+                [class.border-red-400]="invalid(form.controls.consents.controls.privacyNoticeRead)"
+                [class.border-mist]="!invalid(form.controls.consents.controls.privacyNoticeRead)"
+                [attr.data-error]="invalid(form.controls.consents.controls.privacyNoticeRead) || null"
               >
-                <input type="checkbox" formControlName="gdpr" class="mt-0.5" />
-                <span>{{ i18n.t('apply.consentGdpr') }} *</span>
+                <input type="checkbox" formControlName="privacyNoticeRead" class="mt-0.5" />
+                <span>
+                  {{ i18n.t('apply.consentPrivacyPrefix') }}
+                  <a
+                    routerLink="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-semibold text-gold-700 underline decoration-gold/40 underline-offset-2 hover:text-gold-600"
+                    (click)="$event.stopPropagation()"
+                  >
+                    {{ i18n.t('apply.privacyLink') }}
+                  </a>
+                  {{ i18n.t('apply.consentPrivacySuffix') }} *
+                </span>
               </label>
-              @if (message(form.controls.consents.controls.gdpr); as msg) {
+              @if (message(form.controls.consents.controls.privacyNoticeRead); as msg) {
                 <p class="text-sm font-medium text-red-700">{{ msg }}</p>
               }
 

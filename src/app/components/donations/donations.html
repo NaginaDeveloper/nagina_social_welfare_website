@@ -220,6 +220,12 @@
       >
         {{ checkoutLoading() ? i18n.t('donate.connecting') : i18n.t('donate.sumupCta') }}
       </button>
+      <p class="mt-3 text-xs leading-relaxed text-slate-warm">
+        {{ i18n.t('donate.privacyNote') }}
+        <a routerLink="/privacy" class="font-semibold text-gold-700 underline decoration-gold/40 underline-offset-2 hover:text-gold-600">
+          {{ i18n.t('footer.privacy') }}
+        </a>
+      </p>
     </div>
 
     <!-- NatWest PayIt -->

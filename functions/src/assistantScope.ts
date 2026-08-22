@@ -7,9 +7,9 @@ import {
 export type QuestionScope = 'islamic' | 'site_help' | 'personal_fatwa' | 'off_topic';
 
 const SITE_HELP =
-  /\b(donate|donation|contact|namaz|prayer|qibla|books?|library|sermon|event|app|assistant|portal|login|member|sumup|paypal|natwest|payit|email|phone|address|privacy|website|site)\b/i;
+  /\b(donate|donation|contact|namaz|prayer|qibla|books?|library|sermon|event|app|assistant|portal|login|member|sumup|paypal|natwest|payit|email|phone|address|privacy|website|site|apply|admission|madrasa|enrol|enroll|about)\b/i;
 const SITE_HELP_UR =
-  /رابط|عط|عطی|نماز|قبل|کتاب|لائب|بیان|ایونٹ|ایپ|مدد|رابطہ|پتہ|فون|ای میل|ویب|سائٹ|عطیہ/;
+  /رابط|عط|عطی|نماز|قبل|کتاب|لائب|بیان|ایونٹ|ایپ|مدد|رابطہ|پتہ|فون|ای میل|ویب|سائٹ|عطیہ|داخلہ|درخواست|مدرسہ|فارم|تعارف/;
 
 const PERSONAL_FATWA =
   /\b(fatwa|mufti|ruling for me|in my case|my wife|my husband|my marriage|should i divorce|can i skip|is it halal for me|personal ruling|legal advice|medical advice)\b/i;
@@ -95,7 +95,7 @@ export function filterChunksForScope(
       return (
         chunk.maslak === 'site' ||
         chunk.sourceType === 'faq' ||
-        /donate|contact|namaz|assistant|event|app|privacy|sermon/i.test(
+        /donate|contact|namaz|assistant|event|app|privacy|sermon|apply|about|admission/i.test(
           `${chunk.title} ${chunk.path} ${(chunk.tags ?? []).join(' ')}`,
         ) ||
         (booksQuery && /books|book|seedha/i.test(`${chunk.title} ${chunk.path} ${(chunk.tags ?? []).join(' ')}`))

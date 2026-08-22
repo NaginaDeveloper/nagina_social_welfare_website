@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
+import { PRIVACY_NOTICE_UPDATED_LABEL } from '../../config/privacy-notice.config';
 
 interface PrivacyBlock {
   readonly title: string;
@@ -13,7 +14,7 @@ interface PrivacyBlock {
 export class Privacy {
   protected readonly i18n = inject(LanguageService);
 
-  protected readonly updated = '20 August 2026';
+  protected readonly updated = PRIVACY_NOTICE_UPDATED_LABEL;
 
   protected readonly blocks: readonly PrivacyBlock[] = [
     {
@@ -29,7 +30,7 @@ export class Privacy {
     {
       title: 'Information we process',
       body:
-        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email, call, or open WhatsApp from this website, the message is sent in your own phone or email app — we do not store that WhatsApp/email draft on our servers. Online madrasa admission applications submitted via /apply are stored in our Firebase/Google Cloud Firestore and processed by our staff; acknowledgement and decision emails are sent from info@naginasocialwelfare.co.uk. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount and chosen fund only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
+        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email, call, or open WhatsApp from this website, the draft is sent in your own phone or email app — we do not store that unsent WhatsApp/email draft on our servers. Messages you actually send to our WhatsApp number are processed as described under “WhatsApp messages” below. Online madrasa admission applications submitted via /apply are stored in our Firebase/Google Cloud Firestore and processed by our staff; acknowledgement and decision emails are sent from info@naginasocialwelfare.co.uk. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount and chosen fund only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
     },
     {
       title: 'Online admissions',
@@ -54,12 +55,17 @@ export class Privacy {
     {
       title: 'Books & files',
       body:
-        'Book covers and PDFs are loaded from Google Firebase Storage so we can publish our library. Your browser contacts Google’s servers to download those files.',
+        'Book covers, PDFs, and event images are loaded from Google Firebase Storage so we can publish our library and gatherings. Your browser contacts Google’s servers to download those files.',
     },
     {
       title: 'Nagina Assistant',
       body:
         'Nagina Assistant is a chat-style helper trained on our published website content, guidance summaries, creed pages, and book-library extracts. Messages may be temporarily processed and logged on our Firebase infrastructure and sent to Google Gemini to generate a reply. The assistant is informational only and must not be relied on for binding fatwas, legal decisions, medical advice, or personal religious rulings.',
+    },
+    {
+      title: 'WhatsApp messages',
+      body:
+        'Our published WhatsApp number may send automated replies for common questions (about us, contact details, how to apply, and how to donate). Those replies are generated on our Firebase server, using the same Nagina Assistant knowledge and, when needed, Google Gemini. We may store recent chat turns so the bot can keep context and so staff can continue the conversation from the WhatsApp Business app. Do not send children’s admission details on WhatsApp — use the online form at /apply. Reply STAFF (or ask for a person) if you want a team member instead of the bot. Meta/WhatsApp also process the message under their own terms.',
     },
     {
       title: 'Fonts',

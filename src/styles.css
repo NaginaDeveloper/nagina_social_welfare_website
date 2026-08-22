@@ -152,6 +152,53 @@ html {
   overflow-x: clip;
 }
 
+/*
+ * Routed pages use app-page-shell (header clearance + breadcrumb).
+ * Section components still carry home-style py-24 top padding — trim the
+ * first section only so content sits closer under the breadcrumb.
+ */
+.page-shell-body > *:first-child > section:first-of-type,
+.page-shell-body > section:first-child {
+  padding-top: 2.5rem !important;
+}
+
+@media (min-width: 640px) {
+  .page-shell-body > *:first-child > section:first-of-type,
+  .page-shell-body > section:first-child {
+    padding-top: 3rem !important;
+  }
+}
+
+/* Rich HTML from MDI event descriptions */
+.event-rich-text :where(p) {
+  margin: 0 0 0.65em;
+}
+.event-rich-text :where(p:last-child) {
+  margin-bottom: 0;
+}
+.event-rich-text :where(ul, ol) {
+  margin: 0.4em 0 0.65em;
+  padding-inline-start: 1.25rem;
+}
+.event-rich-text :where(li) {
+  margin: 0.2em 0;
+}
+.event-rich-text :where(a) {
+  color: var(--color-forest);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.event-rich-text :where(blockquote) {
+  margin: 0.5em 0;
+  border-inline-start: 3px solid color-mix(in oklab, var(--color-gold) 70%, transparent);
+  padding-inline-start: 0.85rem;
+  color: color-mix(in oklab, var(--color-ink) 75%, transparent);
+}
+.event-rich-text :where(strong, b) {
+  font-weight: 700;
+  color: var(--color-forest);
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);

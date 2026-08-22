@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { nextSpotlightEvent, isEventToday } from '../../config/upcoming-events.config';
+import { isEventToday } from '../../config/upcoming-events.config';
 import { LanguageService } from '../../i18n/language.service';
+import { EventsService } from '../../services/events.service';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 
 @Component({
@@ -9,29 +10,38 @@ import { PrayerTimesService } from '../../services/prayer-times.service';
   imports: [RouterLink],
   templateUrl: './home-spotlight.html',
 })
-export class HomeSpotlight {
+export class HomeSpotlight implements OnInit {
   protected readonly i18n = inject(LanguageService);
   protected readonly prayer = inject(PrayerTimesService);
-  protected readonly event = nextSpotlightEvent();
+  private readonly events = inject(EventsService);
+
+  protected readonly event = computed(() => this.events.spotlightEvent());
+
+  ngOnInit(): void {
+    void this.events.load();
+  }
 
   protected eventTitle(): string {
-    if (!this.event) {
+    const event = this.event();
+    if (!event) {
       return '';
     }
-    return this.i18n.lang() === 'ur' ? this.event.titleUr : this.event.title;
+    return this.i18n.lang() === 'ur' ? event.titleUr : event.title;
   }
 
   protected eventMeta(): string {
-    if (!this.event) {
+    const event = this.event();
+    if (!event) {
       return '';
     }
     if (this.i18n.lang() === 'ur') {
-      return this.event.whenLabelUr ?? this.event.recurringUr ?? this.event.audienceUr;
+      return event.whenLabelUr ?? event.recurringUr ?? event.audienceUr;
     }
-    return this.event.whenLabel ?? this.event.recurring ?? this.event.audience;
+    return event.whenLabel ?? event.recurring ?? event.audience;
   }
 
   protected eventIsToday(): boolean {
-    return !!this.event && isEventToday(this.event);
+    const event = this.event();
+    return !!event && isEventToday(event);
   }
 }

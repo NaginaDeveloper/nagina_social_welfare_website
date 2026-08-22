@@ -18,8 +18,11 @@ export interface UpcomingEvent {
   readonly summaryUr?: string;
   readonly host?: string;
   readonly hostUr?: string;
+  /** Primary / poster image (first of `images` when from CMS). */
   readonly image?: string;
   readonly imageAlt?: string;
+  /** Extra images from the admin catalog (poster is also first here). */
+  readonly images?: readonly { readonly id: string; readonly url: string; readonly alt?: string }[];
   readonly recurring?: string;
   readonly recurringUr?: string;
   readonly audience: string;
@@ -29,37 +32,10 @@ export interface UpcomingEvent {
 }
 
 /**
- * Dated gatherings and recurring programmes. Dated items move to Past
- * after their London calendar date (the event day itself stays Upcoming / Today).
+ * Standing (recurring) programmes only. Dated one-off events are published
+ * from MDI Admin into Firebase Storage `events/catalog.json`.
  */
-export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
-  {
-    id: 'mehfil-naat-2026',
-    title: 'Grand Annual Mehfil-e-Naat',
-    titleUr: 'سالانہ عظمتِ مصطفیٰ ﷺ و با برکت محفلِ نعت',
-    date: '2026-08-24',
-    time: '21:30',
-    endTime: '05:00',
-    endsNextDay: true,
-    whenLabel: 'Monday 24 August 2026 · After Isha (9:30pm) till Fajr',
-    whenLabelUr: 'پیر 24 اگست 2026 · بعد نمازِ عشاء (رات 9:30) تا فجر',
-    highlights: 'Naat recitation, Zikr-e-Elahi, Salat-ul-Tasbeeh and fellowship',
-    highlightsUr: 'مدحِ رسول ﷺ، ذکرِ الٰہی، صلوٰۃ التسبیح اور باہمی ملاقات',
-    summary:
-      'Assalamu Alaikum Wa Rahmatullah Wa Barakatuh. By the grace of Allah, Markaz Deen-e-Islam invites you to a night of Naat, Zikr and Salat-ul-Tasbeeh from Isha until Fajr. Your presence will illuminate this gathering — please also invite fellow Naat Khawans. Hosted by Sajid Mahmood Yousufi.',
-    summaryUr:
-      'السلام علیکم ورحمۃ اللہ وبرکاتہ! اللہ تعالیٰ کے فضل سے مرکزِ دینِ اسلام کے زیرِ اہتمام شبِ نعت و ذکرِ الٰہی — عشاء سے فجر تک تلاوت، نعت خوانی، ذکر، صلوٰۃ التسبیح اور برادرانہ ملاقات۔ برائے کرم دیگر نعت خواں حضرات کو بھی مدعو کیجیے۔ منجانب ساجد محمود یوسفی۔',
-    host: 'Sajid Mahmood Yousufi · Markaz Deen-e-Islam',
-    hostUr: 'ساجد محمود یوسفی · مرکزِ دینِ اسلام',
-    image: 'gallery/poster-mehfil-naat-2026.png',
-    imageAlt:
-      'Grand Annual Mehfil-e-Naat poster — Monday 24 August 2026 at Markaz Deen-e-Islam, from Isha till Fajr',
-    audience: 'Brothers · Naat Khawans and lovers of the Prophet ﷺ',
-    audienceUr: 'بھائی · ثناء خوانانِ مصطفیٰ ﷺ',
-    venue: 'Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT',
-    whatsappPrefill:
-      'Assalamu alaikum, I would like to attend the Grand Annual Mehfil-e-Naat on Monday 24 August at Markaz Deen-e-Islam (after Isha till Fajr).',
-  },
+export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
   {
     id: 'namaz-course',
     title: 'Let’s Learn Namaz',
@@ -98,6 +74,9 @@ export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
   },
 ];
 
+/** @deprecated Prefer STANDING_PROGRAMMES + EventsService catalog. */
+export const UPCOMING_EVENTS = STANDING_PROGRAMMES;
+
 export function londonDateString(now = new Date()): string {
   const parts = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Europe/London',
@@ -130,19 +109,37 @@ export function isEventUpcoming(event: UpcomingEvent, now = new Date()): boolean
   return londonDateString(now) <= event.date;
 }
 
-export function listedEvents(now = new Date()): readonly UpcomingEvent[] {
-  return UPCOMING_EVENTS.filter((event) => isEventUpcoming(event, now));
+export function listedEvents(
+  now = new Date(),
+  events: readonly UpcomingEvent[] = STANDING_PROGRAMMES,
+): readonly UpcomingEvent[] {
+  return events
+    .filter((event) => isEventUpcoming(event, now))
+    .slice()
+    .sort((a, b) => {
+      if (a.date && b.date) return a.date.localeCompare(b.date);
+      if (a.date) return -1;
+      if (b.date) return 1;
+      return 0;
+    });
 }
 
-export function pastEvents(now = new Date()): readonly UpcomingEvent[] {
-  return UPCOMING_EVENTS.filter((event) => isEventPast(event, now)).slice().sort((a, b) =>
-    String(b.date).localeCompare(String(a.date)),
-  );
+export function pastEvents(
+  now = new Date(),
+  events: readonly UpcomingEvent[] = STANDING_PROGRAMMES,
+): readonly UpcomingEvent[] {
+  return events
+    .filter((event) => isEventPast(event, now))
+    .slice()
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 }
 
 /** Dated live events first (soonest), then recurring programmes. */
-export function nextSpotlightEvent(now = new Date()): UpcomingEvent | null {
-  const open = listedEvents(now);
+export function nextSpotlightEvent(
+  now = new Date(),
+  events: readonly UpcomingEvent[] = STANDING_PROGRAMMES,
+): UpcomingEvent | null {
+  const open = listedEvents(now, events);
   const dated = open
     .filter((event) => event.date)
     .sort((a, b) => String(a.date).localeCompare(String(b.date)));
@@ -173,6 +170,18 @@ export function googleCalendarUrl(event: UpcomingEvent): string | null {
     details: event.summary ?? 'Nagina Social Welfare · Markaz Deen-e-Islam',
   });
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+export function eventImageList(
+  event: UpcomingEvent,
+): readonly { readonly id: string; readonly url: string; readonly alt?: string }[] {
+  if (event.images?.length) {
+    return event.images;
+  }
+  if (event.image) {
+    return [{ id: `${event.id}-poster`, url: event.image, alt: event.imageAlt ?? event.title }];
+  }
+  return [];
 }
 
 function compactStamp(date: string, time: string): string {

@@ -25,6 +25,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'footer.registered': 'Registered in England and Wales',
     'footer.copyright': 'All rights reserved.',
     'footer.giftAid': 'Gift Aid is not currently claimed.',
+    'footer.gdprNote': 'Personal data handled in line with UK GDPR.',
     'footer.explore': 'Explore',
     'footer.map': 'View map & directions',
 
@@ -46,7 +47,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.eyebrow': 'Get involved',
     'contact.title': 'Message us on WhatsApp',
     'contact.lead':
-      'Donations, class questions and general enquiries — we reply on WhatsApp. For new madrasa places, use the online admission form.',
+      'Donations, class questions and general enquiries — WhatsApp often replies automatically, and staff can take over. For new madrasa places, use the online admission form.',
     'contact.whatsapp': 'Chat on WhatsApp',
     'contact.phone': 'Call',
     'contact.email': 'Email',
@@ -122,6 +123,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.trustReview': 'Staff review',
     'apply.trustEmail': 'Email confirmation',
     'apply.trustPrivate': 'UK GDPR',
+    'apply.trustGdprNote': 'Your information is handled in line with UK GDPR.',
     'apply.progress': 'Step',
     'apply.progressOf': 'of',
     'apply.optional': 'optional',
@@ -180,8 +182,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.classSlot': 'Preferred class time',
     'apply.classSlotNote': 'Class timing is subject to availability.',
     'apply.termsHeading': 'Terms and conditions',
-    'apply.consentGdpr':
-      'I consent to Nagina Social Welfare UK storing and processing this application for madrasa enrolment (UK GDPR).',
+    'apply.consentPrivacyPrefix': 'I confirm I have read the',
+    'apply.consentPrivacySuffix':
+      'and agree that Nagina Social Welfare UK may store and process this application for madrasa enrolment.',
     'apply.consentMedia':
       'I agree that my child may be photographed during madrassah activities and that images may be shared online or in print.',
     'apply.consentMedical':
@@ -247,13 +250,16 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'namaz.footnote':
       'Calculated for Peterborough (MWL method, Hanafi Asr). These are personal prayer windows (begins and ends), not Markaz Jamaat times — confirm congregation with a local mosque.',
 
-    'events.programme': 'Upcoming programmes',
+    'events.programme': 'Latest events',
     'events.programmeLead':
       'Gatherings at Markaz Deen-e-Islam. Dated events move to Past after the day has passed.',
     'events.rsvp': 'I am coming',
     'events.calendar': 'Add to Google Calendar',
     'events.photos': 'Photos & posters',
     'events.past': 'Past events',
+    'events.regular': 'Regular programmes',
+    'events.loading': 'Loading events…',
+    'events.emptyLatest': 'No upcoming dated events right now — see regular programmes below, or message us on WhatsApp.',
     'events.done': 'Done',
     'events.today': 'Today',
     'events.upcomingBadge': 'Upcoming',
@@ -517,6 +523,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'privacy.title': 'Privacy',
     'privacy.titleAccent': 'notice',
     'privacy.lead': 'How Nagina Social Welfare handles information when you use this website.',
+    'privacy.commitment': 'We handle personal data in line with UK GDPR.',
     'privacy.updated': 'Last updated',
     'privacy.questions': 'Questions?',
 
@@ -549,6 +556,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.minOnline': 'Minimum online donation £{n}.',
     'donate.connecting': 'Connecting securely…',
     'donate.sumupCta': 'Donate securely with SumUp',
+    'donate.privacyNote':
+      'See our privacy notice for how we handle donation data (SumUp, PayPal, NatWest PayIt, and bank transfer).',
     'donate.payitTitle': 'Bank app · NatWest PayIt',
     'donate.payitLead': 'Pay with a secure payment link',
     'donate.payitHint': 'Open our NatWest PayIt link on your phone, or scan the QR code with your banking app.',
@@ -638,6 +647,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'footer.registered': 'انگلینڈ اور ویلز میں رجسٹرڈ',
     'footer.copyright': 'جملہ حقوق محفوظ ہیں۔',
     'footer.giftAid': 'گیفٹ ایڈ فی الحال کلیم نہیں کیا جاتا۔',
+    'footer.gdprNote': 'ذاتی معلومات UK GDPR کے مطابق سنبھالی جاتی ہیں۔',
     'footer.explore': 'مزید دیکھیں',
     'footer.map': 'نقشہ اور راستہ',
 
@@ -659,7 +669,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.eyebrow': 'ساتھ دیں',
     'contact.title': 'واٹس ایپ پر پیغام بھیجیں',
     'contact.lead':
-      'عطیات، کلاس کے سوالات اور عمومی استفسار — ہم واٹس ایپ پر جواب دیتے ہیں۔ نئے داخلے کے لیے آن لائن فارم استعمال کریں۔',
+      'عطیات، کلاس کے سوالات اور عمومی استفسار — واٹس ایپ اکثر خود بخود جواب دیتا ہے، اور سٹاف ضرورت پر بات سنبھال سکتا ہے۔ نئے داخلے کے لیے آن لائن فارم استعمال کریں۔',
     'contact.whatsapp': 'واٹس ایپ پر بات کریں',
     'contact.phone': 'کال',
     'contact.email': 'ای میل',
@@ -735,6 +745,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.trustReview': 'عملہ جائزہ',
     'apply.trustEmail': 'ای میل تصدیق',
     'apply.trustPrivate': 'UK GDPR',
+    'apply.trustGdprNote': 'آپ کی معلومات UK GDPR کے مطابق سنبھالی جاتی ہیں۔',
     'apply.progress': 'مرحلہ',
     'apply.progressOf': 'از',
     'apply.optional': 'اختیاری',
@@ -793,8 +804,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.classSlot': 'ترجیحی کلاس کا وقت',
     'apply.classSlotNote': 'کلاس کا وقت دستیابی کے مطابق ہوگا۔',
     'apply.termsHeading': 'شرائط و ضوابط',
-    'apply.consentGdpr':
-      'میں نگینہ سوشل ویلفیئر یو کے کو مدرسہ داخلے کے لیے یہ درخواست محفوظ اور پروسیس کرنے کی اجازت دیتا/دیتی ہوں (UK GDPR)۔',
+    'apply.consentPrivacyPrefix': 'میں تصدیق کرتا/کرتی ہوں کہ میں نے',
+    'apply.consentPrivacySuffix':
+      'پڑھ لی ہے اور نگینہ سوشل ویلفیئر یو کے کو مدرسہ داخلے کے لیے یہ درخواست محفوظ اور پروسیس کرنے کی اجازت دیتا/دیتی ہوں۔',
     'apply.consentMedia':
       'میں اس بات سے اتفاق کرتا/کرتی ہوں کہ مدرسہ کی سرگرمیوں میں بچے کی تصویر لی جا سکتی ہے اور آن لائن یا پرنٹ میں شیئر ہو سکتی ہے۔',
     'apply.consentMedical':
@@ -860,13 +872,17 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'namaz.footnote':
       'پیٹربورو کے لیے حساب (MWL طریقہ، حنفی عصر)۔ یہ ذاتی نماز کے اوقات (شروع اور اختتام) ہیں، مرکز کی جماعت کے اوقات نہیں — جماعت اپنے مقامی مسجد سے تصدیق کریں۔',
 
-    'events.programme': 'آنے والے پروگرام',
+    'events.programme': 'تازہ ترین تقریبات',
     'events.programmeLead':
       'مرکز دینِ اسلام کی محفلیں۔ تاریخ گزرنے کے بعد پروگرام گزشتہ تقریبات میں چلا جاتا ہے۔',
     'events.rsvp': 'میں آ رہا / رہی ہوں',
     'events.calendar': 'گوگل کیلنڈر میں شامل کریں',
     'events.photos': 'تصاویر اور پوسٹرز',
     'events.past': 'گزشتہ تقریبات',
+    'events.regular': 'باقاعدہ پروگرام',
+    'events.loading': 'تقریبات لوڈ ہو رہی ہیں…',
+    'events.emptyLatest':
+      'اس وقت کوئی آنے والی تاریخ والی تقریب نہیں — نیچے باقاعدہ پروگرام دیکھیں، یا واٹس ایپ پر پیغام بھیجیں۔',
     'events.done': 'مکمل',
     'events.today': 'آج',
     'events.upcomingBadge': 'آنے والا',
@@ -1130,6 +1146,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'privacy.title': 'رازداری',
     'privacy.titleAccent': 'اطلاع',
     'privacy.lead': 'اس ویب سائٹ کے استعمال پر نگینہ سوشل ویلفیئر معلومات کیسے سنبھالتی ہے۔',
+    'privacy.commitment': 'ہم ذاتی ڈیٹا UK GDPR کے مطابق سنبھالتے ہیں۔',
     'privacy.updated': 'آخری تازہ کاری',
     'privacy.questions': 'سوالات؟',
 
@@ -1162,6 +1179,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.minOnline': 'کم از کم آن لائن عطیہ £{n}۔',
     'donate.connecting': 'محفوظ طور پر جڑ رہا ہے…',
     'donate.sumupCta': 'سم اَپ سے محفوظ عطیہ دیں',
+    'donate.privacyNote':
+      'عطیات کے ڈیٹا (سم اَپ، پے پال، نیٹ ویسٹ پے اِٹ اور بینک ٹرانسفر) کے بارے میں ہماری رازداری کی نوٹس دیکھیں۔',
     'donate.payitTitle': 'بینک ایپ · نیٹ ویسٹ پے اٹ',
     'donate.payitLead': 'محفوظ ادائیگی لنک سے ادا کریں',
     'donate.payitHint': 'اپنے فون پر ہمارا نیٹ ویسٹ پے اٹ لنک کھولیں، یا بینکنگ ایپ سے کیو آر اسکین کریں۔',

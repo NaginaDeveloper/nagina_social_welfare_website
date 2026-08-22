@@ -49,6 +49,13 @@
           "functionId": "syncAssistantKnowledge",
           "region": "europe-west2"
         }
+      },
+      {
+        "source": "/whatsappWebhook",
+        "function": {
+          "functionId": "whatsappWebhook",
+          "region": "europe-west2"
+        }
       }
     ]
   }
