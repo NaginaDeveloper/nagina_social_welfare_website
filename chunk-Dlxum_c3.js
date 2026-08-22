@@ -1,0 +1,1 @@
+var t="2026-08-22",A="21 August 2026";export{A,t};
