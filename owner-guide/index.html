@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nagina Social Welfare UK — Website Owner Guide</title>
+    <style>
+      :root {
+        --forest: #1a3c2e;
+        --forest-deep: #0f2419;
+        --gold: #c4783a;
+        --gold-soft: #e8a86a;
+        --cream: #f7f1e6;
+        --cream-dark: #ebe3d4;
+        --ink: #1c2a22;
+        --muted: #5a6b60;
+        --card: #ffffff;
+        --line: rgba(26, 60, 46, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse at top, rgba(196, 120, 58, 0.08), transparent 50%),
+          linear-gradient(180deg, var(--cream) 0%, #f0e8d8 100%);
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.55;
+      }
+
+      a {
+        color: var(--gold);
+      }
+
+      a:hover {
+        color: var(--forest);
+      }
+
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 2.5rem 1.25rem 4rem;
+      }
+
+      header.cover {
+        background: linear-gradient(145deg, var(--forest-deep), var(--forest));
+        color: #fff;
+        border-radius: 18px;
+        padding: 2.25rem 2rem 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 18px 40px rgba(15, 36, 25, 0.25);
+      }
+
+      header.cover p.kicker {
+        margin: 0 0 0.5rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        color: var(--gold-soft);
+      }
+
+      header.cover h1 {
+        margin: 0 0 0.65rem;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-weight: 600;
+        font-size: clamp(1.6rem, 4vw, 2.15rem);
+        line-height: 1.2;
+      }
+
+      header.cover .lede {
+        margin: 0;
+        max-width: 38rem;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 1.02rem;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        margin-top: 1.35rem;
+        padding-top: 1.1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: 0.92rem;
+      }
+
+      .meta a {
+        color: var(--gold-soft);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(232, 168, 106, 0.45);
+      }
+
+      .meta a:hover {
+        color: #fff;
+        border-bottom-color: #fff;
+      }
+
+      .toc {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1.25rem 1.4rem 1.35rem;
+        margin-bottom: 2rem;
+      }
+
+      .toc h2 {
+        margin: 0 0 0.85rem;
+        font-size: 1rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--forest);
+      }
+
+      .toc ol {
+        margin: 0;
+        padding-left: 1.2rem;
+        columns: 2;
+        column-gap: 2rem;
+      }
+
+      .toc li {
+        break-inside: avoid;
+        margin: 0.35rem 0;
+        font-size: 0.95rem;
+      }
+
+      .toc a {
+        text-decoration: none;
+        color: var(--ink);
+      }
+
+      .toc a:hover {
+        color: var(--gold);
+      }
+
+      .group-title {
+        margin: 2.25rem 0 1rem;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.35rem;
+        color: var(--forest);
+      }
+
+      .group-title span {
+        display: block;
+        margin-bottom: 0.25rem;
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      article.page {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 1.35rem;
+        box-shadow: 0 8px 24px rgba(26, 60, 46, 0.06);
+      }
+
+      article.page .info {
+        padding: 1.15rem 1.25rem 1rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      article.page h3 {
+        margin: 0 0 0.35rem;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.25rem;
+        color: var(--forest);
+      }
+
+      article.page .note {
+        margin: 0 0 0.75rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      article.page .url {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        background: var(--cream);
+        border: 1px solid var(--cream-dark);
+        font-size: 0.86rem;
+        text-decoration: none;
+        color: var(--forest);
+        word-break: break-all;
+      }
+
+      article.page .url:hover {
+        background: #fff;
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+
+      article.page figure {
+        margin: 0;
+        background: var(--cream-dark);
+      }
+
+      article.page img {
+        display: block;
+        width: 100%;
+        height: auto;
+        vertical-align: top;
+      }
+
+      article.page figcaption {
+        padding: 0.65rem 1.1rem 0.9rem;
+        font-size: 0.8rem;
+        color: var(--muted);
+        background: #faf7f1;
+      }
+
+      footer.foot {
+        margin-top: 2.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 700px) {
+        .toc ol {
+          columns: 1;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .wrap {
+          max-width: none;
+          padding: 0;
+        }
+
+        header.cover {
+          box-shadow: none;
+          break-after: avoid;
+        }
+
+        article.page {
+          break-inside: avoid;
+          box-shadow: none;
+          margin-bottom: 1.5rem;
+        }
+
+        .toc {
+          break-after: avoid;
+        }
+
+        a {
+          color: var(--forest);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="cover">
+        <p class="kicker">Owner sharing pack</p>
+        <h1>Nagina Social Welfare UK — Website map</h1>
+        <p class="lede">
+          A short guide to every navigation link on the live site, with a screenshot and
+          clickable URL for each section. Open this file in a browser, or print / Save as PDF
+          to share.
+        </p>
+        <div class="meta">
+          <span>Live site:
+            <a href="https://www.naginasocialwelfare.co.uk/" target="_blank" rel="noopener"
+              >www.naginasocialwelfare.co.uk</a
+            >
+          </span>
+          <span>Prepared: 7 August 2026</span>
+        </div>
+      </header>
+
+      <nav class="toc" aria-label="Contents">
+        <h2>Contents</h2>
+        <ol>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#work">Our Work</a></li>
+          <li><a href="#spiritual-guide">Spiritual Guide</a></li>
+          <li><a href="#ahle-bait">Ahle Bait</a></li>
+          <li><a href="#guidance">Guidance</a></li>
+          <li><a href="#namaz">Namaz Times</a></li>
+          <li><a href="#quran">Quran Majeed</a></li>
+          <li><a href="#books">Books</a></li>
+          <li><a href="#sermons">Sermons</a></li>
+          <li><a href="#apps">Apps</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#donate">Donate</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+        </ol>
+      </nav>
+
+      <h2 class="group-title"><span>Landing</span> Home</h2>
+
+      <article class="page" id="home">
+        <div class="info">
+          <h3>Home</h3>
+          <p class="note">Main landing page — hero, tools gateway, and all home sections.</p>
+          <a class="url" href="https://www.naginasocialwelfare.co.uk/" target="_blank" rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/01-home.png" alt="Screenshot of the Nagina Social Welfare home page" />
+          <figcaption>Viewport screenshot of the home page hero.</figcaption>
+        </figure>
+      </article>
+
+      <h2 class="group-title"><span>Nav · About</span> About the organisation</h2>
+
+      <article class="page" id="about">
+        <div class="info">
+          <h3>About us</h3>
+          <p class="note">Who we are and the purpose of the organisation.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#about"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#about</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/02-about.png" alt="Screenshot of the About us section" />
+          <figcaption>About section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="work">
+        <div class="info">
+          <h3>Our Work</h3>
+          <p class="note">Education and welfare programmes.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#work"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#work</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/03-work.png" alt="Screenshot of the Our Work section" />
+          <figcaption>Our Work section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="spiritual-guide">
+        <div class="info">
+          <h3>Spiritual Guide</h3>
+          <p class="note">Introduction to the spiritual guide.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#spiritual-guide"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#spiritual-guide</a
+          >
+        </div>
+        <figure>
+          <img
+            src="screenshots/04-spiritual-guide.png"
+            alt="Screenshot of the Spiritual Guide section"
+          />
+          <figcaption>Spiritual Guide section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="ahle-bait">
+        <div class="info">
+          <h3>Ahle Bait</h3>
+          <p class="note">The blessed family of the Prophet ﷺ.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#ahle-bait"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#ahle-bait</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/05-ahle-bait.png" alt="Screenshot of the Ahle Bait section" />
+          <figcaption>Ahle Bait section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="guidance">
+        <div class="info">
+          <h3>Guidance</h3>
+          <p class="note">Teachings and counsel.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#guidance"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#guidance</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/06-guidance.png" alt="Screenshot of the Guidance section" />
+          <figcaption>Guidance section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <h2 class="group-title"><span>Nav · Worship</span> Prayer &amp; Quran</h2>
+
+      <article class="page" id="namaz">
+        <div class="info">
+          <h3>Namaz Times</h3>
+          <p class="note">Prayer times for Peterborough, UK, with Qibla guidance.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/namaz"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/namaz</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/07-namaz.png" alt="Screenshot of the Namaz Times page" />
+          <figcaption>Dedicated Namaz Times page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="quran">
+        <div class="info">
+          <h3>Quran Majeed</h3>
+          <p class="note">
+            The Blessed Quran with Kanzul Iman translation (Aala Hazrat Imam Ahmed Raza Khan
+            رحمة الله عليه).
+          </p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/quran"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/quran</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/08-quran.png" alt="Screenshot of the Quran Majeed page" />
+          <figcaption>Dedicated Quran Majeed page.</figcaption>
+        </figure>
+      </article>
+
+      <h2 class="group-title"><span>Nav · Learn</span> Books, sermons &amp; apps</h2>
+
+      <article class="page" id="books">
+        <div class="info">
+          <h3>Books</h3>
+          <p class="note">Seedha Rasta library of Islamic books.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/books"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/books</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/09-books.png" alt="Screenshot of the Books page" />
+          <figcaption>Dedicated Books page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="sermons">
+        <div class="info">
+          <h3>Sermons</h3>
+          <p class="note">Bayanat of Baba Ji Sarkar — searchable video sermons.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/sermons"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/sermons</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/10-sermons.png" alt="Screenshot of the Sermons page" />
+          <figcaption>Dedicated Sermons page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="apps">
+        <div class="info">
+          <h3>Apps</h3>
+          <p class="note">Mobile learning apps section on the home page.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#apps"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#apps</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/11-apps.png" alt="Screenshot of the Apps section" />
+          <figcaption>Apps section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <h2 class="group-title"><span>Nav · Connect</span> Events, giving &amp; contact</h2>
+
+      <article class="page" id="events">
+        <div class="info">
+          <h3>Events</h3>
+          <p class="note">Gatherings and programmes.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#events"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#events</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/12-events.png" alt="Screenshot of the Events section" />
+          <figcaption>Events section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="donate">
+        <div class="info">
+          <h3>Donate</h3>
+          <p class="note">How to support the organisation’s work.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#donate"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#donate</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/13-donate.png" alt="Screenshot of the Donate section" />
+          <figcaption>Donate section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="contact">
+        <div class="info">
+          <h3>Contact</h3>
+          <p class="note">Get in touch with Nagina Social Welfare UK.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#contact"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#contact</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/14-contact.png" alt="Screenshot of the Contact section" />
+          <figcaption>Contact section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <article class="page" id="privacy">
+        <div class="info">
+          <h3>Privacy</h3>
+          <p class="note">Privacy notice — how data is used on the site.</p>
+          <a
+            class="url"
+            href="https://www.naginasocialwelfare.co.uk/#privacy"
+            target="_blank"
+            rel="noopener"
+            >https://www.naginasocialwelfare.co.uk/#privacy</a
+          >
+        </div>
+        <figure>
+          <img src="screenshots/15-privacy.png" alt="Screenshot of the Privacy section" />
+          <figcaption>Privacy section on the home page.</figcaption>
+        </figure>
+      </article>
+
+      <footer class="foot">
+        <p>
+          Screenshots taken from the live site on 7 August 2026. Keep this folder together
+          (<code>index.html</code> + <code>screenshots/</code>) so images load when you open or
+          share the guide. To send as one file: open in Chrome → Print → Save as PDF.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

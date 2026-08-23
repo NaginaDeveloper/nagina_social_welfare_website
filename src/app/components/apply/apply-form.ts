@@ -21,7 +21,10 @@ import {
   ukPhoneValidator,
   ukPostcodeValidator,
 } from '../../validators/uk.validators';
-import { LAST_APPLICATION_ID_KEY } from '../../config/admission-api.config';
+import {
+  LAST_APPLICATION_EMAIL_KEY,
+  LAST_APPLICATION_ID_KEY,
+} from '../../config/admission-api.config';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { PRIVACY_NOTICE_VERSION } from '../../config/privacy-notice.config';
 
@@ -335,6 +338,10 @@ export class ApplyForm {
       const result = await this.admission.submit(payload);
       try {
         sessionStorage.setItem(LAST_APPLICATION_ID_KEY, result.applicationId);
+        sessionStorage.setItem(
+          LAST_APPLICATION_EMAIL_KEY,
+          payload.primaryParent.email.trim().toLowerCase(),
+        );
       } catch {
         // Private mode may block storage.
       }

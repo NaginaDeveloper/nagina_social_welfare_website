@@ -1,28 +1,42 @@
 import type { Request, Response } from 'express';
 
-const DEFAULT_ALLOWED = [
+export const DEFAULT_ALLOWED_ORIGINS = [
   'http://localhost:4200',
   'https://www.naginasocialwelfare.co.uk',
   'https://naginasocialwelfare.co.uk',
-];
+] as const;
 
-function allowedOrigins(): string[] {
+export function allowedOrigins(): string[] {
   const fromEnv = process.env.ALLOWED_ORIGINS?.split(',')
     .map((s) => s.trim())
     .filter(Boolean);
-  return fromEnv?.length ? fromEnv : DEFAULT_ALLOWED;
+  return fromEnv?.length ? fromEnv : [...DEFAULT_ALLOWED_ORIGINS];
 }
 
+export type CorsOptions = {
+  /** When true, reject requests with no Origin (blocks casual curl abuse). */
+  requireOrigin?: boolean;
+};
+
 /** Apply CORS headers. Returns true if the request may proceed. */
-export function applyCors(req: Request, res: Response): boolean {
+export function applyCors(
+  req: Request,
+  res: Response,
+  options: CorsOptions = {},
+): boolean {
   const origin = req.get('origin');
   const allowed = allowedOrigins();
+  const requireOrigin = options.requireOrigin === true;
 
   if (origin && allowed.includes(origin)) {
     res.set('Access-Control-Allow-Origin', origin);
     res.set('Vary', 'Origin');
   } else if (!origin) {
-    // Same-origin / server-to-server / curl — no ACAO needed.
+    if (requireOrigin) {
+      res.status(403).json({ error: 'Browser origin required' });
+      return false;
+    }
+    // Same-origin / server-to-server — no ACAO needed.
   } else {
     res.status(403).json({ error: 'Origin not allowed' });
     return false;

@@ -2,7 +2,6 @@ import { getApps, initializeApp } from 'firebase-admin/app';
 import { FieldValue, getFirestore, WriteBatch } from 'firebase-admin/firestore';
 import { logger } from 'firebase-functions';
 import { onRequest } from 'firebase-functions/v2/https';
-import { applyCors } from './cors';
 import {
   ASSISTANT_COLLECTION,
   ASSISTANT_META_COLLECTION,
@@ -12,6 +11,8 @@ import {
   stableHash,
   type RawAssistantChunk,
 } from './assistantShared';
+import { allowMemoryRateLimit, clientIp } from './rateLimit';
+import { setSecurityHeaders, tokensEqual } from './security';
 
 if (getApps().length === 0) {
   initializeApp();
@@ -79,7 +80,11 @@ export const syncAssistantKnowledge = onRequest(
     secrets: [assistantSyncToken],
   },
   async (req, res) => {
-    if (!applyCors(req, res)) {
+    setSecurityHeaders(res);
+
+    // Server-to-server only — do not advertise CORS for this privileged endpoint.
+    if (req.method === 'OPTIONS') {
+      res.status(404).send('');
       return;
     }
     if (req.method !== 'POST') {
@@ -87,9 +92,15 @@ export const syncAssistantKnowledge = onRequest(
       return;
     }
 
+    const ip = clientIp(req);
+    if (!allowMemoryRateLimit(`assistant_sync:${ip}`, 10, 60 * 60 * 1000)) {
+      res.status(429).json({ error: 'Too many sync attempts' });
+      return;
+    }
+
     const expectedToken = assistantSyncToken.value() || process.env.ASSISTANT_SYNC_TOKEN || '';
     const suppliedToken = req.get('x-assistant-sync-token') || '';
-    if (!expectedToken || suppliedToken !== expectedToken) {
+    if (!tokensEqual(expectedToken, suppliedToken)) {
       res.status(403).json({ error: 'Forbidden' });
       return;
     }

@@ -1,6 +1,9 @@
 import { Component, OnInit, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LAST_APPLICATION_ID_KEY } from '../../config/admission-api.config';
+import {
+  LAST_APPLICATION_EMAIL_KEY,
+  LAST_APPLICATION_ID_KEY,
+} from '../../config/admission-api.config';
 import { LanguageService } from '../../i18n/language.service';
 import type {
   ApplicationPublicStatus,
@@ -22,6 +25,7 @@ export class ApplicationStatusPanel implements OnInit {
   private readonly admission = inject(AdmissionService);
 
   protected readonly id = signal('');
+  protected readonly email = signal('');
   protected readonly loading = signal(false);
   protected readonly error = signal<string | null>(null);
   protected readonly result = signal<ApplicationStatusResponse | null>(null);
@@ -31,25 +35,33 @@ export class ApplicationStatusPanel implements OnInit {
     const stored = this.readStoredId();
     const start = fromInput || stored;
     if (start) this.id.set(start);
-    if (start && this.autoLookup()) {
+    const storedEmail = this.readStoredEmail();
+    if (storedEmail) this.email.set(storedEmail);
+    if (start && storedEmail && this.autoLookup()) {
       void this.lookup();
     }
   }
 
   protected async lookup(): Promise<void> {
     const applicationId = this.id().trim();
+    const parentEmail = this.email().trim();
     this.error.set(null);
     this.result.set(null);
     if (!applicationId) {
       this.error.set(this.i18n.t('applyTrack.err.required'));
       return;
     }
+    if (!parentEmail || !parentEmail.includes('@')) {
+      this.error.set(this.i18n.t('applyTrack.err.emailRequired'));
+      return;
+    }
     this.loading.set(true);
     try {
-      const data = await this.admission.lookupStatus(applicationId);
+      const data = await this.admission.lookupStatus(applicationId, parentEmail);
       this.result.set(data);
       try {
         sessionStorage.setItem(LAST_APPLICATION_ID_KEY, data.applicationId);
+        sessionStorage.setItem(LAST_APPLICATION_EMAIL_KEY, parentEmail.toLowerCase());
       } catch {
         // ignore
       }
@@ -91,6 +103,14 @@ export class ApplicationStatusPanel implements OnInit {
   private readStoredId(): string {
     try {
       return sessionStorage.getItem(LAST_APPLICATION_ID_KEY)?.trim() ?? '';
+    } catch {
+      return '';
+    }
+  }
+
+  private readStoredEmail(): string {
+    try {
+      return sessionStorage.getItem(LAST_APPLICATION_EMAIL_KEY)?.trim() ?? '';
     } catch {
       return '';
     }

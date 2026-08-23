@@ -1,15 +1,22 @@
 import { randomUUID } from 'node:crypto';
+import { getApps, initializeApp } from 'firebase-admin/app';
 import { onRequest } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { logger } from 'firebase-functions';
 import { applyCors } from './cors';
 import { donationDescription, parseDonationAmount, parseDonationFund } from './amount';
+import { allowFirestoreRateLimit, allowMemoryRateLimit, clientIp } from './rateLimit';
+import { setSecurityHeaders } from './security';
 
 const sumupApiKey = defineSecret('SUMUP_API_KEY');
 const sumupMerchantCode = defineSecret('SUMUP_MERCHANT_CODE');
 
 const SITE_ORIGIN =
   process.env.SITE_ORIGIN?.replace(/\/$/, '') || 'https://www.naginasocialwelfare.co.uk';
+
+/** Per IP: 5 checkout starts / 15 minutes (memory + Firestore). */
+const DONATION_RATE_MAX = 5;
+const DONATION_RATE_WINDOW_MS = 15 * 60 * 1000;
 
 interface SumUpCheckoutResponse {
   id?: string;
@@ -20,6 +27,12 @@ interface SumUpCheckoutResponse {
   error_message?: string;
 }
 
+function ensureAdmin(): void {
+  if (getApps().length === 0) {
+    initializeApp();
+  }
+}
+
 export const createDonationCheckout = onRequest(
   {
     region: 'europe-west2',
@@ -28,12 +41,36 @@ export const createDonationCheckout = onRequest(
     invoker: 'public',
   },
   async (req, res) => {
-    if (!applyCors(req, res)) {
+    setSecurityHeaders(res);
+
+    if (!applyCors(req, res, { requireOrigin: true })) {
       return;
     }
 
     if (req.method !== 'POST') {
       res.status(405).json({ error: 'Method not allowed' });
+      return;
+    }
+
+    const ip = clientIp(req);
+    if (!allowMemoryRateLimit(`donation:${ip}`, DONATION_RATE_MAX, DONATION_RATE_WINDOW_MS)) {
+      res.status(429).json({
+        error: 'Too many donation attempts from this network. Please wait and try again.',
+      });
+      return;
+    }
+
+    ensureAdmin();
+    const allowed = await allowFirestoreRateLimit({
+      scope: 'donation_checkout',
+      ip,
+      max: DONATION_RATE_MAX,
+      windowMs: DONATION_RATE_WINDOW_MS,
+    });
+    if (!allowed) {
+      res.status(429).json({
+        error: 'Too many donation attempts from this network. Please wait and try again.',
+      });
       return;
     }
 
@@ -45,7 +82,6 @@ export const createDonationCheckout = onRequest(
 
     const fund = parseDonationFund(req.body?.fund);
 
-    // Prefer Secret Manager; fall back to local emulator / .env values.
     const apiKey = sumupApiKey.value() || process.env.SUMUP_API_KEY || '';
     const merchantCode = sumupMerchantCode.value() || process.env.SUMUP_MERCHANT_CODE || '';
 

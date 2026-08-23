@@ -4,32 +4,37 @@ import { onRequest } from 'firebase-functions/v2/https';
 import { applyCors } from './cors';
 import { answerNaginaQuestion } from './answerNaginaQuestion';
 import type { AssistantHistoryTurn } from './assistantShared';
+import { allowFirestoreRateLimit, allowMemoryRateLimit, clientIp } from './rateLimit';
+import { clampString, setSecurityHeaders } from './security';
 
 interface AskBody {
   readonly query?: string;
   readonly history?: readonly AssistantHistoryTurn[];
 }
 
-const rateWindow = 60_000;
-const rateLimit = 12;
-const requests = new Map<string, { count: number; resetAt: number }>();
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const current = requests.get(ip);
-  if (!current || current.resetAt <= now) {
-    requests.set(ip, { count: 1, resetAt: now + rateWindow });
-    return true;
-  }
-  if (current.count >= rateLimit) {
-    return false;
-  }
-  current.count += 1;
-  return true;
-}
+const RATE_MAX = 8;
+const RATE_WINDOW_MS = 60_000;
+const MAX_QUERY_CHARS = 1_200;
+const MAX_HISTORY_TURNS = 8;
+const MAX_HISTORY_CHARS = 1_200;
 
 if (getApps().length === 0) {
   initializeApp();
+}
+
+function sanitizeHistory(
+  history: readonly AssistantHistoryTurn[] | undefined,
+): AssistantHistoryTurn[] {
+  if (!Array.isArray(history)) {
+    return [];
+  }
+  return history
+    .slice(-MAX_HISTORY_TURNS)
+    .map((turn) => ({
+      role: turn?.role === 'assistant' ? ('assistant' as const) : ('user' as const),
+      content: clampString(turn?.content, MAX_HISTORY_CHARS),
+    }))
+    .filter((turn) => turn.content.length > 0);
 }
 
 export const askNaginaAssistant = onRequest(
@@ -39,7 +44,9 @@ export const askNaginaAssistant = onRequest(
     invoker: 'public',
   },
   async (req, res) => {
-    if (!applyCors(req, res)) {
+    setSecurityHeaders(res);
+
+    if (!applyCors(req, res, { requireOrigin: true })) {
       return;
     }
 
@@ -48,21 +55,35 @@ export const askNaginaAssistant = onRequest(
       return;
     }
 
-    const ip = req.ip || req.get('x-forwarded-for') || 'unknown';
-    if (!checkRateLimit(String(ip))) {
-      res.status(429).json({ error: 'Too many requests. Please wait a minute and try again.' });
+    const ip = clientIp(req);
+    if (!allowMemoryRateLimit(`assistant:${ip}`, RATE_MAX, RATE_WINDOW_MS)) {
+      res.status(429).json({
+        error: 'Too many requests. Please wait a minute and try again.',
+      });
+      return;
+    }
+    const allowed = await allowFirestoreRateLimit({
+      scope: 'assistant_ask',
+      ip,
+      max: RATE_MAX,
+      windowMs: RATE_WINDOW_MS,
+    });
+    if (!allowed) {
+      res.status(429).json({
+        error: 'Too many requests. Please wait a minute and try again.',
+      });
       return;
     }
 
-    const { query, history = [] } = (req.body ?? {}) as AskBody;
-    const cleanQuery = query?.trim();
-    if (!cleanQuery || cleanQuery.length < 2) {
+    const { query, history } = (req.body ?? {}) as AskBody;
+    const cleanQuery = clampString(query, MAX_QUERY_CHARS);
+    if (cleanQuery.length < 2) {
       res.status(400).json({ error: 'Please enter a fuller question.' });
       return;
     }
 
     try {
-      const result = await answerNaginaQuestion(cleanQuery, history);
+      const result = await answerNaginaQuestion(cleanQuery, sanitizeHistory(history));
       if (result.error === 'unavailable') {
         res.status(503).json({
           error: 'Assistant knowledge is still being prepared. Please try again shortly.',

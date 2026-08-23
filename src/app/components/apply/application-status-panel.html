@@ -13,6 +13,18 @@
         [attr.aria-invalid]="error() ? true : null"
       />
     </label>
+    <label class="block text-left text-sm font-medium text-forest">
+      {{ i18n.t('applyTrack.emailLabel') }}
+      <input
+        type="email"
+        name="parentEmail"
+        autocomplete="email"
+        class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4 py-3 text-base text-forest outline-none focus:border-gold/60 focus:bg-white"
+        [ngModel]="email()"
+        (ngModelChange)="email.set($event)"
+        [attr.aria-invalid]="error() ? true : null"
+      />
+    </label>
     <button
       type="submit"
       [disabled]="loading()"

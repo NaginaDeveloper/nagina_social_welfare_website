@@ -22,11 +22,17 @@ export class AdmissionService {
     }
   }
 
-  async lookupStatus(applicationId: string): Promise<ApplicationStatusResponse> {
+  async lookupStatus(
+    applicationId: string,
+    parentEmail: string,
+  ): Promise<ApplicationStatusResponse> {
     try {
       return await firstValueFrom(
         this.http.get<ApplicationStatusResponse>(APPLICATION_STATUS_URL, {
-          params: { id: applicationId.trim() },
+          params: {
+            id: applicationId.trim(),
+            email: parentEmail.trim().toLowerCase(),
+          },
         }),
       );
     } catch (err) {

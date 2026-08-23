@@ -9,3 +9,4 @@ export const APPLICATION_STATUS_URL =
   'https://europe-west2-nagina-social-welfare-uk.cloudfunctions.net/getApplicationStatus';
 
 export const LAST_APPLICATION_ID_KEY = 'nagina-application-id';
+export const LAST_APPLICATION_EMAIL_KEY = 'nagina-application-email';
