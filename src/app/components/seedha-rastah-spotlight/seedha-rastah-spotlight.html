@@ -1,0 +1,52 @@
+<section
+  id="seedha-rastah-spotlight"
+  class="relative overflow-hidden bg-cream py-10 sm:py-14"
+  aria-labelledby="seedha-spotlight-heading"
+>
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div
+      class="overflow-hidden rounded-3xl border border-gold/35 bg-gradient-to-br from-white via-gold/5 to-sand shadow-portal"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <div class="flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+        <div class="min-w-0 flex-1">
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+            {{ i18n.t('seedha.spotlightEyebrow') }}
+          </p>
+          <h2
+            id="seedha-spotlight-heading"
+            class="mt-2 font-display text-2xl font-bold leading-tight text-forest sm:text-3xl"
+          >
+            {{ i18n.t('seedha.spotlightTitle') }}
+            <span class="text-gold-gradient">{{ i18n.t('seedha.spotlightAccent') }}</span>
+          </h2>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-warm sm:text-base">
+            {{ i18n.t('seedha.spotlightLead') }}
+          </p>
+        </div>
+
+        <div class="flex shrink-0 flex-wrap items-center gap-3">
+          <a
+            routerLink="/seedha-rastah"
+            class="inline-flex items-center gap-2 rounded-full bg-forest px-5 py-3 text-sm font-semibold text-cream shadow-soft transition-colors hover:bg-emerald"
+          >
+            {{ i18n.t('seedha.spotlightCta') }}
+          </a>
+          <a
+            [href]="originalUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white px-5 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/60 hover:text-gold-700"
+            [attr.aria-label]="i18n.t('seedha.visitAria')"
+          >
+            seedharastah.com
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

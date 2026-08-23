@@ -20,6 +20,7 @@ import {
   AULIA_KARAM_SEO,
   BASIC_BELIEFS_SEO,
   SERMONS_SEO,
+  SEEDHA_RASTAH_SEO,
   SPIRITUAL_GUIDE_SEO,
   WORK_SEO,
   MADRASA_SEO,
@@ -139,6 +140,13 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/hadith/hadith-page').then((m) => m.HadithPage),
     title: HADITH_SEO.title,
     data: { seo: HADITH_SEO },
+  },
+  {
+    path: 'seedha-rastah',
+    loadComponent: () =>
+      import('./pages/seedha-rastah/seedha-rastah-page').then((m) => m.SeedhaRastahPage),
+    title: SEEDHA_RASTAH_SEO.title,
+    data: { seo: SEEDHA_RASTAH_SEO },
   },
   {
     path: 'books',

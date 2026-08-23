@@ -131,6 +131,16 @@ export const HADITH_SEO: PageSeo = {
   type: 'website',
 };
 
+export const SEEDHA_RASTAH_SEO: PageSeo = {
+  title: 'Seedha Rastah | Educational Archive of Munir-e-Islam | Nagina Social Welfare',
+  description:
+    'Honouring Seedha Rastah (seedharastah.com) — the educational archive of Allama Munir Ahmed Yusufi (Munir-e-Islam). Explore preserved PDF books, bayanat, and links to the original website.',
+  path: '/seedha-rastah/',
+  keywords:
+    'Seedha Rastah, seedharastah.com, Munir-e-Islam, Allama Munir Ahmed Yusufi, Islamic books archive, bayanat, Nagina TV',
+  type: 'website',
+};
+
 export const BOOKS_SEO: PageSeo = {
   title: 'Islamic Books Library | Seedha Rasta | Nagina Social Welfare',
   description:

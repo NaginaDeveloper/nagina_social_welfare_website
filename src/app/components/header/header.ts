@@ -28,6 +28,7 @@ export type NavIcon =
   | 'quran'
   | 'hadith'
   | 'book'
+  | 'seedha'
   | 'sermon'
   | 'apps'
   | 'assistant'
@@ -148,6 +149,12 @@ export class Header implements OnInit {
       labelKey: 'nav.learn',
       icon: 'learn',
       items: [
+        {
+          labelKey: 'nav.seedhaRastah',
+          path: '/seedha-rastah',
+          hintKey: 'nav.seedhaRastahHint',
+          icon: 'seedha',
+        },
         { labelKey: 'nav.books', path: '/books', hintKey: 'nav.booksHint', icon: 'book' },
         {
           labelKey: 'nav.sermons',

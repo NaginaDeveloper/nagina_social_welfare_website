@@ -6,6 +6,7 @@ import { Guidance } from '../../components/guidance/guidance';
 import { Hero } from '../../components/hero/hero';
 import { HomeSpotlight } from '../../components/home-spotlight/home-spotlight';
 import { OurWork } from '../../components/our-work/our-work';
+import { SeedhaRastahSpotlight } from '../../components/seedha-rastah-spotlight/seedha-rastah-spotlight';
 import { SpiritualGuide } from '../../components/spiritual-guide/spiritual-guide';
 
 @Component({
@@ -14,6 +15,7 @@ import { SpiritualGuide } from '../../components/spiritual-guide/spiritual-guide
     Hero,
     HomeSpotlight,
     SpiritualGuide,
+    SeedhaRastahSpotlight,
     About,
     OurWork,
     Guidance,

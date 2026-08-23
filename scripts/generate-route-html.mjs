@@ -152,6 +152,13 @@ const pages = [
       "Browse the six authentic books of Hadith — Sahih al-Bukhari, Sahih Muslim, Abu Dawud, Tirmidhi, Nasa'i, and Ibn Majah — in Arabic with Urdu and English translations.",
   },
   {
+    dir: 'seedha-rastah',
+    path: '/seedha-rastah/',
+    title: 'Seedha Rastah | Educational Archive of Munir-e-Islam | Nagina Social Welfare',
+    description:
+      'Honouring Seedha Rastah (seedharastah.com) — the educational archive of Allama Munir Ahmed Yusufi (Munir-e-Islam). Explore preserved PDF books, bayanat, and links to the original website.',
+  },
+  {
     dir: 'books',
     path: '/books/',
     title: 'Islamic Books Library | Seedha Rasta | Nagina Social Welfare',

@@ -1,0 +1,309 @@
+<section id="seedha-rastah" class="relative overflow-hidden bg-forest py-24 text-cream sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-40" aria-hidden="true"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-forest via-emerald/40 to-forest"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div
+      class="mx-auto max-w-3xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">
+        {{ i18n.t('seedha.eyebrow') }}
+      </span>
+
+      <p
+        class="font-arabic text-3xl leading-relaxed text-gold-300 notranslate sm:text-4xl"
+        lang="ur"
+        dir="rtl"
+      >
+        سیدھا راستہ
+      </p>
+
+      <h1 class="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+        {{ i18n.t('seedha.title') }}
+        <span class="text-gold-gradient">{{ i18n.t('seedha.titleAccent') }}</span>
+      </h1>
+
+      <p class="mt-5 text-base leading-relaxed text-cream/75 sm:text-lg">
+        {{ i18n.t('seedha.lead') }}
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a
+          [href]="originalUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-3 text-sm font-semibold text-forest shadow-soft transition-all duration-300 hover:brightness-105"
+          [attr.aria-label]="i18n.t('seedha.visitAria')"
+        >
+          {{ i18n.t('seedha.visit') }}
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+          </svg>
+        </a>
+        <a
+          routerLink="/books"
+          class="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-white/5 px-6 py-3 text-sm font-semibold text-cream transition-all duration-300 hover:border-gold/55 hover:bg-white/10"
+        >
+          {{ i18n.t('seedha.openLibrary') }}
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-4 sm:grid-cols-3">
+      <div
+        class="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-6 text-center backdrop-blur-sm"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <p class="font-display text-3xl font-bold text-gold-300 tabular-nums">
+          @if (books.loaded() && !books.error()) {
+            {{ bookCount() }}
+          } @else {
+            —
+          }
+        </p>
+        <p class="mt-1 text-sm font-medium text-cream/70">{{ i18n.t('seedha.statBooks') }}</p>
+      </div>
+      <div
+        class="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-6 text-center backdrop-blur-sm"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <p class="font-display text-3xl font-bold text-gold-300 tabular-nums">
+          @if (sermons.loaded() && !sermons.error()) {
+            {{ sermonCount() }}
+          } @else {
+            —
+          }
+        </p>
+        <p class="mt-1 text-sm font-medium text-cream/70">{{ i18n.t('seedha.statSermons') }}</p>
+      </div>
+      <div
+        class="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-6 text-center backdrop-blur-sm"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <p class="font-display text-3xl font-bold text-gold-300">TV</p>
+        <p class="mt-1 text-sm font-medium text-cream/70">{{ i18n.t('seedha.statTv') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative overflow-hidden bg-sand py-20 sm:py-28">
+  <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('seedha.collectionsEyebrow') }}
+      </span>
+      <h2 class="font-display text-2xl font-bold leading-tight text-forest sm:text-3xl">
+        {{ i18n.t('seedha.collectionsTitle') }}
+        <span class="text-gold-gradient">{{ i18n.t('seedha.collectionsAccent') }}</span>
+      </h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-warm">
+        {{ i18n.t('seedha.collectionsLead') }}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      <a
+        routerLink="/books"
+        class="group flex flex-col rounded-3xl border border-mist bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-portal sm:p-8"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <span
+          class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald to-forest text-gold-300 transition-transform duration-300 group-hover:scale-110"
+        >
+          <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 2H20v15H6.5A2.5 2.5 0 0 0 4 19.5V4.5A2.5 2.5 0 0 1 6.5 2Z" />
+          </svg>
+        </span>
+        <h3 class="mt-6 font-display text-xl font-bold text-forest">{{ i18n.t('seedha.cardBooks') }}</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-warm">{{ i18n.t('seedha.cardBooksLead') }}</p>
+        <span class="mt-6 text-sm font-semibold text-gold-700 group-hover:underline">
+          {{ i18n.t('seedha.cardBooksCta') }}
+        </span>
+      </a>
+
+      <a
+        routerLink="/sermons"
+        class="group flex flex-col rounded-3xl border border-mist bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-portal sm:p-8"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <span
+          class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald to-forest text-gold-300 transition-transform duration-300 group-hover:scale-110"
+        >
+          <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 18V6l11-2v12" />
+            <circle cx="7" cy="18" r="2" />
+            <circle cx="18" cy="16" r="2" />
+          </svg>
+        </span>
+        <h3 class="mt-6 font-display text-xl font-bold text-forest">{{ i18n.t('seedha.cardSermons') }}</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-warm">{{ i18n.t('seedha.cardSermonsLead') }}</p>
+        <span class="mt-6 text-sm font-semibold text-gold-700 group-hover:underline">
+          {{ i18n.t('seedha.cardSermonsCta') }}
+        </span>
+      </a>
+
+      <a
+        [href]="originalUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex flex-col rounded-3xl border border-gold/30 bg-gold/10 p-6 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-portal sm:p-8"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        [attr.aria-label]="i18n.t('seedha.visitAria')"
+      >
+        <span
+          class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-300 to-gold text-forest transition-transform duration-300 group-hover:scale-110"
+        >
+          <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.2 8.2 8 9 4.8-.8 8-4.5 8-9V7l-8-4Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6M12 9v6" />
+          </svg>
+        </span>
+        <h3 class="mt-6 font-display text-xl font-bold text-forest">{{ i18n.t('seedha.cardOriginal') }}</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-warm">{{ i18n.t('seedha.cardOriginalLead') }}</p>
+        <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-700 group-hover:underline">
+          {{ i18n.t('seedha.cardOriginalCta') }}
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="relative overflow-hidden bg-cream py-20 sm:py-28">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div
+      class="mx-auto max-w-2xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('seedha.dirEyebrow') }}
+      </span>
+      <h2 class="font-display text-2xl font-bold leading-tight text-forest sm:text-3xl">
+        {{ i18n.t('seedha.dirTitle') }}
+        <span class="text-gold-gradient">{{ i18n.t('seedha.dirAccent') }}</span>
+      </h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-warm">
+        {{ i18n.t('seedha.dirLead') }}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      @for (link of archiveLinks; track link.id) {
+        <a
+          [href]="link.href"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-start gap-4 rounded-2xl border border-mist bg-white px-5 py-4 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/40 hover:shadow-portal"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        >
+          <span
+            class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-forest/5 text-forest transition-colors group-hover:bg-gold/15 group-hover:text-gold-700"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </span>
+          <span class="min-w-0">
+            <span class="block font-display text-base font-bold text-forest">{{ i18n.t(link.titleKey) }}</span>
+            <span class="mt-0.5 block text-sm leading-relaxed text-slate-warm">{{ i18n.t(link.hintKey) }}</span>
+          </span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="relative overflow-hidden bg-sand py-20 sm:py-28">
+  <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-4xl px-5 sm:px-8">
+    <div
+      class="overflow-hidden rounded-3xl border border-gold/30 bg-white p-6 shadow-portal sm:p-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:text-start">
+        <div class="relative shrink-0">
+          <div class="absolute -inset-2 rounded-full bg-gold/20 blur-lg" aria-hidden="true"></div>
+          <div class="relative overflow-hidden rounded-full bg-white p-1 shadow-soft ring-2 ring-gold/40">
+            <img
+              [src]="portraitSrc"
+              alt="Portrait of Allama Munir Ahmed Yusufi, Munir-e-Islam"
+              width="112"
+              height="112"
+              class="aspect-square w-24 rounded-full object-cover object-top sm:w-28"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div class="min-w-0 flex-1">
+          <span class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+            {{ i18n.t('seedha.tributeEyebrow') }}
+          </span>
+          <h2 class="mt-2 font-display text-2xl font-bold text-forest sm:text-3xl">
+            {{ i18n.pick('Allama Munir Ahmed Yusufi', 'علامہ منیر احمد یوسفی') }}
+          </h2>
+          <p class="mt-1 text-sm font-medium italic text-gold-600">
+            {{ i18n.pick('Munir-e-Islam', 'منیرِ اسلام') }}
+          </p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-warm sm:text-base">
+            {{ i18n.t('seedha.tributeLead') }}
+          </p>
+
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+            <a
+              routerLink="/spiritual-guide"
+              class="inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-emerald"
+            >
+              {{ i18n.t('seedha.tributeGuide') }}
+            </a>
+            <a
+              [href]="wikipediaUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-white px-5 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600"
+              aria-label="Read Allama Munir Ahmed Yusufi on Wikipedia (opens in a new tab)"
+            >
+              {{ i18n.t('guide.wikipedia') }}
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+              </svg>
+            </a>
+            <a
+              [href]="naginaTvUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-white px-5 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600"
+              aria-label="Open Nagina TV on YouTube (opens in a new tab)"
+            >
+              {{ i18n.t('seedha.tributeTv') }}
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

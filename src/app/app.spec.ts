@@ -37,6 +37,7 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('#top')).toBeTruthy();
     expect(compiled.querySelector('#spiritual-guide')).toBeTruthy();
+    expect(compiled.querySelector('#seedha-rastah-spotlight')).toBeTruthy();
     expect(compiled.querySelector('#about')).toBeTruthy();
     expect(compiled.querySelector('#work')).toBeTruthy();
     expect(compiled.querySelector('#guidance')).toBeTruthy();
@@ -70,6 +71,7 @@ describe('App', () => {
       ['/namaz', '#prayer-times'],
       ['/quran', '#quran'],
       ['/hadith', '#hadith'],
+      ['/seedha-rastah', '#seedha-rastah'],
       ['/books', '#books'],
       ['/sermons', '#sermons'],
       ['/apps', '#apps'],
