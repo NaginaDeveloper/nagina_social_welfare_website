@@ -6,6 +6,16 @@
   <app-donate-invite />
 }
 <app-footer />
-@if (showFloatingAssistant()) {
-  <app-assistant />
+@if (showFloatingWhatsapp() || showFloatingAssistant()) {
+  <div
+    class="fixed bottom-4 right-4 z-[70] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6"
+    aria-label="Quick contact"
+  >
+    @if (showFloatingWhatsapp()) {
+      <app-floating-whatsapp />
+    }
+    @if (showFloatingAssistant()) {
+      <app-assistant />
+    }
+  </div>
 }

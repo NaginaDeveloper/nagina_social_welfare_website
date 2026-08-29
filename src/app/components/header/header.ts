@@ -9,11 +9,9 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import { PrayerTimesService } from '../../services/prayer-times.service';
-import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
+import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
-import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 
 /** Simple stroke icons used in the nav. */
 export type NavIcon =
@@ -31,7 +29,6 @@ export type NavIcon =
   | 'seedha'
   | 'sermon'
   | 'apps'
-  | 'assistant'
   | 'events'
   | 'donate'
   | 'contact'
@@ -56,16 +53,14 @@ interface NavGroup {
 
 @Component({
   selector: 'app-header',
-  imports: [NgTemplateOutlet, RouterLink, WhatsappIcon],
+  imports: [NgTemplateOutlet, RouterLink],
   templateUrl: './header.html',
 })
 export class Header implements OnInit {
   protected readonly org = ORGANIZATION;
-  protected readonly whatsapp = whatsappHref();
   protected readonly i18n = inject(LanguageService);
 
   protected readonly prayer = inject(PrayerTimesService);
-  private readonly assistantLauncher = inject(AssistantLauncherService);
   private readonly router = inject(Router);
 
   protected readonly scrolled = signal(false);
@@ -162,12 +157,6 @@ export class Header implements OnInit {
           hintKey: 'nav.sermonsHint',
           icon: 'sermon',
         },
-        {
-          labelKey: 'nav.assistant',
-          path: '/assistant',
-          hintKey: 'nav.assistantHint',
-          icon: 'assistant',
-        },
         { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
       ],
     },
@@ -182,6 +171,18 @@ export class Header implements OnInit {
           path: '/membership',
           hintKey: 'nav.membershipHint',
           icon: 'about',
+        },
+        {
+          labelKey: 'nav.memberLogin',
+          path: '/membership/login',
+          hintKey: 'nav.memberLoginHint',
+          icon: 'contact',
+        },
+        {
+          labelKey: 'nav.membershipTrack',
+          path: '/membership/track',
+          hintKey: 'nav.membershipTrackHint',
+          icon: 'contact',
         },
         { labelKey: 'nav.donate', path: '/donate', hintKey: 'nav.donateHint', icon: 'donate' },
         { labelKey: 'nav.contact', path: '/contact', hintKey: 'nav.contactHint', icon: 'contact' },
@@ -262,14 +263,6 @@ export class Header implements OnInit {
 
   protected onNavClick(): void {
     this.closeMenu();
-  }
-
-  protected openAssistant(): void {
-    if (this.currentPath() === '/assistant') {
-      return;
-    }
-    this.assistantLauncher.open();
-    this.onNavClick();
   }
 
   private syncPath(url: string): void {

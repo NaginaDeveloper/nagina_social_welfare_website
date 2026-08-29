@@ -31,6 +31,18 @@
             {{ i18n.t('footer.donate') }}
           </a>
           <a
+            routerLink="/membership"
+            class="inline-flex min-h-10 items-center rounded-full border border-gold/45 px-4 py-2 text-sm font-semibold text-gold-300 transition-colors hover:border-gold/65 hover:bg-white/5"
+          >
+            {{ i18n.t('footer.membership') }}
+          </a>
+          <a
+            routerLink="/membership/login"
+            class="inline-flex min-h-10 items-center rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-cream/90 transition-colors hover:border-gold/40 hover:text-gold-300"
+          >
+            {{ i18n.t('footer.memberLogin') }}
+          </a>
+          <a
             [href]="whatsapp"
             target="_blank"
             rel="noopener noreferrer"

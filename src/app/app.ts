@@ -2,6 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Assistant } from './components/assistant/assistant';
+import { FloatingWhatsapp } from './components/floating-whatsapp/floating-whatsapp';
 import { DonateInvite } from './components/donate-invite/donate-invite';
 import { Footer } from './components/footer/footer';
 import { Header } from './components/header/header';
@@ -9,7 +10,7 @@ import { SeoService } from './seo/seo.service';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, RouterOutlet, DonateInvite, Footer, Assistant],
+  imports: [Header, RouterOutlet, DonateInvite, Footer, Assistant, FloatingWhatsapp],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -20,6 +21,7 @@ export class App implements OnInit {
   /** Soft site-wide invite — skipped on donate flow and privacy. */
   protected readonly showDonateInvite = signal(true);
   protected readonly showFloatingAssistant = signal(true);
+  protected readonly showFloatingWhatsapp = signal(true);
 
   ngOnInit(): void {
     this.seo.start();

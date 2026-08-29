@@ -14,6 +14,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'footer.tagline':
       'Faith and compassion in action — Islamic education through Markaz Deen-e-Islam, and community welfare across the UK.',
     'footer.donate': 'Donate Now',
+    'footer.membership': 'Join membership',
+    'footer.memberLogin': 'Member sign in',
     'footer.assistant': 'Ask Assistant',
     'footer.portal': 'Staff portal',
     'footer.contact': 'Contact',
@@ -249,8 +251,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'applyTrack.hint.NEEDS_INFO':
       'Staff need a little more information before they can decide. See the note below, or reply to your email.',
 
-    'nav.membership': 'Membership',
-    'nav.membershipHint': 'Join our charity community',
+    'nav.membership': 'Apply for membership',
+    'nav.membershipHint': 'Join our charity community (18+)',
+    'nav.memberLogin': 'Member sign in',
+    'nav.memberLoginHint': 'Donations, events, profile & newsletters',
+    'nav.membershipTrack': 'Track membership',
+    'nav.membershipTrackHint': 'Check your application status',
 
     'membership.eyebrow': 'Nagina Social Welfare UK',
     'membership.title': 'Community membership',
@@ -905,6 +911,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'footer.tagline':
       'ایمان اور ہمدردی کا عمل — مرکز دینِ اسلام کے ذریعے اسلامی تعلیم، اور برطانیہ بھر میں فلاحِ عامہ۔',
     'footer.donate': 'اب عطیہ دیں',
+    'footer.membership': 'رکنیت کے لیے درخواست',
+    'footer.memberLogin': 'ممبر سائن ان',
     'footer.assistant': 'اسسٹنٹ سے پوچھیں',
     'footer.portal': 'اسٹاف پورٹل',
     'footer.contact': 'رابطہ',
@@ -1140,8 +1148,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'applyTrack.hint.NEEDS_INFO':
       'فیصلے سے پہلے مزید معلومات درکار ہیں۔ نیچے نوٹ دیکھیں یا ای میل کا جواب دیں۔',
 
-    'nav.membership': 'رکنیت',
-    'nav.membershipHint': 'چیریٹی کمیونٹی میں شامل ہوں',
+    'nav.membership': 'رکنیت کی درخواست',
+    'nav.membershipHint': 'چیریٹی کمیونٹی میں شامل ہوں (18+)',
+    'nav.memberLogin': 'ممبر سائن ان',
+    'nav.memberLoginHint': 'عطیات، تقریبات، پروفائل اور نیوز لیٹر',
+    'nav.membershipTrack': 'درخواست کا ٹریک',
+    'nav.membershipTrackHint': 'درخواست کی صورتحال دیکھیں',
     'membership.title': 'کمیونٹی رکنیت',
     'membership.lead':
       'نگینہ سوشل ویلفیئر UK کمیونٹی میں شامل ہونے کے لیے درخواست دیں۔ رکنیت مفت ہے، 18+ بالغوں کے لیے، اور ٹرسٹی جائزہ لیتے ہیں۔',
