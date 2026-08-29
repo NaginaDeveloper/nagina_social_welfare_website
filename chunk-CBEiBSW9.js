@@ -1,0 +1,2 @@
+var e="https://europe-west2-nagina-social-welfare-uk.cloudfunctions.net/submitMembership",t="https://europe-west2-nagina-social-welfare-uk.cloudfunctions.net/getMembershipStatus",n="https://europe-west2-nagina-social-welfare-uk.cloudfunctions.net/membershipApi",s="nagina-membership-id",o="nagina-membership-email",i="nagina-member-session";
+export{e,i,n,o,s,t};
