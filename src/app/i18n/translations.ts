@@ -47,7 +47,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.eyebrow': 'Get involved',
     'contact.title': 'Message us on WhatsApp',
     'contact.lead':
-      'Donations, class questions and general enquiries — WhatsApp often replies automatically, and staff can take over. For new madrasa places, use the online admission form.',
+      'Donations, class questions and general enquiries — we reply on WhatsApp. For new madrasa places, use the online admission form.',
     'contact.whatsapp': 'Chat on WhatsApp',
     'contact.phone': 'Call',
     'contact.email': 'Email',
@@ -938,7 +938,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.eyebrow': 'ساتھ دیں',
     'contact.title': 'واٹس ایپ پر پیغام بھیجیں',
     'contact.lead':
-      'عطیات، کلاس کے سوالات اور عمومی استفسار — واٹس ایپ اکثر خود بخود جواب دیتا ہے، اور سٹاف ضرورت پر بات سنبھال سکتا ہے۔ نئے داخلے کے لیے آن لائن فارم استعمال کریں۔',
+      'عطیات، کلاس کے سوالات اور عمومی استفسار — ہم واٹس ایپ پر جواب دیتے ہیں۔ نئے داخلے کے لیے آن لائن فارم استعمال کریں۔',
     'contact.whatsapp': 'واٹس ایپ پر بات کریں',
     'contact.phone': 'کال',
     'contact.email': 'ای میل',
