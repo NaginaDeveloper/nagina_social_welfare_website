@@ -22,3 +22,15 @@ export function eventDescriptionHtml(raw: string | null | undefined): string {
   if (!value) return '';
   return looksLikeHtml(value) ? value : plainTextToSafeHtml(value);
 }
+
+export function eventHtmlToPlain(raw: string | null | undefined): string {
+  const value = (raw ?? '').trim();
+  if (!value) return '';
+  return value
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}

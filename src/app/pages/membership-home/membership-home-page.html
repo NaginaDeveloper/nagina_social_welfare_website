@@ -1,0 +1,358 @@
+<app-page-shell title="Member area">
+  <section class="bg-cream py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-5 sm:px-8" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      @if (loading()) {
+        <p class="text-slate-warm">{{ i18n.t('memberHome.loading') }}</p>
+      } @else if (member(); as m) {
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+          {{ i18n.t('memberHome.eyebrow') }}
+        </p>
+        <h1 class="mt-4 font-display text-3xl font-bold text-forest">
+          {{ i18n.t('memberHome.welcome') }}, {{ m.fullName }}
+        </h1>
+
+        <nav class="mt-8 flex flex-wrap gap-2" aria-label="Member sections">
+          @for (t of tabs; track t.id) {
+            <button
+              type="button"
+              class="rounded-full px-4 py-2 text-xs font-semibold transition"
+              [class.bg-forest]="tab() === t.id"
+              [class.text-cream]="tab() === t.id"
+              [class.border]="tab() !== t.id"
+              [class.border-mist]="tab() !== t.id"
+              [class.bg-white]="tab() !== t.id"
+              [class.text-forest]="tab() !== t.id"
+              (click)="setTab(t.id)"
+            >
+              {{ i18n.t(t.labelKey) }}
+            </button>
+          }
+        </nav>
+
+        @if (error()) {
+          <p class="mt-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">{{ error() }}</p>
+        }
+
+        @if (tab() === 'overview') {
+          <div class="mt-8 rounded-[1.5rem] border border-emerald/30 bg-forest px-6 py-6 text-cream shadow-soft">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+              {{ i18n.t('memberHome.cardLabel') }}
+            </p>
+            <p class="mt-2 font-mono text-2xl font-bold tracking-wide">{{ m.membershipNumber }}</p>
+            <p class="mt-2 text-sm opacity-90">{{ i18n.t('memberHome.cardHint') }}</p>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button
+              type="button"
+              class="inline-flex min-h-11 items-center rounded-full bg-gold-600 px-5 text-sm font-semibold text-forest disabled:opacity-60"
+              [disabled]="certificateLoading()"
+              (click)="downloadCertificate()"
+            >
+              {{ certificateLoading() ? i18n.t('memberHome.downloading') : i18n.t('memberHome.downloadPdf') }}
+            </button>
+            <button type="button" class="inline-flex min-h-11 items-center rounded-full border border-mist bg-white px-5 text-sm font-semibold text-forest" (click)="logout()">
+              {{ i18n.t('memberHome.signOut') }}
+            </button>
+          </div>
+
+          <div class="mt-8 rounded-[1.5rem] border border-mist bg-white px-5 py-6 shadow-soft">
+            <h2 class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.volunteerTitle') }}</h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.volunteerLead') }}</p>
+            <a [href]="orgWhatsApp" target="_blank" rel="noopener" class="mt-4 inline-flex min-h-11 items-center rounded-full border border-mist px-5 text-sm font-semibold text-forest">
+              {{ i18n.t('memberHome.contact') }}
+            </a>
+          </div>
+        }
+
+        @if (tab() === 'profile') {
+          <form class="mt-8 space-y-5 rounded-[1.5rem] border border-mist bg-white px-5 py-8 shadow-soft" (submit)="$event.preventDefault(); saveProfile()">
+            <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.profile') }}</h2>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+              <label class="block text-sm font-medium text-forest sm:col-span-2">
+                {{ i18n.t('membership.fullName') }}
+                <input type="text" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [value]="m.fullName" readonly />
+              </label>
+              <label class="block text-sm font-medium text-forest sm:col-span-2">
+                {{ i18n.t('membership.email') }}
+                <input type="email" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [value]="m.email" readonly />
+              </label>
+            </div>
+
+            <label class="block text-sm font-medium text-forest">
+              {{ i18n.t('membership.phone') }}
+              <input type="tel" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="phone" name="phone" />
+            </label>
+
+            <div class="space-y-4 border-t border-mist pt-6">
+              <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('membership.step1') }}</h3>
+              <label class="block text-sm font-medium text-forest">
+                {{ i18n.t('membership.address1') }}
+                <input type="text" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="addressLine1" name="line1" />
+              </label>
+              <label class="block text-sm font-medium text-forest">
+                {{ i18n.t('membership.address2') }}
+                <input type="text" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="addressLine2" name="line2" />
+              </label>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="block text-sm font-medium text-forest">
+                  {{ i18n.t('membership.city') }}
+                  <input type="text" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="addressCity" name="city" />
+                </label>
+                <label class="block text-sm font-medium text-forest">
+                  {{ i18n.t('membership.postcode') }}
+                  <input type="text" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="addressPostcode" name="postcode" />
+                </label>
+              </div>
+            </div>
+
+            <div class="space-y-4 border-t border-mist pt-6">
+              <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('membership.step2') }}</h3>
+              <fieldset class="space-y-2">
+                <legend class="text-sm font-medium text-forest">{{ i18n.t('membership.volunteerInterests') }}</legend>
+                @for (opt of interestOptions; track opt.value) {
+                  <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-mist px-4 py-3">
+                    <input
+                      type="checkbox"
+                      class="mt-1"
+                      [checked]="interestChecked(opt.value)"
+                      (change)="toggleInterest(opt.value, $any($event.target).checked)"
+                    />
+                    <span class="text-sm text-forest">{{ i18n.t(opt.labelKey) }}</span>
+                  </label>
+                }
+              </fieldset>
+              <label class="block text-sm font-medium text-forest">
+                {{ i18n.t('membership.skills') }}
+                <textarea class="mt-1.5 w-full min-h-24 rounded-2xl border border-mist bg-sand/40 px-4 py-3" [(ngModel)]="skills" name="skills"></textarea>
+              </label>
+            </div>
+
+            <label class="flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
+              <input type="checkbox" class="mt-1" [(ngModel)]="marketingOptIn" name="marketingOptIn" />
+              <span class="text-sm text-forest">{{ i18n.t('membership.consentMarketing') }}</span>
+            </label>
+
+            @if (saved()) {
+              <p class="text-sm font-semibold text-emerald">{{ i18n.t('memberHome.saved') }}</p>
+            }
+
+            <button type="submit" [disabled]="saving()" class="min-h-12 rounded-full bg-forest px-6 text-sm font-semibold text-cream disabled:opacity-60">
+              {{ saving() ? i18n.t('memberHome.saving') : i18n.t('memberHome.save') }}
+            </button>
+          </form>
+        }
+
+        @if (tab() === 'donate') {
+          <div class="mt-8 space-y-8">
+            @if (donatedBanner()) {
+              <p class="rounded-2xl border border-emerald/30 bg-emerald/10 px-4 py-3 text-sm text-forest">
+                {{ i18n.t('memberHome.donateThanks') }}
+              </p>
+            }
+
+            <div class="rounded-[1.5rem] border border-mist bg-white px-5 py-8 shadow-soft">
+              <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.donateTitle') }}</h2>
+              <p class="mt-2 text-sm text-slate-warm">{{ i18n.t('memberHome.donateLead') }}</p>
+              <p class="mt-3 text-sm leading-relaxed text-slate-warm">
+                {{ i18n.t('memberHome.donatePrivacyPrefix') }}
+                <a routerLink="/privacy" class="font-semibold text-gold-700 underline">{{ i18n.t('nav.privacy') }}</a>
+                {{ i18n.t('memberHome.donatePrivacySuffix') }}
+              </p>
+
+              <div class="mt-6 flex flex-wrap gap-2">
+                @for (f of donationFunds; track f) {
+                  <button
+                    type="button"
+                    class="rounded-full px-4 py-2 text-xs font-semibold"
+                    [class.bg-forest]="donateFund() === f"
+                    [class.text-cream]="donateFund() === f"
+                    [class.border]="donateFund() !== f"
+                    [class.border-mist]="donateFund() !== f"
+                    (click)="donateFund.set(f)"
+                  >
+                    {{ fundLabel(f) }}
+                  </button>
+                }
+              </div>
+
+              <div class="mt-6 flex flex-wrap gap-2">
+                @for (p of donationPresets; track p) {
+                  <button
+                    type="button"
+                    class="min-h-11 rounded-full px-4 text-sm font-semibold"
+                    [class.bg-gold-600]="donateAmount() === p"
+                    [class.text-forest]="donateAmount() === p"
+                    [class.border]="donateAmount() !== p"
+                    [class.border-mist]="donateAmount() !== p"
+                    (click)="donateAmount.set(p)"
+                  >
+                    £{{ p }}
+                  </button>
+                }
+                <button
+                  type="button"
+                  class="min-h-11 rounded-full border border-mist px-4 text-sm font-semibold"
+                  [class.bg-gold-600]="donateAmount() === 'custom'"
+                  [class.text-forest]="donateAmount() === 'custom'"
+                  (click)="donateAmount.set('custom')"
+                >
+                  {{ i18n.t('memberHome.customAmount') }}
+                </button>
+              </div>
+
+              @if (donateAmount() === 'custom') {
+                <label class="mt-4 block text-sm font-medium text-forest">
+                  {{ i18n.t('memberHome.amountGbp') }}
+                  <input type="number" min="5" step="0.01" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="donateCustom" name="customAmount" />
+                </label>
+              }
+
+              <label class="mt-6 flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
+                <input type="checkbox" class="mt-1" [(ngModel)]="donateAcknowledged" name="donateAck" />
+                <span class="text-sm text-forest">{{ i18n.t('memberHome.donateAcknowledge') }}</span>
+              </label>
+
+              <button
+                type="button"
+                class="mt-6 min-h-12 rounded-full bg-forest px-6 text-sm font-semibold text-cream disabled:opacity-60"
+                [disabled]="donateLoading() || !donateAcknowledged"
+                (click)="startDonation()"
+              >
+                {{ donateLoading() ? i18n.t('memberHome.donateProcessing') : i18n.t('memberHome.donateNow') }}
+              </button>
+            </div>
+
+            <div class="rounded-[1.5rem] border border-mist bg-white px-5 py-8 shadow-soft">
+              <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.donateHistory') }}</h2>
+              @if (donationsLoading()) {
+                <p class="mt-4 text-sm text-slate-warm">{{ i18n.t('memberHome.loading') }}</p>
+              } @else if (!donations().length) {
+                <p class="mt-4 text-sm text-slate-warm">{{ i18n.t('memberHome.donateEmpty') }}</p>
+              } @else {
+                <div class="mt-4 overflow-x-auto">
+                  <table class="min-w-full text-left text-sm">
+                    <thead>
+                      <tr class="border-b border-mist text-xs uppercase tracking-wide text-slate-warm">
+                        <th class="py-2 pr-4">{{ i18n.t('memberHome.colDate') }}</th>
+                        <th class="py-2 pr-4">{{ i18n.t('memberHome.colFund') }}</th>
+                        <th class="py-2">{{ i18n.t('memberHome.colAmount') }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (d of donations(); track d.id) {
+                        <tr class="border-b border-mist/60">
+                          <td class="py-3 pr-4">{{ formatDate(d.paidAt) }}</td>
+                          <td class="py-3 pr-4">{{ fundLabel(d.fund) }}</td>
+                          <td class="py-3 font-semibold text-forest">{{ formatMoney(d.amount, d.currency) }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (tab() === 'events') {
+          <div class="mt-8 space-y-6">
+            <p class="rounded-2xl border border-mist bg-white px-4 py-3 text-sm leading-relaxed text-slate-warm">
+              {{ i18n.t('memberHome.rsvpNotice') }}
+            </p>
+            @if (eventsLoading()) {
+              <p class="text-sm text-slate-warm">{{ i18n.t('memberHome.loading') }}</p>
+            } @else if (!events().length) {
+              <p class="text-sm text-slate-warm">{{ i18n.t('memberHome.eventsEmpty') }}</p>
+            } @else {
+              @for (event of events(); track event.id) {
+                <article class="rounded-[1.5rem] border border-mist bg-white px-5 py-6 shadow-soft">
+                  <div class="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h2 class="font-display text-xl font-bold text-forest">{{ event.title }}</h2>
+                      <p class="mt-1 text-sm text-slate-warm">{{ event.date }} · {{ event.venue }}</p>
+                    </div>
+                    @if (event.visibility === 'members') {
+                      <span class="rounded-full bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-800">
+                        {{ i18n.t('memberHome.membersOnly') }}
+                      </span>
+                    }
+                  </div>
+                  <p class="mt-4 text-sm leading-relaxed text-slate-warm">{{ eventPlainDescription(event) }}</p>
+                  @if (event.memberUpdate) {
+                    <div class="mt-4 rounded-2xl border border-gold-200 bg-gold-50/60 px-4 py-3 text-sm text-forest" [innerHTML]="memberUpdateHtml(event.memberUpdate)"></div>
+                  }
+                  <div class="mt-5 flex flex-wrap gap-3">
+                    @if (event.rsvpStatus === 'going') {
+                      <button
+                        type="button"
+                        class="min-h-11 rounded-full border border-mist px-5 text-sm font-semibold text-forest disabled:opacity-60"
+                        [disabled]="rsvpBusy() === event.id"
+                        (click)="setRsvp(event, 'cancelled')"
+                      >
+                        {{ i18n.t('memberHome.rsvpCancel') }}
+                      </button>
+                      <span class="inline-flex min-h-11 items-center text-sm font-semibold text-emerald">{{ i18n.t('memberHome.rsvpGoing') }}</span>
+                    } @else {
+                      <button
+                        type="button"
+                        class="min-h-11 rounded-full bg-forest px-5 text-sm font-semibold text-cream disabled:opacity-60"
+                        [disabled]="rsvpBusy() === event.id"
+                        (click)="setRsvp(event, 'going')"
+                      >
+                        {{ i18n.t('memberHome.rsvpGoingBtn') }}
+                      </button>
+                    }
+                    <a [href]="eventWhatsapp(event)" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center rounded-full border border-mist px-5 text-sm font-semibold text-forest">
+                      {{ i18n.t('events.rsvp') }}
+                    </a>
+                  </div>
+                </article>
+              }
+            }
+          </div>
+        }
+
+        @if (tab() === 'newsletters') {
+          <div class="mt-8 space-y-6">
+            @if (!m.marketingOptIn) {
+              <p class="rounded-2xl border border-mist bg-white px-4 py-3 text-sm text-slate-warm">
+                {{ i18n.t('memberHome.newslettersOptIn') }}
+                <button type="button" class="ml-1 font-semibold text-gold-700 underline" (click)="setTab('profile')">
+                  {{ i18n.t('memberHome.tabProfile') }}
+                </button>
+              </p>
+            } @else if (newslettersLoading()) {
+              <p class="text-sm text-slate-warm">{{ i18n.t('memberHome.loading') }}</p>
+            } @else if (newslettersError()) {
+              <p class="text-sm text-red-800">{{ newslettersError() }}</p>
+            } @else if (!newsletters().length) {
+              <p class="text-sm text-slate-warm">{{ i18n.t('memberHome.newslettersEmpty') }}</p>
+            } @else {
+              @for (issue of newsletters(); track issue.id) {
+                <article class="rounded-[1.5rem] border border-mist bg-white px-5 py-6 shadow-soft">
+                  <h2 class="font-display text-lg font-bold text-forest">{{ issue.title }}</h2>
+                  @if (issue.summary) {
+                    <p class="mt-2 text-sm text-slate-warm">{{ issue.summary }}</p>
+                  }
+                  <p class="mt-2 text-xs text-slate-warm">{{ formatDate(issue.publishedAt) }}</p>
+                  @if (issue.downloadUrl) {
+                    <a [href]="issue.downloadUrl" target="_blank" rel="noopener" class="mt-4 inline-flex min-h-11 items-center rounded-full bg-forest px-5 text-sm font-semibold text-cream">
+                      {{ i18n.t('memberHome.downloadIssue') }}
+                    </a>
+                  }
+                </article>
+              }
+            }
+          </div>
+        }
+      } @else {
+        <p class="text-slate-warm">{{ i18n.t('memberHome.signInRequired') }}</p>
+        <a routerLink="/membership/login" class="mt-4 inline-flex min-h-12 items-center rounded-full bg-forest px-6 text-sm font-semibold text-cream">
+          {{ i18n.t('memberLogin.signIn') }}
+        </a>
+      }
+    </div>
+  </section>
+</app-page-shell>

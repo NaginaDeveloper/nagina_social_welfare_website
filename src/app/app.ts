@@ -43,7 +43,9 @@ export class App implements OnInit {
       path === '/privacy' ||
       path === '/safeguarding' ||
       path === '/apply' ||
-      path.startsWith('/apply/');
+      path.startsWith('/apply/') ||
+      path === '/membership' ||
+      path.startsWith('/membership/');
     this.showDonateInvite.set(!hide);
   }
 

@@ -57,3 +57,6 @@ functions/*.secret.local
 *-firebase-adminsdk-*.json
 serviceAccount*.json
 .firebase/
+
+# Personal invoices (not for deploy or source control)
+/invoices/

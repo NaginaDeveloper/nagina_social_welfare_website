@@ -285,6 +285,13 @@ async function buildCuratedChunks() {
       tags: ['donate', 'payments'],
     },
     {
+      title: 'Community membership',
+      path: '/membership',
+      text:
+        'Adults aged 18+ can apply to join Nagina Social Welfare UK as a community member at https://www.naginasocialwelfare.co.uk/membership/ — membership is free and separate from madrasa admission and donations. Trustees review each application. Track status at https://www.naginasocialwelfare.co.uk/membership/track/ with the application ID. Approved members receive a membership number and can set a password for the member area at https://www.naginasocialwelfare.co.uk/membership/login/',
+      tags: ['membership', 'community', 'volunteer'],
+    },
+    {
       title: 'Madrasa admission form',
       path: '/apply',
       text:

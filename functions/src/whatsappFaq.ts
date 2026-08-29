@@ -4,6 +4,7 @@ export type WhatsappIntent =
   | 'greeting'
   | 'about'
   | 'apply'
+  | 'membership'
   | 'donate'
   | 'ask'
   | 'handoff'
@@ -29,8 +30,12 @@ const ABOUT =
 const ABOUT_UR = /تعارف|کون ہو|چارٹی|ای میل|پتہ|فون|رابطہ|کہاں ہو/;
 
 const APPLY =
-  /\b(apply|application|admission|enrol|enroll|madrasa place|class place|online form)\b/i;
-const APPLY_UR = /داخلہ|درخواست|فارم|مدرسہ|داخل/;
+  /\b(apply|application|admission|enrol|enroll|madrasa place|class place)\b/i;
+const APPLY_UR = /داخلہ|درخواست|مدرسہ|داخل/;
+
+const MEMBERSHIP =
+  /\b(membership|member(ship)? application|join (the )?charity|community member|become a member)\b/i;
+const MEMBERSHIP_UR = /رکنیت|ممبر|کمیونٹی|rkniat/;
 
 const DONATE =
   /\b(donat(?:e|ion|ions)|bank transfer|sort code|paypal|payit|sumup|give (money|zakat|sadaqah|lillah)|pay (zakat|sadaqah)|fitrana)\b/i;
@@ -87,6 +92,9 @@ export function classifyWhatsappTurn(text: string, interactiveId?: string): What
   }
   if (APPLY.test(raw) || APPLY_UR.test(raw)) {
     return 'apply';
+  }
+  if (MEMBERSHIP.test(raw) || MEMBERSHIP_UR.test(raw)) {
+    return 'membership';
   }
   if (DONATE.test(raw) || DONATE_UR.test(raw)) {
     return 'donate';
@@ -216,6 +224,27 @@ export function cannedReply(intent: Exclude<WhatsappIntent, 'question'>, lang: F
           'Four short steps: student, parent, medical notes, then class and declaration. Ages 3–18. We email you from info@naginasocialwelfare.co.uk when we receive it and after review.',
           `Track your application: ${SITE}/apply/track/`,
           'Fees are £5 every Monday (or paid in advance). For other questions, type here or reply STAFF.',
+        ].join('\n');
+  }
+  if (intent === 'membership') {
+    return lang === 'ur'
+      ? [
+          'نگینہ سوشل ویلفیئر UK کمیونٹی رکنیت کے لیے آن لائن درخواست دیں (18+، مفت):',
+          `${SITE}/membership/`,
+          '',
+          `درخواست ٹریک: ${SITE}/membership/track/`,
+          '',
+          'منظوری کے بعد ممبر ایریا:',
+          `${SITE}/membership/login/`,
+        ].join('\n')
+      : [
+          'To join Nagina Social Welfare UK as a community member (18+, free), apply online:',
+          `${SITE}/membership/`,
+          '',
+          `Track your application: ${SITE}/membership/track/`,
+          '',
+          'After approval, sign in for donations history, events RSVP, profile updates, and newsletters (if opted in):',
+          `${SITE}/membership/login/`,
         ].join('\n');
   }
   return lang === 'ur'

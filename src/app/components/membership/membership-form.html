@@ -1,0 +1,225 @@
+
+<section class="bg-cream py-12 sm:py-16" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+      {{ i18n.t('membership.eyebrow') }}
+    </p>
+    <h1 class="mt-4 font-display text-3xl font-bold text-forest sm:text-4xl">
+      {{ i18n.t('membership.title') }}
+    </h1>
+    <p class="mt-4 text-base leading-relaxed text-slate-warm sm:text-lg">
+      {{ i18n.t('membership.lead') }}
+    </p>
+    <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-warm">
+      <li>{{ i18n.t('membership.bullet1') }}</li>
+      <li>{{ i18n.t('membership.bullet2') }}</li>
+      <li>{{ i18n.t('membership.bullet3') }}</li>
+    </ul>
+
+    <div class="mt-8 flex flex-wrap gap-2">
+      @for (meta of stepMeta; track meta.key; let i = $index) {
+        <span
+          class="rounded-full px-3 py-1 text-xs font-semibold"
+          [class.bg-forest]="step() === i"
+          [class.text-cream]="step() === i"
+          [class.bg-white]="step() !== i"
+          [class.text-forest]="step() !== i"
+          [class.border]="step() !== i"
+          [class.border-mist]="step() !== i"
+        >
+          {{ i + 1 }}. {{ i18n.t(meta.key) }}
+        </span>
+      }
+    </div>
+
+    <form
+      class="mt-8 rounded-[1.5rem] border border-mist bg-white px-5 py-8 shadow-soft sm:px-8"
+      [formGroup]="form"
+      (ngSubmit)="onFormSubmit()"
+    >
+      @if (step() === 0) {
+        <div formGroupName="applicant" class="space-y-5">
+          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step1') }}</h2>
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.fullName') }} *
+            <input type="text" formControlName="fullName" [class]="inputClass(form.controls.applicant.controls.fullName)" [attr.data-error]="invalid(form.controls.applicant.controls.fullName) || null" />
+            @if (message(form.controls.applicant.controls.fullName); as msg) {
+              <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
+            }
+          </label>
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.email') }} *
+            <input type="email" formControlName="email" autocomplete="email" [class]="inputClass(form.controls.applicant.controls.email)" [attr.data-error]="invalid(form.controls.applicant.controls.email) || null" />
+            @if (message(form.controls.applicant.controls.email); as msg) {
+              <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
+            }
+          </label>
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.phone') }} *
+            <input type="tel" formControlName="phone" autocomplete="tel" [class]="inputClass(form.controls.applicant.controls.phone)" />
+          </label>
+          <div>
+            <p class="text-sm font-medium text-forest">{{ i18n.t('membership.dob') }} *</p>
+            <div class="mt-2 grid grid-cols-3 gap-2">
+              <select class="min-h-12 rounded-2xl border border-mist bg-sand/40 px-3" [value]="dobD()" (change)="setDobPart('d', $any($event.target).value)">
+                <option value="">{{ i18n.t('membership.day') }}</option>
+                @for (d of daysInMonth(); track d) {
+                  <option [value]="d">{{ d }}</option>
+                }
+              </select>
+              <select class="min-h-12 rounded-2xl border border-mist bg-sand/40 px-3" [value]="dobM()" (change)="setDobPart('m', $any($event.target).value)">
+                <option value="">{{ i18n.t('membership.month') }}</option>
+                @for (m of months; track m.value) {
+                  <option [value]="m.value">{{ m.label }}</option>
+                }
+              </select>
+              <select class="min-h-12 rounded-2xl border border-mist bg-sand/40 px-3" [value]="dobY()" (change)="setDobPart('y', $any($event.target).value)">
+                <option value="">{{ i18n.t('membership.year') }}</option>
+                @for (y of years; track y) {
+                  <option [value]="y">{{ y }}</option>
+                }
+              </select>
+            </div>
+            @if (message(form.controls.applicant.controls.dateOfBirth); as msg) {
+              <span class="mt-1 block text-sm text-red-700" data-error>{{ msg }}</span>
+            }
+          </div>
+        </div>
+
+        <div formGroupName="address" class="mt-8 space-y-5 border-t border-mist pt-8">
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.address1') }} *
+            <input type="text" formControlName="line1" autocomplete="address-line1" [class]="inputClass(form.controls.address.controls.line1)" />
+          </label>
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.address2') }}
+            <input type="text" formControlName="line2" autocomplete="address-line2" [class]="inputClass(form.controls.address.controls.line2)" />
+          </label>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block text-sm font-medium text-forest">
+              {{ i18n.t('membership.city') }} *
+              <input type="text" formControlName="city" autocomplete="address-level2" [class]="inputClass(form.controls.address.controls.city)" />
+            </label>
+            <label class="block text-sm font-medium text-forest">
+              {{ i18n.t('membership.postcode') }} *
+              <input type="text" formControlName="postcode" autocomplete="postal-code" [class]="inputClass(form.controls.address.controls.postcode)" />
+            </label>
+          </div>
+        </div>
+      }
+
+      @if (step() === 1) {
+        <div formGroupName="interests" class="space-y-5">
+          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step2') }}</h2>
+          <p class="text-sm leading-relaxed text-slate-warm">{{ i18n.t('membership.interestsLead') }}</p>
+          <fieldset class="space-y-2">
+            <legend class="text-sm font-medium text-forest">{{ i18n.t('membership.volunteerInterests') }}</legend>
+            @for (opt of interests; track opt.value) {
+              <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-mist px-4 py-3">
+                <input
+                  type="checkbox"
+                  class="mt-1"
+                  [checked]="hasInterest(opt.value)"
+                  (change)="toggleInterest(opt.value, $any($event.target).checked)"
+                />
+                <span class="text-sm text-forest">{{ i18n.t(opt.labelKey) }}</span>
+              </label>
+            }
+          </fieldset>
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.skills') }}
+            <textarea rows="3" formControlName="skills" [class]="inputClass(form.controls.interests.controls.skills)"></textarea>
+          </label>
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.languages') }}
+            <input type="text" formControlName="languages" [class]="inputClass(form.controls.interests.controls.languages)" />
+          </label>
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.heardAbout') }}
+            <input type="text" formControlName="heardAbout" [class]="inputClass(form.controls.interests.controls.heardAbout)" />
+          </label>
+        </div>
+      }
+
+      @if (step() === 2) {
+        <div class="space-y-6">
+          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step3') }}</h2>
+          <div class="rounded-2xl border border-mist bg-sand/40 px-4 py-4 text-sm leading-relaxed text-forest">
+            <p class="font-semibold">{{ i18n.t('membership.conductTitle') }}</p>
+            <ul class="mt-3 list-disc space-y-2 ps-5">
+              @for (line of conduct; track line) {
+                <li>{{ line }}</li>
+              }
+            </ul>
+          </div>
+
+          <div formGroupName="consents" class="space-y-3">
+            <label class="flex items-start gap-3 rounded-2xl border px-4 py-3" [class.border-red-400]="invalid(form.controls.consents.controls.privacyNoticeRead)" [class.border-mist]="!invalid(form.controls.consents.controls.privacyNoticeRead)">
+              <input type="checkbox" formControlName="privacyNoticeRead" class="mt-0.5" />
+              <span class="text-sm text-forest">
+                {{ i18n.t('membership.consentPrivacyPrefix') }}
+                <a routerLink="/privacy" class="font-semibold text-gold-700 underline">{{ i18n.t('nav.privacy') }}</a>
+                {{ i18n.t('membership.consentPrivacySuffix') }} *
+              </span>
+            </label>
+            <label class="flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
+              <input type="checkbox" formControlName="codeOfConductAgreed" class="mt-0.5" />
+              <span class="text-sm text-forest">{{ i18n.t('membership.consentConduct') }} *</span>
+            </label>
+            <label class="flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
+              <input type="checkbox" formControlName="ageConfirmed18Plus" class="mt-0.5" />
+              <span class="text-sm text-forest">{{ i18n.t('membership.consentAge') }} *</span>
+            </label>
+            <label class="flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
+              <input type="checkbox" formControlName="marketingOptIn" class="mt-0.5" />
+              <span class="text-sm text-forest">{{ i18n.t('membership.consentMarketing') }}</span>
+            </label>
+          </div>
+
+          <div formGroupName="declaration">
+            <label class="block text-sm font-medium text-forest">
+              {{ i18n.t('membership.signedBy') }} *
+              <input type="text" formControlName="signedBy" [class]="inputClass(form.controls.declaration.controls.signedBy)" />
+            </label>
+          </div>
+        </div>
+      }
+
+      @if (error()) {
+        <p class="mt-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900" role="alert" data-error>
+          {{ error() }}
+        </p>
+      }
+
+      <div class="mt-8 flex flex-wrap items-center justify-between gap-3">
+        @if (step() > 0) {
+          <button type="button" class="min-h-12 rounded-full border border-mist px-6 text-sm font-semibold text-forest" (click)="back()">
+            {{ i18n.t('membership.back') }}
+          </button>
+        } @else {
+          <span></span>
+        }
+        <button
+          type="submit"
+          [disabled]="submitting()"
+          class="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-8 text-sm font-semibold text-cream shadow-soft disabled:opacity-60"
+        >
+          {{
+            submitting()
+              ? i18n.t('membership.submitting')
+              : step() < 2
+                ? i18n.t('membership.continue')
+                : i18n.t('membership.submit')
+          }}
+        </button>
+      </div>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-slate-warm">
+      {{ i18n.t('membership.trackPrompt') }}
+      <a routerLink="/membership/track" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('membership.trackLink') }}</a>
+      ·
+      <a [href]="whatsappAsk" class="font-semibold text-gold-700 hover:underline" target="_blank" rel="noopener">{{ i18n.t('membership.whatsapp') }}</a>
+    </p>
+  </div>
+</section>

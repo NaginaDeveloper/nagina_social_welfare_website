@@ -82,6 +82,34 @@ const pages = [
     robots: 'noindex, follow',
   },
   {
+    dir: 'membership',
+    path: '/membership/',
+    title: 'Community Membership | Nagina Social Welfare UK',
+    description:
+      'Apply online to join the Nagina Social Welfare UK community. Free membership for adults aged 18+, reviewed by trustees.',
+  },
+  {
+    dir: 'membership/success',
+    path: '/membership/success/',
+    title: 'Membership Application Received | Nagina Social Welfare UK',
+    description: 'Thank you — your community membership application has been received.',
+    robots: 'noindex, follow',
+  },
+  {
+    dir: 'membership/track',
+    path: '/membership/track/',
+    title: 'Track Membership Application | Nagina Social Welfare UK',
+    description: 'Check the status of your community membership application.',
+    robots: 'noindex, follow',
+  },
+  {
+    dir: 'membership/login',
+    path: '/membership/login/',
+    title: 'Member Sign In | Nagina Social Welfare UK',
+    description: 'Sign in to the Nagina Social Welfare UK community member area.',
+    robots: 'noindex, follow',
+  },
+  {
     dir: 'spiritual-guide',
     path: '/spiritual-guide/',
     title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',

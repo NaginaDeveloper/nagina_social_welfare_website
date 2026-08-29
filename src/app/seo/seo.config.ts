@@ -83,6 +83,47 @@ export const APPLY_TRACK_SEO: PageSeo = {
   robots: 'noindex, follow',
 };
 
+export const MEMBERSHIP_SEO: PageSeo = {
+  title: 'Community Membership | Nagina Social Welfare UK',
+  description:
+    'Apply online to join the Nagina Social Welfare UK community. Free membership for adults aged 18+, reviewed by trustees.',
+  path: '/membership/',
+  keywords: 'Nagina Social Welfare membership, charity community UK, volunteer Peterborough',
+  type: 'website',
+};
+
+export const MEMBERSHIP_SUCCESS_SEO: PageSeo = {
+  title: 'Membership Application Received | Nagina Social Welfare UK',
+  description: 'Thank you — your community membership application has been received.',
+  path: '/membership/success/',
+  robots: 'noindex, follow',
+  type: 'website',
+};
+
+export const MEMBERSHIP_TRACK_SEO: PageSeo = {
+  title: 'Track Membership Application | Nagina Social Welfare UK',
+  description: 'Check the status of your community membership application.',
+  path: '/membership/track/',
+  robots: 'noindex, follow',
+  type: 'website',
+};
+
+export const MEMBERSHIP_LOGIN_SEO: PageSeo = {
+  title: 'Member Sign In | Nagina Social Welfare UK',
+  description: 'Sign in to the Nagina Social Welfare UK community member area.',
+  path: '/membership/login/',
+  robots: 'noindex, follow',
+  type: 'website',
+};
+
+export const MEMBERSHIP_HOME_SEO: PageSeo = {
+  title: 'Member Area | Nagina Social Welfare UK',
+  description: 'Your Nagina Social Welfare UK community membership.',
+  path: '/membership/home/',
+  robots: 'noindex, follow',
+  type: 'website',
+};
+
 export const SPIRITUAL_GUIDE_SEO: PageSeo = {
   title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',
   description:

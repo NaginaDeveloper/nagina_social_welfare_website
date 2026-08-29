@@ -177,6 +177,12 @@ export class Header implements OnInit {
       icon: 'connect',
       items: [
         { labelKey: 'nav.events', path: '/events', hintKey: 'nav.eventsHint', icon: 'events' },
+        {
+          labelKey: 'nav.membership',
+          path: '/membership',
+          hintKey: 'nav.membershipHint',
+          icon: 'about',
+        },
         { labelKey: 'nav.donate', path: '/donate', hintKey: 'nav.donateHint', icon: 'donate' },
         { labelKey: 'nav.contact', path: '/contact', hintKey: 'nav.contactHint', icon: 'contact' },
         {

@@ -28,6 +28,11 @@ import {
   APPLY_SEO,
   APPLY_SUCCESS_SEO,
   APPLY_TRACK_SEO,
+  MEMBERSHIP_SEO,
+  MEMBERSHIP_SUCCESS_SEO,
+  MEMBERSHIP_TRACK_SEO,
+  MEMBERSHIP_LOGIN_SEO,
+  MEMBERSHIP_HOME_SEO,
 } from './seo/seo.config';
 
 export const routes: Routes = [
@@ -74,6 +79,76 @@ export const routes: Routes = [
       import('./pages/apply-track/apply-track-page').then((m) => m.ApplyTrackPage),
     title: APPLY_TRACK_SEO.title,
     data: { seo: APPLY_TRACK_SEO },
+  },
+  {
+    path: 'membership',
+    loadComponent: () =>
+      import('./pages/membership/membership-page').then((m) => m.MembershipPage),
+    title: MEMBERSHIP_SEO.title,
+    data: { seo: MEMBERSHIP_SEO },
+  },
+  {
+    path: 'membership/success',
+    loadComponent: () =>
+      import('./pages/membership-success/membership-success-page').then(
+        (m) => m.MembershipSuccessPage,
+      ),
+    title: MEMBERSHIP_SUCCESS_SEO.title,
+    data: { seo: MEMBERSHIP_SUCCESS_SEO },
+  },
+  {
+    path: 'membership/track',
+    loadComponent: () =>
+      import('./pages/membership-track/membership-track-page').then(
+        (m) => m.MembershipTrackPage,
+      ),
+    title: MEMBERSHIP_TRACK_SEO.title,
+    data: { seo: MEMBERSHIP_TRACK_SEO },
+  },
+  {
+    path: 'membership/login',
+    loadComponent: () =>
+      import('./pages/membership-login/membership-login-page').then(
+        (m) => m.MembershipLoginPage,
+      ),
+    title: MEMBERSHIP_LOGIN_SEO.title,
+    data: { seo: MEMBERSHIP_LOGIN_SEO },
+  },
+  {
+    path: 'membership/set-password',
+    loadComponent: () =>
+      import('./pages/membership-set-password/membership-set-password-page').then(
+        (m) => m.MembershipSetPasswordPage,
+      ),
+    title: MEMBERSHIP_LOGIN_SEO.title,
+    data: { seo: MEMBERSHIP_LOGIN_SEO, robots: 'noindex, follow' },
+  },
+  {
+    path: 'membership/home',
+    loadComponent: () =>
+      import('./pages/membership-home/membership-home-page').then(
+        (m) => m.MembershipHomePage,
+      ),
+    title: MEMBERSHIP_HOME_SEO.title,
+    data: { seo: MEMBERSHIP_HOME_SEO, robots: 'noindex, follow' },
+  },
+  {
+    path: 'membership/forgot-password',
+    loadComponent: () =>
+      import('./pages/membership-forgot-password/membership-forgot-password-page').then(
+        (m) => m.MembershipForgotPasswordPage,
+      ),
+    title: MEMBERSHIP_LOGIN_SEO.title,
+    data: { seo: MEMBERSHIP_LOGIN_SEO, robots: 'noindex, follow' },
+  },
+  {
+    path: 'membership/reset-password',
+    loadComponent: () =>
+      import('./pages/membership-reset-password/membership-reset-password-page').then(
+        (m) => m.MembershipResetPasswordPage,
+      ),
+    title: MEMBERSHIP_LOGIN_SEO.title,
+    data: { seo: MEMBERSHIP_LOGIN_SEO, robots: 'noindex, follow' },
   },
   {
     path: 'spiritual-guide',
