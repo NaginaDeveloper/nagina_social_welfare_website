@@ -1,0 +1,60 @@
+<div
+  id="member-panel-overview"
+  role="tabpanel"
+  aria-labelledby="member-tab-overview"
+  class="mt-8 space-y-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0"
+>
+  <div
+    class="rounded-[1.5rem] border border-emerald/30 bg-gradient-to-br from-forest via-emerald to-forest-800 px-6 py-7 text-cream shadow-portal lg:col-span-1"
+  >
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+      {{ i18n.t('memberHome.cardLabel') }}
+    </p>
+    <p class="mt-3 font-mono text-2xl font-bold tracking-wide sm:text-3xl">
+      {{ member().membershipNumber }}
+    </p>
+    <p class="mt-3 text-sm leading-relaxed opacity-90">{{ i18n.t('memberHome.cardHint') }}</p>
+  </div>
+
+  <div [class]="portalCardClass + ' flex flex-col justify-center gap-3'">
+    <h2 class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.quickLinks') }}</h2>
+    <div class="flex flex-wrap gap-2">
+      <button type="button" [class]="portalPrimaryBtnClass + ' min-h-11 px-4'" (click)="navigateTab.emit('donate')">
+        {{ i18n.t('memberHome.tabDonate') }}
+      </button>
+      <button type="button" [class]="portalOutlineBtnClass" (click)="navigateTab.emit('events')">
+        {{ i18n.t('memberHome.tabEvents') }}
+      </button>
+      <button type="button" [class]="portalOutlineBtnClass" (click)="navigateTab.emit('profile')">
+        {{ i18n.t('memberHome.tabProfile') }}
+      </button>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3 lg:col-span-2">
+    <button
+      type="button"
+      [class]="portalGoldBtnClass"
+      [disabled]="certificateLoading()"
+      (click)="downloadCertificate.emit()"
+    >
+      {{ certificateLoading() ? i18n.t('memberHome.downloading') : i18n.t('memberHome.downloadPdf') }}
+    </button>
+    <button type="button" [class]="portalOutlineBtnClass" (click)="logout.emit()">
+      {{ i18n.t('memberHome.signOut') }}
+    </button>
+  </div>
+
+  <div [class]="portalCardClass + ' lg:col-span-2'">
+    <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.volunteerTitle') }}</h2>
+    <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.volunteerLead') }}</p>
+    <a
+      [href]="orgWhatsApp()"
+      target="_blank"
+      rel="noopener"
+      [class]="portalOutlineBtnClass + ' mt-4'"
+    >
+      {{ i18n.t('memberHome.contact') }}
+    </a>
+  </div>
+</div>

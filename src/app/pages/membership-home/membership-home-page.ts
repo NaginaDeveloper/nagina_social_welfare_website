@@ -1,9 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
-import { whatsappHref } from '../../config/organization.config';
-import { eventDescriptionHtml, eventHtmlToPlain } from '../../utils/event-html';
 import { MemberAuthService } from '../../services/member-auth.service';
 import {
   MemberPortalService,
@@ -12,20 +9,33 @@ import {
   type MemberNewsletter,
   type MemberPortalEvent,
 } from '../../services/member-portal.service';
-import {
-  VOLUNTEER_INTEREST_OPTIONS,
-  type DonationFund,
-  type MemberInterests,
-  type VolunteerInterest,
-} from '../../models/membership';
+import type { DonationFund } from '../../models/membership';
 import { isValidUkPhone, formatUkPhoneE164, formatUkPhoneForDisplay } from '../../validators/uk.validators';
 import { PageShell } from '../page-shell';
-
-type MemberTab = 'overview' | 'profile' | 'donate' | 'events' | 'newsletters';
+import { MemberPortalShell } from '../../components/member-portal/member-portal-shell';
+import { MemberPortalLoading } from '../../components/member-portal/member-portal-loading';
+import { MemberOverviewTab } from '../../components/member-portal/member-overview-tab';
+import { MemberProfileTab, type MemberProfileSavePayload } from '../../components/member-portal/member-profile-tab';
+import { MemberDonateTab } from '../../components/member-portal/member-donate-tab';
+import { MemberEventsTab } from '../../components/member-portal/member-events-tab';
+import { MemberNewslettersTab } from '../../components/member-portal/member-newsletters-tab';
+import { MEMBER_TABS, parseMemberTab, type MemberTab } from '../../components/member-portal/member-portal.types';
+import { whatsappHref } from '../../config/organization.config';
+import { portalErrorBannerClass, portalPrimaryBtnClass } from '../../components/member-portal/member-portal.shared';
 
 @Component({
   selector: 'app-membership-home-page',
-  imports: [PageShell, FormsModule, RouterLink],
+  imports: [
+    PageShell,
+    RouterLink,
+    MemberPortalShell,
+    MemberPortalLoading,
+    MemberOverviewTab,
+    MemberProfileTab,
+    MemberDonateTab,
+    MemberEventsTab,
+    MemberNewslettersTab,
+  ],
   templateUrl: './membership-home-page.html',
   styleUrl: './membership-home-page.css',
 })
@@ -34,14 +44,9 @@ export class MembershipHomePage implements OnInit {
   protected readonly orgWhatsApp = whatsappHref(
     'Assalamu alaikum, I am interested in volunteering with Nagina Social Welfare UK.',
   );
-  protected readonly interestOptions = VOLUNTEER_INTEREST_OPTIONS;
-  protected readonly donationFunds: readonly DonationFund[] = [
-    'zakat',
-    'sadaqah',
-    'lillah',
-    'fitrana',
-  ];
-  protected readonly donationPresets = [5, 10, 25, 50, 100] as const;
+  protected readonly tabs = MEMBER_TABS;
+  protected readonly portalErrorBannerClass = portalErrorBannerClass;
+  protected readonly portalPrimaryBtnClass = portalPrimaryBtnClass;
 
   private readonly auth = inject(MemberAuthService);
   private readonly portal = inject(MemberPortalService);
@@ -51,17 +56,6 @@ export class MembershipHomePage implements OnInit {
   protected readonly member = this.auth.member;
   protected readonly loading = this.auth.loading;
   protected readonly tab = signal<MemberTab>('overview');
-
-  protected phone = '';
-  protected marketingOptIn = false;
-  protected addressLine1 = '';
-  protected addressLine2 = '';
-  protected addressCity = '';
-  protected addressPostcode = '';
-  protected volunteerInterests = signal<VolunteerInterest[]>([]);
-  protected skills = '';
-  protected languages = '';
-  protected heardAbout = '';
 
   protected readonly saving = signal(false);
   protected readonly saved = signal(false);
@@ -74,7 +68,7 @@ export class MembershipHomePage implements OnInit {
   protected readonly donateAmount = signal<number | 'custom'>(25);
   protected readonly donateCustom = signal('');
   protected readonly donateLoading = signal(false);
-  protected donateAcknowledged = false;
+  protected readonly donateAcknowledged = signal(false);
   protected readonly donations = signal<MemberDonationRecord[]>([]);
   protected readonly donationsLoading = signal(false);
 
@@ -86,78 +80,83 @@ export class MembershipHomePage implements OnInit {
   protected readonly newslettersLoading = signal(false);
   protected readonly newslettersError = signal<string | null>(null);
 
-  protected readonly tabs: readonly { id: MemberTab; labelKey: string }[] = [
-    { id: 'overview', labelKey: 'memberHome.tabOverview' },
-    { id: 'profile', labelKey: 'memberHome.tabProfile' },
-    { id: 'donate', labelKey: 'memberHome.tabDonate' },
-    { id: 'events', labelKey: 'memberHome.tabEvents' },
-    { id: 'newsletters', labelKey: 'memberHome.tabNewsletters' },
-  ];
-
   ngOnInit(): void {
-    if (this.route.snapshot.queryParamMap.get('donated') === '1') {
+    const params = this.route.snapshot.queryParamMap;
+    if (params.get('donated') === '1') {
       this.donatedBanner.set(true);
-      this.tab.set('donate');
+      this.activateTab('donate', { syncUrl: false });
+    } else {
+      this.tab.set(parseMemberTab(params.get('tab')));
     }
+
+    this.route.queryParamMap.subscribe((map) => {
+      if (map.get('donated') === '1') {
+        this.donatedBanner.set(true);
+      }
+      const next = parseMemberTab(map.get('tab'));
+      if (next !== this.tab()) {
+        this.activateTab(next, { syncUrl: false });
+      }
+    });
+
     void this.auth.restoreSession().then(() => {
       const m = this.auth.member();
       if (!m) {
         void this.router.navigate(['/membership/login']);
         return;
       }
-      this.hydrateProfile(m);
       void this.loadDonations();
       void this.loadEvents();
+      if (this.tab() === 'newsletters') void this.loadNewsletters();
     });
   }
 
+  protected pageTitle(): string {
+    return this.i18n.t('memberHome.pageTitle');
+  }
+
   protected setTab(id: MemberTab): void {
+    this.activateTab(id, { syncUrl: true });
+  }
+
+  private activateTab(id: MemberTab, options: { syncUrl: boolean }): void {
     this.tab.set(id);
     this.error.set(null);
     if (id === 'donate') void this.loadDonations();
     if (id === 'events') void this.loadEvents();
     if (id === 'newsletters') void this.loadNewsletters();
+    if (options.syncUrl) {
+      void this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { tab: id === 'overview' ? null : id },
+        queryParamsHandling: 'merge',
+        replaceUrl: true,
+      });
+    }
   }
 
-  protected interestChecked(value: VolunteerInterest): boolean {
-    return this.volunteerInterests().includes(value);
-  }
-
-  protected toggleInterest(value: VolunteerInterest, checked: boolean): void {
-    const set = new Set(this.volunteerInterests());
-    if (checked) set.add(value);
-    else set.delete(value);
-    this.volunteerInterests.set([...set]);
-  }
-
-  protected async saveProfile(): Promise<void> {
+  protected async saveProfile(payload: MemberProfileSavePayload): Promise<void> {
     this.saving.set(true);
     this.saved.set(false);
     this.error.set(null);
     this.phoneError.set(null);
-    const trimmedPhone = this.phone.trim();
+    const trimmedPhone = payload.phone.trim();
     if (!trimmedPhone || !isValidUkPhone(trimmedPhone)) {
       this.phoneError.set(this.i18n.t('membership.err.phone'));
       this.saving.set(false);
       return;
     }
     try {
-      const interests: MemberInterests = {
-        volunteerInterests: this.volunteerInterests(),
-        ...(this.skills.trim() ? { skills: this.skills.trim() } : {}),
-        ...(this.languages.trim() ? { languages: this.languages.trim() } : {}),
-        ...(this.heardAbout.trim() ? { heardAbout: this.heardAbout.trim() } : {}),
-      };
       await this.auth.updateProfile({
         phone: formatUkPhoneE164(trimmedPhone),
-        marketingOptIn: this.marketingOptIn,
+        marketingOptIn: payload.marketingOptIn,
         address: {
-          line1: this.addressLine1.trim(),
-          line2: this.addressLine2.trim(),
-          city: this.addressCity.trim(),
-          postcode: this.addressPostcode.trim(),
+          line1: payload.address.line1.trim(),
+          line2: payload.address.line2.trim(),
+          city: payload.address.city.trim(),
+          postcode: payload.address.postcode.trim(),
         },
-        interests,
+        interests: payload.interests,
       });
       this.saved.set(true);
     } catch (err) {
@@ -189,7 +188,7 @@ export class MembershipHomePage implements OnInit {
   }
 
   protected async startDonation(): Promise<void> {
-    if (!this.donateAcknowledged) {
+    if (!this.donateAcknowledged()) {
       this.error.set(this.i18n.t('memberHome.donateAckRequired'));
       return;
     }
@@ -210,31 +209,6 @@ export class MembershipHomePage implements OnInit {
     }
   }
 
-  protected fundLabel(fund: DonationFund): string {
-    return this.i18n.t(`donate.${fund}`);
-  }
-
-  protected formatMoney(amount: number, currency = 'GBP'): string {
-    return new Intl.NumberFormat('en-GB', { style: 'currency', currency }).format(amount);
-  }
-
-  protected formatDate(iso: string | null): string {
-    if (!iso) return '—';
-    return new Date(iso).toLocaleDateString('en-GB', { timeZone: 'Europe/London' });
-  }
-
-  protected eventWhatsapp(event: MemberPortalEvent): string {
-    return whatsappHref(event.whatsappPrefill || `RSVP: ${event.title}`);
-  }
-
-  protected memberUpdateHtml(raw: string): string {
-    return eventDescriptionHtml(raw);
-  }
-
-  protected eventPlainDescription(event: MemberPortalEvent): string {
-    return eventHtmlToPlain(event.description);
-  }
-
   protected async setRsvp(event: MemberPortalEvent, status: 'going' | 'cancelled'): Promise<void> {
     this.rsvpBusy.set(event.id);
     this.error.set(null);
@@ -251,19 +225,6 @@ export class MembershipHomePage implements OnInit {
   protected async logout(): Promise<void> {
     await this.auth.logout();
     await this.router.navigate(['/membership/login']);
-  }
-
-  private hydrateProfile(m: NonNullable<ReturnType<typeof this.auth.member>>): void {
-    this.phone = formatUkPhoneForDisplay(m.phone ?? '');
-    this.marketingOptIn = m.marketingOptIn === true;
-    this.addressLine1 = m.address?.line1 ?? '';
-    this.addressLine2 = m.address?.line2 ?? '';
-    this.addressCity = m.address?.city ?? '';
-    this.addressPostcode = m.address?.postcode ?? '';
-    this.volunteerInterests.set(m.interests?.volunteerInterests ?? []);
-    this.skills = m.interests?.skills ?? '';
-    this.languages = m.interests?.languages ?? '';
-    this.heardAbout = m.interests?.heardAbout ?? '';
   }
 
   private async loadDonations(): Promise<void> {

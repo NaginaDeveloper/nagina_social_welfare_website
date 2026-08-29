@@ -1,0 +1,127 @@
+<div id="member-panel-donate" role="tabpanel" aria-labelledby="member-tab-donate" class="mt-8 space-y-8">
+  @if (donatedBanner()) {
+    <p [class]="portalSuccessBannerClass">{{ i18n.t('memberHome.donateThanks') }}</p>
+  }
+
+  <div [class]="portalCardClass">
+    <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">{{ i18n.t('memberHome.donateTitle') }}</h2>
+    <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.donateLead') }}</p>
+    <p class="mt-3 text-sm leading-relaxed text-slate-warm">
+      {{ i18n.t('memberHome.donatePrivacyPrefix') }}
+      <a routerLink="/privacy" class="font-semibold text-gold-700 underline">{{ i18n.t('nav.privacy') }}</a>
+      {{ i18n.t('memberHome.donatePrivacySuffix') }}
+    </p>
+
+    <fieldset class="mt-8">
+      <legend class="text-sm font-semibold text-forest">{{ i18n.t('donate.fund') }}</legend>
+      <div class="mt-3 grid gap-3 sm:grid-cols-2">
+        @for (option of funds; track option.id) {
+          <button
+            type="button"
+            class="rounded-2xl border px-4 py-3.5 text-left transition-colors"
+            [class.border-forest]="donateFund() === option.id"
+            [class.bg-forest]="donateFund() === option.id"
+            [class.text-cream]="donateFund() === option.id"
+            [class.border-mist]="donateFund() !== option.id"
+            [class.bg-white]="donateFund() !== option.id"
+            [class.text-forest]="donateFund() !== option.id"
+            (click)="fundChange.emit(option.id)"
+          >
+            <span class="block font-display text-lg font-bold">{{ i18n.t(option.titleKey) }}</span>
+            <span
+              class="mt-1 block text-sm leading-relaxed"
+              [class.text-cream/75]="donateFund() === option.id"
+              [class.text-slate-warm]="donateFund() !== option.id"
+            >
+              {{ i18n.t(option.hintKey) }}
+            </span>
+          </button>
+        }
+      </div>
+    </fieldset>
+
+    <p class="mt-8 text-sm font-semibold text-forest">{{ i18n.t('memberHome.chooseAmount') }}</p>
+    <div class="mt-3 flex flex-wrap gap-2">
+      @for (p of presets; track p) {
+        <button
+          type="button"
+          class="min-h-11 rounded-full px-4 text-sm font-semibold transition-colors"
+          [class.bg-gold-600]="donateAmount() === p"
+          [class.text-forest]="donateAmount() === p"
+          [class.border]="donateAmount() !== p"
+          [class.border-mist]="donateAmount() !== p"
+          [class.bg-white]="donateAmount() !== p"
+          (click)="amountChange.emit(p)"
+        >
+          £{{ p }}
+        </button>
+      }
+      <button
+        type="button"
+        class="min-h-11 rounded-full border border-mist px-4 text-sm font-semibold transition-colors"
+        [class.bg-gold-600]="donateAmount() === 'custom'"
+        [class.text-forest]="donateAmount() === 'custom'"
+        (click)="amountChange.emit('custom')"
+      >
+        {{ i18n.t('memberHome.customAmount') }}
+      </button>
+    </div>
+
+    @if (donateAmount() === 'custom') {
+      <label class="mt-4 block text-sm font-medium text-forest">
+        {{ i18n.t('memberHome.amountGbp') }}
+        <input
+          type="number"
+          min="5"
+          step="0.01"
+          [class]="portalInputClass"
+          [ngModel]="donateCustom()"
+          (ngModelChange)="customAmountChange.emit($event)"
+          name="customAmount"
+        />
+      </label>
+    }
+
+    <label class="mt-6 flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
+      <input
+        type="checkbox"
+        class="mt-1 accent-[#022c22]"
+        [ngModel]="donateAcknowledged()"
+        (ngModelChange)="acknowledgeChange.emit($event)"
+        name="donateAck"
+      />
+      <span class="text-sm text-forest">{{ i18n.t('memberHome.donateAcknowledge') }}</span>
+    </label>
+
+    <button
+      type="button"
+      class="mt-6"
+      [class]="portalPrimaryBtnClass"
+      [disabled]="donateLoading() || !donateAcknowledged()"
+      (click)="startDonation.emit()"
+    >
+      {{ donateLoading() ? i18n.t('memberHome.donateProcessing') : i18n.t('memberHome.donateNow') }}
+    </button>
+  </div>
+
+  <div [class]="portalCardClass">
+    <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.donateHistory') }}</h2>
+    @if (donationsLoading()) {
+      <app-member-portal-loading [rows]="2" [offsetTop]="false" />
+    } @else if (!donations().length) {
+      <app-member-portal-empty [message]="i18n.t('memberHome.donateEmpty')" [offsetTop]="false" />
+    } @else {
+      <ul class="mt-4 space-y-3">
+        @for (d of donations(); track d.id) {
+          <li class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-mist bg-sand/30 px-4 py-3">
+            <div>
+              <p class="text-sm font-semibold text-forest">{{ fundLabel(d.fund) }}</p>
+              <p class="text-xs text-slate-warm">{{ formatDate(d.paidAt) }}</p>
+            </div>
+            <p class="font-display text-lg font-bold text-forest">{{ formatMoney(d.amount, d.currency) }}</p>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</div>

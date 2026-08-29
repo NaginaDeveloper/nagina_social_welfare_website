@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../i18n/language.service';
 
 @Component({
   selector: 'app-page-shell',
@@ -11,7 +12,7 @@ import { RouterLink } from '@angular/router';
           routerLink="/"
           class="text-sm font-medium text-slate-warm transition-colors hover:text-forest"
         >
-          Home
+          {{ homeLabel() }}
         </a>
         <span class="text-mist" aria-hidden="true">/</span>
         <span class="text-sm font-semibold text-forest">{{ title() }}</span>
@@ -23,5 +24,12 @@ import { RouterLink } from '@angular/router';
   `,
 })
 export class PageShell {
+  private readonly i18n = inject(LanguageService);
+
   readonly title = input.required<string>();
+  readonly homeLabelKey = input('nav.home');
+
+  protected homeLabel(): string {
+    return this.i18n.t(this.homeLabelKey());
+  }
 }

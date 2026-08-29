@@ -1,0 +1,54 @@
+<div id="member-panel-newsletters" role="tabpanel" aria-labelledby="member-tab-newsletters" class="mt-8 space-y-6">
+  @if (!marketingOptIn()) {
+    <div [class]="portalCardClass + ' border-gold/30 bg-gold/5'">
+      <p class="text-sm leading-relaxed text-slate-warm">
+        {{ i18n.t('memberHome.newslettersOptIn') }}
+        <button type="button" class="font-semibold text-gold-700 underline" (click)="openProfile.emit()">
+          {{ i18n.t('memberHome.tabProfile') }}
+        </button>
+      </p>
+    </div>
+  } @else if (newslettersLoading()) {
+    <app-member-portal-loading [rows]="2" [offsetTop]="false" />
+  } @else if (newslettersError(); as err) {
+    <p class="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{{ err }}</p>
+  } @else if (!newsletters().length) {
+    <app-member-portal-empty [message]="i18n.t('memberHome.newslettersEmpty')" [offsetTop]="false" />
+  } @else {
+    <div class="grid gap-5 sm:grid-cols-2">
+      @for (issue of newsletters(); track issue.id) {
+        <article [class]="portalCardClass + ' flex flex-col'">
+          <div class="flex items-start gap-3">
+            <span
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest/10 text-forest"
+              aria-hidden="true"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2 5 5h-5V4zM8 13h8v2H8v-2zm0 4h5v2H8v-2z"
+                />
+              </svg>
+            </span>
+            <div class="min-w-0 flex-1">
+              <h2 class="font-display text-lg font-bold text-forest">{{ issue.title }}</h2>
+              @if (issue.summary) {
+                <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ issue.summary }}</p>
+              }
+              <p class="mt-2 text-xs text-slate-warm">{{ formatDate(issue.publishedAt) }}</p>
+            </div>
+          </div>
+          @if (issue.downloadUrl) {
+            <a
+              [href]="issue.downloadUrl"
+              target="_blank"
+              rel="noopener"
+              [class]="portalPrimaryBtnClass + ' mt-5 self-start min-h-11 px-5'"
+            >
+              {{ i18n.t('memberHome.downloadIssue') }}
+            </a>
+          }
+        </article>
+      }
+    </div>
+  }
+</div>
