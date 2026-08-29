@@ -1,6 +1,9 @@
 <div id="member-panel-donate" role="tabpanel" aria-labelledby="member-tab-donate" class="mt-8 space-y-8">
   @if (donatedBanner()) {
-    <p [class]="portalSuccessBannerClass">{{ i18n.t('memberHome.donateThanks') }}</p>
+    <div class="space-y-2">
+      <p [class]="portalSuccessBannerClass">{{ i18n.t('memberHome.donateThanks') }}</p>
+      <p class="text-sm text-slate-warm">{{ i18n.t('memberHome.receiptEmailNote') }}</p>
+    </div>
   }
 
   <div [class]="portalCardClass">
@@ -111,14 +114,38 @@
     } @else if (!donations().length) {
       <app-member-portal-empty [message]="i18n.t('memberHome.donateEmpty')" [offsetTop]="false" />
     } @else {
+      @if (receiptError()) {
+        <p class="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
+          {{ receiptError() }}
+        </p>
+      }
       <ul class="mt-4 space-y-3">
         @for (d of donations(); track d.id) {
           <li class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-mist bg-sand/30 px-4 py-3">
             <div>
               <p class="text-sm font-semibold text-forest">{{ fundLabel(d.fund) }}</p>
               <p class="text-xs text-slate-warm">{{ formatDate(d.paidAt) }}</p>
+              @if (d.receiptId) {
+                <p class="mt-1 text-xs text-slate-warm">
+                  {{ i18n.t('memberHome.receiptNumber') }}: {{ d.receiptId }}
+                </p>
+              }
             </div>
-            <p class="font-display text-lg font-bold text-forest">{{ formatMoney(d.amount, d.currency) }}</p>
+            <div class="flex flex-wrap items-center gap-3">
+              <p class="font-display text-lg font-bold text-forest">{{ formatMoney(d.amount, d.currency) }}</p>
+              <button
+                type="button"
+                [class]="portalOutlineBtnClass"
+                [disabled]="isReceiptBusy(d.id)"
+                (click)="downloadReceipt(d)"
+              >
+                {{
+                  isReceiptBusy(d.id)
+                    ? i18n.t('memberHome.receiptDownloading')
+                    : i18n.t('memberHome.receiptDownload')
+                }}
+              </button>
+            </div>
           </li>
         }
       </ul>

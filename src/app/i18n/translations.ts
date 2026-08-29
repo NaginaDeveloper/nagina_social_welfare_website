@@ -435,6 +435,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberHome.donateNow': 'Continue to secure checkout',
     'memberHome.donateProcessing': 'Starting checkout…',
     'memberHome.donateThanks': 'Thank you — when payment completes, it will appear in your history shortly.',
+    'memberHome.receiptEmailNote':
+      'When payment completes, we email an NSW-style PDF receipt to your membership email. You can download it again from your history below.',
+    'memberHome.receiptDownload': 'Get receipt',
+    'memberHome.receiptDownloading': 'Downloading…',
+    'memberHome.receiptNumber': 'Receipt no.',
     'memberHome.donateMin': 'Minimum donation is £5.',
     'memberHome.customAmount': 'Other amount',
     'memberHome.chooseAmount': 'Choose an amount',
@@ -1206,6 +1211,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberHome.donateNow': 'محفوظ چیک آؤٹ پر جائیں',
     'memberHome.donateProcessing': 'چیک آؤٹ شروع ہو رہا ہے…',
     'memberHome.donateThanks': 'شکریہ — ادائیگی مکمل ہونے پر یہ جلد آپ کی تاریخ میں ظاہر ہوگا۔',
+    'memberHome.receiptEmailNote':
+      'ادائیگی مکمل ہونے پر ہم آپ کے رکنیت ای میل پر NSW انداز کی PDF رسید بھیجتے ہیں۔ نیچے اپنی تاریخ سے دوبارہ ڈاؤن لوڈ کر سکتے ہیں۔',
+    'memberHome.receiptDownload': 'رسید حاصل کریں',
+    'memberHome.receiptDownloading': 'ڈاؤن لوڈ ہو رہا ہے…',
+    'memberHome.receiptNumber': 'رسید نمبر',
     'memberHome.donateMin': 'کم از کم عطیہ £5 ہے۔',
     'memberHome.customAmount': 'دوسری رقم',
     'memberHome.chooseAmount': 'رقم منتخب کریں',

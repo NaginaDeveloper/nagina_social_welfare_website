@@ -10,8 +10,8 @@ Public adults apply at **https://www.naginasocialwelfare.co.uk/membership/**. Tr
 | Submit API | Cloud Function `submitMembership` (Admin functions codebase, `europe-west2`) |
 | Public status | `getMembershipStatus` (application ID + email) |
 | Approve / status | `approveMembership`, `updateMembershipApplication` (admin token) |
-| Member portal | `membershipApi` — login, profile, donations, events/RSVP, newsletters, PDF certificate, password reset |
-| Member donations | SumUp via `member-donation-*` checkout refs; webhook on `sumupFeeWebhook` |
+| Member portal | `membershipApi` — login, profile, donations (+ NSW-style PDF receipts), events/RSVP, newsletters, PDF certificate, password reset |
+| Member donations | SumUp via `member-donation-*` checkout refs; webhook on `sumupFeeWebhook`; receipt IDs `MD-YYYYMM-####`, PDF email on payment |
 | Newsletters (admin) | `memberNewslettersApi` — NSW Admin → Members → Newsletters |
 | Storage | Firestore collections listed below |
 | Email | SMTP via Admin `mailer.ts` (`SMTP_PASSWORD`) |
@@ -54,7 +54,7 @@ Public adults apply at **https://www.naginasocialwelfare.co.uk/membership/**. Tr
 - [ ] Edit profile (address, interests, marketing opt-in)
 - [ ] Download membership PDF
 - [ ] Forgot password → reset email → new password
-- [ ] Member donation checkout → appears in history after webhook
+- [ ] Member donation checkout → appears in history after webhook; PDF receipt emailed; **Get receipt** downloads same PDF; receipt number unique (`MD-…`)
 - [ ] Create members-only event with extra member text → visible in member Events tab + RSVP
 - [ ] Upload newsletter PDF in admin → visible when marketing opt-in enabled
 - [ ] Donate tab: confirm acknowledgement checkbox before SumUp checkout

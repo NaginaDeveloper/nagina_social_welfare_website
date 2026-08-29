@@ -12,6 +12,7 @@ export interface MemberDonationRecord {
   currency: string;
   paidAt: string | null;
   checkoutReference: string;
+  receiptId?: string | null;
 }
 
 export interface MemberPortalEvent {
@@ -128,6 +129,30 @@ export class MemberPortalService {
     const a = document.createElement('a');
     a.href = url;
     a.download = `NSW-membership-${name}.pdf`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  async downloadDonationReceipt(donationId: string, receiptId?: string | null): Promise<void> {
+    const headers = await this.bearerHeaders();
+    const res = await fetch(
+      `${MEMBERSHIP_API_BASE}/api/membership/donations/${encodeURIComponent(donationId)}/receipt`,
+      { headers },
+    );
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(
+        body && typeof body.error === 'string' ? body.error : 'Could not download receipt.',
+      );
+    }
+    const blob = await res.blob();
+    const filename = receiptId?.trim()
+      ? `${receiptId.trim().replace(/[^\w-]+/g, '_')}.pdf`
+      : `NSW-donation-${donationId}.pdf`;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
     a.click();
     URL.revokeObjectURL(url);
   }
