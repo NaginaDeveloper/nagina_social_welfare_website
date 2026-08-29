@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { FormControl } from '@angular/forms';
 import {
   childDobValidator,
+  formatUkPhoneE164,
+  isValidUkPhone,
   optionalEmailValidator,
   ukPhoneValidator,
   ukPostcodeValidator,
@@ -9,7 +11,15 @@ import {
 
 describe('uk validators', () => {
   it('accepts a typical UK mobile', () => {
-    expect(ukPhoneValidator()(new FormControl('07700900123'))).toBeNull();
+    expect(ukPhoneValidator()(new FormControl('07831684738'))).toBeNull();
+    expect(isValidUkPhone('+44 7831 684738')).toBe(true);
+    expect(formatUkPhoneE164('07831 684738')).toBe('+447831684738');
+  });
+
+  it('rejects invalid UK phone numbers', () => {
+    expect(ukPhoneValidator()(new FormControl('12345'))).toEqual({ ukPhone: true });
+    expect(ukPhoneValidator()(new FormControl('not-a-phone'))).toEqual({ ukPhone: true });
+    expect(isValidUkPhone('123456')).toBe(false);
   });
 
   it('accepts a PE postcode', () => {

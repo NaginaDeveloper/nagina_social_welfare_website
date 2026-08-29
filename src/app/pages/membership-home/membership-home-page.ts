@@ -18,6 +18,7 @@ import {
   type MemberInterests,
   type VolunteerInterest,
 } from '../../models/membership';
+import { isValidUkPhone, formatUkPhoneE164, formatUkPhoneForDisplay } from '../../validators/uk.validators';
 import { PageShell } from '../page-shell';
 
 type MemberTab = 'overview' | 'profile' | 'donate' | 'events' | 'newsletters';
@@ -64,6 +65,7 @@ export class MembershipHomePage implements OnInit {
 
   protected readonly saving = signal(false);
   protected readonly saved = signal(false);
+  protected readonly phoneError = signal<string | null>(null);
   protected readonly error = signal<string | null>(null);
   protected readonly certificateLoading = signal(false);
   protected readonly donatedBanner = signal(false);
@@ -132,6 +134,13 @@ export class MembershipHomePage implements OnInit {
     this.saving.set(true);
     this.saved.set(false);
     this.error.set(null);
+    this.phoneError.set(null);
+    const trimmedPhone = this.phone.trim();
+    if (!trimmedPhone || !isValidUkPhone(trimmedPhone)) {
+      this.phoneError.set(this.i18n.t('membership.err.phone'));
+      this.saving.set(false);
+      return;
+    }
     try {
       const interests: MemberInterests = {
         volunteerInterests: this.volunteerInterests(),
@@ -140,7 +149,7 @@ export class MembershipHomePage implements OnInit {
         ...(this.heardAbout.trim() ? { heardAbout: this.heardAbout.trim() } : {}),
       };
       await this.auth.updateProfile({
-        phone: this.phone.trim(),
+        phone: formatUkPhoneE164(trimmedPhone),
         marketingOptIn: this.marketingOptIn,
         address: {
           line1: this.addressLine1.trim(),
@@ -245,7 +254,7 @@ export class MembershipHomePage implements OnInit {
   }
 
   private hydrateProfile(m: NonNullable<ReturnType<typeof this.auth.member>>): void {
-    this.phone = m.phone ?? '';
+    this.phone = formatUkPhoneForDisplay(m.phone ?? '');
     this.marketingOptIn = m.marketingOptIn === true;
     this.addressLine1 = m.address?.line1 ?? '';
     this.addressLine2 = m.address?.line2 ?? '';

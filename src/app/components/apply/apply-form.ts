@@ -20,6 +20,7 @@ import {
   optionalEmailValidator,
   ukPhoneValidator,
   ukPostcodeValidator,
+  formatUkPhoneE164,
 } from '../../validators/uk.validators';
 import {
   LAST_APPLICATION_EMAIL_KEY,
@@ -414,6 +415,10 @@ export class ApplyForm {
       const t = s.trim();
       return t ? t : undefined;
     };
+    const optPhone = (s: string) => {
+      const t = s.trim();
+      return t ? formatUkPhoneE164(t) : undefined;
+    };
 
     const payload: AdmissionSubmitPayload = {
       student: {
@@ -428,9 +433,9 @@ export class ApplyForm {
       },
       primaryParent: {
         fullName: v.primaryParent.fullName.trim(),
-        phone: v.primaryParent.phone.trim(),
-        fatherPhone: opt(v.primaryParent.fatherPhone),
-        motherPhone: opt(v.primaryParent.motherPhone),
+        phone: formatUkPhoneE164(v.primaryParent.phone),
+        fatherPhone: optPhone(v.primaryParent.fatherPhone),
+        motherPhone: optPhone(v.primaryParent.motherPhone),
         email: v.primaryParent.email.trim().toLowerCase(),
         fatherEmail: opt(v.primaryParent.fatherEmail)?.toLowerCase(),
         motherEmail: opt(v.primaryParent.motherEmail)?.toLowerCase(),
@@ -449,7 +454,7 @@ export class ApplyForm {
       emergencyContact: {
         name: v.emergencyContact.name.trim(),
         address: v.emergencyContact.address.trim(),
-        phone: v.emergencyContact.phone.trim(),
+        phone: formatUkPhoneE164(v.emergencyContact.phone),
         relationship: opt(v.emergencyContact.relationship),
       },
       preferences: { classSlot: v.preferences.classSlot },
@@ -473,7 +478,7 @@ export class ApplyForm {
         payload.secondaryParent = {
           fullName: name,
           relationship: sec.relationship.trim() || 'Guardian',
-          phone: opt(sec.phone),
+          phone: optPhone(sec.phone),
           email: opt(sec.email)?.toLowerCase(),
         };
       }

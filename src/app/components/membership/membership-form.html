@@ -57,6 +57,10 @@
           <label class="block text-sm font-medium text-forest">
             {{ i18n.t('membership.phone') }} *
             <input type="tel" formControlName="phone" autocomplete="tel" [class]="inputClass(form.controls.applicant.controls.phone)" />
+            <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('apply.phoneHint') }}</p>
+            @if (message(form.controls.applicant.controls.phone); as msg) {
+              <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
+            }
           </label>
           <div>
             <p class="text-sm font-medium text-forest">{{ i18n.t('membership.dob') }} *</p>

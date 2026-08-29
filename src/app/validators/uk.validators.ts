@@ -1,18 +1,43 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { parsePhoneNumberFromString } from 'libphonenumber-js/min';
 
 const UK_POSTCODE = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/i;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
-/** UK-style mobile / landline; accepts 0… or +44… */
+export function isValidUkPhone(raw: string): boolean {
+  const trimmed = String(raw ?? '').trim();
+  if (!trimmed) return false;
+  const phone = parsePhoneNumberFromString(trimmed, 'GB');
+  return phone?.isValid() === true && phone.country === 'GB';
+}
+
+/** Store as E.164 (+447831684738) for Twilio SMS and consistent lookups. */
+export function formatUkPhoneE164(raw: string): string {
+  const trimmed = String(raw ?? '').trim();
+  const phone = parsePhoneNumberFromString(trimmed, 'GB');
+  if (!phone?.isValid() || phone.country !== 'GB') {
+    throw new Error('Invalid UK phone number.');
+  }
+  return phone.format('E.164');
+}
+
+/** Show 07831 684738 in forms when Firestore has +447831684738. */
+export function formatUkPhoneForDisplay(raw: string): string {
+  const trimmed = String(raw ?? '').trim();
+  if (!trimmed) return '';
+  const phone = parsePhoneNumberFromString(trimmed, 'GB');
+  if (phone?.isValid() && phone.country === 'GB') {
+    return phone.formatNational();
+  }
+  return trimmed;
+}
+
+/** UK mobile or landline; accepts 07…, 01…, 02…, +44… */
 export function ukPhoneValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const raw = String(control.value ?? '').trim();
     if (!raw) return null;
-    const digits = raw.replace(/[\s\-()]/g, '').replace(/\D/g, '');
-    if (digits.length < 10 || digits.length > 15) {
-      return { ukPhone: true };
-    }
-    return null;
+    return isValidUkPhone(raw) ? null : { ukPhone: true };
   };
 }
 

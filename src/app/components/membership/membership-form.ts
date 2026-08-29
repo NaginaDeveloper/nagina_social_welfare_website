@@ -19,6 +19,7 @@ import {
   adultDobValidator,
   ukPhoneValidator,
   ukPostcodeValidator,
+  formatUkPhoneE164,
 } from '../../validators/uk.validators';
 import {
   LAST_MEMBERSHIP_EMAIL_KEY,
@@ -244,7 +245,13 @@ export class MembershipForm {
       const signedAt = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
       const interests = raw.interests;
       const payload: MembershipSubmitPayload = {
-        applicant: raw.applicant,
+        applicant: {
+          ...raw.applicant,
+          fullName: raw.applicant.fullName.trim(),
+          email: raw.applicant.email.trim().toLowerCase(),
+          phone: formatUkPhoneE164(raw.applicant.phone),
+          dateOfBirth: raw.applicant.dateOfBirth,
+        },
         address: {
           line1: raw.address.line1,
           ...(raw.address.line2.trim() ? { line2: raw.address.line2.trim() } : {}),
