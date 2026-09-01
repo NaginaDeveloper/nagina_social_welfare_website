@@ -52,7 +52,7 @@
         lang="ur"
         dir="rtl"
       >
-        شجرہ مبارکہ عالیہ نقشبندیہ مجددیہ یوسفیہ
+        شجرہ ہائے مبارکہ
       </p>
       <h2
         class="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl"
@@ -63,7 +63,7 @@
         <span class="text-gold-gradient">{{ i18n.t('shajra.titleAccent') }}</span>
       </h2>
       <p
-        class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg"
+        class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-cream/70 sm:text-lg"
         [attr.dir]="i18n.isUr() ? 'rtl' : null"
         [attr.lang]="i18n.isUr() ? 'ur' : null"
       >
@@ -72,108 +72,268 @@
       </p>
     </div>
 
-    <div class="mt-14 space-y-10">
-      @for (page of pages; track page.id; let i = $index; let last = $last) {
-        <div>
-          @if (page.honour) {
-            <p class="text-center text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-gold-300">
-              {{ i18n.t('shajra.inHonour') }}
+    <figure class="mx-auto mt-10 max-w-sm">
+      <button
+        type="button"
+        class="group block w-full rounded-[1.35rem] bg-gradient-to-br from-gold-300 via-gold to-gold-600 p-[3px] shadow-portal transition-transform duration-500 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-300"
+        (click)="openTitle()"
+        [attr.aria-label]="i18n.t('shajra.openPage') + ': ' + i18n.pick(titlePage.caption, titlePage.captionUr)"
+      >
+        <span class="block overflow-hidden rounded-[1.2rem] bg-sand p-3 sm:p-4">
+          <img
+            [src]="titlePage.src"
+            [alt]="titlePage.alt"
+            width="396"
+            height="526"
+            class="mx-auto w-full bg-white object-contain shadow-soft"
+            loading="eager"
+            decoding="async"
+          />
+        </span>
+      </button>
+      <figcaption class="mt-4 text-center" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300">
+          {{ kashkoolLabel(titlePage) }}
+        </p>
+        <p class="mt-1.5 font-urdu text-lg text-gold-300 notranslate" lang="ur" dir="rtl">
+          {{ titlePage.captionUr }}
+        </p>
+      </figcaption>
+    </figure>
+
+    <nav
+      class="mx-auto mt-12 max-w-2xl rounded-2xl border border-gold/25 bg-white/5 px-5 py-6 sm:px-8"
+      [attr.aria-label]="i18n.t('shajra.index')"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <p class="text-center text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-gold-300">
+        {{ i18n.t('shajra.index') }}
+      </p>
+      <ul class="mt-5 space-y-5">
+        @for (order of orders; track order.id) {
+          <li>
+            <p class="font-urdu text-lg leading-relaxed text-gold-300 notranslate" lang="ur" dir="rtl">
+              {{ order.titleUr }}
             </p>
-            <p
-              class="mt-2 mb-5 text-center font-urdu text-xl leading-relaxed text-gold-300 sm:text-2xl notranslate"
+            <p class="mt-0.5 text-sm text-cream/70">{{ i18n.pick(order.titleEn, order.titleUr) }}</p>
+            <ul class="mt-2 space-y-1">
+              @for (silsila of silsilasForOrder(order.id); track silsila.id) {
+                <li>
+                  <a
+                    [href]="'#shajra-' + silsila.id"
+                    class="inline-flex flex-wrap items-baseline gap-x-2 text-sm text-cream/85 transition-colors hover:text-gold-300"
+                  >
+                    @if (silsila.recitationEn) {
+                      <span>{{ i18n.pick(silsila.recitationEn, silsila.recitationUr ?? silsila.recitationEn) }}</span>
+                      <span class="text-cream/40">·</span>
+                    }
+                    <span class="tabular-nums text-gold-300/90">
+                      {{ rangeLabel(silsila.kashkoolStart, silsila.kashkoolEnd) }}
+                    </span>
+                  </a>
+                </li>
+              }
+            </ul>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="mt-16 space-y-20">
+      @for (silsila of silsilas; track silsila.id; let silsilaIndex = $index) {
+        <section [id]="'shajra-' + silsila.id" [attr.aria-labelledby]="'shajra-heading-' + silsila.id">
+          @if (silsila.orderId === 'naqshbandi' && silsila.id === 'naqshbandi-manzoom') {
+            <div id="shajra-naqshbandi" class="sr-only">{{ i18n.t('shajra.order.naqshbandi') }}</div>
+          }
+
+          <div class="mx-auto max-w-3xl text-center">
+            @if (silsila.recitationEn) {
+              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-gold-300">
+                {{ i18n.pick(silsila.recitationEn, silsila.recitationUr ?? silsila.recitationEn) }}
+              </p>
+            }
+            <h3
+              [id]="'shajra-heading-' + silsila.id"
+              class="mt-3 font-urdu text-xl leading-[2] text-gold-300 sm:text-2xl notranslate"
               lang="ur"
               dir="rtl"
             >
-              پیر طریقت رہبر شریعت حضرت حاجی محمد یوسف علی نگینہ رضی اللہ تعالیٰ عنہ
-            </p>
-          }
-
-          <div class="grid items-start gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10">
-            <figure class="mx-auto w-full max-w-[22rem] lg:mx-0">
-              <button
-                type="button"
-                class="group block w-full rounded-[1.35rem] bg-gradient-to-br from-gold-300 via-gold to-gold-600 p-[3px] shadow-portal transition-transform duration-500 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-300"
-                (click)="openPage(i)"
-                [attr.aria-label]="i18n.t('shajra.openPage') + ' ' + (i + 1) + ': ' + i18n.pick(page.caption, page.captionUr)"
-              >
-                <span class="block overflow-hidden rounded-[1.2rem] bg-sand p-3 sm:p-4">
-                  <img
-                    [src]="page.src"
-                    [alt]="page.alt"
-                    [attr.width]="page.honour ? 706 : 561"
-                    [attr.height]="page.honour ? 824 : 1024"
-                    class="mx-auto w-full bg-white object-contain shadow-soft"
-                    [attr.loading]="i === 0 ? 'eager' : 'lazy'"
-                    decoding="async"
-                  />
-                </span>
-              </button>
-              <figcaption
-                class="mt-4 text-center lg:text-left"
-                [attr.dir]="i18n.isUr() ? 'rtl' : null"
-              >
-                @if (!page.honour) {
-                  <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300">
-                    {{ i18n.t('shajra.pageOf').replace('{n}', '' + (i + 1)).replace('{total}', '4') }}
-                  </p>
-                }
-                <p class="mt-1.5 text-base leading-relaxed text-cream/85 sm:text-lg">
-                  {{ i18n.pick(page.caption, page.captionUr) }}
-                </p>
-              </figcaption>
-            </figure>
-
-            <div
-              class="rounded-2xl border border-gold/20 bg-white/5 px-5 py-5 sm:px-6 sm:py-6"
+              {{ silsila.titleUr }}
+            </h3>
+            <p
+              class="mt-2 text-sm text-cream/65 sm:text-base"
               [attr.dir]="i18n.isUr() ? 'rtl' : null"
             >
-              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300">
-                @if (page.honour) {
-                  {{ i18n.t('shajra.respectedName') }}
-                } @else {
-                  {{ i18n.t('shajra.respectedNames') }}
-                }
+              {{ i18n.pick(silsila.titleEn, silsila.titleUr) }}
+            </p>
+            @if (silsila.noteEn) {
+              <p
+                class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-cream/55"
+                [attr.dir]="i18n.isUr() ? 'rtl' : null"
+                [attr.lang]="i18n.isUr() ? 'ur' : null"
+              >
+                {{ i18n.pick(silsila.noteEn, silsila.noteUr ?? silsila.noteEn) }}
               </p>
-              <ol class="mt-4 space-y-3">
-                @for (saint of page.saints; track saint.name; let n = $index) {
-                  <li class="flex gap-3" [class.text-left]="!i18n.isUr()" [class.text-right]="i18n.isUr()">
-                    @if (page.saints.length > 1) {
-                      <span class="mt-0.5 w-5 shrink-0 text-xs tabular-nums text-gold-300/80">
-                        {{ n + 1 }}
+            }
+          </div>
+
+          <div class="mt-10 space-y-10">
+            @for (page of silsila.pages; track page.id; let pageIndex = $index; let last = $last) {
+              <div>
+                <div class="grid items-start gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10">
+                  <figure class="mx-auto w-full max-w-[22rem] lg:mx-0">
+                    <button
+                      type="button"
+                      class="group block w-full rounded-[1.35rem] bg-gradient-to-br from-gold-300 via-gold to-gold-600 p-[3px] shadow-portal transition-transform duration-500 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-300"
+                      (click)="openPage(silsilaIndex, pageIndex)"
+                      [attr.aria-label]="i18n.t('shajra.openPage') + ': ' + i18n.pick(page.caption, page.captionUr)"
+                    >
+                      <span class="block overflow-hidden rounded-[1.2rem] bg-sand p-3 sm:p-4">
+                        <img
+                          [src]="page.src"
+                          [alt]="page.alt"
+                          width="561"
+                          height="1024"
+                          class="mx-auto w-full bg-white object-contain shadow-soft"
+                          [attr.loading]="silsilaIndex === 0 && pageIndex === 0 ? 'eager' : 'lazy'"
+                          decoding="async"
+                        />
+                      </span>
+                    </button>
+                    <figcaption
+                      class="mt-4 text-center lg:text-left"
+                      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+                    >
+                      <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300">
+                        {{ kashkoolLabel(page) }}
+                      </p>
+                      <p class="mt-1.5 text-base leading-relaxed text-cream/85 sm:text-lg">
+                        {{ i18n.pick(page.caption, page.captionUr) }}
+                      </p>
+                    </figcaption>
+                  </figure>
+
+                  <div
+                    class="rounded-2xl border border-gold/20 bg-white/5 px-5 py-5 sm:px-6 sm:py-6"
+                    [attr.dir]="i18n.isUr() ? 'rtl' : null"
+                  >
+                    <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300">
+                      {{ page.saints.length === 1 ? i18n.t('shajra.respectedName') : i18n.t('shajra.respectedNames') }}
+                    </p>
+                    <ol class="mt-4 space-y-3">
+                      @for (saint of page.saints; track saint.name + n; let n = $index) {
+                        <li class="flex gap-3" [class.text-left]="!i18n.isUr()" [class.text-right]="i18n.isUr()">
+                          @if (page.saints.length > 1) {
+                            <span class="mt-0.5 w-5 shrink-0 text-xs tabular-nums text-gold-300/80">
+                              {{ n + 1 }}
+                            </span>
+                          }
+                          <span>
+                            <span class="block text-sm font-medium leading-snug text-cream sm:text-[0.95rem]">
+                              {{ i18n.pick(saint.name, saint.nameUr) }}
+                              @if (saint.honorific) {
+                                <span class="font-urdu text-gold-300/90 notranslate" lang="ur" dir="rtl">
+                                  {{ saint.honorific }}
+                                </span>
+                              }
+                            </span>
+                            @if (saint.title && saint.titleUr) {
+                              <span class="mt-0.5 block text-xs leading-snug text-cream/55">
+                                {{ i18n.pick(saint.title, saint.titleUr) }}
+                              </span>
+                            }
+                          </span>
+                        </li>
+                      }
+                    </ol>
+                  </div>
+                </div>
+
+                @if (!last) {
+                  <div class="mt-10 flex justify-center" aria-hidden="true">
+                    <svg class="h-5 w-5 text-gold-300/70" viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 3.5 13.2 8l4.8.3-3.8 3 1.3 4.7L12 13.7 8.5 16l1.3-4.7-3.8-3 4.8-.3Z"
+                      />
+                    </svg>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+          @if (silsila.followNoteEn) {
+            <p
+              class="mx-auto mt-10 max-w-xl text-center text-sm leading-relaxed text-cream/50"
+              [attr.dir]="i18n.isUr() ? 'rtl' : null"
+              [attr.lang]="i18n.isUr() ? 'ur' : null"
+            >
+              {{ i18n.pick(silsila.followNoteEn, silsila.followNoteUr ?? silsila.followNoteEn) }}
+            </p>
+          }
+        </section>
+      }
+    </div>
+
+    <div id="shajra-honour" class="mt-20">
+      <p class="text-center text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-gold-300">
+        {{ i18n.t('shajra.inHonour') }}
+      </p>
+      <p
+        class="mt-2 mb-5 text-center font-urdu text-xl leading-relaxed text-gold-300 sm:text-2xl notranslate"
+        lang="ur"
+        dir="rtl"
+      >
+        پیر طریقت رہبر شریعت حضرت حاجی محمد یوسف علی نگینہ رضی اللہ تعالیٰ عنہ
+      </p>
+
+      <div class="grid items-start gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10">
+        <figure class="mx-auto w-full max-w-[22rem] lg:mx-0">
+          <button
+            type="button"
+            class="group block w-full rounded-[1.35rem] bg-gradient-to-br from-gold-300 via-gold to-gold-600 p-[3px] shadow-portal transition-transform duration-500 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-300"
+            (click)="openHonour()"
+            [attr.aria-label]="i18n.t('shajra.openPage') + ': ' + i18n.pick(honour.caption, honour.captionUr)"
+          >
+            <span class="block overflow-hidden rounded-[1.2rem] bg-sand p-3 sm:p-4">
+              <img
+                [src]="honour.src"
+                [alt]="honour.alt"
+                width="706"
+                height="824"
+                class="mx-auto w-full bg-white object-contain shadow-soft"
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+          </button>
+        </figure>
+
+        <div
+          class="rounded-2xl border border-gold/20 bg-white/5 px-5 py-5 sm:px-6 sm:py-6"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        >
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300">
+            {{ i18n.t('shajra.respectedName') }}
+          </p>
+          <ol class="mt-4 space-y-3">
+            @for (saint of honour.saints; track saint.name) {
+              <li class="flex gap-3" [class.text-left]="!i18n.isUr()" [class.text-right]="i18n.isUr()">
+                <span>
+                  <span class="block text-sm font-medium leading-snug text-cream sm:text-[0.95rem]">
+                    {{ i18n.pick(saint.name, saint.nameUr) }}
+                    @if (saint.honorific) {
+                      <span class="font-urdu text-gold-300/90 notranslate" lang="ur" dir="rtl">
+                        {{ saint.honorific }}
                       </span>
                     }
-                    <span>
-                      <span class="block text-sm font-medium leading-snug text-cream sm:text-[0.95rem]">
-                        {{ i18n.pick(saint.name, saint.nameUr) }}
-                        @if (saint.honorific) {
-                          <span class="font-urdu text-gold-300/90 notranslate" lang="ur" dir="rtl">
-                            {{ saint.honorific }}
-                          </span>
-                        }
-                      </span>
-                      @if (saint.title && saint.titleUr) {
-                        <span class="mt-0.5 block text-xs leading-snug text-cream/55">
-                          {{ i18n.pick(saint.title, saint.titleUr) }}
-                        </span>
-                      }
-                    </span>
-                  </li>
-                }
-              </ol>
-            </div>
-          </div>
+                  </span>
+                </span>
+              </li>
+            }
+          </ol>
         </div>
-
-        @if (!last) {
-          <div class="flex justify-center" aria-hidden="true">
-            <svg class="h-5 w-5 text-gold-300/70" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 3.5 13.2 8l4.8.3-3.8 3 1.3 4.7L12 13.7 8.5 16l1.3-4.7-3.8-3 4.8-.3Z"
-              />
-            </svg>
-          </div>
-        }
-      }
+      </div>
     </div>
   </div>
 </section>
@@ -224,32 +384,30 @@
       </svg>
     </button>
 
-    @if (activeIndex(); as index) {
-      @if (index > 0) {
-        <button
-          type="button"
-          class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-cream/20 bg-white/10 text-cream transition-colors hover:border-gold/50 hover:text-gold-300 sm:left-8"
-          (click)="showPrev(); $event.stopPropagation()"
-          [attr.aria-label]="i18n.t('shajra.prev')"
-        >
-          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 6 9 12l6 6" />
-          </svg>
-        </button>
-      }
+    @if (canPrev()) {
+      <button
+        type="button"
+        class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-cream/20 bg-white/10 text-cream transition-colors hover:border-gold/50 hover:text-gold-300 sm:left-8"
+        (click)="showPrev(); $event.stopPropagation()"
+        [attr.aria-label]="i18n.t('shajra.prev')"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 6 9 12l6 6" />
+        </svg>
+      </button>
+    }
 
-      @if (index < pages.length - 1) {
-        <button
-          type="button"
-          class="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-cream/20 bg-white/10 text-cream transition-colors hover:border-gold/50 hover:text-gold-300 sm:right-8"
-          (click)="showNext(); $event.stopPropagation()"
-          [attr.aria-label]="i18n.t('shajra.next')"
-        >
-          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6" />
-          </svg>
-        </button>
-      }
+    @if (canNext()) {
+      <button
+        type="button"
+        class="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-cream/20 bg-white/10 text-cream transition-colors hover:border-gold/50 hover:text-gold-300 sm:right-8"
+        (click)="showNext(); $event.stopPropagation()"
+        [attr.aria-label]="i18n.t('shajra.next')"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6" />
+        </svg>
+      </button>
     }
 
     <figure
@@ -265,20 +423,27 @@
         class="mt-4 w-full max-w-md text-center lg:mt-0 lg:text-left"
         [attr.dir]="i18n.isUr() ? 'rtl' : null"
       >
-        <span class="text-cream/90">{{ i18n.pick(page.caption, page.captionUr) }}</span>
-        <ol class="mt-4 space-y-2 text-left" [class.text-right]="i18n.isUr()">
-          @for (saint of page.saints; track saint.name) {
-            <li class="text-sm leading-snug text-cream/80">
-              {{ i18n.pick(saint.name, saint.nameUr) }}
-              @if (saint.honorific) {
-                <span class="font-urdu text-gold-300/90 notranslate" lang="ur" dir="rtl">{{ saint.honorific }}</span>
-              }
-              @if (saint.title && saint.titleUr) {
-                <span class="block text-xs text-cream/50">{{ i18n.pick(saint.title, saint.titleUr) }}</span>
-              }
-            </li>
-          }
-        </ol>
+        @if (page.kashkoolPage) {
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300">
+            {{ kashkoolLabel(page) }}
+          </p>
+        }
+        <span class="mt-1 block text-cream/90">{{ i18n.pick(page.caption, page.captionUr) }}</span>
+        @if (page.saints.length) {
+          <ol class="mt-4 space-y-2 text-left" [class.text-right]="i18n.isUr()">
+            @for (saint of page.saints; track saint.name) {
+              <li class="text-sm leading-snug text-cream/80">
+                {{ i18n.pick(saint.name, saint.nameUr) }}
+                @if (saint.honorific) {
+                  <span class="font-urdu text-gold-300/90 notranslate" lang="ur" dir="rtl">{{ saint.honorific }}</span>
+                }
+                @if (saint.title && saint.titleUr) {
+                  <span class="block text-xs text-cream/50">{{ i18n.pick(saint.title, saint.titleUr) }}</span>
+                }
+              </li>
+            }
+          </ol>
+        }
       </figcaption>
     </figure>
   </div>

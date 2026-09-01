@@ -127,10 +127,10 @@ export const MEMBERSHIP_HOME_SEO: PageSeo = {
 export const SPIRITUAL_GUIDE_SEO: PageSeo = {
   title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',
   description:
-    'Honouring Allama Munir Ahmed Yusufi — Munir-e-Islam — with the Naqshbandi Mujaddidi Yusufi Shajra Sharif and photographs from Nagina TV.',
+    'Honouring Allama Munir Ahmed Yusufi — Munir-e-Islam — with the Yusufi Shajra Sharif from Kashkool e Yousufi (Naqshbandi, Chishti and Qadri) and photographs from Nagina TV.',
   path: '/spiritual-guide/',
   keywords:
-    'Spiritual Guide, Munir-e-Islam, Allama Munir Ahmed Yusufi, Pir-o-Murshid, Shajra Sharif, Naqshbandi Mujaddidi Yusufi',
+    'Spiritual Guide, Munir-e-Islam, Allama Munir Ahmed Yusufi, Pir-o-Murshid, Shajra Sharif, Naqshbandi Mujaddidi Yusufi, Chishti Sabri, Qadri Razawi, Kashkool e Yousufi',
   type: 'website',
 };
 
