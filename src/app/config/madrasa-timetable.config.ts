@@ -20,8 +20,8 @@ export const MADRASA_SESSIONS: readonly MadrasaSession[] = [
     daysUr: 'روزانہ',
     time: '16:30–17:30',
     timeUr: '۴:۳۰–۵:۳۰',
-    ages: 'Full',
-    agesUr: 'بھری ہوئی',
+    ages: 'Under 10',
+    agesUr: '۱۰ سال سے کم',
   },
   {
     id: 'class2',
@@ -31,8 +31,8 @@ export const MADRASA_SESSIONS: readonly MadrasaSession[] = [
     daysUr: 'روزانہ',
     time: '17:30–18:30',
     timeUr: '۵:۳۰–۶:۳۰',
-    ages: 'Full',
-    agesUr: 'بھری ہوئی',
+    ages: 'Under 10',
+    agesUr: '۱۰ سال سے کم',
   },
   {
     id: 'class3',
@@ -42,7 +42,7 @@ export const MADRASA_SESSIONS: readonly MadrasaSession[] = [
     daysUr: 'روزانہ',
     time: '18:30–19:30',
     timeUr: '۶:۳۰–۷:۳۰',
-    ages: '10 years and above — places available',
-    agesUr: '۱۰ سال اور اس سے اوپر — جگہ دستیاب',
+    ages: '10 years and above',
+    agesUr: '۱۰ سال اور اس سے اوپر',
   },
 ];

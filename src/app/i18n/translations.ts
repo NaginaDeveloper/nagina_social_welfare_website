@@ -42,7 +42,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.donateLead': 'Zakat, sadaqah and lillah for education and welfare.',
     'spotlight.donateCta': 'Donate',
     'spotlight.madrasaTitle': '2026 madrasa intake',
-    'spotlight.madrasaLead': 'Class 3, 18:30–19:30 daily, for ages 10+. Class 1 and 2 are full.',
+    'spotlight.madrasaLead':
+      'All three evening classes are open. Class 1 and 2 for under 10s; Class 3 (18:30–19:30) for ages 10+.',
     'spotlight.madrasaCta': 'Apply online',
     'spotlight.whatsappEvent': 'I am coming',
 
@@ -58,7 +59,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.formMessage': 'Message',
     'contact.formSubmit': 'Open in WhatsApp',
     'contact.hours':
-      'Markaz Deen-e-Islam · 103 Burmer Road, Peterborough PE1 3HT. Class 3 (18:30–19:30 daily) is open for ages 10+; Class 1 and 2 are full.',
+      'Markaz Deen-e-Islam · 103 Burmer Road, Peterborough PE1 3HT. All three evening classes are open: Class 1 and 2 for under 10s, Class 3 (18:30–19:30) for ages 10+.',
     'contact.map': 'Find us in Peterborough',
     'contact.reason.enrolment': 'Madrasa enrolment question',
     'contact.reason.donation': 'Donation',
@@ -100,7 +101,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.enrolSecondary': 'Ask on WhatsApp',
     'madrasa.timetable': 'Class times',
     'madrasa.timetableLead':
-      'Evening classes so families can balance school and work. Class 3 (18:30–19:30) is open for ages 10+. Class 1 and Class 2 are full. Apply online, or message us with questions.',
+      'Evening classes so families can balance school and work. Class 1 and Class 2 are for children under 10. Class 3 (18:30–19:30) is for ages 10 and above. Apply online, or message us with questions.',
     'madrasa.days': 'Days',
     'madrasa.time': 'Time',
     'madrasa.ages': 'Who',
@@ -113,12 +114,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.eyebrow': 'Markaz Deen-e-Islam',
     'apply.title': 'Online admission',
     'apply.lead':
-      'Class 3 (18:30–19:30 daily) is open for children aged 10–18. Class 1 and Class 2 are full. Complete this form and we will email you when we receive it and again after our review.',
+      'All three evening classes are open. Class 1 and Class 2 are for children under 10; Class 3 (18:30–19:30 daily) is for ages 10 and above. Complete this form and we will email you when we receive it and again after our review.',
     'apply.intake.eyebrow': 'Markaz Deen-e-Islam',
     'apply.intake.title': 'Madrasa admission',
     'apply.intake.subtitle': 'For the 2026 intake',
     'apply.intake.lead':
-      'Places are open in Class 3, 18:30 to 19:30 daily, for children aged 10 and above. Class 1 and Class 2 are full.',
+      'Places are open in all three evening classes. Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above.',
     'apply.intake.quran': 'Quran & Tajweed',
     'apply.intake.quranHint': 'Reading and recitation of the Holy Quran.',
     'apply.intake.teachings': 'Islamic teachings',
@@ -129,12 +130,15 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.intake.academicsHint': 'Arabic, duas and structured Islamic study.',
     'apply.intake.classesHeading': 'Classes available',
     'apply.intake.times': 'Times',
-    'apply.intake.timesValue': '18:30–19:30 (daily)',
+    'apply.intake.timesValue': '16:30–19:30 (daily)',
     'apply.intake.ages': 'Ages',
-    'apply.intake.agesValue': '10 years and above',
+    'apply.intake.agesValue': 'Under 10, and 10 years and above',
     'apply.intake.subjects': 'Subjects',
     'apply.intake.subjectsValue': 'Quran, Hadith, Islamic Studies, Arabic & Duas',
-    'apply.intake.fullNote': 'Class 1 (16:30–17:30) and Class 2 (17:30–18:30) are currently full.',
+    'apply.intake.fullNote':
+      'Class 1 (16:30–17:30) and Class 2 (17:30–18:30) are for children under 10. Class 3 (18:30–19:30) is for ages 10 and above.',
+    'apply.intake.daily': 'Daily',
+    'apply.intake.posterHint': '2026 admission poster — tap to open full size.',
     'apply.intake.register': 'Register now',
     'apply.intake.poster': 'View / download poster',
     'apply.intake.enroll': 'Register now · Enrol today',
@@ -153,7 +157,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.progress': 'Step',
     'apply.progressOf': 'of',
     'apply.optional': 'optional',
-    'apply.dobHint': 'The child should be between 10 and 18 years old.',
+    'apply.dobHint': 'Choose Class 1 or 2 if the child is under 10, or Class 3 if they are 10 or older.',
     'apply.dobDay': 'Day',
     'apply.dobMonth': 'Month',
     'apply.dobYear': 'Year',
@@ -206,8 +210,14 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.emergencyRelationship': 'Relationship to child',
     'apply.finalHeading': 'Class preference & declaration',
     'apply.classSlot': 'Preferred class time',
-    'apply.classSlotNote': 'Class 1 and Class 2 are full. New applications are for Class 3 only.',
+    'apply.classSlotNote':
+      'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above.',
     'apply.classFull': 'Full',
+    'apply.slot.class1': 'Class 1: 16:30 to 17:30',
+    'apply.slot.class2': 'Class 2: 17:30 to 18:30',
+    'apply.slot.class3': 'Class 3: 18:30 to 19:30',
+    'apply.slot.under10': 'Under 10',
+    'apply.slot.age10plus': 'Ages 10+',
     'apply.termsHeading': 'Terms and conditions',
     'apply.consentPrivacyPrefix': 'I confirm I have read the',
     'apply.consentPrivacySuffix':
@@ -233,7 +243,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.err.phone': 'Enter a valid UK phone number.',
     'apply.err.postcode': 'Enter a valid UK postcode.',
     'apply.err.dobFuture': 'Date of birth cannot be in the future.',
-    'apply.err.dobAge': 'Please enter the child’s date of birth (ages 10–18).',
+    'apply.err.dobAge': 'Please enter the child’s date of birth (ages 3–18).',
+    'apply.err.classAge':
+      'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Please choose the matching class.',
     'apply.err.tooLong': 'This is too long. Please shorten it.',
     'applySuccess.eyebrow': 'Application',
     'applySuccess.title': 'We have received your application',
@@ -930,9 +942,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.eyebrow': 'Markaz Deen-e-Islam',
     'madrasa.title': 'Islamic institute in',
     'madrasa.titleAccent': 'Peterborough',
-    'madrasa.lead': 'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough. The 2026 intake is open in Class 3 (18:30–19:30 daily) for children aged 10 and above at 103 Burmer Road, PE1 3HT.',
+    'madrasa.lead':
+      'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough. The 2026 intake is open in all three evening classes at 103 Burmer Road, PE1 3HT — Class 1 and 2 for under 10s, Class 3 for ages 10 and above.',
     'madrasa.body': 'Parents searching for a local madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At Markaz Deen-e-Islam we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.',
-    'madrasa.body2': 'Class 3 evenings (18:30–19:30) are open for ages 10+. Class 1 and Class 2 are full. Please apply online, or contact us with questions.',
+    'madrasa.body2':
+      'Class 1 (16:30–17:30) and Class 2 (17:30–18:30) are for children under 10. Class 3 (18:30–19:30) is for ages 10 and above. Please apply online, or contact us with questions.',
     'madrasa.offeringsTitle': 'What children learn with us',
     'madrasa.titleLine': 'Madrasa & Islamic Institute in',
 
@@ -987,7 +1001,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.donateLead': 'تعلیم اور فلاح کے لیے زکوٰۃ، صدقہ اور للہ۔',
     'spotlight.donateCta': 'عطیہ',
     'spotlight.madrasaTitle': 'داخلہ ۲۰۲۶',
-    'spotlight.madrasaLead': 'کلاس ۳، شام ۶:۳۰–۷:۳۰ روزانہ، عمر ۱۰+۔ کلاس ۱ اور ۲ بھری ہوئی ہیں۔',
+    'spotlight.madrasaLead':
+      'تینوں شام کی کلاسیں کھلی ہیں۔ کلاس ۱ اور ۲ دس سال سے کم کے لیے؛ کلاس ۳ (شام ۶:۳۰–۷:۳۰) عمر ۱۰+ کے لیے۔',
     'spotlight.madrasaCta': 'آن لائن درخواست',
     'spotlight.whatsappEvent': 'میں آ رہا / رہی ہوں',
 
@@ -1003,7 +1018,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.formMessage': 'پیغام',
     'contact.formSubmit': 'واٹس ایپ میں کھولیں',
     'contact.hours':
-      'مرکز دینِ اسلام · 103 برمر روڈ، پیٹربورو PE1 3HT۔ کلاس ۳ (شام ۶:۳۰–۷:۳۰ روزانہ) عمر ۱۰+ کے لیے کھلی ہے؛ کلاس ۱ اور ۲ بھری ہوئی ہیں۔',
+      'مرکز دینِ اسلام · 103 برمر روڈ، پیٹربورو PE1 3HT۔ تینوں شام کی کلاسیں کھلی ہیں: کلاس ۱ اور ۲ دس سال سے کم کے لیے، کلاس ۳ (شام ۶:۳۰–۷:۳۰) عمر ۱۰+ کے لیے۔',
     'contact.map': 'پیٹربورو میں ہماری جگہ',
     'contact.reason.enrolment': 'مدرسہ داخلہ کا سوال',
     'contact.reason.donation': 'عطیہ',
@@ -1045,7 +1060,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.enrolSecondary': 'واٹس ایپ پر پوچھیں',
     'madrasa.timetable': 'کلاس کے اوقات',
     'madrasa.timetableLead':
-      'شام کی کلاسیں تاکہ خاندان اسکول اور کام کے ساتھ توازن رکھ سکیں۔ کلاس ۳ (شام ۶:۳۰–۷:۳۰) عمر ۱۰+ کے لیے کھلی ہے۔ کلاس ۱ اور کلاس ۲ بھری ہوئی ہیں۔ آن لائن درخواست دیں، یا سوال کے لیے پیغام بھیجیں۔',
+      'شام کی کلاسیں تاکہ خاندان اسکول اور کام کے ساتھ توازن رکھ سکیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ (شام ۶:۳۰–۷:۳۰) عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ آن لائن درخواست دیں، یا سوال کے لیے پیغام بھیجیں۔',
     'madrasa.days': 'دن',
     'madrasa.time': 'وقت',
     'madrasa.ages': 'کس کے لیے',
@@ -1058,12 +1073,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.eyebrow': 'مرکز دینِ اسلام',
     'apply.title': 'آن لائن داخلہ',
     'apply.lead':
-      'کلاس ۳ (شام ۶:۳۰–۷:۳۰، روزانہ) ۱۰ سے ۱۸ سال کے بچوں کے لیے کھلی ہے۔ کلاس ۱ اور کلاس ۲ بھری ہوئی ہیں۔ یہ فارم پُر کریں؛ موصول ہونے اور جائزے کے بعد ہم ای میل کریں گے۔',
+      'تینوں شام کی کلاسیں کھلی ہیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں؛ کلاس ۳ (شام ۶:۳۰–۷:۳۰، روزانہ) ۱۰ سال اور اس سے اوپر کے لیے ہے۔ یہ فارم پُر کریں؛ موصول ہونے اور جائزے کے بعد ہم ای میل کریں گے۔',
     'apply.intake.eyebrow': 'مرکز دینِ اسلام',
     'apply.intake.title': 'مدرسہ داخلہ',
     'apply.intake.subtitle': 'داخلہ ۲۰۲۶',
     'apply.intake.lead':
-      'جگہیں کلاس ۳ میں کھلی ہیں، شام ۶:۳۰ سے ۷:۳۰ روزانہ، ۱۰ سال اور اس سے اوپر کے بچوں کے لیے۔ کلاس ۱ اور کلاس ۲ بھری ہوئی ہیں۔',
+      'تینوں شام کی کلاسوں میں جگہیں کھلی ہیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔',
     'apply.intake.quran': 'قرآن اور تجوید',
     'apply.intake.quranHint': 'قرآنِ پاک کی خوانی اور تلاوت۔',
     'apply.intake.teachings': 'اسلامی تعلیمات',
@@ -1074,12 +1089,15 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.intake.academicsHint': 'عربی، دعائیں اور منظم اسلامی مطالعہ۔',
     'apply.intake.classesHeading': 'دستیاب کلاسیں',
     'apply.intake.times': 'اوقات',
-    'apply.intake.timesValue': 'شام ۶:۳۰–۷:۳۰ (روزانہ)',
+    'apply.intake.timesValue': 'شام ۴:۳۰–۷:۳۰ (روزانہ)',
     'apply.intake.ages': 'عمر',
-    'apply.intake.agesValue': '۱۰ سال اور اس سے اوپر',
+    'apply.intake.agesValue': 'دس سال سے کم، اور ۱۰ سال اور اس سے اوپر',
     'apply.intake.subjects': 'مضامین',
     'apply.intake.subjectsValue': 'قرآن، حدیث، اسلامی تعلیم، عربی اور دعائیں',
-    'apply.intake.fullNote': 'کلاس ۱ (۴:۳۰–۵:۳۰) اور کلاس ۲ (۵:۳۰–۶:۳۰) اس وقت بھری ہوئی ہیں۔',
+    'apply.intake.fullNote':
+      'کلاس ۱ (۴:۳۰–۵:۳۰) اور کلاس ۲ (۵:۳۰–۶:۳۰) دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ (۶:۳۰–۷:۳۰) عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔',
+    'apply.intake.daily': 'روزانہ',
+    'apply.intake.posterHint': 'داخلہ ۲۰۲۶ کا پوسٹر — بڑا دیکھنے کے لیے دبائیں۔',
     'apply.intake.register': 'ابھی رجسٹر کریں',
     'apply.intake.poster': 'پوسٹر دیکھیں / ڈاؤن لوڈ کریں',
     'apply.intake.enroll': 'ابھی رجسٹر کریں · آج داخلہ لیں',
@@ -1098,7 +1116,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.progress': 'مرحلہ',
     'apply.progressOf': 'از',
     'apply.optional': 'اختیاری',
-    'apply.dobHint': 'بچہ ۱۰ سے ۱۸ سال کا ہونا چاہیے۔',
+    'apply.dobHint': 'اگر بچہ دس سال سے کم ہے تو کلاس ۱ یا ۲، اگر ۱۰ یا اس سے زیادہ ہے تو کلاس ۳ منتخب کریں۔',
     'apply.dobDay': 'دن',
     'apply.dobMonth': 'مہینہ',
     'apply.dobYear': 'سال',
@@ -1151,8 +1169,14 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.emergencyRelationship': 'بچے سے تعلق',
     'apply.finalHeading': 'کلاس ترجیح اور اقرار',
     'apply.classSlot': 'ترجیحی کلاس کا وقت',
-    'apply.classSlotNote': 'کلاس ۱ اور کلاس ۲ بھری ہوئی ہیں۔ نئی درخواستیں صرف کلاس ۳ کے لیے ہیں۔',
+    'apply.classSlotNote':
+      'کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔',
     'apply.classFull': 'بھری ہوئی',
+    'apply.slot.class1': 'کلاس ۱: ۴:۳۰ سے ۵:۳۰',
+    'apply.slot.class2': 'کلاس ۲: ۵:۳۰ سے ۶:۳۰',
+    'apply.slot.class3': 'کلاس ۳: ۶:۳۰ سے ۷:۳۰',
+    'apply.slot.under10': '۱۰ سے کم',
+    'apply.slot.age10plus': 'عمر ۱۰+',
     'apply.termsHeading': 'شرائط و ضوابط',
     'apply.consentPrivacyPrefix': 'میں تصدیق کرتا/کرتی ہوں کہ میں نے',
     'apply.consentPrivacySuffix':
@@ -1178,7 +1202,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.err.phone': 'درست برطانوی فون نمبر لکھیں۔',
     'apply.err.postcode': 'درست برطانوی پوسٹ کوڈ لکھیں۔',
     'apply.err.dobFuture': 'تاریخِ پیدائش مستقبل کی نہیں ہو سکتی۔',
-    'apply.err.dobAge': 'بچے کی تاریخِ پیدائش لکھیں (۱۰–۱۸ سال)۔',
+    'apply.err.dobAge': 'بچے کی تاریخِ پیدائش لکھیں (۳–۱۸ سال)۔',
+    'apply.err.classAge':
+      'کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ براہِ کرم میل کھاتی کلاس منتخب کریں۔',
     'apply.err.tooLong': 'یہ بہت لمبا ہے۔ مختصر کریں۔',
     'applySuccess.eyebrow': 'درخواست',
     'applySuccess.title': 'آپ کی درخواست موصول ہو گئی',
@@ -1741,9 +1767,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.eyebrow': 'مرکز دینِ اسلام',
     'madrasa.title': 'اسلامی ادارہ',
     'madrasa.titleAccent': 'پیٹربورو',
-    'madrasa.lead': 'مرکز دینِ اسلام پیٹربورو میں ایک مدرسہ اور اسلامی ادارہ ہے۔ داخلہ ۲۰۲۶ کلاس ۳ (شام ۶:۳۰–۷:۳۰ روزانہ) میں ۱۰ سال اور اس سے اوپر کے بچوں کے لیے کھلا ہے — ۱۰۳ برمر روڈ، PE1 3HT۔',
+    'madrasa.lead':
+      'مرکز دینِ اسلام پیٹربورو میں ایک مدرسہ اور اسلامی ادارہ ہے۔ داخلہ ۲۰۲۶ تینوں شام کی کلاسوں میں کھلا ہے — ۱۰۳ برمر روڈ، PE1 3HT۔ کلاس ۱ اور ۲ دس سال سے کم کے لیے، کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے۔',
     'madrasa.body': 'مقامی مدرسہ، اسلامی اسکول یا بچوں کی اسلامی کلاسیں تلاش کرنے والے والدین اکثر گھر کے قریب قابلِ اعتماد جگہ چاہتے ہیں۔ مرکز دینِ اسلام میں ہم منظم قرآن اور اسلامی تعلیم کے لیے گرم، باقاعدہ ماحول میں خوش آمدید کہتے ہیں — اہلِ سنت والجماعت / حنفی بریلوی تعلیم کے مطابق۔',
-    'madrasa.body2': 'شام کی کلاس ۳ (۶:۳۰–۷:۳۰) عمر ۱۰+ کے لیے کھلی ہے۔ کلاس ۱ اور کلاس ۲ بھری ہوئی ہیں۔ آن لائن درخواست دیں، یا سوال کے لیے رابطہ کریں۔',
+    'madrasa.body2':
+      'کلاس ۱ (۴:۳۰–۵:۳۰) اور کلاس ۲ (۵:۳۰–۶:۳۰) دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ (۶:۳۰–۷:۳۰) عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ آن لائن درخواست دیں، یا سوال کے لیے رابطہ کریں۔',
     'madrasa.offeringsTitle': 'بچے ہمارے ساتھ کیا سیکھتے ہیں',
     'madrasa.titleLine': 'مدرسہ اور اسلامی ادارہ',
 

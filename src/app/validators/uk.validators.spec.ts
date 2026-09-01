@@ -8,6 +8,7 @@ import {
   ukPhoneValidator,
   ukPostcodeValidator,
 } from './uk.validators';
+import { classSlotFitsAge } from '../models/admission';
 
 describe('uk validators', () => {
   it('accepts a typical UK mobile', () => {
@@ -33,25 +34,39 @@ describe('uk validators', () => {
     });
   });
 
-  it('accepts a child aged between 10 and 18', () => {
-    const now = new Date();
-    const y = now.getFullYear() - 12;
-    const iso = `${y}-06-15`;
-    expect(childDobValidator(10, 18)(new FormControl(iso))).toBeNull();
-  });
-
-  it('rejects a child under 10', () => {
+  it('accepts a child aged between 3 and 18', () => {
     const now = new Date();
     const y = now.getFullYear() - 8;
     const iso = `${y}-06-15`;
-    expect(childDobValidator(10, 18)(new FormControl(iso))).toEqual({
+    expect(childDobValidator(3, 18)(new FormControl(iso))).toBeNull();
+  });
+
+  it('rejects a child under 3', () => {
+    const now = new Date();
+    const y = now.getFullYear() - 1;
+    const iso = `${y}-06-15`;
+    expect(childDobValidator(3, 18)(new FormControl(iso))).toEqual({
       childDobAge: true,
     });
   });
 
   it('rejects an adult date of birth', () => {
-    expect(childDobValidator(10, 18)(new FormControl('1990-01-01'))).toEqual({
+    expect(childDobValidator(3, 18)(new FormControl('1990-01-01'))).toEqual({
       childDobAge: true,
     });
+  });
+});
+
+describe('classSlotFitsAge', () => {
+  it('places under-10s in class 1 or 2', () => {
+    expect(classSlotFitsAge('class1', 9)).toBe(true);
+    expect(classSlotFitsAge('class2', 5)).toBe(true);
+    expect(classSlotFitsAge('class3', 9)).toBe(false);
+  });
+
+  it('places ages 10+ in class 3', () => {
+    expect(classSlotFitsAge('class3', 10)).toBe(true);
+    expect(classSlotFitsAge('class1', 10)).toBe(false);
+    expect(classSlotFitsAge('class2', 14)).toBe(false);
   });
 });

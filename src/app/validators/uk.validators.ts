@@ -60,6 +60,22 @@ export function optionalEmailValidator(): ValidatorFn {
   };
 }
 
+/** Whole years of age from YYYY-MM-DD, or null if the date is invalid. */
+export function childAgeYears(iso: string, now = new Date()): number | null {
+  const raw = String(iso ?? '').trim();
+  if (!ISO_DATE.test(raw)) return null;
+  const [y, m, d] = raw.split('-').map(Number);
+  const dt = new Date(y, m - 1, d);
+  if (dt.getFullYear() !== y || dt.getMonth() !== m - 1 || dt.getDate() !== d) {
+    return null;
+  }
+  let age = now.getFullYear() - y;
+  if (now.getMonth() + 1 < m || (now.getMonth() + 1 === m && now.getDate() < d)) {
+    age -= 1;
+  }
+  return age;
+}
+
 export function childDobValidator(minAge = 3, maxAge = 18): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const raw = String(control.value ?? '').trim();
@@ -72,11 +88,8 @@ export function childDobValidator(minAge = 3, maxAge = 18): ValidatorFn {
     }
     const now = new Date();
     if (dt.getTime() > now.getTime()) return { childDobFuture: true };
-    let age = now.getFullYear() - y;
-    if (now.getMonth() + 1 < m || (now.getMonth() + 1 === m && now.getDate() < d)) {
-      age -= 1;
-    }
-    if (age < minAge || age > maxAge) return { childDobAge: true };
+    const age = childAgeYears(raw, now);
+    if (age == null || age < minAge || age > maxAge) return { childDobAge: true };
     return null;
   };
 }

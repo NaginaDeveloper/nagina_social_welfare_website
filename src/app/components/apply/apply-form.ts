@@ -12,10 +12,13 @@ import { AdmissionService } from '../../services/admission.service';
 import {
   CLASS_SLOT_OPTIONS,
   PREVIOUS_EDUCATION_OPTIONS,
+  classSlotFitsAge,
   type AdmissionSubmitPayload,
+  type ClassSlot,
   type PreviousEducation,
 } from '../../models/admission';
 import {
+  childAgeYears,
   childDobValidator,
   optionalEmailValidator,
   ukPhoneValidator,
@@ -101,7 +104,7 @@ export class ApplyForm {
   protected readonly form = this.fb.nonNullable.group({
     student: this.fb.nonNullable.group({
       fullName: ['', [Validators.required, Validators.maxLength(120)]],
-      dateOfBirth: ['', [Validators.required, childDobValidator(10, 18)]],
+      dateOfBirth: ['', [Validators.required, childDobValidator(3, 18)]],
       gender: ['Male' as 'Male' | 'Female', Validators.required],
       previousEducation: ['none' as PreviousEducation, Validators.required],
       previousEducationDetail: [''],
@@ -138,7 +141,7 @@ export class ApplyForm {
       relationship: ['', Validators.maxLength(80)],
     }),
     preferences: this.fb.nonNullable.group({
-      classSlot: ['class3' as const, Validators.required],
+      classSlot: [null as ClassSlot | null, Validators.required],
     }),
     consents: this.fb.nonNullable.group({
       privacyNoticeRead: [false, Validators.requiredTrue],
@@ -153,7 +156,7 @@ export class ApplyForm {
 
   constructor() {
     const now = new Date();
-    const youngest = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate());
+    const youngest = new Date(now.getFullYear() - 3, now.getMonth(), now.getDate());
     const oldest = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
     this.maxDob = this.toIso(youngest);
     this.minDob = this.toIso(oldest);
@@ -264,6 +267,15 @@ export class ApplyForm {
       : `${base} cursor-pointer border-mist bg-white text-forest hover:border-gold/55`;
   }
 
+  protected classAgeMismatch(): boolean {
+    const dob = this.form.controls.student.controls.dateOfBirth.value;
+    const slot = this.form.controls.preferences.controls.classSlot.value;
+    if (!dob || !slot) return false;
+    const age = childAgeYears(dob);
+    if (age == null) return false;
+    return !classSlotFitsAge(slot, age);
+  }
+
   protected onFormSubmit(): void {
     if (this.step() < 3) {
       this.next();
@@ -275,7 +287,11 @@ export class ApplyForm {
   protected next(): void {
     this.attempted.set(true);
     if (!this.validateCurrentStep()) {
-      this.error.set(this.i18n.t('apply.error.incomplete'));
+      this.error.set(
+        this.step() === 3 && this.classAgeMismatch()
+          ? this.i18n.t('apply.err.classAge')
+          : this.i18n.t('apply.error.incomplete'),
+      );
       this.scrollToError();
       return;
     }
@@ -331,7 +347,11 @@ export class ApplyForm {
     this.attempted.set(true);
     this.error.set(null);
     if (!this.validateCurrentStep()) {
-      this.error.set(this.i18n.t('apply.error.incomplete'));
+      this.error.set(
+        this.classAgeMismatch()
+          ? this.i18n.t('apply.err.classAge')
+          : this.i18n.t('apply.error.incomplete'),
+      );
       this.scrollToError();
       return;
     }
@@ -408,7 +428,8 @@ export class ApplyForm {
     return (
       this.form.controls.preferences.valid &&
       this.form.controls.consents.valid &&
-      this.form.controls.declaration.valid
+      this.form.controls.declaration.valid &&
+      !this.classAgeMismatch()
     );
   }
 
@@ -460,7 +481,7 @@ export class ApplyForm {
         phone: formatUkPhoneE164(v.emergencyContact.phone),
         relationship: opt(v.emergencyContact.relationship),
       },
-      preferences: { classSlot: v.preferences.classSlot },
+      preferences: { classSlot: v.preferences.classSlot as ClassSlot },
       consents: {
         privacyNoticeRead: true,
         privacyNoticeVersion: PRIVACY_NOTICE_VERSION,

@@ -21,6 +21,7 @@ export class Madrasa {
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
   protected readonly sessions = MADRASA_SESSIONS;
+  protected readonly posterHref = '/posters/madrasa-admission-2026.jpg';
   protected readonly enrolWhatsApp = whatsappHref(
     'Assalamu alaikum, I would like to enrol a child at Markaz Deen-e-Islam. Age: __  Preferred days: __',
   );
@@ -29,8 +30,8 @@ export class Madrasa {
     {
       title: 'Quran & Tajweed',
       titleUr: 'قرآن اور تجوید',
-      text: 'Structured Qur’an reading and recitation for students aged 10 and above, with caring teachers and clear progress.',
-      textUr: '۱۰ سال اور اس سے اوپر کے طلبہ کے لیے منظم قرآن خوانی اور تجوید، شفیق اساتذہ اور واضح پیش رفت کے ساتھ۔',
+      text: 'Structured Qur’an reading and recitation, with caring teachers and clear progress.',
+      textUr: 'منظم قرآن خوانی اور تجوید، شفیق اساتذہ اور واضح پیش رفت کے ساتھ۔',
     },
     {
       title: 'Islamic teachings',
@@ -47,8 +48,8 @@ export class Madrasa {
     {
       title: 'Islamic academics',
       titleUr: 'اسلامی علوم',
-      text: 'Arabic, duas and structured Islamic study alongside the evening Class 3 timetable.',
-      textUr: 'عربی، دعائیں اور منظم اسلامی مطالعہ، شام کی کلاس ۳ کے ساتھ۔',
+      text: 'Arabic, duas and structured Islamic study alongside the evening timetable.',
+      textUr: 'عربی، دعائیں اور منظم اسلامی مطالعہ، شام کی کلاسوں کے ساتھ۔',
     },
   ];
 

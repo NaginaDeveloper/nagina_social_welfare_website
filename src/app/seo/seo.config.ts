@@ -48,7 +48,7 @@ export const WORK_SEO: PageSeo = {
 export const MADRASA_SEO: PageSeo = {
   title: 'Madrasa & Islamic Institute Peterborough | Markaz Deen-e-Islam',
   description:
-    'Markaz Deen-e-Islam 2026 intake: Class 3 18:30–19:30 daily for ages 10+ at 103 Burmer Road, Peterborough. Quran, Hadith, Islamic studies, Arabic and duas. Apply online.',
+    'Markaz Deen-e-Islam 2026 intake: evening classes at 103 Burmer Road, Peterborough. Class 1 and 2 for under 10s; Class 3 18:30–19:30 for ages 10+. Quran, Hadith, Islamic studies. Apply online.',
   path: '/madrasa/',
   keywords:
     'madrasa Peterborough, Islamic school Peterborough, Quran classes for children Peterborough, 2026 madrasa intake, evening madrasa 6:30pm, Markaz Deen-e-Islam',
@@ -58,10 +58,10 @@ export const MADRASA_SEO: PageSeo = {
 export const APPLY_SEO: PageSeo = {
   title: 'Online Admission 2026 | Markaz Deen-e-Islam | Nagina Social Welfare',
   description:
-    'Apply online for Markaz Deen-e-Islam 2026 intake. Class 3 (18:30–19:30 daily) is open for ages 10–18. Class 1 and Class 2 are full.',
+    'Apply online for Markaz Deen-e-Islam 2026 intake. All three evening classes are open: Class 1 and 2 for under 10s, Class 3 (18:30–19:30 daily) for ages 10+.',
   path: '/apply/',
   keywords:
-    'madrasa admission Peterborough 2026, Markaz Deen-e-Islam apply, online enrolment Islamic school Peterborough, Class 3 18:30',
+    'madrasa admission Peterborough 2026, Markaz Deen-e-Islam apply, online enrolment Islamic school Peterborough',
   type: 'website',
 };
 

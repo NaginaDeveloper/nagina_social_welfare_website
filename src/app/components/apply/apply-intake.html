@@ -1,91 +1,74 @@
 <section class="relative overflow-hidden bg-cream pb-4 pt-10 sm:pt-14">
   <div class="geo-pattern absolute inset-0 opacity-15" aria-hidden="true"></div>
 
-  <div class="relative mx-auto max-w-3xl px-5 sm:px-8">
-    <article
-      class="overflow-hidden rounded-[1.75rem] border border-gold/35 bg-forest text-cream shadow-soft"
+  <div class="relative mx-auto max-w-xl px-5 sm:px-8">
+    <header
+      class="text-center"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
-      <div class="h-1.5 bg-gradient-to-r from-gold-300 via-gold to-gold-600" aria-hidden="true"></div>
+      <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('apply.intake.eyebrow') }}
+      </p>
+      <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">
+        {{ i18n.t('apply.intake.title') }}
+      </h1>
+      <p class="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-gold-700">
+        {{ i18n.t('apply.intake.subtitle') }}
+      </p>
+      <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('apply.intake.lead') }}
+      </p>
+    </header>
 
-      <div class="px-5 py-8 text-center sm:px-10 sm:py-10">
-        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">
-          {{ i18n.t('apply.intake.eyebrow') }}
-        </p>
-        <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-gold-300 sm:text-4xl lg:text-5xl">
-          {{ i18n.t('apply.intake.title') }}
-        </h1>
-        <p
-          class="mt-4 inline-block rounded-full border border-gold/40 bg-forest-800 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-cream sm:text-sm"
-        >
-          {{ i18n.t('apply.intake.subtitle') }}
-        </p>
-
+    <figure class="mt-8">
+      <a
+        [href]="posterHref"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block overflow-hidden rounded-[1.25rem] border border-gold/30 bg-forest shadow-soft"
+      >
         <img
-          [src]="markazLogo"
-          width="96"
-          height="96"
-          class="mx-auto mt-6 h-20 w-20 rounded-full border-2 border-gold/50 bg-cream object-contain p-1 sm:h-24 sm:w-24"
-          alt="Markaz Deen-e-Islam"
+          [src]="posterHref"
+          width="890"
+          height="1024"
+          class="mx-auto h-auto w-full max-w-full"
+          alt="Markaz-e Deen-e Islam admission open 2026"
         />
-
-        <p class="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-cream/85 sm:text-base">
-          {{ i18n.t('apply.intake.lead') }}
-        </p>
-      </div>
-    </article>
+      </a>
+      <figcaption
+        class="mt-3 text-center text-sm text-slate-warm"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        {{ i18n.t('apply.intake.posterHint') }}
+      </figcaption>
+    </figure>
 
     <ul
-      class="mt-6 grid gap-3 sm:grid-cols-2"
+      class="mt-6 grid gap-3"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
-      @for (item of subjects; track item.title) {
-        <li class="rounded-2xl border border-mist bg-white px-5 py-4 shadow-soft">
-          <p class="font-display text-lg font-bold text-forest">{{ i18n.t(item.title) }}</p>
-          <p class="mt-1 text-sm leading-relaxed text-slate-warm">{{ i18n.t(item.hint) }}</p>
+      @for (session of sessions; track session.id) {
+        <li class="flex items-start justify-between gap-3 rounded-2xl border border-mist bg-white px-4 py-3.5 shadow-soft sm:px-5">
+          <div>
+            <p class="font-display text-base font-bold text-forest">{{ sessionTitle(session.id) }}</p>
+            <p class="mt-0.5 text-sm text-slate-warm">{{ sessionTime(session.id) }} · {{ i18n.t('apply.intake.daily') }}</p>
+          </div>
+          <p class="shrink-0 rounded-full bg-sand px-3 py-1 text-xs font-semibold text-forest">
+            {{ sessionAges(session.id) }}
+          </p>
         </li>
       }
     </ul>
 
-    <div
-      class="mt-6 rounded-2xl border border-gold/25 bg-sand/60 px-5 py-6 sm:px-8"
+    <p
+      class="mt-4 text-center text-sm text-slate-warm sm:text-start"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
-      <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('apply.intake.classesHeading') }}</h2>
-      <dl class="mt-4 grid gap-4 sm:grid-cols-3">
-        <div>
-          <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-600">
-            {{ i18n.t('apply.intake.times') }}
-          </dt>
-          <dd class="mt-1 text-sm font-semibold leading-relaxed text-forest">
-            {{ i18n.t('apply.intake.timesValue') }}
-          </dd>
-        </div>
-        <div>
-          <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-600">
-            {{ i18n.t('apply.intake.ages') }}
-          </dt>
-          <dd class="mt-1 text-sm font-semibold leading-relaxed text-forest">
-            {{ i18n.t('apply.intake.agesValue') }}
-          </dd>
-        </div>
-        <div>
-          <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-600">
-            {{ i18n.t('apply.intake.subjects') }}
-          </dt>
-          <dd class="mt-1 text-sm font-semibold leading-relaxed text-forest">
-            {{ i18n.t('apply.intake.subjectsValue') }}
-          </dd>
-        </div>
-      </dl>
-      <p class="mt-4 text-sm leading-relaxed text-slate-warm">{{ i18n.t('apply.intake.fullNote') }}</p>
-      <p class="mt-2 text-sm text-slate-warm">
-        {{ org.streetAddress }}, {{ org.addressLocality }} {{ org.postalCode }}
-        ·
-        <a [href]="'tel:' + org.phoneTel" class="font-semibold text-gold-700 hover:underline">{{ org.phoneDisplay }}</a>
-      </p>
-    </div>
+      {{ org.streetAddress }}, {{ org.addressLocality }} {{ org.postalCode }}
+      ·
+      <a [href]="'tel:' + org.phoneTel" class="font-semibold text-gold-700 hover:underline">{{ org.phoneDisplay }}</a>
+    </p>
 
     <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
       <a
@@ -105,11 +88,5 @@
         {{ i18n.t('apply.intake.poster') }}
       </a>
     </div>
-    <p
-      class="mt-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-forest sm:text-start"
-      [attr.dir]="i18n.isUr() ? 'rtl' : null"
-    >
-      {{ i18n.t('apply.intake.enroll') }}
-    </p>
   </div>
 </section>

@@ -288,7 +288,7 @@ async function buildCuratedChunks() {
       title: 'Madrasa admission form',
       path: '/apply',
       text:
-        'New madrasa places are applied for only on the website form https://www.naginasocialwelfare.co.uk/apply/ — do not send children’s details by WhatsApp or email. The 2026 intake is Class 3, 18:30–19:30 daily, for ages 10–18. Class 1 (16:30–17:30) and Class 2 (17:30–18:30) are full. The form has four steps: student, parent, medical and emergency, then class preference and declaration. After submit we email from info@naginasocialwelfare.co.uk. Track status at https://www.naginasocialwelfare.co.uk/apply/track/ with the application ID. Fees are £5 every Monday or paid in advance. Uniform (white jooba for boys, black abaya for girls) is provided by the madrasa. WhatsApp is for questions only.',
+        'New madrasa places are applied for only on the website form https://www.naginasocialwelfare.co.uk/apply/ — do not send children’s details by WhatsApp or email. The 2026 intake is open in all three evening classes: Class 1 (16:30–17:30) and Class 2 (17:30–18:30) for children under 10; Class 3 (18:30–19:30 daily) for ages 10 and above. The form has four steps: student, parent, medical and emergency, then class preference and declaration. After submit we email from info@naginasocialwelfare.co.uk. Track status at https://www.naginasocialwelfare.co.uk/apply/track/ with the application ID. Fees are £5 every Monday or paid in advance. Uniform (white jooba for boys, black abaya for girls) is provided by the madrasa. WhatsApp is for questions only.',
       tags: ['apply', 'admission', 'madrasa', 'form'],
     },
     {

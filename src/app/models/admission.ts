@@ -77,13 +77,35 @@ export interface ApplicationStatusResponse {
 
 export const CLASS_SLOT_OPTIONS: readonly {
   value: ClassSlot;
-  label: string;
+  labelKey: string;
+  ageKey: string;
   full: boolean;
 }[] = [
-  { value: 'class1', label: 'Class 1: 16:30 to 17:30', full: true },
-  { value: 'class2', label: 'Class 2: 17:30 to 18:30', full: true },
-  { value: 'class3', label: 'Class 3: 18:30 to 19:30', full: false },
+  {
+    value: 'class1',
+    labelKey: 'apply.slot.class1',
+    ageKey: 'apply.slot.under10',
+    full: false,
+  },
+  {
+    value: 'class2',
+    labelKey: 'apply.slot.class2',
+    ageKey: 'apply.slot.under10',
+    full: false,
+  },
+  {
+    value: 'class3',
+    labelKey: 'apply.slot.class3',
+    ageKey: 'apply.slot.age10plus',
+    full: false,
+  },
 ] as const;
+
+/** Class 1 and 2: under 10. Class 3: 10+. */
+export function classSlotFitsAge(slot: ClassSlot, age: number): boolean {
+  if (slot === 'class1' || slot === 'class2') return age < 10;
+  return age >= 10;
+}
 
 export const PREVIOUS_EDUCATION_OPTIONS: readonly {
   value: PreviousEducation;
