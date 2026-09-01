@@ -647,7 +647,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'shajra.titleAccent': 'lineage',
     'shajra.lead':
       'The blessed Yusufi lineages — Naqshbandi Mujaddidi in a longer and a shorter recitation, then Chishti Sabri Siraji Sardari, then Qadri Razawi — each read for the sake of the Prophet ﷺ, the Ahl-e-Bait, the Companions and the mashayikh, and ending in honour of Pir-e-Tariqat, Rehbar-e-Shariat Haji Muhammad Yusuf Ali Nagina',
-    'shajra.source': 'Source',
+    'shajra.source': 'From this book',
     'shajra.sourceCredit':
       'The Shajra pages below are shown from this book, Kashkool e Yousufi.',
     'shajra.sourceAvailable':
@@ -1434,7 +1434,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'shajra.titleAccent': 'سلسلہ',
     'shajra.lead':
       'مبارک یوسفی سلسلے — نقشبندی مجددی کی منظوم اور مختصر تلاوت، پھر چشتی صبری سراجی سرداری، پھر قادری رضوی — حضور ﷺ، اہل بیت، صحابہ اور مشائخ کے وسیلے سے — اختتام پیر طریقت رہبر شریعت حاجی محمد یوسف علی نگینہ',
-    'shajra.source': 'ماخذ',
+    'shajra.source': 'اس کتاب سے',
     'shajra.sourceCredit': 'نیچے دیے گئے شجرے اسی کتاب، کشکول یوسفی، سے دکھائے گئے ہیں۔',
     'shajra.sourceAvailable':
       'جامع مسجد گنجینہ، A-977 بلاک بی III، گجر پورہ سکیم، لاہور · 0300 4274936',

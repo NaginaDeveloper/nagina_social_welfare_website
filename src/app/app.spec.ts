@@ -99,6 +99,7 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('#photographs img').length).toBeGreaterThanOrEqual(20);
     expect(compiled.querySelector('#shajra-hero')).toBeTruthy();
+    expect(compiled.querySelector('#shajra-source')).toBeTruthy();
     expect(compiled.querySelectorAll('#shajra img').length).toBe(29);
   });
 });

@@ -33,7 +33,29 @@ export class App implements OnInit {
       .subscribe((e) => {
         this.syncDonateInvite(e.urlAfterRedirects);
         this.syncAssistantVisibility(e.urlAfterRedirects);
+        this.scrollToFragment(e.urlAfterRedirects);
       });
+  }
+
+  /** Lazy pages are not in the DOM when Angular's built-in anchor scroll runs. */
+  private scrollToFragment(url: string): void {
+    const hash = url.split('#')[1]?.split('?')[0];
+    if (!hash) {
+      return;
+    }
+    const id = decodeURIComponent(hash);
+    let tries = 0;
+    const tick = (): void => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ block: 'start' });
+        return;
+      }
+      if (tries++ < 40) {
+        window.setTimeout(tick, 50);
+      }
+    };
+    window.setTimeout(tick, 50);
   }
 
   private syncDonateInvite(url: string): void {
