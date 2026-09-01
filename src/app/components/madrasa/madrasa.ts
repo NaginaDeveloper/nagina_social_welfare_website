@@ -27,28 +27,28 @@ export class Madrasa {
 
   protected readonly offerings: readonly Offering[] = [
     {
-      title: 'Quran classes for children',
-      titleUr: 'بچوں کے لیے قرآن کی کلاسیں',
-      text: 'Structured Qur’an reading and understanding for young learners, with caring teachers and clear progress.',
-      textUr: 'نوجوان طلبہ کے لیے منظم قرآن خوانی اور فہم، شفیق اساتذہ اور واضح پیش رفت کے ساتھ۔',
+      title: 'Quran & Tajweed',
+      titleUr: 'قرآن اور تجوید',
+      text: 'Structured Qur’an reading and recitation for students aged 10 and above, with caring teachers and clear progress.',
+      textUr: '۱۰ سال اور اس سے اوپر کے طلبہ کے لیے منظم قرآن خوانی اور تجوید، شفیق اساتذہ اور واضح پیش رفت کے ساتھ۔',
     },
     {
-      title: 'Islamic studies & character',
-      titleUr: 'اسلامی تعلیم اور کردار',
-      text: 'Age-appropriate Islamic education — belief, manners, and love for the Prophet ﷺ in a Hanafi Barelvi / Ahl al-Sunnah setting.',
-      textUr: 'عمر کے مطابق اسلامی تعلیم — عقیدہ، اخلاق، اور محبتِ رسول ﷺ، حنفی بریلوی / اہلِ سنت ماحول میں۔',
+      title: 'Islamic teachings',
+      titleUr: 'اسلامی تعلیمات',
+      text: 'Prayer, manners and belief — age-appropriate Islamic education in a Hanafi Barelvi / Ahl al-Sunnah setting.',
+      textUr: 'نماز، اخلاق اور عقیدہ — حنفی بریلوی / اہلِ سنت ماحول میں عمر کے مطابق اسلامی تعلیم۔',
     },
     {
-      title: 'Namaz & practical worship',
-      titleUr: 'نماز اور عملی عبادت',
-      text: 'Help children learn salah with confidence, alongside everyday guidance for a practising Muslim life.',
-      textUr: 'بچوں کو اعتماد سے نماز سکھانا، ساتھ عملی مسلمان زندگی کی روزمرہ رہنمائی۔',
+      title: 'Hadith studies',
+      titleUr: 'حدیث کی تعلیم',
+      text: 'Sayings of Prophet Muhammad ﷺ, taught with care so children grow in love for the Messenger.',
+      textUr: 'اقوالِ رسول محمد ﷺ، شفقت سے پڑھائے جاتے ہیں تاکہ بچے محبتِ رسول میں بڑھیں۔',
     },
     {
-      title: 'Evening & weekend learning',
-      titleUr: 'شام اور اختتامِ ہفتہ کی تعلیم',
-      text: 'Classes arranged so families can balance school, work, and Islamic education in Peterborough.',
-      textUr: 'کلاسز اس طرح کہ خاندان پیٹربورو میں اسکول، کام اور اسلامی تعلیم کا توازن رکھ سکیں۔',
+      title: 'Islamic academics',
+      titleUr: 'اسلامی علوم',
+      text: 'Arabic, duas and structured Islamic study alongside the evening Class 3 timetable.',
+      textUr: 'عربی، دعائیں اور منظم اسلامی مطالعہ، شام کی کلاس ۳ کے ساتھ۔',
     },
   ];
 

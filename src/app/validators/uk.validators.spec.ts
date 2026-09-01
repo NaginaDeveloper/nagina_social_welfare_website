@@ -33,15 +33,24 @@ describe('uk validators', () => {
     });
   });
 
-  it('accepts a child aged between 3 and 18', () => {
+  it('accepts a child aged between 10 and 18', () => {
+    const now = new Date();
+    const y = now.getFullYear() - 12;
+    const iso = `${y}-06-15`;
+    expect(childDobValidator(10, 18)(new FormControl(iso))).toBeNull();
+  });
+
+  it('rejects a child under 10', () => {
     const now = new Date();
     const y = now.getFullYear() - 8;
     const iso = `${y}-06-15`;
-    expect(childDobValidator(3, 18)(new FormControl(iso))).toBeNull();
+    expect(childDobValidator(10, 18)(new FormControl(iso))).toEqual({
+      childDobAge: true,
+    });
   });
 
   it('rejects an adult date of birth', () => {
-    expect(childDobValidator(3, 18)(new FormControl('1990-01-01'))).toEqual({
+    expect(childDobValidator(10, 18)(new FormControl('1990-01-01'))).toEqual({
       childDobAge: true,
     });
   });

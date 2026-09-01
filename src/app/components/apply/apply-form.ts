@@ -101,7 +101,7 @@ export class ApplyForm {
   protected readonly form = this.fb.nonNullable.group({
     student: this.fb.nonNullable.group({
       fullName: ['', [Validators.required, Validators.maxLength(120)]],
-      dateOfBirth: ['', [Validators.required, childDobValidator(3, 18)]],
+      dateOfBirth: ['', [Validators.required, childDobValidator(10, 18)]],
       gender: ['Male' as 'Male' | 'Female', Validators.required],
       previousEducation: ['none' as PreviousEducation, Validators.required],
       previousEducationDetail: [''],
@@ -138,7 +138,7 @@ export class ApplyForm {
       relationship: ['', Validators.maxLength(80)],
     }),
     preferences: this.fb.nonNullable.group({
-      classSlot: ['class1' as const, Validators.required],
+      classSlot: ['class3' as const, Validators.required],
     }),
     consents: this.fb.nonNullable.group({
       privacyNoticeRead: [false, Validators.requiredTrue],
@@ -153,7 +153,7 @@ export class ApplyForm {
 
   constructor() {
     const now = new Date();
-    const youngest = new Date(now.getFullYear() - 3, now.getMonth(), now.getDate());
+    const youngest = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate());
     const oldest = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
     this.maxDob = this.toIso(youngest);
     this.minDob = this.toIso(oldest);
@@ -254,11 +254,14 @@ export class ApplyForm {
     return this.inputClass(ctrl).replace('px-4', 'pl-4 pr-10');
   }
 
-  protected choiceClass(selected: boolean, centered = false): string {
-    const base = `flex min-h-14 cursor-pointer items-center ${centered ? 'justify-center' : ''} rounded-2xl border-2 px-4 py-3.5 text-sm font-semibold transition-colors`;
+  protected choiceClass(selected: boolean, centered = false, disabled = false): string {
+    const base = `flex min-h-14 items-center ${centered ? 'justify-center' : ''} rounded-2xl border-2 px-4 py-3.5 text-sm font-semibold transition-colors`;
+    if (disabled) {
+      return `${base} cursor-not-allowed border-mist bg-sand/50 text-slate-warm`;
+    }
     return selected
-      ? `${base} border-forest bg-forest text-cream shadow-soft`
-      : `${base} border-mist bg-white text-forest hover:border-gold/55`;
+      ? `${base} cursor-pointer border-forest bg-forest text-cream shadow-soft`
+      : `${base} cursor-pointer border-mist bg-white text-forest hover:border-gold/55`;
   }
 
   protected onFormSubmit(): void {

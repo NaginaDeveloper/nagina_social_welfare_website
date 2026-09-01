@@ -78,10 +78,11 @@ export interface ApplicationStatusResponse {
 export const CLASS_SLOT_OPTIONS: readonly {
   value: ClassSlot;
   label: string;
+  full: boolean;
 }[] = [
-  { value: 'class1', label: 'Class 1: 16:00 to 17:00' },
-  { value: 'class2', label: 'Class 2: 17:00 to 18:00' },
-  { value: 'class3', label: 'Class 3: 18:00 to 19:00' },
+  { value: 'class1', label: 'Class 1: 16:30 to 17:30', full: true },
+  { value: 'class2', label: 'Class 2: 17:30 to 18:30', full: true },
+  { value: 'class3', label: 'Class 3: 18:30 to 19:30', full: false },
 ] as const;
 
 export const PREVIOUS_EDUCATION_OPTIONS: readonly {

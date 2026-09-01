@@ -1,4 +1,4 @@
-<section class="relative overflow-hidden bg-cream pb-28 pt-10 sm:pb-24 sm:pt-16">
+<section id="apply-form" class="relative overflow-hidden scroll-mt-24 bg-cream pb-28 pt-6 sm:pb-24 sm:pt-8">
   <div class="geo-pattern absolute inset-0 opacity-15" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-3xl px-5 sm:px-8">
@@ -10,9 +10,9 @@
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
         {{ i18n.t('apply.eyebrow') }}
       </span>
-      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+      <h2 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
         {{ i18n.t('apply.title') }}
-      </h1>
+      </h2>
       <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-warm sm:text-lg">
         {{ i18n.t('apply.lead') }}
       </p>
@@ -511,9 +511,22 @@
                 <p class="mb-3 text-sm text-slate-warm">{{ i18n.t('apply.classSlotNote') }}</p>
                 <div class="grid gap-3">
                   @for (slot of classSlots; track slot.value) {
-                    <label [class]="choiceClass(form.controls.preferences.controls.classSlot.value === slot.value)">
-                      <input type="radio" class="sr-only" formControlName="classSlot" [value]="slot.value" />
-                      {{ slot.label }}
+                    <label [class]="choiceClass(form.controls.preferences.controls.classSlot.value === slot.value, false, slot.full)">
+                      <input
+                        type="radio"
+                        class="sr-only"
+                        formControlName="classSlot"
+                        [value]="slot.value"
+                        [disabled]="slot.full"
+                      />
+                      <span class="flex w-full items-center justify-between gap-3">
+                        <span>{{ slot.label }}</span>
+                        @if (slot.full) {
+                          <span class="shrink-0 rounded-full bg-mist px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-slate-warm">
+                            {{ i18n.t('apply.classFull') }}
+                          </span>
+                        }
+                      </span>
                     </label>
                   }
                 </div>
