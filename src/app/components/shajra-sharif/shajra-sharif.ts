@@ -15,6 +15,7 @@ export type { ShajraPage, ShajraSaint, ShajraSilsila } from './shajra-data';
 
 type Lightbox =
   | { readonly kind: 'hero' }
+  | { readonly kind: 'cover' }
   | { readonly kind: 'title' }
   | { readonly kind: 'honour' }
   | { readonly kind: 'page'; readonly silsilaIndex: number; readonly pageIndex: number };
@@ -30,12 +31,23 @@ export class ShajraSharif {
   protected readonly titlePage = SHAJRA_TITLE_PAGE;
   protected readonly honour = SHAJRA_HONOUR;
   protected readonly heroSrc = 'gallery/shajra/00-hero.jpg';
+  protected readonly coverSrc = 'gallery/shajra/kashkool-e-yousufi-cover.jpg';
   protected readonly lightbox = signal<Lightbox | null>(null);
 
   protected readonly activePage = computed((): ShajraPage | null => {
     const box = this.lightbox();
     if (!box) {
       return null;
+    }
+    if (box.kind === 'cover') {
+      return {
+        id: 'kashkool-cover',
+        src: this.coverSrc,
+        alt: 'Cover of Kashkool e Yousufi, the book from which these Shajra pages are shown',
+        caption: 'Kashkool e Yousufi',
+        captionUr: 'کشکول یوسفی',
+        saints: [],
+      };
     }
     if (box.kind === 'title') {
       return this.titlePage;
@@ -74,6 +86,11 @@ export class ShajraSharif {
 
   protected openHero(): void {
     this.lightbox.set({ kind: 'hero' });
+    document.body.style.overflow = 'hidden';
+  }
+
+  protected openCover(): void {
+    this.lightbox.set({ kind: 'cover' });
     document.body.style.overflow = 'hidden';
   }
 

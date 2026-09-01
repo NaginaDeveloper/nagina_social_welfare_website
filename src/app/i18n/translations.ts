@@ -646,7 +646,13 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'shajra.title': 'Blessed spiritual',
     'shajra.titleAccent': 'lineage',
     'shajra.lead':
-      'From Kashkool e Yousufi: the blessed Yusufi lineages — Naqshbandi Mujaddidi in a longer and a shorter recitation, then Chishti Sabri Siraji Sardari, then Qadri Razawi — each read for the sake of the Prophet ﷺ, the Ahl-e-Bait, the Companions and the mashayikh, and ending in honour of Pir-e-Tariqat, Rehbar-e-Shariat Haji Muhammad Yusuf Ali Nagina',
+      'The blessed Yusufi lineages — Naqshbandi Mujaddidi in a longer and a shorter recitation, then Chishti Sabri Siraji Sardari, then Qadri Razawi — each read for the sake of the Prophet ﷺ, the Ahl-e-Bait, the Companions and the mashayikh, and ending in honour of Pir-e-Tariqat, Rehbar-e-Shariat Haji Muhammad Yusuf Ali Nagina',
+    'shajra.source': 'Source',
+    'shajra.sourceCredit':
+      'The Shajra pages below are shown from this book, Kashkool e Yousufi.',
+    'shajra.sourceAvailable':
+      'Jamia Masjid Ganjina, A-977 Block B-III, Gujar Pura Scheme, Lahore · 0300 4274936',
+    'shajra.openCover': 'Open book cover: Kashkool e Yousufi',
     'shajra.inHonour': 'In honour',
     'shajra.pageOf': 'Page {n} of {total}',
     'shajra.kashkoolPage': 'Kashkool p. {n}',
@@ -1427,7 +1433,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'shajra.title': 'مبارک روحانی',
     'shajra.titleAccent': 'سلسلہ',
     'shajra.lead':
-      'کشکول یوسفی سے: مبارک یوسفی سلسلے — نقشبندی مجددی کی منظوم اور مختصر تلاوت، پھر چشتی صبری سراجی سرداری، پھر قادری رضوی — حضور ﷺ، اہل بیت، صحابہ اور مشائخ کے وسیلے سے — اختتام پیر طریقت رہبر شریعت حاجی محمد یوسف علی نگینہ',
+      'مبارک یوسفی سلسلے — نقشبندی مجددی کی منظوم اور مختصر تلاوت، پھر چشتی صبری سراجی سرداری، پھر قادری رضوی — حضور ﷺ، اہل بیت، صحابہ اور مشائخ کے وسیلے سے — اختتام پیر طریقت رہبر شریعت حاجی محمد یوسف علی نگینہ',
+    'shajra.source': 'ماخذ',
+    'shajra.sourceCredit': 'نیچے دیے گئے شجرے اسی کتاب، کشکول یوسفی، سے دکھائے گئے ہیں۔',
+    'shajra.sourceAvailable':
+      'جامع مسجد گنجینہ، A-977 بلاک بی III، گجر پورہ سکیم، لاہور · 0300 4274936',
+    'shajra.openCover': 'کتاب کا سرورق کھولیں: کشکول یوسفی',
     'shajra.inHonour': 'تکریم میں',
     'shajra.pageOf': 'صفحہ {n} از {total}',
     'shajra.kashkoolPage': 'کشکول، صفحہ {n}',
