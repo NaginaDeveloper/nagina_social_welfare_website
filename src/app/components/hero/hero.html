@@ -86,6 +86,28 @@
         </svg>
       </a>
       <a
+        [href]="org.halalCheckerUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline-flex items-center gap-2 rounded-full border border-gold/55 bg-white/10 px-8 py-3.5 font-semibold text-gold-300 shadow-soft transition-all duration-300 hover:border-gold hover:bg-white/15"
+        [attr.aria-label]="i18n.t('hero.halalCheckerAria')"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 7v10M7 7v10M9 7v10M12 7v10M14 7v10M17 7v10M20 7v10" />
+        </svg>
+        {{ i18n.t('hero.halalChecker') }}
+        <svg
+          class="h-4 w-4 opacity-80 transition-transform duration-300 group-hover:translate-x-0.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.2"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+        </svg>
+      </a>
+      <a
         routerLink="/"
         fragment="about"
         class="group inline-flex items-center gap-2 rounded-full border border-cream/25 px-8 py-3.5 font-medium text-cream transition-all duration-300 hover:border-gold/50 hover:text-gold-300"
