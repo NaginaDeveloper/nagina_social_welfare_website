@@ -35,12 +35,16 @@ export type NavIcon =
   | 'privacy'
   | 'worship'
   | 'learn'
-  | 'connect';
+  | 'connect'
+  | 'quiz';
 
 interface NavLink {
   readonly labelKey: string;
   readonly hintKey?: string;
-  readonly path: string;
+  /** Internal Angular route. Omit when [externalHref] is set. */
+  readonly path?: string;
+  /** Absolute URL opened in a new tab (e.g. admin quiz player). */
+  readonly externalHref?: string;
   readonly icon: NavIcon;
 }
 
@@ -152,6 +156,12 @@ export class Header implements OnInit {
         },
         { labelKey: 'nav.books', path: '/books', hintKey: 'nav.booksHint', icon: 'book' },
         {
+          labelKey: 'nav.quiz',
+          externalHref: ORGANIZATION.quizUrl,
+          hintKey: 'nav.quizHint',
+          icon: 'quiz',
+        },
+        {
           labelKey: 'nav.sermons',
           path: '/sermons',
           hintKey: 'nav.sermonsHint',
@@ -227,6 +237,7 @@ export class Header implements OnInit {
   }
 
   protected isLinkActive(item: NavLink): boolean {
+    if (item.externalHref || !item.path) return false;
     return this.currentPath() === item.path;
   }
 

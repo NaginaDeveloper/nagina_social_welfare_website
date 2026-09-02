@@ -72,11 +72,22 @@
           {{ i18n.t('footer.explore') }}
         </h3>
         <ul class="mt-3 columns-2 gap-x-6 space-y-2">
-          @for (link of exploreLinks; track link.path) {
+          @for (link of exploreLinks; track link.labelKey) {
             <li>
-              <a [routerLink]="link.path" class="text-sm text-cream/65 transition-colors hover:text-gold-300">
-                {{ i18n.t(link.labelKey) }}
-              </a>
+              @if (link.externalHref) {
+                <a
+                  [href]="link.externalHref"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm text-cream/65 transition-colors hover:text-gold-300"
+                >
+                  {{ i18n.t(link.labelKey) }}
+                </a>
+              } @else {
+                <a [routerLink]="link.path" class="text-sm text-cream/65 transition-colors hover:text-gold-300">
+                  {{ i18n.t(link.labelKey) }}
+                </a>
+              }
             </li>
           }
         </ul>
