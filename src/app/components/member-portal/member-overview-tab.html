@@ -22,6 +22,15 @@
       <button type="button" [class]="portalPrimaryBtnClass + ' min-h-11 px-4'" (click)="navigateTab.emit('donate')">
         {{ i18n.t('memberHome.tabDonate') }}
       </button>
+      <a
+        [href]="org.quizUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        [class]="portalOutlineBtnClass"
+        [attr.aria-label]="i18n.t('memberHome.quizAria')"
+      >
+        {{ i18n.t('memberHome.quiz') }}
+      </a>
       <button type="button" [class]="portalOutlineBtnClass" (click)="navigateTab.emit('events')">
         {{ i18n.t('memberHome.tabEvents') }}
       </button>

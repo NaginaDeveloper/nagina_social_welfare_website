@@ -1,4 +1,5 @@
 import { Component, inject, input, output } from '@angular/core';
+import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import type { MemberProfile } from '../../models/membership';
 import {
@@ -15,6 +16,7 @@ import type { MemberTab } from './member-portal.types';
 })
 export class MemberOverviewTab {
   protected readonly i18n = inject(LanguageService);
+  protected readonly org = ORGANIZATION;
   protected readonly portalCardClass = portalCardClass;
   protected readonly portalPrimaryBtnClass = portalPrimaryBtnClass;
   protected readonly portalOutlineBtnClass = portalOutlineBtnClass;
