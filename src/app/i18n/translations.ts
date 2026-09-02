@@ -4,6 +4,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
   en: {
     'header.donate': 'Donate Now',
     'header.donateShort': 'Donate',
+    'header.quiz': 'Islamic Quiz',
+    'header.quizShort': 'Quiz',
     'header.assistant': 'Ask Assistant',
     'header.login': 'Staff portal',
     'header.whatsapp': 'WhatsApp',
@@ -45,6 +47,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.madrasaLead':
       'All three evening classes are open. Class 1 and 2 for under 10s; Class 3 (18:30–19:30) for ages 10+.',
     'spotlight.madrasaCta': 'Apply online',
+    'spotlight.quizCta': 'Play now',
+    'spotlight.quizTitle': 'Islamic Quiz',
+    'spotlight.quizLead':
+      'Beat the clock — Halal or Haram and knowledge quizzes for the whole family.',
+    'spotlight.quizPlay': 'Start a quiz',
+    'spotlight.quizAria': 'Play Islamic Quiz (opens in a new tab)',
     'spotlight.whatsappEvent': 'I am coming',
 
     'contact.eyebrow': 'Get involved',
@@ -579,6 +587,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'A UK organisation uniting faith and compassion — nurturing minds through Islamic education and uplifting lives through community welfare.',
     'hero.discover': 'Discover Our Vision',
     'hero.contact': 'Get in Touch',
+    'hero.quiz': 'Play Islamic Quiz',
+    'hero.quizAria': 'Play Islamic Quiz (opens in a new tab)',
     'hero.donateLine': 'support education and welfare',
     'hero.ask': 'Ask in English or Urdu',
 
@@ -965,6 +975,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
   ur: {
     'header.donate': 'اب عطیہ دیں',
     'header.donateShort': 'عطیہ',
+    'header.quiz': 'اسلامی کوئز',
+    'header.quizShort': 'کوئز',
     'header.assistant': 'اسسٹنٹ سے پوچھیں',
     'header.login': 'اسٹاف پورٹل',
     'header.whatsapp': 'واٹس ایپ',
@@ -1006,6 +1018,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.madrasaLead':
       'تینوں شام کی کلاسیں کھلی ہیں۔ کلاس ۱ اور ۲ دس سال سے کم کے لیے؛ کلاس ۳ (شام ۶:۳۰–۷:۳۰) عمر ۱۰+ کے لیے۔',
     'spotlight.madrasaCta': 'آن لائن درخواست',
+    'spotlight.quizCta': 'اب کھیلیں',
+    'spotlight.quizTitle': 'اسلامی کوئز',
+    'spotlight.quizLead':
+      'وقت کے خلاف — حلال یا حرام اور علمی کوئز پورے خاندان کے لیے۔',
+    'spotlight.quizPlay': 'کوئز شروع کریں',
+    'spotlight.quizAria': 'اسلامی کوئز کھیلیں (نئی ٹیب میں کھلے گی)',
     'spotlight.whatsappEvent': 'میں آ رہا / رہی ہوں',
 
     'contact.eyebrow': 'ساتھ دیں',
@@ -1407,6 +1425,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'برطانیہ کی ایک تنظیم جو ایمان اور ہمدردی کو جوڑتی ہے — اسلامی تعلیم سے ذہنوں کو سنوارتی ہے اور فلاحِ عامہ سے زندگیوں کو سنبھالتی ہے۔',
     'hero.discover': 'ہمارا ویژن دیکھیں',
     'hero.contact': 'رابطہ کریں',
+    'hero.quiz': 'اسلامی کوئز کھیلیں',
+    'hero.quizAria': 'اسلامی کوئز کھیلیں (نئی ٹیب میں کھلے گی)',
     'hero.donateLine': 'تعلیم اور فلاح کی حمایت کریں',
     'hero.ask': 'انگریزی یا اردو میں پوچھیں',
 

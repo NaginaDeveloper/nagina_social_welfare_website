@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ORGANIZATION } from '../../config/organization.config';
 import { isEventToday } from '../../config/upcoming-events.config';
 import { LanguageService } from '../../i18n/language.service';
 import { EventsService } from '../../services/events.service';
@@ -11,6 +12,7 @@ import { PrayerTimesService } from '../../services/prayer-times.service';
   templateUrl: './home-spotlight.html',
 })
 export class HomeSpotlight implements OnInit {
+  protected readonly org = ORGANIZATION;
   protected readonly i18n = inject(LanguageService);
   protected readonly prayer = inject(PrayerTimesService);
   private readonly events = inject(EventsService);
