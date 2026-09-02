@@ -31,6 +31,15 @@
       >
         {{ i18n.t('memberHome.quiz') }}
       </a>
+      <a
+        [href]="org.halalCheckerUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        [class]="portalOutlineBtnClass"
+        [attr.aria-label]="i18n.t('memberHome.halalCheckerAria')"
+      >
+        {{ i18n.t('memberHome.halalChecker') }}
+      </a>
       <button type="button" [class]="portalOutlineBtnClass" (click)="navigateTab.emit('events')">
         {{ i18n.t('memberHome.tabEvents') }}
       </button>

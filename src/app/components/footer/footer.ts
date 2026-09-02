@@ -25,6 +25,7 @@ export class Footer {
     { labelKey: 'nav.spiritualGuide', path: '/spiritual-guide' },
     { labelKey: 'nav.seedhaRastah', path: '/seedha-rastah' },
     { labelKey: 'nav.quiz', externalHref: ORGANIZATION.quizUrl },
+    { labelKey: 'nav.halalChecker', externalHref: ORGANIZATION.halalCheckerUrl },
     { labelKey: 'nav.aboutUs', path: '/about' },
     { labelKey: 'nav.ourWork', path: '/work' },
     { labelKey: 'nav.madrasa', path: '/madrasa' },

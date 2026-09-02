@@ -36,7 +36,8 @@ export type NavIcon =
   | 'worship'
   | 'learn'
   | 'connect'
-  | 'quiz';
+  | 'quiz'
+  | 'barcode';
 
 interface NavLink {
   readonly labelKey: string;
@@ -160,6 +161,12 @@ export class Header implements OnInit {
           externalHref: ORGANIZATION.quizUrl,
           hintKey: 'nav.quizHint',
           icon: 'quiz',
+        },
+        {
+          labelKey: 'nav.halalChecker',
+          externalHref: ORGANIZATION.halalCheckerUrl,
+          hintKey: 'nav.halalCheckerHint',
+          icon: 'barcode',
         },
         {
           labelKey: 'nav.sermons',
