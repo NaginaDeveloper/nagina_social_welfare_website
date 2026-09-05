@@ -42,10 +42,10 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.eventEyebrow': 'Programme',
     'spotlight.eventToday': 'Today',
     'spotlight.eventCta': 'All events',
-    'spotlight.donateTitle': 'Donate with confidence',
+    'spotlight.donateTitle': 'Donate with Confidence',
     'spotlight.donateLead': 'Zakat, sadaqah and lillah for education and welfare.',
     'spotlight.donateCta': 'Donate',
-    'spotlight.madrasaTitle': '2026 madrasa intake',
+    'spotlight.madrasaTitle': '2026 Madrasa Intake',
     'spotlight.madrasaLead':
       'All three evening classes are open. Class 1 and 2 for under 10s; Class 3 (18:30–19:30) for ages 10+.',
     'spotlight.madrasaCta': 'Apply online',
@@ -56,7 +56,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.quizPlay': 'Start a quiz',
     'spotlight.quizAria': 'Play Islamic Quiz (opens in a new tab)',
     'spotlight.halalCheckerCta': 'Free tool',
-    'spotlight.halalCheckerTitle': 'Halal barcode helper',
+    'spotlight.halalCheckerTitle': 'Halal Barcode Helper',
     'spotlight.halalCheckerLead':
       'Scan or type a UK shop barcode for reported Halal pack labels — helper only, not a certificate.',
     'spotlight.halalCheckerOpen': 'Check a barcode',
@@ -64,7 +64,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.whatsappEvent': 'I am coming',
 
     'contact.eyebrow': 'Get involved',
-    'contact.title': 'Message us on WhatsApp',
+    'contact.title': 'Message Us on WhatsApp',
     'contact.lead':
       'Donations, class questions and general enquiries — we reply on WhatsApp. For new madrasa places, use the online admission form.',
     'contact.whatsapp': 'Chat on WhatsApp',
@@ -86,7 +86,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.applyCta': 'Start online admission',
 
     'donate.eyebrow': 'Support our mission',
-    'donate.title': 'Donate with confidence',
+    'donate.title': 'Donate with Confidence',
     'donate.lead':
       'Your generosity funds Islamic education at Markaz Deen-e-Islam and community welfare across the UK. Choose a fund, then give by card, PayPal, NatWest PayIt, or bank transfer.',
     'donate.fund': 'Where should this gift go?',
@@ -128,12 +128,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.map': 'Visit Markaz Deen-e-Islam',
 
     'apply.eyebrow': 'Markaz Deen-e-Islam',
-    'apply.title': 'Online admission',
+    'apply.title': 'Online Admission',
     'apply.lead':
       'All three evening classes are open. Class 1 and Class 2 are for children under 10; Class 3 (18:30–19:30 daily) is for ages 10 and above. Complete this form and we will email you when we receive it and again after our review.',
     'apply.intake.eyebrow': 'Markaz Deen-e-Islam',
-    'apply.intake.title': 'Madrasa admission',
-    'apply.intake.subtitle': 'For the 2026 intake',
+    'apply.intake.title': 'Madrasa Admission',
+    'apply.intake.subtitle': 'For the 2026 Intake',
     'apply.intake.lead':
       'Places are open in all three evening classes. Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above.',
     'apply.intake.quran': 'Quran & Tajweed',
@@ -144,7 +144,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.intake.hadithHint': 'Sayings of Prophet Muhammad ﷺ.',
     'apply.intake.academics': 'Islamic academics',
     'apply.intake.academicsHint': 'Arabic, duas and structured Islamic study.',
-    'apply.intake.classesHeading': 'Classes available',
+    'apply.intake.classesHeading': 'Classes Available',
     'apply.intake.times': 'Times',
     'apply.intake.timesValue': '16:30–19:30 (daily)',
     'apply.intake.ages': 'Ages',
@@ -184,7 +184,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.signedAtNote': 'Today’s date is recorded when you submit.',
     'apply.termsLead': 'Please read these enrolment terms before you agree.',
     'apply.privacyLink': 'Privacy notice',
-    'apply.studentHeading': 'Student details',
+    'apply.studentHeading': 'Student Details',
     'apply.studentName': 'Student name',
     'apply.dob': 'Date of birth',
     'apply.gender': 'Gender',
@@ -196,7 +196,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.prev.other': 'Other Islamic books',
     'apply.prev.none': 'No education yet',
     'apply.prevDetail': 'How much was studied / which books',
-    'apply.parentHeading': 'Parent / guardian',
+    'apply.parentHeading': 'Parent / Guardian',
     'apply.parentName': 'Parent / guardian name',
     'apply.parentPhone': 'Parent / guardian mobile',
     'apply.fatherPhone': 'Father mobile',
@@ -204,7 +204,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.primaryEmail': 'Primary email',
     'apply.fatherEmail': 'Father email',
     'apply.motherEmail': 'Mother email',
-    'apply.addressHeading': 'Home address',
+    'apply.addressHeading': 'Home Address',
     'apply.line1': 'Address line 1',
     'apply.line2': 'Address line 2',
     'apply.city': 'City / town',
@@ -214,17 +214,17 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.secondaryRelationship': 'Relationship to child',
     'apply.secondaryPhone': 'Phone',
     'apply.secondaryEmail': 'Email',
-    'apply.medicalHeading': 'Medical & emergency',
+    'apply.medicalHeading': 'Medical & Emergency',
     'apply.medicalQ': 'Any medical condition (e.g. disability / allergies)?',
     'apply.yes': 'Yes',
     'apply.no': 'No',
     'apply.medicalDetails': 'Please give details',
-    'apply.emergencyHeading': 'Emergency contact',
+    'apply.emergencyHeading': 'Emergency Contact',
     'apply.emergencyName': 'Name',
     'apply.emergencyAddress': 'Address',
     'apply.emergencyPhone': 'Phone',
     'apply.emergencyRelationship': 'Relationship to child',
-    'apply.finalHeading': 'Class preference & declaration',
+    'apply.finalHeading': 'Class Preference & Declaration',
     'apply.classSlot': 'Preferred class time',
     'apply.classSlotNote':
       'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above.',
@@ -234,7 +234,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.slot.class3': 'Class 3: 18:30 to 19:30',
     'apply.slot.under10': 'Under 10',
     'apply.slot.age10plus': 'Ages 10+',
-    'apply.termsHeading': 'Terms and conditions',
+    'apply.termsHeading': 'Terms and Conditions',
     'apply.consentPrivacyPrefix': 'I confirm I have read the',
     'apply.consentPrivacySuffix':
       'and agree that Nagina Social Welfare UK may store and process this application for madrasa enrolment.',
@@ -264,7 +264,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Please choose the matching class.',
     'apply.err.tooLong': 'This is too long. Please shorten it.',
     'applySuccess.eyebrow': 'Application',
-    'applySuccess.title': 'We have received your application',
+    'applySuccess.title': 'We Have Received Your Application',
     'applySuccess.lead':
       'Thank you. A confirmation email is on its way. Keep your application ID to track whether it is under review, accepted, or rejected.',
     'applySuccess.idLabel': 'Your application ID',
@@ -276,7 +276,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'applySuccess.madrasa': 'Back to madrasa',
     'applySuccess.home': 'Home',
     'applyTrack.eyebrow': 'Markaz Deen-e-Islam',
-    'applyTrack.title': 'Track your application',
+    'applyTrack.title': 'Track Your Application',
     'applyTrack.lead':
       'Enter the application ID from your confirmation email or the screen shown after you submitted.',
     'applyTrack.idLabel': 'Application ID',
@@ -312,7 +312,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.membershipTrackHint': 'Check your application status',
 
     'membership.eyebrow': 'Nagina Social Welfare UK',
-    'membership.title': 'Community membership',
+    'membership.title': 'Community Membership',
     'membership.lead':
       'Apply to join the Nagina Social Welfare UK community. Membership is free, for adults aged 18 and over, and is reviewed by our trustees.',
     'membership.bullet1': 'You are joining the charity community — not company voting membership.',
@@ -347,7 +347,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'membership.interest.admin': 'Office / admin support',
     'membership.interest.teaching': 'Madrasa or learning support',
     'membership.interest.other': 'Other',
-    'membership.conductTitle': 'Membership code of conduct',
+    'membership.conductTitle': 'Membership Code of Conduct',
     'membership.consentPrivacyPrefix': 'I confirm I have read the',
     'membership.consentPrivacySuffix': 'and understand how my data will be used.',
     'membership.consentConduct': 'I agree to the membership code of conduct shown above.',
@@ -372,7 +372,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'membership.err.dobAge': 'Membership is for adults aged 18 and over.',
 
     'membershipSuccess.eyebrow': 'Membership',
-    'membershipSuccess.title': 'We have received your application',
+    'membershipSuccess.title': 'We Have Received Your Application',
     'membershipSuccess.lead':
       'Thank you. A confirmation email is on its way. Keep your application ID to track approval.',
     'membershipSuccess.idLabel': 'Your application ID',
@@ -382,7 +382,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'membershipSuccess.home': 'Home',
 
     'membershipTrack.eyebrow': 'Community membership',
-    'membershipTrack.title': 'Track your application',
+    'membershipTrack.title': 'Track Your Application',
     'membershipTrack.lead':
       'Enter the application ID from your confirmation email and the email address you used.',
     'membershipTrack.idLabel': 'Application ID',
@@ -413,7 +413,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'We need a little more information. See the note below or reply to your email.',
     'membershipTrack.hint.WITHDRAWN': 'This application was withdrawn.',
 
-    'memberLogin.title': 'Member sign in',
+    'memberLogin.title': 'Member Sign In',
     'memberLogin.lead':
       'Sign in with the email and password you set after your membership was approved.',
     'memberLogin.email': 'Email',
@@ -422,13 +422,13 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberLogin.signingIn': 'Signing in…',
     'memberLogin.apply': 'Apply for membership',
     'memberLogin.forgot': 'Forgot password?',
-    'memberForgot.title': 'Forgot your password?',
+    'memberForgot.title': 'Forgot Your Password?',
     'memberForgot.lead':
       'Enter the email on your membership. If an active account exists, we will email a reset link (valid for one hour).',
     'memberForgot.send': 'Send reset link',
     'memberForgot.sending': 'Sending…',
     'memberForgot.back': 'Back to sign in',
-    'memberReset.title': 'Choose a new password',
+    'memberReset.title': 'Choose a New Password',
     'memberReset.lead': 'Your new password must be at least 8 characters.',
     'memberReset.password': 'New password',
     'memberReset.confirm': 'Confirm password',
@@ -439,7 +439,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberReset.tooShort': 'Password must be at least 8 characters.',
     'memberReset.mismatch': 'Passwords do not match.',
 
-    'memberSetPassword.title': 'Set your password',
+    'memberSetPassword.title': 'Set Your Password',
     'memberSetPassword.lead': 'Choose a password for the member area on our website.',
     'memberSetPassword.password': 'New password',
     'memberSetPassword.confirm': 'Confirm password',
@@ -450,7 +450,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberSetPassword.missingToken': 'This link is invalid. Use the latest email from Nagina.',
 
     'memberHome.eyebrow': 'Community member',
-    'memberHome.pageTitle': 'Member area',
+    'memberHome.pageTitle': 'Member Area',
     'memberHome.tabListLabel': 'Member sections',
     'memberHome.welcome': 'Welcome',
     'memberHome.loading': 'Loading…',
@@ -480,7 +480,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberHome.tabNewsletters': 'Newsletters',
     'memberHome.downloadPdf': 'Download confirmation (PDF)',
     'memberHome.downloading': 'Downloading…',
-    'memberHome.donateTitle': 'Donate as a member',
+    'memberHome.donateTitle': 'Donate as a Member',
     'memberHome.donateLead':
       'Card donations started here are linked to your membership so you can see your history below. Public donate page remains available for anonymous gifts.',
     'memberHome.donatePrivacyPrefix':
@@ -610,8 +610,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'hero.ask': 'Ask in English or Urdu',
 
     'about.eyebrow': 'Our Vision',
-    'about.title': 'Building a legacy of',
-    'about.titleAccent': 'knowledge and compassion',
+    'about.title': 'Building a Legacy of',
+    'about.titleAccent': 'Knowledge and Compassion',
     'about.lead':
       'Nagina Social Welfare exists to serve communities across the UK through knowledge and compassion. We believe that authentic learning and sincere charity transform lives — nurturing not only the mind, but character, faith and belonging. Our two arms, Markaz Deen-e-Islam and Nagina Social Welfare, carry this mission forward together.',
     'about.pillar1Title': 'Faith',
@@ -641,7 +641,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'seedha.statSermons': 'Bayanat hosted here',
     'seedha.statTv': 'Nagina TV on YouTube',
     'seedha.collectionsEyebrow': 'Explore the collection',
-    'seedha.collectionsTitle': 'Books, bayanat, and the',
+    'seedha.collectionsTitle': 'Books, Bayanat, and the',
     'seedha.collectionsAccent': 'original archive',
     'seedha.collectionsLead':
       'Read our hosted library, watch sermons on this site, or open the original Seedha Rastah website for the full educational portal.',
@@ -655,7 +655,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'seedha.cardOriginalLead': 'Visit seedharastah.com — the educational portal founded under the guidance of Munir-e-Islam.',
     'seedha.cardOriginalCta': 'Open seedharastah.com',
     'seedha.dirEyebrow': 'On the original website',
-    'seedha.dirTitle': 'Main sections of',
+    'seedha.dirTitle': 'Main Sections of',
     'seedha.dirAccent': 'Seedha Rastah',
     'seedha.dirLead':
       'A curated directory of key sections on the original site. Each link opens seedharastah.com in a new tab.',
@@ -709,8 +709,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'shajra.eyebrow': 'Shajra Sharif',
     'shajra.openHero': 'Open Shajra hero: Faiz-e-Nagina and Munir-e-Islam',
     'shajra.heroCaption': 'The grace of Nagina is the bounty of Munir-e-Islam — and by Allah’s will, it continues.',
-    'shajra.title': 'Blessed spiritual',
-    'shajra.titleAccent': 'lineage',
+    'shajra.title': 'Blessed Spiritual',
+    'shajra.titleAccent': 'Lineage',
     'shajra.lead':
       'The blessed Yusufi lineages — Naqshbandi Mujaddidi in a longer and a shorter recitation, then Chishti Sabri Siraji Sardari, then Qadri Razawi — each read for the sake of the Prophet ﷺ, the Ahl-e-Bait, the Companions and the mashayikh, and ending in honour of Pir-e-Tariqat, Rehbar-e-Shariat Haji Muhammad Yusuf Ali Nagina',
     'shajra.source': 'From this book',
@@ -732,14 +732,14 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'shajra.next': 'Next page',
 
     'work.eyebrow': 'Our Work',
-    'work.title': 'One mission, carried by',
-    'work.titleAccent': 'two dedicated arms',
+    'work.title': 'One Mission, Carried by',
+    'work.titleAccent': 'Two Dedicated Arms',
     'work.lead': 'Nagina Social Welfare UK unites faith and compassion — educating hearts through knowledge and uplifting lives through charity.',
     'work.madrasaLink': 'Madrasa & Quran classes in Peterborough →',
 
     'guidance.eyebrow': 'Guidance',
-    'guidance.title': 'Wisdom that shapes',
-    'guidance.titleAccent': 'character and charity',
+    'guidance.title': 'Wisdom That Shapes',
+    'guidance.titleAccent': 'Character and Charity',
     'guidance.lead': 'Reflect on timeless teachings that guide our preachers, students and supporters — from character to knowledge and sadaqah.',
     'guidance.teachingsOf': 'Teachings of',
     'guidance.viewFull': 'View full size',
@@ -753,26 +753,26 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'khatme.body1': 'Allah Almighty declared the completion of His message to humanity through the Last of the Prophets. Through Prophet Muhammad ﷺ, divine revelation reached its pinnacle. The religion was perfected, the Quran preserved for all time, and the path to righteousness forever illuminated.',
     'khatme.body2': 'The Messenger of Allah ﷺ affirmed this fundamental truth in explicit terms — completing the house of prophethood as its final brick, and leaving no prophet after him.',
     'khatme.whyEyebrow': 'Why it matters',
-    'khatme.whyTitle': 'Why Khatam-e-Nabuwat matters to',
+    'khatme.whyTitle': 'Why Khatam-e-Nabuwat Matters to',
     'khatme.whyAccent': 'every Muslim',
     'khatme.closing': 'Let us stand firm upon this essential creed, honouring the legacy of the Beloved Messenger ﷺ, and conveying his message of mercy with clarity and love.',
 
     'ahle.eyebrow': 'Ahle Bait-e-Athaar',
     'ahle.title': 'The Elevated Status of',
     'ahle.titleAccent': 'Ahl al-Bayt',
-    'ahle.subtitle': 'In the light of the Quran and Sunnah — a Sunni perspective',
+    'ahle.subtitle': 'In the Light of the Quran and Sunnah — a Sunni Perspective',
     'ahle.lead': 'In Sunni Islamic theology (Ahl al-Sunnah wa’l-Jamā‘ah), the love, honor, and reverence for the noble family of the Prophet Muhammad ﷺ — known as the Ahl al-Bayt (the Blessed Household) — forms an indispensable pillar of faith. True devotion to the Messenger of Allah ﷺ is incomplete without sincere affection, respect, and loyalty toward his sanctified family and descendants.',
     'ahle.tathirCaption': 'Allah describes the purity of Ahl al-Bayt',
     'ahle.shanCaption': 'Greatness of the Ahl al-Bayt in Quran and Hadith',
 
     'sahaba.eyebrow': 'The Companions',
-    'sahaba.title': 'Belief regarding the',
+    'sahaba.title': 'Belief Regarding the',
     'sahaba.titleAccent': 'Sahabah',
     'sahaba.lead': 'According to the consensus of Sunni Islam (Ahl al-Sunnah wal-Jama’ah), all Companions (Sahabah) of the Prophet Muhammad ﷺ are considered upright (‘adil), sincere, and the noble generation of the Muslim Ummah. Loving and respecting them is regarded as an integral part of Islamic faith.',
     'sahaba.caption': 'Love for the Sahaba Ikram is part of faith',
 
     'aulia.eyebrow': 'Friends of Allah',
-    'aulia.title': 'Belief regarding the',
+    'aulia.title': 'Belief Regarding the',
     'aulia.titleAccent': 'Awliya Allah',
     'aulia.lead': 'According to the consensus of Ahl al-Sunnah wal-Jama’ah, the Awliya (Aulia Karam) are the righteous friends of Allah — honoured through faith, taqwa, and sincere obedience. Loving and respecting them is part of authentic Sunni spirituality, always within the bounds of the Quran and Sunnah.',
     'aulia.caption': 'The Awliya Allah — no fear upon them, nor shall they grieve',
@@ -793,7 +793,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'namaz.awaiting': 'Awaiting next namaz',
     'namaz.next': 'Next',
     'namaz.tomorrow': 'tomorrow',
-    'namaz.todayTitle': 'Today’s namaz',
+    'namaz.todayTitle': 'Today’s Namaz',
     'namaz.begins': 'Begins',
     'namaz.ends': 'Ends',
     'namaz.sunrise': 'Sunrise',
@@ -849,7 +849,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'books.eyebrow': 'Books',
     'books.title': 'Seedha Rasta',
-    'books.titleAccent': 'library',
+    'books.titleAccent': 'Library',
     'books.lead': 'Islamic books from the Seedha Rasta collection — open any title to read or download the PDF.',
     'books.search': 'Search by title…',
     'books.searchLabel': 'Search books',
@@ -872,8 +872,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'sermons.close': 'Close player',
 
     'apps.eyebrow': 'Our Apps',
-    'apps.title': 'Manage everything, right from',
-    'apps.titleAccent': 'your pocket',
+    'apps.title': 'Manage Everything, Right from',
+    'apps.titleAccent': 'Your Pocket',
     'apps.lead': 'Purpose-built mobile apps for parents, teachers, administrators and collectors — available now on the Google Play Store.',
     'apps.play': 'Get it on Google Play',
 
@@ -885,14 +885,14 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'privacy.eyebrow': 'Legal',
     'privacy.title': 'Privacy',
-    'privacy.titleAccent': 'notice',
+    'privacy.titleAccent': 'Notice',
     'privacy.lead': 'How Nagina Social Welfare handles information when you use this website.',
     'privacy.commitment': 'We handle personal data in line with UK GDPR.',
     'privacy.updated': 'Last updated',
     'privacy.questions': 'Questions?',
 
     'assistant.eyebrow': 'Nagina Assistant',
-    'assistant.subtitle': 'English & Urdu help',
+    'assistant.subtitle': 'English & Urdu Help',
     'assistant.close': 'Close assistant',
     'assistant.open': 'Ask Assistant',
     'assistant.placeholder': 'Ask in English or Urdu…',
@@ -909,11 +909,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'assistant.pageLead': 'Ask about creed, guidance, donations, contact, and namaz times — in English or Urdu.',
 
     'donateInvite.eyebrow': 'Give with intention',
-    'donateInvite.headline': 'Help us continue this work',
+    'donateInvite.headline': 'Help Us Continue This Work',
     'donateInvite.lead': 'Your gift supports Islamic education and community welfare across the UK.',
     'donateInvite.cta': 'Donate Now',
 
-    'donate.cardTitle': 'Card or wallet',
+    'donate.cardTitle': 'Card or Wallet',
     'donate.cardLead': 'Donate online with SumUp',
     'donate.cardHint': 'You will be taken to SumUp’s secure payment page. We never see or store your card details.',
     'donate.amountLegend': 'Donation amount',
@@ -922,7 +922,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.sumupCta': 'Donate securely with SumUp',
     'donate.privacyNote':
       'See our privacy notice for how we handle donation data (SumUp, PayPal, NatWest PayIt, and bank transfer).',
-    'donate.payitTitle': 'Bank app · NatWest PayIt',
+    'donate.payitTitle': 'Bank App · NatWest PayIt',
     'donate.payitLead': 'Pay with a secure payment link',
     'donate.payitHint': 'Open our NatWest PayIt link on your phone, or scan the QR code with your banking app.',
     'donate.openPayit': 'Open payment link',
@@ -931,8 +931,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.paypalTitle': 'Pay with PayPal',
     'donate.paypalHint': 'Open our secure PayPal link, or scan the QR code with the PayPal app.',
     'donate.openPaypal': 'Open PayPal link',
-    'donate.bankTitle': 'Bank transfer',
-    'donate.whereTitle': 'Where it goes',
+    'donate.bankTitle': 'Bank Transfer',
+    'donate.whereTitle': 'Where It Goes',
     'donate.where1': 'Qur’an and Islamic studies at Markaz Deen-e-Islam',
     'donate.where2': 'Organised charity collections across the UK',
     'donate.where3': 'Community gatherings, langar and pastoral support',
@@ -947,7 +947,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.custom': 'Custom',
     'donate.amountGbp': 'Amount (GBP)',
     'donate.ukAccount': 'UK account details',
-    'donate.whereHeadline': 'Education, welfare & community care',
+    'donate.whereHeadline': 'Education, Welfare & Community Care',
     'qibla.eyebrow': 'Qibla Direction',
     'qibla.title': 'Face the Kaaba',
     'qibla.loading': 'Loading Qibla…',
@@ -969,20 +969,20 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'qibla.compassError': 'Unable to access the device compass.',
 
     'madrasa.eyebrow': 'Markaz Deen-e-Islam',
-    'madrasa.title': 'Islamic institute in',
+    'madrasa.title': 'Islamic Institute in',
     'madrasa.titleAccent': 'Peterborough',
     'madrasa.lead':
       'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough. The 2026 intake is open in all three evening classes at 103 Burmer Road, PE1 3HT — Class 1 and 2 for under 10s, Class 3 for ages 10 and above.',
     'madrasa.body': 'Parents searching for a local madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At Markaz Deen-e-Islam we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.',
     'madrasa.body2':
       'Class 1 (16:30–17:30) and Class 2 (17:30–18:30) are for children under 10. Class 3 (18:30–19:30) is for ages 10 and above. Please apply online, or contact us with questions.',
-    'madrasa.offeringsTitle': 'What children learn with us',
+    'madrasa.offeringsTitle': 'What Children Learn with Us',
     'madrasa.titleLine': 'Madrasa & Islamic Institute in',
 
     'sahaba.closing': 'In summary, while the Sahabah are not considered infallible (ma‘sum), they are revered as God-fearing, trustworthy role models for the entire Muslim nation — honoured alongside the Ahl al-Bayt in the creed of Ahl al-Sunnah wal-Jama’ah.',
     'aulia.body': 'Allah Almighty declares in the Holy Quran that His Awliya shall know no fear nor grief. Through authentic Prophetic traditions, believers are taught to honour the pious, seek nearness to Allah through worship, and avoid enmity toward those whom Allah has befriended.',
     'aulia.creedEyebrow': 'Sunni creed',
-    'aulia.creedTitle': 'What Ahl al-Sunnah believes about',
+    'aulia.creedTitle': 'What Ahl al-Sunnah Believes About',
     'aulia.creedAccent': 'Aulia Karam',
     'aulia.closing': 'In summary, the Awliya are beloved servants of Allah — role models of piety whose lives inspire us toward worship, humility, and steadfastness upon the path of Quran and Sunnah. Love them, learn from them, and always keep Allah alone as the source of all help and wilayah.',
 

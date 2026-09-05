@@ -3,7 +3,7 @@
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
     <div
-      class="mx-auto max-w-3xl text-center"
+      class="mx-auto max-w-5xl text-center"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
@@ -17,11 +17,11 @@
       >
         مرکز دینِ اسلام
       </p>
-      <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+      <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:whitespace-nowrap lg:text-5xl">
         {{ i18n.t('madrasa.titleLine') }}
         <span class="text-gold-gradient">{{ i18n.t('madrasa.titleAccent') }}</span>
       </h1>
-      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
         {{ i18n.t('madrasa.lead') }}
       </p>
     </div>
@@ -103,7 +103,7 @@
       class="mx-auto mt-16 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-8 text-center sm:px-10"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
-      <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">Visit &amp; enrol</h2>
+      <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">Visit &amp; Enrol</h2>
       <p class="mt-4 text-base leading-relaxed text-slate-warm">
         Markaz Deen-e-Islam · {{ org.addressFull }}
       </p>

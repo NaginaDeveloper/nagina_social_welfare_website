@@ -3,18 +3,18 @@
 
   <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
     <div
-      class="mx-auto max-w-2xl text-center"
+      class="mx-auto max-w-5xl text-center"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
         {{ i18n.t('guidance.eyebrow') }}
       </span>
-      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:whitespace-nowrap lg:text-5xl">
         {{ i18n.t('guidance.title') }}
         <span class="text-gold-gradient">{{ i18n.t('guidance.titleAccent') }}</span>
       </h1>
-      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
         {{ i18n.t('guidance.lead') }}
       </p>
 
