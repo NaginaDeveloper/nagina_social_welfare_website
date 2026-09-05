@@ -75,6 +75,7 @@ export class Header implements OnInit {
 
   /**
    * Grouped navigation — every destination is a dedicated route (no hash links).
+   * About = organisation; Beliefs = creed pages; kept separate so menus stay scannable.
    */
   protected readonly groups: readonly NavGroup[] = [
     {
@@ -96,6 +97,19 @@ export class Header implements OnInit {
           hintKey: 'nav.spiritualGuideHint',
           icon: 'guide',
         },
+      ],
+    },
+    {
+      id: 'beliefs',
+      labelKey: 'nav.beliefs',
+      icon: 'seal',
+      items: [
+        {
+          labelKey: 'nav.basicBeliefs',
+          path: '/basic-beliefs',
+          hintKey: 'nav.basicBeliefsHint',
+          icon: 'counsel',
+        },
         {
           labelKey: 'nav.khatmeNabuwwat',
           path: '/khatme-nabuwwat',
@@ -115,13 +129,6 @@ export class Header implements OnInit {
           hintKey: 'nav.auliaKaramHint',
           icon: 'guide',
         },
-        {
-          labelKey: 'nav.basicBeliefs',
-          path: '/basic-beliefs',
-          hintKey: 'nav.basicBeliefsHint',
-          icon: 'counsel',
-        },
-        { labelKey: 'nav.guidance', path: '/guidance', hintKey: 'nav.guidanceHint', icon: 'counsel' },
       ],
     },
     {
@@ -155,6 +162,7 @@ export class Header implements OnInit {
           hintKey: 'nav.seedhaRastahHint',
           icon: 'seedha',
         },
+        { labelKey: 'nav.guidance', path: '/guidance', hintKey: 'nav.guidanceHint', icon: 'counsel' },
         { labelKey: 'nav.books', path: '/books', hintKey: 'nav.booksHint', icon: 'book' },
         {
           labelKey: 'nav.quiz',
@@ -257,7 +265,7 @@ export class Header implements OnInit {
   }
 
   protected menuPanelWidth(group: NavGroup): string {
-    return group.items.length > 4 ? 'min(36rem, calc(100vw - 2rem))' : '16rem';
+    return group.items.length > 5 ? 'min(36rem, calc(100vw - 2rem))' : '17rem';
   }
 
   protected toggleGroup(id: string, event?: Event): void {

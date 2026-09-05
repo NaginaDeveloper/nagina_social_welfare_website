@@ -8,11 +8,15 @@
   ></div>
   <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-70" aria-hidden="true"></div>
   <div
-    class="absolute -left-32 top-10 -z-10 h-96 w-96 rounded-full bg-emerald-500/20 blur-3xl"
+    class="absolute -left-32 top-10 -z-10 h-96 w-96 rounded-full bg-emerald-500/25 blur-3xl"
     aria-hidden="true"
   ></div>
   <div
-    class="absolute -right-24 bottom-0 -z-10 h-[28rem] w-[28rem] rounded-full bg-gold/10 blur-3xl"
+    class="absolute -right-24 bottom-0 -z-10 h-[28rem] w-[28rem] rounded-full bg-gold/20 blur-3xl"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute left-1/2 top-1/3 -z-10 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-gold/10 blur-3xl"
     aria-hidden="true"
   ></div>
 
@@ -25,7 +29,7 @@
       بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
     </p>
     <p
-      class="animate-fade-up mb-2 mt-3 text-[0.7rem] font-medium uppercase tracking-[0.24em] text-cream/60 sm:text-xs"
+      class="animate-fade-up mb-2 mt-3 text-[0.7rem] font-medium uppercase tracking-[0.24em] text-gold-300/75 sm:text-xs"
       style="animation-delay: 0.04s"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
@@ -34,14 +38,14 @@
     </p>
 
     <h1
-      class="animate-fade-up font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
+      class="animate-fade-up font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
       style="animation-delay: 0.08s"
     >
-      Nagina <span class="text-gold-gradient">Social Welfare</span>
+      Nagina Social Welfare
     </h1>
 
     <p
-      class="animate-fade-up mt-6 max-w-2xl font-display text-xl font-medium italic text-cream/90 sm:text-3xl"
+      class="animate-fade-up mt-6 max-w-2xl font-display text-xl font-medium italic text-gold-300/90 sm:text-3xl"
       style="animation-delay: 0.16s"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
@@ -50,7 +54,7 @@
     </p>
 
     <p
-      class="animate-fade-up mt-5 max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg"
+      class="animate-fade-up mt-5 max-w-xl text-base leading-relaxed text-sand/85 sm:text-lg"
       style="animation-delay: 0.24s"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
@@ -110,7 +114,7 @@
       <a
         routerLink="/"
         fragment="about"
-        class="group inline-flex items-center gap-2 rounded-full border border-cream/25 px-8 py-3.5 font-medium text-cream transition-all duration-300 hover:border-gold/50 hover:text-gold-300"
+        class="group inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-8 py-3.5 font-medium text-gold-300 transition-all duration-300 hover:border-gold/70 hover:bg-gold/15 hover:text-gold-300"
       >
         {{ i18n.t('hero.discover') }}
         <svg
@@ -127,7 +131,7 @@
       <a
         routerLink="/"
         fragment="contact"
-        class="inline-flex items-center gap-2 rounded-full border border-cream/25 px-8 py-3.5 font-medium text-cream transition-all duration-300 hover:border-gold/50 hover:text-gold-300"
+        class="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-8 py-3.5 font-medium text-gold-300 transition-all duration-300 hover:border-gold/70 hover:bg-gold/15 hover:text-gold-300"
       >
         {{ i18n.t('hero.contact') }}
       </a>

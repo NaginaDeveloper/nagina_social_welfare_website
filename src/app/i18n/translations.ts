@@ -541,6 +541,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'nav.about': 'About',
     'nav.home': 'Home',
+    'nav.beliefs': 'Beliefs',
     'nav.worship': 'Worship',
     'nav.learn': 'Learn',
     'nav.connect': 'Connect',
@@ -1395,6 +1396,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'events.viewPoster': 'پوسٹر دیکھیں',
 
     'nav.about': 'تعارف',
+    'nav.beliefs': 'عقائد',
     'nav.worship': 'عبادت',
     'nav.learn': 'علم',
     'nav.connect': 'رابطہ',

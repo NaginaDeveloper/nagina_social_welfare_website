@@ -37,14 +37,14 @@
       </span>
       <span class="flex min-w-0 flex-col leading-tight">
         <span
-          class="truncate font-display font-bold tracking-wide text-cream transition-all duration-300"
+          class="truncate font-display font-bold tracking-wide text-white transition-all duration-300"
           [class.text-base]="scrolled()"
           [class.text-lg]="!scrolled()"
           [class.sm:text-lg]="scrolled()"
           [class.sm:text-xl]="!scrolled()"
         >
           Nagina
-          <span class="text-gold-gradient max-[360px]:hidden">Social Welfare</span>
+          <span class="max-[360px]:hidden">Social Welfare</span>
         </span>
         <span class="hidden text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90 md:block">
           Education &amp; Welfare &middot; UK
@@ -52,7 +52,7 @@
       </span>
     </a>
 
-    <!-- Desktop: 4 grouped menus -->
+    <!-- Desktop: grouped menus -->
     <nav class="hidden min-w-0 items-center gap-1 xl:flex 2xl:gap-1.5" aria-label="Primary" (click)="$event.stopPropagation()">
       <ul class="flex items-center gap-0.5">
         @for (group of groups; track group.id) {
@@ -97,8 +97,8 @@
               >
                 <div
                   class="grid"
-                  [class.grid-cols-1]="group.items.length <= 4"
-                  [class.grid-cols-2]="group.items.length > 4"
+                  [class.grid-cols-1]="group.items.length <= 5"
+                  [class.grid-cols-2]="group.items.length > 5"
                 >
                 @for (item of group.items; track item.labelKey) {
                   @if (item.externalHref) {
@@ -269,7 +269,7 @@
         [href]="org.loginUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-cream/30 px-3 text-[0.78rem] font-semibold text-cream transition-all duration-300 hover:border-gold/50 hover:text-gold-300 2xl:px-4"
+        class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-semibold text-gold-300 transition-all duration-300 hover:border-gold/65 hover:bg-gold/15 2xl:px-4"
         aria-label="Login as admin, teacher or parent (opens in a new tab)"
       >
         {{ i18n.t('header.login') }}
@@ -496,7 +496,7 @@
           target="_blank"
           rel="noopener noreferrer"
           (click)="closeMenu()"
-          class="flex items-center justify-center gap-2 rounded-full border border-cream/25 px-4 py-3 text-sm font-semibold text-cream"
+          class="flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold-300"
           aria-label="Login as admin, teacher or parent (opens in a new tab)"
         >
           {{ i18n.t('header.login') }}

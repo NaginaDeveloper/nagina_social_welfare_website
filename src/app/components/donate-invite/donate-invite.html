@@ -24,14 +24,14 @@
       <h2
         class="mt-2 font-display text-2xl font-bold leading-tight sm:text-3xl"
         [class.text-forest]="tone() === 'cream'"
-        [class.text-cream]="tone() === 'forest'"
+        [class.text-white]="tone() === 'forest'"
       >
         {{ headline() ?? i18n.t('donateInvite.headline') }}
       </h2>
       <p
         class="mt-2 text-sm leading-relaxed sm:text-base"
         [class.text-slate-warm]="tone() === 'cream'"
-        [class.text-cream/75]="tone() === 'forest'"
+        [class.text-sand/85]="tone() === 'forest'"
       >
         {{ lead() ?? i18n.t('donateInvite.lead') }}
       </p>
