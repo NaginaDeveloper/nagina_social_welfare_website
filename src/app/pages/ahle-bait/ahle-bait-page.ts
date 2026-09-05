@@ -6,7 +6,7 @@ import { AhleBait } from '../../components/ahle-bait/ahle-bait';
   selector: 'app-ahle-bait-page',
   imports: [PageShell, AhleBait],
   template: `
-    <app-page-shell title="Ahle Bait">
+    <app-page-shell title="Ahl al-Bayt">
       <app-ahle-bait />
     </app-page-shell>
   `,

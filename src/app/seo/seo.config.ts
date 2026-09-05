@@ -20,28 +20,28 @@ export interface PageSeo {
 export const HOME_SEO: PageSeo = {
   title: 'Nagina Social Welfare UK | Islamic Education & Community Welfare',
   description:
-    'Nagina Social Welfare UK unites faith and compassion — Markaz Deen-e-Islam education, community welfare, Namaz times, Quran Majeed with Kanzul Iman, and Islamic books in Peterborough. Registered charity 1196514.',
+    'Nagina Social Welfare UK — a UK-based registered charity (1196514) uniting faith and compassion through Islamic education at Markaz Deen-e-Islam, community welfare, Salah prayer times, Quran Majeed with Kanzul Iman, and Islamic books in Peterborough.',
   path: '/',
   keywords:
-    'Nagina Social Welfare, Markaz Deen-e-Islam, madrasa Peterborough, Islamic education UK, Peterborough Islamic institute, Ahle Sunnat, community welfare',
+    'Nagina Social Welfare, UK based charity, Markaz Deen-e-Islam, madrasa Peterborough, Islamic education UK, Peterborough Islamic institute, Ahl al-Sunnah, community welfare, charity 1196514',
   type: 'website',
 };
 
 export const ABOUT_SEO: PageSeo = {
-  title: 'About Us | Nagina Social Welfare UK',
+  title: 'Our Vision | Nagina Social Welfare UK',
   description:
-    'Learn about Nagina Social Welfare UK — building a legacy of knowledge and compassion through Markaz Deen-e-Islam and community welfare.',
+    'Nagina Social Welfare — Registered Charity United Kingdom 1196514. Our vision: a united, thriving society across the UK where knowledge enlightens the mind, compassion shapes the heart, and every person grows in character, faith, and belonging.',
   path: '/about/',
-  keywords: 'About Nagina Social Welfare, Markaz Deen-e-Islam, Islamic charity UK',
+  keywords: 'About Nagina Social Welfare, UK based charity 1196514, Islamic charity UK vision',
   type: 'website',
 };
 
 export const WORK_SEO: PageSeo = {
-  title: 'Our Work | Markaz Deen-e-Islam & Welfare | Nagina Social Welfare',
+  title: 'Our Work | Education & Charity | Nagina Social Welfare',
   description:
-    'One mission carried by two dedicated arms — Islamic education at Markaz Deen-e-Islam and community welfare across the UK.',
+    'One mission through education and charity — Islamic education at Markaz Deen-e-Islam and community welfare across the UK from registered charity Nagina Social Welfare.',
   path: '/work/',
-  keywords: 'Our Work, Markaz Deen-e-Islam, community welfare UK, Islamic education',
+  keywords: 'Our Work, Markaz Deen-e-Islam, community welfare UK, Islamic education, charity',
   type: 'website',
 };
 
@@ -144,11 +144,11 @@ export const GUIDANCE_SEO: PageSeo = {
 };
 
 export const NAMAZ_SEO: PageSeo = {
-  title: 'Namaz Times Peterborough | Nagina Social Welfare UK',
+  title: 'Prayer Times (Salah) Peterborough | Nagina Social Welfare UK',
   description:
-    'Daily Namaz (salah) times for Peterborough, UK with live now and next prayer windows and a Qibla compass. These are personal begin and end times, not Jamaat.',
+    'Daily Salah (prayer) times for Peterborough, UK with live now and next prayer windows and a Qibla compass. These are personal begin and end times, not congregational prayer times.',
   path: '/namaz/',
-  keywords: 'Namaz times Peterborough, prayer times UK, salah timetable, Qibla compass',
+  keywords: 'Salah times Peterborough, prayer times UK, salah timetable, Qibla compass',
   type: 'website',
 };
 
@@ -175,29 +175,29 @@ export const HADITH_SEO: PageSeo = {
 export const SEEDHA_RASTAH_SEO: PageSeo = {
   title: 'Seedha Rastah | Educational Archive of Munir-e-Islam | Nagina Social Welfare',
   description:
-    'Honouring Seedha Rastah (seedharastah.com) — the educational archive of Allama Munir Ahmed Yusufi (Munir-e-Islam). Explore preserved PDF books, bayanat, and links to the original website.',
+    'Honouring Seedha Rastah (seedharastah.com) — the educational archive of Allama Munir Ahmed Yusufi (Munir-e-Islam). Explore preserved PDF books, sermons, and links to the original website.',
   path: '/seedha-rastah/',
   keywords:
-    'Seedha Rastah, seedharastah.com, Munir-e-Islam, Allama Munir Ahmed Yusufi, Islamic books archive, bayanat, Nagina TV',
+    'Seedha Rastah, seedharastah.com, Munir-e-Islam, Allama Munir Ahmed Yusufi, Islamic books archive, sermons, Nagina TV',
   type: 'website',
 };
 
 export const BOOKS_SEO: PageSeo = {
-  title: 'Islamic Books Library | Seedha Rasta | Nagina Social Welfare',
+  title: 'Islamic Books Library | Seedha Rastah | Nagina Social Welfare',
   description:
-    'Browse and download Islamic books from the Seedha Rasta library — free PDFs for learning and guidance from Nagina Social Welfare UK.',
+    'Browse and download Islamic books from the Seedha Rastah library — free PDFs for learning and guidance from Nagina Social Welfare UK.',
   path: '/books/',
-  keywords: 'Islamic books PDF, Seedha Rasta, free Islamic library UK, Urdu Islamic books',
+  keywords: 'Islamic books PDF, Seedha Rastah, free Islamic library UK, Urdu Islamic books',
   type: 'website',
 };
 
 export const SERMONS_SEO: PageSeo = {
-  title: 'Sermons by Baba Ji Sarkar | Bayanat | Nagina Social Welfare',
+  title: 'Sermons by Baba Ji Sarkar | Nagina Social Welfare',
   description:
-    'Watch blessed bayanat and sermons by Baba Ji Sarkar from the Seedha Rasta collection — searchable video library via Nagina TV on YouTube.',
+    'Watch blessed sermons by Baba Ji Sarkar from the Seedha Rastah collection — searchable video library via Nagina TV on YouTube.',
   path: '/sermons/',
   keywords:
-    'Baba Ji Sarkar bayanat, Seedha Rasta sermons, Nagina TV, Islamic lectures UK, Ahle Sunnat bayan',
+    'Baba Ji Sarkar sermons, Seedha Rastah sermons, Nagina TV, Islamic lectures UK, Ahl al-Sunnah',
   type: 'website',
 };
 
@@ -213,7 +213,7 @@ export const APPS_SEO: PageSeo = {
 export const EVENTS_SEO: PageSeo = {
   title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
   description:
-    'Event photos, posters and programmes from Markaz Deen-e-Islam — including the Grand Annual Mehfil-e-Naat. Message us on WhatsApp for the next date.',
+    'Event photos, posters and programmes from Markaz Deen-e-Islam — including the Grand Annual Naat gathering (Mehfil-e-Naat). Message us on WhatsApp for the next date.',
   path: '/events/',
   keywords: 'Islamic events Peterborough, Markaz Deen-e-Islam gatherings, Nagina events',
   type: 'website',
@@ -266,45 +266,45 @@ export const SAFEGUARDING_SEO: PageSeo = {
 };
 
 export const KHATME_NABUWWAT_SEO: PageSeo = {
-  title: 'Khatme Nabuwwat | Finality of Prophethood | Nagina Social Welfare',
+  title: 'Finality of Prophethood | Nagina Social Welfare',
   description:
-    'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — Khatam-un-Nabiyyin — the cornerstone of Islamic faith, with Quran and Hadith on the Seal of the Prophets.',
+    'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — the Seal of the Prophets — a cornerstone of Islamic faith for Ahl al-Sunnah.',
   path: '/khatme-nabuwwat/',
   keywords:
-    'Khatme Nabuwwat, Khatam-un-Nabiyyin, Finality of Prophethood, Seal of the Prophets, Quran 33:40, Ahle Sunnat',
+    'Finality of Prophethood, Khatam-un-Nabiyyin, Seal of the Prophets, Quran 33:40, Ahl al-Sunnah',
   image: `${SITE_ORIGIN}/media/khatme-nabuwwat.jpg`,
   type: 'article',
 };
 
 export const AHLE_BAIT_SEO: PageSeo = {
-  title: 'Ahle Bait | Elevated Status of Ahl al-Bayt | Nagina Social Welfare',
+  title: 'Ahl al-Bayt | The Prophet’s Family | Nagina Social Welfare',
   description:
-    'The elevated status of Ahl al-Bayt in the Quran and Sunnah — a Sunni perspective on love, honour and reverence for the Blessed Household of the Prophet ﷺ.',
+    'The elevated status of Ahl al-Bayt — the Blessed Household of the Prophet Muhammad ﷺ — in the light of the Quran and Sunnah, from a Sunni perspective.',
   path: '/ahle-bait/',
   keywords:
-    'Ahle Bait, Ahl al-Bayt, Aal-e-Pak, Ayat al-Tathir, Hadith al-Thaqalayn, Ahl al-Kisa, Ahle Sunnat',
+    'Ahl al-Bayt, Prophet’s family, Aal-e-Pak, Ayat al-Tathir, Hadith al-Thaqalayn, Ahl al-Kisa, Ahl al-Sunnah',
   image: `${SITE_ORIGIN}/media/shan-ahle-bait.jpg`,
   type: 'article',
 };
 
 export const SAHABA_IKRAM_SEO: PageSeo = {
-  title: 'Sahaba Ikram | Belief Regarding the Companions | Nagina Social Welfare',
+  title: 'Companions of the Prophet ﷺ | Sahabah | Nagina Social Welfare',
   description:
-    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Prophet ﷺ, loved and respected as an integral part of Islamic faith.',
+    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Messenger of Allah ﷺ (peace be upon him), loved and respected as an integral part of Islamic faith.',
   path: '/sahaba-ikram/',
   keywords:
-    'Sahaba Ikram, Sahabah, Companions of the Prophet, Ahl al-Sunnah, Khulafa ar-Rashidun, Ahle Sunnat',
+    'Companions of the Prophet, Sahabah, Ahl al-Sunnah, Khulafa ar-Rashidun',
   image: `${SITE_ORIGIN}/media/sahaba-ikram.jpg`,
   type: 'article',
 };
 
 export const AULIA_KARAM_SEO: PageSeo = {
-  title: 'Aulia Karam | Belief Regarding the Awliya Allah | Nagina Social Welfare',
+  title: 'Awliya Allah | Friends of Allah | Nagina Social Welfare',
   description:
-    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah — friends of Allah honoured through faith and taqwa, with Surah Yunus 10:62 and authentic Hadith on Aulia Karam.',
+    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah — friends of Allah honoured through faith and God-consciousness (taqwa), with Surah Yunus 10:62 and authentic Hadith.',
   path: '/aulia-karam/',
   keywords:
-    'Aulia Karam, Awliya Allah, Awliya, Yunus 10:62, Ala inna awliya Allah, friends of Allah, Ahle Sunnat, Hanafi Barelvi',
+    'Awliya Allah, friends of Allah, Yunus 10:62, Ala inna awliya Allah, Ahl al-Sunnah, Hanafi Barelvi',
   image: `${SITE_ORIGIN}/media/aulia-karam.jpg`,
   type: 'article',
 };
@@ -312,10 +312,10 @@ export const AULIA_KARAM_SEO: PageSeo = {
 export const BASIC_BELIEFS_SEO: PageSeo = {
   title: 'Basic Beliefs | Hanafi Barelvi Ahl al-Sunnah FAQ | Nagina Social Welfare',
   description:
-    'Frequently asked questions on the basic aqeedah of Hanafi Barelvi Ahl al-Sunnah wa’l-Jama’ah — Tawhid, Khatme Nabuwwat, love for the Prophet ﷺ, Ahle Bait, Sahaba, and Awliya.',
+    'Frequently asked questions on the basic creed (aqidah) of Hanafi Barelvi Ahl al-Sunnah wa’l-Jama’ah — Tawhid, Finality of Prophethood, love for the Prophet ﷺ, Ahl al-Bayt, Companions, and Awliya.',
   path: '/basic-beliefs/',
   keywords:
-    'Basic beliefs, aqeedah, Hanafi Barelvi, Ahl al-Sunnah, iman, Khatme Nabuwwat, Tawhid, Ahle Sunnat, Sunni creed FAQ',
+    'Basic beliefs, aqidah, Hanafi Barelvi, Ahl al-Sunnah, iman, Finality of Prophethood, Tawhid, Sunni creed FAQ',
   type: 'article',
 };
 

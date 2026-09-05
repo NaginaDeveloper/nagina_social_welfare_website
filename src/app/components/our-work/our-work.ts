@@ -30,8 +30,8 @@ export class OurWork {
       name: 'Markaz Deen-e-Islam',
       tag: 'Islamic Education',
       tagUr: 'اسلامی تعلیم',
-      summary: 'Our educational institution',
-      summaryUr: 'ہمارا تعلیمی ادارہ',
+      summary: 'Our educational programme',
+      summaryUr: 'ہمارا تعلیمی پروگرام',
       description:
         'Nurturing the next generation in the knowledge and love of Islam. Through structured classes, dedicated teachers and a caring environment, we guide students of every age in the Qur\u2019an and the Islamic sciences.',
       descriptionUr:
@@ -48,10 +48,10 @@ export class OurWork {
     {
       id: 'nsw',
       name: 'Nagina Social Welfare',
-      tag: 'Charity & Welfare',
-      tagUr: 'خیرات و فلاح',
-      summary: 'Our community welfare arm',
-      summaryUr: 'ہمارا فلاحی بازو',
+      tag: 'Registered Charity & Welfare',
+      tagUr: 'رجسٹرڈ چیریٹی و فلاح',
+      summary: 'Our registered UK charity',
+      summaryUr: 'ہماری رجسٹرڈ برطانوی چیریٹی',
       description:
         'Serving the community through organised charity across the UK. From donation drives to transparent collections and receipts, we channel your generosity to reach those who need it most.',
       descriptionUr:

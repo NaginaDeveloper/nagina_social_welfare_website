@@ -29,7 +29,7 @@ const mehfil: UpcomingEvent = {
 
 const namaz: UpcomingEvent = {
   id: 'namaz-course',
-  title: 'Let’s Learn Namaz',
+  title: 'Let’s Learn Salah (prayer)',
   titleUr: 'نماز',
   recurring: 'Weekly',
   audience: 'All',

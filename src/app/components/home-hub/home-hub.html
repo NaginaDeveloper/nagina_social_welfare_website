@@ -1,0 +1,150 @@
+<section id="top" class="relative isolate overflow-hidden bg-forest text-cream">
+  <div
+    class="absolute inset-0 -z-20 bg-gradient-to-br from-forest via-emerald to-forest-800"
+    aria-hidden="true"
+  ></div>
+  <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
+  <div
+    class="absolute -right-20 top-0 -z-10 h-64 w-64 rounded-full bg-gold/15 blur-3xl"
+    aria-hidden="true"
+  ></div>
+
+  <div class="mx-auto max-w-6xl px-5 pb-10 pt-24 text-center sm:px-8 sm:pb-12 sm:pt-28">
+    <p class="font-arabic text-2xl leading-tight text-gold-300 notranslate sm:text-3xl" lang="ar" dir="rtl">
+      بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+    </p>
+    <p
+      class="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-gold-300/75 sm:text-xs"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      {{ i18n.t('hero.bismillahEn') }}
+    </p>
+    <h1 class="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
+      Nagina Social Welfare
+    </h1>
+    <p
+      class="mx-auto mt-3 max-w-xl font-display text-lg font-medium italic text-gold-300/90 sm:text-2xl"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      {{ i18n.t('hero.tagline') }}
+    </p>
+    <p
+      class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-cream/85 sm:text-base"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      {{ i18n.t('hero.lead') }}
+    </p>
+    <p class="mt-3 text-xs font-semibold tracking-wide text-gold-300/90 sm:text-sm">
+      {{ i18n.t('about.registered') }}
+      <span class="text-cream/50">·</span>
+      <a
+        class="underline decoration-gold/40 underline-offset-2 transition-colors hover:text-white"
+        [href]="org.charityCommissionUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ org.charityNumber }}
+      </a>
+    </p>
+  </div>
+
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-cream to-transparent"
+    aria-hidden="true"
+  ></div>
+</section>
+
+<section class="relative bg-cream pb-16 pt-5 sm:pb-20 sm:pt-6" aria-labelledby="hub-heading">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="sticky top-[4.25rem] z-20 -mx-1 mb-5 bg-cream/95 px-1 pb-3 pt-1 backdrop-blur-md sm:top-[4.75rem]">
+      <label class="sr-only" for="home-hub-search">{{ i18n.t('hub.searchLabel') }}</label>
+      <div class="relative">
+        <svg
+          class="pointer-events-none absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-warm/70"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path stroke-linecap="round" d="m20 20-3.5-3.5" />
+        </svg>
+        <input
+          id="home-hub-search"
+          type="search"
+          enterkeyhint="search"
+          autocomplete="off"
+          [ngModel]="query()"
+          (ngModelChange)="onSearch($event)"
+          [placeholder]="i18n.t('hub.searchPlaceholder')"
+          class="w-full rounded-2xl border border-mist bg-white py-3.5 pe-4 ps-12 text-base text-forest shadow-soft outline-none ring-gold/30 placeholder:text-slate-warm/60 focus:border-gold/50 focus:ring-2 sm:text-sm"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        />
+      </div>
+    </div>
+
+    <div class="mb-4" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('hub.eyebrow') }}
+      </p>
+      <h2 id="hub-heading" class="mt-1 font-display text-xl font-bold text-forest sm:text-2xl">
+        {{ i18n.t('hub.title') }}
+      </h2>
+      <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('hub.lead') }}</p>
+    </div>
+
+    @if (filteredTiles().length === 0) {
+      <p class="rounded-2xl border border-mist bg-white px-5 py-8 text-center text-sm text-slate-warm">
+        {{ i18n.t('hub.empty') }}
+      </p>
+    } @else {
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+        @for (tile of filteredTiles(); track tile.id) {
+          @if (tile.externalHref; as href) {
+            <a
+              [href]="href"
+              target="_blank"
+              rel="noopener noreferrer"
+              [class]="tileClass(tile.tone)"
+              [attr.dir]="i18n.isUr() ? 'rtl' : null"
+              [attr.aria-label]="tile.ariaKey ? i18n.t(tile.ariaKey) : null"
+            >
+              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-gold-600">
+                {{ i18n.t(tile.groupKey) }}
+              </p>
+              <p class="mt-2 font-display text-base font-bold leading-snug text-forest sm:text-lg">
+                {{ i18n.t(tile.labelKey) }}
+              </p>
+              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm sm:text-sm">
+                {{ i18n.t(tile.hintKey) }}
+              </p>
+            </a>
+          } @else if (tile.path; as path) {
+            <a
+              [routerLink]="path"
+              [class]="tileClass(tile.tone)"
+              [attr.dir]="i18n.isUr() ? 'rtl' : null"
+            >
+              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-gold-600">
+                {{ i18n.t(tile.groupKey) }}
+              </p>
+              <p class="mt-2 font-display text-base font-bold leading-snug text-forest sm:text-lg">
+                {{ i18n.t(tile.labelKey) }}
+              </p>
+              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm sm:text-sm">
+                @if (tile.id === 'salah') {
+                  {{ salahSubtitle() }}
+                } @else {
+                  {{ i18n.t(tile.hintKey) }}
+                }
+              </p>
+            </a>
+          }
+        }
+      </div>
+    }
+  </div>
+</section>

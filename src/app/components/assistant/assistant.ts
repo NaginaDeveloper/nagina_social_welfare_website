@@ -92,7 +92,7 @@ export class Assistant {
   }
 
   protected readonly prompts = [
-    'What is Khatme Nabuwwat?',
+    'What is the Finality of Prophethood?',
     'How can I donate?',
     'Peterborough namaz times',
     'Which books are available?',

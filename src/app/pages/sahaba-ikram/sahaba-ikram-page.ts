@@ -6,7 +6,7 @@ import { SahabaIkram } from '../../components/sahaba-ikram/sahaba-ikram';
   selector: 'app-sahaba-ikram-page',
   imports: [PageShell, SahabaIkram],
   template: `
-    <app-page-shell title="Sahaba Ikram">
+    <app-page-shell title="Companions of the Prophet ﷺ">
       <app-sahaba-ikram />
     </app-page-shell>
   `,

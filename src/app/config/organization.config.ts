@@ -26,6 +26,9 @@ export const ORGANIZATION = {
     'https://www.google.com/maps/search/?api=1&query=103%20Burmer%20Road%2C%20Peterborough%20PE1%203HT',
   loginUrl: 'https://admin.naginasocialwelfare.co.uk/',
   quizUrl: 'https://admin.naginasocialwelfare.co.uk/quiz',
+  /** UK supermarket shelf Halal/Haram quiz (admin portal, no login). */
+  supermarketQuizUrl:
+    'https://admin.naginasocialwelfare.co.uk/quiz/setup/halal-haram-uk-supermarket',
   /** Pack-label helper on the admin portal (no login). Not a live HMC/HFA certificate. */
   halalCheckerUrl: 'https://admin.naginasocialwelfare.co.uk/halal-checker',
   facebookUrl: 'https://www.facebook.com/naginasocial.welfare.5',

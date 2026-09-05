@@ -52,14 +52,14 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
   {
     id: 'learn-namaz',
     src: 'gallery/poster-learn-namaz.jpg',
-    alt: 'Zikr o Fikr — Let’s Learn Namaz weekly course at Markaz Deen-e-Islam',
-    caption: 'Let’s learn Namaz',
+    alt: 'Zikr o Fikr — Let’s Learn Salah (prayer) weekly course at Markaz Deen-e-Islam',
+    caption: 'Let’s learn Salah (prayer)',
   },
   {
     id: 'namaz-course',
     src: 'gallery/poster-namaz-course.jpg',
-    alt: 'Weekly Islah-e-Namaz course poster for Markaz Deen-e-Islam',
-    caption: 'Namaz course',
+    alt: 'Weekly prayer improvement (Islah-e-Salah) course poster for Markaz Deen-e-Islam',
+    caption: 'Salah (prayer) course',
   },
   {
     id: 'hajj-training',
@@ -125,7 +125,7 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     id: 'ahle-bait-madh',
     src: 'gallery/poster-ahle-bait-madh.jpg',
     alt: 'Madh-e-Ahl-e-Bait-e-Athaar commemorative poster',
-    caption: 'Ahle Bait',
+    caption: 'Ahl al-Bayt',
   },
   {
     id: 'ramadan-mubarak',

@@ -1,4 +1,4 @@
-/** Five daily salah names shown in the Namaz board. */
+/** Five daily salah names shown on the Salah prayer board. */
 export type PrayerName = 'Fajr' | 'Dhuhr' | 'Asr' | 'Maghrib' | 'Isha';
 
 /** A single prayer window with begin and end clock times (HH:mm). */

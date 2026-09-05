@@ -6,7 +6,7 @@ import { KhatmeNabuwwat } from '../../components/khatme-nabuwwat/khatme-nabuwwat
   selector: 'app-khatme-nabuwwat-page',
   imports: [PageShell, KhatmeNabuwwat],
   template: `
-    <app-page-shell title="Khatme Nabuwwat">
+    <app-page-shell title="Finality of Prophethood">
       <app-khatme-nabuwwat />
     </app-page-shell>
   `,

@@ -6,7 +6,7 @@ import { AuliaKaram } from '../../components/aulia-karam/aulia-karam';
   selector: 'app-aulia-karam-page',
   imports: [PageShell, AuliaKaram],
   template: `
-    <app-page-shell title="Aulia Karam">
+    <app-page-shell title="Awliya Allah">
       <app-aulia-karam />
     </app-page-shell>
   `,

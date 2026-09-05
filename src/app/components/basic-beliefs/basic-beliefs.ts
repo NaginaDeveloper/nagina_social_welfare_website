@@ -29,7 +29,7 @@ export class BasicBeliefs {
   protected readonly i18n = inject(LanguageService);
 
   protected readonly intro =
-    'These questions summarise the basic aqeedah (beliefs) of Ahl al-Sunnah wa\'l-Jama\'ah as understood at Nagina Social Welfare and Markaz Deen-e-Islam — Hanafi fiqh with love for the Prophet ﷺ, the Ahle Bait, the Sahaba, and the Awliya, always upon the Quran and authentic Sunnah.';
+    'These questions summarise the basic creed (aqidah / beliefs) of Ahl al-Sunnah wa\'l-Jama\'ah as understood at Nagina Social Welfare and Markaz Deen-e-Islam — Hanafi Islamic jurisprudence (fiqh) with love for the Prophet ﷺ, the Ahl al-Bayt (the Prophet’s family), the Companions (Sahaba), and the Awliya Allah (friends of Allah), always upon the Quran and authentic Sunnah.';
   protected readonly introUr =
     'یہ سوالات اہلِ سنت والجماعت کے بنیادی عقائد کا خلاصہ ہیں جیسا کہ نگینہ سوشل ویلفیئر اور مرکز دینِ اسلام میں سمجھا جاتا ہے — حنفی فقہ، محبتِ رسول ﷺ، اہل بیت، صحابہ اور اولیاء، ہمیشہ قرآن و صحیح سنت پر۔';
 
@@ -39,7 +39,7 @@ export class BasicBeliefs {
     'یہ صفحہ عمومی عقیدہ کی نرم رہنمائی دیتا ہے، ذاتی فتاویٰ نہیں۔ انفرادی شرعی احکام کے لیے براہِ کرم مرکز دینِ اسلام سے براہِ راست رابطہ کریں۔';
 
   protected readonly closing =
-    'In summary, our beliefs unite sincere faith in Allah, love and obedience to the Prophet Muhammad ﷺ, honour for the Ahle Bait and Sahaba Ikram, respect for the Awliya Allah, and steadfastness upon Hanafi fiqh — without exaggeration, without shirk, and without departing from the balanced path of Ahl al-Sunnah wa\'l-Jama\'ah.';
+    'In summary, our beliefs unite sincere faith in Allah, love and obedience to the Prophet Muhammad ﷺ, honour for the Ahl al-Bayt and the Companions (Sahaba), respect for the Awliya Allah, and steadfastness upon Hanafi jurisprudence — without exaggeration, without shirk, and without departing from the balanced path of Ahl al-Sunnah wa\'l-Jama\'ah.';
   protected readonly closingUr =
     'خلاصہ یہ کہ ہمارے عقائد اللہ پر خلوصِ ایمان، حضور محمد ﷺ سے محبت و اطاعت، اہل بیت و صحابہ اکرام کی تعظیم، اولیاء اللہ کا احترام، اور حنفی فقہ پر استقامت کو جوڑتے ہیں — بغیر غلو، بغیر شرک، اور اہلِ سنت والجماعت کے متوازن راستے سے ہٹے بغیر۔';
 
@@ -62,7 +62,7 @@ export class BasicBeliefs {
           question: 'What does Hanafi Barelvi mean at Nagina Social Welfare?',
           questionUr: 'نگینہ سوشل ویلفیئر میں حنفی بریلوی کا کیا مطلب ہے؟',
           answer:
-            'Hanafi means we follow the fiqh of Imam Abu Hanifah (may Allah have mercy on him) in worship and daily Islamic practice. Barelvi refers to the spiritual emphasis of love for the Prophet ﷺ, Khatme Nabuwwat, respect for Ahle Bait, Sahaba, and Awliya, and Markaz-style guidance rooted in Ahl al-Sunnah — not a separate religion, but a recognised Sunni spiritual tradition.',
+            'Hanafi means we follow the Islamic jurisprudence (fiqh) of Imam Abu Hanifah (may Allah have mercy on him) in worship and daily Islamic practice. Barelvi refers to the spiritual emphasis of love for the Prophet ﷺ, Finality of Prophethood, respect for Ahl al-Bayt, Companions, and Awliya, and Markaz-style guidance rooted in Ahl al-Sunnah — not a separate religion, but a recognised Sunni spiritual tradition.',
           answerUr:
             'حنفی کا مطلب یہ ہے کہ عبادات اور روزمرہ عمل میں امام ابو حنیفہ رحمۃ اللہ علیہ کی فقہ کی پیروی کرتے ہیں۔ بریلوی سے مراد محبتِ رسول ﷺ، ختمِ نبوت، اہل بیت و صحابہ و اولیاء کا احترام، اور اہلِ سنت پر مبنی مرکز طرزِ ہدایت ہے — الگ دین نہیں، بلکہ تسلیم شدہ سنی روحانی روایت۔',
         },
@@ -99,25 +99,25 @@ export class BasicBeliefs {
             'قرآن اللہ کا آخری، محفوظ اور غیر تبدیل شدہ کلام ہے جو حضور محمد ﷺ پر نازل ہوا۔ صحیح سنت کے ساتھ یہ ہدایت کا بنیادی ماخذ ہے۔ قرآن کے بعد کوئی نئی وحی نہیں آتی۔',
         },
         {
-          question: 'What is Khatme Nabuwwat (the finality of Prophethood)?',
+          question: 'What is the Finality of Prophethood?',
           questionUr: 'ختمِ نبوت کیا ہے؟',
           answer:
             'Khatme Nabuwwat is the belief that Prophet Muhammad ﷺ is Khatam-un-Nabiyyin — the Seal and last of all prophets. Allah perfected the religion through him ﷺ, and no prophet will come after him. This is a cornerstone of Islamic faith.',
           answerUr:
             'ختمِ نبوت یہ عقیدہ ہے کہ حضور محمد ﷺ خاتم النبیین ہیں — تمام انبیاء کی مہر اور آخری نبی۔ اللہ نے ان ﷺ کے ذریعے دین کامل کیا، اور ان کے بعد کوئی نبی نہیں آئے گا۔ یہ اسلامی ایمان کا سنگِ بنیاد ہے۔',
           relatedPath: '/khatme-nabuwwat',
-          relatedLabel: 'Read more: Khatme Nabuwwat',
+          relatedLabel: 'Read more: Finality of Prophethood',
           relatedLabelUr: 'مزید پڑھیں: ختمِ نبوت',
         },
         {
           question: 'Do Muslims accept any prophet after Muhammad ﷺ?',
           questionUr: 'کیا مسلمان حضور محمد ﷺ کے بعد کسی نبی کو مانتے ہیں؟',
           answer:
-            'No. Ahl al-Sunnah firmly rejects any claim of prophethood, messengership, or divine revelation after the Prophet Muhammad ﷺ. Whoever claims otherwise has departed from the consensus of the Ummah on Khatme Nabuwwat.',
+            'No. Ahl al-Sunnah firmly rejects any claim of prophethood, messengership, or divine revelation after the Prophet Muhammad ﷺ. Whoever claims otherwise has departed from the consensus of the Muslim community (Ummah) on the Finality of Prophethood.',
           answerUr:
             'نہیں۔ اہلِ سنت حضور محمد ﷺ کے بعد نبوت، رسالت یا وحی کے کسی دعوے کو سختی سے رد کرتے ہیں۔ جو اس کے خلاف دعویٰ کرے وہ ختمِ نبوت پر امت کے اجماع سے نکل جاتا ہے۔',
           relatedPath: '/khatme-nabuwwat',
-          relatedLabel: 'Read more: Khatme Nabuwwat',
+          relatedLabel: 'Read more: Finality of Prophethood',
           relatedLabelUr: 'مزید پڑھیں: ختمِ نبوت',
         },
         {
@@ -140,48 +140,48 @@ export class BasicBeliefs {
           question: 'Why is love for the Prophet Muhammad ﷺ essential?',
           questionUr: 'حضور محمد ﷺ سے محبت کیوں ضروری ہے؟',
           answer:
-            'Love for the Prophet ﷺ is part of iman. The Quran and Sunnah teach that faith is incomplete without honouring him ﷺ. Muslims express this love through obedience, sending durood (salawat), and following his noble character.',
+            'Love for the Prophet ﷺ is part of iman (faith). The Quran and Sunnah teach that faith is incomplete without honouring him ﷺ. Muslims express this love through obedience, sending blessings on the Prophet ﷺ (salawat / durood), and following his noble character.',
           answerUr:
             'رسول ﷺ سے محبت ایمان کا حصہ ہے۔ قرآن و سنت سکھاتے ہیں کہ ان ﷺ کی تعظیم کے بغیر ایمان مکمل نہیں۔ مسلمان یہ محبت اطاعت، درود و سلام، اور اخلاقِ نبوی کی پیروی سے ظاہر کرتے ہیں۔',
         },
         {
-          question: 'What is our belief regarding the Ahle Bait?',
+          question: 'What is our belief regarding the Ahl al-Bayt (the Prophet’s family)?',
           questionUr: 'اہل بیت کے بارے میں ہمارا عقیدہ کیا ہے؟',
           answer:
             'We love, honour, and respect the Ahl al-Bayt — the blessed family of the Prophet ﷺ — as taught in the Quran and authentic Sunnah. This love is a religious duty, held in balance with love for the Sahaba and without theological exaggeration (ghuluw).',
           answerUr:
             'ہم اہل بیت — آلِ رسول ﷺ — سے محبت، تعظیم اور احترام رکھتے ہیں جیسا قرآن و صحیح سنت میں ہے۔ یہ دینی فریضہ ہے، صحابہ سے محبت کے ساتھ متوازن، بغیر غلو۔',
           relatedPath: '/ahle-bait',
-          relatedLabel: 'Read more: Ahle Bait',
+          relatedLabel: 'Read more: Ahl al-Bayt',
           relatedLabelUr: 'مزید پڑھیں: اہل بیت',
         },
         {
-          question: 'What is our belief regarding the Sahaba Ikram?',
+          question: 'What is our belief regarding the Companions (Sahaba) of the Prophet ﷺ?',
           questionUr: 'صحابہ اکرام کے بارے میں ہمارا عقیدہ کیا ہے؟',
           answer:
             'All the Companions (Sahaba) of the Prophet Muhammad ﷺ are honoured as the best generation of the Ummah. Loving and respecting them is part of faith. Insulting or reviling any Companion is forbidden in Sunni orthodoxy.',
           answerUr:
             'حضور محمد ﷺ کے تمام صحابہ امت کی بہترین نسل کے طور پر معزز ہیں۔ ان سے محبت و احترام ایمان کا حصہ ہے۔ کسی صحابی کی توہین سنی عقیدے میں حرام ہے۔',
           relatedPath: '/sahaba-ikram',
-          relatedLabel: 'Read more: Sahaba Ikram',
+          relatedLabel: 'Read more: Companions of the Prophet ﷺ',
           relatedLabelUr: 'مزید پڑھیں: صحابہ اکرام',
         },
         {
-          question: 'What is our belief regarding the Awliya Allah (Aulia Karam)?',
+          question: 'What is our belief regarding the Awliya Allah (friends of Allah)?',
           questionUr: 'اولیاء اللہ کے بارے میں ہمارا عقیدہ کیا ہے؟',
           answer:
             'The Awliya are the righteous friends of Allah — believers honoured through faith, taqwa, and sincere obedience. Allah declares in Surah Yunus (10:62) that His Awliya shall know no fear nor grief. We love and respect them without treating them as partners with Allah.',
           answerUr:
             'اولیاء اللہ کے نیک دوست ہیں — ایمان، تقویٰ اور خلوصِ اطاعت سے معزز۔ سورۃ یونس (۱۰:۶۲) میں اللہ فرماتا ہے کہ اس کے اولیاء پر نہ خوف ہے نہ غم۔ ہم ان سے محبت رکھتے ہیں بغیر انہیں اللہ کا شریک بنائے۔',
           relatedPath: '/aulia-karam',
-          relatedLabel: 'Read more: Aulia Karam',
+          relatedLabel: 'Read more: Awliya Allah',
           relatedLabelUr: 'مزید پڑھیں: اولیاء کرام',
         },
         {
           question: 'What is ghuluw and why do we avoid it?',
           questionUr: 'غلو کیا ہے اور ہم اس سے کیوں بچتے ہیں؟',
           answer:
-            'Ghuluw means exaggeration in reverence — giving a created being rights that belong to Allah alone. Ahl al-Sunnah honours the Prophet ﷺ, Ahle Bait, Sahaba, and Awliya deeply, but never ascribes divine powers to them. All worship and ultimate reliance belong to Allah alone.',
+            'Ghuluw means exaggeration in reverence — giving a created being rights that belong to Allah alone. Ahl al-Sunnah honours the Prophet ﷺ, Ahl al-Bayt, Companions, and Awliya deeply, but never ascribes divine powers to them. All worship and ultimate reliance belong to Allah alone.',
           answerUr:
             'غلو تعظیم میں زیادتی ہے — مخلوق کو وہ حقوق دینا جو صرف اللہ کے ہیں۔ اہلِ سنت رسول ﷺ، اہل بیت، صحابہ اور اولیاء کی گہری تعظیم کرتے ہیں مگر انہیں الوہی طاقتیں منسوب نہیں کرتے۔ تمام عبادت اور حقیقی بھروسہ صرف اللہ کا ہے۔',
         },
@@ -197,11 +197,11 @@ export class BasicBeliefs {
           question: 'Why do we follow Hanafi fiqh in worship?',
           questionUr: 'عبادت میں حنفی فقہ کی پیروی کیوں؟',
           answer:
-            'Imam Abu Hanifah\'s school is followed by the majority of Muslims in South Asia and many parts of the world. At Nagina, salah, fasting, and related rulings are understood according to Hanafi fiqh — for example, Hanafi Asr time on our Namaz page.',
+            'Imam Abu Hanifah\'s school is followed by the majority of Muslims in South Asia and many parts of the world. At Nagina, Salah (prayer), fasting, and related rulings are understood according to Hanafi jurisprudence — for example, Hanafi Asr time on our Prayer Times page.',
           answerUr:
             'امام ابو حنیفہ رحمۃ اللہ علیہ کا مکتب جنوبی ایشیا اور دنیا کے بہت سے علاقوں میں اکثریت کی پیروی ہے۔ نگینہ پر نماز، روزہ اور متعلقہ احکام حنفی فقہ کے مطابق سمجھے جاتے ہیں — مثلاً نماز کے صفحے پر حنفی عصر۔',
           relatedPath: '/namaz',
-          relatedLabel: 'Namaz times (Hanafi Asr)',
+          relatedLabel: 'Prayer times (Hanafi Asr)',
           relatedLabelUr: 'نماز کے اوقات (حنفی عصر)',
         },
         {
@@ -212,7 +212,7 @@ export class BasicBeliefs {
           answerUr:
             'ہاں، شریعت کی حدود میں۔ حضور ﷺ نے قبروں کی زیارت کی اجازت دی تاکہ آخرت کی یاد رہے۔ ہم نیکوں کے فضائل یاد رکھ سکتے اور سبق لے سکتے ہیں — قبروں کی عبادت نہیں اور نہ مرنے والوں کو آزاد مددگار بنانا۔',
           relatedPath: '/aulia-karam',
-          relatedLabel: 'Read more: Aulia Karam',
+          relatedLabel: 'Read more: Awliya Allah',
           relatedLabelUr: 'مزید پڑھیں: اولیاء کرام',
         },
         {
@@ -235,7 +235,7 @@ export class BasicBeliefs {
           question: 'What is our view on Milad and expressing joy at the birth of the Prophet ﷺ?',
           questionUr: 'میلاد اور ولادتِ نبوی ﷺ پر خوشی کے اظہار پر ہمارا نظریہ؟',
           answer:
-            'Many scholars of Ahl al-Sunnah, including the Barelvi tradition, permit expressing joy and gratitude for the birth of the Prophet Muhammad ﷺ when the gathering remains within Shari\'ah — with durood, praise of the Prophet ﷺ, and without forbidden mixing or innovations that contradict clear Islamic law. Markaz encourages love and remembrance rooted in authentic teaching.',
+            'Many scholars of Ahl al-Sunnah, including the Barelvi tradition, permit expressing joy and gratitude for the birth of the Prophet Muhammad ﷺ when the gathering remains within Shari\'ah — with blessings upon the Prophet ﷺ (salawat / durood), praise of the Prophet ﷺ, and without forbidden mixing or innovations that contradict clear Islamic law. Markaz encourages love and remembrance rooted in authentic teaching.',
           answerUr:
             'اہلِ سنت کے بہت سے علماء، بشمول بریلوی روایت، ولادتِ نبوی ﷺ پر خوشی اور شکر کا اظہار جائز رکھتے ہیں جب محفل شریعت میں رہے — درود، نعت، بغیر حرام اختلاط یا ایسی بدعات کے جو صریح شریعت کے خلاف ہوں۔ مرکز مستند تعلیم پر مبنی محبت و یاد کی ترغیب دیتا ہے۔',
         },
@@ -270,11 +270,11 @@ export class BasicBeliefs {
           question: 'Where can I read the detailed creed pages?',
           questionUr: 'تفصیلی عقیدہ صفحات کہاں پڑھوں؟',
           answer:
-            'This FAQ is an overview. For fuller treatment, visit our dedicated creed pages on Khatme Nabuwwat, Ahle Bait, Sahaba Ikram, and Aulia Karam — each with Quran, Hadith, and detailed points of belief.',
+            'This FAQ is an overview. For fuller treatment, visit our dedicated creed pages on Finality of Prophethood, Ahl al-Bayt, Companions of the Prophet ﷺ, and Awliya Allah — each with Quran, Hadith, and detailed points of belief.',
           answerUr:
             'یہ سوال و جواب کا خلاصہ ہے۔ مکمل مطالعے کے لیے ختمِ نبوت، اہل بیت، صحابہ اکرام اور اولیاء کرام کے مخصوص صفحات دیکھیں — ہر ایک میں قرآن، حدیث اور عقیدے کی تفصیل۔',
           relatedPath: '/khatme-nabuwwat',
-          relatedLabel: 'Start with Khatme Nabuwwat',
+          relatedLabel: 'Start with Finality of Prophethood',
           relatedLabelUr: 'ختمِ نبوت سے شروع کریں',
         },
       ],

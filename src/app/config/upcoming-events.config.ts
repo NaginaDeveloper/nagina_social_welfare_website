@@ -38,7 +38,7 @@ export interface UpcomingEvent {
 export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
   {
     id: 'namaz-course',
-    title: 'Let’s Learn Namaz',
+    title: 'Let’s Learn Salah (prayer)',
     titleUr: 'نماز سیکھیں',
     recurring: 'Weekly course',
     recurringUr: 'ہفتہ وار کورس',
@@ -46,7 +46,7 @@ export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
     audienceUr: 'سب کے لیے',
     venue: 'Markaz Deen-e-Islam, Peterborough',
     whatsappPrefill:
-      'Assalamu alaikum, I would like to join the Let’s Learn Namaz course at Markaz Deen-e-Islam.',
+      'Assalamu alaikum, I would like to join the Let’s Learn Salah (prayer) course at Markaz Deen-e-Islam.',
   },
   {
     id: 'sisters',
@@ -62,7 +62,7 @@ export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
   },
   {
     id: 'zikr-fikr',
-    title: 'Zikr & Fikr',
+    title: 'Remembrance & reflection (Zikr & Fikr)',
     titleUr: 'ذکر و فکر',
     recurring: 'Remembrance and reflection evenings',
     recurringUr: 'ذکر و فکر کی شامیں',
@@ -70,7 +70,7 @@ export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
     audienceUr: 'خاندان خوش آمدید',
     venue: 'Markaz Deen-e-Islam, Peterborough',
     whatsappPrefill:
-      'Assalamu alaikum, please tell me the next Zikr & Fikr evening at Markaz Deen-e-Islam.',
+      'Assalamu alaikum, please tell me the next Remembrance & reflection (Zikr & Fikr) evening at Markaz Deen-e-Islam.',
   },
 ];
 

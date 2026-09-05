@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 
 interface Pillar {
@@ -13,6 +14,7 @@ interface Pillar {
 })
 export class About {
   protected readonly i18n = inject(LanguageService);
+  protected readonly org = ORGANIZATION;
 
   protected readonly pillars: readonly Pillar[] = [
     { titleKey: 'about.pillar1Title', textKey: 'about.pillar1Text', icon: 'crescent' },

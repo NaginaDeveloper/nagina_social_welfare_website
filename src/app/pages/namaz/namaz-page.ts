@@ -6,7 +6,7 @@ import { PrayerTimes } from '../../components/prayer-times/prayer-times';
   selector: 'app-namaz-page',
   imports: [PageShell, PrayerTimes],
   template: `
-    <app-page-shell title="Namaz Times">
+    <app-page-shell title="Prayer Times (Salah)">
       <app-prayer-times />
     </app-page-shell>
   `,

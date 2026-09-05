@@ -207,11 +207,11 @@ export class AhleBait {
       number: '04',
       title: 'Love for Ahl al-Bayt in Daily Worship',
       titleUr: 'روزمرہ عبادت میں اہل بیت سے محبت',
-      lead: 'The love for the Prophet’s family is intertwined with daily Islamic practice. In every formal prayer (Ṣalāt), Muslims recite the Durood-e-Ibrahimi (Salutations upon Abrahamic lineage):',
+      lead: 'The love for the Prophet’s family is intertwined with daily Islamic practice. In every formal prayer (Salah), Muslims recite the Abrahamic salutation (Durood Ibrahim / Salawat Ibrahimiyyah):',
       leadUr: 'آلِ رسول ﷺ سے محبت روزمرہ عبادت سے جڑی ہے۔ ہر نماز میں مسلمان درودِ ابراہیمی پڑھتے ہیں:',
       quotes: [
         {
-          label: 'Durood-e-Ibrahimi',
+          label: 'Abrahamic salutation (Durood Ibrahim)',
           labelUr: 'درودِ ابراہیمی',
           text: 'O Allah, send peace upon Muhammad and upon the Family of Muhammad, as You sent peace upon Abraham and upon the family of Abraham…',
           textUr: 'اے اللہ! محمد اور آلِ محمد پر رحمت نازل فرما، جیسا کہ تو نے ابراہیم اور آلِ ابراہیم پر نازل فرمائی…',
