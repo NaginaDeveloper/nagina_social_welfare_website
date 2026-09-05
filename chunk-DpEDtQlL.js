@@ -1,0 +1,1 @@
+import {p,ai as we,aj as oo,ak as x}from'./main-6U7BUTD6.js';function w(t){t||(t=p(we));let i=new x(e=>{if(t.destroyed){e.next();return}return t.onDestroy(e.next.bind(e))});return e=>e.pipe(oo(i))}export{w};
