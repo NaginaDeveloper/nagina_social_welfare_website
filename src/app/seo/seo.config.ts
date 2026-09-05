@@ -30,7 +30,7 @@ export const HOME_SEO: PageSeo = {
 export const ABOUT_SEO: PageSeo = {
   title: 'Our Vision | Nagina Social Welfare UK',
   description:
-    'Nagina Social Welfare — Registered Charity United Kingdom 1196514. Our vision: a united, thriving society across the UK where knowledge enlightens the mind, compassion shapes the heart, and every person grows in character, faith, and belonging.',
+    'Nagina Social Welfare — Registered Charity United Kingdom 1196514. Our vision: to cultivate a united and flourishing society across the UK where knowledge inspires, compassion connects, and every individual grows in character and purpose.',
   path: '/about/',
   keywords: 'About Nagina Social Welfare, UK based charity 1196514, Islamic charity UK vision',
   type: 'website',

@@ -627,7 +627,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'about.titleAccent': '',
     'about.registered': 'Registered Charity – United Kingdom',
     'about.lead':
-      'To build a united, thriving society across the UK — where knowledge enlightens the mind, compassion shapes the heart, and every person grows in character, faith, and belonging. We envision a community lifted by sincere service, where all people flourish with dignity, purpose, and hope.',
+      'To cultivate a united and flourishing society across the UK where knowledge inspires, compassion connects, and every individual grows in character and purpose. We envision a vibrant community transformed by sincere service, enabling all people to thrive with dignity, faith, and hope.',
     'about.pillar1Title': 'Faith',
     'about.pillar1Text':
       'Rooted in Ahl al-Sunnah (Sunni Islam) belief, love of the Prophet ﷺ, and sincere worship.',
@@ -1510,7 +1510,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'about.titleAccent': '',
     'about.registered': 'رجسٹرڈ چیریٹی – متحدہ سلطنتِ برطانیہ',
     'about.lead':
-      'برطانیہ بھر میں ایک متحد، خوشحال معاشرہ قائم کرنا — جہاں علم ذہن کو روشن کرے، ہمدردی دل کو سنوارے، اور ہر شخص اخلاق، ایمان اور تعلق میں بڑھے۔ ہم ایک ایسی برادری کا تصور کرتے ہیں جو خلوصِ خدمت سے بلند ہو، جہاں سب لوگ عزت، مقصد اور امید کے ساتھ پھلیں پھولیں۔',
+      'برطانیہ بھر میں ایک متحد اور خوشحال معاشرہ پروان چڑھانا جہاں علم متاثر کرے، ہمدردی جوڑے، اور ہر فرد اخلاق و مقصد میں بڑھے۔ ہم ایک زندہ برادری کا تصور کرتے ہیں جو خلوصِ خدمت سے بدل جائے، تاکہ سب لوگ عزت، ایمان اور امید کے ساتھ پھلیں پھولیں۔',
     'about.pillar1Title': 'ایمان',
     'about.pillar1Text': 'اہلِ سنت کے عقیدے، محبتِ رسول ﷺ، اور خلوصِ عبادت پر قائم۔',
     'about.pillar2Title': 'ہمدردی',
