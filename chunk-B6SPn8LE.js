@@ -1,1 +1,0 @@
-import {p,ah as we,ai as oo,aj as x}from'./main-LAZT56SY.js';function w(t){t||(t=p(we));let i=new x(e=>{if(t.destroyed){e.next();return}return t.onDestroy(e.next.bind(e))});return e=>e.pipe(oo(i))}export{w};
