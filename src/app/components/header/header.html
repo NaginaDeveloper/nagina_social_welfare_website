@@ -16,7 +16,7 @@
     <!-- Brand -->
     <a
       routerLink="/"
-      class="group flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3 xl:flex-none"
+      class="group flex shrink-0 items-center gap-2.5 sm:gap-3"
       aria-label="Nagina Social Welfare home"
       (click)="onNavClick()"
     >
@@ -35,18 +35,18 @@
           height="44"
         />
       </span>
-      <span class="flex min-w-0 flex-col leading-tight">
+      <!-- Wordmark: desktop only — mobile keeps the icon so Quiz/Halal/Donate stay readable -->
+      <span class="hidden min-w-0 flex-col leading-tight xl:flex">
         <span
-          class="truncate font-display font-bold tracking-wide text-white transition-all duration-300"
+          class="font-display font-bold tracking-wide text-white transition-all duration-300"
           [class.text-base]="scrolled()"
           [class.text-lg]="!scrolled()"
           [class.sm:text-lg]="scrolled()"
           [class.sm:text-xl]="!scrolled()"
         >
-          Nagina
-          <span class="max-[360px]:hidden">Social Welfare</span>
+          Nagina Social Welfare
         </span>
-        <span class="hidden text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90 md:block">
+        <span class="text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90">
           Education &amp; Welfare &middot; UK
         </span>
       </span>
