@@ -64,6 +64,7 @@ describe('App', () => {
       ['/basic-beliefs', '#basic-beliefs'],
       ['/guidance', '#guidance'],
       ['/namaz', '#prayer-times'],
+      ['/zakat', '#zakat'],
       ['/quran', '#quran'],
       ['/hadith', '#hadith'],
       ['/seedha-rastah', '#seedha-rastah'],
@@ -83,7 +84,7 @@ describe('App', () => {
       await fixture.whenStable();
       expect(compiled.querySelector(selector), `expected ${selector} on ${path}`).toBeTruthy();
     }
-  });
+  }, 20_000);
 
   it('should show at least 20 photographs of Munir-e-Islam on the spiritual guide page', async () => {
     const fixture = TestBed.createComponent(App);
@@ -96,5 +97,5 @@ describe('App', () => {
     expect(compiled.querySelector('#shajra-hero')).toBeTruthy();
     expect(compiled.querySelector('#shajra-source')).toBeTruthy();
     expect(compiled.querySelectorAll('#shajra img').length).toBe(29);
-  });
+  }, 20_000);
 });

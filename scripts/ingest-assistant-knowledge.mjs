@@ -285,6 +285,14 @@ async function buildCuratedChunks() {
       tags: ['donate', 'payments'],
     },
     {
+      title: 'Zakat calculator',
+      path: '/zakat',
+      maslak: 'site',
+      text:
+        'Nagina Social Welfare UK has a zakat calculator at https://www.naginasocialwelfare.co.uk/zakat/. It uses 2.5% (one-fortieth). Gold nisab is 7.5 tola (87.48 g) and silver nisab is 52.5 tola (612.36 g). Gold-only wealth uses gold nisab; cash, silver, trade goods or mixed wealth uses silver nisab. Gold and silver jewellery is included even if worn, converting karat or sterling purity to fine metal. Deduct debts due now, not the full remaining mortgage. A lunar year (hawl) of owning nisab is required. This is an estimate, not a personal fatwa. After calculating, zakat can be given to charity 1196514 on the giving page.',
+      tags: ['zakat', 'nisab', 'jewellery'],
+    },
+    {
       title: 'Madrasa admission form',
       path: '/apply',
       text:

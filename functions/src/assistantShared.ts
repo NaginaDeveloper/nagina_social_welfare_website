@@ -24,7 +24,7 @@ export type AssistantMaslak = 'hanafi_barelvi' | 'site';
 export interface RawAssistantChunk {
   readonly id: string;
   readonly title: string;
-  readonly sourceType: 'faq' | 'creed' | 'guidance' | 'book';
+  readonly sourceType: 'faq' | 'creed' | 'guidance' | 'book' | 'deen_learn';
   readonly path: string;
   readonly text: string;
   readonly language: 'en' | 'ur' | 'mixed';
@@ -392,6 +392,7 @@ export async function generateAnswer(
     'Give a complete answer in 2 to 5 short paragraphs or bullet points when helpful.',
     'Always finish the full answer. Never stop mid-sentence.',
     'Answer only from the provided references when possible.',
+    'When a reference is labelled Let’s Learn Islam, treat its direct question-and-answer content as the primary approved answer. Preserve its meaning faithfully and do not replace it with conflicting general model knowledge.',
     'Stay within published Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teachings on this site. Do not present other masalik as equally valid for Nagina.',
     'For general Islamic questions, prefer the Basic Beliefs FAQ (/basic-beliefs), creed pages, guidance, and published Nagina material. Do not mention the Seedha Rasta book library unless the question is clearly about books, PDFs, or a specific library title.',
     'Do not answer non-Islamic general knowledge, coding, entertainment, politics, or unrelated worldly topics unless the question is clearly about this website.',

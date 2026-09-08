@@ -1,0 +1,424 @@
+<section id="zakat" class="relative overflow-hidden bg-cream py-20 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div
+      class="mx-auto max-w-3xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('zakat.eyebrow') }}
+      </span>
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        {{ i18n.t('zakat.title') }}
+      </h1>
+      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+        {{ i18n.t('zakat.lead') }}
+      </p>
+    </div>
+
+    <div class="mx-auto mt-10 grid gap-4 sm:mt-12 sm:grid-cols-3">
+      <div class="rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
+          {{ i18n.t('zakat.goldNisab') }}
+        </p>
+        <p class="mt-2 font-display text-2xl font-bold text-forest">
+          {{ gbp(result().goldNisabGbp) }}
+        </p>
+        <p class="mt-1 text-sm text-slate-warm">
+          {{ goldNisabTola }} {{ i18n.t('zakat.tola') }} · {{ grams(goldNisabGrams) }}g
+        </p>
+      </div>
+      <div class="rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
+          {{ i18n.t('zakat.silverNisab') }}
+        </p>
+        <p class="mt-2 font-display text-2xl font-bold text-forest">
+          {{ gbp(result().silverNisabGbp) }}
+        </p>
+        <p class="mt-1 text-sm text-slate-warm">
+          {{ silverNisabTola }} {{ i18n.t('zakat.tola') }} · {{ grams(silverNisabGrams) }}g
+        </p>
+      </div>
+      <div class="rounded-[1.5rem] border border-gold/30 bg-gold/10 p-5 shadow-soft">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
+          {{ i18n.t('zakat.spotPrices') }}
+        </p>
+        <p class="mt-2 text-sm font-semibold text-forest">
+          {{ i18n.t('zakat.goldPrice') }} {{ gbp(metals.prices().goldGbpPerGram) }}/g
+        </p>
+        <p class="mt-1 text-sm font-semibold text-forest">
+          {{ i18n.t('zakat.silverPrice') }} {{ gbp(metals.prices().silverGbpPerGram) }}/g
+        </p>
+        <p class="mt-2 text-xs text-slate-warm">
+          @if (metals.loading()) {
+            {{ i18n.t('zakat.pricesLoading') }}
+          } @else if (metals.isLive()) {
+            {{ i18n.t('zakat.pricesLive') }} · {{ priceDate() }}
+          } @else {
+            {{ i18n.t('zakat.pricesFallback') }}
+          }
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="mx-auto mt-8 grid items-start gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <div class="space-y-5">
+        <label
+          class="flex cursor-pointer items-start gap-3 rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft"
+        >
+          <input
+            type="checkbox"
+            class="mt-1 h-4 w-4 accent-forest"
+            [ngModel]="hawlComplete()"
+            (ngModelChange)="hawlComplete.set($event)"
+          />
+          <span>
+            <span class="block text-sm font-semibold text-forest">{{ i18n.t('zakat.hawl') }}</span>
+            <span class="mt-1 block text-sm leading-relaxed text-slate-warm">{{ i18n.t('zakat.hawlHint') }}</span>
+          </span>
+        </label>
+
+        <fieldset class="rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft sm:p-7">
+          <legend class="font-display text-xl font-bold text-forest">{{ i18n.t('zakat.cash') }}</legend>
+          <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('zakat.cashHint') }}</p>
+          <label class="mt-4 block text-sm font-medium text-slate-warm">
+            {{ i18n.t('zakat.amountGbp') }}
+            <input
+              type="number"
+              inputmode="decimal"
+              min="0"
+              step="0.01"
+              class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+              [ngModel]="cash()"
+              (ngModelChange)="cash.set($event)"
+            />
+          </label>
+        </fieldset>
+
+        <fieldset class="rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft sm:p-7">
+          <legend class="font-display text-xl font-bold text-forest">{{ i18n.t('zakat.gold') }}</legend>
+          <p class="mt-1 text-sm leading-relaxed text-slate-warm">{{ i18n.t('zakat.goldHint') }}</p>
+          <div class="mt-4 space-y-3">
+            @for (row of goldItems(); track row.id) {
+              <div class="grid gap-3 rounded-2xl bg-sand/40 p-3 sm:grid-cols-[1fr_7rem_6.5rem_auto]">
+                <label class="text-sm font-medium text-slate-warm">
+                  {{ i18n.t('zakat.weight') }}
+                  <input
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    step="0.01"
+                    class="mt-2 w-full rounded-2xl border border-mist bg-white px-3 py-2.5 text-base font-semibold text-forest outline-none focus:border-gold/50"
+                    [ngModel]="row.weight"
+                    (ngModelChange)="setGold(row.id, { weight: $event })"
+                  />
+                </label>
+                <label class="text-sm font-medium text-slate-warm">
+                  {{ i18n.t('zakat.unit') }}
+                  <select
+                    class="mt-2 w-full rounded-2xl border border-mist bg-white px-3 py-2.5 text-sm font-semibold text-forest outline-none focus:border-gold/50"
+                    [ngModel]="row.unit"
+                    (ngModelChange)="setGold(row.id, { unit: $event })"
+                  >
+                    <option value="g">{{ i18n.t('zakat.unitGrams') }}</option>
+                    <option value="tola">{{ i18n.t('zakat.unitTola') }}</option>
+                  </select>
+                </label>
+                <label class="text-sm font-medium text-slate-warm">
+                  {{ i18n.t('zakat.karat') }}
+                  <select
+                    class="mt-2 w-full rounded-2xl border border-mist bg-white px-3 py-2.5 text-sm font-semibold text-forest outline-none focus:border-gold/50"
+                    [ngModel]="row.karat"
+                    (ngModelChange)="setGoldKarat(row.id, $event)"
+                  >
+                    @for (karat of goldKarats; track karat) {
+                      <option [ngValue]="karat">{{ karat }}k</option>
+                    }
+                  </select>
+                </label>
+                <button
+                  type="button"
+                  class="self-end rounded-full px-3 py-2 text-xs font-semibold text-slate-warm hover:text-forest"
+                  (click)="removeGold(row.id)"
+                >
+                  {{ i18n.t('zakat.remove') }}
+                </button>
+              </div>
+            }
+          </div>
+          <button
+            type="button"
+            class="mt-3 text-sm font-semibold text-gold-700 hover:text-gold-600"
+            (click)="addGold()"
+          >
+            {{ i18n.t('zakat.addGold') }}
+          </button>
+        </fieldset>
+
+        <fieldset class="rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft sm:p-7">
+          <legend class="font-display text-xl font-bold text-forest">{{ i18n.t('zakat.silver') }}</legend>
+          <p class="mt-1 text-sm leading-relaxed text-slate-warm">{{ i18n.t('zakat.silverHint') }}</p>
+          <div class="mt-4 space-y-3">
+            @for (row of silverItems(); track row.id) {
+              <div class="grid gap-3 rounded-2xl bg-sand/40 p-3 sm:grid-cols-[1fr_7rem_7.5rem_auto]">
+                <label class="text-sm font-medium text-slate-warm">
+                  {{ i18n.t('zakat.weight') }}
+                  <input
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    step="0.01"
+                    class="mt-2 w-full rounded-2xl border border-mist bg-white px-3 py-2.5 text-base font-semibold text-forest outline-none focus:border-gold/50"
+                    [ngModel]="row.weight"
+                    (ngModelChange)="setSilver(row.id, { weight: $event })"
+                  />
+                </label>
+                <label class="text-sm font-medium text-slate-warm">
+                  {{ i18n.t('zakat.unit') }}
+                  <select
+                    class="mt-2 w-full rounded-2xl border border-mist bg-white px-3 py-2.5 text-sm font-semibold text-forest outline-none focus:border-gold/50"
+                    [ngModel]="row.unit"
+                    (ngModelChange)="setSilver(row.id, { unit: $event })"
+                  >
+                    <option value="g">{{ i18n.t('zakat.unitGrams') }}</option>
+                    <option value="tola">{{ i18n.t('zakat.unitTola') }}</option>
+                  </select>
+                </label>
+                <label class="text-sm font-medium text-slate-warm">
+                  {{ i18n.t('zakat.purity') }}
+                  <select
+                    class="mt-2 w-full rounded-2xl border border-mist bg-white px-3 py-2.5 text-sm font-semibold text-forest outline-none focus:border-gold/50"
+                    [ngModel]="row.purity"
+                    (ngModelChange)="setSilverPurity(row.id, $event)"
+                  >
+                    <option [ngValue]="999">{{ i18n.t('zakat.silverFine') }}</option>
+                    <option [ngValue]="925">{{ i18n.t('zakat.silverSterling') }}</option>
+                  </select>
+                </label>
+                <button
+                  type="button"
+                  class="self-end rounded-full px-3 py-2 text-xs font-semibold text-slate-warm hover:text-forest"
+                  (click)="removeSilver(row.id)"
+                >
+                  {{ i18n.t('zakat.remove') }}
+                </button>
+              </div>
+            }
+          </div>
+          <button
+            type="button"
+            class="mt-3 text-sm font-semibold text-gold-700 hover:text-gold-600"
+            (click)="addSilver()"
+          >
+            {{ i18n.t('zakat.addSilver') }}
+          </button>
+        </fieldset>
+
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="rounded-[1.5rem] border border-mist bg-white p-5 text-sm font-medium text-slate-warm shadow-soft">
+            {{ i18n.t('zakat.business') }}
+            <span class="mt-1 block text-xs font-normal leading-relaxed">{{ i18n.t('zakat.businessHint') }}</span>
+            <input
+              type="number"
+              inputmode="decimal"
+              min="0"
+              step="0.01"
+              class="mt-3 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+              [ngModel]="business()"
+              (ngModelChange)="business.set($event)"
+            />
+          </label>
+          <label class="rounded-[1.5rem] border border-mist bg-white p-5 text-sm font-medium text-slate-warm shadow-soft">
+            {{ i18n.t('zakat.investments') }}
+            <span class="mt-1 block text-xs font-normal leading-relaxed">{{ i18n.t('zakat.investmentsHint') }}</span>
+            <input
+              type="number"
+              inputmode="decimal"
+              min="0"
+              step="0.01"
+              class="mt-3 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+              [ngModel]="investments()"
+              (ngModelChange)="investments.set($event)"
+            />
+          </label>
+          <label class="rounded-[1.5rem] border border-mist bg-white p-5 text-sm font-medium text-slate-warm shadow-soft">
+            {{ i18n.t('zakat.receivables') }}
+            <span class="mt-1 block text-xs font-normal leading-relaxed">{{ i18n.t('zakat.receivablesHint') }}</span>
+            <input
+              type="number"
+              inputmode="decimal"
+              min="0"
+              step="0.01"
+              class="mt-3 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+              [ngModel]="receivables()"
+              (ngModelChange)="receivables.set($event)"
+            />
+          </label>
+          <label class="rounded-[1.5rem] border border-mist bg-white p-5 text-sm font-medium text-slate-warm shadow-soft">
+            {{ i18n.t('zakat.debts') }}
+            <span class="mt-1 block text-xs font-normal leading-relaxed">{{ i18n.t('zakat.debtsHint') }}</span>
+            <input
+              type="number"
+              inputmode="decimal"
+              min="0"
+              step="0.01"
+              class="mt-3 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
+              [ngModel]="debts()"
+              (ngModelChange)="debts.set($event)"
+            />
+          </label>
+        </div>
+      </div>
+
+      <aside class="lg:sticky lg:top-24">
+        <div
+          class="rounded-[1.5rem] bg-gradient-to-br from-forest via-emerald to-forest-800 p-6 text-cream shadow-portal sm:p-8"
+          aria-live="polite"
+        >
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">
+            {{ i18n.t('zakat.due') }}
+          </p>
+          <p class="mt-3 font-display text-4xl font-bold">
+            {{ gbp(result().zakatDueGbp) }}
+          </p>
+          <p class="mt-2 text-sm text-cream/75">
+            {{ i18n.t('zakat.rateLine').replace('{n}', '' + zakatPercent) }}
+          </p>
+
+          @if (!result().aboveNisab) {
+            <p class="mt-4 rounded-2xl bg-white/10 px-4 py-3 text-sm text-cream/85">
+              {{ i18n.t('zakat.belowNisab') }}
+            </p>
+          } @else if (!result().hawlComplete) {
+            <p class="mt-4 rounded-2xl bg-white/10 px-4 py-3 text-sm text-cream/85">
+              {{ i18n.t('zakat.hawlPending').replace('{amount}', gbp(result().zakatIfHawlGbp)) }}
+            </p>
+          }
+
+          <p class="mt-4 text-sm text-cream/80">
+            @if (result().nisabKind === 'gold') {
+              {{ i18n.t('zakat.usingGoldNisab') }}
+            } @else {
+              {{ i18n.t('zakat.usingSilverNisab') }}
+            }
+            ({{ gbp(result().nisabGbp) }})
+          </p>
+
+          <dl class="mt-6 space-y-2 border-t border-white/15 pt-5 text-sm">
+            <div class="flex justify-between gap-4">
+              <dt class="text-cream/70">{{ i18n.t('zakat.assets') }}</dt>
+              <dd class="font-semibold">{{ gbp(result().assetsGbp) }}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-cream/70">{{ i18n.t('zakat.liabilities') }}</dt>
+              <dd class="font-semibold">{{ gbp(result().debtsGbp) }}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-cream/70">{{ i18n.t('zakat.net') }}</dt>
+              <dd class="font-semibold">{{ gbp(result().netGbp) }}</dd>
+            </div>
+            @if (result().goldGbp > 0) {
+              <div class="flex justify-between gap-4">
+                <dt class="text-cream/70">{{ i18n.t('zakat.goldValue') }}</dt>
+                <dd class="font-semibold">{{ gbp(result().goldGbp) }}</dd>
+              </div>
+            }
+            @if (result().silverGbp > 0) {
+              <div class="flex justify-between gap-4">
+                <dt class="text-cream/70">{{ i18n.t('zakat.silverValue') }}</dt>
+                <dd class="font-semibold">{{ gbp(result().silverGbp) }}</dd>
+              </div>
+            }
+          </dl>
+
+          <button
+            type="button"
+            class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-3 text-sm font-semibold text-forest disabled:cursor-not-allowed disabled:opacity-50"
+            [disabled]="result().zakatDueGbp <= 0"
+            (click)="giveZakat()"
+          >
+            {{ i18n.t('zakat.give') }}
+          </button>
+          <button
+            type="button"
+            class="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-cream/90 hover:bg-white/5"
+            (click)="reset()"
+          >
+            {{ i18n.t('zakat.reset') }}
+          </button>
+          <p class="mt-4 text-xs leading-relaxed text-cream/55">
+            {{ i18n.t('zakat.payNote') }}
+            <a routerLink="/donate" class="font-semibold text-gold-300 underline decoration-gold/40 underline-offset-2">
+              {{ i18n.t('nav.donate') }}
+            </a>
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <div
+      class="mx-auto mt-10 grid gap-6 lg:grid-cols-2"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <div class="rounded-[1.5rem] border border-mist bg-white p-6 shadow-soft sm:p-8">
+        <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('zakat.rulesTitle') }}</h2>
+        <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-warm">
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.rule1') }}
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.rule2') }}
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.rule3') }}
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.rule4') }}
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.rule5') }}
+          </li>
+        </ul>
+      </div>
+      <div class="rounded-[1.5rem] border border-mist bg-white p-6 shadow-soft sm:p-8">
+        <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('zakat.excludeTitle') }}</h2>
+        <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-warm">
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.exclude1') }}
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.exclude2') }}
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.exclude3') }}
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-600" aria-hidden="true"></span>
+            {{ i18n.t('zakat.exclude4') }}
+          </li>
+        </ul>
+        <p class="mt-5 text-sm leading-relaxed text-slate-warm">{{ i18n.t('zakat.fitranaNote') }}</p>
+      </div>
+    </div>
+
+    <p
+      class="mx-auto mt-8 max-w-3xl text-center text-xs leading-relaxed text-slate-warm"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      {{ i18n.t('zakat.disclaimer') }}
+    </p>
+  </div>
+</section>

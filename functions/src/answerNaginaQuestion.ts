@@ -22,7 +22,12 @@ import {
   scopeRetrievalBoost,
   standardDisclaimer,
 } from './assistantScope';
-import { assessRetrievalConfidence, hasMeaningfulLexicalOverlap } from './assistantRetrieval';
+import {
+  assessRetrievalConfidence,
+  chooseRetrievalTier,
+  hasMeaningfulLexicalOverlap,
+  type RankedAssistantChunk,
+} from './assistantRetrieval';
 
 if (getApps().length === 0) {
   initializeApp();
@@ -66,6 +71,26 @@ function toCitation(chunk: RawAssistantChunk): AssistantCitation {
     path: chunk.path,
     sourceType: chunk.sourceType,
   };
+}
+
+function selectUniqueChunks(
+  ranked: readonly RankedAssistantChunk[],
+  limit = 6,
+): StoredAssistantChunk[] {
+  const selected: StoredAssistantChunk[] = [];
+  const seen = new Set<string>();
+  for (const item of ranked) {
+    const key = `${item.chunk.path}:${item.chunk.title}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    selected.push(item.chunk);
+    seen.add(key);
+    if (selected.length === limit) {
+      break;
+    }
+  }
+  return selected;
 }
 
 function selectCitations(chunks: readonly StoredAssistantChunk[], query: string): AssistantCitation[] {
@@ -173,22 +198,33 @@ export async function answerNaginaQuestion(
     .sort((a, b) => b.score - a.score)
     .filter((item) => item.score > 0.2);
 
-  const selected: StoredAssistantChunk[] = [];
-  const seenPaths = new Set<string>();
-  for (const item of ranked) {
-    const key = `${item.chunk.path}:${item.chunk.title}`;
-    if (seenPaths.has(key)) {
-      continue;
-    }
-    selected.push(item.chunk);
-    seenPaths.add(key);
-    if (selected.length === 6) {
-      break;
-    }
-  }
-
-  const fallback = chunks.filter((chunk) => chunk.sourceType === 'faq').slice(0, 4);
-  const sourceMode = assessRetrievalConfidence(ranked, selected.length, scope, queryTokens);
+  const deenLearnRanked = ranked.filter(
+    (item) => item.chunk.sourceType === 'deen_learn',
+  );
+  const naginaRanked = ranked.filter(
+    (item) => item.chunk.sourceType !== 'deen_learn',
+  );
+  const naginaSelected = selectUniqueChunks(naginaRanked);
+  const naginaMode = assessRetrievalConfidence(
+    naginaRanked,
+    naginaSelected.length,
+    scope,
+    queryTokens,
+  );
+  const retrievalTier = chooseRetrievalTier({
+    scope,
+    deenLearnRanked,
+    naginaMode,
+    queryTokens,
+  });
+  const selected =
+    retrievalTier === 'deen_learn'
+      ? selectUniqueChunks(deenLearnRanked)
+      : naginaSelected;
+  const fallback = chunks
+    .filter((chunk) => chunk.sourceType === 'faq')
+    .slice(0, 4);
+  const sourceMode = retrievalTier === 'general' ? 'general' : 'published';
   let answer: string;
   let responseContext: StoredAssistantChunk[];
   let citations: AssistantCitation[];
@@ -200,10 +236,10 @@ export async function answerNaginaQuestion(
   } else {
     const optionalContext = selected.length
       ? selected.slice(0, 3)
-      : ranked.slice(0, 2).map((item) => item.chunk);
+      : naginaRanked.slice(0, 2).map((item) => item.chunk);
     responseContext = optionalContext;
     answer = await generateHybridAnswer(apiKey, query, history, optionalContext, scope);
-    const topScore = ranked[0]?.score ?? 0;
+    const topScore = naginaRanked[0]?.score ?? 0;
     const relevantOptional = optionalContext.filter((chunk) =>
       hasMeaningfulLexicalOverlap(chunk, queryTokens),
     );

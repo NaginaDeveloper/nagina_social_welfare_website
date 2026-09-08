@@ -1,6 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { DonationService } from '../../services/donation.service';
@@ -21,17 +21,14 @@ interface FundOption {
   readonly reference: string;
 }
 
-/** Indicative UK nisab (silver-based, Hanafi caution). Update when gold/silver prices move. */
-const SILVER_NISAB_GBP = 520;
-const ZAKAT_RATE = 0.025;
-
 @Component({
   selector: 'app-donations',
   imports: [FormsModule, WhatsappIcon, RouterLink],
   templateUrl: './donations.html',
 })
-export class Donations {
+export class Donations implements OnInit {
   private readonly donations = inject(DonationService);
+  private readonly route = inject(ActivatedRoute);
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
   protected readonly givingWhatsApp = whatsappHref(
@@ -45,16 +42,9 @@ export class Donations {
   protected readonly checkoutError = signal<string | null>(null);
   protected readonly fund = signal<DonationFund>('sadaqah');
 
-  protected readonly savings = signal('0');
-  protected readonly gold = signal('0');
-  protected readonly silver = signal('0');
-  protected readonly liabilities = signal('0');
-
   protected readonly presets = [5, 10, 25, 50, 100] as const;
   protected readonly minDonationGbp = 5;
   protected readonly maxDonationGbp = 25_000;
-  protected readonly silverNisabGbp = SILVER_NISAB_GBP;
-  protected readonly nisabUpdated = 'August 2026';
 
   protected readonly funds: readonly FundOption[] = [
     { id: 'zakat', titleKey: 'donate.zakat', hintKey: 'donate.zakatHint', reference: 'ZAKAT' },
@@ -88,21 +78,24 @@ export class Donations {
   protected readonly payPalUrl =
     'https://www.paypal.com/qrcodes/managed/a41a6032-4bec-46fe-b9e9-91f58f35a36b';
 
-  protected readonly zakatable = computed(() => {
-    const assets =
-      this.parseMoney(this.savings()) +
-      this.parseMoney(this.gold()) +
-      this.parseMoney(this.silver());
-    return Math.max(0, Math.round((assets - this.parseMoney(this.liabilities())) * 100) / 100);
-  });
-
-  protected readonly zakatDue = computed(() => {
-    const base = this.zakatable();
-    if (base < SILVER_NISAB_GBP) {
-      return 0;
-    }
-    return Math.round(base * ZAKAT_RATE * 100) / 100;
-  });
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe((params) => {
+      const fund = params.get('fund');
+      if (fund === 'zakat' || fund === 'sadaqah' || fund === 'lillah' || fund === 'fitrana') {
+        this.fund.set(fund);
+      }
+      const amountRaw = params.get('amount');
+      if (!amountRaw) {
+        return;
+      }
+      const amount = Number(amountRaw);
+      if (Number.isFinite(amount) && amount > 0) {
+        this.selectedPreset.set('custom');
+        this.customAmount.set(amount.toFixed(2));
+        this.checkoutError.set(null);
+      }
+    });
+  }
 
   protected selectedFund(): FundOption {
     return this.funds.find((item) => item.id === this.fund()) ?? this.funds[1];
@@ -124,17 +117,6 @@ export class Donations {
   protected onCustomAmountInput(value: string | number | null): void {
     this.customAmount.set(value == null ? '' : String(value));
     this.selectedPreset.set('custom');
-    this.checkoutError.set(null);
-  }
-
-  protected applyZakatAmount(): void {
-    const due = this.zakatDue();
-    if (due < this.minDonationGbp) {
-      return;
-    }
-    this.fund.set('zakat');
-    this.selectedPreset.set('custom');
-    this.customAmount.set(due.toFixed(2));
     this.checkoutError.set(null);
   }
 
@@ -209,17 +191,5 @@ export class Donations {
     } catch {
       // Clipboard may be blocked; leave UI unchanged.
     }
-  }
-
-  protected setMoney(
-    field: 'savings' | 'gold' | 'silver' | 'liabilities',
-    value: string | number | null,
-  ): void {
-    this[field].set(value == null ? '0' : String(value));
-  }
-
-  private parseMoney(raw: string): number {
-    const n = Number(String(raw).trim());
-    return Number.isFinite(n) && n > 0 ? n : 0;
   }
 }

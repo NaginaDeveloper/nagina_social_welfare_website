@@ -93,6 +93,7 @@ export class Assistant {
 
   protected readonly prompts = [
     'What is the Finality of Prophethood?',
+    'How do I calculate zakat?',
     'How can I donate?',
     'Peterborough namaz times',
     'Which books are available?',

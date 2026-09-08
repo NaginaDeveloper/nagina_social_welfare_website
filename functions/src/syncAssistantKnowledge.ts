@@ -13,6 +13,7 @@ import {
 } from './assistantShared';
 import { allowMemoryRateLimit, clientIp } from './rateLimit';
 import { setSecurityHeaders, tokensEqual } from './security';
+import { loadPublishedDeenLearnChunks } from './deenLearnKnowledge';
 
 if (getApps().length === 0) {
   initializeApp();
@@ -109,24 +110,43 @@ export const syncAssistantKnowledge = onRequest(
 
     const body = (req.body ?? {}) as SyncBody;
     const version = body.version?.trim() || new Date().toISOString();
-    const chunks = (body.chunks ?? []).filter(
+    const suppliedChunks = (body.chunks ?? []).filter(
       (chunk): chunk is RawAssistantChunk =>
-        Boolean(chunk && chunk.title && chunk.path && chunk.text && chunk.sourceType),
+        Boolean(
+          chunk &&
+            chunk.title &&
+            chunk.path &&
+            chunk.text &&
+            chunk.sourceType &&
+            chunk.sourceType !== 'deen_learn',
+        ),
     );
 
-    if (!chunks.length) {
+    if (!suppliedChunks.length) {
       res.status(400).json({ error: 'No assistant chunks supplied.' });
       return;
     }
 
     try {
+      // The private curriculum is read server-side only. It is never included
+      // in the browser bundle or accepted from the public sync request.
+      const deenLearnChunks = await loadPublishedDeenLearnChunks(db);
+      const chunks = [...suppliedChunks, ...deenLearnChunks];
       const count = await commitChunks(chunks, apiKey);
       await db.collection(ASSISTANT_META_COLLECTION).doc('current').set({
         version,
         count,
+        suppliedCount: suppliedChunks.length,
+        deenLearnCount: deenLearnChunks.length,
         syncedAt: FieldValue.serverTimestamp(),
       });
-      res.status(200).json({ ok: true, count, version });
+      res.status(200).json({
+        ok: true,
+        count,
+        suppliedCount: suppliedChunks.length,
+        deenLearnCount: deenLearnChunks.length,
+        version,
+      });
     } catch (err) {
       logger.error('syncAssistantKnowledge failed', err);
       res.status(502).json({ error: 'Could not sync assistant knowledge.' });

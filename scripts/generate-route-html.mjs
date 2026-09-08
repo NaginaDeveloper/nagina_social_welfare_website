@@ -166,6 +166,13 @@ const pages = [
       'Daily Namaz (salah) times for Peterborough, UK with live now and next prayer windows and a Qibla compass. These are personal begin and end times, not Jamaat.',
   },
   {
+    dir: 'zakat',
+    path: '/zakat/',
+    title: 'Zakat Calculator | Nagina Social Welfare UK',
+    description:
+      'Zakat calculator: 2.5%, gold and silver jewellery, UK nisab, tola and grams. Then give zakat to Nagina Social Welfare UK (charity 1196514).',
+  },
+  {
     dir: 'quran',
     path: '/quran/',
     title: 'Blessed Quran Majeed with Kanzul Iman | Nagina Social Welfare',

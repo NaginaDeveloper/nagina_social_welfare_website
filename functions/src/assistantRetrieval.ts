@@ -2,6 +2,12 @@ import type { QuestionScope } from './assistantScope';
 import type { StoredAssistantChunk } from './assistantShared';
 
 export type AnswerSourceMode = 'published' | 'general';
+export type RetrievalTier = 'deen_learn' | 'nagina' | 'general';
+
+export interface RankedAssistantChunk {
+  readonly score: number;
+  readonly chunk: StoredAssistantChunk;
+}
 
 const SITE_HELP_TOP_SCORE = 0.28;
 
@@ -82,4 +88,36 @@ export function hasMeaningfulLexicalOverlap(
     (token) => token.length > 2 && !GENERIC_QUERY_TOKENS.has(token),
   );
   return meaningfulTokens.some((token) => haystack.includes(token));
+}
+
+export function hasStrongDeenLearnMatch(
+  ranked: readonly RankedAssistantChunk[],
+  queryTokens: readonly string[],
+): boolean {
+  const top = ranked.find((item) => item.chunk.sourceType === 'deen_learn');
+  if (!top) {
+    return false;
+  }
+  // Direct bilingual Q&A usually has both strong semantic similarity and a
+  // meaningful word overlap. The high-score path supports cross-language
+  // matches where English and Urdu tokens cannot overlap.
+  return (
+    (top.score >= 0.4 && hasMeaningfulLexicalOverlap(top.chunk, queryTokens)) ||
+    top.score >= 0.68
+  );
+}
+
+export function chooseRetrievalTier(params: {
+  readonly scope: QuestionScope;
+  readonly deenLearnRanked: readonly RankedAssistantChunk[];
+  readonly naginaMode: AnswerSourceMode;
+  readonly queryTokens: readonly string[];
+}): RetrievalTier {
+  if (
+    params.scope === 'islamic' &&
+    hasStrongDeenLearnMatch(params.deenLearnRanked, params.queryTokens)
+  ) {
+    return 'deen_learn';
+  }
+  return params.naginaMode === 'published' ? 'nagina' : 'general';
 }

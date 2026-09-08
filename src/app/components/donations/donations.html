@@ -48,77 +48,16 @@
       <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-600">
         {{ i18n.t('donate.zakatCalc') }}
       </p>
+      <h2 class="mt-2 font-display text-xl font-bold text-forest sm:text-2xl">
+        {{ i18n.t('nav.zakat') }}
+      </h2>
       <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('donate.zakatLead') }}</p>
-      <div class="mt-5 grid gap-4 sm:grid-cols-2">
-        <label class="block text-sm font-medium text-slate-warm">
-          {{ i18n.t('donate.savings') }}
-          <input
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
-            [ngModel]="savings()"
-            (ngModelChange)="setMoney('savings', $event)"
-          />
-        </label>
-        <label class="block text-sm font-medium text-slate-warm">
-          {{ i18n.t('donate.gold') }}
-          <input
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
-            [ngModel]="gold()"
-            (ngModelChange)="setMoney('gold', $event)"
-          />
-        </label>
-        <label class="block text-sm font-medium text-slate-warm">
-          {{ i18n.t('donate.silver') }}
-          <input
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
-            [ngModel]="silver()"
-            (ngModelChange)="setMoney('silver', $event)"
-          />
-        </label>
-        <label class="block text-sm font-medium text-slate-warm">
-          {{ i18n.t('donate.liabilities') }}
-          <input
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            class="mt-2 w-full rounded-2xl border border-mist bg-sand/50 px-4 py-3 text-base font-semibold text-forest outline-none focus:border-gold/50 focus:bg-white"
-            [ngModel]="liabilities()"
-            (ngModelChange)="setMoney('liabilities', $event)"
-          />
-        </label>
-      </div>
-      <p class="mt-5 font-display text-xl font-bold text-forest">
-        {{ i18n.t('donate.due') }}:
-        £{{ zakatDue().toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
-      </p>
-      @if (zakatDue() === 0) {
-        <p class="mt-2 text-sm text-slate-warm">{{ i18n.t('donate.belowNisab') }}</p>
-      }
-      <p class="mt-2 text-xs text-slate-warm">
-        {{ i18n.t('donate.nisabNote') }}
-        (£{{ silverNisabGbp }} · {{ nisabUpdated }})
-      </p>
-      @if (zakatDue() >= minDonationGbp) {
-        <button
-          type="button"
-          class="mt-4 inline-flex min-h-11 items-center rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream hover:bg-emerald"
-          (click)="applyZakatAmount()"
-        >
-          {{ i18n.t('donate.applyAmount') }}
-        </button>
-      }
+      <a
+        routerLink="/zakat"
+        class="mt-5 inline-flex min-h-11 items-center rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream hover:bg-emerald"
+      >
+        {{ i18n.t('donate.openZakatCalc') }}
+      </a>
     </div>
 
     <!-- Card / SumUp -->

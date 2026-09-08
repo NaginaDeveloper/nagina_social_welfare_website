@@ -72,6 +72,15 @@ export class HomeHub implements OnInit {
       keywords: ['salah', 'prayer', 'namaz', 'fajr', 'isha', 'times'],
     },
     {
+      id: 'zakat',
+      labelKey: 'nav.zakat',
+      hintKey: 'nav.zakatHint',
+      path: '/zakat',
+      tone: 'featured',
+      groupKey: 'hub.group.worship',
+      keywords: ['zakat', 'nisab', 'calculator', 'jewellery', 'gold', 'silver'],
+    },
+    {
       id: 'donate',
       labelKey: 'nav.donate',
       hintKey: 'nav.donateHint',

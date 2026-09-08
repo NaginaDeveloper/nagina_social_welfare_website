@@ -219,12 +219,22 @@ export const EVENTS_SEO: PageSeo = {
   type: 'website',
 };
 
+export const ZAKAT_SEO: PageSeo = {
+  title: 'Zakat Calculator | Nagina Social Welfare UK',
+  description:
+    'Zakat calculator: 2.5%, gold and silver jewellery, UK nisab, tola and grams. Then give zakat to Nagina Social Welfare UK (charity 1196514).',
+  path: '/zakat/',
+  keywords:
+    'zakat calculator UK, nisab, gold jewellery zakat, silver nisab, Nagina Social Welfare',
+  type: 'website',
+};
+
 export const DONATE_SEO: PageSeo = {
   title: 'Donate | Support Our Mission | Nagina Social Welfare UK',
   description:
     'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514) by SumUp, PayPal, NatWest PayIt or bank transfer.',
   path: '/donate/',
-  keywords: 'Donate Nagina Social Welfare, SumUp donation UK, Islamic charity Peterborough',
+    keywords: 'Donate Nagina Social Welfare, Zakat calculator, SumUp donation UK, Islamic charity Peterborough',
   type: 'website',
 };
 

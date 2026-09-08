@@ -35,6 +35,7 @@ export type NavIcon =
   | 'privacy'
   | 'worship'
   | 'learn'
+  | 'zakat'
   | 'connect'
   | 'quiz'
   | 'barcode'
@@ -138,6 +139,12 @@ export class Header implements OnInit {
       icon: 'worship',
       items: [
         { labelKey: 'nav.namazTimes', path: '/namaz', hintKey: 'nav.namazTimesHint', icon: 'mosque' },
+        {
+          labelKey: 'nav.zakat',
+          path: '/zakat',
+          hintKey: 'nav.zakatHint',
+          icon: 'zakat',
+        },
         {
           labelKey: 'nav.quranMajeed',
           path: '/quran',

@@ -8,6 +8,7 @@ import {
   CONTACT_SEO,
   DONATE_SEO,
   DONATE_THANKS_SEO,
+  ZAKAT_SEO,
   EVENTS_SEO,
   GUIDANCE_SEO,
   HOME_SEO,
@@ -203,6 +204,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/namaz/namaz-page').then((m) => m.NamazPage),
     title: NAMAZ_SEO.title,
     data: { seo: NAMAZ_SEO },
+  },
+  {
+    path: 'zakat',
+    loadComponent: () => import('./pages/zakat/zakat-page').then((m) => m.ZakatPage),
+    title: ZAKAT_SEO.title,
+    data: { seo: ZAKAT_SEO },
   },
   {
     path: 'quran',
