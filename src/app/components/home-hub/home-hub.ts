@@ -54,6 +54,15 @@ export class HomeHub implements OnInit {
       keywords: ['halal', 'barcode', 'pack', 'shelf', 'supermarket'],
     },
     {
+      id: 'assistant',
+      labelKey: 'nav.assistant',
+      hintKey: 'nav.assistantHint',
+      path: '/assistant',
+      tone: 'featured',
+      groupKey: 'hub.group.connect',
+      keywords: ['assistant', 'ask', 'help', 'ai'],
+    },
+    {
       id: 'salah',
       labelKey: 'nav.namazTimes',
       hintKey: 'nav.namazTimesHint',
@@ -241,15 +250,6 @@ export class HomeHub implements OnInit {
       tone: 'default',
       groupKey: 'hub.group.connect',
       keywords: ['contact', 'whatsapp', 'email', 'phone'],
-    },
-    {
-      id: 'assistant',
-      labelKey: 'nav.assistant',
-      hintKey: 'nav.assistantHint',
-      path: '/assistant',
-      tone: 'default',
-      groupKey: 'hub.group.connect',
-      keywords: ['assistant', 'ask', 'help', 'ai'],
     },
   ];
 

@@ -32,6 +32,7 @@ export class Footer {
     { labelKey: 'nav.guidance', path: '/guidance' },
     { labelKey: 'nav.namazTimes', path: '/namaz' },
     { labelKey: 'nav.events', path: '/events' },
+    { labelKey: 'nav.assistant', path: '/assistant' },
     { labelKey: 'nav.membership', path: '/membership' },
     { labelKey: 'nav.memberLogin', path: '/membership/login' },
     { labelKey: 'nav.membershipTrack', path: '/membership/track' },

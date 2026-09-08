@@ -37,7 +37,8 @@ export type NavIcon =
   | 'learn'
   | 'connect'
   | 'quiz'
-  | 'barcode';
+  | 'barcode'
+  | 'assistant';
 
 interface NavLink {
   readonly labelKey: string;
@@ -181,6 +182,12 @@ export class Header implements OnInit {
           path: '/sermons',
           hintKey: 'nav.sermonsHint',
           icon: 'sermon',
+        },
+        {
+          labelKey: 'nav.assistant',
+          path: '/assistant',
+          hintKey: 'nav.assistantHint',
+          icon: 'assistant',
         },
         { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
       ],

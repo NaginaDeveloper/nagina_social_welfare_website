@@ -28,7 +28,7 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Nagina');
   });
 
-  it('should restore the original homepage sections with map', async () => {
+  it('should render the tile-based homepage with Assistant and map', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/');
@@ -36,13 +36,8 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('#top')).toBeTruthy();
-    expect(compiled.querySelector('#spiritual-guide')).toBeTruthy();
-    expect(compiled.querySelector('#seedha-rastah-spotlight')).toBeTruthy();
-    expect(compiled.querySelector('#about')).toBeTruthy();
-    expect(compiled.querySelector('#work')).toBeTruthy();
-    expect(compiled.querySelector('#guidance')).toBeTruthy();
-    expect(compiled.querySelector('#apps')).toBeTruthy();
-    expect(compiled.querySelector('#contact')).toBeTruthy();
+    expect(compiled.querySelector('#home-hub-search')).toBeTruthy();
+    expect(compiled.querySelector('a[href="/assistant"]')).toBeTruthy();
     expect(compiled.querySelector('iframe[title^="Map of"]')).toBeTruthy();
     expect(compiled.querySelector('#photographs')).toBeNull();
     expect(compiled.querySelector('#shajra')).toBeNull();
