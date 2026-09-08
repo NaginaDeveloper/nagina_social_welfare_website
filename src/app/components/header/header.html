@@ -9,7 +9,7 @@
   (click)="closeGroups()"
 >
   <div
-    class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 transition-all duration-300 sm:gap-5 sm:px-8"
+    class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 transition-all duration-300 sm:gap-5 sm:px-8"
     [class.py-2.5]="scrolled()"
     [class.py-3.5]="!scrolled()"
   >
@@ -28,7 +28,7 @@
         [class.w-11]="!scrolled()"
       >
         <img
-          src="brand/nagina.png"
+          src="/brand/nagina.png"
           alt="Nagina Social Welfare UK logo"
           class="h-full w-full object-contain"
           width="44"
@@ -265,27 +265,32 @@
         </button>
       </div>
 
-      <a
-        [href]="org.loginUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-semibold text-gold-300 transition-all duration-300 hover:border-gold/65 hover:bg-gold/15 2xl:px-4"
-        aria-label="Login as admin, teacher or parent (opens in a new tab)"
-      >
-        {{ i18n.t('header.login') }}
-        <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-        </svg>
-      </a>
+      @if (memberAuth.member()) {
+        <a
+          routerLink="/membership/home"
+          class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-semibold text-gold-300 transition-all duration-300 hover:border-gold/65 hover:bg-gold/15 2xl:px-4"
+          (click)="onNavClick()"
+        >
+          {{ i18n.t('header.myMembership') }}
+        </a>
+      } @else {
+        <a
+          routerLink="/membership/login"
+          class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-semibold text-gold-300 transition-all duration-300 hover:border-gold/65 hover:bg-gold/15 2xl:px-4"
+          (click)="onNavClick()"
+        >
+          {{ i18n.t('nav.memberLogin') }}
+        </a>
+      }
     </nav>
 
-    <!-- Tablet / mobile: compact donate + namaz (md+) + menu -->
-    <div class="flex shrink-0 items-center gap-1.5 sm:gap-2 xl:hidden">
+    <!-- Tablet / mobile: Donate + Sign in stay visible; Quiz/Halal from lg so the menu is not clipped -->
+    <div class="flex shrink-0 items-center gap-1 sm:gap-2 xl:hidden">
       <a
         [href]="org.quizUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-white/5 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
+        class="hidden min-h-10 items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-white/5 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 lg:inline-flex min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
         [attr.aria-label]="i18n.t('hero.quizAria')"
       >
         <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -298,7 +303,7 @@
         [href]="org.halalCheckerUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-white/5 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
+        class="hidden min-h-10 items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-white/5 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 lg:inline-flex min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
         [attr.aria-label]="i18n.t('hero.halalCheckerAria')"
       >
         <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -317,6 +322,23 @@
         </svg>
         <span class="max-[360px]:sr-only">{{ i18n.t('header.donateShort') }}</span>
       </a>
+      @if (memberAuth.member()) {
+        <a
+          routerLink="/membership/home"
+          class="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
+          (click)="onNavClick()"
+        >
+          {{ i18n.t('header.myMembershipShort') }}
+        </a>
+      } @else {
+        <a
+          routerLink="/membership/login"
+          class="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
+          (click)="onNavClick()"
+        >
+          {{ i18n.t('header.memberLoginShort') }}
+        </a>
+      }
 
       @if (prayer.headerStatus(); as status) {
         <a
@@ -345,7 +367,7 @@
 
       <button
         type="button"
-        class="flex h-11 w-11 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5"
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-cream transition-colors hover:bg-white/5"
         [attr.aria-expanded]="menuOpen()"
         aria-label="Toggle navigation menu"
         (click)="toggleMenu(); $event.stopPropagation()"
@@ -372,16 +394,33 @@
     >
       <div class="border-b border-white/10 p-3">
         <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <a
+          routerLink="/donate"
+          (click)="onNavClick()"
+          class="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 py-3 text-sm font-semibold text-forest shadow-soft"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
+          </svg>
+          {{ i18n.t('header.donate') }}
+        </a>
+        @if (memberAuth.member()) {
           <a
-            routerLink="/donate"
+            routerLink="/membership/home"
             (click)="onNavClick()"
-            class="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 py-3 text-sm font-semibold text-forest shadow-soft sm:col-span-2"
+            class="flex items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold-300"
           >
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
-            </svg>
-            {{ i18n.t('header.donate') }}
+            {{ i18n.t('header.myMembership') }}
           </a>
+        } @else {
+          <a
+            routerLink="/membership/login"
+            (click)="onNavClick()"
+            class="flex items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold-300"
+          >
+            {{ i18n.t('nav.memberLogin') }}
+          </a>
+        }
         </div>
       </div>
 
@@ -491,19 +530,6 @@
             {{ i18n.t('header.langUr') }}
           </button>
         </div>
-        <a
-          [href]="org.loginUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          (click)="closeMenu()"
-          class="flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold-300"
-          aria-label="Login as admin, teacher or parent (opens in a new tab)"
-        >
-          {{ i18n.t('header.login') }}
-          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-          </svg>
-        </a>
       </div>
     </nav>
   }

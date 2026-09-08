@@ -16,6 +16,11 @@
       <li>{{ i18n.t('membership.bullet3') }}</li>
     </ul>
 
+    <p class="mt-6 text-sm text-slate-warm">
+      {{ i18n.t('membership.signInPrompt') }}
+      <a routerLink="/membership/login" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('membership.signInLink') }}</a>
+    </p>
+
     <div class="mt-8 flex flex-wrap gap-2">
       @for (meta of stepMeta; track meta.key; let i = $index) {
         <span
@@ -220,6 +225,9 @@
     </form>
 
     <p class="mt-6 text-center text-sm text-slate-warm">
+      {{ i18n.t('membership.signInPrompt') }}
+      <a routerLink="/membership/login" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('membership.signInLink') }}</a>
+      ·
       {{ i18n.t('membership.trackPrompt') }}
       <a routerLink="/membership/track" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('membership.trackLink') }}</a>
       ·

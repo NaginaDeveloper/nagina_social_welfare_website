@@ -69,7 +69,7 @@ function s(
 }
 
 function kashkool(n: number): string {
-  return `gallery/shajra/kashkool/${n}.jpg`;
+  return `/gallery/shajra/kashkool/${n}.jpg`;
 }
 
 export function toEasternDigits(n: number): string {
@@ -89,7 +89,7 @@ export const SHAJRA_TITLE_PAGE: ShajraPage = {
 const mukhtasarPages: readonly ShajraPage[] = [
   {
     id: 'kashkool-218',
-    src: 'gallery/shajra/01.jpg',
+    src: '/gallery/shajra/01.jpg',
     kashkoolPage: 218,
     alt: 'Kashkool page 218: opening of the shorter Naqshbandi Mujaddidi Yusufi Shajra',
     caption: 'Opening — the Prophet ﷺ, Ahl-e-Bait and Sahaba',
@@ -123,7 +123,7 @@ const mukhtasarPages: readonly ShajraPage[] = [
   },
   {
     id: 'kashkool-219',
-    src: 'gallery/shajra/02.jpg',
+    src: '/gallery/shajra/02.jpg',
     kashkoolPage: 219,
     alt: 'Kashkool page 219: Imam Jafar Sadiq through Darwish Muhammad',
     caption: 'Imam Jafar Sadiq to Darwish Muhammad',
@@ -152,7 +152,7 @@ const mukhtasarPages: readonly ShajraPage[] = [
   },
   {
     id: 'kashkool-220',
-    src: 'gallery/shajra/03.jpg',
+    src: '/gallery/shajra/03.jpg',
     kashkoolPage: 220,
     alt: 'Kashkool page 220: Mujaddid Alf Thani through the saints of Chora Sharif',
     caption: 'Mujaddid Alf Thani to Noor Muhammad Chorahi',
@@ -187,7 +187,7 @@ const mukhtasarPages: readonly ShajraPage[] = [
   },
   {
     id: 'kashkool-221',
-    src: 'gallery/shajra/04.jpg',
+    src: '/gallery/shajra/04.jpg',
     kashkoolPage: 221,
     alt: 'Kashkool page 221: later mashayikh of the Yusufi Nagina chain',
     caption: 'The later mashayikh',
@@ -725,7 +725,7 @@ export const SHAJRA_ORDERS: readonly ShajraOrder[] = [
 
 export const SHAJRA_HONOUR: ShajraPage = {
   id: 'nagina',
-  src: 'gallery/shajra/05-haji-muhammad-yusuf-ali-nagina.jpg',
+  src: '/gallery/shajra/05-haji-muhammad-yusuf-ali-nagina.jpg',
   alt: 'Commemorative poster of Pir-e-Tariqat, Rehbar-e-Shariat Haji Muhammad Yusuf Ali Nagina',
   caption: 'Pir-e-Tariqat, Rehbar-e-Shariat Haji Muhammad Yusuf Ali Nagina',
   captionUr: 'پیر طریقت رہبر شریعت حضرت حاجی محمد یوسف علی نگینہ رضی اللہ تعالیٰ عنہ',

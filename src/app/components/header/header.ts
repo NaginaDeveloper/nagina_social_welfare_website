@@ -10,6 +10,7 @@ import {
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PrayerTimesService } from '../../services/prayer-times.service';
+import { MemberAuthService } from '../../services/member-auth.service';
 import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 
@@ -66,6 +67,7 @@ interface NavGroup {
 export class Header implements OnInit {
   protected readonly org = ORGANIZATION;
   protected readonly i18n = inject(LanguageService);
+  protected readonly memberAuth = inject(MemberAuthService);
 
   protected readonly prayer = inject(PrayerTimesService);
   private readonly router = inject(Router);
@@ -226,6 +228,12 @@ export class Header implements OnInit {
         { labelKey: 'nav.donate', path: '/donate', hintKey: 'nav.donateHint', icon: 'donate' },
         { labelKey: 'nav.contact', path: '/contact', hintKey: 'nav.contactHint', icon: 'contact' },
         {
+          labelKey: 'header.login',
+          externalHref: ORGANIZATION.loginUrl,
+          hintKey: 'nav.staffPortalHint',
+          icon: 'contact',
+        },
+        {
           labelKey: 'nav.safeguarding',
           path: '/safeguarding',
           hintKey: 'nav.safeguardingHint',
@@ -238,6 +246,7 @@ export class Header implements OnInit {
 
   ngOnInit(): void {
     void this.prayer.load();
+    void this.memberAuth.restoreSession();
     this.syncPath(this.router.url);
 
     this.router.events

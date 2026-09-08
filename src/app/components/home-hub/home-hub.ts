@@ -231,7 +231,16 @@ export class HomeHub implements OnInit {
       path: '/membership',
       tone: 'default',
       groupKey: 'hub.group.connect',
-      keywords: ['membership', 'member', 'join'],
+      keywords: ['membership', 'member', 'join', 'apply'],
+    },
+    {
+      id: 'member-login',
+      labelKey: 'nav.memberLogin',
+      hintKey: 'nav.memberLoginHint',
+      path: '/membership/login',
+      tone: 'featured',
+      groupKey: 'hub.group.connect',
+      keywords: ['login', 'sign in', 'signin', 'member', 'account', 'portal'],
     },
     {
       id: 'work',

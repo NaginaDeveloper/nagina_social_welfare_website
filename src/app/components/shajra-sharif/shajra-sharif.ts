@@ -30,8 +30,8 @@ export class ShajraSharif {
   protected readonly silsilas = SHAJRA_SILSILAS;
   protected readonly titlePage = SHAJRA_TITLE_PAGE;
   protected readonly honour = SHAJRA_HONOUR;
-  protected readonly heroSrc = 'gallery/shajra/00-hero.jpg';
-  protected readonly coverSrc = 'gallery/shajra/kashkool-e-yousufi-cover.jpg';
+  protected readonly heroSrc = '/gallery/shajra/00-hero.jpg';
+  protected readonly coverSrc = '/gallery/shajra/kashkool-e-yousufi-cover.jpg';
   protected readonly lightbox = signal<Lightbox | null>(null);
 
   protected readonly activePage = computed((): ShajraPage | null => {

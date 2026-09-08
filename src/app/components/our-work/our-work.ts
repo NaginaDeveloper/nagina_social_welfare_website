@@ -43,7 +43,7 @@ export class OurWork {
         'Progress & Attendance',
       ],
       highlightsUr: ['قرآن و اسلامی تعلیم', 'منظم کلاسز', 'محنتی اساتذہ', 'پیش رفت و حاضری'],
-      logo: 'brand/markaz.png',
+      logo: '/brand/markaz.png',
     },
     {
       id: 'nsw',
@@ -63,7 +63,7 @@ export class OurWork {
         'Monthly Summaries',
       ],
       highlightsUr: ['عطیہ مہمات', 'کمیونٹی کی مدد', 'شفاف رسیدیں', 'ماہانہ خلاصے'],
-      logo: 'brand/nagina.png',
+      logo: '/brand/nagina.png',
     },
   ];
 }

@@ -56,6 +56,8 @@ export class MemberAuthService {
           resolve();
         });
       });
+    } catch {
+      this.member.set(null);
     } finally {
       this.loading.set(false);
     }

@@ -40,5 +40,6 @@ export class Footer {
     { labelKey: 'nav.apps', path: '/apps' },
     { labelKey: 'nav.donate', path: '/donate' },
     { labelKey: 'nav.contact', path: '/contact' },
+    { labelKey: 'header.login', externalHref: ORGANIZATION.loginUrl },
   ];
 }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import type { Sermon, SermonCatalog } from '../models/sermon';
 
-export const SERMONS_CATALOG_URL = 'sermons/catalog.json';
+export const SERMONS_CATALOG_URL = '/sermons/catalog.json';
 
 @Injectable({ providedIn: 'root' })
 export class SermonsService {
