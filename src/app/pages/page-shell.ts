@@ -7,7 +7,7 @@ import { LanguageService } from '../i18n/language.service';
   imports: [RouterLink],
   template: `
     <div class="border-b border-mist/80 bg-sand/80 pt-16 sm:pt-[4.75rem]">
-      <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-2 px-5 py-3 sm:px-8 sm:py-3.5">
+      <div class="site-wrap flex flex-wrap items-center gap-2 py-3 sm:py-3.5">
         <a
           routerLink="/"
           class="text-sm font-medium text-slate-warm transition-colors hover:text-forest"

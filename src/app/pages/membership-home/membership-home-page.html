@@ -1,6 +1,6 @@
 <app-page-shell [title]="pageTitle()" homeLabelKey="nav.home">
   <section class="bg-cream py-16 sm:py-24">
-    <div class="mx-auto max-w-6xl px-5 sm:px-8" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+    <div class="site-wrap" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       @if (loading()) {
         <app-member-portal-loading [rows]="4" [offsetTop]="false" />
       } @else if (member(); as m) {

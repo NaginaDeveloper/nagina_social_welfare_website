@@ -1,7 +1,7 @@
 <section id="prayer-times" class="relative overflow-hidden bg-sand py-20 sm:py-32">
   <div class="geo-pattern absolute inset-0 opacity-25" aria-hidden="true"></div>
 
-  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="relative site-wrap">
     <div
       class="mx-auto max-w-2xl text-center"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
@@ -10,7 +10,7 @@
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
         {{ i18n.t('namaz.eyebrow') }}
       </span>
-      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl 3xl:text-6xl">
         {{ i18n.t('namaz.title') }}
         <span class="text-gold-gradient">{{ i18n.t('namaz.titleAccent') }}</span>
       </h1>
@@ -35,7 +35,7 @@
         </button>
       </div>
     } @else if (prayer.today(); as day) {
-      <div class="mx-auto mt-10 max-w-5xl sm:mt-12">
+      <div class="mx-auto mt-10 sm:mt-12">
         <!-- Date + live status -->
         <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>

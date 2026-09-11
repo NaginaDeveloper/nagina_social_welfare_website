@@ -139,10 +139,55 @@
 
   --shadow-portal: 0 20px 50px -20px rgba(2, 44, 34, 0.35);
   --shadow-soft: 0 10px 30px -12px rgba(2, 44, 34, 0.25);
+
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 160rem;
 }
 
 :root {
   color-scheme: light;
+  --site-max: 72rem;
+  --site-gutter: 1.25rem;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --site-gutter: 2rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --site-max: 80rem;
+  }
+}
+
+@media (min-width: 96rem) {
+  :root {
+    --site-max: 88rem;
+    --site-gutter: 2.5rem;
+  }
+}
+
+@media (min-width: 120rem) {
+  :root {
+    --site-max: 96rem;
+    --site-gutter: 3rem;
+  }
+}
+
+@media (min-width: 160rem) {
+  :root {
+    --site-max: 104rem;
+  }
+}
+
+/* Shared page column — grows on large LED / 4K, keeps phone/laptop gutters. */
+@utility site-wrap {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--site-max);
+  padding-inline: var(--site-gutter);
 }
 
 html {

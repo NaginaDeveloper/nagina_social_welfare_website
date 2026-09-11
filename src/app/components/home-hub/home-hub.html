@@ -9,8 +9,10 @@
     aria-hidden="true"
   ></div>
 
-  <div class="mx-auto max-w-6xl px-5 pb-10 pt-24 text-center sm:px-8 sm:pb-12 sm:pt-28">
-    <p class="font-arabic text-2xl leading-tight text-gold-300 notranslate sm:text-3xl" lang="ar" dir="rtl">
+  <div
+    class="site-wrap flex flex-col items-center justify-center pb-10 pt-24 text-center sm:pb-14 sm:pt-28 xl:min-h-[36rem] 2xl:min-h-[40rem] 3xl:min-h-[min(68vh,_46rem)]"
+  >
+    <p class="font-arabic text-2xl leading-tight text-gold-300 notranslate sm:text-3xl 3xl:text-4xl" lang="ar" dir="rtl">
       بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
     </p>
     <p
@@ -19,18 +21,18 @@
     >
       {{ i18n.t('hero.bismillahEn') }}
     </p>
-    <h1 class="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
+    <h1 class="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl xl:text-6xl 3xl:text-7xl">
       Nagina Social Welfare
     </h1>
     <p
-      class="mx-auto mt-3 max-w-xl font-display text-lg font-medium italic text-gold-300/90 sm:text-2xl"
+      class="mx-auto mt-3 max-w-xl font-display text-lg font-medium italic text-gold-300/90 sm:text-2xl 3xl:text-3xl"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
       {{ i18n.t('hero.tagline') }}
     </p>
     <p
-      class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-cream/85 sm:text-base"
+      class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-cream/85 sm:text-base xl:text-lg"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
@@ -103,7 +105,7 @@
 </section>
 
 <section class="relative bg-cream pb-16 pt-5 sm:pb-20 sm:pt-6" aria-labelledby="hub-heading">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="site-wrap">
     <div class="sticky top-[4.25rem] z-20 -mx-1 mb-5 bg-cream/95 px-1 pb-3 pt-1 backdrop-blur-md sm:top-[4.75rem]">
       <label class="sr-only" for="home-hub-search">{{ i18n.t('hub.searchLabel') }}</label>
       <div class="relative">
@@ -136,7 +138,7 @@
       <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
         {{ i18n.t('hub.eyebrow') }}
       </p>
-      <h2 id="hub-heading" class="mt-1 font-display text-xl font-bold text-forest sm:text-2xl">
+      <h2 id="hub-heading" class="mt-1 font-display text-xl font-bold text-forest sm:text-2xl 3xl:text-3xl">
         {{ i18n.t('hub.title') }}
       </h2>
       <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('hub.lead') }}</p>
@@ -147,7 +149,7 @@
         {{ i18n.t('hub.empty') }}
       </p>
     } @else {
-      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6">
         @for (tile of filteredTiles(); track tile.id) {
           @if (tile.externalHref; as href) {
             <a

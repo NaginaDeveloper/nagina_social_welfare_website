@@ -1,7 +1,7 @@
 <section id="sermons" class="relative overflow-hidden bg-cream py-20 sm:py-28">
   <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
-  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+  <div class="relative site-wrap">
     <div
       class="mx-auto max-w-2xl text-center"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
@@ -10,7 +10,7 @@
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
         {{ i18n.t('sermons.eyebrow') }}
       </span>
-      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl 3xl:text-6xl">
         {{ i18n.t('sermons.title') }}
         <span class="text-gold-gradient">{{ i18n.t('sermons.titleAccent') }}</span>
       </h1>
@@ -43,7 +43,7 @@
         {{ sermons.filteredSermons().length === 1 ? i18n.t('sermons.one') : i18n.t('sermons.many') }}
       </p>
 
-      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         @for (sermon of sermons.filteredSermons(); track sermon.id) {
           <article
             class="group overflow-hidden rounded-2xl border border-mist bg-white shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold/30 hover:shadow-portal"
