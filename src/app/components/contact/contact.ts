@@ -5,12 +5,13 @@ import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { VenueMap } from '../venue-map/venue-map';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
+import { VisitorStats } from '../visitor-stats/visitor-stats';
 
 type ContactReason = 'enrolment' | 'donation' | 'namaz' | 'general';
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule, RouterLink, VenueMap, WhatsappIcon],
+  imports: [FormsModule, RouterLink, VenueMap, WhatsappIcon, VisitorStats],
   templateUrl: './contact.html',
 })
 export class Contact {

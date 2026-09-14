@@ -9,6 +9,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'header.halalChecker': 'Halal barcode',
     'header.halalCheckerShort': 'Halal',
     'header.assistant': 'Ask Assistant',
+    'header.assistantShort': 'Ask',
     'header.login': 'Staff portal',
     'header.memberLoginShort': 'Sign in',
     'header.myMembership': 'My membership',
@@ -100,6 +101,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.vision': 'Our Vision',
     'contact.donate': 'Donate Now',
     'contact.applyCta': 'Start online admission',
+
+    'visitor.aria': 'Website visitor statistics',
+    'visitor.live': 'Live visitors',
+    'visitor.today': 'Visitors today',
+    'visitor.total': 'Total visitors',
+    'visitor.socialLead': 'Follow us for updates from Markaz and the community.',
 
     'donate.eyebrow': 'Support our mission',
     'donate.title': 'Donate with Confidence',
@@ -703,6 +710,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'hero.quizAria': 'Play Islamic Quiz (opens in a new tab)',
     'hero.halalChecker': 'Check Halal barcode',
     'hero.halalCheckerAria': 'Open Halal barcode helper (opens in a new tab)',
+    'hero.assistant': 'Nagina Assistant',
+    'hero.assistantAria': 'Open Nagina Assistant chat',
     'hero.donateLine': 'support education and welfare',
     'hero.ask': 'Ask in English or Urdu',
 
@@ -1110,6 +1119,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'header.halalChecker': 'حلال بارکوڈ',
     'header.halalCheckerShort': 'حلال',
     'header.assistant': 'اسسٹنٹ سے پوچھیں',
+    'header.assistantShort': 'پوچھیں',
     'header.login': 'اسٹاف پورٹل',
     'header.memberLoginShort': 'سائن ان',
     'header.myMembership': 'میری رکنیت',
@@ -1200,6 +1210,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.vision': 'ہمارا ویژن',
     'contact.donate': 'اب عطیہ دیں',
     'contact.applyCta': 'آن لائن داخلہ شروع کریں',
+
+    'visitor.aria': 'ویب سائٹ وزٹرز کے اعداد',
+    'visitor.live': 'لائیو وزٹرز',
+    'visitor.today': 'آج کے وزٹرز',
+    'visitor.total': 'کل وزٹرز',
+    'visitor.socialLead': 'مرکز اور کمیونٹی کی تازہ خبروں کے لیے ہمیں فالو کریں۔',
 
     'donate.eyebrow': 'ہمارے مشن کی حمایت کریں',
     'donate.title': 'اطمینان سے عطیہ دیں',
@@ -1670,6 +1686,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'hero.quizAria': 'اسلامی کوئز کھیلیں (نئی ٹیب میں کھلے گی)',
     'hero.halalChecker': 'حلال بارکوڈ چیک کریں',
     'hero.halalCheckerAria': 'حلال بارکوڈ مددگار کھولیں (نئی ٹیب میں کھلے گی)',
+    'hero.assistant': 'نگینہ اسسٹنٹ',
+    'hero.assistantAria': 'نگینہ اسسٹنٹ چیٹ کھولیں',
     'hero.donateLine': 'تعلیم اور فلاح کی حمایت کریں',
     'hero.ask': 'انگریزی یا اردو میں پوچھیں',
 

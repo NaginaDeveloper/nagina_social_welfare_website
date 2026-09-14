@@ -11,6 +11,7 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import { MemberAuthService } from '../../services/member-auth.service';
+import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 
@@ -70,6 +71,7 @@ export class Header implements OnInit {
   protected readonly memberAuth = inject(MemberAuthService);
 
   protected readonly prayer = inject(PrayerTimesService);
+  private readonly assistantLauncher = inject(AssistantLauncherService);
   private readonly router = inject(Router);
 
   protected readonly scrolled = signal(false);
@@ -312,6 +314,14 @@ export class Header implements OnInit {
 
   protected onNavClick(): void {
     this.closeMenu();
+  }
+
+  protected openAssistant(): void {
+    this.closeMenu();
+    if (this.currentPath() === '/assistant') {
+      return;
+    }
+    this.assistantLauncher.open();
   }
 
   private syncPath(url: string): void {

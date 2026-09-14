@@ -49,6 +49,13 @@
           "functionId": "syncAssistantKnowledge",
           "region": "europe-west2"
         }
+      },
+      {
+        "source": "/pingVisitorStats",
+        "function": {
+          "functionId": "pingVisitorStats",
+          "region": "europe-west2"
+        }
       }
     ]
   }

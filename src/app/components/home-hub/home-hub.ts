@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { PrayerTimesService } from '../../services/prayer-times.service';
+import { HeroTopActions } from '../hero-top-actions/hero-top-actions';
 
 export type HubTileTone = 'featured' | 'donate' | 'default';
 
@@ -22,7 +23,7 @@ export interface HubTile {
 
 @Component({
   selector: 'app-home-hub',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, HeroTopActions],
   templateUrl: './home-hub.html',
 })
 export class HomeHub implements OnInit {

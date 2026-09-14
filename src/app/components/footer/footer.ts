@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
+import { VisitorStats } from '../visitor-stats/visitor-stats';
 
 interface FooterLink {
   readonly labelKey: string;
@@ -12,7 +13,7 @@ interface FooterLink {
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, WhatsappIcon],
+  imports: [RouterLink, WhatsappIcon, VisitorStats],
   templateUrl: './footer.html',
 })
 export class Footer {

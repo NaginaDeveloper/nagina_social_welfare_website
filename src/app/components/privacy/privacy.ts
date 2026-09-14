@@ -25,12 +25,17 @@ export class Privacy {
     {
       title: 'What this site does not do',
       body:
-        'We do not use advertising cookies, on-site analytics trackers, or marketing pixels on this website. We do not sell your personal data. We may use Google Search Console to see how our pages appear in Google Search (search queries and clicks); that service is operated by Google and does not place advertising trackers on visitors’ browsers.',
+        'We do not use advertising cookies or marketing pixels on this website. We do not sell your personal data. We may use Google Search Console to see how our pages appear in Google Search (search queries and clicks); that service is operated by Google and does not place advertising trackers on visitors’ browsers.',
     },
     {
       title: 'Information we process',
       body:
         'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email, call, or open WhatsApp from this website, the draft is sent in your own phone or email app — we do not store that unsent WhatsApp/email draft on our servers. Online madrasa admission applications submitted via /apply and community membership applications via /membership are stored in our Firebase/Google Cloud Firestore and processed by our staff or trustees; acknowledgement and decision emails are sent from info@naginasocialwelfare.co.uk. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount and chosen fund only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
+    },
+    {
+      title: 'Visitor counter',
+      body:
+        'We show a first-party visitor counter (live visitors, visitors today, and total visitors) on this website. Your browser stores a random visitor id in local storage and a session id in session storage so refreshes do not inflate the totals. Those ids, and a short-lived presence record, are stored on our Firebase infrastructure. We rate-limit requests by network address on the server but do not attach that address to the visitor counter records. This is not advertising analytics and we do not use third-party marketing trackers for it.',
     },
     {
       title: 'Online admissions',
