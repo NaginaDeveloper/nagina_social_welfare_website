@@ -1,1 +1,0 @@
-import {p,am as Ce,an as ao,ao as k}from'./main-CLSIU4TD.js';function w(t){t||(t=p(Ce));let i=new k(e=>{if(t.destroyed){e.next();return}return t.onDestroy(e.next.bind(e))});return e=>e.pipe(ao(i))}export{w};
