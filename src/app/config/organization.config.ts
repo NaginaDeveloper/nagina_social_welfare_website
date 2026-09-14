@@ -35,7 +35,7 @@ export const ORGANIZATION = {
   facebookPhotosUrl: 'https://www.facebook.com/naginasocial.welfare.5/photos',
   instagramUrl: 'https://www.instagram.com/naginasocialwelfare/',
   youtubeUrl: 'https://www.youtube.com/@naginasocialwelfareuk7419',
-  /** UK presentation video (Google Drive) — About / Our Vision. */
+  /** Introduction video (Google Drive) — About / Our Vision. */
   presentationVideoUrl:
     'https://drive.google.com/file/d/1_oDLPS0x1oQvTRI4X313NKAYMLNFSisy/view',
   presentationVideoEmbedUrl:
