@@ -321,9 +321,9 @@ export const ZAKAT_RULES_SEO: PageSeo = {
 export const DUAS_SEO: PageSeo = {
   title: 'Daily Duas and Prayers | Nagina Social Welfare UK',
   description:
-    'Checked daily duas with Arabic, transliteration and English meaning from Nagina Social Welfare UK — reviewed before publication.',
+    'Seventeen everyday duas from Let’s Learn Islam — Arabic with English and Urdu meanings for children and families in Peterborough.',
   path: '/duas/',
-  keywords: 'daily duas, Islamic prayers English, dua transliteration, Nagina Social Welfare',
+  keywords: 'daily duas, Let’s Learn Islam, Islamic prayers English Urdu, Nagina Social Welfare',
   type: 'article',
   breadcrumb: 'Daily Duas',
   changefreq: 'monthly',
@@ -333,7 +333,7 @@ export const DUAS_SEO: PageSeo = {
 export const CALENDAR_SEO: PageSeo = {
   title: 'Islamic Calendar | Nagina Social Welfare UK',
   description:
-    'Islamic (Hijri) calendar notes for planning — method, key dates and where dates may change. Peterborough prayer times linked.',
+    'Interactive Islamic calendar with Gregorian and Hijri dates for Peterborough — AlAdhan conversion, with links to prayer times and Ramadan.',
   path: '/calendar/',
   keywords: 'Islamic calendar, Hijri calendar UK, Islamic dates, Nagina Social Welfare',
   type: 'website',

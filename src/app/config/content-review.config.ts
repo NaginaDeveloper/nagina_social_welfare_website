@@ -50,12 +50,14 @@ export const CONTENT_REVIEW: Record<string, ContentReviewEntry> = {
   duas: {
     pageId: 'duas',
     lastChecked: '14 September 2026',
-    sources: [],
+    sources: [
+      'Let’s Learn Islam (آئیں دین سیکھیں) — Daily Duʿās / بچوں کی پیاری روزمرہ دعائیں module',
+    ],
   },
   calendar: {
     pageId: 'calendar',
     lastChecked: '14 September 2026',
-    sources: ['AlAdhan API Hijri date (same source as prayer times)'],
+    sources: ['AlAdhan gToHCalendar — Gregorian month with Hijri day labels'],
   },
   ramadan: {
     pageId: 'ramadan',

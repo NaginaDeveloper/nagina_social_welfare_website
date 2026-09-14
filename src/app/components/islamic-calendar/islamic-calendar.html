@@ -19,17 +19,116 @@
     </div>
 
     <div
-      class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg"
+      class="mx-auto mt-10 max-w-3xl space-y-4 text-base leading-relaxed text-slate-warm sm:text-lg"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
       <p>{{ i18n.t('islamicCalendar.body') }}</p>
-      <p>{{ i18n.t('islamicCalendar.methodNote') }}</p>
-      <p>{{ i18n.t('islamicCalendar.changeNote') }}</p>
+      <p class="text-sm sm:text-base">{{ i18n.t('islamicCalendar.methodNote') }}</p>
+      <p class="text-sm sm:text-base">{{ i18n.t('islamicCalendar.changeNote') }}</p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-4xl rounded-2xl border border-mist bg-white px-4 py-6 shadow-soft sm:px-8 sm:py-8">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <button
+          type="button"
+          class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-mist bg-sand/40 px-3 text-sm font-semibold text-forest"
+          (click)="prevMonth()"
+          [attr.aria-label]="i18n.t('islamicCalendar.prev')"
+        >
+          ‹
+        </button>
+        <div class="min-w-0 flex-1 text-center">
+          @if (calendar.month(); as month) {
+            <p class="font-display text-xl font-bold text-forest sm:text-2xl">
+              {{ month.monthName }} {{ month.year }}
+            </p>
+            <p class="mt-1 text-sm text-slate-warm">{{ month.hijriRangeLabel }}</p>
+          } @else {
+            <p class="font-display text-xl font-bold text-forest">{{ i18n.t('islamicCalendar.title') }}</p>
+          }
+        </div>
+        <button
+          type="button"
+          class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-mist bg-sand/40 px-3 text-sm font-semibold text-forest"
+          (click)="nextMonth()"
+          [attr.aria-label]="i18n.t('islamicCalendar.next')"
+        >
+          ›
+        </button>
+      </div>
+
+      <div class="mt-4 flex justify-center">
+        <button
+          type="button"
+          class="inline-flex min-h-10 items-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 py-2 text-sm font-semibold text-forest"
+          (click)="goToday()"
+        >
+          {{ i18n.t('islamicCalendar.todayBtn') }}
+        </button>
+      </div>
+
+      @if (calendar.loading() && !calendar.month()) {
+        <p class="mt-10 text-center text-sm text-slate-warm">{{ i18n.t('islamicCalendar.loading') }}</p>
+      } @else if (calendar.error() && !calendar.month()) {
+        <div class="mt-10 text-center">
+          <p class="text-sm font-medium text-forest">{{ calendar.error() }}</p>
+          <button
+            type="button"
+            class="mt-4 inline-flex min-h-11 items-center rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream"
+            (click)="goToday()"
+          >
+            {{ i18n.t('islamicCalendar.retry') }}
+          </button>
+        </div>
+      } @else if (calendar.month(); as month) {
+        <div
+          class="mt-8 grid grid-cols-7 gap-1 text-center text-[0.65rem] font-semibold uppercase tracking-wide text-slate-warm sm:gap-2 sm:text-xs"
+          role="row"
+        >
+          @for (label of weekdayLabels; track label) {
+            <div class="py-2">{{ label }}</div>
+          }
+        </div>
+
+        <div class="grid grid-cols-7 gap-1 sm:gap-2" role="grid" [attr.aria-label]="month.monthName + ' ' + month.year">
+          @for (blank of leadingBlanks(); track blank) {
+            <div class="min-h-[4.25rem] rounded-xl bg-transparent sm:min-h-[5rem]" aria-hidden="true"></div>
+          }
+          @for (day of month.days; track day.gregorianDate) {
+            <div
+              class="flex min-h-[4.25rem] flex-col items-center justify-center rounded-xl border px-1 py-2 sm:min-h-[5rem] sm:px-2"
+              [class.border-gold]="day.isToday"
+              [class.bg-sand/60]="day.isToday"
+              [class.border-mist]="!day.isToday"
+              [class.bg-cream/40]="!day.isToday"
+              [attr.aria-current]="day.isToday ? 'date' : null"
+            >
+              <span
+                class="font-display text-base font-bold sm:text-lg"
+                [class.text-forest]="!day.isToday"
+                [class.text-emerald-800]="day.isToday"
+              >
+                {{ day.gregorianDay }}
+              </span>
+              <span class="mt-0.5 text-[0.65rem] leading-tight text-slate-warm sm:text-xs">
+                {{ day.hijriDay }}
+              </span>
+              <span class="hidden text-[0.6rem] leading-tight text-slate-warm/80 sm:block">
+                {{ day.hijriMonthEn.split(' ')[0] }}
+              </span>
+            </div>
+          }
+        </div>
+
+        <p class="mt-6 text-center text-xs leading-relaxed text-slate-warm sm:text-sm">
+          {{ i18n.t('islamicCalendar.gridHint') }}
+        </p>
+      }
     </div>
 
     <div
-      class="mx-auto mt-14 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10"
+      class="mx-auto mt-10 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >

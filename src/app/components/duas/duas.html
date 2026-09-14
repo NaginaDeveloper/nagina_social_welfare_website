@@ -19,39 +19,50 @@
     </div>
 
     <div
-      class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg"
+      class="mx-auto mt-10 max-w-3xl space-y-4 text-base leading-relaxed text-slate-warm sm:text-lg"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
       <p>{{ i18n.t('duas.body') }}</p>
+      <p class="text-sm sm:text-base">{{ i18n.t('duas.sourceNote') }}</p>
     </div>
 
-    <div
-      class="mx-auto mt-14 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-10 text-center shadow-soft sm:px-10"
-      [attr.dir]="i18n.isUr() ? 'rtl' : null"
-      [attr.lang]="i18n.isUr() ? 'ur' : null"
-    >
-      <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('duas.emptyTitle') }}</h2>
-      <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-warm sm:text-base">
-        {{ i18n.t('duas.empty') }}
-      </p>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <a
-          [href]="reviewWhatsApp"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest"
+    <ol class="mx-auto mt-14 max-w-3xl space-y-5" aria-label="Daily duas">
+      @for (dua of duas; track dua.id) {
+        <li
+          class="rounded-2xl border border-mist bg-white px-5 py-6 shadow-soft sm:px-8 sm:py-7"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
         >
-          {{ i18n.t('duas.linkWhatsApp') }}
-        </a>
-        <a
-          routerLink="/contact"
-          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-sand/40 px-5 py-2.5 text-sm font-semibold text-forest"
-        >
-          {{ i18n.t('duas.linkContact') }}
-        </a>
-      </div>
-    </div>
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">
+              <span class="me-2 text-gold-600">{{ dua.order }}.</span>
+              {{ title(dua) }}
+            </h2>
+          </div>
+          <p
+            class="mt-5 font-arabic text-right text-2xl leading-[2] text-forest sm:text-[1.75rem] notranslate"
+            lang="ar"
+            dir="rtl"
+          >
+            {{ dua.arabic }}
+          </p>
+          <p
+            class="mt-4 text-sm leading-relaxed text-slate-warm sm:text-base"
+            [attr.lang]="i18n.isUr() ? 'ur' : 'en'"
+          >
+            {{ meaning(dua) }}
+          </p>
+          @if (note(dua); as extra) {
+            <p
+              class="mt-3 text-xs leading-relaxed text-slate-warm/90 sm:text-sm"
+              [attr.lang]="i18n.isUr() ? 'ur' : 'en'"
+            >
+              {{ extra }}
+            </p>
+          }
+        </li>
+      }
+    </ol>
 
     <app-content-review-note pageId="duas" />
     <app-related-pages

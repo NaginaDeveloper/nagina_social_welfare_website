@@ -1230,23 +1230,20 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'duas.eyebrow': 'Worship',
     'duas.title': 'Daily duas',
     'duas.shortAnswer':
-      'Checked daily prayers with Arabic, transliteration and meaning — published only after review.',
+      'Everyday duas for children and families — Arabic with English and Urdu meanings from Let’s Learn Islam.',
     'duas.body':
-      'We are preparing a careful collection of everyday duas for the community. Each entry will include Arabic text, a clear transliteration and an English meaning, with a recorded review date.',
-    'duas.emptyTitle': 'Collection coming soon',
-    'duas.empty':
-      'No published duas yet. Message us if you would like a specific dua reviewed for this page, or use Contact for general enquiries.',
-    'duas.linkWhatsApp': 'Ask on WhatsApp',
-    'duas.linkContact': 'Contact page',
+      'These seventeen everyday duas come from the Let’s Learn Islam (آئیں دین سیکھیں) children’s module used at Markaz Deen-e-Islam. Each entry shows the Arabic text with a clear meaning.',
+    'duas.sourceNote':
+      'Source: Let’s Learn Islam — Daily Duʿās (Supplications for Children). Meanings follow the approved curriculum text.',
 
     'islamicCalendar.eyebrow': 'Hijri dates',
     'islamicCalendar.title': 'Islamic calendar',
     'islamicCalendar.shortAnswer':
-      'A practical note on Hijri dates for planning worship, Ramadan and community programmes in Peterborough.',
+      'A month grid with Gregorian and Hijri dates for planning worship, Ramadan and community programmes in Peterborough.',
     'islamicCalendar.body':
       'The Islamic (Hijri) calendar is lunar. Month starts can differ between calculation methods and local moon sighting. Use this page as a planning aid alongside trusted local announcements.',
     'islamicCalendar.methodNote':
-      'Our prayer-times and related Hijri date notes use the AlAdhan service with the same method settings as our Salah page.',
+      'Hijri dates below use the AlAdhan conversion calendar (same family of service as our prayer times).',
     'islamicCalendar.changeNote':
       'Important dates such as Ramadan and Eid may change locally. Always confirm with your mosque or community announcement before fasting or celebrating.',
     'islamicCalendar.todayTitle': 'Plan your day',
@@ -1255,6 +1252,13 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'islamicCalendar.linkNamaz': 'Prayer times',
     'islamicCalendar.linkRamadan': 'Ramadan',
     'islamicCalendar.linkEvents': 'Events',
+    'islamicCalendar.prev': 'Previous month',
+    'islamicCalendar.next': 'Next month',
+    'islamicCalendar.todayBtn': 'This month',
+    'islamicCalendar.loading': 'Loading calendar…',
+    'islamicCalendar.retry': 'Try again',
+    'islamicCalendar.gridHint':
+      'Large number = Gregorian day. Smaller number = Hijri day. Today is highlighted.',
 
     'ramadan.eyebrow': 'Blessed month',
     'ramadan.title': 'Ramadan in Peterborough',
@@ -2366,23 +2370,20 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'duas.eyebrow': 'عبادت',
     'duas.title': 'روزانہ دعائیں',
     'duas.shortAnswer':
-      'جانچی ہوئی روزانہ دعائیں — عربی، تلفظ اور مطلب، جائزے کے بعد شائع۔',
+      'بچوں اور خاندانوں کے لیے روزمرہ دعائیں — عربی متن کے ساتھ انگریزی اور اردو مطلب، آئیں دین سیکھیں سے۔',
     'duas.body':
-      'ہم کمیونٹی کے لیے روزمرہ دعاؤں کا محتاط مجموعہ تیار کر رہے ہیں۔ ہر اندراج میں عربی متن، واضح تلفظ، انگریزی مطلب اور جائزے کی تاریخ ہوگی۔',
-    'duas.emptyTitle': 'مجموعہ جلد آ رہا ہے',
-    'duas.empty':
-      'ابھی کوئی شائع شدہ دعا نہیں۔ اگر کسی مخصوص دعا کا جائزہ اس صفحے کے لیے چاہیں تو پیغام بھیجیں، یا عمومی سوالات کے لیے رابطہ صفحہ استعمال کریں۔',
-    'duas.linkWhatsApp': 'واٹس ایپ پر پوچھیں',
-    'duas.linkContact': 'رابطہ صفحہ',
+      'یہ سترہ روزمرہ دعائیں مرکز دین اسلام میں استعمال ہونے والے نصاب آئیں دین سیکھیں (Let’s Learn Islam) کے بچوں کے ماڈیول سے ہیں۔ ہر اندراج میں عربی متن اور واضح مطلب ہے۔',
+    'duas.sourceNote':
+      'ماخذ: آئیں دین سیکھیں — بچوں کی پیاری روزمرہ دعائیں۔ معانی منظور شدہ نصابی متن کے مطابق ہیں۔',
 
     'islamicCalendar.eyebrow': 'ہجری تاریخیں',
     'islamicCalendar.title': 'اسلامی کیلنڈر',
     'islamicCalendar.shortAnswer':
-      'پیٹربورو میں عبادت، رمضان اور کمیونٹی پروگراموں کی منصوبہ بندی کے لیے ہجری تاریخوں پر عملی نوٹ۔',
+      'پیٹربورو میں عبادت، رمضان اور کمیونٹی پروگراموں کی منصوبہ بندی کے لیے شمسی اور ہجری تاریخوں کا ماہانہ گرڈ۔',
     'islamicCalendar.body':
       'اسلامی (ہجری) کیلنڈر قمری ہے۔ مہینے کا آغاز حسابی طریقوں اور مقامی رویتِ ہلال میں مختلف ہو سکتا ہے۔ اس صفحے کو مقامی معتبر اعلانات کے ساتھ منصوبہ بندی کی مدد سمجھیں۔',
     'islamicCalendar.methodNote':
-      'ہمارے نماز کے اوقات اور متعلقہ ہجری نوٹس AlAdhan سروس استعمال کرتے ہیں — وہی طریقہ جو نماز کے صفحے پر ہے۔',
+      'نیچے ہجری تاریخیں AlAdhan کی تبدیلی کیلنڈر سے ہیں (نماز کے اوقات والی سروس کے خاندان سے)۔',
     'islamicCalendar.changeNote':
       'رمضان اور عید جیسی اہم تاریخیں مقامی طور پر بدل سکتی ہیں۔ روزہ یا خوشی سے پہلے اپنی مسجد یا کمیونٹی اعلان سے تصدیق کریں۔',
     'islamicCalendar.todayTitle': 'اپنا دن ترتیب دیں',
@@ -2391,6 +2392,13 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'islamicCalendar.linkNamaz': 'نماز کے اوقات',
     'islamicCalendar.linkRamadan': 'رمضان',
     'islamicCalendar.linkEvents': 'تقریبات',
+    'islamicCalendar.prev': 'پچھلا مہینہ',
+    'islamicCalendar.next': 'اگلا مہینہ',
+    'islamicCalendar.todayBtn': 'یہ مہینہ',
+    'islamicCalendar.loading': 'کیلنڈر لوڈ ہو رہا ہے…',
+    'islamicCalendar.retry': 'دوبارہ کوشش کریں',
+    'islamicCalendar.gridHint':
+      'بڑا نمبر = شمسی دن۔ چھوٹا نمبر = ہجری دن۔ آج کا دن نمایاں ہے۔',
 
     'ramadan.eyebrow': 'مبارک مہینہ',
     'ramadan.title': 'پیٹربورو میں رمضان',
