@@ -18,6 +18,39 @@
       </p>
     </div>
 
+    @if (calendar.today(); as today) {
+      <div
+        class="mx-auto mt-12 max-w-xl overflow-hidden rounded-[1.75rem] border border-mist bg-white shadow-soft"
+        aria-live="polite"
+      >
+        <div class="bg-forest px-6 py-8 text-center sm:px-10 sm:py-10">
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">
+            {{ i18n.t('islamicCalendar.todayHijriLabel') }}
+          </p>
+          <p class="mt-4 font-display text-6xl font-bold leading-none text-cream sm:text-7xl">
+            {{ today.hijriDay }}
+          </p>
+          <p class="mt-4 font-display text-2xl font-bold text-gold-300 sm:text-3xl">
+            {{ today.hijriMonthEn }}
+          </p>
+          <p
+            class="mt-2 font-arabic text-xl text-cream/85 notranslate sm:text-2xl"
+            lang="ar"
+            dir="rtl"
+          >
+            {{ today.hijriMonthAr }}
+          </p>
+          <p class="mt-4 text-lg font-semibold text-cream">
+            {{ today.hijriYear }}
+            <span class="text-gold-300">AH</span>
+          </p>
+        </div>
+        <div class="px-6 py-4 text-center sm:px-10">
+          <p class="text-sm text-slate-warm sm:text-base">{{ today.gregorianLabel }}</p>
+        </div>
+      </div>
+    }
+
     <div
       class="mx-auto mt-10 max-w-3xl space-y-4 text-base leading-relaxed text-slate-warm sm:text-lg"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
@@ -40,10 +73,15 @@
         </button>
         <div class="min-w-0 flex-1 text-center">
           @if (calendar.month(); as month) {
-            <p class="font-display text-xl font-bold text-forest sm:text-2xl">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
+              {{ i18n.t('islamicCalendar.viewingMonth') }}
+            </p>
+            <p class="mt-1 font-display text-xl font-bold text-forest sm:text-2xl">
               {{ month.monthName }} {{ month.year }}
             </p>
-            <p class="mt-1 text-sm text-slate-warm">{{ month.hijriRangeLabel }}</p>
+            <p class="mt-2 font-display text-base font-semibold text-emerald-800 sm:text-lg">
+              {{ month.hijriRangeLabel }}
+            </p>
           } @else {
             <p class="font-display text-xl font-bold text-forest">{{ i18n.t('islamicCalendar.title') }}</p>
           }

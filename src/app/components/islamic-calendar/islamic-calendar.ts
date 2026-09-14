@@ -37,6 +37,7 @@ export class IslamicCalendar implements OnInit {
     const now = this.londonParts();
     this.viewYear.set(now.year);
     this.viewMonth.set(now.month);
+    void this.calendar.ensureToday();
     void this.calendar.load(now.year, now.month);
   }
 

@@ -1227,14 +1227,18 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'zakatRules.disclaimer':
       'This summary follows common Hanafi guidance used on our calculator. It is not a personal ruling. Livestock, crops and complex businesses need a scholar.',
 
-    'duas.eyebrow': 'Worship',
+    'duas.eyebrow': 'Let’s Learn Islam',
     'duas.title': 'Daily duas',
     'duas.shortAnswer':
       'Everyday duas for children and families — Arabic with English and Urdu meanings from Let’s Learn Islam.',
     'duas.body':
       'These seventeen everyday duas come from the Let’s Learn Islam (آئیں دین سیکھیں) children’s module used at Markaz Deen-e-Islam. Each entry shows the Arabic text with a clear meaning.',
     'duas.sourceNote':
-      'Source: Let’s Learn Islam — Daily Duʿās (Supplications for Children). Meanings follow the approved curriculum text.',
+      'From Let’s Learn Islam (آئیں دین سیکھیں) — Daily Duʿās / بچوں کی پیاری روزمرہ دعائیں۔ Exact curriculum Arabic with English and Urdu meanings.',
+    'duas.arabicLabel': 'Arabic',
+    'duas.meaningEnLabel': 'English meaning',
+    'duas.meaningUrLabel': 'Urdu meaning',
+    'duas.noteLabel': 'Note',
 
     'islamicCalendar.eyebrow': 'Hijri dates',
     'islamicCalendar.title': 'Islamic calendar',
@@ -1257,6 +1261,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'islamicCalendar.todayBtn': 'This month',
     'islamicCalendar.loading': 'Loading calendar…',
     'islamicCalendar.retry': 'Try again',
+    'islamicCalendar.todayHijriLabel': 'Today’s Hijri date',
+    'islamicCalendar.viewingMonth': 'Month view',
     'islamicCalendar.gridHint':
       'Large number = Gregorian day. Smaller number = Hijri day. Today is highlighted.',
 
@@ -2367,14 +2373,18 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'zakatRules.disclaimer':
       'یہ خلاصہ ہمارے کیلکولیٹر میں استعمال عام حنفی رہنمائی کے مطابق ہے۔ ذاتی حکم نہیں۔ مویشی، فصل اور پیچیدہ کاروبار کے لیے عالم سے رجوع کریں۔',
 
-    'duas.eyebrow': 'عبادت',
+    'duas.eyebrow': 'آئیں دین سیکھیں',
     'duas.title': 'روزانہ دعائیں',
     'duas.shortAnswer':
       'بچوں اور خاندانوں کے لیے روزمرہ دعائیں — عربی متن کے ساتھ انگریزی اور اردو مطلب، آئیں دین سیکھیں سے۔',
     'duas.body':
       'یہ سترہ روزمرہ دعائیں مرکز دین اسلام میں استعمال ہونے والے نصاب آئیں دین سیکھیں (Let’s Learn Islam) کے بچوں کے ماڈیول سے ہیں۔ ہر اندراج میں عربی متن اور واضح مطلب ہے۔',
     'duas.sourceNote':
-      'ماخذ: آئیں دین سیکھیں — بچوں کی پیاری روزمرہ دعائیں۔ معانی منظور شدہ نصابی متن کے مطابق ہیں۔',
+      'آئیں دین سیکھیں (Let’s Learn Islam) — بچوں کی پیاری روزمرہ دعائیں سے۔ عربی متن اور انگریزی و اردو معانی بعینہ نصاب کے مطابق۔',
+    'duas.arabicLabel': 'عربی',
+    'duas.meaningEnLabel': 'انگریزی مطلب',
+    'duas.meaningUrLabel': 'اردو مطلب',
+    'duas.noteLabel': 'نوٹ',
 
     'islamicCalendar.eyebrow': 'ہجری تاریخیں',
     'islamicCalendar.title': 'اسلامی کیلنڈر',
@@ -2397,6 +2407,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'islamicCalendar.todayBtn': 'یہ مہینہ',
     'islamicCalendar.loading': 'کیلنڈر لوڈ ہو رہا ہے…',
     'islamicCalendar.retry': 'دوبارہ کوشش کریں',
+    'islamicCalendar.todayHijriLabel': 'آج کی ہجری تاریخ',
+    'islamicCalendar.viewingMonth': 'ماہانہ منظر',
     'islamicCalendar.gridHint':
       'بڑا نمبر = شمسی دن۔ چھوٹا نمبر = ہجری دن۔ آج کا دن نمایاں ہے۔',
 

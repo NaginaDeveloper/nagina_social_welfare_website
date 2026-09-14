@@ -2,7 +2,11 @@ import { Component, inject } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 import { ContentReviewNote } from '../content-review-note/content-review-note';
-import { LETS_LEARN_ISLAM_DUAS, type DailyDua } from './duas-data';
+import {
+  LETS_LEARN_ISLAM_DUAS,
+  LETS_LEARN_ISLAM_DUAS_MODULE,
+  type DailyDua,
+} from './duas-data';
 
 @Component({
   selector: 'app-duas',
@@ -11,6 +15,7 @@ import { LETS_LEARN_ISLAM_DUAS, type DailyDua } from './duas-data';
 })
 export class Duas {
   protected readonly i18n = inject(LanguageService);
+  protected readonly module = LETS_LEARN_ISLAM_DUAS_MODULE;
   protected readonly duas: readonly DailyDua[] = LETS_LEARN_ISLAM_DUAS;
 
   protected readonly related: readonly RelatedPageLink[] = [
@@ -20,17 +25,11 @@ export class Duas {
     { path: '/madrasa', label: 'Madrasa', hint: 'Children’s Islamic classes' },
   ];
 
-  protected title(dua: DailyDua): string {
-    return this.i18n.isUr() ? dua.titleUr : dua.titleEn;
+  protected moduleTitle(): string {
+    return this.i18n.isUr() ? this.module.titleUr : this.module.titleEn;
   }
 
-  protected meaning(dua: DailyDua): string {
-    if (this.i18n.isUr() && dua.meaningUr) return dua.meaningUr;
-    return dua.meaningEn;
-  }
-
-  protected note(dua: DailyDua): string {
-    if (this.i18n.isUr()) return dua.noteUr || dua.noteEn || '';
-    return dua.noteEn || dua.noteUr || '';
+  protected moduleDescription(): string {
+    return this.i18n.isUr() ? this.module.descriptionUr : this.module.descriptionEn;
   }
 }

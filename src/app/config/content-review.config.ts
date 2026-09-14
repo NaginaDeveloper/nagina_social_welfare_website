@@ -49,15 +49,15 @@ export const CONTENT_REVIEW: Record<string, ContentReviewEntry> = {
   },
   duas: {
     pageId: 'duas',
-    lastChecked: '14 September 2026',
+    lastChecked: '15 September 2026',
     sources: [
-      'Let’s Learn Islam (آئیں دین سیکھیں) — Daily Duʿās / بچوں کی پیاری روزمرہ دعائیں module',
+      'Let’s Learn Islam (آئیں دین سیکھیں) — module child_duas: Daily Duʿās — Supplications for Children / بچوں کی پیاری روزمرہ دعائیں (17 items; Arabic + EN/UR meanings from curriculum)',
     ],
   },
   calendar: {
     pageId: 'calendar',
-    lastChecked: '14 September 2026',
-    sources: ['AlAdhan gToHCalendar — Gregorian month with Hijri day labels'],
+    lastChecked: '15 September 2026',
+    sources: ['AlAdhan gToH / gToHCalendar — today’s Hijri day, month and year; Gregorian month grid'],
   },
   ramadan: {
     pageId: 'ramadan',

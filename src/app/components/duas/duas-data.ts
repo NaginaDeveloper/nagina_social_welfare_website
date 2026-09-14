@@ -1,4 +1,11 @@
 /** Daily duas from Let’s Learn Islam (آئیں دین سیکھیں) — module child_duas. */
+export interface LetsLearnIslamModuleMeta {
+  readonly titleEn: string;
+  readonly titleUr: string;
+  readonly descriptionEn: string;
+  readonly descriptionUr: string;
+}
+
 export interface DailyDua {
   readonly id: string;
   readonly order: number;
@@ -10,6 +17,13 @@ export interface DailyDua {
   readonly noteEn?: string;
   readonly noteUr?: string;
 }
+
+export const LETS_LEARN_ISLAM_DUAS_MODULE: LetsLearnIslamModuleMeta = {
+  titleEn: "Daily Duʿās — Supplications for Children",
+  titleUr: "بچوں کی پیاری روزمرہ دعائیں",
+  descriptionEn: "Beautiful everyday duʿās for eating, sleeping, travelling and more.",
+  descriptionUr: "کھانے، سونے، سفر اور روزمرہ کاموں کی پیاری پیاری دعائیں۔",
+};
 
 export const LETS_LEARN_ISLAM_DUAS: readonly DailyDua[] = [
   {

@@ -24,6 +24,15 @@ export interface CalendarMonth {
   readonly hijriRangeLabel: string;
 }
 
+export interface TodayHijri {
+  readonly hijriDay: number;
+  readonly hijriMonthEn: string;
+  readonly hijriMonthAr: string;
+  readonly hijriYear: string;
+  readonly gregorianLabel: string;
+  readonly weekdayEn: string;
+}
+
 interface AlAdhanGToHDay {
   readonly gregorian: {
     readonly date: string;
@@ -44,6 +53,11 @@ interface AlAdhanGToHResponse {
   readonly data: readonly AlAdhanGToHDay[];
 }
 
+interface AlAdhanGToHSingleResponse {
+  readonly code: number;
+  readonly data: AlAdhanGToHDay;
+}
+
 const WEEKDAY_INDEX: Record<string, number> = {
   Sunday: 0,
   Monday: 1,
@@ -57,18 +71,39 @@ const WEEKDAY_INDEX: Record<string, number> = {
 @Injectable({ providedIn: 'root' })
 export class IslamicCalendarService {
   private readonly monthSignal = signal<CalendarMonth | null>(null);
+  private readonly todaySignal = signal<TodayHijri | null>(null);
   private readonly loadingSignal = signal(false);
   private readonly errorSignal = signal<string | null>(null);
+  private todayLoaded = false;
 
   readonly month = this.monthSignal.asReadonly();
+  readonly today = this.todaySignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
 
   constructor(private readonly http: HttpClient) {}
 
+  async ensureToday(): Promise<void> {
+    if (this.todayLoaded && this.todaySignal()) return;
+    try {
+      const { day, month, year } = this.londonDateParts();
+      const date = `${day}-${month}-${year}`;
+      const url = `https://api.aladhan.com/v1/gToH/${date}`;
+      const res = await firstValueFrom(this.http.get<AlAdhanGToHSingleResponse>(url));
+      if (res.code !== 200 || !res.data) {
+        throw new Error('Today unavailable');
+      }
+      this.setTodayFromRow(res.data);
+      this.todayLoaded = true;
+    } catch {
+      // Month load may still populate today when viewing the current month.
+    }
+  }
+
   async load(year: number, month: number): Promise<void> {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
+    void this.ensureToday();
     try {
       const url = `https://api.aladhan.com/v1/gToHCalendar/${month}/${year}`;
       const res = await firstValueFrom(this.http.get<AlAdhanGToHResponse>(url));
@@ -94,6 +129,12 @@ export class IslamicCalendarService {
         };
       });
 
+      const todayRow = res.data.find((_, i) => days[i].isToday);
+      if (todayRow) {
+        this.setTodayFromRow(todayRow);
+        this.todayLoaded = true;
+      }
+
       const first = days[0];
       const last = days[days.length - 1];
       const hijriRangeLabel =
@@ -116,16 +157,36 @@ export class IslamicCalendarService {
     }
   }
 
+  private setTodayFromRow(row: AlAdhanGToHDay): void {
+    const gDay = Number(row.gregorian.day);
+    const gMonth = row.gregorian.month.en;
+    const gYear = row.gregorian.year;
+    this.todaySignal.set({
+      hijriDay: Number(row.hijri.day),
+      hijriMonthEn: row.hijri.month.en,
+      hijriMonthAr: row.hijri.month.ar,
+      hijriYear: row.hijri.year,
+      weekdayEn: row.gregorian.weekday.en,
+      gregorianLabel: `${row.gregorian.weekday.en}, ${gDay} ${gMonth} ${gYear}`,
+    });
+  }
+
   private londonYmd(): string {
+    const { day, month, year } = this.londonDateParts();
+    return `${year}-${month}-${day}`;
+  }
+
+  private londonDateParts(): { day: string; month: string; year: string } {
     const parts = new Intl.DateTimeFormat('en-CA', {
       timeZone: 'Europe/London',
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
     }).formatToParts(new Date());
-    const y = parts.find((p) => p.type === 'year')?.value ?? '2026';
-    const m = parts.find((p) => p.type === 'month')?.value ?? '01';
-    const d = parts.find((p) => p.type === 'day')?.value ?? '01';
-    return `${y}-${m}-${d}`;
+    return {
+      day: parts.find((p) => p.type === 'day')?.value ?? '01',
+      month: parts.find((p) => p.type === 'month')?.value ?? '01',
+      year: parts.find((p) => p.type === 'year')?.value ?? '2026',
+    };
   }
 }
