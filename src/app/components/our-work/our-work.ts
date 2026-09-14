@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
+import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
+import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 
 interface Programme {
   readonly id: string;
@@ -18,11 +20,24 @@ interface Programme {
 
 @Component({
   selector: 'app-our-work',
-  imports: [RouterLink],
+  imports: [RouterLink, RelatedPages],
   templateUrl: './our-work.html',
 })
 export class OurWork {
   protected readonly i18n = inject(LanguageService);
+  protected readonly org = ORGANIZATION;
+  protected readonly helpWhatsApp = whatsappHref(
+    'Assalamu alaikum, I would like to ask about community welfare support from Nagina Social Welfare.',
+  );
+
+  protected readonly related: readonly RelatedPageLink[] = [
+    { path: '/madrasa', label: 'Madrasa', hint: 'Islamic education in Peterborough' },
+    { path: '/peterborough', label: 'Peterborough hub', hint: 'Address, services and schedules' },
+    { path: '/donate', label: 'Donate', hint: 'Zakat, Sadaqah and Lillah' },
+    { path: '/impact', label: 'Impact update', hint: 'Approved programme evidence' },
+    { path: '/contact', label: 'Contact', hint: 'Ask for help or volunteer' },
+    { path: '/safeguarding', label: 'Safeguarding', hint: 'How we keep people safe' },
+  ];
 
   protected readonly programmes: readonly Programme[] = [
     {

@@ -16,6 +16,7 @@ import {
 } from '../../models/zakat';
 import { MetalPricesService } from '../../services/metal-prices.service';
 import { calculateZakat } from '../../services/zakat-calc';
+import { RelatedPages } from '../related-pages/related-pages';
 
 interface GoldRow {
   readonly id: number;
@@ -43,7 +44,7 @@ function newSilverRow(): SilverRow {
 
 @Component({
   selector: 'app-zakat-calculator',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, RelatedPages],
   templateUrl: './zakat-calculator.html',
 })
 export class ZakatCalculator implements OnInit {
@@ -51,6 +52,15 @@ export class ZakatCalculator implements OnInit {
   protected readonly metals = inject(MetalPricesService);
   private readonly router = inject(Router);
   private readonly zone = inject(NgZone);
+
+  protected readonly related = [
+    { path: '/zakat/what-is-zakat', label: 'What is Zakat?', hint: 'UK guide' },
+    { path: '/zakat/rules', label: 'Zakat rules', hint: 'Assets, nisab and FAQs' },
+    { path: '/donate', label: 'Donate', hint: 'Give your calculated Zakat' },
+    { path: '/work', label: 'Our work', hint: 'How gifts are used' },
+    { path: '/impact', label: 'Impact', hint: 'Approved programme evidence' },
+    { path: '/contact', label: 'Contact', hint: 'Questions about giving' },
+  ] as const;
 
   protected readonly goldKarats = GOLD_KARATS;
   protected readonly goldNisabTola = GOLD_NISAB_TOLA;

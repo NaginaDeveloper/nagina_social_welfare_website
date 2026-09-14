@@ -8,9 +8,15 @@
       <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
         {{ i18n.t('about.eyebrow') }}
       </span>
-      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl 3xl:text-6xl">
-        {{ i18n.t('about.title') }}
-      </h1>
+      @if (headingLevel() === 'h1') {
+        <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl 3xl:text-6xl">
+          {{ i18n.t('about.title') }}
+        </h1>
+      } @else {
+        <h2 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl 3xl:text-6xl">
+          {{ i18n.t('about.title') }}
+        </h2>
+      }
       <p class="mt-4 text-sm font-semibold tracking-wide text-forest/80 sm:text-base">
         {{ i18n.t('about.registered') }}
         <span class="text-slate-warm">·</span>
@@ -62,6 +68,25 @@
         </a>
       </figcaption>
     </figure>
+
+    @if (trustees.length) {
+      <div class="mx-auto mt-16 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10">
+        <h2
+          class="text-center font-display text-2xl font-bold text-forest"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        >
+          {{ i18n.t('about.leadershipTitle') }}
+        </h2>
+        <ul class="mt-6 space-y-3">
+          @for (person of trustees; track person.name) {
+            <li class="flex flex-col gap-0.5 border-t border-mist pt-3 first:border-t-0 first:pt-0 sm:flex-row sm:items-baseline sm:justify-between">
+              <span class="font-semibold text-forest">{{ person.name }}</span>
+              <span class="text-sm text-slate-warm">{{ i18n.pick(person.role, person.roleUr) }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    }
 
     <div class="mt-16 grid gap-6 sm:grid-cols-3">
       @for (pillar of pillars; track pillar.titleKey) {

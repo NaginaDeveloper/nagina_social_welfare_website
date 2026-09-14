@@ -81,7 +81,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'hub.group.connect': 'Connect',
 
     'contact.eyebrow': 'Get involved',
-    'contact.title': 'Message Us on WhatsApp',
+    'contact.title': 'Contact us',
     'contact.lead':
       'Donations, class questions and general enquiries — we reply on WhatsApp. For new madrasa places, use the online admission form.',
     'contact.whatsapp': 'Chat on WhatsApp',
@@ -226,6 +226,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.portalCta': 'Staff portal',
     'madrasa.safeguarding': 'We take the safety of children seriously.',
     'madrasa.safeguardingCta': 'Safeguarding',
+    'madrasa.safeguardingBoxTitle': 'Safeguarding',
+    'madrasa.safeguardingBoxBody':
+      'Markaz Deen-e-Islam teaches children. We take safeguarding seriously. Read our public summary and request the full policy if you are a parent, volunteer or staff member.',
     'madrasa.map': 'Visit Markaz Deen-e-Islam',
 
     'apply.eyebrow': 'Markaz Deen-e-Islam',
@@ -653,8 +656,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.aboutUsHint': 'Who we are',
     'nav.ourWork': 'Our Work',
     'nav.ourWorkHint': 'Education & welfare',
+    'nav.impact': 'Impact',
+    'nav.impactHint': 'Approved updates',
     'nav.madrasa': 'Madrasa',
     'nav.madrasaHint': 'Islamic institute Peterborough',
+    'nav.peterborough': 'Peterborough',
+    'nav.peterboroughHint': 'Local community hub',
     'nav.spiritualGuide': 'Spiritual Guide',
     'nav.spiritualGuideHint': 'Spiritual lineage & photographs',
     'nav.khatmeNabuwwat': 'Finality of Prophethood',
@@ -673,6 +680,16 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.namazTimesHint': 'Peterborough, UK',
     'nav.zakat': 'Zakat Calculator',
     'nav.zakatHint': 'Gold, silver and savings',
+    'nav.whatIsZakat': 'What is Zakat?',
+    'nav.whatIsZakatHint': 'UK guide',
+    'nav.zakatRules': 'Zakat rules',
+    'nav.zakatRulesHint': 'Assets and nisab',
+    'nav.duas': 'Daily duas',
+    'nav.duasHint': 'Checked prayers',
+    'nav.calendar': 'Islamic calendar',
+    'nav.calendarHint': 'Hijri dates',
+    'nav.ramadan': 'Ramadan',
+    'nav.ramadanHint': 'Peterborough Ramadan',
     'nav.quranMajeed': 'Quran Majeed',
     'nav.quranMajeedHint': 'Kanzul Iman translation',
     'nav.hadith': 'Hadith',
@@ -734,6 +751,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'about.pillar2Text': 'Welfare that uplifts families with dignity, care and practical help.',
     'about.pillar3Title': 'Knowledge',
     'about.pillar3Text': 'Education that lights minds — Quran, Salah (prayer), and lasting character.',
+    'about.leadershipTitle': 'Leadership',
 
     'guide.eyebrow': 'Spiritual Guide',
     'guide.lead':
@@ -851,6 +869,13 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'work.lead':
       'Nagina Social Welfare UK — a registered charity — unites faith and compassion: educating hearts through knowledge at Markaz Deen-e-Islam, and uplifting lives through charity across the UK.',
     'work.madrasaLink': 'Madrasa & Quran classes in Peterborough →',
+    'work.helpTitle': 'Who can ask for help',
+    'work.helpLead':
+      'Individuals and families in need in our community may contact Nagina Social Welfare to ask about welfare support. We review requests carefully and respond via WhatsApp or email. For madrasa places, please use the online admission form.',
+    'work.helpWhatsApp': 'Ask on WhatsApp',
+    'work.helpContact': 'Contact page',
+    'work.helpDonate': 'Support this work',
+    'work.contactLink': 'Contact us about welfare support →',
 
     'guidance.eyebrow': 'Guidance',
     'guidance.title': 'Wisdom That Shapes',
@@ -906,7 +931,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'beliefs.contactCta': 'Contact Markaz for personal guidance',
 
     'namaz.eyebrow': 'Prayer Times (Salah)',
-    'namaz.title': 'Today in',
+    'namaz.title': 'Prayer times in',
     'namaz.titleAccent': 'Peterborough, UK',
     'namaz.lead': 'Daily prayer windows for our city — Begins and Ends, updated live for Europe/London time.',
     'namaz.loading': 'Loading today’s prayer times…',
@@ -921,6 +946,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'namaz.ends': 'Ends',
     'namaz.sunrise': 'Sunrise',
     'namaz.prayer': 'Prayer',
+    'namaz.sourceLabel': 'Source',
+    'namaz.sourceValue': 'AlAdhan',
+    'namaz.methodLabel': 'Method',
+    'namaz.methodValue': 'Muslim World League (MWL), Hanafi Asr',
+    'namaz.checkedLabel': 'Last checked',
 
     'quran.eyebrow': 'The Blessed Quran',
     'quran.title': 'The Blessed Quran Majeed with',
@@ -1007,6 +1037,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'safeguarding.lead': 'How Nagina Social Welfare and Markaz Deen-e-Islam keep children and adults at risk safe.',
     'safeguarding.concern': 'Raise a concern on WhatsApp',
     'safeguarding.policy': 'Request the full policy',
+    'safeguarding.lastReviewed': 'Last reviewed',
 
     'privacy.eyebrow': 'Legal',
     'privacy.title': 'Privacy',
@@ -1114,7 +1145,145 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'aulia.creedAccent': 'Awliya Allah',
     'aulia.closing': 'In summary, the Awliya are beloved servants of Allah — role models of piety whose lives inspire us toward worship, humility, and steadfastness upon the path of Quran and Sunnah. Love them, learn from them, and always keep Allah alone as the source of all help and wilayah.',
 
+    'related.heading': 'Related pages',
+    'related.lead': 'Continue with a useful next step.',
 
+    'peterborough.eyebrow': 'Local community',
+    'peterborough.title': 'Nagina Social Welfare in Peterborough',
+    'peterborough.lead':
+      'Markaz Deen-e-Islam at 103 Burmer Road is our local hub — evening madrasa classes, prayer times, events and community welfare support.',
+    'peterborough.visitTitle': 'Visit us',
+    'peterborough.phoneLabel': 'Phone',
+    'peterborough.emailLabel': 'Email',
+    'peterborough.servicesTitle': 'What you will find here',
+    'peterborough.servicesLead': 'Practical ways to connect with Nagina Social Welfare in Peterborough.',
+    'peterborough.service1': 'Evening madrasa classes for children at Markaz Deen-e-Islam',
+    'peterborough.service2': 'Daily prayer times for Peterborough with clear source and method',
+    'peterborough.service3': 'Community gatherings and programmes listed on our events page',
+    'peterborough.service4': 'Welfare support enquiries for individuals and families in need',
+    'peterborough.timetableTitle': 'Madrasa timetable',
+    'peterborough.timetableLead':
+      'All three evening classes are open. Apply online for the 2026 intake, or message us with questions.',
+    'peterborough.colClass': 'Class',
+    'peterborough.colDays': 'Days',
+    'peterborough.colTime': 'Time',
+    'peterborough.colAges': 'Ages',
+    'peterborough.linkApply': 'Apply online',
+    'peterborough.linkNamaz': 'Prayer times',
+    'peterborough.linkEvents': 'Events',
+    'peterborough.linkWork': 'Our work',
+    'peterborough.linkDonate': 'Donate',
+    'peterborough.linkWhatsApp': 'WhatsApp',
+
+    'whatIsZakat.eyebrow': 'Zakat guide',
+    'whatIsZakat.title': 'What is Zakat?',
+    'whatIsZakat.shortAnswer':
+      'Zakat is an obligatory annual charity of 2.5% on eligible wealth once it reaches nisab and a lunar year has passed.',
+    'whatIsZakat.body':
+      'For many UK Muslims, Zakat is both worship and practical care for those in need. This page gives a clear overview. Use our rules guide and calculator for figures, and give with intention through Nagina Social Welfare when you are ready.',
+    'whatIsZakat.helpsTitle': 'Who Zakat helps',
+    'whatIsZakat.helpsLead':
+      'Classical categories include people in need and those with a recognised claim on Zakat. In practice, UK charities distribute to eligible recipients carefully.',
+    'whatIsZakat.helps1': 'People living in poverty or hardship',
+    'whatIsZakat.helps2': 'Those burdened by debt that they cannot reasonably repay',
+    'whatIsZakat.helps3': 'Other eligible categories recognised in Islamic teaching — ask a scholar for personal cases',
+    'whatIsZakat.nextTitle': 'Next steps',
+    'whatIsZakat.nextLead': 'Read the rules, estimate with the calculator, then donate if you choose Nagina Social Welfare.',
+    'whatIsZakat.linkRules': 'Zakat rules',
+    'whatIsZakat.linkCalculator': 'Zakat calculator',
+    'whatIsZakat.linkDonate': 'Donate Zakat',
+    'whatIsZakat.disclaimer':
+      'This is educational guidance, not a personal fatwa. Complex wealth, businesses or livestock need a qualified scholar.',
+
+    'zakatRules.eyebrow': 'Zakat rules',
+    'zakatRules.title': 'Zakat rules in the UK',
+    'zakatRules.shortAnswer':
+      'Zakat is due on zakatable assets that reach nisab and have been held for a lunar year (hawl), at 2.5%.',
+    'zakatRules.assetsTitle': 'Common zakatable assets',
+    'zakatRules.assetsLead': 'These are the assets most UK households include when calculating wealth Zakat.',
+    'zakatRules.asset1': 'Gold and silver (including jewellery, even if worn)',
+    'zakatRules.asset2': 'Cash and bank savings',
+    'zakatRules.asset3': 'Trade stock and business inventory held for sale',
+    'zakatRules.asset4': 'Money owed to you that you expect to receive',
+    'zakatRules.nisabTitle': 'Nisab',
+    'zakatRules.nisabLead':
+      'Nisab is the minimum threshold. Gold nisab is 7.5 tola (87.48 g). Silver nisab is 52.5 tola (612.36 g).',
+    'zakatRules.nisabValues':
+      'Our calculator uses live metal prices when available so the GBP threshold stays current.',
+    'zakatRules.nisabNote':
+      'If you hold only gold, gold nisab is used. Cash, silver, stock or mixed wealth usually uses silver nisab. Confirm with a scholar if unsure.',
+    'zakatRules.qaTitle': 'Common questions',
+    'zakatRules.q1': 'Do I include my home and car?',
+    'zakatRules.a1':
+      'No. The home you live in, your personal car, furniture and everyday clothes are not zakatable.',
+    'zakatRules.q2': 'What about debts?',
+    'zakatRules.a2':
+      'Debts due now are usually deducted. A full remaining mortgage is not subtracted in one go — only instalments due.',
+    'zakatRules.q3': 'Is Fitrana the same as Zakat?',
+    'zakatRules.a3':
+      'No. Sadaqat al-Fitr (Fitrana) is separate and is given before Eid prayer. Wealth Zakat is calculated on assets.',
+    'zakatRules.linkCalculator': 'Open Zakat calculator',
+    'zakatRules.disclaimerTitle': 'Important',
+    'zakatRules.disclaimer':
+      'This summary follows common Hanafi guidance used on our calculator. It is not a personal ruling. Livestock, crops and complex businesses need a scholar.',
+
+    'duas.eyebrow': 'Worship',
+    'duas.title': 'Daily duas',
+    'duas.shortAnswer':
+      'Checked daily prayers with Arabic, transliteration and meaning — published only after review.',
+    'duas.body':
+      'We are preparing a careful collection of everyday duas for the community. Each entry will include Arabic text, a clear transliteration and an English meaning, with a recorded review date.',
+    'duas.emptyTitle': 'Collection coming soon',
+    'duas.empty':
+      'No published duas yet. Message us if you would like a specific dua reviewed for this page, or use Contact for general enquiries.',
+    'duas.linkWhatsApp': 'Ask on WhatsApp',
+    'duas.linkContact': 'Contact page',
+
+    'islamicCalendar.eyebrow': 'Hijri dates',
+    'islamicCalendar.title': 'Islamic calendar',
+    'islamicCalendar.shortAnswer':
+      'A practical note on Hijri dates for planning worship, Ramadan and community programmes in Peterborough.',
+    'islamicCalendar.body':
+      'The Islamic (Hijri) calendar is lunar. Month starts can differ between calculation methods and local moon sighting. Use this page as a planning aid alongside trusted local announcements.',
+    'islamicCalendar.methodNote':
+      'Our prayer-times and related Hijri date notes use the AlAdhan service with the same method settings as our Salah page.',
+    'islamicCalendar.changeNote':
+      'Important dates such as Ramadan and Eid may change locally. Always confirm with your mosque or community announcement before fasting or celebrating.',
+    'islamicCalendar.todayTitle': 'Plan your day',
+    'islamicCalendar.todayLead':
+      'Check today’s prayer windows, Ramadan information for Peterborough, and upcoming gatherings.',
+    'islamicCalendar.linkNamaz': 'Prayer times',
+    'islamicCalendar.linkRamadan': 'Ramadan',
+    'islamicCalendar.linkEvents': 'Events',
+
+    'ramadan.eyebrow': 'Blessed month',
+    'ramadan.title': 'Ramadan in Peterborough',
+    'ramadan.shortAnswer':
+      'Use local prayer times, events and contact options from Nagina Social Welfare during Ramadan.',
+    'ramadan.body':
+      'Ramadan is a month of fasting, prayer and generosity. In Peterborough, start with reliable prayer times for Suhoor and Maghrib, then check our events page for any published programmes at Markaz Deen-e-Islam.',
+    'ramadan.noInvent':
+      'We do not invent Taraweeh schedules or iftar lists. Only confirmed details appear on Events or via WhatsApp when announced.',
+    'ramadan.howTitle': 'How to use this site in Ramadan',
+    'ramadan.linkNamaz': 'Prayer times',
+    'ramadan.howNamaz': 'daily begin and end windows for Peterborough',
+    'ramadan.linkEvents': 'Events',
+    'ramadan.howEvents': 'published gatherings and programmes',
+    'ramadan.linkContact': 'Contact',
+    'ramadan.howContact': 'questions, welfare support or volunteer offers',
+    'ramadan.linkWhatsApp': 'Message on WhatsApp',
+
+    'impact.eyebrow': 'Transparency',
+    'impact.title': 'Impact updates',
+    'impact.shortAnswer':
+      'Approved programme facts and dates from Nagina Social Welfare UK — published only with trustee approval.',
+    'impact.body':
+      'We share impact carefully. Numbers and claims appear here only when trustees have approved them. Until then, explore Our Work and support education and welfare through Donate.',
+    'impact.awaitingTitle': 'Awaiting approved figures',
+    'impact.awaiting':
+      'No trustee-approved impact facts are published yet. Check back after our next approved update, or read about our programmes on Our Work.',
+    'impact.linkWork': 'Our work',
+    'impact.linkDonate': 'Donate',
 
   },
   ur: {
@@ -1196,7 +1365,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'hub.group.connect': 'رابطہ',
 
     'contact.eyebrow': 'ساتھ دیں',
-    'contact.title': 'واٹس ایپ پر پیغام بھیجیں',
+    'contact.title': 'رابطہ کریں',
     'contact.lead':
       'عطیات، کلاس کے سوالات اور عمومی استفسار — ہم واٹس ایپ پر جواب دیتے ہیں۔ نئے داخلے کے لیے آن لائن فارم استعمال کریں۔',
     'contact.whatsapp': 'واٹس ایپ پر بات کریں',
@@ -1341,6 +1510,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.portalCta': 'ممبر پورٹل',
     'madrasa.safeguarding': 'ہم بچوں کی حفاظت کو سنجیدگی سے لیتے ہیں۔',
     'madrasa.safeguardingCta': 'حفاظت',
+    'madrasa.safeguardingBoxTitle': 'حفاظت',
+    'madrasa.safeguardingBoxBody':
+      'مرکز دینِ اسلام بچوں کو پڑھاتا ہے۔ ہم حفاظت کو سنجیدگی سے لیتے ہیں۔ ہمارا عوامی خلاصہ پڑھیں، اور اگر آپ والدین، رضاکار یا عملہ ہیں تو مکمل پالیسی طلب کریں۔',
     'madrasa.map': 'مرکز دینِ اسلام تشریف لائیں',
 
     'apply.eyebrow': 'مرکز دینِ اسلام',
@@ -1635,8 +1807,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.aboutUsHint': 'ہم کون ہیں',
     'nav.ourWork': 'ہمارا کام',
     'nav.ourWorkHint': 'تعلیم اور فلاح',
+    'nav.impact': 'اثرات',
+    'nav.impactHint': 'منظور شدہ تازہ کاریاں',
     'nav.madrasa': 'مدرسہ',
     'nav.madrasaHint': 'اسلامی ادارہ پیٹربورو',
+    'nav.peterborough': 'پیٹربورو',
+    'nav.peterboroughHint': 'مقامی کمیونٹی مرکز',
     'nav.spiritualGuide': 'روحانی رہنما',
     'nav.spiritualGuideHint': 'شجرہ اور تصاویر',
     'nav.khatmeNabuwwat': 'ختمِ نبوت',
@@ -1655,6 +1831,16 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.namazTimesHint': 'پیٹربورو، برطانیہ',
     'nav.zakat': 'زکوٰۃ کیلکولیٹر',
     'nav.zakatHint': 'سونا، چاندی اور بچت',
+    'nav.whatIsZakat': 'زکوٰۃ کیا ہے؟',
+    'nav.whatIsZakatHint': 'برطانیہ رہنمائی',
+    'nav.zakatRules': 'زکوٰۃ کے احکام',
+    'nav.zakatRulesHint': 'اموال اور نصاب',
+    'nav.duas': 'روزانہ دعائیں',
+    'nav.duasHint': 'جانچی ہوئی دعائیں',
+    'nav.calendar': 'اسلامی کیلنڈر',
+    'nav.calendarHint': 'ہجری تاریخیں',
+    'nav.ramadan': 'رمضان',
+    'nav.ramadanHint': 'پیٹربورو رمضان',
     'nav.quranMajeed': 'قرآن مجید',
     'nav.quranMajeedHint': 'کنز الایمان ترجمہ',
     'nav.hadith': 'حدیث',
@@ -1715,6 +1901,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'about.pillar2Text': 'فلاح جو خاندانوں کو عزت، خیال اور عملی مدد سے سنبھالے۔',
     'about.pillar3Title': 'علم',
     'about.pillar3Text': 'تعلیم جو ذہن روشن کرے — قرآن، نماز، اور پائیدار کردار۔',
+    'about.leadershipTitle': 'قیادت',
 
     'guide.eyebrow': 'روحانی رہنما',
     'guide.lead':
@@ -1831,6 +2018,13 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'work.lead':
       'نگینہ سوشل ویلفیئر برطانیہ — ایک رجسٹرڈ چیریٹی — ایمان اور ہمدردی کو جوڑتی ہے: مرکز دینِ اسلام میں علم سے دلوں کی تعلیم، اور برطانیہ بھر میں خیرات سے زندگیوں کی پرورش۔',
     'work.madrasaLink': 'پیٹربورو میں مدرسہ اور قرآن کی کلاسیں ←',
+    'work.helpTitle': 'مدد کون مانگ سکتا ہے',
+    'work.helpLead':
+      'ہماری کمیونٹی میں ضرورت مند افراد اور خاندان نگینہ سوشل ویلفیئر سے فلاحی مدد کے بارے میں پوچھ سکتے ہیں۔ ہم درخواستوں کا احتیاط سے جائزہ لیتے ہیں اور واٹس ایپ یا ای میل سے جواب دیتے ہیں۔ مدرسہ کی جگہ کے لیے براہِ کرم آن لائن داخلہ فارم استعمال کریں۔',
+    'work.helpWhatsApp': 'واٹس ایپ پر پوچھیں',
+    'work.helpContact': 'رابطہ صفحہ',
+    'work.helpDonate': 'اس کام کی حمایت کریں',
+    'work.contactLink': 'فلاحی مدد کے بارے میں رابطہ کریں ←',
 
     'guidance.eyebrow': 'ہدایت',
     'guidance.title': 'حکمت جو سنوارتی ہے',
@@ -1878,7 +2072,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'beliefs.contactCta': 'ذاتی رہنمائی کے لیے مرکز سے رابطہ کریں',
 
     'namaz.eyebrow': 'نماز کے اوقات',
-    'namaz.title': 'آج',
+    'namaz.title': 'نماز کے اوقات',
     'namaz.titleAccent': 'پیٹربورو، برطانیہ',
     'namaz.lead': 'ہمارے شہر کے یومیہ نماز کے اوقات — آغاز اور اختتام، یورپ/لندن وقت کے مطابق براہِ راست۔',
     'namaz.loading': 'آج کے نماز کے اوقات لوڈ ہو رہے ہیں…',
@@ -1893,6 +2087,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'namaz.ends': 'اختتام',
     'namaz.sunrise': 'طلوع آفتاب',
     'namaz.prayer': 'نماز',
+    'namaz.sourceLabel': 'ماخذ',
+    'namaz.sourceValue': 'AlAdhan',
+    'namaz.methodLabel': 'طریقہ',
+    'namaz.methodValue': 'مسلم ورلڈ لیگ (MWL)، حنفی عصر',
+    'namaz.checkedLabel': 'آخری جانچ',
 
     'quran.eyebrow': 'قرآنِ پاک',
     'quran.title': 'قرآن مجید مع',
@@ -1977,6 +2176,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'safeguarding.lead': 'نگینہ سوشل ویلفیئر اور مرکز دینِ اسلام بچوں اور خطرے میں بالغوں کی حفاظت کیسے کرتے ہیں۔',
     'safeguarding.concern': 'واٹس ایپ پر تشویش درج کریں',
     'safeguarding.policy': 'مکمل پالیسی طلب کریں',
+    'safeguarding.lastReviewed': 'آخری جائزہ',
 
     'privacy.eyebrow': 'قانونی',
     'privacy.title': 'رازداری',
@@ -2080,6 +2280,146 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'aulia.creedTitle': 'اہلِ سنت کا عقیدہ',
     'aulia.creedAccent': 'اولیاء کرام کے بارے میں',
     'aulia.closing': 'خلاصہ یہ کہ اولیاء اللہ کے محبوب بندے ہیں — تقویٰ کے نمونے جن کی زندگیاں ہمیں عبادت، عاجزی اور قرآن و سنت پر استقامت کی طرف بلاتی ہیں۔ ان سے محبت کریں، سیکھیں، اور تمام مدد و ولایت کا منبع صرف اللہ کو رکھیں۔',
+
+    'related.heading': 'متعلقہ صفحات',
+    'related.lead': 'اگلا مفید قدم جاری رکھیں۔',
+
+    'peterborough.eyebrow': 'مقامی کمیونٹی',
+    'peterborough.title': 'پیٹربورو میں نگینہ سوشل ویلفیئر',
+    'peterborough.lead':
+      '۱۰۳ برمر روڈ پر مرکز دینِ اسلام ہمارا مقامی مرکز ہے — شام کی مدرسہ کلاسیں، نماز کے اوقات، تقریبات اور فلاحی مدد۔',
+    'peterborough.visitTitle': 'ہم سے ملیں',
+    'peterborough.phoneLabel': 'فون',
+    'peterborough.emailLabel': 'ای میل',
+    'peterborough.servicesTitle': 'یہاں کیا ملے گا',
+    'peterborough.servicesLead': 'پیٹربورو میں نگینہ سوشل ویلفیئر سے جڑنے کے عملی طریقے۔',
+    'peterborough.service1': 'مرکز دینِ اسلام میں بچوں کے لیے شام کی مدرسہ کلاسیں',
+    'peterborough.service2': 'ماخذ اور طریقے کے ساتھ پیٹربورو کے یومیہ نماز کے اوقات',
+    'peterborough.service3': 'تقریبات کے صفحے پر کمیونٹی محفلیں اور پروگرام',
+    'peterborough.service4': 'ضرورت مند افراد اور خاندانوں کے لیے فلاحی مدد کے استفسار',
+    'peterborough.timetableTitle': 'مدرسہ ٹائم ٹیبل',
+    'peterborough.timetableLead':
+      'تینوں شام کی کلاسیں کھلی ہیں۔ داخلہ ۲۰۲۶ کے لیے آن لائن درخواست دیں، یا سوال کے لیے پیغام بھیجیں۔',
+    'peterborough.colClass': 'کلاس',
+    'peterborough.colDays': 'دن',
+    'peterborough.colTime': 'وقت',
+    'peterborough.colAges': 'عمر',
+    'peterborough.linkApply': 'آن لائن درخواست',
+    'peterborough.linkNamaz': 'نماز کے اوقات',
+    'peterborough.linkEvents': 'تقریبات',
+    'peterborough.linkWork': 'ہمارا کام',
+    'peterborough.linkDonate': 'عطیہ',
+    'peterborough.linkWhatsApp': 'واٹس ایپ',
+
+    'whatIsZakat.eyebrow': 'زکوٰۃ رہنمائی',
+    'whatIsZakat.title': 'زکوٰۃ کیا ہے؟',
+    'whatIsZakat.shortAnswer':
+      'زکوٰۃ واجب سالانہ صدقہ ہے — اہل مال پر ۲.۵٪ جب نصاب پہنچے اور ایک قمری سال گزر جائے۔',
+    'whatIsZakat.body':
+      'برطانیہ کے بہت سے مسلمانوں کے لیے زکوٰۃ عبادت بھی ہے اور ضرورت مندوں کی عملی مدد بھی۔ یہ صفحہ واضح تعارف دیتا ہے۔ اعداد کے لیے احکام اور کیلکولیٹر دیکھیں، پھر نگینہ سوشل ویلفیئر کے ذریعے نیت کے ساتھ دیں۔',
+    'whatIsZakat.helpsTitle': 'زکوٰۃ کس کی مدد کرتی ہے',
+    'whatIsZakat.helpsLead':
+      'کلاسیکی اقسام میں ضرورت مند اور وہ شامل ہیں جن کا زکوٰۃ پر تسلیم شدہ حق ہے۔ عملی طور پر برطانوی چیریٹیز اہل مستحقین تک احتیاط سے پہنچاتی ہیں۔',
+    'whatIsZakat.helps1': 'غربت یا تنگی میں لوگ',
+    'whatIsZakat.helps2': 'ایسا قرض جو معقول طور پر ادا نہ ہو سکے',
+    'whatIsZakat.helps3': 'اسلامی تعلیم میں تسلیم شدہ دیگر اقسام — ذاتی صورتوں کے لیے عالم سے پوچھیں',
+    'whatIsZakat.nextTitle': 'اگلے قدم',
+    'whatIsZakat.nextLead': 'احکام پڑھیں، کیلکولیٹر سے اندازہ لگائیں، پھر اگر چاہیں تو نگینہ سوشل ویلفیئر کو عطیہ دیں۔',
+    'whatIsZakat.linkRules': 'زکوٰۃ کے احکام',
+    'whatIsZakat.linkCalculator': 'زکوٰۃ کیلکولیٹر',
+    'whatIsZakat.linkDonate': 'زکوٰۃ دیں',
+    'whatIsZakat.disclaimer':
+      'یہ تعلیمی رہنمائی ہے، ذاتی فتویٰ نہیں۔ پیچیدہ مال، کاروبار یا مویشی کے لیے اہل عالم سے رجوع کریں۔',
+
+    'zakatRules.eyebrow': 'زکوٰۃ کے احکام',
+    'zakatRules.title': 'برطانیہ میں زکوٰۃ کے احکام',
+    'zakatRules.shortAnswer':
+      'زکوٰۃ اُن اموال پر واجب ہے جو نصاب تک پہنچیں اور ایک قمری سال (حول) رکھے جائیں — شرح ۲.۵٪۔',
+    'zakatRules.assetsTitle': 'عام زکوٰۃ کے اموال',
+    'zakatRules.assetsLead': 'برطانیہ کے بیشتر گھرانے مال کی زکوٰۃ میں یہ اموال شامل کرتے ہیں۔',
+    'zakatRules.asset1': 'سونا اور چاندی (زیورات سمیت، پہنے ہوئے بھی)',
+    'zakatRules.asset2': 'نقدی اور بینک بچت',
+    'zakatRules.asset3': 'تجارتی مال اور فروخت کے لیے رکھا گیا اسٹاک',
+    'zakatRules.asset4': 'آپ کا واجب الادا قرض جو ملنے کی توقع ہو',
+    'zakatRules.nisabTitle': 'نصاب',
+    'zakatRules.nisabLead':
+      'نصاب کم از کم حد ہے۔ سونے کا نصاب ۷.۵ تولہ (۸۷.۴۸ گرام)۔ چاندی کا نصاب ۵۲.۵ تولہ (۶۱۲.۳۶ گرام)۔',
+    'zakatRules.nisabValues':
+      'ہمارا کیلکولیٹر دستیاب ہونے پر لائیو دھات کی قیمتیں استعمال کرتا ہے تاکہ پاؤنڈ کی حد تازہ رہے۔',
+    'zakatRules.nisabNote':
+      'اگر صرف سونا ہو تو سونے کا نصاب۔ نقدی، چاندی، اسٹاک یا ملا جلا مال عموماً چاندی کا نصاب۔ شک ہو تو عالم سے تصدیق کریں۔',
+    'zakatRules.qaTitle': 'عام سوالات',
+    'zakatRules.q1': 'کیا گھر اور گاڑی شامل کروں؟',
+    'zakatRules.a1':
+      'نہیں۔ رہائشی گھر، ذاتی گاڑی، فرنیچر اور روزمرہ کپڑے زکوٰۃ میں نہیں آتے۔',
+    'zakatRules.q2': 'قرضوں کا کیا؟',
+    'zakatRules.a2':
+      'ابھی واجب قرضے عموماً کاٹے جاتے ہیں۔ رہن کی پوری باقی رقم ایک ساتھ نہیں کاٹی جاتی — صرف واجب اقساط۔',
+    'zakatRules.q3': 'کیا فطرانہ زکوٰۃ ہی ہے؟',
+    'zakatRules.a3':
+      'نہیں۔ صدقۃ الفطر (فطرانہ) الگ ہے اور عید کی نماز سے پہلے دیا جاتا ہے۔ مال کی زکوٰۃ اموال پر حساب ہوتی ہے۔',
+    'zakatRules.linkCalculator': 'زکوٰۃ کیلکولیٹر کھولیں',
+    'zakatRules.disclaimerTitle': 'اہم',
+    'zakatRules.disclaimer':
+      'یہ خلاصہ ہمارے کیلکولیٹر میں استعمال عام حنفی رہنمائی کے مطابق ہے۔ ذاتی حکم نہیں۔ مویشی، فصل اور پیچیدہ کاروبار کے لیے عالم سے رجوع کریں۔',
+
+    'duas.eyebrow': 'عبادت',
+    'duas.title': 'روزانہ دعائیں',
+    'duas.shortAnswer':
+      'جانچی ہوئی روزانہ دعائیں — عربی، تلفظ اور مطلب، جائزے کے بعد شائع۔',
+    'duas.body':
+      'ہم کمیونٹی کے لیے روزمرہ دعاؤں کا محتاط مجموعہ تیار کر رہے ہیں۔ ہر اندراج میں عربی متن، واضح تلفظ، انگریزی مطلب اور جائزے کی تاریخ ہوگی۔',
+    'duas.emptyTitle': 'مجموعہ جلد آ رہا ہے',
+    'duas.empty':
+      'ابھی کوئی شائع شدہ دعا نہیں۔ اگر کسی مخصوص دعا کا جائزہ اس صفحے کے لیے چاہیں تو پیغام بھیجیں، یا عمومی سوالات کے لیے رابطہ صفحہ استعمال کریں۔',
+    'duas.linkWhatsApp': 'واٹس ایپ پر پوچھیں',
+    'duas.linkContact': 'رابطہ صفحہ',
+
+    'islamicCalendar.eyebrow': 'ہجری تاریخیں',
+    'islamicCalendar.title': 'اسلامی کیلنڈر',
+    'islamicCalendar.shortAnswer':
+      'پیٹربورو میں عبادت، رمضان اور کمیونٹی پروگراموں کی منصوبہ بندی کے لیے ہجری تاریخوں پر عملی نوٹ۔',
+    'islamicCalendar.body':
+      'اسلامی (ہجری) کیلنڈر قمری ہے۔ مہینے کا آغاز حسابی طریقوں اور مقامی رویتِ ہلال میں مختلف ہو سکتا ہے۔ اس صفحے کو مقامی معتبر اعلانات کے ساتھ منصوبہ بندی کی مدد سمجھیں۔',
+    'islamicCalendar.methodNote':
+      'ہمارے نماز کے اوقات اور متعلقہ ہجری نوٹس AlAdhan سروس استعمال کرتے ہیں — وہی طریقہ جو نماز کے صفحے پر ہے۔',
+    'islamicCalendar.changeNote':
+      'رمضان اور عید جیسی اہم تاریخیں مقامی طور پر بدل سکتی ہیں۔ روزہ یا خوشی سے پہلے اپنی مسجد یا کمیونٹی اعلان سے تصدیق کریں۔',
+    'islamicCalendar.todayTitle': 'اپنا دن ترتیب دیں',
+    'islamicCalendar.todayLead':
+      'آج کے نماز کے اوقات، پیٹربورو رمضان کی معلومات، اور آنے والی محفلیں دیکھیں۔',
+    'islamicCalendar.linkNamaz': 'نماز کے اوقات',
+    'islamicCalendar.linkRamadan': 'رمضان',
+    'islamicCalendar.linkEvents': 'تقریبات',
+
+    'ramadan.eyebrow': 'مبارک مہینہ',
+    'ramadan.title': 'پیٹربورو میں رمضان',
+    'ramadan.shortAnswer':
+      'رمضان میں نگینہ سوشل ویلفیئر کے مقامی نماز کے اوقات، تقریبات اور رابطہ کے اختیارات استعمال کریں۔',
+    'ramadan.body':
+      'رمضان روزے، نماز اور سخاوت کا مہینہ ہے۔ پیٹربورو میں سحری اور مغرب کے لیے قابلِ اعتماد نماز کے اوقات سے شروع کریں، پھر مرکز دینِ اسلام کے شائع شدہ پروگراموں کے لیے تقریبات دیکھیں۔',
+    'ramadan.noInvent':
+      'ہم تراویح یا افطار کی فہرستیں خود نہیں بناتے۔ صرف تصدیق شدہ تفصیلات تقریبات پر یا اعلان کے وقت واٹس ایپ پر آتی ہیں۔',
+    'ramadan.howTitle': 'رمضان میں یہ سائٹ کیسے استعمال کریں',
+    'ramadan.linkNamaz': 'نماز کے اوقات',
+    'ramadan.howNamaz': 'پیٹربورو کے یومیہ آغاز و اختتام کے اوقات',
+    'ramadan.linkEvents': 'تقریبات',
+    'ramadan.howEvents': 'شائع شدہ محفلیں اور پروگرام',
+    'ramadan.linkContact': 'رابطہ',
+    'ramadan.howContact': 'سوالات، فلاحی مدد یا رضاکارانہ پیشکش',
+    'ramadan.linkWhatsApp': 'واٹس ایپ پر پیغام',
+
+    'impact.eyebrow': 'شفافیت',
+    'impact.title': 'اثرات کی تازہ کاری',
+    'impact.shortAnswer':
+      'نگینہ سوشل ویلفیئر یو کے کے منظور شدہ پروگرام حقائق اور تاریخیں — صرف ٹرسٹی منظوری پر شائع۔',
+    'impact.body':
+      'ہم اثرات احتیاط سے شیئر کرتے ہیں۔ اعداد اور دعوے یہاں تبھی آتے ہیں جب ٹرسٹی منظوری دے چکی ہو۔ تب تک ہمارا کام دیکھیں اور عطیہ سے تعلیم و فلاح کی حمایت کریں۔',
+    'impact.awaitingTitle': 'منظور شدہ اعداد کا انتظار',
+    'impact.awaiting':
+      'ابھی کوئی ٹرسٹی منظور شدہ اثر کا عدد شائع نہیں۔ اگلی منظوری کے بعد دوبارہ دیکھیں، یا ہمارا کام پر پروگرام پڑھیں۔',
+    'impact.linkWork': 'ہمارا کام',
+    'impact.linkDonate': 'عطیہ',
 
   },
 };

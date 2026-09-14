@@ -1,0 +1,147 @@
+<section id="peterborough" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative site-wrap">
+    <div
+      class="mx-auto max-w-5xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('peterborough.eyebrow') }}
+      </span>
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        {{ i18n.t('peterborough.title') }}
+      </h1>
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
+        {{ i18n.t('peterborough.lead') }}
+      </p>
+    </div>
+
+    <div
+      class="mx-auto mt-12 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('peterborough.visitTitle') }}</h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-warm">{{ org.addressFull }}</p>
+      <ul class="mt-6 space-y-3 text-sm text-slate-warm sm:text-base">
+        <li>
+          <span class="font-semibold text-forest">{{ i18n.t('peterborough.phoneLabel') }}</span>
+          <a class="ms-2 text-gold-600 underline decoration-gold/40 underline-offset-2 hover:text-forest" [href]="'tel:' + org.phoneTel">
+            {{ org.phoneDisplay }}
+          </a>
+        </li>
+        <li>
+          <span class="font-semibold text-forest">{{ i18n.t('peterborough.emailLabel') }}</span>
+          <a class="ms-2 text-gold-600 underline decoration-gold/40 underline-offset-2 hover:text-forest" [href]="'mailto:' + org.email">
+            {{ org.email }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="mx-auto mt-14 max-w-3xl"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
+        {{ i18n.t('peterborough.servicesTitle') }}
+      </h2>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('peterborough.servicesLead') }}
+      </p>
+      <ul class="mt-8 space-y-3 text-sm leading-relaxed text-slate-warm sm:text-base">
+        <li class="rounded-xl border border-mist bg-white/90 px-4 py-3 shadow-soft">{{ i18n.t('peterborough.service1') }}</li>
+        <li class="rounded-xl border border-mist bg-white/90 px-4 py-3 shadow-soft">{{ i18n.t('peterborough.service2') }}</li>
+        <li class="rounded-xl border border-mist bg-white/90 px-4 py-3 shadow-soft">{{ i18n.t('peterborough.service3') }}</li>
+        <li class="rounded-xl border border-mist bg-white/90 px-4 py-3 shadow-soft">{{ i18n.t('peterborough.service4') }}</li>
+      </ul>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
+        {{ i18n.t('peterborough.timetableTitle') }}
+      </h2>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('peterborough.timetableLead') }}
+      </p>
+      <div class="mt-8 overflow-x-auto rounded-2xl border border-mist bg-white shadow-soft">
+        <table class="w-full min-w-[36rem] text-left text-sm">
+          <thead class="bg-sand/70 text-xs font-semibold uppercase tracking-[0.16em] text-slate-warm">
+            <tr>
+              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('peterborough.colClass') }}</th>
+              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('peterborough.colDays') }}</th>
+              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('peterborough.colTime') }}</th>
+              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('peterborough.colAges') }}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-mist">
+            @for (session of sessions; track session.id) {
+              <tr>
+                <th scope="row" class="px-4 py-4 font-display text-base font-bold text-forest sm:px-6">
+                  {{ sessionTitle(session.id) }}
+                </th>
+                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionDays(session.id) }}</td>
+                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionTime(session.id) }}</td>
+                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionAges(session.id) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div
+      class="mx-auto mt-14 flex max-w-3xl flex-wrap items-center justify-center gap-3"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <a
+        routerLink="/apply"
+        class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest"
+      >
+        {{ i18n.t('peterborough.linkApply') }}
+      </a>
+      <a
+        routerLink="/namaz"
+        class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+      >
+        {{ i18n.t('peterborough.linkNamaz') }}
+      </a>
+      <a
+        routerLink="/events"
+        class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+      >
+        {{ i18n.t('peterborough.linkEvents') }}
+      </a>
+      <a
+        routerLink="/work"
+        class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+      >
+        {{ i18n.t('peterborough.linkWork') }}
+      </a>
+      <a
+        routerLink="/donate"
+        class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+      >
+        {{ i18n.t('peterborough.linkDonate') }}
+      </a>
+      <a
+        [href]="contactWhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-11 items-center justify-center rounded-full border border-gold/40 bg-sand/50 px-5 py-2.5 text-sm font-semibold text-forest"
+      >
+        {{ i18n.t('peterborough.linkWhatsApp') }}
+      </a>
+    </div>
+
+    <app-content-review-note pageId="peterborough" />
+    <app-related-pages
+      [heading]="i18n.t('related.heading')"
+      [lead]="i18n.t('related.lead')"
+      [links]="related"
+    />
+  </div>
+</section>

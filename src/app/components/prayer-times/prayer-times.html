@@ -17,6 +17,18 @@
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
         {{ i18n.t('namaz.lead') }}
       </p>
+      <p class="mt-3 text-sm text-slate-warm">
+        <span class="font-semibold text-forest">{{ i18n.t('namaz.sourceLabel') }}:</span>
+        {{ i18n.t('namaz.sourceValue') }}
+        ·
+        <span class="font-semibold text-forest">{{ i18n.t('namaz.methodLabel') }}:</span>
+        {{ i18n.t('namaz.methodValue') }}
+        @if (lastChecked) {
+          ·
+          <span class="font-semibold text-forest">{{ i18n.t('namaz.checkedLabel') }}:</span>
+          {{ lastChecked }}
+        }
+      </p>
     </div>
 
     @if (prayer.loading() && !prayer.today()) {
@@ -186,5 +198,12 @@
         </p>
       </div>
     }
+
+    <app-content-review-note pageId="namaz" />
+    <app-related-pages
+      [heading]="i18n.t('related.heading')"
+      [lead]="i18n.t('related.lead')"
+      [links]="related"
+    />
   </div>
 </section>

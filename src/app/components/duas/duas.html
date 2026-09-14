@@ -1,0 +1,63 @@
+<section id="duas" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative site-wrap">
+    <div
+      class="mx-auto max-w-5xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('duas.eyebrow') }}
+      </span>
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        {{ i18n.t('duas.title') }}
+      </h1>
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
+        {{ i18n.t('duas.shortAnswer') }}
+      </p>
+    </div>
+
+    <div
+      class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <p>{{ i18n.t('duas.body') }}</p>
+    </div>
+
+    <div
+      class="mx-auto mt-14 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-10 text-center shadow-soft sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('duas.emptyTitle') }}</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('duas.empty') }}
+      </p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a
+          [href]="reviewWhatsApp"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest"
+        >
+          {{ i18n.t('duas.linkWhatsApp') }}
+        </a>
+        <a
+          routerLink="/contact"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-sand/40 px-5 py-2.5 text-sm font-semibold text-forest"
+        >
+          {{ i18n.t('duas.linkContact') }}
+        </a>
+      </div>
+    </div>
+
+    <app-content-review-note pageId="duas" />
+    <app-related-pages
+      [heading]="i18n.t('related.heading')"
+      [lead]="i18n.t('related.lead')"
+      [links]="related"
+    />
+  </div>
+</section>

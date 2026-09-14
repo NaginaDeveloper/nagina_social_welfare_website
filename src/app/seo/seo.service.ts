@@ -102,6 +102,12 @@ export class SeoService {
     link.setAttribute('href', url);
   }
 
+  private breadcrumbLabel(seo: PageSeo): string {
+    if (seo.breadcrumb) return seo.breadcrumb;
+    const beforePipe = seo.title.split('|')[0]?.trim();
+    return beforePipe || seo.title;
+  }
+
   private setJsonLd(seo: PageSeo, url: string): void {
     if (typeof document === 'undefined') return;
 
@@ -143,6 +149,36 @@ export class SeoService {
       ],
     };
 
+    const markaz = {
+      '@type': 'EducationalOrganization',
+      '@id': `${SITE_ORIGIN}/#markaz`,
+      name: 'Markaz Deen-e-Islam',
+      url: `${SITE_ORIGIN}/madrasa/`,
+      parentOrganization: { '@id': `${SITE_ORIGIN}/#organization` },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: ORGANIZATION.streetAddress,
+        addressLocality: ORGANIZATION.addressLocality,
+        postalCode: ORGANIZATION.postalCode,
+        addressCountry: ORGANIZATION.addressCountry,
+      },
+      telephone: ORGANIZATION.phoneTel,
+      email: ORGANIZATION.email,
+    };
+
+    const place = {
+      '@type': 'Place',
+      '@id': `${SITE_ORIGIN}/#venue`,
+      name: 'Markaz Deen-e-Islam',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: ORGANIZATION.streetAddress,
+        addressLocality: ORGANIZATION.addressLocality,
+        postalCode: ORGANIZATION.postalCode,
+        addressCountry: ORGANIZATION.addressCountry,
+      },
+    };
+
     const website = {
       '@type': 'WebSite',
       '@id': `${SITE_ORIGIN}/#website`,
@@ -164,9 +200,52 @@ export class SeoService {
       inLanguage: 'en-GB',
     };
 
+    const graph: Record<string, unknown>[] = [
+      organization,
+      markaz,
+      place,
+      website,
+      webpage,
+    ];
+
+    if (seo.path !== '/') {
+      graph.push({
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_ORIGIN}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: this.breadcrumbLabel(seo),
+            item: url,
+          },
+        ],
+      });
+    }
+
+    if (seo.type === 'article') {
+      graph.push({
+        '@type': 'Article',
+        '@id': `${url}#article`,
+        headline: seo.title,
+        description: seo.description,
+        image: seo.image ?? DEFAULT_OG_IMAGE,
+        mainEntityOfPage: { '@id': `${url}#webpage` },
+        author: { '@id': `${SITE_ORIGIN}/#organization` },
+        publisher: { '@id': `${SITE_ORIGIN}/#organization` },
+        inLanguage: 'en-GB',
+      });
+    }
+
     const payload = {
       '@context': 'https://schema.org',
-      '@graph': [organization, website, webpage],
+      '@graph': graph,
     };
 
     let script = document.getElementById('nagina-jsonld') as HTMLScriptElement | null;

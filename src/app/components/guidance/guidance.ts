@@ -1,5 +1,7 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
+import { ContentReviewNote } from '../content-review-note/content-review-note';
+import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 
 interface GuidancePoster {
   readonly id: string;
@@ -15,11 +17,21 @@ interface GuidancePoster {
 
 @Component({
   selector: 'app-guidance',
+  imports: [ContentReviewNote, RelatedPages],
   templateUrl: './guidance.html',
 })
 export class Guidance {
   protected readonly i18n = inject(LanguageService);
   protected readonly activePoster = signal<GuidancePoster | null>(null);
+
+  protected readonly related: readonly RelatedPageLink[] = [
+    { path: '/spiritual-guide', label: 'Spiritual Guide', hint: 'Munir-e-Islam' },
+    { path: '/basic-beliefs', label: 'Basic Beliefs', hint: 'Creed FAQ' },
+    { path: '/books', label: 'Books', hint: 'Seedha Rastah library' },
+    { path: '/sermons', label: 'Sermons', hint: 'Video library' },
+    { path: '/duas', label: 'Daily duas', hint: 'Checked prayers' },
+    { path: '/contact', label: 'Contact', hint: 'Ask a question' },
+  ];
 
   protected readonly posters: readonly GuidancePoster[] = [
     {
@@ -40,7 +52,7 @@ export class Guidance {
       subtitle: 'The path of ilm & charity',
       subtitleUr: 'علم اور خیرات کا راستہ',
       alt: 'Poster on the virtue of knowledge in Islam with a classroom photo of students at Markaz, charity call to action, and prophetic narrations from Sahih Muslim',
-      src: '/media/virtue-of-knowledge.png',
+      src: '/media/virtue-of-knowledge.webp',
       width: 764,
       height: 1024,
     },

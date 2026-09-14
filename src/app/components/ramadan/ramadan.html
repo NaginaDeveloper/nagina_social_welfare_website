@@ -1,0 +1,75 @@
+<section id="ramadan" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative site-wrap">
+    <div
+      class="mx-auto max-w-5xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('ramadan.eyebrow') }}
+      </span>
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        {{ i18n.t('ramadan.title') }}
+      </h1>
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
+        {{ i18n.t('ramadan.shortAnswer') }}
+      </p>
+    </div>
+
+    <div
+      class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <p>{{ i18n.t('ramadan.body') }}</p>
+      <p>{{ i18n.t('ramadan.noInvent') }}</p>
+    </div>
+
+    <div
+      class="mx-auto mt-14 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('ramadan.howTitle') }}</h2>
+      <ul class="mt-6 space-y-4 text-sm leading-relaxed text-slate-warm sm:text-base">
+        <li>
+          <a routerLink="/namaz" class="font-semibold text-gold-600 underline decoration-gold/40 underline-offset-2 hover:text-forest">
+            {{ i18n.t('ramadan.linkNamaz') }}
+          </a>
+          — {{ i18n.t('ramadan.howNamaz') }}
+        </li>
+        <li>
+          <a routerLink="/events" class="font-semibold text-gold-600 underline decoration-gold/40 underline-offset-2 hover:text-forest">
+            {{ i18n.t('ramadan.linkEvents') }}
+          </a>
+          — {{ i18n.t('ramadan.howEvents') }}
+        </li>
+        <li>
+          <a routerLink="/contact" class="font-semibold text-gold-600 underline decoration-gold/40 underline-offset-2 hover:text-forest">
+            {{ i18n.t('ramadan.linkContact') }}
+          </a>
+          — {{ i18n.t('ramadan.howContact') }}
+        </li>
+      </ul>
+      <div class="mt-8">
+        <a
+          [href]="contactWhatsApp"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest"
+        >
+          {{ i18n.t('ramadan.linkWhatsApp') }}
+        </a>
+      </div>
+    </div>
+
+    <app-content-review-note pageId="ramadan" />
+    <app-related-pages
+      [heading]="i18n.t('related.heading')"
+      [lead]="i18n.t('related.lead')"
+      [links]="related"
+    />
+  </div>
+</section>

@@ -1,0 +1,104 @@
+<section id="zakat-rules" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative site-wrap">
+    <div
+      class="mx-auto max-w-5xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('zakatRules.eyebrow') }}
+      </span>
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        {{ i18n.t('zakatRules.title') }}
+      </h1>
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
+        {{ i18n.t('zakatRules.shortAnswer') }}
+      </p>
+    </div>
+
+    <div
+      class="mx-auto mt-12 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('zakatRules.assetsTitle') }}</h2>
+      <p class="mt-4 text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('zakatRules.assetsLead') }}
+      </p>
+      <ul class="mt-6 list-disc space-y-2 ps-5 text-sm leading-relaxed text-slate-warm sm:text-base">
+        <li>{{ i18n.t('zakatRules.asset1') }}</li>
+        <li>{{ i18n.t('zakatRules.asset2') }}</li>
+        <li>{{ i18n.t('zakatRules.asset3') }}</li>
+        <li>{{ i18n.t('zakatRules.asset4') }}</li>
+      </ul>
+    </div>
+
+    <div
+      class="mx-auto mt-10 max-w-3xl rounded-2xl border border-mist bg-sand/40 px-6 py-8 sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">{{ i18n.t('zakatRules.nisabTitle') }}</h2>
+      <p class="mt-4 text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('zakatRules.nisabLead') }}
+      </p>
+      <p class="mt-3 text-sm font-semibold text-forest sm:text-base">
+        {{ i18n.t('zakatRules.nisabValues') }}
+      </p>
+      <p class="mt-3 text-xs leading-relaxed text-slate-warm sm:text-sm">
+        {{ i18n.t('zakatRules.nisabNote') }}
+      </p>
+    </div>
+
+    <div
+      class="mx-auto mt-10 max-w-3xl"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="text-center font-display text-2xl font-bold text-forest">{{ i18n.t('zakatRules.qaTitle') }}</h2>
+      <div class="mt-8 space-y-6">
+        <article class="rounded-2xl border border-mist bg-white px-5 py-5 shadow-soft sm:px-8">
+          <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('zakatRules.q1') }}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-warm sm:text-base">{{ i18n.t('zakatRules.a1') }}</p>
+        </article>
+        <article class="rounded-2xl border border-mist bg-white px-5 py-5 shadow-soft sm:px-8">
+          <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('zakatRules.q2') }}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-warm sm:text-base">{{ i18n.t('zakatRules.a2') }}</p>
+        </article>
+        <article class="rounded-2xl border border-mist bg-white px-5 py-5 shadow-soft sm:px-8">
+          <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('zakatRules.q3') }}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-warm sm:text-base">{{ i18n.t('zakatRules.a3') }}</p>
+        </article>
+      </div>
+    </div>
+
+    <div
+      class="mx-auto mt-10 max-w-3xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <a
+        routerLink="/zakat"
+        class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-2.5 text-sm font-semibold text-forest"
+      >
+        {{ i18n.t('zakatRules.linkCalculator') }}
+      </a>
+    </div>
+
+    <aside
+      class="mx-auto mt-10 max-w-3xl rounded-xl border border-mist bg-white/90 px-5 py-4 text-sm leading-relaxed text-slate-warm"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <p class="font-semibold text-forest">{{ i18n.t('zakatRules.disclaimerTitle') }}</p>
+      <p class="mt-2">{{ i18n.t('zakatRules.disclaimer') }}</p>
+    </aside>
+
+    <app-content-review-note pageId="zakat-rules" />
+    <app-related-pages
+      [heading]="i18n.t('related.heading')"
+      [lead]="i18n.t('related.lead')"
+      [links]="related"
+    />
+  </div>
+</section>

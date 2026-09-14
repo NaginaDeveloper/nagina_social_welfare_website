@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { DomSanitizer, type SafeResourceUrl } from '@angular/platform-browser';
 import { ORGANIZATION } from '../../config/organization.config';
+import { PUBLIC_TRUSTEES } from '../../config/content-review.config';
 import { LanguageService } from '../../i18n/language.service';
 
 interface Pillar {
@@ -14,8 +15,12 @@ interface Pillar {
   templateUrl: './about.html',
 })
 export class About {
+  /** Use h2 when embedded on the homepage so only one H1 remains. */
+  readonly headingLevel = input<'h1' | 'h2'>('h1');
+
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
+  protected readonly trustees = PUBLIC_TRUSTEES;
   protected readonly presentationEmbedUrl: SafeResourceUrl;
 
   protected readonly pillars: readonly Pillar[] = [

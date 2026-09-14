@@ -93,3 +93,12 @@ If the HTML tag fails:
 | `search-console.config.example.json` | Example format |
 
 Do not commit a fake verification code — use the real value from your Search Console property only.
+
+## 6. After publishing new SEO pages
+
+When routes such as `/peterborough/`, `/zakat/what-is-zakat/`, `/duas/`, `/calendar/`, `/ramadan/`, or `/impact/` go live:
+
+1. Confirm they appear in [`sitemap.xml`](../public/sitemap.xml) (regenerated on `npm run build`).
+2. In Search Console → **Sitemaps**, resubmit the sitemap URL if needed.
+3. Use **URL Inspection** on the new pages and request indexing once.
+4. Follow the weekly routine in [`seo-operations.md`](./seo-operations.md).

@@ -1,0 +1,84 @@
+<section id="impact" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative site-wrap">
+    <div
+      class="mx-auto max-w-5xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('impact.eyebrow') }}
+      </span>
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        {{ i18n.t('impact.title') }}
+      </h1>
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
+        {{ i18n.t('impact.shortAnswer') }}
+      </p>
+    </div>
+
+    <div
+      class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <p>{{ i18n.t('impact.body') }}</p>
+    </div>
+
+    @if (facts.length) {
+      <div class="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-2">
+        @for (fact of facts; track fact.label + fact.asOf) {
+          <article
+            class="rounded-2xl border border-mist bg-white px-5 py-6 shadow-soft sm:px-8"
+            [attr.dir]="i18n.isUr() ? 'rtl' : null"
+          >
+            <p class="font-display text-3xl font-bold text-forest">
+              {{ i18n.pick(fact.value, fact.valueUr) }}
+            </p>
+            <p class="mt-2 text-sm font-semibold text-gold-600">
+              {{ i18n.pick(fact.label, fact.labelUr) }}
+            </p>
+            <p class="mt-2 text-xs text-slate-warm">{{ fact.asOf }}</p>
+          </article>
+        }
+      </div>
+    } @else {
+      <div
+        class="mx-auto mt-14 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-10 text-center shadow-soft sm:px-10"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        [attr.lang]="i18n.isUr() ? 'ur' : null"
+      >
+        <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('impact.awaitingTitle') }}</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-warm sm:text-base">
+          {{ i18n.t('impact.awaiting') }}
+        </p>
+      </div>
+    }
+
+    <div
+      class="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-3"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <a
+        routerLink="/work"
+        class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+      >
+        {{ i18n.t('impact.linkWork') }}
+      </a>
+      <a
+        routerLink="/donate"
+        class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest"
+      >
+        {{ i18n.t('impact.linkDonate') }}
+      </a>
+    </div>
+
+    <app-content-review-note pageId="impact" />
+    <app-related-pages
+      [heading]="i18n.t('related.heading')"
+      [lead]="i18n.t('related.lead')"
+      [links]="related"
+    />
+  </div>
+</section>

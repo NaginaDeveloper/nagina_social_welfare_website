@@ -4,6 +4,7 @@ import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { MADRASA_SESSIONS } from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
 import { VenueMap } from '../venue-map/venue-map';
+import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 
 interface Offering {
   readonly title: string;
@@ -14,17 +15,26 @@ interface Offering {
 
 @Component({
   selector: 'app-madrasa',
-  imports: [RouterLink, VenueMap],
+  imports: [RouterLink, VenueMap, RelatedPages],
   templateUrl: './madrasa.html',
 })
 export class Madrasa {
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
   protected readonly sessions = MADRASA_SESSIONS;
-  protected readonly posterHref = '/posters/madrasa-admission-2026.jpg';
+  protected readonly posterHref = '/posters/madrasa-admission-2026.webp';
   protected readonly enrolWhatsApp = whatsappHref(
     'Assalamu alaikum, I would like to enrol a child at Markaz Deen-e-Islam. Age: __  Preferred days: __',
   );
+
+  protected readonly related: readonly RelatedPageLink[] = [
+    { path: '/apply', label: 'Apply online', hint: '2026 admission form' },
+    { path: '/peterborough', label: 'Peterborough hub', hint: 'Address and local services' },
+    { path: '/safeguarding', label: 'Safeguarding', hint: 'How we keep children safe' },
+    { path: '/namaz', label: 'Prayer times', hint: 'Salah times for Peterborough' },
+    { path: '/work', label: 'Our work', hint: 'Education and welfare' },
+    { path: '/contact', label: 'Contact', hint: 'WhatsApp, phone and email' },
+  ];
 
   protected readonly offerings: readonly Offering[] = [
     {

@@ -5,6 +5,7 @@ import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { DonationService } from '../../services/donation.service';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
+import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 
 export type DonationFund = 'zakat' | 'sadaqah' | 'lillah' | 'fitrana';
 
@@ -23,7 +24,7 @@ interface FundOption {
 
 @Component({
   selector: 'app-donations',
-  imports: [FormsModule, WhatsappIcon, RouterLink],
+  imports: [FormsModule, WhatsappIcon, RouterLink, RelatedPages],
   templateUrl: './donations.html',
 })
 export class Donations implements OnInit {
@@ -34,6 +35,15 @@ export class Donations implements OnInit {
   protected readonly givingWhatsApp = whatsappHref(
     'Assalamu alaikum, I have a question about donating to Nagina Social Welfare.',
   );
+
+  protected readonly related: readonly RelatedPageLink[] = [
+    { path: '/zakat', label: 'Zakat calculator', hint: 'Estimate before you give' },
+    { path: '/zakat/what-is-zakat', label: 'What is Zakat?', hint: 'UK guide' },
+    { path: '/work', label: 'Our work', hint: 'Education and welfare' },
+    { path: '/impact', label: 'Impact', hint: 'Approved evidence' },
+    { path: '/privacy', label: 'Privacy', hint: 'How donations are handled' },
+    { path: '/contact', label: 'Contact', hint: 'Ask before you give' },
+  ];
 
   protected readonly copiedKey = signal<string | null>(null);
   protected readonly selectedPreset = signal<number | 'custom'>(25);

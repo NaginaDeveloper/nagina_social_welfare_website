@@ -1,0 +1,90 @@
+<section id="what-is-zakat" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+
+  <div class="relative site-wrap">
+    <div
+      class="mx-auto max-w-5xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+        {{ i18n.t('whatIsZakat.eyebrow') }}
+      </span>
+      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl">
+        {{ i18n.t('whatIsZakat.title') }}
+      </h1>
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
+        {{ i18n.t('whatIsZakat.shortAnswer') }}
+      </p>
+    </div>
+
+    <div
+      class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <p>{{ i18n.t('whatIsZakat.body') }}</p>
+    </div>
+
+    <div
+      class="mx-auto mt-14 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('whatIsZakat.helpsTitle') }}</h2>
+      <p class="mt-4 text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('whatIsZakat.helpsLead') }}
+      </p>
+      <ul class="mt-6 list-disc space-y-2 ps-5 text-sm leading-relaxed text-slate-warm sm:text-base">
+        <li>{{ i18n.t('whatIsZakat.helps1') }}</li>
+        <li>{{ i18n.t('whatIsZakat.helps2') }}</li>
+        <li>{{ i18n.t('whatIsZakat.helps3') }}</li>
+      </ul>
+    </div>
+
+    <div
+      class="mx-auto mt-10 max-w-3xl rounded-2xl border border-mist bg-sand/40 px-6 py-8 sm:px-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">{{ i18n.t('whatIsZakat.nextTitle') }}</h2>
+      <p class="mt-3 text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('whatIsZakat.nextLead') }}
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          routerLink="/zakat/rules"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+        >
+          {{ i18n.t('whatIsZakat.linkRules') }}
+        </a>
+        <a
+          routerLink="/zakat"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+        >
+          {{ i18n.t('whatIsZakat.linkCalculator') }}
+        </a>
+        <a
+          routerLink="/donate"
+          class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest"
+        >
+          {{ i18n.t('whatIsZakat.linkDonate') }}
+        </a>
+      </div>
+    </div>
+
+    <aside
+      class="mx-auto mt-10 max-w-3xl rounded-xl border border-mist bg-white/90 px-5 py-4 text-sm leading-relaxed text-slate-warm"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <p>{{ i18n.t('whatIsZakat.disclaimer') }}</p>
+    </aside>
+
+    <app-content-review-note pageId="what-is-zakat" />
+    <app-related-pages
+      [heading]="i18n.t('related.heading')"
+      [lead]="i18n.t('related.lead')"
+      [links]="related"
+    />
+  </div>
+</section>

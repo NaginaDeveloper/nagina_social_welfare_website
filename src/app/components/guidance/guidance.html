@@ -92,6 +92,13 @@
         </figure>
       }
     </div>
+
+    <app-content-review-note pageId="guidance" />
+    <app-related-pages
+      [heading]="i18n.t('related.heading')"
+      [lead]="i18n.t('related.lead')"
+      [links]="related"
+    />
   </div>
 </section>
 

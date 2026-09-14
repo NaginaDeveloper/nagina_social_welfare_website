@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
+import { SAFEGUARDING_LAST_REVIEWED } from '../../config/content-review.config';
 import { LanguageService } from '../../i18n/language.service';
 
 interface SafeguardingBlock {
@@ -16,6 +17,7 @@ interface SafeguardingBlock {
 export class Safeguarding {
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
+  protected readonly lastReviewed = SAFEGUARDING_LAST_REVIEWED;
   protected readonly policyWhatsApp = whatsappHref(
     'Assalamu alaikum, please send me the full safeguarding policy for Markaz Deen-e-Islam / Nagina Social Welfare.',
   );

@@ -51,7 +51,8 @@
     </div>
 
     <p class="mt-6 text-center text-xs text-slate-warm/80">
-      Charity {{ org.charityNumber }} ·
+      {{ i18n.t('safeguarding.lastReviewed') }} · {{ lastReviewed }}
+      · Charity {{ org.charityNumber }} ·
       <a [href]="'mailto:' + org.email" class="font-medium text-gold-600 hover:underline">
         {{ org.email }}
       </a>

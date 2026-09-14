@@ -98,6 +98,12 @@ export class Header implements OnInit {
           icon: 'mosque',
         },
         {
+          labelKey: 'nav.peterborough',
+          path: '/peterborough',
+          hintKey: 'nav.peterboroughHint',
+          icon: 'mosque',
+        },
+        {
           labelKey: 'nav.spiritualGuide',
           path: '/spiritual-guide',
           hintKey: 'nav.spiritualGuideHint',
@@ -150,6 +156,36 @@ export class Header implements OnInit {
           icon: 'zakat',
         },
         {
+          labelKey: 'nav.whatIsZakat',
+          path: '/zakat/what-is-zakat',
+          hintKey: 'nav.whatIsZakatHint',
+          icon: 'zakat',
+        },
+        {
+          labelKey: 'nav.zakatRules',
+          path: '/zakat/rules',
+          hintKey: 'nav.zakatRulesHint',
+          icon: 'zakat',
+        },
+        {
+          labelKey: 'nav.duas',
+          path: '/duas',
+          hintKey: 'nav.duasHint',
+          icon: 'worship',
+        },
+        {
+          labelKey: 'nav.calendar',
+          path: '/calendar',
+          hintKey: 'nav.calendarHint',
+          icon: 'worship',
+        },
+        {
+          labelKey: 'nav.ramadan',
+          path: '/ramadan',
+          hintKey: 'nav.ramadanHint',
+          icon: 'mosque',
+        },
+        {
           labelKey: 'nav.quranMajeed',
           path: '/quran',
           hintKey: 'nav.quranMajeedHint',
@@ -174,7 +210,18 @@ export class Header implements OnInit {
           hintKey: 'nav.seedhaRastahHint',
           icon: 'seedha',
         },
-        { labelKey: 'nav.guidance', path: '/guidance', hintKey: 'nav.guidanceHint', icon: 'counsel' },
+        {
+          labelKey: 'nav.guidance',
+          path: '/guidance',
+          hintKey: 'nav.guidanceHint',
+          icon: 'counsel',
+        },
+        {
+          labelKey: 'nav.impact',
+          path: '/impact',
+          hintKey: 'nav.impactHint',
+          icon: 'work',
+        },
         { labelKey: 'nav.books', path: '/books', hintKey: 'nav.booksHint', icon: 'book' },
         {
           labelKey: 'nav.quiz',
@@ -247,9 +294,9 @@ export class Header implements OnInit {
   ];
 
   ngOnInit(): void {
-    void this.prayer.load();
     void this.memberAuth.restoreSession();
     this.syncPath(this.router.url);
+    this.schedulePrayerLoad();
 
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
@@ -263,6 +310,19 @@ export class Header implements OnInit {
     afterNextRender(() => {
       this.onScroll();
     });
+  }
+
+  /** Defer AlAdhan fetch so it does not compete with first paint on every page. */
+  private schedulePrayerLoad(): void {
+    const run = () => void this.prayer.load();
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+    };
+    if (typeof w.requestIdleCallback === 'function') {
+      w.requestIdleCallback(() => run(), { timeout: 2500 });
+    } else {
+      setTimeout(run, 1200);
+    }
   }
 
   @HostListener('window:scroll')

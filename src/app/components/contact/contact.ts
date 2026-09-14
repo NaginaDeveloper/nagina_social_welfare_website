@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
@@ -15,6 +15,9 @@ type ContactReason = 'enrolment' | 'donation' | 'namaz' | 'general';
   templateUrl: './contact.html',
 })
 export class Contact {
+  /** Use h2 when embedded on the homepage so only one H1 remains. */
+  readonly headingLevel = input<'h1' | 'h2'>('h1');
+
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
   protected readonly whatsapp = whatsappHref();
