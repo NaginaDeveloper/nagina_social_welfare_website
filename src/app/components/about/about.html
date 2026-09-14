@@ -28,6 +28,41 @@
       </p>
     </div>
 
+    <figure class="mx-auto mt-12 max-w-4xl">
+      <div
+        class="overflow-hidden rounded-2xl bg-forest/5 shadow-soft ring-1 ring-mist"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        [attr.lang]="i18n.isUr() ? 'ur' : null"
+      >
+        <div class="aspect-video bg-forest/10">
+          <iframe
+            class="h-full w-full border-0"
+            [src]="presentationEmbedUrl"
+            [title]="i18n.t('about.videoTitle')"
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+      <figcaption
+        class="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-sm text-slate-warm"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        [attr.lang]="i18n.isUr() ? 'ur' : null"
+      >
+        <span>{{ i18n.t('about.videoCaption') }}</span>
+        <a
+          class="font-medium text-gold-600 underline decoration-gold/40 underline-offset-2 transition-colors hover:text-forest"
+          [href]="org.presentationVideoUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ i18n.t('about.videoOpen') }}
+        </a>
+      </figcaption>
+    </figure>
+
     <div class="mt-16 grid gap-6 sm:grid-cols-3">
       @for (pillar of pillars; track pillar.titleKey) {
         <div
