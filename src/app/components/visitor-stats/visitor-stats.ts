@@ -1,6 +1,5 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, OnInit, inject, input } from '@angular/core';
-import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { VisitorStatsService } from '../../services/visitor-stats.service';
 
@@ -12,9 +11,8 @@ import { VisitorStatsService } from '../../services/visitor-stats.service';
 export class VisitorStats implements OnInit {
   protected readonly i18n = inject(LanguageService);
   protected readonly stats = inject(VisitorStatsService);
-  protected readonly org = ORGANIZATION;
 
-  /** compact = footer strip; card = contact page layout with logo/socials */
+  /** compact = footer strip; card = contact page presence panel */
   readonly variant = input<'compact' | 'card'>('compact');
 
   /** When true, this instance owns the heartbeat (footer only). */

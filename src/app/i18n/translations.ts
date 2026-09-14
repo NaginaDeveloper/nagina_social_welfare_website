@@ -103,9 +103,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.applyCta': 'Start online admission',
 
     'visitor.aria': 'Website visitor statistics',
-    'visitor.live': 'Live visitors',
-    'visitor.today': 'Visitors today',
-    'visitor.total': 'Total visitors',
+    'visitor.eyebrow': 'Visitors',
+    'visitor.title': 'People finding their way here',
+    'visitor.lead': 'Anonymous counts of those browsing with us right now, today, and since we began counting.',
+    'visitor.live': 'Live',
+    'visitor.today': 'Today',
+    'visitor.total': 'Total',
     'visitor.socialLead': 'Follow us for updates from Markaz and the community.',
 
     'donate.eyebrow': 'Support our mission',
@@ -1212,9 +1215,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.applyCta': 'آن لائن داخلہ شروع کریں',
 
     'visitor.aria': 'ویب سائٹ وزٹرز کے اعداد',
-    'visitor.live': 'لائیو وزٹرز',
-    'visitor.today': 'آج کے وزٹرز',
-    'visitor.total': 'کل وزٹرز',
+    'visitor.eyebrow': 'وزٹرز',
+    'visitor.title': 'یہاں آنے والے لوگ',
+    'visitor.lead': 'ابھی، آج، اور جب سے گنتی شروع ہوئی — گمنام وزٹرز کے اعداد۔',
+    'visitor.live': 'لائیو',
+    'visitor.today': 'آج',
+    'visitor.total': 'کل',
     'visitor.socialLead': 'مرکز اور کمیونٹی کی تازہ خبروں کے لیے ہمیں فالو کریں۔',
 
     'donate.eyebrow': 'ہمارے مشن کی حمایت کریں',

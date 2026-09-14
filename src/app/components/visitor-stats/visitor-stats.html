@@ -1,119 +1,68 @@
 @if (variant() === 'card') {
-  <div
-    class="mt-10 grid gap-6 rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft sm:grid-cols-[minmax(12rem,16rem)_1fr] sm:items-center sm:gap-8 sm:p-7"
+  <aside
+    class="mt-10 rounded-2xl border border-mist bg-white px-5 py-5 shadow-soft sm:px-6"
     [attr.dir]="i18n.isUr() ? 'rtl' : null"
     [attr.aria-label]="i18n.t('visitor.aria')"
   >
-    <div class="rounded-2xl border border-mist bg-sand/60 px-5 py-6 text-center shadow-soft">
-      <p class="inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-forest">
-        <span class="relative flex h-2.5 w-2.5">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/60"></span>
-          <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-        </span>
-        {{ i18n.t('visitor.live') }}
-      </p>
-      <p class="mt-2 font-display text-4xl font-bold tabular-nums text-forest">
-        {{ stats.liveVisitors() | number }}
-      </p>
-      <p class="mt-4 font-display text-2xl font-bold tabular-nums text-emerald">
-        {{ stats.todayVisitors() | number }}
-      </p>
-      <p class="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-slate-warm">
-        {{ i18n.t('visitor.today') }}
-      </p>
-      <p class="mt-4 font-display text-3xl font-bold tabular-nums text-forest">
-        {{ stats.totalVisitors() | number }}
-      </p>
-      <p class="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gold-700">
-        {{ i18n.t('visitor.total') }}
-      </p>
-    </div>
-
-    <div class="flex flex-col items-center text-center sm:items-start sm:text-start">
-      <span class="flex h-28 w-28 items-center justify-center rounded-full bg-white p-2 ring-1 ring-gold/35 shadow-soft">
-        <img
-          src="/brand/nagina.png"
-          alt="Nagina Social Welfare UK logo"
-          class="h-full w-full object-contain"
-          width="112"
-          height="112"
-          loading="lazy"
-        />
-      </span>
-      <p class="mt-4 font-display text-xl font-bold text-forest">{{ org.shortName }}</p>
-      <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('visitor.socialLead') }}</p>
-      <div class="mt-4 flex flex-wrap items-center justify-center gap-2.5 sm:justify-start">
-        <a
-          [href]="org.facebookUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-cream transition hover:bg-emerald"
-          aria-label="Facebook"
-        >
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M14 8h2.5V5.5H14c-2 0-3.5 1.4-3.5 3.5V11H8v2.5h2.5V20H14v-6.5h2.3L17 11h-3V9c0-.6.4-1 1-1Z" />
-          </svg>
-        </a>
-        <a
-          [href]="org.instagramUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-cream transition hover:bg-emerald"
-          aria-label="Instagram"
-        >
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm5 4.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5Zm0 7.2A2.7 2.7 0 1 1 14.7 12 2.7 2.7 0 0 1 12 14.7ZM17.6 6.8a1 1 0 1 0 1 1 1 1 0 0 0-1-1Z" />
-          </svg>
-        </a>
-        <a
-          [href]="org.youtubeUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-cream transition hover:bg-emerald"
-          aria-label="YouTube"
-        >
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.8 15.5v-7l6.3 3.5-6.3 3.5Z" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-} @else {
-  <div
-    class="rounded-2xl border border-white/12 bg-white/5 px-4 py-3"
-    [attr.dir]="i18n.isUr() ? 'rtl' : null"
-    [attr.aria-label]="i18n.t('visitor.aria')"
-  >
-    <div class="flex flex-wrap items-end gap-x-5 gap-y-2">
+    <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-600">
+      {{ i18n.t('visitor.eyebrow') }}
+    </p>
+    <div class="mt-4 grid grid-cols-3 gap-3 text-center">
       <div>
-        <p class="inline-flex items-center gap-1.5 text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-gold-300">
-          <span class="relative flex h-2 w-2">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/50"></span>
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+        <p class="inline-flex items-center justify-center gap-1.5">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/50"></span>
+            <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
           </span>
+          <span class="font-display text-2xl font-bold tabular-nums text-forest sm:text-3xl">
+            {{ stats.liveVisitors() | number }}
+          </span>
+        </p>
+        <p class="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-slate-warm">
           {{ i18n.t('visitor.live') }}
         </p>
-        <p class="mt-0.5 font-display text-xl font-bold tabular-nums text-white">
-          {{ stats.liveVisitors() | number }}
-        </p>
       </div>
-      <div>
-        <p class="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-cream/55">
-          {{ i18n.t('visitor.today') }}
-        </p>
-        <p class="mt-0.5 font-display text-lg font-bold tabular-nums text-gold-300">
+      <div class="border-x border-mist">
+        <p class="font-display text-2xl font-bold tabular-nums text-forest sm:text-3xl">
           {{ stats.todayVisitors() | number }}
         </p>
+        <p class="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-slate-warm">
+          {{ i18n.t('visitor.today') }}
+        </p>
       </div>
       <div>
-        <p class="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-cream/55">
-          {{ i18n.t('visitor.total') }}
-        </p>
-        <p class="mt-0.5 font-display text-lg font-bold tabular-nums text-white">
+        <p class="font-display text-2xl font-bold tabular-nums text-forest sm:text-3xl">
           {{ stats.totalVisitors() | number }}
+        </p>
+        <p class="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-slate-warm">
+          {{ i18n.t('visitor.total') }}
         </p>
       </div>
     </div>
+  </aside>
+} @else {
+  <div
+    class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs"
+    [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    [attr.aria-label]="i18n.t('visitor.aria')"
+  >
+    <span class="inline-flex items-center gap-1.5 text-cream/80">
+      <span class="relative flex h-1.5 w-1.5 shrink-0">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/50"></span>
+        <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+      </span>
+      <span class="tabular-nums font-semibold text-cream">{{ stats.liveVisitors() | number }}</span>
+      <span class="text-cream/45">{{ i18n.t('visitor.live') }}</span>
+    </span>
+    <span class="text-white/20" aria-hidden="true">·</span>
+    <span class="inline-flex items-center gap-1 text-cream/80">
+      <span class="tabular-nums font-semibold text-gold-300">{{ stats.todayVisitors() | number }}</span>
+      <span class="text-cream/45">{{ i18n.t('visitor.today') }}</span>
+    </span>
+    <span class="text-white/20" aria-hidden="true">·</span>
+    <span class="inline-flex items-center gap-1 text-cream/80">
+      <span class="tabular-nums font-semibold text-cream">{{ stats.totalVisitors() | number }}</span>
+      <span class="text-cream/45">{{ i18n.t('visitor.total') }}</span>
+    </span>
   </div>
 }
