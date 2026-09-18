@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, inject, signal } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, type SafeResourceUrl } from '@angular/platform-browser';
+import { ORGANIZATION } from '../../config/organization.config';
 import { SermonsService } from '../../services/sermons.service';
 import type { Sermon } from '../../models/sermon';
 
@@ -16,9 +17,18 @@ export class Sermons implements OnInit {
   protected readonly sermons = inject(SermonsService);
   private readonly sanitizer = inject(DomSanitizer);
 
+  protected readonly tiktokUrl = ORGANIZATION.tiktokUrl;
+  protected readonly tiktokEmbedUrl: SafeResourceUrl;
+
   protected search = '';
   protected readonly active = signal<Sermon | null>(null);
   protected readonly embedUrl = signal<SafeResourceUrl | null>(null);
+
+  constructor() {
+    this.tiktokEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      ORGANIZATION.tiktokEmbedUrl,
+    );
+  }
 
   ngOnInit(): void {
     void this.sermons.load();

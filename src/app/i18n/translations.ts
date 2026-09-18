@@ -1025,6 +1025,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'sermons.many': 'sermons',
     'sermons.watch': 'Watch on YouTube',
     'sermons.close': 'Close player',
+    'sermons.tiktokEyebrow': 'TikTok',
+    'sermons.tiktokTitle': 'Short clips on TikTok',
+    'sermons.tiktokLead':
+      'Follow @nagina.social.wel for the latest short clips from Nagina Social Welfare.',
+    'sermons.tiktokCta': 'Watch on TikTok',
 
     'apps.eyebrow': 'Our Apps',
     'apps.title': 'Manage Everything, Right from',
@@ -2174,6 +2179,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'sermons.many': 'بیانات',
     'sermons.watch': 'یوٹیوب پر دیکھیں',
     'sermons.close': 'پلیئر بند کریں',
+    'sermons.tiktokEyebrow': 'ٹک ٹاک',
+    'sermons.tiktokTitle': 'ٹک ٹاک پر مختصر کلپس',
+    'sermons.tiktokLead':
+      'نگینہ سوشل ویلفیئر کی تازہ مختصر کلپس کے لیے @nagina.social.wel کو فالو کریں۔',
+    'sermons.tiktokCta': 'ٹک ٹاک پر دیکھیں',
 
     'apps.eyebrow': 'ہماری ایپس',
     'apps.title': 'سب کچھ اپنے',

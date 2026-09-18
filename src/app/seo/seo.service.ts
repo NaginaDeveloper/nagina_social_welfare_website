@@ -144,6 +144,7 @@ export class SeoService {
         ORGANIZATION.facebookUrl,
         ORGANIZATION.instagramUrl,
         ORGANIZATION.youtubeUrl,
+        ORGANIZATION.tiktokUrl,
         ORGANIZATION.charityCommissionUrl,
         ORGANIZATION.companiesHouseUrl,
       ],

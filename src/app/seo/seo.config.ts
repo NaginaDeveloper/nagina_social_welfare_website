@@ -249,9 +249,10 @@ export const BOOKS_SEO: PageSeo = {
 export const SERMONS_SEO: PageSeo = {
   title: 'Sermons by Baba Ji Sarkar | Nagina Social Welfare',
   description:
-    'Watch blessed sermons by Baba Ji Sarkar from the Seedha Rastah collection — searchable via Nagina TV on YouTube.',
+    'Watch blessed sermons by Baba Ji Sarkar from the Seedha Rastah collection on YouTube (Nagina TV), plus short clips on TikTok.',
   path: '/sermons/',
-  keywords: 'Baba Ji Sarkar sermons, Seedha Rastah sermons, Nagina TV, Islamic lectures UK',
+  keywords:
+    'Baba Ji Sarkar sermons, Seedha Rastah sermons, Nagina TV, TikTok, Islamic lectures UK',
   type: 'website',
   breadcrumb: 'Sermons',
   changefreq: 'weekly',
