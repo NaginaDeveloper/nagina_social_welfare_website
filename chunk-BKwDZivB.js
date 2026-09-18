@@ -1,0 +1,1 @@
+import {p,am as Te,an as lo,ao as k}from'./main-F2FPYT33.js';function w(t){t||(t=p(Te));let i=new k(e=>{if(t.destroyed){e.next();return}return t.onDestroy(e.next.bind(e))});return e=>e.pipe(lo(i))}export{w};
