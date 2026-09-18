@@ -56,6 +56,13 @@
           "functionId": "pingVisitorStats",
           "region": "europe-west2"
         }
+      },
+      {
+        "source": "/latestSocialVideos",
+        "function": {
+          "functionId": "latestSocialVideos",
+          "region": "europe-west2"
+        }
       }
     ]
   }

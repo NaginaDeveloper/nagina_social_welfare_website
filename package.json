@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && node --experimental-strip-types scripts/generate-route-html.mjs",
+    "build": "node scripts/fetch-latest-videos.mjs && ng build && node --experimental-strip-types scripts/generate-route-html.mjs",
+    "videos:latest": "node scripts/fetch-latest-videos.mjs",
     "assistant:ingest": "node scripts/ingest-assistant-knowledge.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

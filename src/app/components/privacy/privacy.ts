@@ -80,7 +80,7 @@ export class Privacy {
     {
       title: 'Links to other services',
       body:
-        'Links to Facebook, Instagram, YouTube, TikTok, WhatsApp, Google Maps, Google Play, SumUp’s payment pages, PayPal, NatWest PayIt, Google Gemini services, the Seedha Rastah archive (seedharastah.com), and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices.',
+        'Links to Facebook, Instagram, YouTube, TikTok, WhatsApp, Google Maps, Google Play, SumUp’s payment pages, PayPal, NatWest PayIt, Google Gemini services, the Seedha Rastah archive (seedharastah.com), and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices. Our servers may periodically fetch public YouTube RSS and TikTok embed pages so this website can show the latest videos; visitor browsers then load those players from YouTube/TikTok when you watch.',
     },
     {
       title: 'Your rights (UK GDPR)',
