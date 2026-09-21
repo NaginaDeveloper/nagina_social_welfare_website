@@ -67,32 +67,23 @@
               <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
             }
           </label>
-          <div>
-            <p class="text-sm font-medium text-forest">{{ i18n.t('membership.dob') }} *</p>
-            <div class="mt-2 grid grid-cols-3 gap-2">
-              <select class="min-h-12 rounded-2xl border border-mist bg-sand/40 px-3" [value]="dobD()" (change)="setDobPart('d', $any($event.target).value)">
-                <option value="">{{ i18n.t('membership.day') }}</option>
-                @for (d of daysInMonth(); track d) {
-                  <option [value]="d">{{ d }}</option>
-                }
-              </select>
-              <select class="min-h-12 rounded-2xl border border-mist bg-sand/40 px-3" [value]="dobM()" (change)="setDobPart('m', $any($event.target).value)">
-                <option value="">{{ i18n.t('membership.month') }}</option>
-                @for (m of months; track m.value) {
-                  <option [value]="m.value">{{ m.label }}</option>
-                }
-              </select>
-              <select class="min-h-12 rounded-2xl border border-mist bg-sand/40 px-3" [value]="dobY()" (change)="setDobPart('y', $any($event.target).value)">
-                <option value="">{{ i18n.t('membership.year') }}</option>
-                @for (y of years; track y) {
-                  <option [value]="y">{{ y }}</option>
-                }
-              </select>
-            </div>
-            @if (message(form.controls.applicant.controls.dateOfBirth); as msg) {
-              <span class="mt-1 block text-sm text-red-700" data-error>{{ msg }}</span>
+          <label class="block text-sm font-medium text-forest">
+            {{ i18n.t('membership.age') }} *
+            <input
+              type="number"
+              inputmode="numeric"
+              min="18"
+              max="120"
+              step="1"
+              formControlName="age"
+              [class]="inputClass(form.controls.applicant.controls.age)"
+              [attr.data-error]="invalid(form.controls.applicant.controls.age) || null"
+            />
+            <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('membership.ageHint') }}</p>
+            @if (message(form.controls.applicant.controls.age); as msg) {
+              <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
             }
-          </div>
+          </label>
         </div>
 
         <div formGroupName="address" class="mt-8 space-y-5 border-t border-mist pt-8">

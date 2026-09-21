@@ -18,7 +18,8 @@ export interface MembershipSubmitPayload {
     fullName: string;
     email: string;
     phone: string;
-    dateOfBirth: string;
+    /** Whole years of age (18+). */
+    age: number;
   };
   address: {
     line1: string;

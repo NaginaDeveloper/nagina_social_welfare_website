@@ -16,7 +16,6 @@ import {
   type VolunteerInterest,
 } from '../../models/membership';
 import {
-  adultDobValidator,
   ukPhoneValidator,
   ukPostcodeValidator,
   formatUkPhoneE164,
@@ -28,20 +27,21 @@ import {
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { PRIVACY_NOTICE_VERSION } from '../../config/privacy-notice.config';
 
-const MONTHS = [
-  { value: '01', label: 'January' },
-  { value: '02', label: 'February' },
-  { value: '03', label: 'March' },
-  { value: '04', label: 'April' },
-  { value: '05', label: 'May' },
-  { value: '06', label: 'June' },
-  { value: '07', label: 'July' },
-  { value: '08', label: 'August' },
-  { value: '09', label: 'September' },
-  { value: '10', label: 'October' },
-  { value: '11', label: 'November' },
-  { value: '12', label: 'December' },
-] as const;
+function adultAgeValidator() {
+  return (ctrl: AbstractControl) => {
+    const raw = ctrl.value;
+    if (raw === null || raw === undefined || String(raw).trim() === '') {
+      return { required: true };
+    }
+    const n = typeof raw === 'number' ? raw : Number(String(raw).trim());
+    if (!Number.isFinite(n) || !Number.isInteger(n)) {
+      return { adultAge: true };
+    }
+    if (n < 18) return { adultAgeMin: true };
+    if (n > 120) return { adultAgeMax: true };
+    return null;
+  };
+}
 
 @Component({
   selector: 'app-membership-form',
@@ -57,10 +57,6 @@ export class MembershipForm {
   );
   protected readonly interests = VOLUNTEER_INTEREST_OPTIONS;
   protected readonly conduct = MEMBERSHIP_CODE_OF_CONDUCT;
-  protected readonly months = MONTHS;
-  protected readonly years: readonly string[];
-  protected readonly minDob: string;
-  protected readonly maxDob: string;
 
   private readonly fb = inject(FormBuilder);
   private readonly membership = inject(MembershipService);
@@ -71,9 +67,6 @@ export class MembershipForm {
   protected readonly submitting = signal(false);
   protected readonly error = signal<string | null>(null);
   protected readonly attempted = signal(false);
-  protected readonly dobY = signal('');
-  protected readonly dobM = signal('');
-  protected readonly dobD = signal('');
 
   protected readonly stepMeta = [
     { key: 'membership.step1', hint: 'membership.step1Hint' },
@@ -86,7 +79,7 @@ export class MembershipForm {
       fullName: ['', [Validators.required, Validators.maxLength(120)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, ukPhoneValidator()]],
-      dateOfBirth: ['', [Validators.required, adultDobValidator()]],
+      age: [null as number | null, [Validators.required, adultAgeValidator()]],
     }),
     address: this.fb.nonNullable.group({
       line1: ['', [Validators.required, Validators.maxLength(120)]],
@@ -112,17 +105,6 @@ export class MembershipForm {
   });
 
   constructor() {
-    const now = new Date();
-    const oldest = new Date(now.getFullYear() - 120, now.getMonth(), now.getDate());
-    const youngestAdult = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
-    this.maxDob = this.toIso(youngestAdult);
-    this.minDob = this.toIso(oldest);
-    const years: string[] = [];
-    for (let y = youngestAdult.getFullYear(); y >= oldest.getFullYear(); y--) {
-      years.push(String(y));
-    }
-    this.years = years;
-
     this.form.controls.applicant.controls.fullName.valueChanges
       .pipe(takeUntilDestroyed())
       .subscribe((name) => {
@@ -131,20 +113,6 @@ export class MembershipForm {
           signed.setValue(name.trim());
         }
       });
-  }
-
-  protected daysInMonth(): readonly string[] {
-    const y = Number(this.dobY());
-    const m = Number(this.dobM());
-    const count = y && m ? new Date(y, m, 0).getDate() : 31;
-    return Array.from({ length: count }, (_, i) => String(i + 1).padStart(2, '0'));
-  }
-
-  protected setDobPart(part: 'y' | 'm' | 'd', value: string): void {
-    if (part === 'y') this.dobY.set(value);
-    if (part === 'm') this.dobM.set(value);
-    if (part === 'd') this.dobD.set(value);
-    this.syncDobFromParts();
   }
 
   protected toggleInterest(value: VolunteerInterest, checked: boolean): void {
@@ -174,8 +142,9 @@ export class MembershipForm {
     if (e['email']) return this.i18n.t('membership.err.email');
     if (e['ukPhone']) return this.i18n.t('membership.err.phone');
     if (e['ukPostcode']) return this.i18n.t('membership.err.postcode');
-    if (e['adultDobFuture']) return this.i18n.t('membership.err.dobFuture');
-    if (e['adultDobAge'] || e['adultDob']) return this.i18n.t('membership.err.dobAge');
+    if (e['adultAgeMin'] || e['adultAge'] || e['adultAgeMax']) {
+      return this.i18n.t('membership.err.age');
+    }
     return this.i18n.t('membership.err.required');
   }
 
@@ -244,13 +213,13 @@ export class MembershipForm {
       const today = new Date();
       const signedAt = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
       const interests = raw.interests;
+      const age = Number(raw.applicant.age);
       const payload: MembershipSubmitPayload = {
         applicant: {
-          ...raw.applicant,
           fullName: raw.applicant.fullName.trim(),
           email: raw.applicant.email.trim().toLowerCase(),
           phone: formatUkPhoneE164(raw.applicant.phone),
-          dateOfBirth: raw.applicant.dateOfBirth,
+          age,
         },
         address: {
           line1: raw.address.line1,
@@ -294,7 +263,7 @@ export class MembershipForm {
         sessionStorage.setItem(LAST_MEMBERSHIP_ID_KEY, res.applicationId);
         sessionStorage.setItem(LAST_MEMBERSHIP_EMAIL_KEY, raw.applicant.email.toLowerCase());
       } catch {
-        // ignore
+        // Private mode may block storage.
       }
       await this.router.navigate(['/membership/success'], {
         queryParams: { id: res.applicationId },
@@ -309,27 +278,12 @@ export class MembershipForm {
     }
   }
 
-  private syncDobFromParts(): void {
-    const y = this.dobY();
-    const m = this.dobM();
-    const d = this.dobD();
-    if (!y || !m || !d) return;
-    const iso = `${y}-${m}-${d}`;
-    const ctrl = this.form.controls.applicant.controls.dateOfBirth;
-    ctrl.setValue(iso);
-    ctrl.markAsTouched();
-    ctrl.updateValueAndValidity();
-  }
-
   private scrollToError(): void {
     queueMicrotask(() => {
-      this.host.nativeElement
-        .querySelector('[data-error]')
-        ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const el =
+        this.host.nativeElement.querySelector('[data-error]') ??
+        this.host.nativeElement.querySelector('.text-red-700');
+      el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
-  }
-
-  private toIso(d: Date): string {
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   }
 }
