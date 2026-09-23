@@ -145,9 +145,13 @@ function injectSearchConsoleMeta(html) {
   );
 }
 
+const STATIC_SITEMAP_PAGES = [
+  { path: '/parent-portal-manual/', changefreq: 'monthly', priority: 0.6 },
+];
+
 function writeSitemap() {
   const indexed = PUBLIC_SEO_PAGES.filter(isIndexed);
-  const urls = indexed
+  const urls = [...indexed, ...STATIC_SITEMAP_PAGES]
     .map((page) => {
       const loc = escapeXml(canonicalUrl(page.path));
       const changefreq = page.changefreq ?? 'monthly';
