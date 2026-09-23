@@ -1,0 +1,1 @@
+import {p,ap as Te,aq as lo,ar as k}from'./main-KT46TWPZ.js';function w(t){t||(t=p(Te));let i=new k(e=>{if(t.destroyed){e.next();return}return t.onDestroy(e.next.bind(e))});return e=>e.pipe(lo(i))}export{w};
