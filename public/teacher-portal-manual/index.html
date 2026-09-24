@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher Portal User Manual — Markaz Deen-e-Islam</title>
+  <style>
+    :root {
+      --ink: #1b2420;
+      --muted: #5e6a62;
+      --line: #e6dfd2;
+      --paper: #f4efe6;
+      --card: #fffcf7;
+      --teal: #1f5c57;
+      --teal-dark: #143e3b;
+      --gold: #b8893a;
+      --gold-soft: #f8f1e3;
+      --green: #137f1a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 80% -10%, rgba(184, 137, 58, 0.16), transparent 60%),
+        var(--paper);
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    a { color: var(--teal); }
+    .layout { display: block; min-height: 100vh; }
+    nav.toc {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 10px 12px 12px;
+      background: #102c2e;
+      color: #f7f4ee;
+    }
+    .toc-check {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+    .toc-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .toc-titles { flex: 1; min-width: 0; }
+    .toc-toggle {
+      flex: none;
+      border: 1px solid rgba(243, 226, 191, 0.55);
+      color: #f3e2bf;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .toc-toggle .hide { display: none; }
+    .toc-check:checked ~ .toc-bar .toc-toggle .show { display: none; }
+    .toc-check:checked ~ .toc-bar .toc-toggle .hide { display: inline; }
+    nav.toc .crest-row { display: flex; gap: 8px; margin: 0; }
+    nav.toc .crest-row img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      object-fit: contain;
+      padding: 2px;
+    }
+    nav.toc .brand {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e4c98a;
+      margin: 0;
+    }
+    nav.toc h1 {
+      font-family: Georgia, "Iowan Old Style", Palatino, serif;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin: 0;
+    }
+    nav.toc ol {
+      display: none;
+      list-style: none;
+      margin: 12px 0 0;
+      padding: 0;
+      max-height: min(62vh, 420px);
+      overflow: auto;
+    }
+    .toc-check:checked ~ ol { display: block; }
+    nav.toc a {
+      display: block;
+      color: #e7eeef;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 11px 2px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    nav.toc a:hover { color: #f3e2bf; }
+    nav.toc .sub { padding-left: 14px; font-size: 14px; color: #c9d8d6; }
+    main { max-width: 980px; padding: 18px 16px 72px; }
+    section[id], h4[id] { scroll-margin-top: 72px; }
+    .cover {
+      position: relative;
+      background:
+        radial-gradient(500px 220px at 100% 0%, rgba(243, 226, 191, 0.18), transparent 60%),
+        linear-gradient(155deg, #143e3b 0%, #1f5c57 48%, #2f6f62 100%);
+      color: white;
+      border-radius: 18px;
+      padding: 22px 16px 18px;
+      margin-bottom: 28px;
+      box-shadow: 0 24px 50px rgba(16, 44, 46, 0.18);
+      overflow: hidden;
+    }
+    .cover::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(228, 201, 138, 0.45);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    .crests { display: flex; gap: 14px; margin: 0 0 22px; position: relative; z-index: 1; }
+    .crests img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 50%;
+      padding: 5px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+    .cover .kicker {
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: #f3e2bf;
+      margin: 0 0 10px;
+    }
+    .cover h2 {
+      position: relative;
+      z-index: 1;
+      font-family: Georgia, "Iowan Old Style", Palatino, serif;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 1.02;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+    }
+    .cover .lede {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 38rem;
+      color: #e7f2f0;
+      font-size: 16px;
+    }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; position: relative; z-index: 1; }
+    .meta span {
+      border: 1px solid rgba(243, 226, 191, 0.45);
+      color: #f3e2bf;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 13px;
+    }
+    .note, .tip {
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0 8px;
+      font-size: 15.5px;
+    }
+    .note { background: var(--gold-soft); border: 1px solid #ead7b0; }
+    .tip { background: #eef6f4; border: 1px solid #d3e4df; }
+    .note strong, .tip strong { color: var(--teal-dark); }
+    h3 {
+      font-family: Georgia, "Iowan Old Style", Palatino, serif;
+      font-weight: 500;
+      font-size: 26px;
+      margin: 36px 0 8px;
+      letter-spacing: -0.02em;
+      padding-top: 8px;
+    }
+    h3::after {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 3px;
+      margin-top: 10px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    h4 { font-size: 20px; margin: 32px 0 8px; color: var(--teal-dark); }
+    p { margin: 0 0 12px; }
+    ol.steps {
+      list-style: none;
+      margin: 14px 0 18px;
+      padding: 0;
+      counter-reset: step;
+    }
+    ol.steps li {
+      counter-increment: step;
+      position: relative;
+      margin: 8px 0;
+      padding: 12px 14px 12px 56px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    ol.steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--teal-dark);
+      color: #f3e2bf;
+      font-size: 13px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+    ul.plain { margin: 8px 0 16px; padding-left: 1.2rem; }
+    ul.plain li { margin: 6px 0; }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 18px 0;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 18px 8px;
+      box-shadow: 0 10px 28px rgba(28, 36, 48, 0.04);
+    }
+    .panel.soon {
+      background:
+        linear-gradient(180deg, #fff, #f7f3ea);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 8px;
+    }
+    .badge.live { background: #e7f6e8; color: var(--green); }
+    .badge.wait { background: var(--gold-soft); color: #8a6430; }
+    .store-link {
+      display: block;
+      text-align: center;
+      margin: 4px 0 12px;
+      background: var(--teal-dark);
+      color: #f3e2bf;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .share-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin: 0 0 28px;
+      padding: 12px 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .share-bar p {
+      margin: 0;
+      flex: 1 1 180px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .share-bar a {
+      display: inline-block;
+      background: var(--teal);
+      color: #f3e2bf;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    figure {
+      margin: 16px 0 8px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px 10px 4px;
+      box-shadow: 0 14px 34px rgba(28, 36, 48, 0.06);
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      background: #f3f0ea;
+    }
+    figcaption {
+      margin: 10px 6px 8px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+    figcaption b { color: var(--gold); font-weight: 700; letter-spacing: 0.02em; }
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    table, thead, tbody, tr, th, td { display: block; width: 100%; }
+    table {
+      background: transparent;
+      border: 0;
+      margin: 12px 0 20px;
+      font-size: 15px;
+    }
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+    tr {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin: 0 0 10px;
+      overflow: hidden;
+    }
+    td:first-child { font-weight: 650; background: #f7f3ea; }
+    th, td {
+      text-align: left;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th { background: #143e3b; color: #f3e2bf; font-weight: 600; }
+    tr:last-child td { border-bottom: 0; }
+    .url {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.92em;
+      overflow-wrap: anywhere;
+    }
+    footer.colophon {
+      margin-top: 72px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 959px) {
+      figure { overflow-x: auto; }
+      figure img { width: 720px; max-width: none; }
+      figure img[src*="phone-"],
+      figure img[src*="chrome-android"],
+      figure img[src*="safari-iphone"] {
+        width: 100%;
+        max-width: 420px;
+      }
+      figcaption { position: sticky; left: 0; }
+    }
+    @media (min-width: 960px) {
+      .layout {
+        display: grid;
+        grid-template-columns: 292px minmax(0, 1fr);
+      }
+      nav.toc {
+        align-self: start;
+        height: 100vh;
+        overflow: auto;
+        padding: 28px 22px 48px;
+        background:
+          linear-gradient(180deg, rgba(184, 137, 58, 0.22), transparent 120px),
+          #102c2e;
+      }
+      .toc-bar { display: block; }
+      .toc-toggle { display: none; }
+      nav.toc ol,
+      .toc-check:checked ~ ol { display: block; max-height: none; margin-top: 18px; }
+      nav.toc .crest-row { gap: 10px; margin-bottom: 16px; }
+      nav.toc .crest-row img { width: 52px; height: 52px; padding: 3px; }
+      nav.toc .brand { font-size: 11px; letter-spacing: 0.16em; margin: 0 0 6px; }
+      nav.toc h1 { font-size: 22px; margin: 0 0 0; }
+      nav.toc a { font-size: 14.5px; padding: 8px 0; }
+      main { padding: 42px 56px 100px; }
+      .cover { border-radius: 28px; padding: 42px 46px 36px; }
+      .cover::after { inset: 12px; border-radius: 18px; }
+      .crests img { width: 96px; height: 96px; }
+      .cover h2 { font-size: 52px; }
+      .cover .lede { font-size: 18px; }
+      h3 { font-size: 34px; margin: 56px 0 10px; }
+      .split { grid-template-columns: 1.15fr 0.85fr; }
+      .pair { grid-template-columns: 1fr 1fr; }
+      .store-link { display: inline-block; text-align: left; }
+      table { display: table; width: 100%; border-collapse: collapse; background: var(--card); border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+      thead { display: table-header-group; position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+      tbody { display: table-row-group; }
+      tr { display: table-row; background: transparent; border: 0; border-radius: 0; margin: 0; }
+      th, td { display: table-cell; width: auto; }
+      td:first-child { font-weight: 500; background: transparent; }
+    }
+    @media print {
+      .layout { display: block; }
+      nav.toc, .toc-toggle, .toc-check, .share-bar { display: none !important; }
+      body { background: white; }
+      main { max-width: none; padding: 0; }
+      .cover { border-radius: 18px; padding: 28px 32px; }
+      .cover h2 { font-size: 40px; }
+      .crests img { width: 84px; height: 84px; }
+      h3 { font-size: 28px; break-before: page; }
+      figure { overflow: visible; }
+      figure img, figure img[src*="phone-"], figure img[src*="chrome-android"], figure img[src*="safari-iphone"] {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      table { display: table; }
+      thead { display: table-header-group; position: static; width: auto; height: auto; clip: auto; }
+      tbody { display: table-row-group; }
+      tr { display: table-row; }
+      th, td { display: table-cell; }
+      .cover, figure, .panel, ol.steps li { break-inside: avoid; box-shadow: none; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <nav class="toc" aria-label="Contents">
+      <input class="toc-check" id="toc-open" type="checkbox" />
+      <div class="toc-bar">
+        <div class="crest-row">
+          <img src="logos/markaz.png" alt="" />
+          <img src="logos/nagina.png" alt="" />
+        </div>
+        <div class="toc-titles">
+          <p class="brand">Markaz Deen-e-Islam</p>
+          <h1>Teacher Portal User Manual</h1>
+        </div>
+        <label class="toc-toggle" for="toc-open"><span class="show">Contents</span><span class="hide">Close</span></label>
+      </div>
+      <ol>
+        <li><a href="#start">1. Before you begin</a></li>
+        <li><a href="#apps">2. Get the app</a></li>
+        <li><a href="#android" class="sub">Android</a></li>
+        <li><a href="#ios" class="sub">iPhone, coming soon</a></li>
+        <li><a href="#install">3. Open it like an app</a></li>
+        <li><a href="#chrome-computer" class="sub">Chrome on a computer</a></li>
+        <li><a href="#chrome-android" class="sub">Chrome on Android</a></li>
+        <li><a href="#safari-iphone" class="sub">Safari on iPhone</a></li>
+        <li><a href="#safari-mac" class="sub">Safari on a Mac</a></li>
+        <li><a href="#open">4. Open the web portal</a></li>
+        <li><a href="#signin">5. Sign in</a></li>
+        <li><a href="#forgot" class="sub">Forgot password</a></li>
+        <li><a href="#invite" class="sub">First-time invite</a></li>
+        <li><a href="#dashboard">6. Dashboard</a></li>
+        <li><a href="#fees">7. Receive Fee</a></li>
+        <li><a href="#attendance">8. Mark Attendance</a></li>
+        <li><a href="#leave">9. Leave requests</a></li>
+        <li><a href="#incident">10. Incident &amp; Behaviour</a></li>
+        <li><a href="#incident-tab" class="sub">Incident &amp; Accident Report</a></li>
+        <li><a href="#behaviour-tab" class="sub">Student Behaviour</a></li>
+        <li><a href="#activities">11. Activities</a></li>
+        <li><a href="#participation">12. Participation</a></li>
+        <li><a href="#star">13. Star of the Week</a></li>
+        <li><a href="#profile">14. My Profile</a></li>
+        <li><a href="#quiz">15. Islamic Quiz</a></li>
+        <li><a href="#halal">16. Halal barcode</a></li>
+        <li><a href="#phone">17. On a phone</a></li>
+        <li><a href="#can">18. What you can do</a></li>
+      </ol>
+    </nav>
+    <main>
+      <header class="cover">
+        <div class="crests">
+          <img src="logos/markaz.png" alt="Markaz Deen-e-Islam" />
+          <img src="logos/nagina.png" alt="Nagina Social Welfare UK" />
+        </div>
+        <p class="kicker">Nagina Social Welfare UK</p>
+        <h2>Teacher Portal<br />User Manual</h2>
+        <p class="lede">How to install the Android app, pin the teacher web portal to your phone or computer, sign in, and use every page: fees, attendance, leave, incidents, activities, and your own details.</p>
+        <div class="meta">
+          <span>24 September 2026</span>
+          <span>Portal version 1.0</span>
+          <span>admin.naginasocialwelfare.co.uk</span>
+        </div>
+      </header>
+
+      <div class="share-bar">
+        <p>You are reading the manual online. Save a copy to keep or print.</p>
+        <a href="Teacher-Portal-User-Manual.pdf" download>Download PDF</a>
+      </div>
+
+      <section id="start">
+        <h3>1. Before you begin</h3>
+        <p>The teacher web portal is how teachers run day-to-day work for Markaz Deen-e-Islam. You can use the Android app shared with admins, or the teacher web portal on a computer, tablet, or phone. You only see students in the classes the office has assigned to you.</p>
+        <p>Sign in with the <strong>email address</strong> the office gave you. The password is the one you chose from the invite email, or the one you set after a reset. There is no public registration.</p>
+        <div class="note">
+          <strong>About these pictures.</strong> The portal pages were taken on 24 September 2026 while signed in as Test Teacher (email test@test.io), assigned to TestClass. Leave and incident lists are empty because nothing is pending. Students Furqan and Test Student appear on attendance and related pages. The Chrome and Safari pictures are guides to the menus you will see. The icon those menus create is named <strong>Markaz Admin</strong>.
+        </div>
+        <p>Teacher web portal: <span class="url">https://admin.naginasocialwelfare.co.uk</span></p>
+      </section>
+
+      <section id="apps">
+        <h3>2. Get the app</h3>
+        <div class="split">
+          <article class="panel" id="android">
+            <span class="badge live">Android · available now</span>
+            <h4>Markaz-e Deen-e Islam</h4>
+            <p>On an Android phone, install <strong>Markaz-e Deen-e Islam</strong> from Google Play. It is published for admins and teachers. The office gives you the email and password. You cannot create an account from the store page.</p>
+            <a class="store-link" href="https://play.google.com/store/apps/details?id=com.education.markaz_e_deen_islam">Open the Play Store page</a>
+            <ol class="steps">
+              <li>On the phone, open the Play Store link above, or search for <strong>Markaz-e Deen-e Islam</strong>.</li>
+              <li>Check the crest and the publisher name, then tap <strong>Install</strong>.</li>
+              <li>Open the app and sign in with the teacher email and password the office gave you.</li>
+            </ol>
+            <p>Support for the app is <span class="url">info@naginasocialwelfare.co.uk</span>.</p>
+          </article>
+          <article class="panel soon" id="ios">
+            <span class="badge wait">iPhone · coming soon</span>
+            <h4>App Store version</h4>
+            <p>A native iPhone app is on the way. It is not on the App Store yet, so there is nothing to download from Apple.</p>
+            <p>Until that app is released, open the teacher web portal in Safari and add it to your Home Screen. The steps are in the next chapter. It then opens from an icon, the same way an app does, and you sign in with the same email.</p>
+          </article>
+        </div>
+        <figure>
+          <img src="screenshots/19-play-store.png" alt="Google Play listing for Markaz-e Deen-e Islam, for admins and teachers." />
+          <figcaption><b>Figure 1.</b> The Android app on Google Play. Tap Install, then sign in with the email from the office.</figcaption>
+        </figure>
+      </section>
+
+      <section id="install">
+        <h3>3. Open it like an app</h3>
+        <p>The teacher web portal can also sit on your home screen or in the Dock. It opens in its own window, without the usual browser tabs. Use the same address and the same sign-in. The icon is labelled <strong>Markaz Admin</strong>.</p>
+
+        <h4 id="chrome-computer">Chrome on a computer</h4>
+        <ol class="steps">
+          <li>Open Chrome and go to <span class="url">https://admin.naginasocialwelfare.co.uk/login/teacher</span>.</li>
+          <li>At the right of the address bar, click the install icon (a small screen with an arrow), then <strong>Install</strong>.</li>
+          <li>If that icon is missing, click the three-dot menu, then <strong>Cast, save, and share</strong>, then <strong>Install page as app</strong>.</li>
+          <li>The portal opens in its own window. You can also open it later from the Dock or the Start menu.</li>
+        </ol>
+        <figure>
+          <img src="screenshots/20-chrome-computer.png" alt="Guide to Chrome on a computer: install icon in the address bar, and the menu path Cast, save, and share, then Install page as app." />
+          <figcaption><b>Figure 2.</b> Chrome on a computer. Use the install icon, or the three-dot menu. This picture is a guide of the menus.</figcaption>
+        </figure>
+
+        <h4 id="chrome-android">Chrome on Android</h4>
+        <p>Use this when you want the teacher web portal itself on the home screen, as well as, or instead of, the Play Store app.</p>
+        <ol class="steps">
+          <li>Open the teacher web portal in Chrome.</li>
+          <li>Tap the three-dot menu at the top right.</li>
+          <li>Tap <strong>Install app</strong>. If you only see <strong>Add to Home screen</strong>, tap that instead.</li>
+          <li>Confirm. The Markaz Admin icon appears on the home screen.</li>
+        </ol>
+        <figure>
+          <img src="screenshots/21-chrome-android.png" alt="Guide to Chrome on Android with the menu open and Install app highlighted." />
+          <figcaption><b>Figure 3.</b> Chrome on Android. Install app, or Add to Home screen. This picture is a guide of the menus.</figcaption>
+        </figure>
+
+        <div class="pair">
+          <div>
+            <h4 id="safari-iphone">Safari on iPhone</h4>
+            <p>This is the way to use the portal on an iPhone while the App Store app is still coming.</p>
+            <ol class="steps">
+              <li>Open the teacher web portal in <strong>Safari</strong>. Other browsers on iPhone do not offer Add to Home Screen in the same way.</li>
+              <li>Tap the <strong>Share</strong> button (the square with an arrow).</li>
+              <li>Scroll the share sheet and tap <strong>Add to Home Screen</strong>.</li>
+              <li>The name shown is Markaz Admin. Tap <strong>Add</strong>.</li>
+              <li>Open the new icon from the Home Screen and sign in.</li>
+            </ol>
+          </div>
+          <div>
+            <h4 id="safari-mac">Safari on a Mac</h4>
+            <ol class="steps">
+              <li>Open the teacher web portal in Safari.</li>
+              <li>In the menu bar, choose <strong>File</strong>, then <strong>Add to Dock</strong>.</li>
+              <li>Click <strong>Add</strong>.</li>
+              <li>Open Markaz Admin from the Dock. It uses a simple window, without Safari’s full toolbar.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="pair">
+          <figure>
+            <img src="screenshots/22-safari-iphone.png" alt="Guide to Safari on iPhone with Add to Home Screen highlighted in the share sheet." />
+            <figcaption><b>Figure 4.</b> Safari on iPhone. Share, then Add to Home Screen. This picture is a guide of the menus.</figcaption>
+          </figure>
+          <figure>
+            <img src="screenshots/23-safari-mac.png" alt="Guide to Safari on a Mac with the File menu open and Add to Dock highlighted." />
+            <figcaption><b>Figure 5.</b> Safari on a Mac. File, then Add to Dock. This picture is a guide of the menus.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="open">
+        <h3>4. Open the web portal</h3>
+        <p>The first screen asks you to choose a role. Teachers use the green <strong>Teacher</strong> card. The other cards are for admins, parents, students, collectors, quizzes, and the Halal barcode helper.</p>
+        <ol class="steps">
+          <li>Open <span class="url">https://admin.naginasocialwelfare.co.uk</span></li>
+          <li>On the Teacher card, press <strong>Continue</strong>.</li>
+          <li>You land on the Markaz Teacher sign-in page. You can also go straight there at <span class="url">/login/teacher</span>.</li>
+        </ol>
+        <figure>
+          <img src="screenshots/01-role-chooser.png" alt="Role chooser with Admin, Teacher, Parent, Student, Collector, Islamic quizzes, and Halal barcode helper cards." />
+          <figcaption><b>Figure 6.</b> Choose Teacher, then Continue.</figcaption>
+        </figure>
+      </section>
+
+      <section id="signin">
+        <h3>5. Sign in</h3>
+        <p>The sign-in card asks for email and password. <strong>Remember me</strong> keeps you signed in on this browser. Leave it unticked on a shared computer.</p>
+        <ol class="steps">
+          <li>Type your email address.</li>
+          <li>Type your password. The eye icon shows or hides it.</li>
+          <li>Press <strong>Sign in</strong>.</li>
+          <li>The Dashboard opens, with your name in the welcome banner.</li>
+        </ol>
+        <p>A wrong email or password shows an error. Check the email with the office before trying again and again.</p>
+        <p>After you are in, the left menu is Dashboard, Receive Fee, Mark Attendance, Leave requests, Incident &amp; Behaviour, Activities, Participation, Star of the Week, and My Profile. <strong>Logout</strong> is at the top right and ends the session on this browser.</p>
+        <figure>
+          <img src="screenshots/02-sign-in.png" alt="Markaz Teacher sign-in card with email, password, remember me, forgot password, and Sign in." />
+          <figcaption><b>Figure 7.</b> Teacher sign-in. Use your email address.</figcaption>
+        </figure>
+
+        <h4 id="forgot">Forgot password</h4>
+        <p>On the sign-in page, press <strong>Forgot password?</strong>. Enter the email on your teacher record, then <strong>Send link</strong>. Open the email and follow the link to choose a new password. Use <strong>Cancel</strong> if you opened the box by mistake.</p>
+        <figure>
+          <img src="screenshots/03-forgot-password.png" alt="Forgot password dialog asking for email, with Cancel and Send link." />
+          <figcaption><b>Figure 8.</b> Request a reset link.</figcaption>
+        </figure>
+
+        <h4 id="invite">First-time invite</h4>
+        <p>When the office creates your account, you receive an email with a setup link. Open that full link. It opens a page titled “Set up your teacher account,” where you choose a password. After that you go to the Dashboard.</p>
+        <p>If the link is incomplete, the page says <strong>Invite link incomplete</strong>. Use the whole link from the email, or ask the office to send a new invitation. Do not try to type the setup address yourself without the token.</p>
+        <figure>
+          <img src="screenshots/04-set-password.png" alt="Set up your teacher account page saying the invite link is incomplete." />
+          <figcaption><b>Figure 9.</b> This is what an incomplete invite link looks like. A real invite email opens the password form instead.</figcaption>
+        </figure>
+      </section>
+
+      <section id="dashboard">
+        <h3>6. Dashboard</h3>
+        <p>The Dashboard is the summary after you sign in. It shows your name, the classes assigned to you, and quick-action tiles into every tool.</p>
+        <ul class="plain">
+          <li><strong>Welcome banner.</strong> Your name and assigned classes (for example TestClass).</li>
+          <li><strong>Quick actions.</strong> Mark Attendance, Receive Fee, Activities, Incident &amp; Behaviour, Star of the Week, Leave requests, Participation, Islamic Quiz, and Halal barcode.</li>
+        </ul>
+        <p>Islamic Quiz and Halal barcode open tools on the same portal. The quiz is timed practice. The barcode helper looks up a shop label. It is a helper, not a Halal certificate.</p>
+        <figure>
+          <img src="screenshots/05-dashboard.png" alt="Teacher Dashboard with welcome banner for Test Teacher and quick action tiles." />
+          <figcaption><b>Figure 10.</b> Dashboard after sign-in.</figcaption>
+        </figure>
+      </section>
+
+      <section id="fees">
+        <h3>7. Receive Fee</h3>
+        <p>Receive Fee records a payment for a student in your assigned classes. You choose the class, month, and year, then the student, and enter the amount paid.</p>
+        <ol class="steps">
+          <li>Open <strong>Receive Fee</strong> in the left menu, or the Receive Fee tile on the Dashboard.</li>
+          <li>Set Class, Month, and Year.</li>
+          <li>Select the student. The page shows outstanding fees across enrolled months.</li>
+          <li>Enter the amount paid. Extra payment fills the oldest unpaid month first, then future months in advance.</li>
+          <li>Press <strong>Record Payment</strong> only when you are ready to save. Cancel or leave the page if you opened it by mistake.</li>
+        </ol>
+        <p>The picture below was not used to save a payment.</p>
+        <figure>
+          <img src="screenshots/06-receive-fee.png" alt="Receive Fee page with class, month, year, and student selectors." />
+          <figcaption><b>Figure 11.</b> Receive Fee.</figcaption>
+        </figure>
+      </section>
+
+      <section id="attendance">
+        <h3>8. Mark Attendance</h3>
+        <p>Mark Attendance is the daily register for your class. Open Filters to pick the class, date, and an optional student search.</p>
+        <ol class="steps">
+          <li>Open <strong>Mark Attendance</strong>.</li>
+          <li>Expand Filters if you need a different class or date.</li>
+          <li>For each student, choose Present, Late, Absent, or Informed.</li>
+          <li>Use Uniform OK and Behaviour OK when those checks apply for the day.</li>
+          <li>Fee history and planned absence shortcuts sit on each student row when available.</li>
+          <li>Press <strong>Save Attendance</strong> only when the register is ready. Leaving without Save keeps the previous marks.</li>
+        </ol>
+        <p>The picture shows Furqan and Test Student. Nothing was saved while taking it.</p>
+        <figure>
+          <img src="screenshots/07-attendance.png" alt="Mark Attendance page with Present, Late, Absent, and Informed options for each student." />
+          <figcaption><b>Figure 12.</b> Mark Attendance.</figcaption>
+        </figure>
+      </section>
+
+      <section id="leave">
+        <h3>9. Leave requests</h3>
+        <p>Leave requests are submitted by parents for students in your classes. You review them here.</p>
+        <ol class="steps">
+          <li>Open <strong>Leave requests</strong>. A badge on the menu shows how many are pending.</li>
+          <li>Switch between Pending, Reviewed, and All.</li>
+          <li>Open a request to read the dates and reason.</li>
+          <li>Approve or reject it. The parent is notified by email and in their Messages inbox.</li>
+        </ol>
+        <p>This account has no pending leave, so the page says “No pending leave requests.”</p>
+        <figure>
+          <img src="screenshots/08-leave.png" alt="Leave requests page with Pending, Reviewed, and All filters and an empty pending list." />
+          <figcaption><b>Figure 13.</b> Leave requests.</figcaption>
+        </figure>
+      </section>
+
+      <section id="incident">
+        <h3>10. Incident &amp; Behaviour</h3>
+        <p>This page has two tabs: Incident &amp; Accident Report, and Student Behaviour.</p>
+
+        <h4 id="incident-tab">Incident &amp; Accident Report</h4>
+        <p>Use this for safeguarding and accident reports. Submitted reports appear in the list. Press <strong>New report</strong> to open the form. Fill every required field, then submit only when the report is complete. Cancel if you opened the form by mistake.</p>
+        <figure>
+          <img src="screenshots/09-incident.png" alt="Incident and Accident Report tab with New report and an empty list." />
+          <figcaption><b>Figure 14.</b> Incident &amp; Accident Report.</figcaption>
+        </figure>
+
+        <h4 id="behaviour-tab">Student Behaviour</h4>
+        <p>Student Behaviour is the daily behaviour log and term rating for a student. Choose a student from the list, then add a daily log or a term rating. Search by student or parent name when the class list is long.</p>
+        <figure>
+          <img src="screenshots/10-behaviour.png" alt="Student Behaviour tab with a student picker listing Furqan and Test Student." />
+          <figcaption><b>Figure 15.</b> Student Behaviour. Choose a student to open their log.</figcaption>
+        </figure>
+      </section>
+
+      <section id="activities">
+        <h3>11. Activities</h3>
+        <p>Activities records daily curriculum marks for Qaida, Quran, Surah Memorization, Duas, and Islamic Education. Pick the date and the student, then mark each assigned activity. <strong>Request Next Activity</strong> asks the office for the next curriculum item when the current set is done.</p>
+        <p>You only see students in your classes. Marks you save here appear later on the parent Learning page.</p>
+        <figure>
+          <img src="screenshots/11-activities.png" alt="Activities page with date, class search, and a student picker." />
+          <figcaption><b>Figure 16.</b> Activities. Choose a student before marking.</figcaption>
+        </figure>
+      </section>
+
+      <section id="participation">
+        <h3>12. Participation</h3>
+        <p>Participation is for speech, talk, and extra activities. It works like Activities: choose the date and student, then mark participation items the office has assigned to the class.</p>
+        <p>If the class has no participation items yet, the page says so and asks you to wait for admin to add them in Curriculum.</p>
+        <figure>
+          <img src="screenshots/12-participation.png" alt="Participation page noting that no activities are assigned to this class yet." />
+          <figcaption><b>Figure 17.</b> Participation.</figcaption>
+        </figure>
+      </section>
+
+      <section id="star">
+        <h3>13. Star of the Week</h3>
+        <p>Star of the Week scores students for the week on attendance, uniform, behaviour, activities, and participation. The portal suggests an automatic pick. You can keep that pick or choose another student, add an optional override note, then save.</p>
+        <ol class="steps">
+          <li>Open <strong>Star of the Week</strong>.</li>
+          <li>Use Previous week or Next week to move the date range.</li>
+          <li>Review the scores and the current pick.</li>
+          <li>Press <strong>Save selection</strong> when you are happy with the star, or <strong>Finalize week</strong> when the week is closed. Do not finalize while only reviewing.</li>
+        </ol>
+        <figure>
+          <img src="screenshots/13-star-of-week.png" alt="Star of the Week page showing scores for Furqan and Test Student." />
+          <figcaption><b>Figure 18.</b> Star of the Week.</figcaption>
+        </figure>
+      </section>
+
+      <section id="profile">
+        <h3>14. My Profile</h3>
+        <p>My Profile is where you edit your own details. Subject and assigned classes are read-only; the office changes those.</p>
+        <ol class="steps">
+          <li>Update full name, phone, or email if they are wrong.</li>
+          <li>To change the email or the password, type your <strong>current password</strong> as well. A new password is optional. If you set one, confirm it.</li>
+          <li>Press <strong>Save profile</strong> only when you intend to keep the changes.</li>
+        </ol>
+        <p><strong>Browser alerts</strong> asks this browser for permission to show a notification. Leave it off if you prefer email only.</p>
+        <figure>
+          <img src="screenshots/14-profile.png" alt="My Profile form with name, phone, email, subject, assigned classes, and password fields." />
+          <figcaption><b>Figure 19.</b> My Profile.</figcaption>
+        </figure>
+      </section>
+
+      <section id="quiz">
+        <h3>15. Islamic Quiz</h3>
+        <p>From the Dashboard, <strong>Islamic Quiz</strong> opens the timed quiz hub. No separate teacher sign-in is needed on that page. Choose a Halal/Haram set or a knowledge quiz and play. Closing the quiz returns you to the portals.</p>
+        <figure>
+          <img src="screenshots/15-islamic-quiz.png" alt="Islamic Quiz hub listing Halal or Haram and knowledge quiz packs." />
+          <figcaption><b>Figure 20.</b> Islamic Quiz hub.</figcaption>
+        </figure>
+      </section>
+
+      <section id="halal">
+        <h3>16. Halal barcode</h3>
+        <p>Halal barcode looks up a UK shop product from its barcode or a photo of the pack. It reads crowd-sourced pack labels. It is a helper for teaching and checking labels. It is <strong>not</strong> a Halal certificate and does not replace HMC, HFA, or other certification bodies.</p>
+        <figure>
+          <img src="screenshots/16-halal-barcode.png" alt="Halal barcode helper with Look up, Scan barcode, and Use a photo." />
+          <figcaption><b>Figure 21.</b> Halal barcode helper.</figcaption>
+        </figure>
+      </section>
+
+      <section id="phone">
+        <h3>17. On a phone</h3>
+        <p>On a narrow screen the left menu becomes a drawer. Tap <strong>Menu</strong> at the top left to open it. The same pages are there. Cards and buttons stack so you do not have to slide sideways. Logout stays at the top right.</p>
+        <figure>
+          <img src="screenshots/17-phone-dashboard.png" alt="Phone layout of the teacher Dashboard with quick action tiles and a Menu button." />
+          <figcaption><b>Figure 22.</b> Dashboard on a phone.</figcaption>
+        </figure>
+        <figure>
+          <img src="screenshots/18-phone-menu.png" alt="Phone menu drawer listing Dashboard, Receive Fee, Mark Attendance, and the other teacher pages." />
+          <figcaption><b>Figure 23.</b> The Menu drawer on a phone.</figcaption>
+        </figure>
+      </section>
+
+      <section id="can">
+        <h3>18. What you can do</h3>
+        <table>
+          <thead>
+            <tr><th>You can</th><th>The office does this</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Install the Android app, or pin the teacher web portal on iPhone, Android, or a computer</td><td>Issue your email. The iPhone app is still to come</td></tr>
+            <tr><td>See only students in your assigned classes</td><td>Assign classes to your teacher account</td></tr>
+            <tr><td>Mark attendance and record fee payments for those students</td><td>Set fee amounts and class lists</td></tr>
+            <tr><td>Approve or reject parent leave for your classes</td><td>Parents submit the leave request</td></tr>
+            <tr><td>Submit incident reports and write behaviour logs</td><td>Review safeguarding follow-up when needed</td></tr>
+            <tr><td>Mark activities and participation</td><td>Add curriculum items for the class</td></tr>
+            <tr><td>Choose and finalize Star of the Week</td><td>Hold the weekly record for the madrasa</td></tr>
+            <tr><td>Update your name, phone, email, and password</td><td>Change your subject or assigned classes</td></tr>
+            <tr><td>Open Islamic Quiz and the Halal barcode helper</td><td>Publish quiz packs and keep the helper available</td></tr>
+          </tbody>
+        </table>
+        <div class="tip">
+          <strong>If a page looks old.</strong> After the teacher web portal is updated, refresh the browser. On a phone, close the tab and open <span class="url">https://admin.naginasocialwelfare.co.uk</span> again. If you pinned the portal as an app, open that icon once more after the refresh.
+        </div>
+      </section>
+
+      <footer class="colophon">
+        <p>Markaz Deen-e-Islam · Teacher Portal user manual · 24 September 2026. Open this file in a browser. To make a PDF, use Print and choose Save as PDF. Android app: <a href="https://play.google.com/store/apps/details?id=com.education.markaz_e_deen_islam">Markaz-e Deen-e Islam on Google Play</a>.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

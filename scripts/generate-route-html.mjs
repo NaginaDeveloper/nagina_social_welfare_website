@@ -147,6 +147,7 @@ function injectSearchConsoleMeta(html) {
 
 const STATIC_SITEMAP_PAGES = [
   { path: '/parent-portal-manual/', changefreq: 'monthly', priority: 0.6 },
+  { path: '/teacher-portal-manual/', changefreq: 'monthly', priority: 0.6 },
 ];
 
 function writeSitemap() {
