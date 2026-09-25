@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  LOCAL_DATED_EVENTS,
   isEventPast,
   isEventToday,
   isEventUpcoming,
@@ -61,6 +62,21 @@ describe('upcoming event dates', () => {
   it('features the dated gathering on the home spotlight while live', () => {
     const next = nextSpotlightEvent(new Date('2026-08-22T09:00:00+01:00'), [mehfil, namaz]);
     expect(next?.id).toBe('mehfil-naat-2026');
+  });
+
+  it('includes the September Zikr & Fikr local dated event while upcoming', () => {
+    const zikr = LOCAL_DATED_EVENTS.find((e) => e.id === 'zikr-fikr-2026-09-27');
+    expect(zikr).toBeTruthy();
+    expect(
+      listedEvents(new Date('2026-09-25T12:00:00+01:00'), LOCAL_DATED_EVENTS).some(
+        (e) => e.id === 'zikr-fikr-2026-09-27',
+      ),
+    ).toBe(true);
+    expect(
+      listedEvents(new Date('2026-09-28T12:00:00+01:00'), LOCAL_DATED_EVENTS).some(
+        (e) => e.id === 'zikr-fikr-2026-09-27',
+      ),
+    ).toBe(false);
   });
 
   it('sorts latest dated events soonest-first', () => {

@@ -19,6 +19,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'header.langUr': 'اردو',
     'header.langAria': 'Switch language',
 
+    'ticker.upcoming': 'Upcoming',
+    'ticker.today': 'Today',
+    'ticker.cta': 'View event',
+    'ticker.aria': 'Latest gathering',
+
     'footer.tagline':
       'A UK-based charity uniting faith and compassion — Islamic education at Markaz Deen-e-Islam, and community welfare across the UK.',
     'footer.donate': 'Donate Now',
@@ -835,6 +840,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'photos.creditEnd': ' and the Nagina archive.',
     'photos.close': 'Close photograph',
 
+    'sayings.eyebrow': 'Malfoozat',
+    'sayings.title': 'Sayings of Munir-e-Islam',
+    'sayings.lead':
+      'Selected sayings of Munir-e-Islam, Allama Munir Ahmed Yusufi, shared for reflection and guidance. May Allah elevate his rank. Ameen.',
+
     'shajra.eyebrow': 'Spiritual lineage (Shajra Sharif)',
     'shajra.openHero': 'Open spiritual lineage hero: Faiz-e-Nagina (“grace of Nagina”) and Munir-e-Islam',
     'shajra.heroCaption': 'The grace of Nagina is the bounty of Munir-e-Islam — and by Allah’s will, it continues.',
@@ -1335,6 +1345,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'header.langEn': 'EN',
     'header.langUr': 'اردو',
     'header.langAria': 'زبان تبدیل کریں',
+
+    'ticker.upcoming': 'آنے والا',
+    'ticker.today': 'آج',
+    'ticker.cta': 'تقریب دیکھیں',
+    'ticker.aria': 'تازہ ترین محفل',
 
     'footer.tagline':
       'برطانیہ کی رجسٹرڈ چیریٹی — مرکز دینِ اسلام میں اسلامی تعلیم، اور برطانیہ بھر میں فلاحِ عامہ۔',
@@ -2022,6 +2037,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'photos.credit': 'تصاویر بشکریہ',
     'photos.creditEnd': ' اور نگینہ آرکائیو۔',
     'photos.close': 'تصویر بند کریں',
+
+    'sayings.eyebrow': 'ملفوظات',
+    'sayings.title': 'ملفوظاتِ منیرِ اسلام',
+    'sayings.lead':
+      'منیرِ اسلام علامہ منیر احمد یوسفی کے منتخب ملفوظات، غور و فکر اور رہنمائی کے لیے۔ اللہ تعالیٰ ان کا درجہ بلند فرمائے۔ آمین۔',
 
     'shajra.eyebrow': 'شجرہ شریف',
     'shajra.openHero': 'شجرہ ہیرو کھولیں: فیضِ نگینہ اور منیرِ اسلام',

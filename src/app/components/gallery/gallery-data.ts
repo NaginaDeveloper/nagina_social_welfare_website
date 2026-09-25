@@ -26,6 +26,12 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     caption: 'Students with certificates',
   },
   {
+    id: 'zikr-fikr-sep-2026',
+    src: '/gallery/poster-zikr-fikr-sep-2026.webp',
+    alt: 'Zikr & Fikr remembrance and reflection gathering — Sunday 27 September 2026 at Markaz Deen-e-Islam',
+    caption: 'Zikr & Fikr · 27 September 2026',
+  },
+  {
     id: 'zikr-fikr-july',
     src: '/gallery/poster-zikr-fikr-july.webp',
     alt: 'Zikr & Fikr remembrance and reflection evening at Markaz Deen-e-Islam',

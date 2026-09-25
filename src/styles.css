@@ -192,9 +192,39 @@
 
 html {
   scroll-behavior: smooth;
-  /* Matches sticky header (nav only) */
-  scroll-padding-top: 4.5rem;
+  /* Matches sticky header (nav only); taller when event ticker is present */
+  --header-clearance: 4rem;
+  scroll-padding-top: var(--header-clearance);
   overflow-x: clip;
+}
+
+html.has-event-ticker {
+  --header-clearance: 6.75rem;
+}
+
+/* Rolling latest-event strip under the top of the fixed header */
+.event-ticker-track {
+  animation: event-ticker-scroll 36s linear infinite;
+}
+
+.event-ticker:hover .event-ticker-track,
+.event-ticker:focus-visible .event-ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes event-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event-ticker-track {
+    animation: none;
+  }
 }
 
 /*

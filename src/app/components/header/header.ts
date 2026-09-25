@@ -4,16 +4,19 @@ import {
   HostListener,
   OnInit,
   afterNextRender,
+  effect,
   inject,
   signal,
 } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PrayerTimesService } from '../../services/prayer-times.service';
+import { EventsService } from '../../services/events.service';
 import { MemberAuthService } from '../../services/member-auth.service';
 import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
+import { isEventToday } from '../../config/upcoming-events.config';
 
 /** Simple stroke icons used in the nav. */
 export type NavIcon =
@@ -71,6 +74,7 @@ export class Header implements OnInit {
   protected readonly memberAuth = inject(MemberAuthService);
 
   protected readonly prayer = inject(PrayerTimesService);
+  private readonly events = inject(EventsService);
   private readonly assistantLauncher = inject(AssistantLauncherService);
   private readonly router = inject(Router);
 
@@ -78,6 +82,7 @@ export class Header implements OnInit {
   protected readonly menuOpen = signal(false);
   protected readonly openGroupId = signal<string | null>(null);
   protected readonly currentPath = signal('/');
+  protected readonly latestEvent = this.events.latestDatedEvent;
 
   /**
    * Grouped navigation — every destination is a dedicated route (no hash links).
@@ -295,6 +300,7 @@ export class Header implements OnInit {
 
   ngOnInit(): void {
     void this.memberAuth.restoreSession();
+    void this.events.load();
     this.syncPath(this.router.url);
     this.schedulePrayerLoad();
 
@@ -309,6 +315,13 @@ export class Header implements OnInit {
   constructor() {
     afterNextRender(() => {
       this.onScroll();
+    });
+    effect(() => {
+      const hasTicker = !!this.latestEvent();
+      if (typeof document === 'undefined') {
+        return;
+      }
+      document.documentElement.classList.toggle('has-event-ticker', hasTicker);
     });
   }
 
@@ -334,6 +347,42 @@ export class Header implements OnInit {
   protected onEscape(): void {
     this.openGroupId.set(null);
     this.menuOpen.set(false);
+  }
+
+  protected tickerTitle(): string {
+    const event = this.latestEvent();
+    if (!event) {
+      return '';
+    }
+    return this.i18n.lang() === 'ur' ? event.titleUr : event.title;
+  }
+
+  protected tickerMeta(): string {
+    const event = this.latestEvent();
+    if (!event) {
+      return '';
+    }
+    if (this.i18n.lang() === 'ur') {
+      return event.whenLabelUr ?? event.recurringUr ?? event.audienceUr;
+    }
+    return event.whenLabel ?? event.recurring ?? event.audience;
+  }
+
+  protected tickerIsToday(): boolean {
+    const event = this.latestEvent();
+    return !!event && isEventToday(event);
+  }
+
+  protected tickerFragment(): string {
+    const event = this.latestEvent();
+    return event ? `event-${event.id}` : 'events';
+  }
+
+  protected openLatestEvent(domEvent: Event): void {
+    domEvent.preventDefault();
+    domEvent.stopPropagation();
+    this.onNavClick();
+    void this.router.navigate(['/events'], { fragment: this.tickerFragment() });
   }
 
   protected isLinkActive(item: NavLink): boolean {

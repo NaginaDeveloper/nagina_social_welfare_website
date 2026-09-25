@@ -7,7 +7,7 @@ import { HeroTopActions } from '../components/hero-top-actions/hero-top-actions'
   selector: 'app-page-shell',
   imports: [RouterLink, HeroTopActions],
   template: `
-    <div class="border-b border-mist/80 bg-sand/80 pt-16 sm:pt-[4.75rem]">
+    <div class="border-b border-mist/80 bg-sand/80 pt-[var(--header-clearance)]">
       <div class="site-wrap py-3 sm:py-3.5">
         <div class="flex flex-wrap items-center gap-2">
           <a

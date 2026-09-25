@@ -40,6 +40,7 @@ describe('App', () => {
     expect(compiled.querySelector('a[href="/assistant"]')).toBeTruthy();
     expect(compiled.querySelector('iframe[title^="Map of"]')).toBeTruthy();
     expect(compiled.querySelector('#photographs')).toBeNull();
+    expect(compiled.querySelector('#sayings')).toBeNull();
     expect(compiled.querySelector('#shajra')).toBeNull();
     expect(compiled.querySelector('#privacy')).toBeNull();
     expect(compiled.querySelector('#safeguarding')).toBeNull();
@@ -57,6 +58,7 @@ describe('App', () => {
       ['/spiritual-guide', '#spiritual-guide'],
       ['/spiritual-guide', '#shajra'],
       ['/spiritual-guide', '#photographs'],
+      ['/spiritual-guide', '#sayings'],
       ['/khatme-nabuwwat', '#khatme-nabuwwat'],
       ['/ahle-bait', '#ahle-bait'],
       ['/sahaba-ikram', '#sahaba-ikram'],
@@ -94,6 +96,8 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('#photographs img').length).toBeGreaterThanOrEqual(20);
+    expect(compiled.querySelector('#sayings')).toBeTruthy();
+    expect(compiled.querySelectorAll('#sayings img').length).toBe(12);
     expect(compiled.querySelector('#shajra-hero')).toBeTruthy();
     expect(compiled.querySelector('#shajra-source')).toBeTruthy();
     expect(compiled.querySelectorAll('#shajra img').length).toBe(29);

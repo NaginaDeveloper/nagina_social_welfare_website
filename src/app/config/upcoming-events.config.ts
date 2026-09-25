@@ -34,7 +34,51 @@ export interface UpcomingEvent {
 /**
  * Standing (recurring) programmes only. Dated one-off events are published
  * from MDI Admin into Firebase Storage `events/catalog.json`.
+ *
+ * Local dated events below ship with the site build when a gathering needs to
+ * go live before (or without) an admin catalog publish. Catalog entries with
+ * the same `id` win over these.
  */
+export const LOCAL_DATED_EVENTS: readonly UpcomingEvent[] = [
+  {
+    id: 'zikr-fikr-2026-09-27',
+    title: 'Zikr & Fikr — Remembrance & Reflection',
+    titleUr: 'ذکر و فکر — یاد اور غور',
+    date: '2026-09-27',
+    time: '18:30',
+    endTime: '20:00',
+    whenLabel: 'Sunday, 27 September 2026 · 6:30–8:00pm',
+    whenLabelUr: 'اتوار، ۲۷ ستمبر ۲۰۲۶ · ۶:۳۰–۸:۰۰ شام',
+    highlights: 'Main topics: Al-Sidq (the virtue of truthfulness) & Zikr and Fikr',
+    highlightsUr: 'بنیادی موضوعات: الصدق (سچائی کی فضیلت) اور ذکر و فکر',
+    summary:
+      '<p><strong>Weekly spiritual &amp; reflection gathering</strong> for brothers and youngsters.</p>' +
+      '<p>Main topics: <strong>Al-Sidq</strong> (the virtue of truthfulness) and <strong>Zikr and Fikr</strong>.</p>' +
+      '<p>A gathering to remember Allah and learn the Sunnah of Prophet Muhammad ﷺ. Your presence is warmly invited.</p>' +
+      '<p>Sunday 27 September · 6:30pm–8:00pm · Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT</p>',
+    summaryUr:
+      '<p><strong>ہفتہ وار روحانی اور غور و فکر کی محفل</strong> — صرف بھائیوں اور نوجوانوں کے لیے۔</p>' +
+      '<p>بنیادی موضوعات: <strong>الصدق</strong> (سچائی کی فضیلت) اور <strong>ذکر و فکر</strong>۔</p>' +
+      '<p>اللہ کی یاد اور نبی کریم ﷺ کی سنت سیکھنے کی محفل۔ آپ کی آمد مبارک ہوگی۔</p>' +
+      '<p>اتوار ۲۷ ستمبر · شام ۶:۳۰–۸:۰۰ · مرکز دین اسلام، ۱۰۳ برمر روڈ، پیٹربرو</p>',
+    image: '/gallery/poster-zikr-fikr-sep-2026.webp',
+    imageAlt:
+      'Zikr and Fikr weekly gathering poster — Sunday 27 September 2026, 6:30–8:00pm at Markaz Deen-e-Islam',
+    images: [
+      {
+        id: 'zikr-fikr-2026-09-27-poster',
+        url: '/gallery/poster-zikr-fikr-sep-2026.webp',
+        alt: 'Zikr and Fikr — Remembrance & Reflection, 27 September 2026',
+      },
+    ],
+    audience: 'Brothers & youngsters only',
+    audienceUr: 'صرف بھائیوں اور نوجوانوں کے لیے',
+    venue: 'Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT',
+    whatsappPrefill:
+      'Assalamu alaikum, I would like to attend Zikr & Fikr (Remembrance & Reflection) on Sunday 27 September at Markaz Deen-e-Islam.',
+  },
+];
+
 export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
   {
     id: 'namaz-course',

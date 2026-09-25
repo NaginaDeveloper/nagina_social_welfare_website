@@ -2,6 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import {
+  LOCAL_DATED_EVENTS,
   STANDING_PROGRAMMES,
   listedEvents,
   nextSpotlightEvent,
@@ -37,6 +38,20 @@ export interface EventsCatalog {
 
 export const EVENTS_CATALOG_URL = firebaseStorageUrl('events/catalog.json');
 
+function mergeDatedEvents(
+  catalog: readonly UpcomingEvent[],
+  local: readonly UpcomingEvent[],
+): UpcomingEvent[] {
+  const byId = new Map<string, UpcomingEvent>();
+  for (const event of local) {
+    byId.set(event.id, event);
+  }
+  for (const event of catalog) {
+    byId.set(event.id, event);
+  }
+  return [...byId.values()];
+}
+
 @Injectable({ providedIn: 'root' })
 export class EventsService {
   private readonly http = inject(HttpClient);
@@ -48,8 +63,11 @@ export class EventsService {
   readonly loaded = this.loadedSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
 
-  /** Dated CMS events + standing programmes (for splitting Latest / Past). */
-  readonly allEvents = computed(() => [...this.catalogEvents(), ...STANDING_PROGRAMMES]);
+  /** Dated CMS + local dated events + standing programmes. */
+  readonly allEvents = computed(() => [
+    ...mergeDatedEvents(this.catalogEvents(), LOCAL_DATED_EVENTS),
+    ...STANDING_PROGRAMMES,
+  ]);
 
   readonly latestEvents = computed(() =>
     listedEvents(new Date(), this.allEvents()).filter((e) => !!e.date),
@@ -60,6 +78,12 @@ export class EventsService {
   readonly standingProgrammes = computed(() => STANDING_PROGRAMMES);
 
   readonly spotlightEvent = computed(() => nextSpotlightEvent(new Date(), this.allEvents()));
+
+  /** Soonest upcoming dated gathering (for the site-wide ticker). */
+  readonly latestDatedEvent = computed(() => {
+    const dated = this.latestEvents();
+    return dated[0] ?? null;
+  });
 
   async load(): Promise<void> {
     if (this.loadPromise) return this.loadPromise;

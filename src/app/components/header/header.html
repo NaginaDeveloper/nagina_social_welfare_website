@@ -1,13 +1,42 @@
 <header
   class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
-  [class.bg-forest/97]="scrolled() || menuOpen() || currentPath() !== '/'"
-  [class.backdrop-blur-xl]="scrolled() || menuOpen() || currentPath() !== '/'"
+  [class.bg-forest/97]="scrolled() || menuOpen() || currentPath() !== '/' || !!latestEvent()"
+  [class.backdrop-blur-xl]="scrolled() || menuOpen() || currentPath() !== '/' || !!latestEvent()"
   [class.shadow-soft]="scrolled()"
-  [class.border-b]="scrolled() || menuOpen() || currentPath() !== '/'"
-  [class.border-gold/10]="scrolled() || menuOpen() || currentPath() !== '/'"
-  [class.bg-transparent]="!scrolled() && !menuOpen() && currentPath() === '/'"
+  [class.border-b]="scrolled() || menuOpen() || currentPath() !== '/' || !!latestEvent()"
+  [class.border-gold/10]="scrolled() || menuOpen() || currentPath() !== '/' || !!latestEvent()"
+  [class.bg-transparent]="!scrolled() && !menuOpen() && currentPath() === '/' && !latestEvent()"
   (click)="closeGroups()"
 >
+  @if (latestEvent(); as event) {
+    <a
+      href="/events#{{ tickerFragment() }}"
+      class="event-ticker group relative block overflow-hidden border-b border-gold/25 bg-gold/15 text-cream"
+      [attr.aria-label]="i18n.t('ticker.aria') + ': ' + tickerTitle()"
+      (click)="openLatestEvent($event)"
+    >
+      <div class="event-ticker-track flex w-max items-center gap-10 whitespace-nowrap py-1.5 text-[0.7rem] font-medium tracking-wide sm:text-xs">
+        @for (copy of [1, 2, 3, 4]; track copy) {
+          <span class="inline-flex items-center gap-2 px-4" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+            <span
+              class="rounded-full px-2 py-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.16em]"
+              [class.bg-gold/40]="tickerIsToday()"
+              [class.text-gold-100]="tickerIsToday()"
+              [class.bg-white/10]="!tickerIsToday()"
+              [class.text-gold-300]="!tickerIsToday()"
+            >
+              {{ tickerIsToday() ? i18n.t('ticker.today') : i18n.t('ticker.upcoming') }}
+            </span>
+            <span class="font-semibold text-cream">{{ tickerTitle() }}</span>
+            <span class="text-cream/70">·</span>
+            <span class="text-cream/85">{{ tickerMeta() }}</span>
+            <span class="font-semibold text-gold-300 group-hover:underline">{{ i18n.t('ticker.cta') }}</span>
+          </span>
+        }
+      </div>
+    </a>
+  }
+
   <div
     class="site-wrap flex items-center justify-between gap-2 transition-all duration-300 sm:gap-5"
     [class.py-2.5]="scrolled()"

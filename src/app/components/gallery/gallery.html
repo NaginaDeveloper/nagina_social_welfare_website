@@ -27,7 +27,8 @@
           <div class="mt-6 grid gap-5 lg:grid-cols-2">
             @for (event of programmes(); track event.id) {
               <article
-                class="overflow-hidden rounded-2xl border border-mist bg-white shadow-soft"
+                [attr.id]="'event-' + event.id"
+                class="scroll-mt-28 overflow-hidden rounded-2xl border border-mist bg-white shadow-soft sm:scroll-mt-32"
                 [class.lg:col-span-2]="imagesFor(event).length > 0"
                 [class.border-gold/40]="isToday(event)"
               >
