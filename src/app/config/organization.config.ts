@@ -36,11 +36,6 @@ export const ORGANIZATION = {
   instagramUrl: 'https://www.instagram.com/naginasocialwelfare/',
   youtubeUrl: 'https://www.youtube.com/@naginasocialwelfareuk7419',
   tiktokUrl: 'https://www.tiktok.com/@nagina.social.wel',
-  /** Introduction video (Google Drive) — About / Our Vision. */
-  presentationVideoUrl:
-    'https://drive.google.com/file/d/1_oDLPS0x1oQvTRI4X313NKAYMLNFSisy/view',
-  presentationVideoEmbedUrl:
-    'https://drive.google.com/file/d/1_oDLPS0x1oQvTRI4X313NKAYMLNFSisy/preview',
   /** Charity Commission currently lists Gift Aid as not recognised by HMRC. */
   giftAidRecognised: false,
 } as const;
