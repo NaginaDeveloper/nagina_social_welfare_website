@@ -45,6 +45,7 @@ export class Footer {
     { labelKey: 'nav.memberLogin', path: '/membership/login' },
     { labelKey: 'nav.membershipTrack', path: '/membership/track' },
     { labelKey: 'nav.apps', path: '/apps' },
+    { labelKey: 'nav.guides', path: '/guides' },
     { labelKey: 'nav.donate', path: '/donate' },
     { labelKey: 'nav.contact', path: '/contact' },
     { labelKey: 'header.login', externalHref: ORGANIZATION.loginUrl },

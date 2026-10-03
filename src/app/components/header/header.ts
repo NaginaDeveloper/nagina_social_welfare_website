@@ -34,6 +34,7 @@ export type NavIcon =
   | 'seedha'
   | 'sermon'
   | 'apps'
+  | 'guides'
   | 'events'
   | 'donate'
   | 'contact'
@@ -253,6 +254,7 @@ export class Header implements OnInit {
           icon: 'assistant',
         },
         { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
+        { labelKey: 'nav.guides', path: '/guides', hintKey: 'nav.guidesHint', icon: 'guides' },
       ],
     },
     {

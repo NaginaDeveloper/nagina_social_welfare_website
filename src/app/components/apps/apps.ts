@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 
 interface AppLink {
@@ -14,6 +15,7 @@ interface AppLink {
 
 @Component({
   selector: 'app-apps',
+  imports: [RouterLink],
   templateUrl: './apps.html',
 })
 export class Apps {

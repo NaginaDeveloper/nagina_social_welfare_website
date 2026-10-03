@@ -4,6 +4,7 @@ import {
   AHLE_BAIT_SEO,
   ASSISTANT_SEO,
   APPS_SEO,
+  GUIDES_SEO,
   BOOKS_SEO,
   CALENDAR_SEO,
   CONTACT_SEO,
@@ -299,6 +300,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/apps/apps-page').then((m) => m.AppsPage),
     title: APPS_SEO.title,
     data: { seo: APPS_SEO },
+  },
+  {
+    path: 'guides',
+    loadComponent: () => import('./pages/guides/guides-page').then((m) => m.GuidesPage),
+    title: GUIDES_SEO.title,
+    data: { seo: GUIDES_SEO },
   },
   {
     path: 'events',

@@ -79,5 +79,10 @@
         </article>
       }
     </div>
+
+    <p class="mt-10 text-center text-sm text-slate-warm" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      {{ i18n.t('apps.guidesLead') }}
+      <a routerLink="/guides" class="font-semibold text-forest underline-offset-4 hover:underline">{{ i18n.t('apps.guidesLink') }}</a>
+    </p>
   </div>
 </section>

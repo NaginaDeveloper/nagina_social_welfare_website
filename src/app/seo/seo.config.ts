@@ -271,6 +271,20 @@ export const APPS_SEO: PageSeo = {
   priority: 0.7,
 };
 
+export const GUIDES_SEO: PageSeo = {
+  title: 'Portal Guides — Videos & Manuals | Nagina Social Welfare',
+  description:
+    'Video guides and user manuals for the Markaz Deen-e-Islam Parent, Teacher and Student portals: sign in, messages, fees, attendance, leave and more.',
+  path: '/guides/',
+  keywords:
+    'Parent Portal guide, Markaz Deen-e-Islam portal, madrasa parent app help, teacher portal manual, Nagina guides',
+  image: `${SITE_ORIGIN}/parent-portal-video/poster.jpg`,
+  type: 'website',
+  breadcrumb: 'Guides',
+  changefreq: 'monthly',
+  priority: 0.7,
+};
+
 export const EVENTS_SEO: PageSeo = {
   title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
   description:
@@ -540,6 +554,7 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   BOOKS_SEO,
   SERMONS_SEO,
   APPS_SEO,
+  GUIDES_SEO,
   EVENTS_SEO,
   DONATE_SEO,
   ASSISTANT_SEO,
