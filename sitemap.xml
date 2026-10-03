@@ -141,6 +141,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.naginasocialwelfare.co.uk/guides/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.naginasocialwelfare.co.uk/events/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -176,12 +181,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.naginasocialwelfare.co.uk/teacher-portal-manual/</loc>
+    <loc>https://www.naginasocialwelfare.co.uk/parent-portal-video/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.naginasocialwelfare.co.uk/parent-portal-video/</loc>
+    <loc>https://www.naginasocialwelfare.co.uk/teacher-portal-manual/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
