@@ -1,6 +1,6 @@
-import { Component, ElementRef, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   AbstractControl,
   FormBuilder,
@@ -31,6 +31,18 @@ import {
 } from '../../config/admission-api.config';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { PRIVACY_NOTICE_VERSION } from '../../config/privacy-notice.config';
+import { campusTown, campusWhatsappHref, type Campus } from '../../models/campus';
+import { CampusService } from '../../services/campus.service';
+
+export const FEE_TERM = 'Fees are £5 every Monday, or paid in advance.';
+
+/** Campuses with their own monthly fee publish it instead of the weekly term. */
+export function campusFeeTerm(campus: Campus | null): string {
+  const fee = campus?.monthlyFeeGbp;
+  if (typeof fee !== 'number' || !(fee > 0)) return FEE_TERM;
+  const amount = Number.isInteger(fee) ? String(fee) : fee.toFixed(2);
+  return `Fees are £${amount} a month, paid monthly or in advance.`;
+}
 
 const TERMS = [
   'Vehicles parked on the double yellow lines outside the madrasa will result in the child losing their place (city council risk).',
@@ -39,7 +51,7 @@ const TERMS = [
   'Unnecessary absences can lead to removal. Please inform us if your child will be away.',
   'Pupils must follow appearance and dress rules and must not cause nuisance to local residents.',
   'Homework that is given must be signed by a parent.',
-  'Fees are £5 every Monday, or paid in advance.',
+  FEE_TERM,
   'Please collect your child promptly at the end of class.',
   'Do not play games in or outside the premises.',
   'Nagina Social Welfare UK is not responsible for children’s safety outside the premises.',
@@ -66,15 +78,12 @@ const MONTHS = [
   templateUrl: './apply-form.html',
   styleUrl: './apply-form.css',
 })
-export class ApplyForm {
+export class ApplyForm implements OnInit {
   protected readonly i18n = inject(LanguageService);
+  protected readonly campusService = inject(CampusService);
   protected readonly org = ORGANIZATION;
-  protected readonly whatsappAsk = whatsappHref(
-    'Assalamu alaikum, I have a question about Markaz Deen-e-Islam enrolment.',
-  );
   protected readonly classSlots = CLASS_SLOT_OPTIONS;
   protected readonly prevEduOptions = PREVIOUS_EDUCATION_OPTIONS;
-  protected readonly terms = TERMS;
   protected readonly months = MONTHS;
   protected readonly years: readonly string[];
   protected readonly minDob: string;
@@ -84,6 +93,7 @@ export class ApplyForm {
   private readonly admission = inject(AdmissionService);
   private readonly router = inject(Router);
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly route = inject(ActivatedRoute);
 
   protected readonly step = signal(0);
   protected readonly submitting = signal(false);
@@ -102,6 +112,7 @@ export class ApplyForm {
   ] as const;
 
   protected readonly form = this.fb.nonNullable.group({
+    campusId: ['', Validators.required],
     student: this.fb.nonNullable.group({
       fullName: ['', [Validators.required, Validators.maxLength(120)]],
       dateOfBirth: ['', [Validators.required, childDobValidator(3, 18)]],
@@ -154,7 +165,44 @@ export class ApplyForm {
     }),
   });
 
+  protected readonly campusIdValue = signal('');
+  protected readonly selectedCampus = computed(() =>
+    this.campusService.byId(this.campusIdValue()),
+  );
+  protected readonly terms = computed(() =>
+    TERMS.map((t) => (t === FEE_TERM ? campusFeeTerm(this.selectedCampus()) : t)),
+  );
+  protected readonly whatsappAsk = computed(() => {
+    const campus = this.selectedCampus();
+    return campus
+      ? campusWhatsappHref(
+          campus,
+          `Assalamu alaikum, I have a question about enrolment at ${campus.displayName}.`,
+        )
+      : whatsappHref('Assalamu alaikum, I have a question about madrasa enrolment.');
+  });
+
   constructor() {
+    const campusCtrl = this.form.controls.campusId;
+    campusCtrl.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe((v) => this.campusIdValue.set(v));
+
+    effect(() => {
+      if (!this.campusService.loaded()) return;
+      const campuses = this.campusService.campuses();
+      if (campuses.length === 0) {
+        // No list to choose from: the server files the application under Peterborough.
+        campusCtrl.clearValidators();
+        campusCtrl.updateValueAndValidity();
+        return;
+      }
+      if (campusCtrl.value && this.campusService.byId(campusCtrl.value)) return;
+      const requested = this.campusService.byId(this.route.snapshot.queryParamMap.get('campus'));
+      const pick = requested ?? (campuses.length === 1 ? campuses[0] : null);
+      if (pick) campusCtrl.setValue(pick.id);
+    });
+
     const now = new Date();
     const youngest = new Date(now.getFullYear() - 3, now.getMonth(), now.getDate());
     const oldest = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
@@ -399,8 +447,9 @@ export class ApplyForm {
   private validateCurrentStep(): boolean {
     const s = this.step();
     if (s === 0) {
+      this.form.controls.campusId.markAsTouched();
       this.form.controls.student.markAllAsTouched();
-      return this.form.controls.student.valid;
+      return this.form.controls.campusId.valid && this.form.controls.student.valid;
     }
     if (s === 1) {
       this.form.controls.primaryParent.markAllAsTouched();
@@ -445,6 +494,7 @@ export class ApplyForm {
     };
 
     const payload: AdmissionSubmitPayload = {
+      ...(v.campusId ? { campusId: v.campusId } : {}),
       student: {
         fullName: v.student.fullName.trim(),
         dateOfBirth: v.student.dateOfBirth,
@@ -509,6 +559,14 @@ export class ApplyForm {
     }
 
     return payload;
+  }
+
+  ngOnInit(): void {
+    void this.campusService.load();
+  }
+
+  protected campusTown(campus: Campus): string {
+    return campusTown(campus);
   }
 
   private toIso(n: Date): string {

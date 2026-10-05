@@ -1,17 +1,27 @@
-import { Component, inject } from '@angular/core';
-import { ORGANIZATION } from '../../config/organization.config';
-import { MADRASA_SESSIONS } from '../../config/madrasa-timetable.config';
+import { Component, OnInit, computed, inject } from '@angular/core';
+import {
+  MADRASA_SESSIONS,
+  MADRASA_TIMETABLE_CAMPUS_ID,
+} from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
+import { CampusService } from '../../services/campus.service';
 
 @Component({
   selector: 'app-apply-intake',
   templateUrl: './apply-intake.html',
 })
-export class ApplyIntake {
+export class ApplyIntake implements OnInit {
   protected readonly i18n = inject(LanguageService);
-  protected readonly org = ORGANIZATION;
+  protected readonly campusService = inject(CampusService);
   protected readonly posterHref = '/posters/madrasa-admission-2026.jpg';
   protected readonly sessions = MADRASA_SESSIONS;
+  protected readonly timetableCampus = computed(() =>
+    this.campusService.byId(MADRASA_TIMETABLE_CAMPUS_ID),
+  );
+
+  ngOnInit(): void {
+    void this.campusService.load();
+  }
 
   protected sessionTitle(id: string): string {
     const session = this.sessions.find((item) => item.id === id);

@@ -1,9 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
-import { MADRASA_SESSIONS } from '../../config/madrasa-timetable.config';
+import {
+  MADRASA_SESSIONS,
+  MADRASA_TIMETABLE_CAMPUS_ID,
+} from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
-import { VenueMap } from '../venue-map/venue-map';
+import { fillTowns } from '../../models/campus';
+import { CampusService } from '../../services/campus.service';
+import { CampusCards } from '../campus-cards/campus-cards';
+import { CampusMap } from '../campus-map/campus-map';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 
 interface Offering {
@@ -15,17 +21,39 @@ interface Offering {
 
 @Component({
   selector: 'app-madrasa',
-  imports: [RouterLink, VenueMap, RelatedPages],
+  imports: [RouterLink, CampusCards, CampusMap, RelatedPages],
   templateUrl: './madrasa.html',
 })
-export class Madrasa {
+export class Madrasa implements OnInit {
   protected readonly i18n = inject(LanguageService);
+  protected readonly campusService = inject(CampusService);
   protected readonly org = ORGANIZATION;
   protected readonly sessions = MADRASA_SESSIONS;
   protected readonly posterHref = '/posters/madrasa-admission-2026.webp';
   protected readonly enrolWhatsApp = whatsappHref(
-    'Assalamu alaikum, I would like to enrol a child at Markaz Deen-e-Islam. Age: __  Preferred days: __',
+    'Assalamu alaikum, I would like to enrol a child at one of your madrasas. Madrasa: __  Age: __',
   );
+
+  protected readonly towns = computed(
+    () => this.campusService.towns() || this.i18n.t('madrasa.titleAccent'),
+  );
+  protected readonly lead = computed(() =>
+    fillTowns(this.i18n.t('madrasa.lead'), this.campusService.towns()),
+  );
+  protected readonly timetableCampus = computed(() =>
+    this.campusService.byId(MADRASA_TIMETABLE_CAMPUS_ID),
+  );
+  protected readonly otherCampuses = computed(() =>
+    this.campusService.campuses().filter((c) => c.id !== MADRASA_TIMETABLE_CAMPUS_ID),
+  );
+
+  ngOnInit(): void {
+    void this.campusService.load();
+  }
+
+  protected timetableOther(name: string): string {
+    return this.i18n.t('madrasa.timetableOther').replace('{name}', name);
+  }
 
   protected readonly related: readonly RelatedPageLink[] = [
     { path: '/apply', label: 'Apply online', hint: '2026 admission form' },

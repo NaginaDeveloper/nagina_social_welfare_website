@@ -1,7 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
+import { campusTown, fillTowns, type Campus } from '../../models/campus';
+import { CampusService } from '../../services/campus.service';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 import { VisitorStats } from '../visitor-stats/visitor-stats';
 
@@ -16,9 +18,13 @@ interface FooterLink {
   imports: [RouterLink, WhatsappIcon, VisitorStats],
   templateUrl: './footer.html',
 })
-export class Footer {
+export class Footer implements OnInit {
   protected readonly org = ORGANIZATION;
   protected readonly i18n = inject(LanguageService);
+  protected readonly campusService = inject(CampusService);
+  protected readonly tagline = computed(() =>
+    fillTowns(this.i18n.t('footer.tagline'), this.campusService.towns()),
+  );
   protected readonly whatsapp = whatsappHref();
   protected readonly year = new Date().getFullYear();
 
@@ -50,4 +56,12 @@ export class Footer {
     { labelKey: 'nav.contact', path: '/contact' },
     { labelKey: 'header.login', externalHref: ORGANIZATION.loginUrl },
   ];
+
+  ngOnInit(): void {
+    void this.campusService.load();
+  }
+
+  protected town(campus: Campus): string {
+    return campusTown(campus);
+  }
 }

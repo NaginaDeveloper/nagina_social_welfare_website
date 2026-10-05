@@ -2,6 +2,8 @@ export type PreviousEducation = 'qaidah' | 'quran' | 'other_books' | 'none';
 export type ClassSlot = 'class1' | 'class2' | 'class3';
 
 export interface AdmissionSubmitPayload {
+  /** Campus profile id from the admissions API. */
+  campusId?: string;
   student: {
     fullName: string;
     dateOfBirth: string;

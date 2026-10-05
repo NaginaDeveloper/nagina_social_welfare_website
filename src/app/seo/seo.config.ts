@@ -26,10 +26,10 @@ export interface PageSeo {
 export const HOME_SEO: PageSeo = {
   title: 'Nagina Social Welfare UK | Islamic Education & Welfare',
   description:
-    'Nagina Social Welfare UK supports Islamic education and community welfare in Peterborough through trusted resources, local services and charitable work.',
+    'Nagina Social Welfare UK supports Islamic education and community welfare, with madrasas in Peterborough and Manchester, trusted resources and charitable work.',
   path: '/',
   keywords:
-    'Nagina Social Welfare, UK based charity, Markaz Deen-e-Islam, madrasa Peterborough, Islamic education UK, Peterborough Islamic institute, Ahl al-Sunnah, community welfare, charity 1196514',
+    'Nagina Social Welfare, UK based charity, Markaz Deen-e-Islam, madrasa Peterborough, madrasa Manchester, Quran Academy Manchester, Islamic education UK, Peterborough Islamic institute, Ahl al-Sunnah, community welfare, charity 1196514',
   type: 'website',
   breadcrumb: 'Home',
   changefreq: 'weekly',
@@ -74,12 +74,12 @@ export const PETERBOROUGH_SEO: PageSeo = {
 };
 
 export const MADRASA_SEO: PageSeo = {
-  title: 'Madrasa & Islamic Institute Peterborough | Markaz Deen-e-Islam',
+  title: 'Madrasas in Peterborough & Manchester | Nagina Social Welfare',
   description:
-    'Markaz Deen-e-Islam evening classes at 103 Burmer Road, Peterborough — ages, timetable, safeguarding and online admission.',
+    'Nagina Social Welfare madrasas in Peterborough and Manchester — addresses, ages, class times, safeguarding and online admission.',
   path: '/madrasa/',
   keywords:
-    'madrasa Peterborough, Islamic school Peterborough, Quran classes for children Peterborough, 2026 madrasa intake, evening madrasa 6:30pm, Markaz Deen-e-Islam',
+    'madrasa Peterborough, madrasa Manchester, Islamic school Peterborough, Quran classes for children Manchester, Quran Academy Partington, 2026 madrasa intake, Markaz Deen-e-Islam',
   type: 'website',
   breadcrumb: 'Madrasa',
   changefreq: 'monthly',
@@ -87,12 +87,12 @@ export const MADRASA_SEO: PageSeo = {
 };
 
 export const APPLY_SEO: PageSeo = {
-  title: 'Online Admission 2026 | Markaz Deen-e-Islam | Nagina Social Welfare',
+  title: 'Online Madrasa Admission 2026 | Nagina Social Welfare',
   description:
-    'Apply online for Markaz Deen-e-Islam 2026 intake. Class 1 and 2 for under 10s; Class 3 (18:30–19:30) for ages 10+.',
+    'Apply online to a Nagina Social Welfare madrasa in Peterborough or Manchester. Class 1 and 2 for under 10s; Class 3 for ages 10+.',
   path: '/apply/',
   keywords:
-    'madrasa admission Peterborough 2026, Markaz Deen-e-Islam apply, online enrolment Islamic school Peterborough',
+    'madrasa admission Peterborough 2026, madrasa admission Manchester 2026, Markaz Deen-e-Islam apply, Quran Academy apply, online enrolment Islamic school',
   type: 'website',
   breadcrumb: 'Apply',
   changefreq: 'monthly',
@@ -408,9 +408,9 @@ export const ASSISTANT_SEO: PageSeo = {
 export const CONTACT_SEO: PageSeo = {
   title: 'Contact | Nagina Social Welfare UK',
   description:
-    'Contact Nagina Social Welfare UK in Peterborough — WhatsApp, phone or email for madrasa, donations and general enquiries.',
+    'Contact Nagina Social Welfare UK — WhatsApp, phone or email for our Peterborough and Manchester madrasas, donations and general enquiries.',
   path: '/contact/',
-  keywords: 'Contact Nagina Social Welfare, Peterborough Islamic centre contact, madrasa admission',
+  keywords: 'Contact Nagina Social Welfare, Peterborough Islamic centre contact, Manchester madrasa contact, madrasa admission',
   type: 'website',
   breadcrumb: 'Contact',
   changefreq: 'monthly',

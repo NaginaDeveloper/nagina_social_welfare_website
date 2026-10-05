@@ -27,6 +27,10 @@ export interface EventsCatalogItem {
   readonly time?: string;
   readonly venue?: string;
   readonly whatsappPrefill?: string;
+  /** Campus profile id; blank or missing means Peterborough. */
+  readonly campusId?: string;
+  /** Campus phone saved on the event, e.g. "+44 7872 340123". */
+  readonly contactPhone?: string;
   readonly images?: readonly EventsCatalogImage[];
 }
 
@@ -128,9 +132,16 @@ export class EventsService {
       venue: item.venue?.trim() || 'Markaz Deen-e-Islam, Peterborough',
       whatsappPrefill:
         item.whatsappPrefill?.trim() ||
-        `Assalamu alaikum, I would like to attend ${item.title} on ${item.date} at Markaz Deen-e-Islam.`,
+        `Assalamu alaikum, I would like to attend ${item.title} on ${item.date}.`,
+      ...(eventWhatsappDigits(item) ? { whatsappDigits: eventWhatsappDigits(item) } : {}),
     };
   }
+}
+
+/** WhatsApp digits from the campus phone saved on the event (UK numbers only). */
+export function eventWhatsappDigits(item: Pick<EventsCatalogItem, 'contactPhone'>): string {
+  const digits = (item.contactPhone ?? '').replace(/\D/g, '');
+  return /^44\d{9,10}$/.test(digits) ? digits : '';
 }
 
 function formatWhenLabel(date: string, time?: string): string {
