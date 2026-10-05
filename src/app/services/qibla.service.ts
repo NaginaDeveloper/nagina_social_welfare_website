@@ -163,12 +163,12 @@ export function cardinalFromBearing(degrees: number): string {
 function geolocationMessage(err: GeolocationPositionError): string {
   switch (err.code) {
     case err.PERMISSION_DENIED:
-      return 'Location permission denied. Showing the madrasa town instead.';
+      return 'Location permission denied. Showing the Madrasa town instead.';
     case err.POSITION_UNAVAILABLE:
-      return 'Location unavailable. Showing the madrasa town instead.';
+      return 'Location unavailable. Showing the Madrasa town instead.';
     case err.TIMEOUT:
-      return 'Location request timed out. Showing the madrasa town instead.';
+      return 'Location request timed out. Showing the Madrasa town instead.';
     default:
-      return 'Unable to use your location. Showing the madrasa town instead.';
+      return 'Unable to use your location. Showing the Madrasa town instead.';
   }
 }

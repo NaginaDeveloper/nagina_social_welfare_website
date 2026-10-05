@@ -45,9 +45,9 @@ export function campusFeeTerm(campus: Campus | null): string {
 }
 
 const TERMS = [
-  'Vehicles parked on the double yellow lines outside the madrasa will result in the child losing their place (city council risk).',
+  'Vehicles parked on the double yellow lines outside the Madrasa will result in the child losing their place (city council risk).',
   'Negative behaviour is not tolerated. A first warning may be given; repeated incidents can lead to removal.',
-  'Uniform: white jooba for boys and black abaya for girls (provided by the madrasa). Children not in uniform cannot enter.',
+  'Uniform: white jooba for boys and black abaya for girls (provided by the Madrasa). Children not in uniform cannot enter.',
   'Unnecessary absences can lead to removal. Please inform us if your child will be away.',
   'Pupils must follow appearance and dress rules and must not cause nuisance to local residents.',
   'Homework that is given must be signed by a parent.',
@@ -179,7 +179,7 @@ export class ApplyForm implements OnInit {
           campus,
           `Assalamu alaikum, I have a question about enrolment at ${campus.displayName}.`,
         )
-      : whatsappHref('Assalamu alaikum, I have a question about madrasa enrolment.');
+      : whatsappHref('Assalamu alaikum, I have a question about Madrasa enrolment.');
   });
 
   constructor() {

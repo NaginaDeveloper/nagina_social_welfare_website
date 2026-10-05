@@ -25,9 +25,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'ticker.aria': 'Latest gathering',
 
     'footer.tagline':
-      'A UK-based charity uniting faith and compassion — Islamic education at our madrasas in {towns}, and community welfare across the UK.',
-    'footer.registeredOffice': 'Registered office',
-    'footer.madrasas': 'Our madrasas',
+      'A UK-based charity uniting faith and compassion — Islamic education at our Madrasas in {towns}, and community welfare across the UK.',
+    'footer.headOffice': 'Head office',
+    'footer.madrasas': 'Our Madrasas',
     'footer.donate': 'Donate Now',
     'footer.membership': 'Join membership',
     'footer.memberLogin': 'Member sign in',
@@ -90,7 +90,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.eyebrow': 'Get involved',
     'contact.title': 'Contact us',
     'contact.lead':
-      'Donations, class questions and general enquiries — we reply on WhatsApp. For new madrasa places, use the online admission form.',
+      'Donations, class questions and general enquiries — we reply on WhatsApp. For new Madrasa places, use the online admission form.',
     'contact.whatsapp': 'Chat on WhatsApp',
     'contact.phone': 'Call',
     'contact.email': 'Email',
@@ -101,8 +101,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.formMessage': 'Message',
     'contact.formSubmit': 'Open in WhatsApp',
     'contact.hours':
-      'Class 1 and 2 are for under 10s, Class 3 for ages 10+. Each madrasa’s address, phone and WhatsApp are listed below.',
-    'contact.map': 'Our madrasas',
+      'Class 1 and 2 are for under 10s, Class 3 for ages 10+. Each Madrasa’s address, phone and WhatsApp are listed below.',
+    'contact.map': 'Our Madrasas',
     'contact.reason.enrolment': 'Madrasa enrolment question',
     'contact.reason.donation': 'Donation',
     'contact.reason.namaz': 'Prayer times (Salah)',
@@ -123,7 +123,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.eyebrow': 'Support our mission',
     'donate.title': 'Donate with Confidence',
     'donate.lead':
-      'Your generosity funds Islamic education at our madrasas and community welfare across the UK. Choose a fund, then give by card, PayPal, NatWest PayIt, or bank transfer.',
+      'Your generosity funds Islamic education at our Madrasas and community welfare across the UK. Choose a fund, then give by card, PayPal, NatWest PayIt, or bank transfer.',
     'donate.fund': 'What kind of gift is this?',
     'donate.destination': 'Which centre should this support?',
     'donate.general': 'General donation',
@@ -135,7 +135,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.sadaqah': 'Sadaqah',
     'donate.sadaqahHint': 'Voluntary charity — education and community care.',
     'donate.lillah': 'General gift (Lillah)',
-    'donate.lillahHint': 'Unrestricted gift — madrasa, programmes and running costs.',
+    'donate.lillahHint': 'Unrestricted gift — Madrasa, programmes and running costs.',
     'donate.fitrana': 'Sadaqat al-Fitr (Eid charity)',
     'donate.fitranaHint': 'Given before Eid prayer (also called Fitrana).',
     'donate.trust': 'Registered charity 1196514. Gift Aid is not currently claimed.',
@@ -232,7 +232,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.enrolSecondary': 'Ask on WhatsApp',
     'madrasa.timetable': 'Class times',
     'madrasa.timetableLead':
-      'Evening classes so families can balance school and work. Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Apply online, or message your madrasa with questions.',
+      'Evening classes so families can balance school and work. Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Apply online, or message your Madrasa with questions.',
     'madrasa.days': 'Days',
     'madrasa.time': 'Time',
     'madrasa.ages': 'Who',
@@ -243,14 +243,14 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.safeguardingCta': 'Safeguarding',
     'madrasa.safeguardingBoxTitle': 'Safeguarding',
     'madrasa.safeguardingBoxBody':
-      'Our madrasas teach children. We take safeguarding seriously. Read our public summary and request the full policy if you are a parent, volunteer or staff member.',
-    'madrasa.map': 'Visit a madrasa',
+      'Our Madrasas teach children. We take safeguarding seriously. Read our public summary and request the full policy if you are a parent, volunteer or staff member.',
+    'madrasa.map': 'Visit a Madrasa',
 
-    'apply.eyebrow': 'Nagina Social Welfare madrasas',
+    'apply.eyebrow': 'Nagina Social Welfare Madrasas',
     'apply.title': 'Online Admission',
     'apply.lead':
-      'All three evening classes are open. Class 1 and Class 2 are for children under 10; Class 3 is for ages 10 and above. Choose your madrasa, complete this form and we will email you when we receive it and again after our review.',
-    'apply.intake.eyebrow': 'Nagina Social Welfare madrasas',
+      'All three evening classes are open. Class 1 and Class 2 are for children under 10; Class 3 is for ages 10 and above. Choose your Madrasa, complete this form and we will email you when we receive it and again after our review.',
+    'apply.intake.eyebrow': 'Nagina Social Welfare Madrasas',
     'apply.intake.title': 'Madrasa Admission',
     'apply.intake.subtitle': 'For the 2026 Intake',
     'apply.intake.lead':
@@ -356,7 +356,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.termsHeading': 'Terms and Conditions',
     'apply.consentPrivacyPrefix': 'I confirm I have read the',
     'apply.consentPrivacySuffix':
-      'and agree that Nagina Social Welfare UK may store and process this application for madrasa enrolment.',
+      'and agree that Nagina Social Welfare UK may store and process this application for Madrasa enrolment.',
     'apply.consentMedia':
       'I agree that my child may be photographed during madrassah activities and that images may be shared online or in print.',
     'apply.consentMedical':
@@ -392,9 +392,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'applySuccess.copy': 'Copy ID',
     'applySuccess.copied': 'Copied',
     'applySuccess.trackLead': 'Current status for this application:',
-    'applySuccess.madrasa': 'Back to madrasa',
+    'applySuccess.madrasa': 'Back to Madrasa',
     'applySuccess.home': 'Home',
-    'applyTrack.eyebrow': 'Nagina Social Welfare madrasas',
+    'applyTrack.eyebrow': 'Nagina Social Welfare Madrasas',
     'applyTrack.title': 'Track Your Application',
     'applyTrack.lead':
       'Enter the application ID from your confirmation email or the screen shown after you submitted.',
@@ -405,7 +405,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'applyTrack.resultEyebrow': 'Status',
     'applyTrack.student': 'Student',
     'applyTrack.submitted': 'Submitted',
-    'applyTrack.reason': 'Message from the madrasa',
+    'applyTrack.reason': 'Message from the Madrasa',
     'applyTrack.applyPrompt': 'Need to apply?',
     'applyTrack.err.required': 'Enter your application ID.',
     'applyTrack.err.emailRequired': 'Enter the parent email used on the application.',
@@ -419,7 +419,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'applyTrack.hint.ACCEPTED':
       'This application has been accepted. Please follow any joining instructions in your email.',
     'applyTrack.hint.REJECTED':
-      'This application was not accepted. The reason from the madrasa is shown below if one was given.',
+      'This application was not accepted. The reason from the Madrasa is shown below if one was given.',
     'applyTrack.hint.NEEDS_INFO':
       'Staff need a little more information before they can decide. See the note below, or reply to your email.',
 
@@ -639,11 +639,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberHome.downloadIssue': 'Download PDF',
 
     'namaz.footnote':
-      'Calculated for {town} (MWL method, Hanafi Asr). These are personal prayer windows (begins and ends), not congregational prayer times at our madrasas — confirm congregation with a local mosque.',
+      'Calculated for {town} (MWL method, Hanafi Asr). These are personal prayer windows (begins and ends), not congregational prayer times at our Madrasas — confirm congregation with a local mosque.',
 
     'events.programme': 'Latest events',
     'events.programmeLead':
-      'Gatherings at our madrasas. Dated events move to Past after the day has passed.',
+      'Gatherings at our Madrasas. Dated events move to Past after the day has passed.',
     'events.rsvp': 'I am coming',
     'events.calendar': 'Add to Google Calendar',
     'events.photos': 'Photos & posters',
@@ -690,7 +690,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.guidance': 'Guidance',
     'nav.guidanceHint': 'Teachings & counsel',
     'nav.namazTimes': 'Prayer Times (Salah)',
-    'nav.namazTimesHint': 'Times for each madrasa town',
+    'nav.namazTimesHint': 'Times for each Madrasa town',
     'nav.zakat': 'Zakat Calculator',
     'nav.zakatHint': 'Gold, silver and savings',
     'nav.whatIsZakat': 'What is Zakat?',
@@ -884,14 +884,14 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'work.title': 'One Mission Through',
     'work.titleAccent': 'Education and Charity',
     'work.lead':
-      'Nagina Social Welfare UK — a registered charity — unites faith and compassion: educating hearts through knowledge at our madrasas, and uplifting lives through charity across the UK.',
+      'Nagina Social Welfare UK — a registered charity — unites faith and compassion: educating hearts through knowledge at our Madrasas, and uplifting lives through charity across the UK.',
     'work.madrasaLink': 'Madrasa & Quran classes in Peterborough and Manchester →',
     'work.centresTitle': 'Our centres',
     'work.centresLead':
-      'Each centre runs its own madrasa and community programme under Nagina Social Welfare UK. Contact a centre directly or apply for a place.',
+      'Each centre runs its own Madrasa and community programme under Nagina Social Welfare UK. Contact a centre directly or apply for a place.',
     'work.helpTitle': 'Who can ask for help',
     'work.helpLead':
-      'Individuals and families in need in our community may contact Nagina Social Welfare to ask about welfare support. We review requests carefully and respond via WhatsApp or email. For madrasa places, please use the online admission form.',
+      'Individuals and families in need in our community may contact Nagina Social Welfare to ask about welfare support. We review requests carefully and respond via WhatsApp or email. For Madrasa places, please use the online admission form.',
     'work.helpWhatsApp': 'Ask on WhatsApp',
     'work.helpContact': 'Contact page',
     'work.helpDonate': 'Support this work',
@@ -953,7 +953,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'namaz.eyebrow': 'Prayer Times (Salah)',
     'namaz.title': 'Prayer times in',
     'namaz.titleAccent': 'the UK',
-    'namaz.lead': 'Daily prayer windows for the town of each of our madrasas — Begins and Ends, updated live for Europe/London time.',
+    'namaz.lead': 'Daily prayer windows for the town of each of our Madrasas — Begins and Ends, updated live for Europe/London time.',
     'namaz.placeLabel': 'Show times for:',
     'namaz.loading': 'Loading today’s prayer times…',
     'namaz.tryAgain': 'Try again',
@@ -1084,7 +1084,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'guides.title': 'Portal guides for',
     'guides.titleAccent': 'parents, teachers and students',
     'guides.lead':
-      'Step-by-step videos and user manuals for the madrasa portals. Watch online, read the manual, or save the PDF to keep.',
+      'Step-by-step videos and user manuals for the Madrasa portals. Watch online, read the manual, or save the PDF to keep.',
     'guides.watch': 'Watch the video',
     'guides.read': 'Read the manual',
     'guides.pdf': 'Download PDF',
@@ -1093,12 +1093,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'guides.signIn': 'Sign in',
     'guides.app': 'Android app',
     'guides.helpTitle': 'Need help?',
-    'guides.help': 'Contact the madrasa office:',
+    'guides.help': 'Contact the Madrasa office:',
     'guides.appsLink': 'See all our mobile apps',
 
     'safeguarding.eyebrow': 'Children & families',
     'safeguarding.title': 'Safeguarding',
-    'safeguarding.lead': 'How Nagina Social Welfare and our madrasas keep children and adults at risk safe.',
+    'safeguarding.lead': 'How Nagina Social Welfare and our Madrasas keep children and adults at risk safe.',
     'safeguarding.concern': 'Raise a concern on WhatsApp',
     'safeguarding.policy': 'Request the full policy',
     'safeguarding.lastReviewed': 'Last reviewed',
@@ -1156,7 +1156,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.openPaypal': 'Open PayPal link',
     'donate.bankTitle': 'Bank Transfer',
     'donate.whereTitle': 'Where It Goes',
-    'donate.where1': 'Qur’an and Islamic studies at our madrasas',
+    'donate.where1': 'Qur’an and Islamic studies at our Madrasas',
     'donate.where2': 'Organised charity collections across the UK',
     'donate.where3': 'Community gatherings, langar and pastoral support',
     'donate.accountName': 'Account name',
@@ -1191,31 +1191,31 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'qibla.compassDenied': 'Compass permission was not granted.',
     'qibla.compassError': 'Unable to access the device compass.',
 
-    'madrasa.eyebrow': 'Nagina Social Welfare madrasas',
+    'madrasa.eyebrow': 'Nagina Social Welfare Madrasas',
     'madrasa.title': 'Islamic Institute in',
     'madrasa.titleAccent': 'the UK',
     'madrasa.lead':
-      'Nagina Social Welfare UK runs madrasas in {towns}. The 2026 intake is open — Class 1 and 2 for under 10s, Class 3 for ages 10 and above. Choose your nearest madrasa below and apply online.',
-    'madrasa.body': 'Parents searching for a local madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At our madrasas we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.',
+      'Nagina Social Welfare UK runs Madrasas in {towns}. The 2026 intake is open — Class 1 and 2 for under 10s, Class 3 for ages 10 and above. Choose your nearest Madrasa below and apply online.',
+    'madrasa.body': 'Parents searching for a local Madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At our Madrasas we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.',
     'madrasa.body2':
-      'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Please apply online, or contact your madrasa with questions.',
+      'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Please apply online, or contact your Madrasa with questions.',
     'madrasa.offeringsTitle': 'What Children Learn with Us',
     'madrasa.titleLine': 'Madrasas & Islamic Education in',
-    'madrasa.campusesTitle': 'Our madrasas',
-    'madrasa.campusesLead': 'Choose the madrasa nearest to you. Each one has its own phone and WhatsApp for class questions.',
+    'madrasa.campusesTitle': 'Our Madrasas',
+    'madrasa.campusesLead': 'Choose the Madrasa nearest to you. Each one has its own phone and WhatsApp for class questions.',
     'madrasa.timetableFor': 'Class times at',
-    'madrasa.timetableOther': 'For class times at {name}, please call or WhatsApp the madrasa.',
+    'madrasa.timetableOther': 'For class times at {name}, please call or WhatsApp the Madrasa.',
     'madrasa.mapPick': 'Show map for',
     'campus.call': 'Call',
     'campus.whatsapp': 'WhatsApp',
     'campus.directions': 'Directions',
-    'campus.apply': 'Apply to this madrasa',
-    'campus.loading': 'Loading madrasa details…',
+    'campus.apply': 'Apply to this Madrasa',
+    'campus.loading': 'Loading Madrasa details…',
     'campus.unavailable': 'Madrasa details could not be loaded. Please contact us on WhatsApp.',
-    'apply.campusHeading': 'Which madrasa?',
-    'apply.campusHint': 'Choose the madrasa your child will attend.',
-    'apply.err.campus': 'Please choose which madrasa you are applying to.',
-    'apply.campusesLabel': 'Our madrasas',
+    'apply.campusHeading': 'Which Madrasa?',
+    'apply.campusHint': 'Choose the Madrasa your child will attend.',
+    'apply.err.campus': 'Please choose which Madrasa you are applying to.',
+    'apply.campusesLabel': 'Our Madrasas',
 
     'sahaba.closing': 'In summary, while the Sahabah are not considered infallible (ma‘sum), they are revered as God-fearing, trustworthy role models for the entire Muslim nation — honoured alongside the Ahl al-Bayt in the creed of Ahl al-Sunnah wal-Jama’ah.',
     'aulia.body': 'Allah Almighty declares in the Holy Quran that His Awliya shall know no fear nor grief. Through authentic Prophetic traditions, believers are taught to honour the pious, seek nearness to Allah through worship, and avoid enmity toward those whom Allah has befriended.',
@@ -1230,8 +1230,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.eyebrow': 'Local community',
     'centre.title': 'Nagina Social Welfare in {town}',
     'centre.lead':
-      '{name} at {address} is our local centre — madrasa classes, prayer times, events and community welfare support.',
+      '{name} at {address} is our local centre — Madrasa classes, prayer times, events and community welfare support.',
     'centre.visitTitle': 'Visit us',
+    'centre.headOffice': 'Also the Nagina Social Welfare UK head office',
     'centre.phoneLabel': 'Phone',
     'centre.emailLabel': 'Email',
     'centre.servicesTitle': 'What you will find here',
@@ -1368,7 +1369,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'duas.shortAnswer':
       'Everyday duas for children and families — Arabic with English and Urdu meanings from Let’s Learn Islam.',
     'duas.body':
-      'These seventeen everyday duas come from the Let’s Learn Islam (آئیں دین سیکھیں) children’s module used at our madrasas. Each entry shows the Arabic text with a clear meaning.',
+      'These seventeen everyday duas come from the Let’s Learn Islam (آئیں دین سیکھیں) children’s module used at our Madrasas. Each entry shows the Arabic text with a clear meaning.',
     'duas.sourceNote':
       'From Let’s Learn Islam (آئیں دین سیکھیں) — Daily Duʿās / بچوں کی پیاری روزمرہ دعائیں۔ Exact curriculum Arabic with English and Urdu meanings.',
     'duas.arabicLabel': 'Arabic',
@@ -1388,7 +1389,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'Important dates such as Ramadan and Eid may change locally. Always confirm with your mosque or community announcement before fasting or celebrating.',
     'islamicCalendar.todayTitle': 'Plan your day',
     'islamicCalendar.todayLead':
-      'Check today’s prayer windows for your madrasa town, Ramadan information, and upcoming gatherings.',
+      'Check today’s prayer windows for your Madrasa town, Ramadan information, and upcoming gatherings.',
     'islamicCalendar.linkNamaz': 'Prayer times',
     'islamicCalendar.linkRamadan': 'Ramadan',
     'islamicCalendar.linkEvents': 'Events',
@@ -1407,12 +1408,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'ramadan.shortAnswer':
       'Use local prayer times, events and contact options from Nagina Social Welfare during Ramadan.',
     'ramadan.body':
-      'Ramadan is a month of fasting, prayer and generosity. Start with reliable prayer times for Suhoor and Maghrib in your madrasa’s town, then check our events page for any published programmes at our madrasas.',
+      'Ramadan is a month of fasting, prayer and generosity. Start with reliable prayer times for Suhoor and Maghrib in your Madrasa’s town, then check our events page for any published programmes at our Madrasas.',
     'ramadan.noInvent':
       'We do not invent Taraweeh schedules or iftar lists. Only confirmed details appear on Events or via WhatsApp when announced.',
     'ramadan.howTitle': 'How to use this site in Ramadan',
     'ramadan.linkNamaz': 'Prayer times',
-    'ramadan.howNamaz': 'daily begin and end windows for each madrasa town',
+    'ramadan.howNamaz': 'daily begin and end windows for each Madrasa town',
     'ramadan.linkEvents': 'Events',
     'ramadan.howEvents': 'published gatherings and programmes',
     'ramadan.linkContact': 'Contact',
@@ -1457,7 +1458,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'footer.tagline':
       'برطانیہ کی رجسٹرڈ چیریٹی — ہمارے مدارس ({towns}) میں اسلامی تعلیم، اور برطانیہ بھر میں فلاحِ عامہ۔',
-    'footer.registeredOffice': 'رجسٹرڈ دفتر',
+    'footer.headOffice': 'ہیڈ آفس',
     'footer.madrasas': 'ہمارے مدارس',
     'footer.donate': 'اب عطیہ دیں',
     'footer.membership': 'رکنیت کے لیے درخواست',
@@ -2521,6 +2522,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.lead':
       '{address} پر {name} ہمارا مقامی مرکز ہے — مدرسہ کلاسیں، نماز کے اوقات، تقریبات اور فلاحی مدد۔',
     'centre.visitTitle': 'ہم سے ملیں',
+    'centre.headOffice': 'یہی نگینہ سوشل ویلفیئر UK کا ہیڈ آفس بھی ہے',
     'centre.phoneLabel': 'فون',
     'centre.emailLabel': 'ای میل',
     'centre.servicesTitle': 'یہاں کیا ملے گا',

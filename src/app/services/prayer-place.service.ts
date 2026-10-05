@@ -40,7 +40,7 @@ export class PrayerPlaceService {
   async resolve(): Promise<PrayerPlace> {
     await this.campusService.load();
     const campus = this.campus();
-    if (!campus) throw new Error('No madrasa list available for prayer times.');
+    if (!campus) throw new Error('No Madrasa list available for prayer times.');
     const coords = await this.campusService.coordinates(campus);
     if (!coords) throw new Error(`No coordinates for ${campus.postcode || campus.id}.`);
     return { ...coords, campusId: campus.id, town: campusTown(campus) };

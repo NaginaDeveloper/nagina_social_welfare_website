@@ -31,7 +31,7 @@ export class Madrasa implements OnInit {
   protected readonly sessions = MADRASA_SESSIONS;
   protected readonly posterHref = '/posters/madrasa-admission-2026.webp';
   protected readonly enrolWhatsApp = whatsappHref(
-    'Assalamu alaikum, I would like to enrol a child at one of your madrasas. Madrasa: __  Age: __',
+    'Assalamu alaikum, I would like to enrol a child at one of your Madrasas. Madrasa: __  Age: __',
   );
 
   protected readonly towns = computed(

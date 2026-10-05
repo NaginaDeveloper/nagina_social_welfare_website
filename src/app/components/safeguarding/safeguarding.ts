@@ -19,7 +19,7 @@ export class Safeguarding {
   protected readonly org = ORGANIZATION;
   protected readonly lastReviewed = SAFEGUARDING_LAST_REVIEWED;
   protected readonly policyWhatsApp = whatsappHref(
-    'Assalamu alaikum, please send me the full safeguarding policy for the Nagina Social Welfare madrasas.',
+    'Assalamu alaikum, please send me the full safeguarding policy for the Nagina Social Welfare Madrasas.',
   );
   protected readonly concernWhatsApp = whatsappHref(
     'Assalamu alaikum, I need to raise a safeguarding concern.',
@@ -30,7 +30,7 @@ export class Safeguarding {
       title: 'Our duty',
       titleUr: 'ہماری ذمہ داری',
       body:
-        'Our madrasas teach children. Everyone who visits, teaches, or volunteers with us must help keep children and adults at risk safe from harm, abuse, and neglect.',
+        'Our Madrasas teach children. Everyone who visits, teaches, or volunteers with us must help keep children and adults at risk safe from harm, abuse, and neglect.',
       bodyUr:
         'ہمارے مدارس بچوں کو تعلیم دیتے ہیں۔ جو بھی تشریف لائے، پڑھائے یا رضاکارانہ خدمت کرے، اسے بچوں اور خطرے میں بالغوں کو نقصان، زیادتی اور غفلت سے محفوظ رکھنے میں مدد کرنی چاہیے۔',
     },

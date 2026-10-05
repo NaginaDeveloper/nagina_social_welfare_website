@@ -36,7 +36,7 @@ export class PrayerTimes implements OnInit, OnDestroy {
   protected readonly related = computed<readonly RelatedPageLink[]>(() => [
     {
       path: '/madrasa',
-      label: 'Our madrasas',
+      label: 'Our Madrasas',
       hint: 'Addresses, class times and admission',
     },
     ...this.centreLink(),

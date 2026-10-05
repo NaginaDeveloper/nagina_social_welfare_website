@@ -42,6 +42,9 @@ export class Centre implements OnInit {
   protected readonly hasDeathCommittee = computed(
     () => this.campus()?.id === DEATH_COMMITTEE.campusId,
   );
+  protected readonly isHeadOffice = computed(
+    () => this.campus()?.postcode === ORGANIZATION.postalCode,
+  );
   protected readonly contactWhatsApp = computed(() => {
     const campus = this.campus();
     if (!campus) return '';

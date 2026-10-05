@@ -104,13 +104,15 @@
               {{ org.email }}
             </a>
           </li>
-          <li>
-            <a [href]="'tel:' + org.phoneTel" class="transition-colors hover:text-gold-300">
-              {{ org.phoneDisplay }}
-            </a>
-          </li>
+          @if (campusService.campuses().length === 0) {
+            <li>
+              <a [href]="'tel:' + org.phoneTel" class="transition-colors hover:text-gold-300">
+                {{ org.phoneDisplay }}
+              </a>
+            </li>
+          }
           <li class="leading-relaxed text-cream/50">
-            <span class="block text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-cream/45">{{ i18n.t('footer.registeredOffice') }}</span>
+            <span class="block text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-cream/45">{{ i18n.t('footer.headOffice') }}</span>
             {{ org.streetAddress }}<br />
             {{ org.addressLocality }} {{ org.postalCode }}
           </li>

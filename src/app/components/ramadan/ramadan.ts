@@ -18,13 +18,13 @@ export class Ramadan implements OnInit {
   protected readonly title = computed(() => fillTowns(this.i18n.t('ramadan.title'), this.campuses.towns()));
   protected readonly org = ORGANIZATION;
   protected readonly contactWhatsApp = whatsappHref(
-    'Assalamu alaikum, please share local Ramadan information for my madrasa’s town (iftar / Taraweeh updates).',
+    'Assalamu alaikum, please share local Ramadan information for my Madrasa’s town (iftar / Taraweeh updates).',
   );
 
   protected readonly related: readonly RelatedPageLink[] = [
     { path: '/namaz', label: 'Prayer times', hint: 'Suhoor and Maghrib from today’s schedule' },
     { path: '/events', label: 'Events', hint: 'Ramadan gatherings when published' },
-    { path: '/madrasa', label: 'Our madrasas', hint: 'Addresses and contact for each madrasa' },
+    { path: '/madrasa', label: 'Our Madrasas', hint: 'Addresses and contact for each Madrasa' },
     { path: '/donate', label: 'Donate', hint: 'Zakat and Sadaqah in Ramadan' },
     { path: '/contact', label: 'Contact', hint: 'Ask for local updates' },
   ];

@@ -112,7 +112,7 @@ export class Assistant {
     'How do I calculate zakat?',
     'How can I donate?',
     'What is the Death Committee?',
-    'Namaz times for each madrasa',
+    'Namaz times for each Madrasa',
     'Which books are available?',
     'اہلِ بیت کے بارے میں بتائیں',
     'رابطہ کیسے کریں؟',

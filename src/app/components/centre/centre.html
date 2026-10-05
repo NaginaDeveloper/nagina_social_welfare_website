@@ -30,6 +30,9 @@
       >
         <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('centre.visitTitle') }}</h2>
         <p class="mt-2 text-sm font-semibold text-gold-700">{{ campus.displayName }}</p>
+        @if (isHeadOffice()) {
+          <p class="mt-1 text-sm text-slate-warm" data-testid="centre-head-office">{{ i18n.t('centre.headOffice') }}</p>
+        }
         <p class="mt-2 text-base leading-relaxed text-slate-warm">{{ campus.addressLine }}</p>
         <ul class="mt-6 space-y-3 text-sm text-slate-warm sm:text-base">
           <li>

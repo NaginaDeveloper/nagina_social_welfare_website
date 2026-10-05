@@ -38,7 +38,7 @@ export class Guides {
       roleUr: 'والدین کے لیے',
       name: 'Parent Portal',
       description:
-        "Sign in, read madrasa messages, check and pay fees, follow your child's attendance, checklist and learning, and request leave.",
+        "Sign in, read Madrasa messages, check and pay fees, follow your child's attendance, checklist and learning, and request leave.",
       descriptionUr:
         'سائن ان کریں، مدرسہ کے پیغامات پڑھیں، فیس دیکھیں اور ادا کریں، اپنے بچے کی حاضری، چیک لسٹ اور تعلیم دیکھیں، اور چھٹی کی درخواست دیں۔',
       videoUrl: '/parent-portal-video/',
