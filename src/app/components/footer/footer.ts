@@ -1,6 +1,8 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
+import { centrePath } from '../../config/centre-pages.config';
+import { DEATH_COMMITTEE } from '../../config/death-committee.config';
 import { LanguageService } from '../../i18n/language.service';
 import { campusTown, fillTowns, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
@@ -27,6 +29,7 @@ export class Footer implements OnInit {
   );
   protected readonly whatsapp = whatsappHref();
   protected readonly year = new Date().getFullYear();
+  protected readonly deathCommittee = DEATH_COMMITTEE;
 
   protected readonly exploreLinks: readonly FooterLink[] = [
     { labelKey: 'nav.spiritualGuide', path: '/spiritual-guide' },
@@ -35,8 +38,8 @@ export class Footer implements OnInit {
     { labelKey: 'nav.halalChecker', externalHref: ORGANIZATION.halalCheckerUrl },
     { labelKey: 'nav.aboutUs', path: '/about' },
     { labelKey: 'nav.ourWork', path: '/work' },
-    { labelKey: 'nav.peterborough', path: '/peterborough' },
     { labelKey: 'nav.madrasa', path: '/madrasa' },
+    { labelKey: 'nav.deathCommittee', path: DEATH_COMMITTEE.path },
     { labelKey: 'nav.guidance', path: '/guidance' },
     { labelKey: 'nav.namazTimes', path: '/namaz' },
     { labelKey: 'nav.zakat', path: '/zakat' },
@@ -63,5 +66,9 @@ export class Footer implements OnInit {
 
   protected town(campus: Campus): string {
     return campusTown(campus);
+  }
+
+  protected centrePath(campusId: string): string {
+    return centrePath(campusId);
   }
 }

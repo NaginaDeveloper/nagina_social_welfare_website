@@ -5,6 +5,8 @@ import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import { HeroTopActions } from '../hero-top-actions/hero-top-actions';
+import { DeathCommitteeCallout } from '../death-committee-callout/death-committee-callout';
+import { DEATH_COMMITTEE } from '../../config/death-committee.config';
 
 export type HubTileTone = 'featured' | 'donate' | 'default';
 
@@ -23,7 +25,7 @@ export interface HubTile {
 
 @Component({
   selector: 'app-home-hub',
-  imports: [FormsModule, RouterLink, HeroTopActions],
+  imports: [FormsModule, RouterLink, HeroTopActions, DeathCommitteeCallout],
   templateUrl: './home-hub.html',
 })
 export class HomeHub implements OnInit {
@@ -89,6 +91,15 @@ export class HomeHub implements OnInit {
       tone: 'donate',
       groupKey: 'hub.group.connect',
       keywords: ['donate', 'zakat', 'sadaqah', 'charity', 'gift'],
+    },
+    {
+      id: 'death-committee',
+      labelKey: 'nav.deathCommittee',
+      hintKey: 'nav.deathCommitteeHint',
+      path: DEATH_COMMITTEE.path,
+      tone: 'featured',
+      groupKey: 'hub.group.connect',
+      keywords: ['death', 'funeral', 'janaza', 'janazah', 'committee', 'manchester', 'partington', 'bereavement'],
     },
     {
       id: 'apply',

@@ -4,7 +4,13 @@ import { onRequest } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { logger } from 'firebase-functions';
 import { applyCors } from './cors';
-import { donationDescription, parseDonationAmount, parseDonationFund } from './amount';
+import {
+  donationDescription,
+  parseDonationAmount,
+  parseDonationCampus,
+  parseDonationFund,
+} from './amount';
+import { donationCentreTown } from './donationCampuses';
 import { allowFirestoreRateLimit, allowMemoryRateLimit, clientIp } from './rateLimit';
 import { setSecurityHeaders } from './security';
 
@@ -81,6 +87,7 @@ export const createDonationCheckout = onRequest(
     }
 
     const fund = parseDonationFund(req.body?.fund);
+    const centreTown = await donationCentreTown(parseDonationCampus(req.body?.campus), SITE_ORIGIN);
 
     const apiKey = sumupApiKey.value() || process.env.SUMUP_API_KEY || '';
     const merchantCode = sumupMerchantCode.value() || process.env.SUMUP_MERCHANT_CODE || '';
@@ -105,7 +112,7 @@ export const createDonationCheckout = onRequest(
           amount: parsed.amount,
           currency: 'GBP',
           checkout_reference: checkoutReference,
-          description: donationDescription(fund),
+          description: donationDescription(fund, centreTown),
           merchant_code: merchantCode,
           redirect_url: redirectUrl,
           hosted_checkout: { enabled: true },

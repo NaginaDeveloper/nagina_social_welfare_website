@@ -73,6 +73,43 @@ export const PETERBOROUGH_SEO: PageSeo = {
   priority: 0.95,
 };
 
+export const MANCHESTER_SEO: PageSeo = {
+  title: 'Manchester Community | Nagina Social Welfare UK',
+  description:
+    'Find Nagina Social Welfare in Manchester — Quran Academy at Partington Community Centre: address, madrasa admission, prayer times, events and how to contact us.',
+  path: '/manchester/',
+  keywords:
+    'Nagina Social Welfare Manchester, Quran Academy Partington, madrasa Manchester, Islamic community Manchester, Partington',
+  type: 'website',
+  breadcrumb: 'Manchester',
+  changefreq: 'weekly',
+  priority: 0.95,
+};
+
+export const DEATH_COMMITTEE_SEO: PageSeo = {
+  title: 'Death Committee Manchester | Funeral Support | Quran Academy',
+  description:
+    'Quran Academy Death Committee in Manchester — register for text alerts and give £10 or more towards funeral costs when a family in our community suffers a loss.',
+  path: '/death-committee/',
+  keywords:
+    'Death Committee Manchester, funeral committee Manchester, Muslim funeral support Partington, Quran Academy Death Committee, janazah costs Manchester',
+  type: 'website',
+  breadcrumb: 'Death Committee',
+  changefreq: 'monthly',
+  priority: 0.9,
+};
+
+/** Centres without their own top-level URL yet (`/centre/:id`). */
+export const CENTRE_SEO: PageSeo = {
+  title: 'Our Centres | Nagina Social Welfare UK',
+  description:
+    'A Nagina Social Welfare UK centre — address, madrasa admission, prayer times, events and how to contact the centre.',
+  path: '/madrasa/',
+  type: 'website',
+  robots: 'noindex, follow',
+  breadcrumb: 'Centre',
+};
+
 export const MADRASA_SEO: PageSeo = {
   title: 'Madrasas in Peterborough & Manchester | Nagina Social Welfare',
   description:
@@ -384,7 +421,7 @@ export const IMPACT_SEO: PageSeo = {
 export const DONATE_SEO: PageSeo = {
   title: 'Donate | Support Our Mission | Nagina Social Welfare UK',
   description:
-    'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514) by SumUp, PayPal, NatWest PayIt or bank transfer.',
+    'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514) — as a general gift or for our Peterborough or Manchester centre — by SumUp, PayPal, NatWest PayIt or bank transfer.',
   path: '/donate/',
   keywords: 'Donate Nagina Social Welfare, Zakat, SumUp donation UK, Islamic charity Peterborough, Islamic charity Manchester',
   type: 'website',
@@ -525,6 +562,8 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   ABOUT_SEO,
   WORK_SEO,
   PETERBOROUGH_SEO,
+  MANCHESTER_SEO,
+  DEATH_COMMITTEE_SEO,
   MADRASA_SEO,
   APPLY_SEO,
   APPLY_SUCCESS_SEO,

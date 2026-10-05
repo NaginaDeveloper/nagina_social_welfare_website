@@ -10,6 +10,7 @@ import {
   type MemberPortalEvent,
 } from '../../services/member-portal.service';
 import type { DonationFund } from '../../models/membership';
+import { GENERAL_DONATION } from '../../models/donation-destination';
 import { isValidUkPhone, formatUkPhoneE164, formatUkPhoneForDisplay } from '../../validators/uk.validators';
 import { PageShell } from '../page-shell';
 import { MemberPortalShell } from '../../components/member-portal/member-portal-shell';
@@ -65,6 +66,7 @@ export class MembershipHomePage implements OnInit {
   protected readonly donatedBanner = signal(false);
 
   protected readonly donateFund = signal<DonationFund>('sadaqah');
+  protected readonly donateCampus = signal<string>(GENERAL_DONATION);
   protected readonly donateAmount = signal<number | 'custom'>(25);
   protected readonly donateCustom = signal('');
   protected readonly donateLoading = signal(false);
@@ -200,7 +202,11 @@ export class MembershipHomePage implements OnInit {
     this.donateLoading.set(true);
     this.error.set(null);
     try {
-      const url = await this.portal.startDonationCheckout(amount, this.donateFund());
+      const url = await this.portal.startDonationCheckout(
+        amount,
+        this.donateFund(),
+        this.donateCampus(),
+      );
       window.location.href = url;
     } catch (err) {
       this.error.set(portalErrorMessage(err));

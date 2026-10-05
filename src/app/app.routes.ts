@@ -21,6 +21,9 @@ import {
   KHATME_NABUWWAT_SEO,
   NAMAZ_SEO,
   PETERBOROUGH_SEO,
+  MANCHESTER_SEO,
+  DEATH_COMMITTEE_SEO,
+  CENTRE_SEO,
   PRIVACY_SEO,
   QURAN_SEO,
   HADITH_SEO,
@@ -65,10 +68,28 @@ export const routes: Routes = [
   },
   {
     path: 'peterborough',
-    loadComponent: () =>
-      import('./pages/peterborough/peterborough-page').then((m) => m.PeterboroughPage),
+    loadComponent: () => import('./pages/centre/centre-page').then((m) => m.CentrePage),
     title: PETERBOROUGH_SEO.title,
-    data: { seo: PETERBOROUGH_SEO },
+    data: { seo: PETERBOROUGH_SEO, campusId: 'peterborough', breadcrumb: 'Peterborough' },
+  },
+  {
+    path: 'manchester',
+    loadComponent: () => import('./pages/centre/centre-page').then((m) => m.CentrePage),
+    title: MANCHESTER_SEO.title,
+    data: { seo: MANCHESTER_SEO, campusId: 'manchester', breadcrumb: 'Manchester' },
+  },
+  {
+    path: 'death-committee',
+    loadComponent: () =>
+      import('./pages/death-committee/death-committee-page').then((m) => m.DeathCommitteePage),
+    title: DEATH_COMMITTEE_SEO.title,
+    data: { seo: DEATH_COMMITTEE_SEO },
+  },
+  {
+    path: 'centre/:campusId',
+    loadComponent: () => import('./pages/centre/centre-page').then((m) => m.CentrePage),
+    title: CENTRE_SEO.title,
+    data: { seo: CENTRE_SEO },
   },
   {
     path: 'madrasa',

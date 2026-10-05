@@ -84,7 +84,7 @@
     <!-- Desktop: grouped menus -->
     <nav class="hidden min-w-0 items-center gap-1 xl:flex 2xl:gap-1.5" aria-label="Primary" (click)="$event.stopPropagation()">
       <ul class="flex items-center gap-0.5">
-        @for (group of groups; track group.id) {
+        @for (group of groups(); track group.id) {
           <li class="relative">
             <button
               type="button"
@@ -129,7 +129,7 @@
                   [class.grid-cols-1]="group.items.length <= 5"
                   [class.grid-cols-2]="group.items.length > 5"
                 >
-                @for (item of group.items; track item.labelKey) {
+                @for (item of group.items; track item.path ?? item.externalHref) {
                   @if (item.externalHref) {
                     <a
                       [href]="item.externalHref"
@@ -149,13 +149,13 @@
                       </span>
                       <span class="flex min-w-0 flex-col gap-0.5">
                         <span class="inline-flex items-center gap-1.5 text-sm font-medium leading-snug">
-                          {{ i18n.t(item.labelKey) }}
+                          {{ linkLabel(item) }}
                           <svg class="h-3 w-3 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
                           </svg>
                         </span>
-                        @if (item.hintKey) {
-                          <span class="text-[0.7rem] leading-snug text-cream/70">{{ i18n.t(item.hintKey) }}</span>
+                        @if (linkHint(item); as hint) {
+                          <span class="text-[0.7rem] leading-snug text-cream/70">{{ hint }}</span>
                         }
                       </span>
                     </a>
@@ -181,9 +181,9 @@
                         />
                       </span>
                       <span class="flex min-w-0 flex-col gap-0.5">
-                        <span class="text-sm font-medium leading-snug">{{ i18n.t(item.labelKey) }}</span>
-                        @if (item.hintKey) {
-                          <span class="text-[0.7rem] leading-snug text-cream/70">{{ i18n.t(item.hintKey) }}</span>
+                        <span class="text-sm font-medium leading-snug">{{ linkLabel(item) }}</span>
+                        @if (linkHint(item); as hint) {
+                          <span class="text-[0.7rem] leading-snug text-cream/70">{{ hint }}</span>
                         }
                       </span>
                     </a>
@@ -466,7 +466,7 @@
       </div>
 
       <div class="flex flex-col gap-1 p-3">
-        @for (group of groups; track group.id) {
+        @for (group of groups(); track group.id) {
           <div class="rounded-xl bg-white/[0.03] p-2">
             <p
               class="flex items-center gap-2 px-2 pb-1.5 pt-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300"
@@ -477,7 +477,7 @@
               {{ i18n.t(group.labelKey) }}
             </p>
             <ul class="flex flex-col">
-              @for (item of group.items; track item.labelKey) {
+              @for (item of group.items; track item.path ?? item.externalHref) {
                 <li>
                   @if (item.externalHref) {
                     <a
@@ -497,13 +497,13 @@
                       </span>
                       <span class="flex min-w-0 flex-1 flex-col">
                         <span class="inline-flex items-center gap-1.5 font-medium">
-                          {{ i18n.t(item.labelKey) }}
+                          {{ linkLabel(item) }}
                           <svg class="h-3 w-3 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
                           </svg>
                         </span>
-                        @if (item.hintKey) {
-                          <span class="text-[0.72rem] leading-snug text-cream/70">{{ i18n.t(item.hintKey) }}</span>
+                        @if (linkHint(item); as hint) {
+                          <span class="text-[0.72rem] leading-snug text-cream/70">{{ hint }}</span>
                         }
                       </span>
                     </a>
@@ -528,9 +528,9 @@
                         />
                       </span>
                       <span class="flex min-w-0 flex-1 flex-col">
-                        <span class="font-medium">{{ i18n.t(item.labelKey) }}</span>
-                        @if (item.hintKey) {
-                          <span class="text-[0.72rem] leading-snug text-cream/70">{{ i18n.t(item.hintKey) }}</span>
+                        <span class="font-medium">{{ linkLabel(item) }}</span>
+                        @if (linkHint(item); as hint) {
+                          <span class="text-[0.72rem] leading-snug text-cream/70">{{ hint }}</span>
                         }
                       </span>
                       @if (isLinkActive(item)) {

@@ -160,5 +160,6 @@ describe('madrasa search data', () => {
       addressCountry: 'GB',
     });
     expect(node['geo']).toEqual({ '@type': 'GeoCoordinates', latitude: 53.417784, longitude: -2.42617 });
+    expect(node['url']).toBe('https://www.naginasocialwelfare.co.uk/manchester/');
   });
 });

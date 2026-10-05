@@ -4,6 +4,8 @@ import { LanguageService } from '../../i18n/language.service';
 import { FormsModule } from '@angular/forms';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { AssistantLauncherService } from '../../services/assistant-launcher.service';
+import { campusTown, campusWhatsappHref } from '../../models/campus';
+import { CampusService } from '../../services/campus.service';
 import {
   AssistantService,
   type AssistantCitation,
@@ -35,7 +37,20 @@ export class Assistant {
   protected readonly whatsappUrl = whatsappHref(
     'Assalamu alaikum, I would like to get in touch with Nagina Social Welfare.',
   );
-  protected readonly mapHref = ORGANIZATION.mapsDirectionsUrl;
+
+  private readonly campusService = inject(CampusService);
+  /** One Call / WhatsApp pair per centre; empty until the campus list loads. */
+  protected readonly contactCentres = computed(() =>
+    this.campusService.campuses().map((campus) => ({
+      id: campus.id,
+      town: campusTown(campus),
+      callHref: `tel:${campus.phoneE164}`,
+      whatsappHref: campusWhatsappHref(
+        campus,
+        `Assalamu alaikum, I would like to get in touch with ${campus.displayName}.`,
+      ),
+    })),
+  );
 
   private readonly assistant = inject(AssistantService);
   private readonly launcher = inject(AssistantLauncherService);
@@ -45,6 +60,7 @@ export class Assistant {
   private lastOpenTick = 0;
 
   constructor() {
+    void this.campusService.load();
     effect(() => {
       this.i18n.lang();
       this.syncWelcome();
@@ -95,6 +111,7 @@ export class Assistant {
     'What is the Finality of Prophethood?',
     'How do I calculate zakat?',
     'How can I donate?',
+    'What is the Death Committee?',
     'Namaz times for each madrasa',
     'Which books are available?',
     'اہلِ بیت کے بارے میں بتائیں',

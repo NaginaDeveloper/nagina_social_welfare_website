@@ -4,12 +4,22 @@ export const MAX_DONATION_GBP = 25_000;
 export const DONATION_FUNDS = ['zakat', 'sadaqah', 'lillah', 'fitrana'] as const;
 export type DonationFund = (typeof DONATION_FUNDS)[number];
 
-const FUND_DESCRIPTIONS: Record<DonationFund, string> = {
-  zakat: 'Zakat - Nagina Social Welfare UK',
-  sadaqah: 'Sadaqah - Nagina Social Welfare UK',
-  lillah: 'Lillah - Nagina Social Welfare UK',
-  fitrana: 'Fitrana - Nagina Social Welfare UK',
+const FUND_LABELS: Record<DonationFund, string> = {
+  zakat: 'Zakat',
+  sadaqah: 'Sadaqah',
+  lillah: 'Lillah',
+  fitrana: 'Fitrana',
 };
+
+export const GENERAL_DONATION_CAMPUS = 'general';
+
+const CAMPUS_ID_PATTERN = /^[a-z0-9][a-z0-9-]{0,39}$/;
+
+/** A well-formed campus id, or `general` for anything else. */
+export function parseDonationCampus(raw: unknown): string {
+  const id = typeof raw === 'string' ? raw.trim().toLowerCase() : '';
+  return CAMPUS_ID_PATTERN.test(id) ? id : GENERAL_DONATION_CAMPUS;
+}
 
 export function parseDonationFund(raw: unknown): DonationFund {
   if (typeof raw === 'string' && (DONATION_FUNDS as readonly string[]).includes(raw)) {
@@ -18,8 +28,12 @@ export function parseDonationFund(raw: unknown): DonationFund {
   return 'sadaqah';
 }
 
-export function donationDescription(fund: DonationFund): string {
-  return FUND_DESCRIPTIONS[fund];
+/** "Sadaqah - Nagina Social Welfare UK", or "Sadaqah - Manchester - Nagina Social Welfare UK". */
+export function donationDescription(fund: DonationFund, centre = ''): string {
+  const place = centre.trim();
+  return place
+    ? `${FUND_LABELS[fund]} - ${place} - Nagina Social Welfare UK`
+    : `${FUND_LABELS[fund]} - Nagina Social Welfare UK`;
 }
 
 export type ParsedAmount =

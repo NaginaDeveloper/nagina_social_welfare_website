@@ -20,7 +20,7 @@ export class Privacy {
     {
       title: 'Who we are',
       body:
-        'Nagina Social Welfare UK Limited (“we”, “us”) operates this website to share our education and community welfare work. Contact: info@naginasocialwelfare.co.uk · 103 Burmer Road, Peterborough PE1 3HT, United Kingdom.',
+        'Nagina Social Welfare UK Limited (“we”, “us”) operates this website to share our education and community welfare work. Contact: info@naginasocialwelfare.co.uk · Registered office: 103 Burmer Road, Peterborough PE1 3HT, United Kingdom. Our centres are Markaz Deen-e-Islam in Peterborough and Quran Academy in Manchester (Partington Community Centre, M31 4FL); contact details for each are on the Contact page.',
     },
     {
       title: 'What this site does not do',
@@ -30,7 +30,7 @@ export class Privacy {
     {
       title: 'Information we process',
       body:
-        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email, call, or open WhatsApp from this website, the draft is sent in your own phone or email app — we do not store that unsent WhatsApp/email draft on our servers. Online madrasa admission applications submitted via /apply and community membership applications via /membership are stored in our Firebase/Google Cloud Firestore and processed by our staff or trustees; acknowledgement and decision emails are sent from info@naginasocialwelfare.co.uk. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount and chosen fund only) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
+        'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email, call, or open WhatsApp from this website, the draft is sent in your own phone or email app — we do not store that unsent WhatsApp/email draft on our servers. Online madrasa admission applications submitted via /apply and community membership applications via /membership are stored in our Firebase/Google Cloud Firestore and processed by our staff or trustees; acknowledgement and decision emails are sent from info@naginasocialwelfare.co.uk. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount, chosen fund and, if you pick one, the centre it is for) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
     },
     {
       title: 'Visitor counter',
@@ -55,7 +55,7 @@ export class Privacy {
     {
       title: 'Prayer times & Qibla',
       body:
-        'Prayer times are calculated for the town of the madrasa you pick (Peterborough by default) using the AlAdhan service. The town’s coordinates come from the madrasa’s postcode via postcodes.io — never from your device. Your madrasa choice is remembered in your browser only. The Qibla compass uses the same madrasa town. If you tap “Use my location”, your browser may share precise coordinates with us only long enough to request a Qibla bearing from AlAdhan; we do not store that location on our servers. Device compass (“Point to Qibla”) runs on your device and does not send heading data to us.',
+        'Prayer times are calculated for the town of the madrasa you pick (the first listed madrasa by default) using the AlAdhan service. The town’s coordinates come from the madrasa’s postcode via postcodes.io — never from your device. Your madrasa choice is remembered in your browser only. The Qibla compass uses the same madrasa town. If you tap “Use my location”, your browser may share precise coordinates with us only long enough to request a Qibla bearing from AlAdhan; we do not store that location on our servers. Device compass (“Point to Qibla”) runs on your device and does not send heading data to us.',
     },
     {
       title: 'Quran & Hadith text',

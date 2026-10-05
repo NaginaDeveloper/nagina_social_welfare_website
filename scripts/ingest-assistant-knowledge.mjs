@@ -282,8 +282,15 @@ async function buildCuratedChunks() {
       title: 'Donate methods',
       path: '/donate',
       text:
-        'Donations fund Islamic education at our madrasas and community welfare. Choose a fund first: Zakat, Sadaqah, Lillah, or Fitrana. Then give by SumUp card checkout (£5 to £25,000), PayPal, NatWest PayIt, or UK bank transfer on https://www.naginasocialwelfare.co.uk/donate/. Bank: NatWest. Account name NAGINA SOCIAL WELFAR. Sort code 54-21-38. Account 29135877. BIC NWBKGB2L. IBAN GB09 NWBK 5421 3829 1358 77. Use the fund name as the payment reference (ZAKAT, SADAQAH, LILLAH, or FITRANA). Registered charity 1196514. Gift Aid is not currently claimed.',
+        'Donations fund Islamic education at our madrasas and community welfare. Choose a fund first: Zakat, Sadaqah, Lillah, or Fitrana. Then choose where it goes: a general donation to the charity, or a specific centre (Markaz Deen-e-Islam in Peterborough or Quran Academy in Manchester); a centre gift adds the centre to the reference, for example ZAKAT-MANCHESTER. Then give by SumUp card checkout (£5 to £25,000), PayPal, NatWest PayIt, or UK bank transfer on https://www.naginasocialwelfare.co.uk/donate/. Bank: NatWest. Account name NAGINA SOCIAL WELFAR. Sort code 54-21-38. Account 29135877. BIC NWBKGB2L. IBAN GB09 NWBK 5421 3829 1358 77. Use the reference shown on the page: the fund name for a general gift (ZAKAT, SADAQAH, LILLAH, or FITRANA), or fund plus centre for a centre gift. Registered charity 1196514. Gift Aid is not currently claimed.',
       tags: ['donate', 'payments'],
+    },
+    {
+      title: 'Death Committee (Quran Academy, Manchester)',
+      path: '/death-committee',
+      text:
+        'The Death Committee is a funeral support scheme run by Quran Academy, the Nagina Social Welfare centre at Partington Community Centre, Manchester M31 4FL. It helps cover funeral costs so a bereaved family does not face one large bill. How it works: 1) register once with your name and UK mobile number; 2) when there is a death in the community, members get a text message with a payment link; 3) open the link and give a minimum of £10 (or more) towards that funeral by secure SumUp card payment; 4) many small contributions support the family. Read more at https://www.naginasocialwelfare.co.uk/death-committee/. Register or use Member Login at https://admin.naginasocialwelfare.co.uk/death-committee. Names and phone numbers are only used for funeral texts and are never shown to other members. Questions: WhatsApp Quran Academy on +44 7872 340123 (https://wa.me/447872340123). The Death Committee is currently only at the Manchester centre, not Peterborough.',
+      tags: ['death-committee', 'funeral', 'janazah', 'manchester', 'quran-academy'],
     },
     {
       title: 'Zakat calculator',

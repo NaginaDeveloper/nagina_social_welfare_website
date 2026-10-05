@@ -8,6 +8,7 @@ import { LanguageService } from '../../i18n/language.service';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 import { ContentReviewNote } from '../content-review-note/content-review-note';
 import { CONTENT_REVIEW } from '../../config/content-review.config';
+import { centrePath } from '../../config/centre-pages.config';
 
 @Component({
   selector: 'app-prayer-times',
@@ -23,17 +24,22 @@ export class PrayerTimes implements OnInit, OnDestroy {
     this.i18n.t('namaz.footnote').replace('{town}', this.prayer.placeTown() || this.i18n.t('namaz.titleAccent')),
   );
 
-  protected readonly related: readonly RelatedPageLink[] = [
+  /** Points at the centre whose times are on screen. */
+  private readonly centreLink = computed<RelatedPageLink[]>(() => {
+    const id = this.prayer.placeCampusId();
+    const town = this.prayer.placeTown();
+    return id && town
+      ? [{ path: centrePath(id), label: `${town} community`, hint: 'Address, services and schedules' }]
+      : [];
+  });
+
+  protected readonly related = computed<readonly RelatedPageLink[]>(() => [
     {
       path: '/madrasa',
       label: 'Our madrasas',
       hint: 'Addresses, class times and admission',
     },
-    {
-      path: '/peterborough',
-      label: 'Peterborough community',
-      hint: 'Address, services and schedules',
-    },
+    ...this.centreLink(),
     {
       path: '/events',
       label: 'Events',
@@ -54,7 +60,7 @@ export class PrayerTimes implements OnInit, OnDestroy {
       label: 'Contact',
       hint: 'WhatsApp, phone and email',
     },
-  ];
+  ]);
 
   ngOnInit(): void {
     void this.prayer.load();

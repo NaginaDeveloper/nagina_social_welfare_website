@@ -3,6 +3,8 @@ import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
+import { CampusCards } from '../campus-cards/campus-cards';
+import { DeathCommitteeCallout } from '../death-committee-callout/death-committee-callout';
 
 interface Programme {
   readonly id: string;
@@ -20,7 +22,7 @@ interface Programme {
 
 @Component({
   selector: 'app-our-work',
-  imports: [RouterLink, RelatedPages],
+  imports: [RouterLink, RelatedPages, CampusCards, DeathCommitteeCallout],
   templateUrl: './our-work.html',
 })
 export class OurWork {
@@ -32,7 +34,9 @@ export class OurWork {
 
   protected readonly related: readonly RelatedPageLink[] = [
     { path: '/madrasa', label: 'Madrasa', hint: 'Peterborough & Manchester' },
-    { path: '/peterborough', label: 'Peterborough hub', hint: 'Address, services and schedules' },
+    { path: '/peterborough', label: 'Peterborough', hint: 'Markaz Deen-e-Islam centre' },
+    { path: '/manchester', label: 'Manchester', hint: 'Quran Academy centre' },
+    { path: '/death-committee', label: 'Death Committee', hint: 'Funeral support in Manchester' },
     { path: '/donate', label: 'Donate', hint: 'Zakat, Sadaqah and Lillah' },
     { path: '/impact', label: 'Impact update', hint: 'Approved programme evidence' },
     { path: '/contact', label: 'Contact', hint: 'Ask for help or volunteer' },

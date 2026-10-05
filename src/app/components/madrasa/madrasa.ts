@@ -60,9 +60,10 @@ export class Madrasa implements OnInit {
 
   protected readonly related: readonly RelatedPageLink[] = [
     { path: '/apply', label: 'Apply online', hint: '2026 admission form' },
-    { path: '/peterborough', label: 'Peterborough hub', hint: 'Address and local services' },
+    { path: '/peterborough', label: 'Peterborough', hint: 'Markaz Deen-e-Islam centre' },
+    { path: '/manchester', label: 'Manchester', hint: 'Quran Academy centre' },
     { path: '/safeguarding', label: 'Safeguarding', hint: 'How we keep children safe' },
-    { path: '/namaz', label: 'Prayer times', hint: 'Salah times for Peterborough' },
+    { path: '/namaz', label: 'Prayer times', hint: 'Salah times for each centre' },
     { path: '/work', label: 'Our work', hint: 'Education and welfare' },
     { path: '/contact', label: 'Contact', hint: 'WhatsApp, phone and email' },
   ];

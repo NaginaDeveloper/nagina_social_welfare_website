@@ -9,9 +9,9 @@
       "phoneDisplay": "+44 7831 684738",
       "phoneE164": "+447831684738",
       "whatsappDigits": "447831684738",
-      "addressConfirmed": true,
       "email": "info@naginasocialwelfare.co.uk",
       "monthlyFeeGbp": null,
+      "addressConfirmed": true,
       "latitude": 52.59566,
       "longitude": -0.256322
     },
@@ -24,9 +24,9 @@
       "phoneDisplay": "+44 7872 340123",
       "phoneE164": "+447872340123",
       "whatsappDigits": "447872340123",
-      "addressConfirmed": true,
       "email": "info@naginasocialwelfare.co.uk",
       "monthlyFeeGbp": 30,
+      "addressConfirmed": true,
       "latitude": 53.417784,
       "longitude": -2.42617
     }

@@ -101,6 +101,15 @@
       }
     </div>
 
+    <div class="mt-16" data-testid="work-centres">
+      <div class="mx-auto max-w-3xl text-center" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+        <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">{{ i18n.t('work.centresTitle') }}</h2>
+        <p class="mt-3 text-sm leading-relaxed text-sand/85 sm:text-base">{{ i18n.t('work.centresLead') }}</p>
+      </div>
+      <app-campus-cards class="mt-8 block" />
+      <app-death-committee-callout class="mx-auto mt-8 block max-w-4xl" copy="work" tone="dark" />
+    </div>
+
     <div
       class="mx-auto mt-14 max-w-3xl rounded-2xl border border-white/15 bg-white/[0.06] px-6 py-8 text-center sm:px-10"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"

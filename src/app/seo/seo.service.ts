@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ORGANIZATION } from '../config/organization.config';
+import { centrePath } from '../config/centre-pages.config';
 import { campusStoredCoords, campusTown, type Campus } from '../models/campus';
 import { CampusService } from '../services/campus.service';
 import {
@@ -247,7 +248,7 @@ export function madrasaNode(campus: Campus): Record<string, unknown> {
     '@type': 'EducationalOrganization',
     '@id': `${SITE_ORIGIN}/#madrasa-${campus.id}`,
     name: campus.displayName,
-    url: `${SITE_ORIGIN}/madrasa/`,
+    url: `${SITE_ORIGIN}${centrePath(campus.id)}/`,
     parentOrganization: { '@id': `${SITE_ORIGIN}/#organization` },
     address: {
       '@type': 'PostalAddress',

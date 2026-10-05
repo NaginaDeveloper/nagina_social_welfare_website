@@ -1,4 +1,10 @@
-import { donationDescription, parseDonationAmount, parseDonationFund } from './amount';
+import {
+  donationDescription,
+  parseDonationAmount,
+  parseDonationCampus,
+  parseDonationFund,
+} from './amount';
+import { parseCampusTowns } from './donationCampuses';
 
 function assert(cond: unknown, message: string): void {
   if (!cond) {
@@ -30,5 +36,27 @@ assert(
   donationDescription('lillah') === 'Lillah - Nagina Social Welfare UK',
   'lillah description should be labelled',
 );
+assert(
+  donationDescription('zakat', 'Manchester') === 'Zakat - Manchester - Nagina Social Welfare UK',
+  'centre gifts should name the town',
+);
+
+assert(parseDonationCampus('Manchester') === 'manchester', 'campus id should normalise');
+assert(parseDonationCampus(undefined) === 'general', 'missing campus should be general');
+assert(parseDonationCampus('<script>') === 'general', 'malformed campus should be general');
+
+const towns = parseCampusTowns({
+  campuses: [
+    { id: 'peterborough', addressLine: '103 Burmer Road, Peterborough PE1 3HT', postcode: 'PE1 3HT' },
+    {
+      id: 'manchester',
+      cityLabel: 'Quran Academy',
+      addressLine: 'Partington Community Centre, Manchester M31 4FL',
+      postcode: 'M31 4FL',
+    },
+  ],
+});
+assert(towns.get('peterborough') === 'Peterborough', 'Peterborough town from address');
+assert(towns.get('manchester') === 'Manchester', 'Manchester town from address, not label');
 
 console.log('amount.selftest: all passed');

@@ -41,6 +41,7 @@
             <app-member-donate-tab
               [donatedBanner]="donatedBanner()"
               [donateFund]="donateFund()"
+              [donateCampus]="donateCampus()"
               [donateAmount]="donateAmount()"
               [donateCustom]="donateCustom()"
               [donateLoading]="donateLoading()"
@@ -48,6 +49,7 @@
               [donations]="donations()"
               [donationsLoading]="donationsLoading()"
               (fundChange)="donateFund.set($event)"
+              (campusChange)="donateCampus.set($event)"
               (amountChange)="donateAmount.set($event)"
               (customAmountChange)="donateCustom.set($event)"
               (acknowledgeChange)="donateAcknowledged.set($event)"

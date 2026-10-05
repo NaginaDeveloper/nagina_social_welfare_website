@@ -53,12 +53,12 @@ export class MemberPortalService {
     return { Authorization: `Bearer ${token}` };
   }
 
-  async startDonationCheckout(amount: number, fund: DonationFund): Promise<string> {
+  async startDonationCheckout(amount: number, fund: DonationFund, campus: string): Promise<string> {
     const headers = await this.bearerHeaders();
     const res = await firstValueFrom(
       this.http.post<{ ok: boolean; hostedCheckoutUrl: string }>(
         `${MEMBERSHIP_API_BASE}/api/membership/donate/checkout`,
-        { amount, fund },
+        { amount, fund, campus },
         { headers },
       ),
     );

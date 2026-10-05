@@ -8,6 +8,7 @@ import {
   portalErrorMessage,
   type MemberDonationRecord,
 } from '../../services/member-portal.service';
+import { DonationDestination } from '../donation-destination/donation-destination';
 import { MemberPortalEmpty } from './member-portal-empty';
 import { MemberPortalLoading } from './member-portal-loading';
 import {
@@ -21,7 +22,7 @@ import {
 
 @Component({
   selector: 'app-member-donate-tab',
-  imports: [FormsModule, RouterLink, MemberPortalLoading, MemberPortalEmpty],
+  imports: [FormsModule, RouterLink, MemberPortalLoading, MemberPortalEmpty, DonationDestination],
   templateUrl: './member-donate-tab.html',
 })
 export class MemberDonateTab {
@@ -39,6 +40,7 @@ export class MemberDonateTab {
 
   readonly donatedBanner = input(false);
   readonly donateFund = input.required<DonationFund>();
+  readonly donateCampus = input.required<string>();
   readonly donateAmount = input.required<number | 'custom'>();
   readonly donateCustom = input('');
   readonly donateLoading = input(false);
@@ -47,6 +49,7 @@ export class MemberDonateTab {
   readonly donationsLoading = input(false);
 
   readonly fundChange = output<DonationFund>();
+  readonly campusChange = output<string>();
   readonly amountChange = output<number | 'custom'>();
   readonly customAmountChange = output<string>();
   readonly acknowledgeChange = output<boolean>();

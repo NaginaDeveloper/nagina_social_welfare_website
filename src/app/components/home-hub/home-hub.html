@@ -99,6 +99,10 @@
       <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('hub.lead') }}</p>
     </div>
 
+    @if (!query().trim()) {
+      <app-death-committee-callout class="mb-5 block" copy="home" />
+    }
+
     @if (filteredTiles().length === 0) {
       <p class="rounded-2xl border border-mist bg-white px-5 py-8 text-center text-sm text-slate-warm">
         {{ i18n.t('hub.empty') }}

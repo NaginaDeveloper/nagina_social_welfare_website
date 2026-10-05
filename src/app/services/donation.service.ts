@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { CREATE_DONATION_CHECKOUT_URL } from '../config/donation-api.config';
+import { GENERAL_DONATION } from '../models/donation-destination';
 
 export interface CreateCheckoutResponse {
   readonly checkoutId: string;
@@ -16,10 +17,15 @@ export class DonationService {
   async createHostedCheckout(
     amount: number,
     fund: 'zakat' | 'sadaqah' | 'lillah' | 'fitrana' = 'sadaqah',
+    campus: string = GENERAL_DONATION,
   ): Promise<CreateCheckoutResponse> {
     try {
       return await firstValueFrom(
-        this.http.post<CreateCheckoutResponse>(CREATE_DONATION_CHECKOUT_URL, { amount, fund }),
+        this.http.post<CreateCheckoutResponse>(CREATE_DONATION_CHECKOUT_URL, {
+          amount,
+          fund,
+          campus,
+        }),
       );
     } catch (err) {
       if (err instanceof HttpErrorResponse) {

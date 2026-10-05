@@ -4,6 +4,7 @@ import {
   HostListener,
   OnInit,
   afterNextRender,
+  computed,
   effect,
   inject,
   signal,
@@ -15,8 +16,12 @@ import { EventsService } from '../../services/events.service';
 import { MemberAuthService } from '../../services/member-auth.service';
 import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import { ORGANIZATION } from '../../config/organization.config';
+import { centrePath } from '../../config/centre-pages.config';
+import { DEATH_COMMITTEE } from '../../config/death-committee.config';
 import { LanguageService } from '../../i18n/language.service';
 import { isEventToday } from '../../config/upcoming-events.config';
+import { campusTown } from '../../models/campus';
+import { CampusService } from '../../services/campus.service';
 
 /** Simple stroke icons used in the nav. */
 export type NavIcon =
@@ -50,6 +55,9 @@ export type NavIcon =
 interface NavLink {
   readonly labelKey: string;
   readonly hintKey?: string;
+  /** Untranslated label from data (e.g. a centre's town); wins over [labelKey]. */
+  readonly label?: string;
+  readonly hint?: string;
   /** Internal Angular route. Omit when [externalHref] is set. */
   readonly path?: string;
   /** Absolute URL opened in a new tab (e.g. admin quiz player). */
@@ -78,6 +86,7 @@ export class Header implements OnInit {
   private readonly events = inject(EventsService);
   private readonly assistantLauncher = inject(AssistantLauncherService);
   private readonly router = inject(Router);
+  private readonly campusService = inject(CampusService);
 
   protected readonly scrolled = signal(false);
   protected readonly menuOpen = signal(false);
@@ -89,7 +98,29 @@ export class Header implements OnInit {
    * Grouped navigation — every destination is a dedicated route (no hash links).
    * About = organisation; Beliefs = creed pages; kept separate so menus stay scannable.
    */
-  protected readonly groups: readonly NavGroup[] = [
+  private readonly centreLinks = computed<readonly NavLink[]>(() =>
+    this.campusService.campuses().flatMap((campus): NavLink[] => {
+      const centre: NavLink = {
+        labelKey: 'nav.centre',
+        label: campusTown(campus),
+        hint: campus.displayName,
+        path: centrePath(campus.id),
+        icon: 'mosque',
+      };
+      if (campus.id !== DEATH_COMMITTEE.campusId) return [centre];
+      return [
+        centre,
+        {
+          labelKey: 'nav.deathCommittee',
+          hintKey: 'nav.deathCommitteeHint',
+          path: DEATH_COMMITTEE.path,
+          icon: 'family',
+        },
+      ];
+    }),
+  );
+
+  protected readonly groups = computed<readonly NavGroup[]>(() => [
     {
       id: 'about',
       labelKey: 'nav.about',
@@ -103,12 +134,7 @@ export class Header implements OnInit {
           hintKey: 'nav.madrasaHint',
           icon: 'mosque',
         },
-        {
-          labelKey: 'nav.peterborough',
-          path: '/peterborough',
-          hintKey: 'nav.peterboroughHint',
-          icon: 'mosque',
-        },
+        ...this.centreLinks(),
         {
           labelKey: 'nav.spiritualGuide',
           path: '/spiritual-guide',
@@ -298,10 +324,11 @@ export class Header implements OnInit {
         { labelKey: 'nav.privacy', path: '/privacy', hintKey: 'nav.privacyHint', icon: 'privacy' },
       ],
     },
-  ];
+  ]);
 
   ngOnInit(): void {
     void this.memberAuth.restoreSession();
+    void this.campusService.load();
     void this.events.load();
     this.syncPath(this.router.url);
     this.schedulePrayerLoad();
@@ -385,6 +412,14 @@ export class Header implements OnInit {
     domEvent.stopPropagation();
     this.onNavClick();
     void this.router.navigate(['/events'], { fragment: this.tickerFragment() });
+  }
+
+  protected linkLabel(item: NavLink): string {
+    return item.label ?? this.i18n.t(item.labelKey);
+  }
+
+  protected linkHint(item: NavLink): string {
+    return item.hint ?? (item.hintKey ? this.i18n.t(item.hintKey) : '');
   }
 
   protected isLinkActive(item: NavLink): boolean {

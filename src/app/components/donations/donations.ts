@@ -1,9 +1,16 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
+import {
+  GENERAL_DONATION,
+  donationCampusField,
+  donationReference,
+} from '../../models/donation-destination';
+import { CampusService } from '../../services/campus.service';
 import { DonationService } from '../../services/donation.service';
+import { DonationDestination } from '../donation-destination/donation-destination';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 
@@ -24,12 +31,13 @@ interface FundOption {
 
 @Component({
   selector: 'app-donations',
-  imports: [FormsModule, WhatsappIcon, RouterLink, RelatedPages],
+  imports: [FormsModule, WhatsappIcon, RouterLink, RelatedPages, DonationDestination],
   templateUrl: './donations.html',
 })
 export class Donations implements OnInit {
   private readonly donations = inject(DonationService);
   private readonly route = inject(ActivatedRoute);
+  private readonly campusService = inject(CampusService);
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
   protected readonly givingWhatsApp = whatsappHref(
@@ -51,6 +59,11 @@ export class Donations implements OnInit {
   protected readonly checkoutLoading = signal(false);
   protected readonly checkoutError = signal<string | null>(null);
   protected readonly fund = signal<DonationFund>('sadaqah');
+  protected readonly destination = signal<string>(GENERAL_DONATION);
+  /** Null for a general gift, or while a `?campus=` link waits for the campus list. */
+  protected readonly destinationCampus = computed(() =>
+    this.campusService.byId(this.destination()),
+  );
 
   protected readonly presets = [5, 10, 25, 50, 100] as const;
   protected readonly minDonationGbp = 5;
@@ -94,6 +107,10 @@ export class Donations implements OnInit {
       if (fund === 'zakat' || fund === 'sadaqah' || fund === 'lillah' || fund === 'fitrana') {
         this.fund.set(fund);
       }
+      const campus = params.get('campus')?.trim().toLowerCase();
+      if (campus) {
+        this.destination.set(campus);
+      }
       const amountRaw = params.get('amount');
       if (!amountRaw) {
         return;
@@ -112,11 +129,15 @@ export class Donations implements OnInit {
   }
 
   protected paymentReference(): string {
-    return this.selectedFund().reference;
+    return donationReference(this.selectedFund().reference, this.destinationCampus());
   }
 
   protected selectFund(id: DonationFund): void {
     this.fund.set(id);
+  }
+
+  protected selectDestination(id: string): void {
+    this.destination.set(id);
   }
 
   protected selectPreset(value: number | 'custom'): void {
@@ -171,6 +192,7 @@ export class Donations implements OnInit {
       const { hostedCheckoutUrl } = await this.donations.createHostedCheckout(
         amount,
         this.fund(),
+        donationCampusField(this.destinationCampus()),
       );
       window.location.href = hostedCheckoutUrl;
     } catch (err) {
