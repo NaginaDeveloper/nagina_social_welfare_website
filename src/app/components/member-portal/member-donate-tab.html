@@ -129,7 +129,12 @@
         @for (d of donations(); track d.id) {
           <li class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-mist bg-sand/30 px-4 py-3">
             <div>
-              <p class="text-sm font-semibold text-forest">{{ fundLabel(d.fund) }}</p>
+              <p class="text-sm font-semibold text-forest">
+                {{ fundLabel(d.fund) }}
+                @if (d.campusName) {
+                  <span class="font-normal text-slate-warm">· {{ d.campusName }}</span>
+                }
+              </p>
               <p class="text-xs text-slate-warm">{{ formatDate(d.paidAt) }}</p>
               @if (d.receiptId) {
                 <p class="mt-1 text-xs text-slate-warm">

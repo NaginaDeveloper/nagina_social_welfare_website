@@ -9,6 +9,9 @@ export interface MemberDonationRecord {
   id: string;
   amount: number;
   fund: DonationFund;
+  /** Campus id, or `general`. Older records have neither field. */
+  campus?: string;
+  campusName?: string;
   currency: string;
   paidAt: string | null;
   checkoutReference: string;
