@@ -12,11 +12,37 @@
       </span>
       <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl 3xl:text-6xl">
         {{ i18n.t('namaz.title') }}
-        <span class="text-gold-gradient">{{ i18n.t('namaz.titleAccent') }}</span>
+        <span class="text-gold-gradient">{{ prayer.placeTown() || i18n.t('namaz.titleAccent') }}</span>
       </h1>
       <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
         {{ i18n.t('namaz.lead') }}
       </p>
+      @if (prayer.placeOptions().length > 1) {
+        <div
+          class="mt-6 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:justify-center"
+          role="group"
+          [attr.aria-label]="i18n.t('namaz.placeLabel')"
+          data-testid="prayer-place"
+        >
+          <span class="text-sm font-semibold text-forest">{{ i18n.t('namaz.placeLabel') }}</span>
+          @for (option of prayer.placeOptions(); track option.id) {
+            <button
+              type="button"
+              class="min-h-11 rounded-full border px-5 py-2 text-sm font-semibold transition-colors"
+              [class.border-forest]="option.id === prayer.placeCampusId()"
+              [class.bg-forest]="option.id === prayer.placeCampusId()"
+              [class.text-cream]="option.id === prayer.placeCampusId()"
+              [class.border-forest/15]="option.id !== prayer.placeCampusId()"
+              [class.bg-white]="option.id !== prayer.placeCampusId()"
+              [class.text-forest]="option.id !== prayer.placeCampusId()"
+              [attr.aria-pressed]="option.id === prayer.placeCampusId()"
+              (click)="prayer.selectPlace(option.id)"
+            >
+              {{ placeButtonLabel(option) }}
+            </button>
+          }
+        </div>
+      }
       <p class="mt-3 text-sm text-slate-warm">
         <span class="font-semibold text-forest">{{ i18n.t('namaz.sourceLabel') }}:</span>
         {{ i18n.t('namaz.sourceValue') }}
@@ -194,7 +220,7 @@
         </div>
 
         <p class="mt-5 text-center text-xs leading-relaxed text-slate-warm/90">
-          {{ i18n.t('namaz.footnote') }}
+          {{ footnote() }}
         </p>
       </div>
     }

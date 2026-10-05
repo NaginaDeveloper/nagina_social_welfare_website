@@ -31,7 +31,7 @@ export class OurWork {
   );
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/madrasa', label: 'Madrasa', hint: 'Islamic education in Peterborough' },
+    { path: '/madrasa', label: 'Madrasa', hint: 'Peterborough & Manchester' },
     { path: '/peterborough', label: 'Peterborough hub', hint: 'Address, services and schedules' },
     { path: '/donate', label: 'Donate', hint: 'Zakat, Sadaqah and Lillah' },
     { path: '/impact', label: 'Impact update', hint: 'Approved programme evidence' },

@@ -19,10 +19,10 @@
       </p>
       <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:whitespace-nowrap lg:text-5xl">
         {{ i18n.t('madrasa.titleLine') }}
-        <span class="text-gold-gradient">{{ i18n.t('madrasa.titleAccent') }}</span>
+        <span class="text-gold-gradient">{{ towns() }}</span>
       </h1>
       <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
-        {{ i18n.t('madrasa.lead') }}
+        {{ lead() }}
       </p>
     </div>
 
@@ -33,6 +33,16 @@
     >
       <p>{{ i18n.t('madrasa.body') }}</p>
       <p>{{ i18n.t('madrasa.body2') }}</p>
+    </div>
+
+    <div id="madrasas" class="mx-auto mt-16 max-w-5xl scroll-mt-24" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
+        {{ i18n.t('madrasa.campusesTitle') }}
+      </h2>
+      <p class="mx-auto mt-3 mb-8 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
+        {{ i18n.t('madrasa.campusesLead') }}
+      </p>
+      <app-campus-cards />
     </div>
 
     <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
@@ -51,7 +61,11 @@
 
     <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
-        {{ i18n.t('madrasa.timetable') }}
+        @if (timetableCampus(); as campus) {
+          {{ i18n.t('madrasa.timetableFor') }} {{ campus.displayName }}
+        } @else {
+          {{ i18n.t('madrasa.timetable') }}
+        }
       </h2>
       <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
         {{ i18n.t('madrasa.timetableLead') }}
@@ -80,6 +94,12 @@
           </tbody>
         </table>
       </div>
+      @for (campus of otherCampuses(); track campus.id) {
+        <p class="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-slate-warm">
+          {{ timetableOther(campus.displayName) }}
+          <a [href]="'tel:' + campus.phoneE164" class="font-semibold text-gold-700 hover:underline">{{ campus.phoneDisplay }}</a>
+        </p>
+      }
     </div>
 
     <figure class="mx-auto mt-12 max-w-md">
@@ -97,6 +117,9 @@
           alt="Markaz-e Deen-e Islam admission open 2026"
         />
       </a>
+      <figcaption class="mt-3 text-center text-sm text-slate-warm" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+        {{ posterHint() }}
+      </figcaption>
     </figure>
 
     <div
@@ -104,11 +127,8 @@
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">Visit &amp; Enrol</h2>
-      <p class="mt-4 text-base leading-relaxed text-slate-warm">
-        Markaz Deen-e-Islam · {{ org.addressFull }}
-      </p>
-      <p class="mt-2 text-sm text-slate-warm">
-        <a [href]="'tel:' + org.phoneTel" class="font-semibold text-gold-700 hover:underline">{{ org.phoneDisplay }}</a>
+      <p class="mt-4 text-sm text-slate-warm">
+        <a routerLink="/madrasa" fragment="madrasas" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('madrasa.campusesTitle') }}</a>
         ·
         <a [href]="'mailto:' + org.email" class="font-semibold text-gold-700 hover:underline">{{ org.email }}</a>
       </p>
@@ -176,7 +196,7 @@
 
     <div class="mx-auto mt-12 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="mb-4 text-center font-display text-2xl font-bold text-forest">{{ i18n.t('madrasa.map') }}</h2>
-      <app-venue-map />
+      <app-campus-map />
     </div>
 
     <app-related-pages

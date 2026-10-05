@@ -30,7 +30,7 @@ export class IslamicCalendar implements OnInit {
     { path: '/namaz', label: 'Prayer times', hint: 'Today’s Hijri date with namaz' },
     { path: '/ramadan', label: 'Ramadan', hint: 'How to find local Ramadan info' },
     { path: '/events', label: 'Events', hint: 'Gatherings tied to the Islamic year' },
-    { path: '/peterborough', label: 'Peterborough', hint: 'Local centre and services' },
+    { path: '/madrasa', label: 'Our madrasas', hint: 'Addresses and contact for each madrasa' },
   ];
 
   ngOnInit(): void {

@@ -1,10 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import {
-  PETERBOROUGH_LAT,
-  PETERBOROUGH_LNG,
-} from './prayer-times.service';
+import { PrayerPlaceService } from './prayer-place.service';
 import type { AlAdhanQiblaResponse, QiblaResult, QiblaSource } from '../models/qibla';
 
 /** Kaaba (Masjid al-Haram), Makkah. */
@@ -13,6 +10,8 @@ export const KAABA_LNG = 39.8262;
 
 @Injectable({ providedIn: 'root' })
 export class QiblaService {
+  private readonly http = inject(HttpClient);
+  private readonly place = inject(PrayerPlaceService);
   private readonly resultSignal = signal<QiblaResult | null>(null);
   private readonly loadingSignal = signal(false);
   private readonly errorSignal = signal<string | null>(null);
@@ -23,33 +22,22 @@ export class QiblaService {
   readonly error = this.errorSignal.asReadonly();
   readonly locating = this.locatingSignal.asReadonly();
 
-  constructor(private readonly http: HttpClient) {}
-
-  /** Fetch Qibla for Peterborough (default, no permissions). */
+  /** Fetch Qibla for the chosen madrasa's town (default, no permissions). */
   async load(): Promise<void> {
-    if (this.resultSignal()?.source === 'peterborough' && !this.errorSignal()) {
+    const current = this.resultSignal();
+    if (
+      current?.source === 'campus' &&
+      current.campusId === this.place.campus()?.id &&
+      !this.errorSignal()
+    ) {
       return;
     }
-    this.loadingSignal.set(true);
-    this.errorSignal.set(null);
-    try {
-      const result = await this.fetchFor(
-        PETERBOROUGH_LAT,
-        PETERBOROUGH_LNG,
-        'peterborough',
-      );
-      this.resultSignal.set(result);
-    } catch (err) {
-      this.errorSignal.set('Unable to load Qibla direction right now.');
-      console.error(err);
-    } finally {
-      this.loadingSignal.set(false);
-    }
+    await this.resetToCampus();
   }
 
   /**
    * Request visitor geolocation and re-fetch Qibla.
-   * On denial/unavailable, keep the existing Peterborough result and set an error.
+   * On denial/unavailable, keep the existing madrasa-town result and set an error.
    */
   async loadForVisitor(): Promise<void> {
     if (!navigator.geolocation) {
@@ -72,7 +60,7 @@ export class QiblaService {
             : 'Unable to use your location.';
       this.errorSignal.set(message);
       console.error(err);
-      // Keep Peterborough result if we already have one
+      // Keep the madrasa-town result if we already have one
       if (!this.resultSignal()) {
         await this.load();
       }
@@ -81,17 +69,14 @@ export class QiblaService {
     }
   }
 
-  /** Reset to Peterborough bearing. */
-  async resetToPeterborough(): Promise<void> {
+  /** Bearing from the chosen madrasa's town. */
+  async resetToCampus(): Promise<void> {
     this.errorSignal.set(null);
     this.loadingSignal.set(true);
     try {
-      const result = await this.fetchFor(
-        PETERBOROUGH_LAT,
-        PETERBOROUGH_LNG,
-        'peterborough',
-      );
-      this.resultSignal.set(result);
+      const place = await this.place.resolve();
+      const result = await this.fetchFor(place.latitude, place.longitude, 'campus');
+      this.resultSignal.set({ ...result, campusId: place.campusId, placeName: place.town });
     } catch (err) {
       this.errorSignal.set('Unable to load Qibla direction right now.');
       console.error(err);
@@ -178,12 +163,12 @@ export function cardinalFromBearing(degrees: number): string {
 function geolocationMessage(err: GeolocationPositionError): string {
   switch (err.code) {
     case err.PERMISSION_DENIED:
-      return 'Location permission denied. Showing Peterborough instead.';
+      return 'Location permission denied. Showing the madrasa town instead.';
     case err.POSITION_UNAVAILABLE:
-      return 'Location unavailable. Showing Peterborough instead.';
+      return 'Location unavailable. Showing the madrasa town instead.';
     case err.TIMEOUT:
-      return 'Location request timed out. Showing Peterborough instead.';
+      return 'Location request timed out. Showing the madrasa town instead.';
     default:
-      return 'Unable to use your location. Showing Peterborough instead.';
+      return 'Unable to use your location. Showing the madrasa town instead.';
   }
 }

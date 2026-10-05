@@ -6,7 +6,9 @@ import {
   haversineKm,
   normalizeQibla,
 } from './qibla.service';
-import { PETERBOROUGH_LAT, PETERBOROUGH_LNG } from './prayer-times.service';
+
+const PETERBOROUGH_LAT = 52.5695;
+const PETERBOROUGH_LNG = -0.2405;
 
 describe('qibla helpers', () => {
   it('computes Peterborough → Kaaba distance around 4,700–4,900 km', () => {
@@ -30,10 +32,10 @@ describe('qibla helpers', () => {
           direction: 119.84069616227221,
         },
       },
-      'peterborough',
+      'campus',
     );
     expect(result.direction).toBeCloseTo(119.84, 1);
-    expect(result.source).toBe('peterborough');
+    expect(result.source).toBe('campus');
     expect(result.distanceKm).toBeGreaterThan(4700);
     expect(result.distanceKm).toBeLessThan(4900);
   });

@@ -3,6 +3,8 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ORGANIZATION } from '../config/organization.config';
+import { campusStoredCoords, campusTown, type Campus } from '../models/campus';
+import { CampusService } from '../services/campus.service';
 import {
   DEFAULT_OG_IMAGE,
   HOME_SEO,
@@ -16,6 +18,7 @@ export class SeoService {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly router = inject(Router);
+  private readonly campuses = inject(CampusService);
   private started = false;
 
   /** Listen to route changes and apply SEO from route data (or home defaults). */
@@ -24,6 +27,9 @@ export class SeoService {
     this.started = true;
 
     this.apply(this.resolveSeo(this.router.routerState.snapshot.root));
+    void this.campuses.load().then(() =>
+      this.apply(this.resolveSeo(this.router.routerState.snapshot.root)),
+    );
 
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
@@ -150,35 +156,12 @@ export class SeoService {
       ],
     };
 
-    const markaz = {
-      '@type': 'EducationalOrganization',
-      '@id': `${SITE_ORIGIN}/#markaz`,
-      name: 'Markaz Deen-e-Islam',
-      url: `${SITE_ORIGIN}/madrasa/`,
-      parentOrganization: { '@id': `${SITE_ORIGIN}/#organization` },
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: ORGANIZATION.streetAddress,
-        addressLocality: ORGANIZATION.addressLocality,
-        postalCode: ORGANIZATION.postalCode,
-        addressCountry: ORGANIZATION.addressCountry,
-      },
-      telephone: ORGANIZATION.phoneTel,
-      email: ORGANIZATION.email,
-    };
-
-    const place = {
-      '@type': 'Place',
-      '@id': `${SITE_ORIGIN}/#venue`,
-      name: 'Markaz Deen-e-Islam',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: ORGANIZATION.streetAddress,
-        addressLocality: ORGANIZATION.addressLocality,
-        postalCode: ORGANIZATION.postalCode,
-        addressCountry: ORGANIZATION.addressCountry,
-      },
-    };
+    const madrasas = this.campuses.campuses().map((campus) => madrasaNode(campus));
+    if (madrasas.length > 0) {
+      Object.assign(organization, {
+        subOrganization: madrasas.map((m) => ({ '@id': m['@id'] })),
+      });
+    }
 
     const website = {
       '@type': 'WebSite',
@@ -201,13 +184,7 @@ export class SeoService {
       inLanguage: 'en-GB',
     };
 
-    const graph: Record<string, unknown>[] = [
-      organization,
-      markaz,
-      place,
-      website,
-      webpage,
-    ];
+    const graph: Record<string, unknown>[] = [organization, ...madrasas, website, webpage];
 
     if (seo.path !== '/') {
       graph.push({
@@ -258,4 +235,31 @@ export class SeoService {
     }
     script.textContent = JSON.stringify(payload);
   }
+}
+
+/** One search-data entry per madrasa, from the office-editable campus list. */
+export function madrasaNode(campus: Campus): Record<string, unknown> {
+  const town = campusTown(campus);
+  const parts = campus.addressLine.split(',').map((p) => p.trim()).filter(Boolean);
+  const street = parts.length > 1 ? parts.slice(0, -1).join(', ') : campus.addressLine;
+  const coords = campusStoredCoords(campus);
+  return {
+    '@type': 'EducationalOrganization',
+    '@id': `${SITE_ORIGIN}/#madrasa-${campus.id}`,
+    name: campus.displayName,
+    url: `${SITE_ORIGIN}/madrasa/`,
+    parentOrganization: { '@id': `${SITE_ORIGIN}/#organization` },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: street,
+      addressLocality: town,
+      postalCode: campus.postcode,
+      addressCountry: 'GB',
+    },
+    telephone: campus.phoneE164,
+    ...(campus.email ? { email: campus.email } : {}),
+    ...(coords
+      ? { geo: { '@type': 'GeoCoordinates', latitude: coords.latitude, longitude: coords.longitude } }
+      : {}),
+  };
 }

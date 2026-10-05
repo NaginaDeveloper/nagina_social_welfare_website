@@ -14,7 +14,7 @@ export function splitAssistantContent(content: string): readonly AssistantConten
   }
 
   const pattern =
-    /(\+?\d[\d\s().-]{6,}\d|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|\d{1,4}\s+[A-Za-z][A-Za-z0-9\s.',-]{0,50}?\b(?:Road|Street|St\.?|Lane|Avenue|Close|Drive)\b(?:,?\s*Peterborough)?(?:,?\s*[A-Z]{1,2}\d{1,2}\s*\d[A-Z]{2})?|[A-Z]{1,2}\d{1,2}\s*\d[A-Z]{2})/g;
+    /(\+?\d[\d\s().-]{6,}\d|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|\d{1,4}\s+[A-Za-z][A-Za-z0-9\s.',-]{0,50}?\b(?:Road|Street|St\.?|Lane|Avenue|Close|Drive)\b(?:,?\s*(?:Peterborough|Manchester))?(?:,?\s*[A-Z]{1,2}\d{1,2}\s*\d[A-Z]{2})?|[A-Z]{1,2}\d{1,2}\s*\d[A-Z]{2})/g;
 
   const parts: AssistantContentPart[] = [];
   let lastIndex = 0;
@@ -37,7 +37,7 @@ export function splitAssistantContent(content: string): readonly AssistantConten
 
 /** True when the assistant reply looks like contact / directions help. */
 export function looksLikeContactAnswer(content: string): boolean {
-  return /(?:\+?\d[\d\s().-]{6,}\d)|@|whatsapp|wa\.me|رابط|فون|ای\s*میل|پتہ|phone|email|contact|map|peterborough|burmer|naginasocialwelfare/i.test(
+  return /(?:\+?\d[\d\s().-]{6,}\d)|@|whatsapp|wa\.me|رابط|فون|ای\s*میل|پتہ|phone|email|contact|map|peterborough|burmer|manchester|partington|naginasocialwelfare/i.test(
     content,
   );
 }

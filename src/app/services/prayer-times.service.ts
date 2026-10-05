@@ -1,4 +1,4 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import type {
@@ -7,10 +7,8 @@ import type {
   PrayerName,
   PrayerSlot,
 } from '../models/prayer-time';
+import { PrayerPlaceService, type PrayerPlace } from './prayer-place.service';
 
-/** Peterborough city centre — near Burmer Road (PE1). */
-export const PETERBOROUGH_LAT = 52.5695;
-export const PETERBOROUGH_LNG = -0.2405;
 export const PRAYER_TIMEZONE = 'Europe/London';
 
 /** Muslim World League + Hanafi Asr. */
@@ -21,7 +19,11 @@ const PRAYER_ORDER: readonly PrayerName[] = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 
 
 @Injectable({ providedIn: 'root' })
 export class PrayerTimesService {
+  private readonly http = inject(HttpClient);
+  private readonly place = inject(PrayerPlaceService);
   private readonly todaySignal = signal<DayTimings | null>(null);
+  private readonly loadedForSignal = signal<string | null>(null);
+  private inflight: Promise<void> | null = null;
   private readonly loadingSignal = signal(false);
   private readonly errorSignal = signal<string | null>(null);
   private readonly nowSignal = signal(Date.now());
@@ -33,6 +35,11 @@ export class PrayerTimesService {
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
   readonly loaded = this.loadedSignal.asReadonly();
+
+  /** Madrasa towns visitors can pick, and the one the times are for. */
+  readonly placeOptions = this.place.options;
+  readonly placeCampusId = computed(() => this.place.campus()?.id ?? null);
+  readonly placeTown = this.place.town;
 
   /** Five salah slots for today with Begins / Ends. */
   readonly slots = computed(() => this.todaySignal()?.slots ?? []);
@@ -133,23 +140,39 @@ export class PrayerTimesService {
     };
   });
 
-  constructor(private readonly http: HttpClient) {}
+  load(): Promise<void> {
+    this.inflight ??= this.fetchToday().finally(() => (this.inflight = null));
+    return this.inflight;
+  }
 
-  async load(): Promise<void> {
-    if (this.todaySignal() && !this.errorSignal()) return;
+  /** Switch to another madrasa's town and reload today's times. */
+  async selectPlace(campusId: string): Promise<void> {
+    if (campusId === this.placeCampusId()) return;
+    await this.inflight;
+    this.place.select(campusId);
+    this.todaySignal.set(null);
+    await this.load();
+  }
+
+  private async fetchToday(): Promise<void> {
+    if (this.todaySignal() && !this.errorSignal() && this.loadedForSignal() === this.placeCampusId()) {
+      return;
+    }
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     try {
+      const place = await this.place.resolve();
       const todayDate = this.londonDateParts(Date.now());
       const tomorrowDate = this.londonDateParts(Date.now() + 24 * 60 * 60 * 1000);
 
       const [todayRes, tomorrowRes] = await Promise.all([
-        this.fetchDay(todayDate),
-        this.fetchDay(tomorrowDate),
+        this.fetchDay(todayDate, place),
+        this.fetchDay(tomorrowDate, place),
       ]);
 
       const nextFajr = stripTimezoneSuffix(tomorrowRes.data.timings.Fajr);
       this.todaySignal.set(this.normalize(todayRes, nextFajr));
+      this.loadedForSignal.set(place.campusId);
       this.loadedSignal.set(true);
       this.startClock();
     } catch (err) {
@@ -175,12 +198,12 @@ export class PrayerTimesService {
     this.clockId = setInterval(() => this.nowSignal.set(Date.now()), 30_000);
   }
 
-  private fetchDay(parts: { day: string; month: string; year: string }) {
+  private fetchDay(parts: { day: string; month: string; year: string }, place: PrayerPlace) {
     const date = `${parts.day}-${parts.month}-${parts.year}`;
     const url =
       `https://api.aladhan.com/v1/timings/${date}` +
-      `?latitude=${PETERBOROUGH_LAT}` +
-      `&longitude=${PETERBOROUGH_LNG}` +
+      `?latitude=${place.latitude}` +
+      `&longitude=${place.longitude}` +
       `&method=${METHOD}` +
       `&school=${SCHOOL}` +
       `&timezonestring=${encodeURIComponent(PRAYER_TIMEZONE)}`;

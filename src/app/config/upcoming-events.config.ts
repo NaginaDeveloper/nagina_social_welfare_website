@@ -29,6 +29,8 @@ export interface UpcomingEvent {
   readonly audienceUr: string;
   readonly venue: string;
   readonly whatsappPrefill: string;
+  /** Madrasa WhatsApp for campus events; the organisation number when omitted. */
+  readonly whatsappDigits?: string;
 }
 
 /**

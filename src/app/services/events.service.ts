@@ -10,6 +10,11 @@ import {
   type UpcomingEvent,
 } from '../config/upcoming-events.config';
 import { firebaseStorageUrl } from './books.service';
+import { CampusService } from './campus.service';
+import { campusTown, type Campus } from '../models/campus';
+
+/** Events published before the madrasa choice carry no campus; they were all at this one. */
+const LEGACY_EVENT_CAMPUS_ID = 'peterborough';
 
 export interface EventsCatalogImage {
   readonly id: string;
@@ -27,6 +32,10 @@ export interface EventsCatalogItem {
   readonly time?: string;
   readonly venue?: string;
   readonly whatsappPrefill?: string;
+  /** Campus profile id; blank or missing means Peterborough. */
+  readonly campusId?: string;
+  /** Campus phone saved on the event, e.g. "+44 7872 340123". */
+  readonly contactPhone?: string;
   readonly images?: readonly EventsCatalogImage[];
 }
 
@@ -55,6 +64,7 @@ function mergeDatedEvents(
 @Injectable({ providedIn: 'root' })
 export class EventsService {
   private readonly http = inject(HttpClient);
+  private readonly campuses = inject(CampusService);
   private readonly catalogEvents = signal<UpcomingEvent[]>([]);
   private readonly loadedSignal = signal(false);
   private readonly errorSignal = signal<string | null>(null);
@@ -93,8 +103,13 @@ export class EventsService {
 
   private async fetchCatalog(): Promise<void> {
     try {
-      const catalog = await firstValueFrom(this.http.get<EventsCatalog>(EVENTS_CATALOG_URL));
-      const mapped = (catalog.events ?? []).map((item) => this.toUpcoming(item));
+      const [catalog] = await Promise.all([
+        firstValueFrom(this.http.get<EventsCatalog>(EVENTS_CATALOG_URL)),
+        this.campuses.load(),
+      ]);
+      const mapped = (catalog.events ?? []).map((item) =>
+        toUpcomingEvent(item, this.campuses.byId(item.campusId?.trim() || LEGACY_EVENT_CAMPUS_ID)),
+      );
       this.catalogEvents.set(mapped);
       this.errorSignal.set(null);
     } catch (err) {
@@ -105,32 +120,41 @@ export class EventsService {
       this.loadedSignal.set(true);
     }
   }
+}
 
-  private toUpcoming(item: EventsCatalogItem): UpcomingEvent {
-    const images = (item.images ?? []).filter((img) => !!img.url);
-    const primary = images[0];
-    const whenLabel = formatWhenLabel(item.date, item.time);
-    return {
-      id: item.id,
-      title: item.title,
-      titleUr: item.titleUr?.trim() || item.title,
-      date: item.date,
-      time: item.time || undefined,
-      whenLabel,
-      whenLabelUr: whenLabel,
-      summary: item.description ?? '',
-      summaryUr: item.descriptionUr?.trim() || item.description || '',
-      image: primary?.url,
-      imageAlt: primary?.alt ?? item.title,
-      images,
-      audience: 'Open to all',
-      audienceUr: 'سب کے لیے',
-      venue: item.venue?.trim() || 'Markaz Deen-e-Islam, Peterborough',
-      whatsappPrefill:
-        item.whatsappPrefill?.trim() ||
-        `Assalamu alaikum, I would like to attend ${item.title} on ${item.date} at Markaz Deen-e-Islam.`,
-    };
-  }
+/** Catalog item → event card; venue and WhatsApp fall back to the event's madrasa. */
+export function toUpcomingEvent(item: EventsCatalogItem, campus: Campus | null): UpcomingEvent {
+  const images = (item.images ?? []).filter((img) => !!img.url);
+  const primary = images[0];
+  const whenLabel = formatWhenLabel(item.date, item.time);
+  const digits = eventWhatsappDigits(item) || campus?.whatsappDigits || '';
+  return {
+    id: item.id,
+    title: item.title,
+    titleUr: item.titleUr?.trim() || item.title,
+    date: item.date,
+    time: item.time || undefined,
+    whenLabel,
+    whenLabelUr: whenLabel,
+    summary: item.description ?? '',
+    summaryUr: item.descriptionUr?.trim() || item.description || '',
+    image: primary?.url,
+    imageAlt: primary?.alt ?? item.title,
+    images,
+    audience: 'Open to all',
+    audienceUr: 'سب کے لیے',
+    venue: item.venue?.trim() || (campus ? `${campus.displayName}, ${campusTown(campus)}` : ''),
+    whatsappPrefill:
+      item.whatsappPrefill?.trim() ||
+      `Assalamu alaikum, I would like to attend ${item.title} on ${item.date}.`,
+    ...(digits ? { whatsappDigits: digits } : {}),
+  };
+}
+
+/** WhatsApp digits from the campus phone saved on the event (UK numbers only). */
+export function eventWhatsappDigits(item: Pick<EventsCatalogItem, 'contactPhone'>): string {
+  const digits = (item.contactPhone ?? '').replace(/\D/g, '');
+  return /^44\d{9,10}$/.test(digits) ? digits : '';
 }
 
 function formatWhenLabel(date: string, time?: string): string {

@@ -326,6 +326,7 @@ export class HomeHub implements OnInit {
     }
     const prefix =
       status.kind === 'current' ? this.i18n.t('spotlight.namazNow') : this.i18n.t('spotlight.namazNext');
-    return `${prefix}: ${status.name} · ${status.remaining}`;
+    const town = this.prayer.placeTown();
+    return `${prefix}: ${status.name} · ${status.remaining}${town ? ` · ${town}` : ''}`;
   }
 }

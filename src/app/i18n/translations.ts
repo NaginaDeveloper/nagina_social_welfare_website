@@ -25,7 +25,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'ticker.aria': 'Latest gathering',
 
     'footer.tagline':
-      'A UK-based charity uniting faith and compassion — Islamic education at Markaz Deen-e-Islam, and community welfare across the UK.',
+      'A UK-based charity uniting faith and compassion — Islamic education at our madrasas in {towns}, and community welfare across the UK.',
+    'footer.registeredOffice': 'Registered office',
+    'footer.madrasas': 'Our madrasas',
     'footer.donate': 'Donate Now',
     'footer.membership': 'Join membership',
     'footer.memberLogin': 'Member sign in',
@@ -97,8 +99,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.formMessage': 'Message',
     'contact.formSubmit': 'Open in WhatsApp',
     'contact.hours':
-      'Markaz Deen-e-Islam · 103 Burmer Road, Peterborough PE1 3HT. All three evening classes are open: Class 1 and 2 for under 10s, Class 3 (18:30–19:30) for ages 10+.',
-    'contact.map': 'Find us in Peterborough',
+      'Class 1 and 2 are for under 10s, Class 3 for ages 10+. Each madrasa’s address, phone and WhatsApp are listed below.',
+    'contact.map': 'Our madrasas',
     'contact.reason.enrolment': 'Madrasa enrolment question',
     'contact.reason.donation': 'Donation',
     'contact.reason.namaz': 'Prayer times (Salah)',
@@ -119,7 +121,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.eyebrow': 'Support our mission',
     'donate.title': 'Donate with Confidence',
     'donate.lead':
-      'Your generosity funds Islamic education at Markaz Deen-e-Islam and community welfare across the UK. Choose a fund, then give by card, PayPal, NatWest PayIt, or bank transfer.',
+      'Your generosity funds Islamic education at our madrasas and community welfare across the UK. Choose a fund, then give by card, PayPal, NatWest PayIt, or bank transfer.',
     'donate.fund': 'Where should this gift go?',
     'donate.zakat': 'Zakat',
     'donate.zakatHint': 'Obligatory alms — used for eligible welfare need.',
@@ -223,7 +225,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.enrolSecondary': 'Ask on WhatsApp',
     'madrasa.timetable': 'Class times',
     'madrasa.timetableLead':
-      'Evening classes so families can balance school and work. Class 1 and Class 2 are for children under 10. Class 3 (18:30–19:30) is for ages 10 and above. Apply online, or message us with questions.',
+      'Evening classes so families can balance school and work. Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Apply online, or message your madrasa with questions.',
     'madrasa.days': 'Days',
     'madrasa.time': 'Time',
     'madrasa.ages': 'Who',
@@ -234,14 +236,14 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.safeguardingCta': 'Safeguarding',
     'madrasa.safeguardingBoxTitle': 'Safeguarding',
     'madrasa.safeguardingBoxBody':
-      'Markaz Deen-e-Islam teaches children. We take safeguarding seriously. Read our public summary and request the full policy if you are a parent, volunteer or staff member.',
-    'madrasa.map': 'Visit Markaz Deen-e-Islam',
+      'Our madrasas teach children. We take safeguarding seriously. Read our public summary and request the full policy if you are a parent, volunteer or staff member.',
+    'madrasa.map': 'Visit a madrasa',
 
-    'apply.eyebrow': 'Markaz Deen-e-Islam',
+    'apply.eyebrow': 'Nagina Social Welfare madrasas',
     'apply.title': 'Online Admission',
     'apply.lead':
-      'All three evening classes are open. Class 1 and Class 2 are for children under 10; Class 3 (18:30–19:30 daily) is for ages 10 and above. Complete this form and we will email you when we receive it and again after our review.',
-    'apply.intake.eyebrow': 'Markaz Deen-e-Islam',
+      'All three evening classes are open. Class 1 and Class 2 are for children under 10; Class 3 is for ages 10 and above. Choose your madrasa, complete this form and we will email you when we receive it and again after our review.',
+    'apply.intake.eyebrow': 'Nagina Social Welfare madrasas',
     'apply.intake.title': 'Madrasa Admission',
     'apply.intake.subtitle': 'For the 2026 Intake',
     'apply.intake.lead':
@@ -264,7 +266,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.intake.fullNote':
       'Class 1 (16:30–17:30) and Class 2 (17:30–18:30) are for children under 10. Class 3 (18:30–19:30) is for ages 10 and above.',
     'apply.intake.daily': 'Daily',
-    'apply.intake.posterHint': '2026 admission poster — tap to open full size.',
+    'apply.intake.posterHint': '{name} 2026 admission poster — tap to open full size.',
     'apply.intake.register': 'Register now',
     'apply.intake.poster': 'View / download poster',
     'apply.intake.enroll': 'Register now · Enrol today',
@@ -385,7 +387,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'applySuccess.trackLead': 'Current status for this application:',
     'applySuccess.madrasa': 'Back to madrasa',
     'applySuccess.home': 'Home',
-    'applyTrack.eyebrow': 'Markaz Deen-e-Islam',
+    'applyTrack.eyebrow': 'Nagina Social Welfare madrasas',
     'applyTrack.title': 'Track Your Application',
     'applyTrack.lead':
       'Enter the application ID from your confirmation email or the screen shown after you submitted.',
@@ -630,11 +632,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberHome.downloadIssue': 'Download PDF',
 
     'namaz.footnote':
-      'Calculated for Peterborough (MWL method, Hanafi Asr). These are personal prayer windows (begins and ends), not Markaz congregational prayer times — confirm congregation with a local mosque.',
+      'Calculated for {town} (MWL method, Hanafi Asr). These are personal prayer windows (begins and ends), not congregational prayer times at our madrasas — confirm congregation with a local mosque.',
 
     'events.programme': 'Latest events',
     'events.programmeLead':
-      'Gatherings at Markaz Deen-e-Islam. Dated events move to Past after the day has passed.',
+      'Gatherings at our madrasas. Dated events move to Past after the day has passed.',
     'events.rsvp': 'I am coming',
     'events.calendar': 'Add to Google Calendar',
     'events.photos': 'Photos & posters',
@@ -662,7 +664,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.impact': 'Impact',
     'nav.impactHint': 'Approved updates',
     'nav.madrasa': 'Madrasa',
-    'nav.madrasaHint': 'Islamic institute Peterborough',
+    'nav.madrasaHint': 'Peterborough & Manchester',
     'nav.peterborough': 'Peterborough',
     'nav.peterboroughHint': 'Local community hub',
     'nav.spiritualGuide': 'Spiritual Guide',
@@ -680,7 +682,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.guidance': 'Guidance',
     'nav.guidanceHint': 'Teachings & counsel',
     'nav.namazTimes': 'Prayer Times (Salah)',
-    'nav.namazTimesHint': 'Peterborough, UK',
+    'nav.namazTimesHint': 'Times for each madrasa town',
     'nav.zakat': 'Zakat Calculator',
     'nav.zakatHint': 'Gold, silver and savings',
     'nav.whatIsZakat': 'What is Zakat?',
@@ -692,7 +694,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.calendar': 'Islamic calendar',
     'nav.calendarHint': 'Hijri dates',
     'nav.ramadan': 'Ramadan',
-    'nav.ramadanHint': 'Peterborough Ramadan',
+    'nav.ramadanHint': 'Ramadan information',
     'nav.quranMajeed': 'Quran Majeed',
     'nav.quranMajeedHint': 'Kanzul Iman translation',
     'nav.hadith': 'Hadith',
@@ -874,8 +876,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'work.title': 'One Mission Through',
     'work.titleAccent': 'Education and Charity',
     'work.lead':
-      'Nagina Social Welfare UK — a registered charity — unites faith and compassion: educating hearts through knowledge at Markaz Deen-e-Islam, and uplifting lives through charity across the UK.',
-    'work.madrasaLink': 'Madrasa & Quran classes in Peterborough →',
+      'Nagina Social Welfare UK — a registered charity — unites faith and compassion: educating hearts through knowledge at our madrasas, and uplifting lives through charity across the UK.',
+    'work.madrasaLink': 'Madrasa & Quran classes in Peterborough and Manchester →',
     'work.helpTitle': 'Who can ask for help',
     'work.helpLead':
       'Individuals and families in need in our community may contact Nagina Social Welfare to ask about welfare support. We review requests carefully and respond via WhatsApp or email. For madrasa places, please use the online admission form.',
@@ -939,8 +941,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'namaz.eyebrow': 'Prayer Times (Salah)',
     'namaz.title': 'Prayer times in',
-    'namaz.titleAccent': 'Peterborough, UK',
-    'namaz.lead': 'Daily prayer windows for our city — Begins and Ends, updated live for Europe/London time.',
+    'namaz.titleAccent': 'the UK',
+    'namaz.lead': 'Daily prayer windows for the town of each of our madrasas — Begins and Ends, updated live for Europe/London time.',
+    'namaz.placeLabel': 'Show times for:',
     'namaz.loading': 'Loading today’s prayer times…',
     'namaz.tryAgain': 'Try again',
     'namaz.now': 'Now',
@@ -1070,7 +1073,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'guides.title': 'Portal guides for',
     'guides.titleAccent': 'parents, teachers and students',
     'guides.lead':
-      'Step-by-step videos and user manuals for the Markaz Deen-e-Islam portals. Watch online, read the manual, or save the PDF to keep.',
+      'Step-by-step videos and user manuals for the madrasa portals. Watch online, read the manual, or save the PDF to keep.',
     'guides.watch': 'Watch the video',
     'guides.read': 'Read the manual',
     'guides.pdf': 'Download PDF',
@@ -1084,7 +1087,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'safeguarding.eyebrow': 'Children & families',
     'safeguarding.title': 'Safeguarding',
-    'safeguarding.lead': 'How Nagina Social Welfare and Markaz Deen-e-Islam keep children and adults at risk safe.',
+    'safeguarding.lead': 'How Nagina Social Welfare and our madrasas keep children and adults at risk safe.',
     'safeguarding.concern': 'Raise a concern on WhatsApp',
     'safeguarding.policy': 'Request the full policy',
     'safeguarding.lastReviewed': 'Last reviewed',
@@ -1142,7 +1145,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.openPaypal': 'Open PayPal link',
     'donate.bankTitle': 'Bank Transfer',
     'donate.whereTitle': 'Where It Goes',
-    'donate.where1': 'Qur’an and Islamic studies at Markaz Deen-e-Islam',
+    'donate.where1': 'Qur’an and Islamic studies at our madrasas',
     'donate.where2': 'Organised charity collections across the UK',
     'donate.where3': 'Community gatherings, langar and pastoral support',
     'donate.accountName': 'Account name',
@@ -1165,11 +1168,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'qibla.fromNorth': '{deg}° from North',
     'qibla.distance': '~{km} km to Makkah',
     'qibla.yourLocation': 'Your location',
-    'qibla.peterborough': 'Peterborough, UK',
+    'qibla.townLabel': '{town}, UK',
     'qibla.useLocation': 'Use my location',
     'qibla.locating': 'Locating…',
     'qibla.locationHint': 'Optional. Sends your coordinates to AlAdhan only to calculate Qibla — we do not store your location.',
-    'qibla.reset': 'Reset to Peterborough',
+    'qibla.reset': 'Back to {town}',
     'qibla.pointToQibla': 'Point to Qibla',
     'qibla.stopPointing': 'Stop pointing',
     'qibla.footnote': 'Bearing from true North via AlAdhan. For best accuracy outdoors, hold your phone flat and calibrate the compass when prompted.',
@@ -1177,16 +1180,31 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'qibla.compassDenied': 'Compass permission was not granted.',
     'qibla.compassError': 'Unable to access the device compass.',
 
-    'madrasa.eyebrow': 'Markaz Deen-e-Islam',
+    'madrasa.eyebrow': 'Nagina Social Welfare madrasas',
     'madrasa.title': 'Islamic Institute in',
-    'madrasa.titleAccent': 'Peterborough',
+    'madrasa.titleAccent': 'the UK',
     'madrasa.lead':
-      'Markaz Deen-e-Islam is a madrasa and Islamic institute in Peterborough. The 2026 intake is open in all three evening classes at 103 Burmer Road, PE1 3HT — Class 1 and 2 for under 10s, Class 3 for ages 10 and above.',
-    'madrasa.body': 'Parents searching for a local madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At Markaz Deen-e-Islam we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.',
+      'Nagina Social Welfare UK runs madrasas in {towns}. The 2026 intake is open — Class 1 and 2 for under 10s, Class 3 for ages 10 and above. Choose your nearest madrasa below and apply online.',
+    'madrasa.body': 'Parents searching for a local madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At our madrasas we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.',
     'madrasa.body2':
-      'Class 1 (16:30–17:30) and Class 2 (17:30–18:30) are for children under 10. Class 3 (18:30–19:30) is for ages 10 and above. Please apply online, or contact us with questions.',
+      'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Please apply online, or contact your madrasa with questions.',
     'madrasa.offeringsTitle': 'What Children Learn with Us',
-    'madrasa.titleLine': 'Madrasa & Islamic Institute in',
+    'madrasa.titleLine': 'Madrasas & Islamic Education in',
+    'madrasa.campusesTitle': 'Our madrasas',
+    'madrasa.campusesLead': 'Choose the madrasa nearest to you. Each one has its own phone and WhatsApp for class questions.',
+    'madrasa.timetableFor': 'Class times at',
+    'madrasa.timetableOther': 'For class times at {name}, please call or WhatsApp the madrasa.',
+    'madrasa.mapPick': 'Show map for',
+    'campus.call': 'Call',
+    'campus.whatsapp': 'WhatsApp',
+    'campus.directions': 'Directions',
+    'campus.apply': 'Apply to this madrasa',
+    'campus.loading': 'Loading madrasa details…',
+    'campus.unavailable': 'Madrasa details could not be loaded. Please contact us on WhatsApp.',
+    'apply.campusHeading': 'Which madrasa?',
+    'apply.campusHint': 'Choose the madrasa your child will attend.',
+    'apply.err.campus': 'Please choose which madrasa you are applying to.',
+    'apply.campusesLabel': 'Our madrasas',
 
     'sahaba.closing': 'In summary, while the Sahabah are not considered infallible (ma‘sum), they are revered as God-fearing, trustworthy role models for the entire Muslim nation — honoured alongside the Ahl al-Bayt in the creed of Ahl al-Sunnah wal-Jama’ah.',
     'aulia.body': 'Allah Almighty declares in the Holy Quran that His Awliya shall know no fear nor grief. Through authentic Prophetic traditions, believers are taught to honour the pious, seek nearness to Allah through worship, and avoid enmity toward those whom Allah has befriended.',
@@ -1282,7 +1300,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'duas.shortAnswer':
       'Everyday duas for children and families — Arabic with English and Urdu meanings from Let’s Learn Islam.',
     'duas.body':
-      'These seventeen everyday duas come from the Let’s Learn Islam (آئیں دین سیکھیں) children’s module used at Markaz Deen-e-Islam. Each entry shows the Arabic text with a clear meaning.',
+      'These seventeen everyday duas come from the Let’s Learn Islam (آئیں دین سیکھیں) children’s module used at our madrasas. Each entry shows the Arabic text with a clear meaning.',
     'duas.sourceNote':
       'From Let’s Learn Islam (آئیں دین سیکھیں) — Daily Duʿās / بچوں کی پیاری روزمرہ دعائیں۔ Exact curriculum Arabic with English and Urdu meanings.',
     'duas.arabicLabel': 'Arabic',
@@ -1293,7 +1311,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'islamicCalendar.eyebrow': 'Hijri dates',
     'islamicCalendar.title': 'Islamic calendar',
     'islamicCalendar.shortAnswer':
-      'A month grid with Gregorian and Hijri dates for planning worship, Ramadan and community programmes in Peterborough.',
+      'A month grid with Gregorian and Hijri dates for planning worship, Ramadan and community programmes across the UK.',
     'islamicCalendar.body':
       'The Islamic (Hijri) calendar is lunar. Month starts can differ between calculation methods and local moon sighting. Use this page as a planning aid alongside trusted local announcements.',
     'islamicCalendar.methodNote':
@@ -1302,7 +1320,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'Important dates such as Ramadan and Eid may change locally. Always confirm with your mosque or community announcement before fasting or celebrating.',
     'islamicCalendar.todayTitle': 'Plan your day',
     'islamicCalendar.todayLead':
-      'Check today’s prayer windows, Ramadan information for Peterborough, and upcoming gatherings.',
+      'Check today’s prayer windows for your madrasa town, Ramadan information, and upcoming gatherings.',
     'islamicCalendar.linkNamaz': 'Prayer times',
     'islamicCalendar.linkRamadan': 'Ramadan',
     'islamicCalendar.linkEvents': 'Events',
@@ -1317,16 +1335,16 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'Large number = Gregorian day. Smaller number = Hijri day. Today is highlighted.',
 
     'ramadan.eyebrow': 'Blessed month',
-    'ramadan.title': 'Ramadan in Peterborough',
+    'ramadan.title': 'Ramadan in {towns}',
     'ramadan.shortAnswer':
       'Use local prayer times, events and contact options from Nagina Social Welfare during Ramadan.',
     'ramadan.body':
-      'Ramadan is a month of fasting, prayer and generosity. In Peterborough, start with reliable prayer times for Suhoor and Maghrib, then check our events page for any published programmes at Markaz Deen-e-Islam.',
+      'Ramadan is a month of fasting, prayer and generosity. Start with reliable prayer times for Suhoor and Maghrib in your madrasa’s town, then check our events page for any published programmes at our madrasas.',
     'ramadan.noInvent':
       'We do not invent Taraweeh schedules or iftar lists. Only confirmed details appear on Events or via WhatsApp when announced.',
     'ramadan.howTitle': 'How to use this site in Ramadan',
     'ramadan.linkNamaz': 'Prayer times',
-    'ramadan.howNamaz': 'daily begin and end windows for Peterborough',
+    'ramadan.howNamaz': 'daily begin and end windows for each madrasa town',
     'ramadan.linkEvents': 'Events',
     'ramadan.howEvents': 'published gatherings and programmes',
     'ramadan.linkContact': 'Contact',
@@ -1370,7 +1388,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'ticker.aria': 'تازہ ترین محفل',
 
     'footer.tagline':
-      'برطانیہ کی رجسٹرڈ چیریٹی — مرکز دینِ اسلام میں اسلامی تعلیم، اور برطانیہ بھر میں فلاحِ عامہ۔',
+      'برطانیہ کی رجسٹرڈ چیریٹی — ہمارے مدارس ({towns}) میں اسلامی تعلیم، اور برطانیہ بھر میں فلاحِ عامہ۔',
+    'footer.registeredOffice': 'رجسٹرڈ دفتر',
+    'footer.madrasas': 'ہمارے مدارس',
     'footer.donate': 'اب عطیہ دیں',
     'footer.membership': 'رکنیت کے لیے درخواست',
     'footer.memberLogin': 'ممبر سائن ان',
@@ -1441,8 +1461,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.formMessage': 'پیغام',
     'contact.formSubmit': 'واٹس ایپ میں کھولیں',
     'contact.hours':
-      'مرکز دینِ اسلام · 103 برمر روڈ، پیٹربورو PE1 3HT۔ تینوں شام کی کلاسیں کھلی ہیں: کلاس ۱ اور ۲ دس سال سے کم کے لیے، کلاس ۳ (شام ۶:۳۰–۷:۳۰) عمر ۱۰+ کے لیے۔',
-    'contact.map': 'پیٹربورو میں ہماری جگہ',
+      'کلاس ۱ اور ۲ دس سال سے کم کے لیے، کلاس ۳ عمر ۱۰+ کے لیے۔ ہر مدرسے کا پتہ، فون اور واٹس ایپ نیچے درج ہے۔',
+    'contact.map': 'ہمارے مدارس',
     'contact.reason.enrolment': 'مدرسہ داخلہ کا سوال',
     'contact.reason.donation': 'عطیہ',
     'contact.reason.namaz': 'نماز کے اوقات',
@@ -1463,7 +1483,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.eyebrow': 'ہمارے مشن کی حمایت کریں',
     'donate.title': 'اطمینان سے عطیہ دیں',
     'donate.lead':
-      'آپ کی سخاوت مرکز دینِ اسلام میں اسلامی تعلیم اور برطانیہ بھر میں فلاحِ عامہ کے لیے ہے۔ فنڈ منتخب کریں، پھر کارڈ، پے پال، نیٹ ویسٹ پے اٹ یا بینک ٹرانسفر سے دیں۔',
+      'آپ کی سخاوت ہمارے مدارس میں اسلامی تعلیم اور برطانیہ بھر میں فلاحِ عامہ کے لیے ہے۔ فنڈ منتخب کریں، پھر کارڈ، پے پال، نیٹ ویسٹ پے اٹ یا بینک ٹرانسفر سے دیں۔',
     'donate.fund': 'یہ عطیہ کہاں جائے؟',
     'donate.zakat': 'زکوٰۃ',
     'donate.zakatHint': 'فرض صدقہ — اہل ضرورت فلاح کے لیے۔',
@@ -1567,7 +1587,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.enrolSecondary': 'واٹس ایپ پر پوچھیں',
     'madrasa.timetable': 'کلاس کے اوقات',
     'madrasa.timetableLead':
-      'شام کی کلاسیں تاکہ خاندان اسکول اور کام کے ساتھ توازن رکھ سکیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ (شام ۶:۳۰–۷:۳۰) عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ آن لائن درخواست دیں، یا سوال کے لیے پیغام بھیجیں۔',
+      'شام کی کلاسیں تاکہ خاندان اسکول اور کام کے ساتھ توازن رکھ سکیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ آن لائن درخواست دیں، یا سوال کے لیے اپنے مدرسے کو پیغام بھیجیں۔',
     'madrasa.days': 'دن',
     'madrasa.time': 'وقت',
     'madrasa.ages': 'کس کے لیے',
@@ -1578,14 +1598,14 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.safeguardingCta': 'حفاظت',
     'madrasa.safeguardingBoxTitle': 'حفاظت',
     'madrasa.safeguardingBoxBody':
-      'مرکز دینِ اسلام بچوں کو پڑھاتا ہے۔ ہم حفاظت کو سنجیدگی سے لیتے ہیں۔ ہمارا عوامی خلاصہ پڑھیں، اور اگر آپ والدین، رضاکار یا عملہ ہیں تو مکمل پالیسی طلب کریں۔',
-    'madrasa.map': 'مرکز دینِ اسلام تشریف لائیں',
+      'ہمارے مدارس بچوں کو پڑھاتے ہیں۔ ہم حفاظت کو سنجیدگی سے لیتے ہیں۔ ہمارا عوامی خلاصہ پڑھیں، اور اگر آپ والدین، رضاکار یا عملہ ہیں تو مکمل پالیسی طلب کریں۔',
+    'madrasa.map': 'مدرسہ تشریف لائیں',
 
-    'apply.eyebrow': 'مرکز دینِ اسلام',
+    'apply.eyebrow': 'نگینہ سوشل ویلفیئر کے مدارس',
     'apply.title': 'آن لائن داخلہ',
     'apply.lead':
-      'تینوں شام کی کلاسیں کھلی ہیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں؛ کلاس ۳ (شام ۶:۳۰–۷:۳۰، روزانہ) ۱۰ سال اور اس سے اوپر کے لیے ہے۔ یہ فارم پُر کریں؛ موصول ہونے اور جائزے کے بعد ہم ای میل کریں گے۔',
-    'apply.intake.eyebrow': 'مرکز دینِ اسلام',
+      'تینوں شام کی کلاسیں کھلی ہیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں؛ کلاس ۳ ۱۰ سال اور اس سے اوپر کے لیے ہے۔ اپنا مدرسہ منتخب کریں، یہ فارم پُر کریں؛ موصول ہونے اور جائزے کے بعد ہم ای میل کریں گے۔',
+    'apply.intake.eyebrow': 'نگینہ سوشل ویلفیئر کے مدارس',
     'apply.intake.title': 'مدرسہ داخلہ',
     'apply.intake.subtitle': 'داخلہ ۲۰۲۶',
     'apply.intake.lead':
@@ -1608,7 +1628,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.intake.fullNote':
       'کلاس ۱ (۴:۳۰–۵:۳۰) اور کلاس ۲ (۵:۳۰–۶:۳۰) دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ (۶:۳۰–۷:۳۰) عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔',
     'apply.intake.daily': 'روزانہ',
-    'apply.intake.posterHint': 'داخلہ ۲۰۲۶ کا پوسٹر — بڑا دیکھنے کے لیے دبائیں۔',
+    'apply.intake.posterHint': '{name} — داخلہ ۲۰۲۶ کا پوسٹر — بڑا دیکھنے کے لیے دبائیں۔',
     'apply.intake.register': 'ابھی رجسٹر کریں',
     'apply.intake.poster': 'پوسٹر دیکھیں / ڈاؤن لوڈ کریں',
     'apply.intake.enroll': 'ابھی رجسٹر کریں · آج داخلہ لیں',
@@ -1729,7 +1749,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'applySuccess.trackLead': 'اس درخواست کی موجودہ حیثیت:',
     'applySuccess.madrasa': 'مدرسہ صفحہ',
     'applySuccess.home': 'ہوم',
-    'applyTrack.eyebrow': 'مرکز دینِ اسلام',
+    'applyTrack.eyebrow': 'نگینہ سوشل ویلفیئر کے مدارس',
     'applyTrack.title': 'درخواست کی حیثیت',
     'applyTrack.lead':
       'تصدیقی ای میل یا جمع کرانے کے اسکرین سے ملا ایپلیکیشن آئی ڈی درج کریں۔',
@@ -1847,11 +1867,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.home': 'ہوم',
 
     'namaz.footnote':
-      'پیٹربورو کے لیے حساب (MWL طریقہ، حنفی عصر)۔ یہ ذاتی نماز کے اوقات (شروع اور اختتام) ہیں، مرکز کی جماعت کے اوقات نہیں — جماعت اپنے مقامی مسجد سے تصدیق کریں۔',
+      '{town} کے لیے حساب (MWL طریقہ، حنفی عصر)۔ یہ ذاتی نماز کے اوقات (شروع اور اختتام) ہیں، ہمارے مدارس کی جماعت کے اوقات نہیں — جماعت اپنے مقامی مسجد سے تصدیق کریں۔',
 
     'events.programme': 'تازہ ترین تقریبات',
     'events.programmeLead':
-      'مرکز دینِ اسلام کی محفلیں۔ تاریخ گزرنے کے بعد پروگرام گزشتہ تقریبات میں چلا جاتا ہے۔',
+      'ہمارے مدارس کی محفلیں۔ تاریخ گزرنے کے بعد پروگرام گزشتہ تقریبات میں چلا جاتا ہے۔',
     'events.rsvp': 'میں آ رہا / رہی ہوں',
     'events.calendar': 'گوگل کیلنڈر میں شامل کریں',
     'events.photos': 'تصاویر اور پوسٹرز',
@@ -1879,7 +1899,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.impact': 'اثرات',
     'nav.impactHint': 'منظور شدہ تازہ کاریاں',
     'nav.madrasa': 'مدرسہ',
-    'nav.madrasaHint': 'اسلامی ادارہ پیٹربورو',
+    'nav.madrasaHint': 'پیٹربورو اور مانچسٹر',
     'nav.peterborough': 'پیٹربورو',
     'nav.peterboroughHint': 'مقامی کمیونٹی مرکز',
     'nav.spiritualGuide': 'روحانی رہنما',
@@ -1897,7 +1917,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.guidance': 'ہدایت',
     'nav.guidanceHint': 'تعلیمات اور نصیحت',
     'nav.namazTimes': 'نماز کے اوقات',
-    'nav.namazTimesHint': 'پیٹربورو، برطانیہ',
+    'nav.namazTimesHint': 'ہر مدرسے کے شہر کے اوقات',
     'nav.zakat': 'زکوٰۃ کیلکولیٹر',
     'nav.zakatHint': 'سونا، چاندی اور بچت',
     'nav.whatIsZakat': 'زکوٰۃ کیا ہے؟',
@@ -1909,7 +1929,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.calendar': 'اسلامی کیلنڈر',
     'nav.calendarHint': 'ہجری تاریخیں',
     'nav.ramadan': 'رمضان',
-    'nav.ramadanHint': 'پیٹربورو رمضان',
+    'nav.ramadanHint': 'رمضان کی معلومات',
     'nav.quranMajeed': 'قرآن مجید',
     'nav.quranMajeedHint': 'کنز الایمان ترجمہ',
     'nav.hadith': 'حدیث',
@@ -2089,8 +2109,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'work.title': 'ایک مشن',
     'work.titleAccent': 'تعلیم اور خیرات کے ذریعے',
     'work.lead':
-      'نگینہ سوشل ویلفیئر برطانیہ — ایک رجسٹرڈ چیریٹی — ایمان اور ہمدردی کو جوڑتی ہے: مرکز دینِ اسلام میں علم سے دلوں کی تعلیم، اور برطانیہ بھر میں خیرات سے زندگیوں کی پرورش۔',
-    'work.madrasaLink': 'پیٹربورو میں مدرسہ اور قرآن کی کلاسیں ←',
+      'نگینہ سوشل ویلفیئر برطانیہ — ایک رجسٹرڈ چیریٹی — ایمان اور ہمدردی کو جوڑتی ہے: ہمارے مدارس میں علم سے دلوں کی تعلیم، اور برطانیہ بھر میں خیرات سے زندگیوں کی پرورش۔',
+    'work.madrasaLink': 'پیٹربورو اور مانچسٹر میں مدرسہ اور قرآن کی کلاسیں ←',
     'work.helpTitle': 'مدد کون مانگ سکتا ہے',
     'work.helpLead':
       'ہماری کمیونٹی میں ضرورت مند افراد اور خاندان نگینہ سوشل ویلفیئر سے فلاحی مدد کے بارے میں پوچھ سکتے ہیں۔ ہم درخواستوں کا احتیاط سے جائزہ لیتے ہیں اور واٹس ایپ یا ای میل سے جواب دیتے ہیں۔ مدرسہ کی جگہ کے لیے براہِ کرم آن لائن داخلہ فارم استعمال کریں۔',
@@ -2146,8 +2166,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'namaz.eyebrow': 'نماز کے اوقات',
     'namaz.title': 'نماز کے اوقات',
-    'namaz.titleAccent': 'پیٹربورو، برطانیہ',
-    'namaz.lead': 'ہمارے شہر کے یومیہ نماز کے اوقات — آغاز اور اختتام، یورپ/لندن وقت کے مطابق براہِ راست۔',
+    'namaz.titleAccent': 'برطانیہ',
+    'namaz.lead': 'ہمارے ہر مدرسے کے شہر کے یومیہ نماز کے اوقات — آغاز اور اختتام، یورپ/لندن وقت کے مطابق براہِ راست۔',
+    'namaz.placeLabel': 'اوقات برائے:',
     'namaz.loading': 'آج کے نماز کے اوقات لوڈ ہو رہے ہیں…',
     'namaz.tryAgain': 'دوبارہ کوشش کریں',
     'namaz.now': 'اب',
@@ -2276,7 +2297,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'guides.title': 'پورٹل رہنمائی',
     'guides.titleAccent': 'والدین، اساتذہ اور طلبہ کے لیے',
     'guides.lead':
-      'مرکز دینِ اسلام کے پورٹلز کے لیے مرحلہ وار ویڈیوز اور دستی کتابچے۔ آن لائن دیکھیں، کتابچہ پڑھیں، یا محفوظ رکھنے کے لیے پی ڈی ایف ڈاؤن لوڈ کریں۔',
+      'مدرسہ پورٹلز کے لیے مرحلہ وار ویڈیوز اور دستی کتابچے۔ آن لائن دیکھیں، کتابچہ پڑھیں، یا محفوظ رکھنے کے لیے پی ڈی ایف ڈاؤن لوڈ کریں۔',
     'guides.watch': 'ویڈیو دیکھیں',
     'guides.read': 'کتابچہ پڑھیں',
     'guides.pdf': 'پی ڈی ایف ڈاؤن لوڈ کریں',
@@ -2290,7 +2311,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'safeguarding.eyebrow': 'بچے اور خاندان',
     'safeguarding.title': 'حفاظت',
-    'safeguarding.lead': 'نگینہ سوشل ویلفیئر اور مرکز دینِ اسلام بچوں اور خطرے میں بالغوں کی حفاظت کیسے کرتے ہیں۔',
+    'safeguarding.lead': 'نگینہ سوشل ویلفیئر اور ہمارے مدارس بچوں اور خطرے میں بالغوں کی حفاظت کیسے کرتے ہیں۔',
     'safeguarding.concern': 'واٹس ایپ پر تشویش درج کریں',
     'safeguarding.policy': 'مکمل پالیسی طلب کریں',
     'safeguarding.lastReviewed': 'آخری جائزہ',
@@ -2345,7 +2366,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.openPaypal': 'پے پال لنک کھولیں',
     'donate.bankTitle': 'بینک ٹرانسفر',
     'donate.whereTitle': 'کہاں جاتا ہے',
-    'donate.where1': 'مرکز دینِ اسلام میں قرآن اور اسلامی تعلیم',
+    'donate.where1': 'ہمارے مدارس میں قرآن اور اسلامی تعلیم',
     'donate.where2': 'برطانیہ بھر میں منظم خیراتی وصولیاں',
     'donate.where3': 'کمیونٹی محفلیں، لنگر اور روحانی مدد',
     'donate.accountName': 'اکاؤنٹ نام',
@@ -2368,11 +2389,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'qibla.fromNorth': 'شمال سے {deg}°',
     'qibla.distance': 'مکہ مکرمہ تک تقریباً {km} کلومیٹر',
     'qibla.yourLocation': 'آپ کا مقام',
-    'qibla.peterborough': 'پیٹربورو، برطانیہ',
+    'qibla.townLabel': '{town}، برطانیہ',
     'qibla.useLocation': 'میرا مقام استعمال کریں',
     'qibla.locating': 'مقام معلوم ہو رہا ہے…',
     'qibla.locationHint': 'اختیاری۔ قبلہ کے حساب کے لیے صرف AlAdhan کو آپ کے کوآرڈینیٹس بھیجے جاتے ہیں — ہم مقام محفوظ نہیں کرتے۔',
-    'qibla.reset': 'پیٹربورو پر واپس',
+    'qibla.reset': '{town} پر واپس',
     'qibla.pointToQibla': 'قبلہ کی طرف اشارہ',
     'qibla.stopPointing': 'اشارہ بند کریں',
     'qibla.footnote': 'حقیقی شمال سے سمت AlAdhan کے ذریعے۔ بہتر درستگی کے لیے باہر فون سیدھا پکڑیں اور جب کہا جائے کمپاس کیلیبریٹ کریں۔',
@@ -2380,16 +2401,31 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'qibla.compassDenied': 'کمپاس کی اجازت نہیں ملی۔',
     'qibla.compassError': 'آلہ کے کمپاس تک رسائی ممکن نہیں۔',
 
-    'madrasa.eyebrow': 'مرکز دینِ اسلام',
+    'madrasa.eyebrow': 'نگینہ سوشل ویلفیئر کے مدارس',
     'madrasa.title': 'اسلامی ادارہ',
-    'madrasa.titleAccent': 'پیٹربورو',
+    'madrasa.titleAccent': 'برطانیہ',
     'madrasa.lead':
-      'مرکز دینِ اسلام پیٹربورو میں ایک مدرسہ اور اسلامی ادارہ ہے۔ داخلہ ۲۰۲۶ تینوں شام کی کلاسوں میں کھلا ہے — ۱۰۳ برمر روڈ، PE1 3HT۔ کلاس ۱ اور ۲ دس سال سے کم کے لیے، کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے۔',
-    'madrasa.body': 'مقامی مدرسہ، اسلامی اسکول یا بچوں کی اسلامی کلاسیں تلاش کرنے والے والدین اکثر گھر کے قریب قابلِ اعتماد جگہ چاہتے ہیں۔ مرکز دینِ اسلام میں ہم منظم قرآن اور اسلامی تعلیم کے لیے گرم، باقاعدہ ماحول میں خوش آمدید کہتے ہیں — اہلِ سنت والجماعت / حنفی بریلوی تعلیم کے مطابق۔',
+      'نگینہ سوشل ویلفیئر UK {towns} میں مدارس چلاتا ہے۔ داخلہ ۲۰۲۶ کھلا ہے — کلاس ۱ اور ۲ دس سال سے کم کے لیے، کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے۔ نیچے اپنا قریبی مدرسہ منتخب کریں اور آن لائن درخواست دیں۔',
+    'madrasa.body': 'مقامی مدرسہ، اسلامی اسکول یا بچوں کی اسلامی کلاسیں تلاش کرنے والے والدین اکثر گھر کے قریب قابلِ اعتماد جگہ چاہتے ہیں۔ ہمارے مدارس میں ہم منظم قرآن اور اسلامی تعلیم کے لیے گرم، باقاعدہ ماحول میں خوش آمدید کہتے ہیں — اہلِ سنت والجماعت / حنفی بریلوی تعلیم کے مطابق۔',
     'madrasa.body2':
-      'کلاس ۱ (۴:۳۰–۵:۳۰) اور کلاس ۲ (۵:۳۰–۶:۳۰) دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ (۶:۳۰–۷:۳۰) عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ آن لائن درخواست دیں، یا سوال کے لیے رابطہ کریں۔',
+      'کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ آن لائن درخواست دیں، یا سوال کے لیے اپنے مدرسے سے رابطہ کریں۔',
     'madrasa.offeringsTitle': 'بچے ہمارے ساتھ کیا سیکھتے ہیں',
-    'madrasa.titleLine': 'مدرسہ اور اسلامی ادارہ',
+    'madrasa.titleLine': 'مدارس اور اسلامی تعلیم',
+    'madrasa.campusesTitle': 'ہمارے مدارس',
+    'madrasa.campusesLead': 'اپنے قریب ترین مدرسے کا انتخاب کریں۔ کلاس کے سوالات کے لیے ہر مدرسے کا اپنا فون اور واٹس ایپ ہے۔',
+    'madrasa.timetableFor': 'کلاس کے اوقات —',
+    'madrasa.timetableOther': '{name} کے کلاس اوقات کے لیے براہِ کرم مدرسے کو کال یا واٹس ایپ کریں۔',
+    'madrasa.mapPick': 'نقشہ دکھائیں',
+    'campus.call': 'کال',
+    'campus.whatsapp': 'واٹس ایپ',
+    'campus.directions': 'راستہ',
+    'campus.apply': 'اس مدرسے میں درخواست دیں',
+    'campus.loading': 'مدرسے کی تفصیلات لوڈ ہو رہی ہیں…',
+    'campus.unavailable': 'مدرسے کی تفصیلات لوڈ نہیں ہو سکیں۔ براہِ کرم واٹس ایپ پر رابطہ کریں۔',
+    'apply.campusHeading': 'کون سا مدرسہ؟',
+    'apply.campusHint': 'وہ مدرسہ منتخب کریں جہاں آپ کا بچہ پڑھے گا۔',
+    'apply.err.campus': 'براہِ کرم منتخب کریں کہ آپ کس مدرسے کے لیے درخواست دے رہے ہیں۔',
+    'apply.campusesLabel': 'ہمارے مدارس',
 
     'sahaba.closing': 'خلاصہ یہ کہ صحابہ معصوم نہیں سمجھے جاتے، مگر وہ اللہ سے ڈرنے والے، قابلِ اعتماد اسوۂ حسنہ ہیں — پوری امت کے لیے، اہلِ بیت کے ساتھ اہلِ سنت والجماعت کے عقیدے میں معزز۔',
     'aulia.body': 'اللہ تعالیٰ قرآنِ پاک میں فرماتا ہے کہ اس کے اولیاء پر نہ خوف ہے نہ وہ غمگین ہوں گے۔ صحیح نبوی روایات سے مومنین کو نیکوں کا احترام، عبادت سے قربِ الٰہی، اور جن سے اللہ نے دوستی رکھی ان سے دشمنی سے اجتناب سکھایا گیا ہے۔',
@@ -2496,7 +2532,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'islamicCalendar.eyebrow': 'ہجری تاریخیں',
     'islamicCalendar.title': 'اسلامی کیلنڈر',
     'islamicCalendar.shortAnswer':
-      'پیٹربورو میں عبادت، رمضان اور کمیونٹی پروگراموں کی منصوبہ بندی کے لیے شمسی اور ہجری تاریخوں کا ماہانہ گرڈ۔',
+      'برطانیہ بھر میں عبادت، رمضان اور کمیونٹی پروگراموں کی منصوبہ بندی کے لیے شمسی اور ہجری تاریخوں کا ماہانہ گرڈ۔',
     'islamicCalendar.body':
       'اسلامی (ہجری) کیلنڈر قمری ہے۔ مہینے کا آغاز حسابی طریقوں اور مقامی رویتِ ہلال میں مختلف ہو سکتا ہے۔ اس صفحے کو مقامی معتبر اعلانات کے ساتھ منصوبہ بندی کی مدد سمجھیں۔',
     'islamicCalendar.methodNote':
@@ -2505,7 +2541,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'رمضان اور عید جیسی اہم تاریخیں مقامی طور پر بدل سکتی ہیں۔ روزہ یا خوشی سے پہلے اپنی مسجد یا کمیونٹی اعلان سے تصدیق کریں۔',
     'islamicCalendar.todayTitle': 'اپنا دن ترتیب دیں',
     'islamicCalendar.todayLead':
-      'آج کے نماز کے اوقات، پیٹربورو رمضان کی معلومات، اور آنے والی محفلیں دیکھیں۔',
+      'اپنے مدرسے کے شہر کے آج کے نماز کے اوقات، رمضان کی معلومات، اور آنے والی محفلیں دیکھیں۔',
     'islamicCalendar.linkNamaz': 'نماز کے اوقات',
     'islamicCalendar.linkRamadan': 'رمضان',
     'islamicCalendar.linkEvents': 'تقریبات',
@@ -2520,16 +2556,16 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'بڑا نمبر = شمسی دن۔ چھوٹا نمبر = ہجری دن۔ آج کا دن نمایاں ہے۔',
 
     'ramadan.eyebrow': 'مبارک مہینہ',
-    'ramadan.title': 'پیٹربورو میں رمضان',
+    'ramadan.title': 'رمضان ({towns})',
     'ramadan.shortAnswer':
       'رمضان میں نگینہ سوشل ویلفیئر کے مقامی نماز کے اوقات، تقریبات اور رابطہ کے اختیارات استعمال کریں۔',
     'ramadan.body':
-      'رمضان روزے، نماز اور سخاوت کا مہینہ ہے۔ پیٹربورو میں سحری اور مغرب کے لیے قابلِ اعتماد نماز کے اوقات سے شروع کریں، پھر مرکز دینِ اسلام کے شائع شدہ پروگراموں کے لیے تقریبات دیکھیں۔',
+      'رمضان روزے، نماز اور سخاوت کا مہینہ ہے۔ اپنے مدرسے کے شہر میں سحری اور مغرب کے لیے قابلِ اعتماد نماز کے اوقات سے شروع کریں، پھر ہمارے مدارس کے شائع شدہ پروگراموں کے لیے تقریبات دیکھیں۔',
     'ramadan.noInvent':
       'ہم تراویح یا افطار کی فہرستیں خود نہیں بناتے۔ صرف تصدیق شدہ تفصیلات تقریبات پر یا اعلان کے وقت واٹس ایپ پر آتی ہیں۔',
     'ramadan.howTitle': 'رمضان میں یہ سائٹ کیسے استعمال کریں',
     'ramadan.linkNamaz': 'نماز کے اوقات',
-    'ramadan.howNamaz': 'پیٹربورو کے یومیہ آغاز و اختتام کے اوقات',
+    'ramadan.howNamaz': 'ہر مدرسے کے شہر کے یومیہ آغاز و اختتام کے اوقات',
     'ramadan.linkEvents': 'تقریبات',
     'ramadan.howEvents': 'شائع شدہ محفلیں اور پروگرام',
     'ramadan.linkContact': 'رابطہ',

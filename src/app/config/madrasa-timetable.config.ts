@@ -10,6 +10,9 @@ export interface MadrasaSession {
   readonly agesUr: string;
 }
 
+/** Campus whose class times are published below; other madrasas share times by phone. */
+export const MADRASA_TIMETABLE_CAMPUS_ID = 'peterborough';
+
 /** Published evening classes at Markaz Deen-e-Islam. */
 export const MADRASA_SESSIONS: readonly MadrasaSession[] = [
   {

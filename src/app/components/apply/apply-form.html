@@ -101,6 +101,32 @@
         }
 
         @if (step() === 0) {
+          @if (campusService.campuses().length > 0) {
+            <fieldset
+              class="mb-8"
+              data-testid="apply-campus"
+              [attr.data-error]="invalid(form.controls.campusId) || null"
+            >
+              <legend class="font-display text-2xl font-bold text-forest">{{ i18n.t('apply.campusHeading') }} *</legend>
+              <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.campusHint') }}</p>
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                @for (campus of campusService.campuses(); track campus.id) {
+                  <label [class]="choiceClass(form.controls.campusId.value === campus.id)" [attr.data-campus]="campus.id">
+                    <input type="radio" class="sr-only" formControlName="campusId" [value]="campus.id" />
+                    <span class="flex flex-col gap-0.5 text-start">
+                      <span class="text-base">{{ campus.displayName }}</span>
+                      <span class="text-xs font-medium opacity-80">{{ campusTown(campus) }} · {{ campus.addressLine }}</span>
+                    </span>
+                  </label>
+                }
+              </div>
+              @if (invalid(form.controls.campusId)) {
+                <p class="mt-1.5 text-sm font-medium text-red-700">{{ i18n.t('apply.err.campus') }}</p>
+              }
+            </fieldset>
+          } @else if (!campusService.loaded()) {
+            <p class="mb-8 text-sm text-slate-warm" aria-live="polite">{{ i18n.t('campus.loading') }}</p>
+          }
           <div formGroupName="student" class="space-y-6">
             <div>
               <h2 class="font-display text-2xl font-bold text-forest">{{ i18n.t('apply.studentHeading') }}</h2>
@@ -540,7 +566,7 @@
               <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('apply.termsHeading') }}</h3>
               <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.termsLead') }}</p>
               <ol class="mt-4 max-h-56 space-y-3 overflow-y-auto pr-1 text-sm leading-relaxed text-slate-warm">
-                @for (term of terms; track term; let i = $index) {
+                @for (term of terms(); track term; let i = $index) {
                   <li class="flex gap-3">
                     <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-forest text-xs font-bold text-cream">{{ i + 1 }}</span>
                     <span>{{ term }}</span>
@@ -669,7 +695,7 @@
 
     <p class="mt-8 text-center text-sm text-slate-warm" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       {{ i18n.t('apply.help') }}
-      <a [href]="whatsappAsk" target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-700 hover:underline">WhatsApp</a>
+      <a [href]="whatsappAsk()" target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-700 hover:underline">WhatsApp</a>
       ·
       <a [href]="'mailto:' + org.email" class="font-semibold text-gold-700 hover:underline">{{ org.email }}</a>
       ·

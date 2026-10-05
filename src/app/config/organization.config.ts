@@ -40,8 +40,9 @@ export const ORGANIZATION = {
   giftAidRecognised: false,
 } as const;
 
-export function whatsappHref(prefill = ''): string {
-  const base = `https://wa.me/${ORGANIZATION.whatsappDigits}`;
+/** `digits` lets a madrasa event or page route to that madrasa's WhatsApp. */
+export function whatsappHref(prefill = '', digits: string = ORGANIZATION.whatsappDigits): string {
+  const base = `https://wa.me/${digits || ORGANIZATION.whatsappDigits}`;
   const text = prefill.trim();
   if (!text) {
     return base;

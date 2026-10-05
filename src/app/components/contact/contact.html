@@ -115,7 +115,10 @@
 
     <div class="mt-10" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="mb-4 font-display text-2xl font-bold text-forest">{{ i18n.t('contact.map') }}</h2>
-      <app-venue-map />
+      <app-campus-cards [showApply]="false" />
+      <div class="mt-6">
+        <app-campus-map />
+      </div>
     </div>
 
     <app-visitor-stats variant="card" />

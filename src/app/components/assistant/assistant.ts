@@ -95,7 +95,7 @@ export class Assistant {
     'What is the Finality of Prophethood?',
     'How do I calculate zakat?',
     'How can I donate?',
-    'Peterborough namaz times',
+    'Namaz times for each madrasa',
     'Which books are available?',
     'اہلِ بیت کے بارے میں بتائیں',
     'رابطہ کیسے کریں؟',

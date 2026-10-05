@@ -3,11 +3,14 @@ import {
   OnDestroy,
   OnInit,
   computed,
+  effect,
   inject,
   signal,
+  untracked,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
+import { PrayerPlaceService } from '../../services/prayer-place.service';
 import {
   QiblaService,
   cardinalFromBearing,
@@ -21,6 +24,7 @@ import {
 export class Qibla implements OnInit, OnDestroy {
   protected readonly i18n = inject(LanguageService);
   protected readonly qibla = inject(QiblaService);
+  private readonly place = inject(PrayerPlaceService);
 
   protected readonly liveMode = signal(false);
   protected readonly deviceHeading = signal<number | null>(null);
@@ -64,15 +68,27 @@ export class Qibla implements OnInit, OnDestroy {
 
   protected readonly locationLabel = computed(() => {
     const result = this.qibla.result();
-    if (!result) return this.i18n.t('qibla.peterborough');
-    return result.source === 'visitor'
-      ? this.i18n.t('qibla.yourLocation')
-      : this.i18n.t('qibla.peterborough');
+    if (result?.source === 'visitor') return this.i18n.t('qibla.yourLocation');
+    const town = result?.placeName || this.place.town();
+    return town ? this.i18n.t('qibla.townLabel').replace('{town}', town) : '';
   });
+
+  protected readonly resetLabel = computed(() =>
+    this.i18n.t('qibla.reset').replace('{town}', this.place.town()),
+  );
+
+  constructor() {
+    // Follow the madrasa picked on the prayer times page.
+    effect(() => {
+      this.place.campus();
+      untracked(() => {
+        if (this.qibla.result()?.source !== 'visitor') void this.qibla.load();
+      });
+    });
+  }
 
   ngOnInit(): void {
     this.orientationSupported.set(typeof window !== 'undefined' && 'DeviceOrientationEvent' in window);
-    void this.qibla.load();
   }
 
   ngOnDestroy(): void {
@@ -83,8 +99,8 @@ export class Qibla implements OnInit, OnDestroy {
     await this.qibla.loadForVisitor();
   }
 
-  protected async usePeterborough(): Promise<void> {
-    await this.qibla.resetToPeterborough();
+  protected async useMadrasaTown(): Promise<void> {
+    await this.qibla.resetToCampus();
   }
 
   protected async toggleLiveMode(): Promise<void> {

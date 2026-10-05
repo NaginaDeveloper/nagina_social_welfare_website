@@ -101,7 +101,7 @@ export class Gallery implements OnInit {
   }
 
   protected rsvpHref(event: UpcomingEvent): string {
-    return whatsappHref(event.whatsappPrefill);
+    return whatsappHref(event.whatsappPrefill, event.whatsappDigits);
   }
 
   protected calendarHref(event: UpcomingEvent): string | null {
