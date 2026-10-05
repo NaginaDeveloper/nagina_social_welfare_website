@@ -40,7 +40,7 @@ export class Privacy {
     {
       title: 'Online admissions',
       body:
-        'When you submit the Markaz Deen-e-Islam online admission form, we collect student and parent/guardian contact details, address, medical and emergency information, class preference, and your consents/declaration. We use this to review enrolment, create school records if accepted, and contact you. Access is limited to authorised staff. You may email info@naginasocialwelfare.co.uk to exercise UK GDPR rights relating to an application we hold.',
+        'When you submit our madrasa online admission form, we collect the madrasa you choose, student and parent/guardian contact details, address, medical and emergency information, class preference, and your consents/declaration. We use this to review enrolment, create school records if accepted, and contact you. Access is limited to authorised staff. You may email info@naginasocialwelfare.co.uk to exercise UK GDPR rights relating to an application we hold.',
     },
     {
       title: 'Community membership',
@@ -55,7 +55,7 @@ export class Privacy {
     {
       title: 'Prayer times & Qibla',
       body:
-        'Prayer times are calculated for Peterborough using the AlAdhan service with fixed city coordinates (not your device location). The Qibla compass defaults to Peterborough. If you tap “Use my location”, your browser may share precise coordinates with us only long enough to request a Qibla bearing from AlAdhan; we do not store that location on our servers. Device compass (“Point to Qibla”) runs on your device and does not send heading data to us.',
+        'Prayer times are calculated for the town of the madrasa you pick (Peterborough by default) using the AlAdhan service. The town’s coordinates come from the madrasa’s postcode via postcodes.io — never from your device. Your madrasa choice is remembered in your browser only. The Qibla compass uses the same madrasa town. If you tap “Use my location”, your browser may share precise coordinates with us only long enough to request a Qibla bearing from AlAdhan; we do not store that location on our servers. Device compass (“Point to Qibla”) runs on your device and does not send heading data to us.',
     },
     {
       title: 'Quran & Hadith text',

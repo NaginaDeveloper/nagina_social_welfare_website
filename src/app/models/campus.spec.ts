@@ -1,8 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { FEE_TERM, campusFeeTerm } from '../components/apply/apply-form';
-import { eventWhatsappDigits } from '../services/events.service';
+import { eventWhatsappDigits, toUpcomingEvent } from '../services/events.service';
+import { madrasaNode } from '../seo/seo.service';
 import {
+  campusStoredCoords,
   campusTown,
+  parsePostcodeLookup,
+  posterCaption,
   campusWhatsappHref,
   fillTowns,
   joinTowns,
@@ -73,6 +77,28 @@ describe('campus helpers', () => {
   });
 });
 
+describe('campus coordinates', () => {
+  it('reads a postcodes.io lookup', () => {
+    expect(
+      parsePostcodeLookup({ status: 200, result: { latitude: 53.417784, longitude: -2.42617 } }),
+    ).toEqual({ latitude: 53.417784, longitude: -2.42617 });
+  });
+
+  it('returns null for an unknown postcode', () => {
+    expect(parsePostcodeLookup({ status: 404, error: 'Postcode not found' })).toBeNull();
+    expect(parsePostcodeLookup({ result: { latitude: null, longitude: null } })).toBeNull();
+  });
+
+  it('uses snapshot coordinates only when both are numbers', () => {
+    expect(campusStoredCoords({ ...MANCHESTER, latitude: 53.4, longitude: -2.4 })).toEqual({
+      latitude: 53.4,
+      longitude: -2.4,
+    });
+    expect(campusStoredCoords(MANCHESTER)).toBeNull();
+    expect(campusStoredCoords({ latitude: 53.4, longitude: null })).toBeNull();
+  });
+});
+
 describe('event WhatsApp', () => {
   it('uses the campus phone saved on a Manchester event', () => {
     expect(eventWhatsappDigits({ contactPhone: '+44 7872 340123' })).toBe('447872340123');
@@ -95,5 +121,44 @@ describe('admission fee term', () => {
   it('keeps the published Peterborough term', () => {
     expect(campusFeeTerm(PETERBOROUGH)).toBe(FEE_TERM);
     expect(campusFeeTerm(null)).toBe(FEE_TERM);
+  });
+});
+
+describe('event venue', () => {
+  const item = { id: 'e1', title: 'Mehfil', date: '2026-11-01' };
+
+  it('names the Manchester madrasa when the office left the venue blank', () => {
+    const event = toUpcomingEvent({ ...item, campusId: 'manchester' }, MANCHESTER);
+    expect(event.venue).toBe('Quran Academy, Manchester');
+    expect(event.whatsappDigits).toBe('447872340123');
+  });
+
+  it('keeps a venue the office typed', () => {
+    expect(toUpcomingEvent({ ...item, venue: 'Partington Park' }, MANCHESTER).venue).toBe('Partington Park');
+  });
+});
+
+describe('admission poster caption', () => {
+  it('names the madrasa the poster belongs to', () => {
+    expect(posterCaption('{name} 2026 admission poster.', 'Markaz Deen-e-Islam')).toBe(
+      'Markaz Deen-e-Islam 2026 admission poster.',
+    );
+    expect(posterCaption('{name} — داخلہ پوسٹر', '')).toBe('داخلہ پوسٹر');
+    expect(posterCaption('{name} 2026 admission poster.', '')).toBe('2026 admission poster.');
+  });
+});
+
+describe('madrasa search data', () => {
+  it('lists Quran Academy at its own address', () => {
+    const node = madrasaNode({ ...MANCHESTER, latitude: 53.417784, longitude: -2.42617 });
+    expect(node['name']).toBe('Quran Academy');
+    expect(node['address']).toEqual({
+      '@type': 'PostalAddress',
+      streetAddress: 'Partington Community Centre',
+      addressLocality: 'Manchester',
+      postalCode: 'M31 4FL',
+      addressCountry: 'GB',
+    });
+    expect(node['geo']).toEqual({ '@type': 'GeoCoordinates', latitude: 53.417784, longitude: -2.42617 });
   });
 });

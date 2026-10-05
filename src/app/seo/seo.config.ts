@@ -39,7 +39,7 @@ export const HOME_SEO: PageSeo = {
 export const ABOUT_SEO: PageSeo = {
   title: 'Our Vision | Nagina Social Welfare UK',
   description:
-    'Nagina Social Welfare UK (charity 1196514) — our vision for knowledge, compassion and character across the UK, rooted in Peterborough.',
+    'Nagina Social Welfare UK (charity 1196514) — our vision for knowledge, compassion and character across the UK, with madrasas in Peterborough and Manchester.',
   path: '/about/',
   keywords: 'About Nagina Social Welfare, UK based charity 1196514, Islamic charity UK vision',
   type: 'website',
@@ -51,7 +51,7 @@ export const ABOUT_SEO: PageSeo = {
 export const WORK_SEO: PageSeo = {
   title: 'Our Work | Education & Charity | Nagina Social Welfare',
   description:
-    'Islamic education at Markaz Deen-e-Islam and community welfare from Nagina Social Welfare UK — who we help and how to ask.',
+    'Islamic education at our madrasas in Peterborough and Manchester, and community welfare from Nagina Social Welfare UK — who we help and how to ask.',
   path: '/work/',
   keywords: 'Our Work, Markaz Deen-e-Islam, community welfare UK, Islamic education, charity',
   type: 'website',
@@ -100,18 +100,18 @@ export const APPLY_SEO: PageSeo = {
 };
 
 export const APPLY_SUCCESS_SEO: PageSeo = {
-  title: 'Application Received | Markaz Deen-e-Islam',
+  title: 'Application Received | Nagina Social Welfare',
   description:
-    'Thank you — your Markaz Deen-e-Islam admission application has been received and will be reviewed shortly.',
+    'Thank you — your madrasa admission application has been received and will be reviewed shortly.',
   path: '/apply/success/',
   type: 'website',
   robots: 'noindex, follow',
 };
 
 export const APPLY_TRACK_SEO: PageSeo = {
-  title: 'Track Application | Markaz Deen-e-Islam',
+  title: 'Track Application | Nagina Social Welfare',
   description:
-    'Check the status of your Markaz Deen-e-Islam admission application using the application ID from your confirmation email or submission screen.',
+    'Check the status of your madrasa admission application using the application ID from your confirmation email or submission screen.',
   path: '/apply/track/',
   type: 'website',
   robots: 'noindex, follow',
@@ -122,7 +122,7 @@ export const MEMBERSHIP_SEO: PageSeo = {
   description:
     'Apply online to join the Nagina Social Welfare UK community. Free membership for adults aged 18+, reviewed by trustees.',
   path: '/membership/',
-  keywords: 'Nagina Social Welfare membership, charity community UK, volunteer Peterborough',
+  keywords: 'Nagina Social Welfare membership, charity community UK, volunteer Peterborough, volunteer Manchester',
   type: 'website',
   breadcrumb: 'Membership',
   changefreq: 'monthly',
@@ -187,11 +187,11 @@ export const GUIDANCE_SEO: PageSeo = {
 };
 
 export const NAMAZ_SEO: PageSeo = {
-  title: 'Prayer Times Peterborough | Salah | Nagina Social Welfare UK',
+  title: 'Prayer Times Peterborough & Manchester | Salah | Nagina Social Welfare UK',
   description:
-    'Daily Salah prayer times for Peterborough, UK — source, method and last-checked date, plus a Qibla compass. Personal begin/end times, not jamat.',
+    'Daily Salah prayer times for Peterborough and Manchester, UK — source, method and last-checked date, plus a Qibla compass. Personal begin/end times, not jamat.',
   path: '/namaz/',
-  keywords: 'prayer times Peterborough, Salah times Peterborough, salah timetable UK, Qibla compass',
+  keywords: 'prayer times Peterborough, prayer times Manchester, Salah times Partington, salah timetable UK, Qibla compass',
   type: 'website',
   breadcrumb: 'Prayer Times',
   changefreq: 'daily',
@@ -274,7 +274,7 @@ export const APPS_SEO: PageSeo = {
 export const GUIDES_SEO: PageSeo = {
   title: 'Portal Guides — Videos & Manuals | Nagina Social Welfare',
   description:
-    'Video guides and user manuals for the Markaz Deen-e-Islam Parent, Teacher and Student portals: sign in, messages, fees, attendance, leave and more.',
+    'Video guides and user manuals for the madrasa Parent, Teacher and Student portals: sign in, messages, fees, attendance, leave and more.',
   path: '/guides/',
   keywords:
     'Parent Portal guide, Markaz Deen-e-Islam portal, madrasa parent app help, teacher portal manual, Nagina guides',
@@ -288,9 +288,9 @@ export const GUIDES_SEO: PageSeo = {
 export const EVENTS_SEO: PageSeo = {
   title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
   description:
-    'Event photos, posters and programmes from Markaz Deen-e-Islam in Peterborough. Message us on WhatsApp for the next date.',
+    'Event photos, posters and programmes from our madrasas in Peterborough and Manchester. Message us on WhatsApp for the next date.',
   path: '/events/',
-  keywords: 'Islamic events Peterborough, Markaz Deen-e-Islam gatherings, Nagina events',
+  keywords: 'Islamic events Peterborough, Islamic events Manchester, Markaz Deen-e-Islam gatherings, Quran Academy events, Nagina events',
   type: 'website',
   breadcrumb: 'Events',
   changefreq: 'weekly',
@@ -336,7 +336,7 @@ export const ZAKAT_RULES_SEO: PageSeo = {
 export const DUAS_SEO: PageSeo = {
   title: 'Daily Duas and Prayers | Nagina Social Welfare UK',
   description:
-    'Seventeen everyday duas from Let’s Learn Islam — Arabic with English and Urdu meanings for children and families in Peterborough.',
+    'Seventeen everyday duas from Let’s Learn Islam — Arabic with English and Urdu meanings for children and families across the UK.',
   path: '/duas/',
   keywords: 'daily duas, Let’s Learn Islam, Islamic prayers English Urdu, Nagina Social Welfare',
   type: 'article',
@@ -348,7 +348,7 @@ export const DUAS_SEO: PageSeo = {
 export const CALENDAR_SEO: PageSeo = {
   title: 'Islamic Calendar | Nagina Social Welfare UK',
   description:
-    'Interactive Islamic calendar with Gregorian and Hijri dates for Peterborough — AlAdhan conversion, with links to prayer times and Ramadan.',
+    'Interactive Islamic calendar with Gregorian and Hijri dates for the UK — AlAdhan conversion, with links to prayer times and Ramadan.',
   path: '/calendar/',
   keywords: 'Islamic calendar, Hijri calendar UK, Islamic dates, Nagina Social Welfare',
   type: 'website',
@@ -358,11 +358,11 @@ export const CALENDAR_SEO: PageSeo = {
 };
 
 export const RAMADAN_SEO: PageSeo = {
-  title: 'Ramadan in Peterborough | Nagina Social Welfare UK',
+  title: 'Ramadan in Peterborough & Manchester | Nagina Social Welfare UK',
   description:
-    'Ramadan in Peterborough — how to use local prayer times, events and contact Nagina Social Welfare for support information.',
+    'Ramadan in Peterborough and Manchester — how to use local prayer times, events and contact Nagina Social Welfare for support information.',
   path: '/ramadan/',
-  keywords: 'Ramadan Peterborough, iftar Peterborough, Taraweeh, Nagina Social Welfare',
+  keywords: 'Ramadan Peterborough, Ramadan Manchester, iftar Peterborough, iftar Manchester, Taraweeh, Nagina Social Welfare',
   type: 'website',
   breadcrumb: 'Ramadan',
   changefreq: 'weekly',
@@ -374,7 +374,7 @@ export const IMPACT_SEO: PageSeo = {
   description:
     'Approved updates on Nagina Social Welfare UK programmes, dates and community impact — published only with trustee approval.',
   path: '/impact/',
-  keywords: 'Nagina Social Welfare impact, charity annual report, Peterborough community welfare',
+  keywords: 'Nagina Social Welfare impact, charity annual report, Peterborough community welfare, Manchester community welfare',
   type: 'website',
   breadcrumb: 'Impact',
   changefreq: 'monthly',
@@ -386,7 +386,7 @@ export const DONATE_SEO: PageSeo = {
   description:
     'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514) by SumUp, PayPal, NatWest PayIt or bank transfer.',
   path: '/donate/',
-  keywords: 'Donate Nagina Social Welfare, Zakat, SumUp donation UK, Islamic charity Peterborough',
+  keywords: 'Donate Nagina Social Welfare, Zakat, SumUp donation UK, Islamic charity Peterborough, Islamic charity Manchester',
   type: 'website',
   breadcrumb: 'Donate',
   changefreq: 'monthly',
@@ -432,9 +432,9 @@ export const PRIVACY_SEO: PageSeo = {
 export const SAFEGUARDING_SEO: PageSeo = {
   title: 'Safeguarding | Nagina Social Welfare UK',
   description:
-    'How Nagina Social Welfare and Markaz Deen-e-Islam keep children and adults at risk safe — WhatsApp, email or request the full policy.',
+    'How Nagina Social Welfare and our madrasas keep children and adults at risk safe — WhatsApp, email or request the full policy.',
   path: '/safeguarding/',
-  keywords: 'Safeguarding, child protection, Markaz Deen-e-Islam, Nagina Social Welfare',
+  keywords: 'Safeguarding, child protection, Markaz Deen-e-Islam, Quran Academy, Nagina Social Welfare',
   type: 'website',
   breadcrumb: 'Safeguarding',
   changefreq: 'yearly',

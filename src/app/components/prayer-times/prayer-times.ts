@@ -1,7 +1,8 @@
 import { NgClass } from '@angular/common';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, computed, inject } from '@angular/core';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import type { PrayerName } from '../../models/prayer-time';
+import { campusTown, type Campus } from '../../models/campus';
 import { Qibla } from '../qibla/qibla';
 import { LanguageService } from '../../i18n/language.service';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
@@ -18,16 +19,20 @@ export class PrayerTimes implements OnInit, OnDestroy {
   protected readonly i18n = inject(LanguageService);
   protected readonly lastChecked = CONTENT_REVIEW['namaz']?.lastChecked ?? '';
 
+  protected readonly footnote = computed(() =>
+    this.i18n.t('namaz.footnote').replace('{town}', this.prayer.placeTown() || this.i18n.t('namaz.titleAccent')),
+  );
+
   protected readonly related: readonly RelatedPageLink[] = [
+    {
+      path: '/madrasa',
+      label: 'Our madrasas',
+      hint: 'Addresses, class times and admission',
+    },
     {
       path: '/peterborough',
       label: 'Peterborough community',
       hint: 'Address, services and schedules',
-    },
-    {
-      path: '/madrasa',
-      label: 'Madrasa classes',
-      hint: 'Markaz Deen-e-Islam timetable',
     },
     {
       path: '/events',
@@ -36,8 +41,8 @@ export class PrayerTimes implements OnInit, OnDestroy {
     },
     {
       path: '/ramadan',
-      label: 'Ramadan in Peterborough',
-      hint: 'Local Ramadan information',
+      label: 'Ramadan',
+      hint: 'Ramadan information and support',
     },
     {
       path: '/calendar',
@@ -57,6 +62,10 @@ export class PrayerTimes implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.prayer.stopClock();
+  }
+
+  protected placeButtonLabel(campus: Campus): string {
+    return campusTown(campus);
   }
 
   protected isCurrent(name: PrayerName): boolean {

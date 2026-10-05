@@ -266,7 +266,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.intake.fullNote':
       'Class 1 (16:30–17:30) and Class 2 (17:30–18:30) are for children under 10. Class 3 (18:30–19:30) is for ages 10 and above.',
     'apply.intake.daily': 'Daily',
-    'apply.intake.posterHint': '2026 admission poster — tap to open full size.',
+    'apply.intake.posterHint': '{name} 2026 admission poster — tap to open full size.',
     'apply.intake.register': 'Register now',
     'apply.intake.poster': 'View / download poster',
     'apply.intake.enroll': 'Register now · Enrol today',
@@ -632,11 +632,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'memberHome.downloadIssue': 'Download PDF',
 
     'namaz.footnote':
-      'Calculated for Peterborough (MWL method, Hanafi Asr). These are personal prayer windows (begins and ends), not Markaz congregational prayer times — confirm congregation with a local mosque.',
+      'Calculated for {town} (MWL method, Hanafi Asr). These are personal prayer windows (begins and ends), not congregational prayer times at our madrasas — confirm congregation with a local mosque.',
 
     'events.programme': 'Latest events',
     'events.programmeLead':
-      'Gatherings at Markaz Deen-e-Islam. Dated events move to Past after the day has passed.',
+      'Gatherings at our madrasas. Dated events move to Past after the day has passed.',
     'events.rsvp': 'I am coming',
     'events.calendar': 'Add to Google Calendar',
     'events.photos': 'Photos & posters',
@@ -682,7 +682,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.guidance': 'Guidance',
     'nav.guidanceHint': 'Teachings & counsel',
     'nav.namazTimes': 'Prayer Times (Salah)',
-    'nav.namazTimesHint': 'Peterborough, UK',
+    'nav.namazTimesHint': 'Times for each madrasa town',
     'nav.zakat': 'Zakat Calculator',
     'nav.zakatHint': 'Gold, silver and savings',
     'nav.whatIsZakat': 'What is Zakat?',
@@ -694,7 +694,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.calendar': 'Islamic calendar',
     'nav.calendarHint': 'Hijri dates',
     'nav.ramadan': 'Ramadan',
-    'nav.ramadanHint': 'Peterborough Ramadan',
+    'nav.ramadanHint': 'Ramadan information',
     'nav.quranMajeed': 'Quran Majeed',
     'nav.quranMajeedHint': 'Kanzul Iman translation',
     'nav.hadith': 'Hadith',
@@ -941,8 +941,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'namaz.eyebrow': 'Prayer Times (Salah)',
     'namaz.title': 'Prayer times in',
-    'namaz.titleAccent': 'Peterborough, UK',
-    'namaz.lead': 'Daily prayer windows for our city — Begins and Ends, updated live for Europe/London time.',
+    'namaz.titleAccent': 'the UK',
+    'namaz.lead': 'Daily prayer windows for the town of each of our madrasas — Begins and Ends, updated live for Europe/London time.',
+    'namaz.placeLabel': 'Show times for:',
     'namaz.loading': 'Loading today’s prayer times…',
     'namaz.tryAgain': 'Try again',
     'namaz.now': 'Now',
@@ -1167,11 +1168,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'qibla.fromNorth': '{deg}° from North',
     'qibla.distance': '~{km} km to Makkah',
     'qibla.yourLocation': 'Your location',
-    'qibla.peterborough': 'Peterborough, UK',
+    'qibla.townLabel': '{town}, UK',
     'qibla.useLocation': 'Use my location',
     'qibla.locating': 'Locating…',
     'qibla.locationHint': 'Optional. Sends your coordinates to AlAdhan only to calculate Qibla — we do not store your location.',
-    'qibla.reset': 'Reset to Peterborough',
+    'qibla.reset': 'Back to {town}',
     'qibla.pointToQibla': 'Point to Qibla',
     'qibla.stopPointing': 'Stop pointing',
     'qibla.footnote': 'Bearing from true North via AlAdhan. For best accuracy outdoors, hold your phone flat and calibrate the compass when prompted.',
@@ -1299,7 +1300,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'duas.shortAnswer':
       'Everyday duas for children and families — Arabic with English and Urdu meanings from Let’s Learn Islam.',
     'duas.body':
-      'These seventeen everyday duas come from the Let’s Learn Islam (آئیں دین سیکھیں) children’s module used at Markaz Deen-e-Islam. Each entry shows the Arabic text with a clear meaning.',
+      'These seventeen everyday duas come from the Let’s Learn Islam (آئیں دین سیکھیں) children’s module used at our madrasas. Each entry shows the Arabic text with a clear meaning.',
     'duas.sourceNote':
       'From Let’s Learn Islam (آئیں دین سیکھیں) — Daily Duʿās / بچوں کی پیاری روزمرہ دعائیں۔ Exact curriculum Arabic with English and Urdu meanings.',
     'duas.arabicLabel': 'Arabic',
@@ -1310,7 +1311,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'islamicCalendar.eyebrow': 'Hijri dates',
     'islamicCalendar.title': 'Islamic calendar',
     'islamicCalendar.shortAnswer':
-      'A month grid with Gregorian and Hijri dates for planning worship, Ramadan and community programmes in Peterborough.',
+      'A month grid with Gregorian and Hijri dates for planning worship, Ramadan and community programmes across the UK.',
     'islamicCalendar.body':
       'The Islamic (Hijri) calendar is lunar. Month starts can differ between calculation methods and local moon sighting. Use this page as a planning aid alongside trusted local announcements.',
     'islamicCalendar.methodNote':
@@ -1319,7 +1320,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'Important dates such as Ramadan and Eid may change locally. Always confirm with your mosque or community announcement before fasting or celebrating.',
     'islamicCalendar.todayTitle': 'Plan your day',
     'islamicCalendar.todayLead':
-      'Check today’s prayer windows, Ramadan information for Peterborough, and upcoming gatherings.',
+      'Check today’s prayer windows for your madrasa town, Ramadan information, and upcoming gatherings.',
     'islamicCalendar.linkNamaz': 'Prayer times',
     'islamicCalendar.linkRamadan': 'Ramadan',
     'islamicCalendar.linkEvents': 'Events',
@@ -1334,16 +1335,16 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'Large number = Gregorian day. Smaller number = Hijri day. Today is highlighted.',
 
     'ramadan.eyebrow': 'Blessed month',
-    'ramadan.title': 'Ramadan in Peterborough',
+    'ramadan.title': 'Ramadan in {towns}',
     'ramadan.shortAnswer':
       'Use local prayer times, events and contact options from Nagina Social Welfare during Ramadan.',
     'ramadan.body':
-      'Ramadan is a month of fasting, prayer and generosity. In Peterborough, start with reliable prayer times for Suhoor and Maghrib, then check our events page for any published programmes at Markaz Deen-e-Islam.',
+      'Ramadan is a month of fasting, prayer and generosity. Start with reliable prayer times for Suhoor and Maghrib in your madrasa’s town, then check our events page for any published programmes at our madrasas.',
     'ramadan.noInvent':
       'We do not invent Taraweeh schedules or iftar lists. Only confirmed details appear on Events or via WhatsApp when announced.',
     'ramadan.howTitle': 'How to use this site in Ramadan',
     'ramadan.linkNamaz': 'Prayer times',
-    'ramadan.howNamaz': 'daily begin and end windows for Peterborough',
+    'ramadan.howNamaz': 'daily begin and end windows for each madrasa town',
     'ramadan.linkEvents': 'Events',
     'ramadan.howEvents': 'published gatherings and programmes',
     'ramadan.linkContact': 'Contact',
@@ -1627,7 +1628,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.intake.fullNote':
       'کلاس ۱ (۴:۳۰–۵:۳۰) اور کلاس ۲ (۵:۳۰–۶:۳۰) دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ (۶:۳۰–۷:۳۰) عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔',
     'apply.intake.daily': 'روزانہ',
-    'apply.intake.posterHint': 'داخلہ ۲۰۲۶ کا پوسٹر — بڑا دیکھنے کے لیے دبائیں۔',
+    'apply.intake.posterHint': '{name} — داخلہ ۲۰۲۶ کا پوسٹر — بڑا دیکھنے کے لیے دبائیں۔',
     'apply.intake.register': 'ابھی رجسٹر کریں',
     'apply.intake.poster': 'پوسٹر دیکھیں / ڈاؤن لوڈ کریں',
     'apply.intake.enroll': 'ابھی رجسٹر کریں · آج داخلہ لیں',
@@ -1866,11 +1867,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.home': 'ہوم',
 
     'namaz.footnote':
-      'پیٹربورو کے لیے حساب (MWL طریقہ، حنفی عصر)۔ یہ ذاتی نماز کے اوقات (شروع اور اختتام) ہیں، مرکز کی جماعت کے اوقات نہیں — جماعت اپنے مقامی مسجد سے تصدیق کریں۔',
+      '{town} کے لیے حساب (MWL طریقہ، حنفی عصر)۔ یہ ذاتی نماز کے اوقات (شروع اور اختتام) ہیں، ہمارے مدارس کی جماعت کے اوقات نہیں — جماعت اپنے مقامی مسجد سے تصدیق کریں۔',
 
     'events.programme': 'تازہ ترین تقریبات',
     'events.programmeLead':
-      'مرکز دینِ اسلام کی محفلیں۔ تاریخ گزرنے کے بعد پروگرام گزشتہ تقریبات میں چلا جاتا ہے۔',
+      'ہمارے مدارس کی محفلیں۔ تاریخ گزرنے کے بعد پروگرام گزشتہ تقریبات میں چلا جاتا ہے۔',
     'events.rsvp': 'میں آ رہا / رہی ہوں',
     'events.calendar': 'گوگل کیلنڈر میں شامل کریں',
     'events.photos': 'تصاویر اور پوسٹرز',
@@ -1916,7 +1917,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.guidance': 'ہدایت',
     'nav.guidanceHint': 'تعلیمات اور نصیحت',
     'nav.namazTimes': 'نماز کے اوقات',
-    'nav.namazTimesHint': 'پیٹربورو، برطانیہ',
+    'nav.namazTimesHint': 'ہر مدرسے کے شہر کے اوقات',
     'nav.zakat': 'زکوٰۃ کیلکولیٹر',
     'nav.zakatHint': 'سونا، چاندی اور بچت',
     'nav.whatIsZakat': 'زکوٰۃ کیا ہے؟',
@@ -1928,7 +1929,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.calendar': 'اسلامی کیلنڈر',
     'nav.calendarHint': 'ہجری تاریخیں',
     'nav.ramadan': 'رمضان',
-    'nav.ramadanHint': 'پیٹربورو رمضان',
+    'nav.ramadanHint': 'رمضان کی معلومات',
     'nav.quranMajeed': 'قرآن مجید',
     'nav.quranMajeedHint': 'کنز الایمان ترجمہ',
     'nav.hadith': 'حدیث',
@@ -2165,8 +2166,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'namaz.eyebrow': 'نماز کے اوقات',
     'namaz.title': 'نماز کے اوقات',
-    'namaz.titleAccent': 'پیٹربورو، برطانیہ',
-    'namaz.lead': 'ہمارے شہر کے یومیہ نماز کے اوقات — آغاز اور اختتام، یورپ/لندن وقت کے مطابق براہِ راست۔',
+    'namaz.titleAccent': 'برطانیہ',
+    'namaz.lead': 'ہمارے ہر مدرسے کے شہر کے یومیہ نماز کے اوقات — آغاز اور اختتام، یورپ/لندن وقت کے مطابق براہِ راست۔',
+    'namaz.placeLabel': 'اوقات برائے:',
     'namaz.loading': 'آج کے نماز کے اوقات لوڈ ہو رہے ہیں…',
     'namaz.tryAgain': 'دوبارہ کوشش کریں',
     'namaz.now': 'اب',
@@ -2387,11 +2389,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'qibla.fromNorth': 'شمال سے {deg}°',
     'qibla.distance': 'مکہ مکرمہ تک تقریباً {km} کلومیٹر',
     'qibla.yourLocation': 'آپ کا مقام',
-    'qibla.peterborough': 'پیٹربورو، برطانیہ',
+    'qibla.townLabel': '{town}، برطانیہ',
     'qibla.useLocation': 'میرا مقام استعمال کریں',
     'qibla.locating': 'مقام معلوم ہو رہا ہے…',
     'qibla.locationHint': 'اختیاری۔ قبلہ کے حساب کے لیے صرف AlAdhan کو آپ کے کوآرڈینیٹس بھیجے جاتے ہیں — ہم مقام محفوظ نہیں کرتے۔',
-    'qibla.reset': 'پیٹربورو پر واپس',
+    'qibla.reset': '{town} پر واپس',
     'qibla.pointToQibla': 'قبلہ کی طرف اشارہ',
     'qibla.stopPointing': 'اشارہ بند کریں',
     'qibla.footnote': 'حقیقی شمال سے سمت AlAdhan کے ذریعے۔ بہتر درستگی کے لیے باہر فون سیدھا پکڑیں اور جب کہا جائے کمپاس کیلیبریٹ کریں۔',
@@ -2530,7 +2532,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'islamicCalendar.eyebrow': 'ہجری تاریخیں',
     'islamicCalendar.title': 'اسلامی کیلنڈر',
     'islamicCalendar.shortAnswer':
-      'پیٹربورو میں عبادت، رمضان اور کمیونٹی پروگراموں کی منصوبہ بندی کے لیے شمسی اور ہجری تاریخوں کا ماہانہ گرڈ۔',
+      'برطانیہ بھر میں عبادت، رمضان اور کمیونٹی پروگراموں کی منصوبہ بندی کے لیے شمسی اور ہجری تاریخوں کا ماہانہ گرڈ۔',
     'islamicCalendar.body':
       'اسلامی (ہجری) کیلنڈر قمری ہے۔ مہینے کا آغاز حسابی طریقوں اور مقامی رویتِ ہلال میں مختلف ہو سکتا ہے۔ اس صفحے کو مقامی معتبر اعلانات کے ساتھ منصوبہ بندی کی مدد سمجھیں۔',
     'islamicCalendar.methodNote':
@@ -2539,7 +2541,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'رمضان اور عید جیسی اہم تاریخیں مقامی طور پر بدل سکتی ہیں۔ روزہ یا خوشی سے پہلے اپنی مسجد یا کمیونٹی اعلان سے تصدیق کریں۔',
     'islamicCalendar.todayTitle': 'اپنا دن ترتیب دیں',
     'islamicCalendar.todayLead':
-      'آج کے نماز کے اوقات، پیٹربورو رمضان کی معلومات، اور آنے والی محفلیں دیکھیں۔',
+      'اپنے مدرسے کے شہر کے آج کے نماز کے اوقات، رمضان کی معلومات، اور آنے والی محفلیں دیکھیں۔',
     'islamicCalendar.linkNamaz': 'نماز کے اوقات',
     'islamicCalendar.linkRamadan': 'رمضان',
     'islamicCalendar.linkEvents': 'تقریبات',
@@ -2554,16 +2556,16 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
       'بڑا نمبر = شمسی دن۔ چھوٹا نمبر = ہجری دن۔ آج کا دن نمایاں ہے۔',
 
     'ramadan.eyebrow': 'مبارک مہینہ',
-    'ramadan.title': 'پیٹربورو میں رمضان',
+    'ramadan.title': 'رمضان ({towns})',
     'ramadan.shortAnswer':
       'رمضان میں نگینہ سوشل ویلفیئر کے مقامی نماز کے اوقات، تقریبات اور رابطہ کے اختیارات استعمال کریں۔',
     'ramadan.body':
-      'رمضان روزے، نماز اور سخاوت کا مہینہ ہے۔ پیٹربورو میں سحری اور مغرب کے لیے قابلِ اعتماد نماز کے اوقات سے شروع کریں، پھر مرکز دینِ اسلام کے شائع شدہ پروگراموں کے لیے تقریبات دیکھیں۔',
+      'رمضان روزے، نماز اور سخاوت کا مہینہ ہے۔ اپنے مدرسے کے شہر میں سحری اور مغرب کے لیے قابلِ اعتماد نماز کے اوقات سے شروع کریں، پھر ہمارے مدارس کے شائع شدہ پروگراموں کے لیے تقریبات دیکھیں۔',
     'ramadan.noInvent':
       'ہم تراویح یا افطار کی فہرستیں خود نہیں بناتے۔ صرف تصدیق شدہ تفصیلات تقریبات پر یا اعلان کے وقت واٹس ایپ پر آتی ہیں۔',
     'ramadan.howTitle': 'رمضان میں یہ سائٹ کیسے استعمال کریں',
     'ramadan.linkNamaz': 'نماز کے اوقات',
-    'ramadan.howNamaz': 'پیٹربورو کے یومیہ آغاز و اختتام کے اوقات',
+    'ramadan.howNamaz': 'ہر مدرسے کے شہر کے یومیہ آغاز و اختتام کے اوقات',
     'ramadan.linkEvents': 'تقریبات',
     'ramadan.howEvents': 'شائع شدہ محفلیں اور پروگرام',
     'ramadan.linkContact': 'رابطہ',

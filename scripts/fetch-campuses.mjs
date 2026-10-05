@@ -13,6 +13,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(path.resolve(__dirname, '..'), 'public', 'campuses.json');
 const URL =
   'https://europe-west2-nagina-social-welfare-uk.cloudfunctions.net/submitAdmission';
+const POSTCODE_URL = 'https://api.postcodes.io/postcodes/';
+
+/** Stores the postcode's coordinates so prayer times still work if the lookup is down. */
+async function withCoordinates(campus) {
+  try {
+    const res = await fetch(`${POSTCODE_URL}${encodeURIComponent(campus.postcode ?? '')}`);
+    const result = res.ok ? (await res.json())?.result : null;
+    if (typeof result?.latitude === 'number' && typeof result?.longitude === 'number') {
+      return { ...campus, latitude: result.latitude, longitude: result.longitude };
+    }
+  } catch {
+    // Saved without coordinates; the site looks the postcode up at runtime.
+  }
+  return campus;
+}
 
 try {
   const res = await fetch(URL, { headers: { Origin: 'https://www.naginasocialwelfare.co.uk' } });
@@ -21,7 +36,8 @@ try {
   if (!Array.isArray(body?.campuses) || body.campuses.length === 0) {
     throw new Error('no campuses in response');
   }
-  await writeFile(OUT, `${JSON.stringify({ campuses: body.campuses }, null, 2)}\n`);
+  const campuses = await Promise.all(body.campuses.map(withCoordinates));
+  await writeFile(OUT, `${JSON.stringify({ campuses }, null, 2)}\n`);
   console.log(`campuses: wrote ${body.campuses.length} to public/campuses.json`);
 } catch (err) {
   const existing = await readFile(OUT, 'utf8').catch(() => null);

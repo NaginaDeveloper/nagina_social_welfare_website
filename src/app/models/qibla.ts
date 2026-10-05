@@ -9,7 +9,7 @@ export interface AlAdhanQiblaResponse {
   };
 }
 
-export type QiblaSource = 'peterborough' | 'visitor';
+export type QiblaSource = 'campus' | 'visitor';
 
 /** Normalised Qibla bearing used by the UI. */
 export interface QiblaResult {
@@ -20,4 +20,7 @@ export interface QiblaResult {
   /** Great-circle distance to the Kaaba in kilometres. */
   readonly distanceKm: number;
   readonly source: QiblaSource;
+  /** Set when `source` is `campus`. */
+  readonly campusId?: string;
+  readonly placeName?: string;
 }

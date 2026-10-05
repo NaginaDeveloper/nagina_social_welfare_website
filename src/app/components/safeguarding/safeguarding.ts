@@ -19,7 +19,7 @@ export class Safeguarding {
   protected readonly org = ORGANIZATION;
   protected readonly lastReviewed = SAFEGUARDING_LAST_REVIEWED;
   protected readonly policyWhatsApp = whatsappHref(
-    'Assalamu alaikum, please send me the full safeguarding policy for Markaz Deen-e-Islam / Nagina Social Welfare.',
+    'Assalamu alaikum, please send me the full safeguarding policy for the Nagina Social Welfare madrasas.',
   );
   protected readonly concernWhatsApp = whatsappHref(
     'Assalamu alaikum, I need to raise a safeguarding concern.',
@@ -30,9 +30,9 @@ export class Safeguarding {
       title: 'Our duty',
       titleUr: 'ہماری ذمہ داری',
       body:
-        'Markaz Deen-e-Islam teaches children. Everyone who visits, teaches, or volunteers with us must help keep children and adults at risk safe from harm, abuse, and neglect.',
+        'Our madrasas teach children. Everyone who visits, teaches, or volunteers with us must help keep children and adults at risk safe from harm, abuse, and neglect.',
       bodyUr:
-        'مرکز دینِ اسلام بچوں کو تعلیم دیتا ہے۔ جو بھی تشریف لائے، پڑھائے یا رضاکارانہ خدمت کرے، اسے بچوں اور خطرے میں بالغوں کو نقصان، زیادتی اور غفلت سے محفوظ رکھنے میں مدد کرنی چاہیے۔',
+        'ہمارے مدارس بچوں کو تعلیم دیتے ہیں۔ جو بھی تشریف لائے، پڑھائے یا رضاکارانہ خدمت کرے، اسے بچوں اور خطرے میں بالغوں کو نقصان، زیادتی اور غفلت سے محفوظ رکھنے میں مدد کرنی چاہیے۔',
     },
     {
       title: 'How we work',
@@ -46,9 +46,9 @@ export class Safeguarding {
       title: 'If you are worried',
       titleUr: 'اگر آپ پریشان ہیں',
       body:
-        'If a child or adult may be at risk, contact us immediately by WhatsApp or email. In an emergency, call 999. You can also contact the Peterborough City Council children’s services team or the NSPCC (0808 800 5000).',
+        'If a child or adult may be at risk, contact us immediately by WhatsApp or email. In an emergency, call 999. You can also contact your local council’s children’s services team or the NSPCC (0808 800 5000).',
       bodyUr:
-        'اگر کوئی بچہ یا بالغ خطرے میں ہو تو فوراً واٹس ایپ یا ای میل سے رابطہ کریں۔ ہنگامی صورت میں 999 پر کال کریں۔ پیٹربورو سٹی کونسل کی چلڈرن سروسز یا NSPCC (0808 800 5000) سے بھی رابطہ کر سکتے ہیں۔',
+        'اگر کوئی بچہ یا بالغ خطرے میں ہو تو فوراً واٹس ایپ یا ای میل سے رابطہ کریں۔ ہنگامی صورت میں 999 پر کال کریں۔ اپنی مقامی کونسل کی چلڈرن سروسز یا NSPCC (0808 800 5000) سے بھی رابطہ کر سکتے ہیں۔',
     },
     {
       title: 'Full policy',

@@ -19,7 +19,7 @@ export class Impact {
   protected readonly related: readonly RelatedPageLink[] = [
     { path: '/work', label: 'Our work', hint: 'Education and welfare programmes' },
     { path: '/donate', label: 'Donate', hint: 'Support verified programmes' },
-    { path: '/peterborough', label: 'Peterborough', hint: 'Local community hub' },
+    { path: '/madrasa', label: 'Our madrasas', hint: 'Addresses and contact for each madrasa' },
     { path: '/contact', label: 'Contact', hint: 'Ask about evidence and reports' },
   ];
 }

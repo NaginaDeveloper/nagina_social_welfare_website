@@ -5,6 +5,7 @@ import {
 } from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
 import { CampusService } from '../../services/campus.service';
+import { posterCaption } from '../../models/campus';
 
 @Component({
   selector: 'app-apply-intake',
@@ -17,6 +18,9 @@ export class ApplyIntake implements OnInit {
   protected readonly sessions = MADRASA_SESSIONS;
   protected readonly timetableCampus = computed(() =>
     this.campusService.byId(MADRASA_TIMETABLE_CAMPUS_ID),
+  );
+  protected readonly posterHint = computed(() =>
+    posterCaption(this.i18n.t('apply.intake.posterHint'), this.timetableCampus()?.displayName ?? ''),
   );
 
   ngOnInit(): void {

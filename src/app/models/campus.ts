@@ -12,6 +12,31 @@ export interface Campus {
   /** Null when the campus uses the organisation fee (published in the admission terms). */
   readonly monthlyFeeGbp?: number | null;
   readonly addressConfirmed: boolean;
+  /** Present in the build snapshot; the live API leaves these out and the postcode is looked up. */
+  readonly latitude?: number | null;
+  readonly longitude?: number | null;
+}
+
+export interface CampusCoords {
+  readonly latitude: number;
+  readonly longitude: number;
+}
+
+export function campusStoredCoords(campus: Pick<Campus, 'latitude' | 'longitude'>): CampusCoords | null {
+  const { latitude, longitude } = campus;
+  if (typeof latitude !== 'number' || typeof longitude !== 'number') return null;
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
+  return { latitude, longitude };
+}
+
+/** postcodes.io `/postcodes/{postcode}` body → coordinates. */
+export function parsePostcodeLookup(body: unknown): CampusCoords | null {
+  const result = (body as { result?: { latitude?: unknown; longitude?: unknown } } | null)?.result;
+  if (!result) return null;
+  return campusStoredCoords({
+    latitude: result.latitude as number,
+    longitude: result.longitude as number,
+  });
 }
 
 export interface CampusCatalog {
@@ -69,4 +94,10 @@ export function parseCampusCatalog(body: unknown): Campus[] {
       typeof c.whatsappDigits === 'string' &&
       c.id.trim().length > 0,
   );
+}
+
+/** The poster belongs to one madrasa; name it, or drop the name until campuses load. */
+export function posterCaption(template: string, name: string): string {
+  if (name) return template.replace('{name}', name);
+  return template.replace(/\{name\}( — |\s)?/, '');
 }

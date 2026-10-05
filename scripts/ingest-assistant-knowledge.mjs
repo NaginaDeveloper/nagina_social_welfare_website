@@ -10,6 +10,7 @@ const ROOT = process.cwd();
 const PROJECT_ID = 'nagina-social-welfare-uk';
 const SYNC_URL = 'https://europe-west2-nagina-social-welfare-uk.cloudfunctions.net/syncAssistantKnowledge';
 const PREVIEW_PATH = path.join(ROOT, 'functions', 'src', 'generated', 'assistant-knowledge-preview.json');
+const CAMPUSES_URL = 'https://europe-west2-nagina-social-welfare-uk.cloudfunctions.net/submitAdmission';
 const BOOKS_CATALOG_URL = 'https://firebasestorage.googleapis.com/v0/b/nagina-social-welfare-uk.firebasestorage.app/o/books%2Fcatalog.json?alt=media';
 
 function hash(value) {
@@ -274,14 +275,14 @@ async function buildCuratedChunks() {
       title: 'About Nagina Social Welfare',
       path: '/about',
       text:
-        'Nagina Social Welfare UK Limited is a registered charity (1196514) and company (08342937) in England and Wales. We serve UK communities through knowledge and compassion, with two arms: Markaz Deen-e-Islam (Qur’an and Islamic education in Peterborough) and Nagina Social Welfare (community welfare). Our pillars are Faith (Ahl-e-Sunnat), Compassion, and Knowledge. Gift Aid is not currently claimed. More: https://www.naginasocialwelfare.co.uk/about/',
+        'Nagina Social Welfare UK Limited is a registered charity (1196514) and company (08342937) in England and Wales. We serve UK communities through knowledge and compassion, with two arms: our madrasas (Qur’an and Islamic education — Markaz Deen-e-Islam in Peterborough and Quran Academy in Manchester; see https://www.naginasocialwelfare.co.uk/madrasa/) and Nagina Social Welfare (community welfare). Our pillars are Faith (Ahl-e-Sunnat), Compassion, and Knowledge. Gift Aid is not currently claimed. More: https://www.naginasocialwelfare.co.uk/about/',
       tags: ['about', 'charity', 'organisation'],
     },
     {
       title: 'Donate methods',
       path: '/donate',
       text:
-        'Donations fund Islamic education at Markaz Deen-e-Islam and community welfare. Choose a fund first: Zakat, Sadaqah, Lillah, or Fitrana. Then give by SumUp card checkout (£5 to £25,000), PayPal, NatWest PayIt, or UK bank transfer on https://www.naginasocialwelfare.co.uk/donate/. Bank: NatWest. Account name NAGINA SOCIAL WELFAR. Sort code 54-21-38. Account 29135877. BIC NWBKGB2L. IBAN GB09 NWBK 5421 3829 1358 77. Use the fund name as the payment reference (ZAKAT, SADAQAH, LILLAH, or FITRANA). Registered charity 1196514. Gift Aid is not currently claimed.',
+        'Donations fund Islamic education at our madrasas and community welfare. Choose a fund first: Zakat, Sadaqah, Lillah, or Fitrana. Then give by SumUp card checkout (£5 to £25,000), PayPal, NatWest PayIt, or UK bank transfer on https://www.naginasocialwelfare.co.uk/donate/. Bank: NatWest. Account name NAGINA SOCIAL WELFAR. Sort code 54-21-38. Account 29135877. BIC NWBKGB2L. IBAN GB09 NWBK 5421 3829 1358 77. Use the fund name as the payment reference (ZAKAT, SADAQAH, LILLAH, or FITRANA). Registered charity 1196514. Gift Aid is not currently claimed.',
       tags: ['donate', 'payments'],
     },
     {
@@ -296,19 +297,19 @@ async function buildCuratedChunks() {
       title: 'Madrasa admission form',
       path: '/apply',
       text:
-        'New madrasa places are applied for only on the website form https://www.naginasocialwelfare.co.uk/apply/ — do not send children’s details by WhatsApp or email. The 2026 intake is open in all three evening classes: Class 1 (16:30–17:30) and Class 2 (17:30–18:30) for children under 10; Class 3 (18:30–19:30 daily) for ages 10 and above. The form has four steps: student, parent, medical and emergency, then class preference and declaration. After submit we email from info@naginasocialwelfare.co.uk. Track status at https://www.naginasocialwelfare.co.uk/apply/track/ with the application ID. Fees are £5 every Monday or paid in advance. Uniform (white jooba for boys, black abaya for girls) is provided by the madrasa. WhatsApp is for questions only.',
+        'New madrasa places are applied for only on the website form https://www.naginasocialwelfare.co.uk/apply/ — do not send children’s details by WhatsApp or email. The first step asks which madrasa the child will attend. At Markaz Deen-e-Islam (Peterborough) the 2026 intake is open in all three evening classes: Class 1 (16:30–17:30) and Class 2 (17:30–18:30) for children under 10; Class 3 (18:30–19:30 daily) for ages 10 and above. The form has four steps: student, parent, medical and emergency, then class preference and declaration. After submit we email from info@naginasocialwelfare.co.uk. Track status at https://www.naginasocialwelfare.co.uk/apply/track/ with the application ID. Markaz Deen-e-Islam fees are £5 every Monday or paid in advance; each other madrasa’s fee and class times are on its card on the madrasa page. Uniform (white jooba for boys, black abaya for girls) is provided by the madrasa. WhatsApp is for questions only.',
       tags: ['apply', 'admission', 'madrasa', 'form'],
     },
     {
       title: 'Contact Nagina Social Welfare',
       path: '/contact',
-      text: 'Contact Nagina Social Welfare UK by email at info@naginasocialwelfare.co.uk, by phone or WhatsApp on +44 7831 684738 (tel:+447831684738, https://wa.me/447831684738), or visit 103 Burmer Road, Peterborough PE1 3HT (Google Maps: https://www.google.com/maps/search/?api=1&query=103%20Burmer%20Road%2C%20Peterborough%20PE1%203HT). Keep phone digits and the English address in left-to-right order in every language.',
+      text: 'Contact Nagina Social Welfare UK (registered office) by email at info@naginasocialwelfare.co.uk, by phone or WhatsApp on +44 7831 684738 (tel:+447831684738, https://wa.me/447831684738), or visit 103 Burmer Road, Peterborough PE1 3HT (Google Maps: https://www.google.com/maps/search/?api=1&query=103%20Burmer%20Road%2C%20Peterborough%20PE1%203HT). Each madrasa’s own phone, WhatsApp and address are listed on https://www.naginasocialwelfare.co.uk/contact/. Keep phone digits and the English address in left-to-right order in every language.',
       tags: ['contact'],
     },
     {
       title: 'Prayer times and Qibla',
       path: '/namaz',
-      text: 'The site provides daily namaz times for Peterborough, UK and a Qibla compass.',
+      text: 'The site provides daily namaz times and a Qibla compass for the town of each of our madrasas (Peterborough and Manchester); visitors pick the madrasa at the top of https://www.naginasocialwelfare.co.uk/namaz/.',
       tags: ['namaz', 'qibla'],
     },
     {
@@ -331,6 +332,7 @@ async function buildCuratedChunks() {
       maslak: 'site',
     },
   ];
+  faq.push(...(await buildCampusFaq()));
   for (const item of faq) {
     chunks.push(
       makeChunk({
@@ -345,6 +347,22 @@ async function buildCuratedChunks() {
   }
 
   return chunks;
+}
+
+/** One entry per madrasa from the office-editable campus list, so edits reach the assistant on the next ingest. */
+async function buildCampusFaq() {
+  const res = await fetch(CAMPUSES_URL, { headers: { Origin: 'https://www.naginasocialwelfare.co.uk' } });
+  if (!res.ok) throw new Error(`Could not load madrasa list: ${res.status}`);
+  const campuses = (await res.json())?.campuses ?? [];
+  return campuses.map((c) => {
+    const fee = typeof c.monthlyFeeGbp === 'number' ? ` Fees are £${c.monthlyFeeGbp} a month.` : '';
+    return {
+      title: `Madrasa: ${c.displayName}`,
+      path: '/madrasa',
+      text: `${c.displayName} is a Nagina Social Welfare madrasa at ${c.addressLine}. Phone or WhatsApp ${c.phoneDisplay} (https://wa.me/${c.whatsappDigits}).${fee} Apply online at https://www.naginasocialwelfare.co.uk/apply/?campus=${c.id} and choose ${c.displayName}.`,
+      tags: ['madrasa', 'campus', c.id],
+    };
+  });
 }
 
 async function buildBookChunks() {
