@@ -1,0 +1,34 @@
+{
+  "campuses": [
+    {
+      "id": "peterborough",
+      "displayName": "Markaz Deen-e-Islam",
+      "cityLabel": "Peterborough",
+      "addressLine": "103 Burmer Road, Peterborough PE1 3HT",
+      "postcode": "PE1 3HT",
+      "phoneDisplay": "+44 7831 684738",
+      "phoneE164": "+447831684738",
+      "whatsappDigits": "447831684738",
+      "email": "info@naginasocialwelfare.co.uk",
+      "monthlyFeeGbp": null,
+      "addressConfirmed": true,
+      "latitude": 52.59566,
+      "longitude": -0.256322
+    },
+    {
+      "id": "manchester",
+      "displayName": "Quran Academy",
+      "cityLabel": "Quran Academy",
+      "addressLine": "Partington Community Centre, Manchester M31 4FL",
+      "postcode": "M31 4FL",
+      "phoneDisplay": "+44 7872 340123",
+      "phoneE164": "+447872340123",
+      "whatsappDigits": "447872340123",
+      "email": "info@naginasocialwelfare.co.uk",
+      "monthlyFeeGbp": 30,
+      "addressConfirmed": true,
+      "latitude": 53.417784,
+      "longitude": -2.42617
+    }
+  ]
+}

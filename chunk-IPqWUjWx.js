@@ -1,0 +1,1 @@
+import {p,av as Se,aw as lo,ax as k}from'./main-P5CAFXJM.js';function w(t){t||(t=p(Se));let i=new k(e=>{if(t.destroyed){e.next();return}return t.onDestroy(e.next.bind(e))});return e=>e.pipe(lo(i))}export{w};
