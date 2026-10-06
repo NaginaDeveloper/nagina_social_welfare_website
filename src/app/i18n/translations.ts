@@ -45,6 +45,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'footer.giftAid': 'Gift Aid is not currently claimed.',
     'footer.gdprNote': 'Personal data handled in line with UK GDPR.',
     'footer.explore': 'Explore',
+    'footer.worshipLearn': 'Worship & learning',
     'footer.map': 'View map & directions',
 
     'spotlight.eyebrow': 'Today at Nagina',
@@ -1432,6 +1433,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'footer.giftAid': 'گیفٹ ایڈ فی الحال کلیم نہیں کیا جاتا۔',
     'footer.gdprNote': 'ذاتی معلومات UK GDPR کے مطابق سنبھالی جاتی ہیں۔',
     'footer.explore': 'مزید دیکھیں',
+    'footer.worshipLearn': 'عبادت اور تعلیم',
     'footer.map': 'نقشہ اور راستہ',
 
     'spotlight.eyebrow': 'آج نگینہ پر',

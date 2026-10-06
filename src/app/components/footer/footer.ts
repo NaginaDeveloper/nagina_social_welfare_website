@@ -1,5 +1,5 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
-import { buildNavGroups, type NavGroup, type NavLink } from '../../config/navigation.config';
+import { FOOTER_COLUMNS, type NavLink } from '../../config/navigation.config';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { centrePath } from '../../config/centre-pages.config';
@@ -24,20 +24,7 @@ export class Footer implements OnInit {
   protected readonly whatsapp = whatsappHref();
   protected readonly year = new Date().getFullYear();
 
-  /** Same sections and links as the header menus. */
-  protected readonly groups = computed<readonly NavGroup[]>(() =>
-    buildNavGroups(
-      this.campusService.campuses().map(
-        (campus): NavLink => ({
-          labelKey: 'nav.centre',
-          label: campusTown(campus),
-          hint: campus.displayName,
-          path: centrePath(campus.id),
-          icon: 'mosque',
-        }),
-      ),
-    ),
-  );
+  protected readonly columns = FOOTER_COLUMNS;
 
   protected linkLabel(item: NavLink): string {
     return item.label ?? this.i18n.t(item.labelKey);

@@ -147,3 +147,48 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
     },
   ];
 }
+
+export interface FooterColumn {
+  readonly labelKey: string;
+  readonly items: readonly NavLink[];
+}
+
+/**
+ * Short footer: the pages people come back for, three columns of six.
+ * The header menus hold the full map; this is deliberately not a sitemap.
+ */
+export const FOOTER_COLUMNS: readonly FooterColumn[] = [
+  {
+    labelKey: 'nav.admissions',
+    items: [
+      { labelKey: 'nav.applyOnline', path: '/apply', icon: 'contact' },
+      { labelKey: 'nav.applyTrack', path: '/apply/track', icon: 'guides' },
+      { labelKey: 'nav.madrasa', path: '/madrasa', icon: 'mosque' },
+      { labelKey: 'nav.guides', path: '/guides', icon: 'guides' },
+      { labelKey: 'nav.apps', path: '/apps', icon: 'apps' },
+      { labelKey: 'header.signIn', path: '/portals', icon: 'privacy' },
+    ],
+  },
+  {
+    labelKey: 'footer.worshipLearn',
+    items: [
+      { labelKey: 'nav.namazTimes', path: '/namaz', icon: 'mosque' },
+      { labelKey: 'nav.quranMajeed', path: '/quran', icon: 'quran' },
+      { labelKey: 'nav.zakat', path: '/zakat', icon: 'zakat' },
+      { labelKey: 'nav.seedhaRastah', path: '/seedha-rastah', icon: 'seedha' },
+      { labelKey: 'nav.quiz', externalHref: ORGANIZATION.quizUrl, icon: 'quiz' },
+      { labelKey: 'nav.assistant', path: '/assistant', icon: 'assistant' },
+    ],
+  },
+  {
+    labelKey: 'contact.eyebrow',
+    items: [
+      { labelKey: 'nav.donate', path: '/donate', icon: 'donate' },
+      { labelKey: 'nav.membership', path: '/membership', icon: 'about' },
+      { labelKey: 'nav.events', path: '/events', icon: 'events' },
+      { labelKey: 'nav.ourWork', path: '/work', icon: 'work' },
+      { labelKey: 'nav.aboutUs', path: '/about', icon: 'about' },
+      { labelKey: 'nav.contact', path: '/contact', icon: 'contact' },
+    ],
+  },
+];

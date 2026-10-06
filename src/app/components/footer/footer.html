@@ -122,8 +122,8 @@
       </div>
 
       <!-- Site sections, same grouping as the header menus -->
-      <nav class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-5" [attr.aria-label]="i18n.t('footer.explore')">
-        @for (group of groups(); track group.id) {
+      <nav class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:col-span-8 lg:gap-x-10" [attr.aria-label]="i18n.t('footer.explore')">
+        @for (group of columns; track group.labelKey) {
           <div [attr.dir]="i18n.isUr() ? 'rtl' : null">
             <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
               {{ i18n.t(group.labelKey) }}
