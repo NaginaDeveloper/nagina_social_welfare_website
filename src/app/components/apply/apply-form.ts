@@ -172,6 +172,14 @@ export class ApplyForm implements OnInit {
   protected readonly terms = computed(() =>
     TERMS.map((t) => (t === FEE_TERM ? campusFeeTerm(this.selectedCampus()) : t)),
   );
+  /** One WhatsApp link per Madrasa so parents can pick the centre they mean. */
+  protected campusWhatsapp(campus: Campus): string {
+    return campusWhatsappHref(
+      campus,
+      `Assalamu alaikum, I have a question about enrolment at ${campus.displayName}.`,
+    );
+  }
+
   protected readonly whatsappAsk = computed(() => {
     const campus = this.selectedCampus();
     return campus

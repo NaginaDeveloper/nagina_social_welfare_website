@@ -66,9 +66,17 @@
           <div class="rounded-2xl border border-mist bg-white p-6 shadow-soft">
             <p class="eyebrow">{{ i18n.t('apply.helpTitle') }}</p>
             <ul class="mt-4 space-y-2.5 text-sm">
-              <li>
-                <a [href]="whatsappAsk()" target="_blank" rel="noopener noreferrer" class="font-medium text-forest hover:text-gold-700">WhatsApp</a>
-              </li>
+              @for (campus of campusService.campuses(); track campus.id) {
+                <li>
+                  <a [href]="campusWhatsapp(campus)" target="_blank" rel="noopener noreferrer" class="font-medium text-forest hover:text-gold-700" [attr.data-campus]="campus.id">
+                    WhatsApp · {{ campusTown(campus) }}
+                  </a>
+                </li>
+              } @empty {
+                <li>
+                  <a [href]="whatsappAsk()" target="_blank" rel="noopener noreferrer" class="font-medium text-forest hover:text-gold-700">WhatsApp</a>
+                </li>
+              }
               <li>
                 <a [href]="'mailto:' + org.email" class="font-medium text-forest hover:text-gold-700">{{ org.email }}</a>
               </li>
@@ -719,8 +727,13 @@
 
         <p class="mt-6 text-center text-sm text-slate-warm lg:hidden" [attr.dir]="i18n.isUr() ? 'rtl' : null">
           {{ i18n.t('apply.help') }}
-          <a [href]="whatsappAsk()" target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-700 hover:underline">WhatsApp</a>
-          ·
+          @for (campus of campusService.campuses(); track campus.id) {
+            <a [href]="campusWhatsapp(campus)" target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-700 hover:underline">WhatsApp · {{ campusTown(campus) }}</a>
+            ·
+          } @empty {
+            <a [href]="whatsappAsk()" target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-700 hover:underline">WhatsApp</a>
+            ·
+          }
           <a [href]="'mailto:' + org.email" class="font-semibold text-gold-700 hover:underline">{{ org.email }}</a>
           ·
           <a routerLink="/apply/track" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('applyTrack.title') }}</a>
