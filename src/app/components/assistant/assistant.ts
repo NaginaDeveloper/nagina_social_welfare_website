@@ -111,7 +111,6 @@ export class Assistant {
     'What is the Finality of Prophethood?',
     'How do I calculate zakat?',
     'How can I donate?',
-    'What is the Death Committee?',
     'Namaz times for each Madrasa',
     'Which books are available?',
     'اہلِ بیت کے بارے میں بتائیں',

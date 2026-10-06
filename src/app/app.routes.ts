@@ -22,7 +22,6 @@ import {
   NAMAZ_SEO,
   PETERBOROUGH_SEO,
   MANCHESTER_SEO,
-  DEATH_COMMITTEE_SEO,
   CENTRE_SEO,
   PRIVACY_SEO,
   QURAN_SEO,
@@ -77,13 +76,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/centre/centre-page').then((m) => m.CentrePage),
     title: MANCHESTER_SEO.title,
     data: { seo: MANCHESTER_SEO, campusId: 'manchester', breadcrumb: 'Manchester' },
-  },
-  {
-    path: 'death-committee',
-    loadComponent: () =>
-      import('./pages/death-committee/death-committee-page').then((m) => m.DeathCommitteePage),
-    title: DEATH_COMMITTEE_SEO.title,
-    data: { seo: DEATH_COMMITTEE_SEO },
   },
   {
     path: 'centre/:campusId',

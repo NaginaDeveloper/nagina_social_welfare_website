@@ -19,10 +19,6 @@
         </p>
       </div>
 
-      @if (hasDeathCommittee()) {
-        <app-death-committee-callout class="mx-auto mt-10 block max-w-4xl" copy="centre" />
-      }
-
       <div
         class="mx-auto mt-12 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10"
         [attr.dir]="i18n.isUr() ? 'rtl' : null"
@@ -67,14 +63,6 @@
           <li class="rounded-xl border border-mist bg-white/90 px-4 py-3 shadow-soft">{{ text('centre.service2') }}</li>
           <li class="rounded-xl border border-mist bg-white/90 px-4 py-3 shadow-soft">{{ text('centre.service3') }}</li>
           <li class="rounded-xl border border-mist bg-white/90 px-4 py-3 shadow-soft">{{ text('centre.service4') }}</li>
-          @if (hasDeathCommittee()) {
-            <li class="rounded-xl border border-gold/45 bg-gold/10 px-4 py-3 shadow-soft">
-              <a [routerLink]="deathCommitteePath" class="font-semibold text-forest underline decoration-gold/40 underline-offset-2 hover:text-gold-700">
-                {{ i18n.t('centre.dcTitle') }}
-              </a>
-              · {{ text('centre.dcBody') }}
-            </li>
-          }
         </ul>
       </div>
 

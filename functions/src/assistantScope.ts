@@ -7,7 +7,7 @@ import {
 export type QuestionScope = 'islamic' | 'site_help' | 'personal_fatwa' | 'off_topic';
 
 const SITE_HELP =
-  /\b(donate|donation|contact|namaz|prayer|qibla|books?|library|sermon|event|app|assistant|portal|login|member|sumup|paypal|natwest|payit|email|phone|address|privacy|website|site|apply|admission|madrasa|enrol|enroll|about|zakat|calculator|nisab|death committee|funeral|janaz[ae]h?|centre|center|branch|peterborough|manchester|partington)\b/i;
+  /\b(donate|donation|contact|namaz|prayer|qibla|books?|library|sermon|event|app|assistant|portal|login|member|sumup|paypal|natwest|payit|email|phone|address|privacy|website|site|apply|admission|madrasa|enrol|enroll|about|zakat|calculator|nisab|funeral|janaz[ae]h?|centre|center|branch|peterborough|manchester|partington)\b/i;
 const SITE_HELP_UR =
   /رابط|عط|عطی|نماز|قبل|کتاب|لائب|بیان|ایونٹ|ایپ|مدد|رابطہ|پتہ|فون|ای میل|ویب|سائٹ|عطیہ|داخلہ|درخواست|مدرسہ|فارم|تعارف|ڈیتھ کمیٹی|جنازہ|جنازے|کفن|مانچسٹر|پیٹربرو/;
 
