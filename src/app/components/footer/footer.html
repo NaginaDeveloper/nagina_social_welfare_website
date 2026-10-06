@@ -1,101 +1,73 @@
 <footer class="relative overflow-hidden bg-forest-800 text-cream">
   <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
-  <div class="relative site-wrap py-12 sm:py-14">
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-      <!-- Brand -->
-      <div>
-        <div class="flex items-center gap-3">
-          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/40">
-            <img
-              src="/brand/nagina.png"
-              alt="Nagina Social Welfare UK logo"
-              class="h-full w-full object-contain"
-              width="44"
-              height="44"
-              loading="lazy"
-            />
-          </span>
-          <span class="font-display text-lg font-bold tracking-wide leading-tight text-white sm:text-xl">
-            Nagina Social Welfare
-          </span>
+  <div class="relative site-wrap py-14 sm:py-16">
+    <!-- Band 1: who we are + the two actions -->
+    <div class="flex flex-col gap-6 border-b border-white/10 pb-10 lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex items-start gap-4">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/40">
+          <img
+            src="/brand/nagina.png"
+            alt="Nagina Social Welfare UK logo"
+            class="h-full w-full object-contain"
+            width="48"
+            height="48"
+            loading="lazy"
+          />
+        </span>
+        <div>
+          <p class="font-display text-xl font-bold tracking-wide text-white">Nagina Social Welfare</p>
+          <p class="mt-1 max-w-xl text-sm leading-relaxed text-sand/75" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+            {{ tagline() }}
+          </p>
         </div>
-        <p class="mt-4 max-w-sm text-sm leading-relaxed text-sand/80" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-          {{ tagline() }}
-        </p>
-        <div class="mt-5 flex flex-wrap gap-2.5">
-          <a
-            routerLink="/donate"
-            class="inline-flex min-h-10 items-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 py-2 text-sm font-semibold text-forest shadow-soft transition-all hover:brightness-105"
-          >
-            {{ i18n.t('footer.donate') }}
-          </a>
-          <a
-            routerLink="/membership"
-            class="inline-flex min-h-10 items-center rounded-full border border-gold/45 px-4 py-2 text-sm font-semibold text-gold-300 transition-colors hover:border-gold/65 hover:bg-white/5"
-          >
-            {{ i18n.t('footer.membership') }}
-          </a>
-          <a
-            routerLink="/membership/login"
-            class="inline-flex min-h-10 items-center rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-sm font-semibold text-gold-300 transition-colors hover:border-gold/65 hover:bg-gold/15"
-          >
-            {{ i18n.t('footer.memberLogin') }}
-          </a>
-          <a
-            [href]="whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow-soft transition-all hover:brightness-110"
-          >
-            <app-whatsapp-icon class="h-4 w-4" [inverse]="true" />
-            {{ i18n.t('footer.whatsapp') }}
-          </a>
-        </div>
-        <a
-          routerLink="/portals"
-          class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-gold-300 transition-colors hover:text-gold"
-        >
-          {{ i18n.t('footer.portal') }}
-          <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-          </svg>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:shrink-0">
+        <a routerLink="/donate" class="btn btn-primary">
+          {{ i18n.t('footer.donate') }}
+        </a>
+        <a [href]="whatsapp" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <app-whatsapp-icon class="h-4 w-4" />
+          {{ i18n.t('footer.whatsapp') }}
         </a>
       </div>
+    </div>
 
-      <!-- Explore -->
-      <nav [attr.aria-label]="i18n.t('footer.explore')">
-        <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
-          {{ i18n.t('footer.explore') }}
-        </h3>
-        <ul class="mt-3 columns-2 gap-x-6 space-y-2">
-          @for (link of exploreLinks; track link.labelKey) {
-            <li>
-              @if (link.externalHref) {
-                <a
-                  [href]="link.externalHref"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-sm text-cream/65 transition-colors hover:text-gold-300"
-                >
-                  {{ i18n.t(link.labelKey) }}
-                </a>
-              } @else {
-                <a [routerLink]="link.path" class="text-sm text-cream/65 transition-colors hover:text-gold-300">
-                  {{ i18n.t(link.labelKey) }}
-                </a>
-              }
-            </li>
-          }
-        </ul>
-      </nav>
+    <!-- Band 2: four equal columns -->
+    <div class="grid grid-cols-2 gap-x-8 gap-y-10 pt-10 sm:grid-cols-4">
+      @for (group of columns; track group.labelKey) {
+        <nav [attr.aria-label]="i18n.t(group.labelKey)" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+          <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
+            {{ i18n.t(group.labelKey) }}
+          </h3>
+          <ul class="mt-4 space-y-2.5">
+            @for (item of group.items; track item.path ?? item.externalHref) {
+              <li>
+                @if (item.externalHref) {
+                  <a
+                    [href]="item.externalHref"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-cream/70 transition-colors hover:text-gold-300"
+                  >
+                    {{ linkLabel(item) }}
+                  </a>
+                } @else {
+                  <a [routerLink]="item.path" class="text-sm text-cream/70 transition-colors hover:text-gold-300">
+                    {{ linkLabel(item) }}
+                  </a>
+                }
+              </li>
+            }
+          </ul>
+        </nav>
+      }
 
-      <!-- Contact -->
-      <div>
+      <div [attr.dir]="i18n.isUr() ? 'rtl' : null">
         <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
           {{ i18n.t('footer.contact') }}
         </h3>
-        <ul class="mt-3 space-y-2.5 text-sm text-cream/65">
+        <ul class="mt-4 space-y-2.5 text-sm text-cream/70">
           <li>
             <a [href]="'mailto:' + org.email" class="break-words transition-colors hover:text-gold-300">
               {{ org.email }}
@@ -108,90 +80,32 @@
               </a>
             </li>
           }
-          <li class="leading-relaxed text-cream/50">
-            <span class="block text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-cream/45">{{ i18n.t('footer.headOffice') }}</span>
-            {{ org.streetAddress }}<br />
-            {{ org.addressLocality }} {{ org.postalCode }}
+          <li class="leading-relaxed">
+            {{ org.streetAddress }}, {{ org.addressLocality }} {{ org.postalCode }}
+          </li>
+          @for (campus of campusService.campuses(); track campus.id) {
+            <li [attr.data-campus]="campus.id" class="leading-relaxed">
+              <a [routerLink]="centrePath(campus.id)" class="transition-colors hover:text-gold-300">
+                {{ town(campus) }}
+              </a>
+              <span class="text-cream/40">·</span>
+              <a [href]="'tel:' + campus.phoneE164" class="tabular-nums transition-colors hover:text-gold-300">
+                {{ campus.phoneDisplay }}
+              </a>
+            </li>
+          }
+          <li>
+            <a routerLink="/contact" class="font-medium text-gold-300 transition-colors hover:text-gold-200">
+              {{ i18n.t('footer.map') }}
+            </a>
           </li>
         </ul>
-        @if (campusService.campuses().length > 0) {
-          <h3 class="mt-5 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
-            {{ i18n.t('footer.madrasas') }}
-          </h3>
-          <ul class="mt-3 space-y-2 text-sm text-cream/65">
-            @for (campus of campusService.campuses(); track campus.id) {
-              <li [attr.data-campus]="campus.id">
-                <a [routerLink]="centrePath(campus.id)" class="transition-colors hover:text-gold-300">
-                  {{ campus.displayName }} · {{ town(campus) }}
-                </a>
-                <a [href]="'tel:' + campus.phoneE164" class="block text-xs text-cream/50 transition-colors hover:text-gold-300">
-                  {{ campus.phoneDisplay }}
-                </a>
-              </li>
-            }
-          </ul>
-        }
-        <a
-          routerLink="/contact"
-          class="mt-4 inline-flex min-h-10 items-center rounded-full border border-gold/35 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-gold-300 transition-colors hover:border-gold/55 hover:bg-white/5"
-        >
-          {{ i18n.t('footer.map') }}
-        </a>
-        <div class="mt-5 flex items-center gap-2.5">
-          <a
-            [href]="org.facebookUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
-            aria-label="Nagina Social Welfare on Facebook (opens in a new tab)"
-          >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v1.9H8v3h2.6V22H14v-8.5h2.5l.4-3H14Z" />
-            </svg>
-          </a>
-          <a
-            [href]="org.instagramUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
-            aria-label="Nagina Social Welfare on Instagram (opens in a new tab)"
-          >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.25-3.75a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z" />
-            </svg>
-          </a>
-          <a
-            [href]="org.youtubeUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
-            aria-label="Nagina Social Welfare on YouTube (opens in a new tab)"
-          >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.8 15.5v-7l6.3 3.5-6.3 3.5Z" />
-            </svg>
-          </a>
-          <a
-            [href]="org.tiktokUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
-            aria-label="Nagina Social Welfare on TikTok (opens in a new tab)"
-          >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"
-              />
-            </svg>
-          </a>
-        </div>
       </div>
     </div>
 
-    <div
-      class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-5 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between"
-    >
-      <div class="space-y-1.5">
+    <!-- Band 3: legal, socials, counter -->
+    <div class="mt-12 flex flex-col gap-6 border-t border-white/10 pt-8 lg:flex-row lg:items-start lg:justify-between">
+      <div class="space-y-1.5 text-xs leading-relaxed text-cream/45">
         <p>&copy; {{ year }} {{ org.legalName }}. {{ i18n.t('footer.copyright') }}</p>
         <p>
           {{ i18n.t('footer.registered') }} ·
@@ -215,15 +129,61 @@
             {{ org.companyNumber }}
           </a>
         </p>
-        <p>{{ org.addressFull }}</p>
-        <p>{{ i18n.t('footer.giftAid') }}</p>
-        <p>{{ i18n.t('footer.gdprNote') }}</p>
+        <p>{{ i18n.t('footer.giftAid') }} {{ i18n.t('footer.gdprNote') }}</p>
       </div>
-      <div class="flex flex-col items-start gap-3 sm:items-end">
-        <app-visitor-stats variant="compact" [heartbeat]="true" />
-        <div class="flex flex-wrap gap-x-4 gap-y-1">
+      <div class="flex flex-col gap-4 lg:items-end">
+        <div class="flex items-center gap-2.5">
+        <a
+          [href]="org.facebookUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
+          aria-label="Nagina Social Welfare on Facebook (opens in a new tab)"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v1.9H8v3h2.6V22H14v-8.5h2.5l.4-3H14Z" />
+          </svg>
+        </a>
+        <a
+          [href]="org.instagramUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
+          aria-label="Nagina Social Welfare on Instagram (opens in a new tab)"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.25-3.75a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z" />
+          </svg>
+        </a>
+        <a
+          [href]="org.youtubeUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
+          aria-label="Nagina Social Welfare on YouTube (opens in a new tab)"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.8 15.5v-7l6.3 3.5-6.3 3.5Z" />
+          </svg>
+        </a>
+        <a
+          [href]="org.tiktokUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-cream/70 transition-colors hover:border-gold/40 hover:text-gold-300"
+          aria-label="Nagina Social Welfare on TikTok (opens in a new tab)"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"
+            />
+          </svg>
+        </a>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-cream/45">
           <a routerLink="/privacy" class="transition-colors hover:text-gold-300">{{ i18n.t('footer.privacy') }}</a>
           <a routerLink="/safeguarding" class="transition-colors hover:text-gold-300">{{ i18n.t('footer.safeguarding') }}</a>
+          <app-visitor-stats variant="compact" [heartbeat]="true" />
         </div>
       </div>
     </div>

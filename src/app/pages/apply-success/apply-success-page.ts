@@ -16,13 +16,13 @@ import { ApplicationStatusPanel } from '../../components/apply/application-statu
           [attr.dir]="i18n.isUr() ? 'rtl' : null"
         >
           <div class="text-center">
-            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+            <p class="eyebrow">
               {{ i18n.t('applySuccess.eyebrow') }}
             </p>
-            <h1 class="mt-4 font-display text-3xl font-bold text-forest sm:text-4xl">
+            <h1 class="page-title mt-4">
               {{ i18n.t('applySuccess.title') }}
             </h1>
-            <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+            <p class="page-lead">
               {{ i18n.t('applySuccess.lead') }}
             </p>
           </div>

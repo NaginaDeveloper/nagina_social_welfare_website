@@ -1,106 +1,80 @@
-<section class="relative overflow-hidden bg-cream pb-4 pt-10 sm:pt-14">
-  <div class="geo-pattern absolute inset-0 opacity-15" aria-hidden="true"></div>
+<section class="relative isolate overflow-hidden bg-forest text-cream">
+  <div class="absolute inset-0 -z-20 bg-gradient-to-br from-forest via-emerald to-forest-800" aria-hidden="true"></div>
+  <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-50" aria-hidden="true"></div>
 
-  <div class="relative mx-auto max-w-xl px-5 sm:px-8">
-    <header
-      class="text-center"
+  <div class="site-wrap grid gap-10 py-12 sm:py-16 lg:grid-cols-12 lg:items-center lg:gap-14">
+    <div
+      class="lg:col-span-7"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
-      <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
-        {{ i18n.t('apply.intake.eyebrow') }}
-      </p>
-      <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">
-        {{ i18n.t('apply.intake.title') }}
-      </h1>
-      <p class="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-gold-700">
-        {{ i18n.t('apply.intake.subtitle') }}
-      </p>
-      <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-warm sm:text-base">
-        {{ i18n.t('apply.intake.lead') }}
-      </p>
-    </header>
+      <p class="eyebrow-on-dark">{{ i18n.t('apply.intake.subtitle') }}</p>
+      <h1 class="page-title-on-dark mt-3">{{ i18n.t('apply.intake.title') }}</h1>
+      <p class="page-lead-on-dark">{{ i18n.t('apply.intake.lead') }}</p>
 
-    <figure class="mt-8">
-      <a
-        [href]="posterHref"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="block overflow-hidden rounded-[1.25rem] border border-gold/30 bg-forest shadow-soft"
-      >
-        <img
-          [src]="posterHref"
-          width="892"
-          height="1024"
-          class="mx-auto h-auto w-full max-w-full"
-          alt="Markaz-e Deen-e Islam admission open 2026"
-        />
-      </a>
-      <figcaption
-        class="mt-3 text-center text-sm text-slate-warm"
-        [attr.dir]="i18n.isUr() ? 'rtl' : null"
-      >
-        {{ posterHint() }}
-      </figcaption>
-    </figure>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <a href="/apply#apply-form" class="btn btn-lg btn-primary shadow-portal" (click)="scrollToForm($event)">
+          {{ i18n.t('apply.start') }}
+        </a>
+        <a routerLink="/apply/track" class="btn btn-lg btn-secondary">
+          {{ i18n.t('applyTrack.title') }}
+        </a>
+      </div>
 
-    @if (timetableCampus(); as campus) {
-      <p
-        class="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-gold-700"
-        [attr.dir]="i18n.isUr() ? 'rtl' : null"
-      >
-        {{ i18n.t('madrasa.timetableFor') }} {{ campus.displayName }}
+      <p class="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-cream/70">
+        <a
+          [href]="posterHref"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-gold-300 underline-offset-4 transition-colors hover:text-white hover:underline"
+        >
+          {{ i18n.t('apply.viewPoster') }}
+        </a>
+        <span class="text-cream/40" aria-hidden="true">·</span>
+        <span>{{ i18n.t('apply.needTime') }}</span>
+        <span class="text-cream/40" aria-hidden="true">·</span>
+        <span>{{ i18n.t('apply.trustEmail') }}</span>
       </p>
-    }
-    <ul
-      class="mt-3 grid gap-3"
-      [attr.dir]="i18n.isUr() ? 'rtl' : null"
-    >
-      @for (session of sessions; track session.id) {
-        <li class="flex items-start justify-between gap-3 rounded-2xl border border-mist bg-white px-4 py-3.5 shadow-soft sm:px-5">
-          <div>
-            <p class="font-display text-base font-bold text-forest">{{ sessionTitle(session.id) }}</p>
-            <p class="mt-0.5 text-sm text-slate-warm">{{ sessionTime(session.id) }} · {{ i18n.t('apply.intake.daily') }}</p>
-          </div>
-          <p class="shrink-0 rounded-full bg-sand px-3 py-1 text-xs font-semibold text-forest">
-            {{ sessionAges(session.id) }}
-          </p>
-        </li>
-      }
-    </ul>
+    </div>
 
-    @if (campusService.campuses().length > 0) {
-      <div class="mt-5" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold-700">{{ i18n.t('apply.campusesLabel') }}</p>
-        <ul class="mt-2 space-y-2 text-sm text-slate-warm">
-          @for (campus of campusService.campuses(); track campus.id) {
-            <li>
-              <span class="font-semibold text-forest">{{ campus.displayName }}</span>
-              · {{ campus.addressLine }} ·
-              <a [href]="'tel:' + campus.phoneE164" class="font-semibold text-gold-700 hover:underline">{{ campus.phoneDisplay }}</a>
+    <!-- At a glance: classes and where -->
+    <aside class="lg:col-span-5" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <div class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-portal backdrop-blur-sm sm:p-7">
+        <p class="eyebrow-on-dark">
+          {{ i18n.t('apply.intake.classesHeading') }}
+          @if (timetableCampus(); as campus) {
+            <span class="normal-case tracking-normal text-cream/60"> · {{ campus.displayName }}</span>
+          }
+        </p>
+        <ul class="mt-3 divide-y divide-white/10">
+          @for (session of sessions; track session.id) {
+            <li class="flex items-center justify-between gap-4 py-3">
+              <div>
+                <p class="font-display text-lg font-bold text-white">{{ sessionTitle(session.id) }}</p>
+                <p class="text-sm text-cream/70">{{ sessionTime(session.id) }} · {{ i18n.t('apply.intake.daily') }}</p>
+              </div>
+              <span class="shrink-0 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold text-gold-300">
+                {{ sessionAges(session.id) }}
+              </span>
             </li>
           }
         </ul>
-      </div>
-    }
 
-    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-      <a
-        href="/apply#apply-form"
-        class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-7 text-sm font-semibold text-cream shadow-soft sm:w-auto"
-        (click)="scrollToForm($event)"
-      >
-        {{ i18n.t('apply.intake.register') }}
-      </a>
-      <a
-        [href]="posterHref"
-        target="_blank"
-        rel="noopener noreferrer"
-        download="madrasa-admission-2026.jpg"
-        class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-gold/40 bg-white px-7 text-sm font-semibold text-forest sm:w-auto"
-      >
-        {{ i18n.t('apply.intake.poster') }}
-      </a>
-    </div>
+        @if (campusService.campuses().length > 0) {
+          <p class="eyebrow-on-dark mt-6">{{ i18n.t('apply.campusesLabel') }}</p>
+          <ul class="mt-3 space-y-2.5 text-sm text-cream/80">
+            @for (campus of campusService.campuses(); track campus.id) {
+              <li class="leading-relaxed">
+                <span class="font-semibold text-white">{{ campus.displayName }}</span>
+                <span class="text-cream/60"> · {{ campus.addressLine }}</span>
+                <a [href]="'tel:' + campus.phoneE164" class="block text-gold-300 tabular-nums hover:text-white sm:inline sm:ps-1">
+                  {{ campus.phoneDisplay }}
+                </a>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    </aside>
   </div>
 </section>

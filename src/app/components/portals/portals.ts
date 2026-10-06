@@ -1,10 +1,11 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { ORGANIZATION, portalLoginUrl, whatsappHref, type PortalRole } from '../../config/organization.config';
 
 interface PortalCard {
-  readonly role: PortalRole;
+  readonly role: PortalRole | 'member';
   readonly title: string;
   readonly titleUr: string;
   readonly who: string;
@@ -13,13 +14,16 @@ interface PortalCard {
   readonly descriptionUr: string;
   readonly cta: string;
   readonly ctaUr: string;
-  readonly url: string;
+  /** Admin-portal login page (full URL). */
+  readonly url?: string;
+  /** Route on this site, for sign-ins that live here. */
+  readonly path?: string;
 }
 
 /** Where each kind of user signs in. One card per login page of the admin portal. */
 @Component({
   selector: 'app-portals',
-  imports: [RouterLink],
+  imports: [RouterLink, NgTemplateOutlet],
   templateUrl: './portals.html',
 })
 export class Portals {
@@ -99,6 +103,20 @@ export class Portals {
       cta: 'Admin sign in',
       ctaUr: 'ایڈمن سائن اِن',
       url: portalLoginUrl('admin'),
+    },
+    {
+      role: 'member',
+      title: 'Community member',
+      titleUr: 'کمیونٹی ممبر',
+      who: 'For charity members',
+      whoUr: 'فلاحی ممبران کے لیے',
+      description:
+        'See your donations and Gift Aid record, book events, update your details and manage newsletters.',
+      descriptionUr:
+        'اپنے عطیات اور گفٹ ایڈ ریکارڈ دیکھیں، تقریبات بک کریں، تفصیلات اپ ڈیٹ کریں اور نیوز لیٹر کا انتظام کریں۔',
+      cta: 'Member sign in',
+      ctaUr: 'ممبر سائن اِن',
+      path: '/membership/login',
     },
   ];
 }

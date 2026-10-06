@@ -9,13 +9,13 @@ import { PageShell } from '../page-shell';
     <app-page-shell title="Thank you">
       <section class="bg-cream py-16 sm:py-24">
         <div class="mx-auto max-w-2xl px-5 text-center sm:px-8">
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+          <p class="eyebrow">
             Donation
           </p>
-          <h1 class="mt-4 font-display text-3xl font-bold text-forest sm:text-4xl">
+          <h1 class="page-title mt-4">
             Thank you for your generosity
           </h1>
-          <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+          <p class="page-lead">
             If you completed payment on SumUp’s secure page, your gift supports
             Islamic education and community welfare across the UK. A receipt may
             come from SumUp depending on the payment method used.

@@ -1,11 +1,11 @@
 <header
-  class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
-  [class.bg-forest/97]="scrolled() || menuOpen() || currentPath() !== '/' || !!latestEvent()"
-  [class.backdrop-blur-xl]="scrolled() || menuOpen() || currentPath() !== '/' || !!latestEvent()"
+  class="fixed inset-x-0 top-0 z-50 transition-colors duration-300"
+  [class.bg-forest/97]="solid()"
+  [class.backdrop-blur-xl]="solid()"
   [class.shadow-soft]="scrolled()"
-  [class.border-b]="scrolled() || menuOpen() || currentPath() !== '/' || !!latestEvent()"
-  [class.border-gold/10]="scrolled() || menuOpen() || currentPath() !== '/' || !!latestEvent()"
-  [class.bg-transparent]="!scrolled() && !menuOpen() && currentPath() === '/' && !latestEvent()"
+  [class.border-b]="solid()"
+  [class.border-gold/10]="solid()"
+  [class.bg-transparent]="!solid()"
   (click)="closeGroups()"
 >
   @if (latestEvent(); as event) {
@@ -37,72 +37,56 @@
     </a>
   }
 
-  <div
-    class="site-wrap flex items-center justify-between gap-2 transition-all duration-300 sm:gap-5"
-    [class.py-2.5]="scrolled()"
-    [class.py-3.5]="!scrolled()"
-  >
+  <!-- Fixed-height bar: nothing resizes on scroll, only the background changes. -->
+  <div class="site-wrap flex h-[4.25rem] items-center justify-between gap-4">
     <!-- Brand -->
     <a
       routerLink="/"
-      class="group flex shrink-0 items-center gap-2.5 sm:gap-3"
+      class="group flex min-w-0 shrink-0 items-center gap-3"
       aria-label="Nagina Social Welfare home"
       (click)="onNavClick()"
     >
       <span
-        class="flex shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/35 transition-all duration-300 group-hover:ring-gold/60"
-        [class.h-10]="scrolled()"
-        [class.w-10]="scrolled()"
-        [class.h-11]="!scrolled()"
-        [class.w-11]="!scrolled()"
+        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/35 transition-colors group-hover:ring-gold/60"
       >
         <img
           src="/brand/nagina.png"
           alt="Nagina Social Welfare UK logo"
           class="h-full w-full object-contain"
-          width="44"
-          height="44"
+          width="40"
+          height="40"
         />
       </span>
-      <!-- Wordmark: desktop only — mobile keeps the icon so Quiz/Halal/Donate stay readable -->
-      <span class="hidden min-w-0 flex-col leading-tight xl:flex">
-        <span
-          class="font-display font-bold tracking-wide text-white transition-all duration-300"
-          [class.text-base]="scrolled()"
-          [class.text-lg]="!scrolled()"
-          [class.sm:text-lg]="scrolled()"
-          [class.sm:text-xl]="!scrolled()"
-        >
-          Nagina Social Welfare
-        </span>
+      <span class="hidden min-w-0 flex-col leading-tight sm:flex">
+        <span class="font-display text-lg font-bold tracking-wide text-white">Nagina Social Welfare</span>
         <span class="text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90">
           Education &amp; Welfare &middot; UK
         </span>
       </span>
     </a>
 
-    <!-- Desktop: grouped menus -->
-    <nav class="hidden min-w-0 items-center gap-1 xl:flex 2xl:gap-1.5" aria-label="Primary" (click)="$event.stopPropagation()">
-      <ul class="flex items-center gap-0.5">
-        @for (group of groups(); track group.id) {
-          <li class="relative">
+    <!-- Desktop: grouped menus + two actions -->
+    <nav class="hidden min-w-0 items-center gap-2 xl:flex" aria-label="Primary" (click)="$event.stopPropagation()">
+      <ul class="flex items-center">
+        @for (group of groups(); track group.id; let gi = $index) {
+          <li
+            class="relative"
+            (pointerenter)="onGroupPointerEnter(group.id, $event)"
+            (pointerleave)="onGroupPointerLeave($event)"
+          >
             <button
               type="button"
-              class="inline-flex items-center gap-1.5 rounded-lg px-2 py-2 text-[0.8125rem] font-medium tracking-wide transition-colors duration-200 2xl:px-3"
-              [class.text-gold-300]="isGroupActive(group) || isGroupOpen(group.id)"
-              [class.text-cream/85]="!isGroupActive(group) && !isGroupOpen(group.id)"
-              [class.hover:text-cream]="!isGroupActive(group) && !isGroupOpen(group.id)"
-              [class.bg-white/5]="isGroupOpen(group.id)"
+              class="relative inline-flex h-[4.25rem] items-center gap-1.5 px-3 text-[0.8125rem] font-medium tracking-wide transition-colors duration-200 2xl:px-3.5"
+              [class.text-white]="isGroupActive(group) || isGroupOpen(group.id)"
+              [class.text-cream/80]="!isGroupActive(group) && !isGroupOpen(group.id)"
+              [class.hover:text-white]="!isGroupActive(group) && !isGroupOpen(group.id)"
               [attr.aria-expanded]="isGroupOpen(group.id)"
               [attr.aria-controls]="'nav-panel-' + group.id"
               (click)="toggleGroup(group.id, $event)"
             >
-              <span class="hidden 2xl:inline-flex">
-                <ng-container *ngTemplateOutlet="navIcon; context: { $implicit: group.icon, size: 'h-3.5 w-3.5' }" />
-              </span>
               {{ i18n.t(group.labelKey) }}
               <svg
-                class="h-3 w-3 opacity-70 transition-transform duration-200"
+                class="h-3 w-3 opacity-60 transition-transform duration-200"
                 [class.rotate-180]="isGroupOpen(group.id)"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -112,14 +96,20 @@
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
               </svg>
+              <!-- Gold underline marks the current section or the open menu -->
+              <span
+                class="absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-gold-300 transition-opacity duration-200"
+                [class.opacity-100]="isGroupActive(group) || isGroupOpen(group.id)"
+                [class.opacity-0]="!isGroupActive(group) && !isGroupOpen(group.id)"
+                aria-hidden="true"
+              ></span>
             </button>
 
             @if (isGroupOpen(group.id)) {
               <div
                 [id]="'nav-panel-' + group.id"
-                class="absolute top-full z-50 mt-2 max-h-[min(28rem,70vh)] overflow-y-auto rounded-xl border border-gold/20 bg-forest/98 py-1.5 shadow-portal backdrop-blur-xl"
-                [class.left-0]="group.id !== 'connect'"
-                [class.right-0]="group.id === 'connect'"
+                class="absolute top-full z-50 mt-1 max-h-[min(28rem,70vh)] overflow-y-auto rounded-2xl border border-mist bg-white py-2 text-forest shadow-portal"
+                [class]="panelAlign(gi)"
                 [style.width]="menuPanelWidth(group)"
                 role="menu"
                 [attr.aria-label]="i18n.t(group.labelKey)"
@@ -136,11 +126,11 @@
                       target="_blank"
                       rel="noopener noreferrer"
                       role="menuitem"
-                      class="flex items-start gap-3 px-3.5 py-2.5 text-cream/95 transition-colors hover:bg-white/5 hover:text-gold-300"
+                      class="flex items-start gap-3 px-4 py-2.5 text-forest transition-colors hover:bg-sand"
                       (click)="onNavClick()"
                     >
                       <span
-                        class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/8 text-gold-300"
+                        class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-forest/5 text-gold-600"
                         aria-hidden="true"
                       >
                         <ng-container
@@ -155,7 +145,7 @@
                           </svg>
                         </span>
                         @if (linkHint(item); as hint) {
-                          <span class="text-[0.7rem] leading-snug text-cream/70">{{ hint }}</span>
+                          <span class="text-[0.7rem] leading-snug text-slate-warm">{{ hint }}</span>
                         }
                       </span>
                     </a>
@@ -163,17 +153,14 @@
                     <a
                       [routerLink]="item.path"
                       role="menuitem"
-                      class="flex items-start gap-3 px-3.5 py-2.5 transition-colors"
-                      [class.bg-white/10]="isLinkActive(item)"
-                      [class.text-gold-300]="isLinkActive(item)"
-                      [class.text-cream/95]="!isLinkActive(item)"
-                      [class.hover:bg-white/5]="!isLinkActive(item)"
-                      [class.hover:text-gold-300]="!isLinkActive(item)"
+                      class="flex items-start gap-3 px-4 py-2.5 text-forest transition-colors"
+                      [class.bg-gold/10]="isLinkActive(item)"
+                      [class.hover:bg-sand]="!isLinkActive(item)"
                       [attr.aria-current]="isLinkActive(item) ? 'page' : null"
                       (click)="onNavClick()"
                     >
                       <span
-                        class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/8 text-gold-300"
+                        class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-forest/5 text-gold-600"
                         aria-hidden="true"
                       >
                         <ng-container
@@ -183,7 +170,7 @@
                       <span class="flex min-w-0 flex-col gap-0.5">
                         <span class="text-sm font-medium leading-snug">{{ linkLabel(item) }}</span>
                         @if (linkHint(item); as hint) {
-                          <span class="text-[0.7rem] leading-snug text-cream/70">{{ hint }}</span>
+                          <span class="text-[0.7rem] leading-snug text-slate-warm">{{ hint }}</span>
                         }
                       </span>
                     </a>
@@ -196,12 +183,12 @@
         }
       </ul>
 
-      <span class="mx-1.5 h-5 w-px bg-cream/15 2xl:mx-3" aria-hidden="true"></span>
+      <span class="mx-2 h-5 w-px bg-cream/15" aria-hidden="true"></span>
 
       @if (prayer.headerStatus(); as status) {
         <a
           routerLink="/namaz"
-          class="hidden h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/25 bg-white/5 px-3 transition-colors hover:border-gold/45 hover:bg-white/10 2xl:inline-flex"
+          class="hidden h-9 items-center gap-2 whitespace-nowrap rounded-full border border-gold/25 bg-white/5 px-3 transition-colors hover:border-gold/45 hover:bg-white/10 2xl:inline-flex"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining + ' (' + prayer.placeTown() + ')'
@@ -210,201 +197,61 @@
           (click)="onNavClick()"
         >
           @if (status.kind === 'current') {
-            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-emerald-500">
-              Now
-            </span>
+            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-emerald-500">Now</span>
             <span class="font-display text-sm font-bold text-cream">{{ status.name }}</span>
             <span class="text-[0.65rem] tabular-nums text-gold-300/90">{{ status.remaining }}</span>
           } @else {
-            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-gold-300">
-              Next
-            </span>
+            <span class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-gold-300">Next</span>
             <span class="font-display text-sm font-bold text-cream">{{ status.name }}</span>
             <span class="text-[0.65rem] tabular-nums text-cream/75">{{ status.remaining }}</span>
           }
         </a>
       }
 
-      <a
-        [href]="org.quizUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/40 bg-white/5 px-3.5 text-[0.78rem] font-semibold text-gold-300 transition-all duration-300 hover:border-gold/65 hover:bg-white/10 2xl:px-5"
-        [attr.aria-label]="i18n.t('hero.quizAria')"
-      >
-        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01M15 9h.01M9.5 13a3.5 3.5 0 0 0 5 0" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" />
-        </svg>
-        <span class="2xl:hidden">{{ i18n.t('header.quizShort') }}</span>
-        <span class="hidden 2xl:inline">{{ i18n.t('header.quiz') }}</span>
-      </a>
-
-      <a
-        [href]="org.halalCheckerUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/40 bg-white/5 px-3.5 text-[0.78rem] font-semibold text-gold-300 transition-all duration-300 hover:border-gold/65 hover:bg-white/10 2xl:px-5"
-        [attr.aria-label]="i18n.t('hero.halalCheckerAria')"
-      >
-        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" d="M4 7v10M7 7v10M9 7v10M12 7v10M14 7v10M17 7v10M20 7v10" />
-        </svg>
-        <span class="2xl:hidden">{{ i18n.t('header.halalCheckerShort') }}</span>
-        <span class="hidden 2xl:inline">{{ i18n.t('header.halalChecker') }}</span>
-      </a>
-
-      <a
-        routerLink="/donate"
-        class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-gold-300 to-gold px-3.5 text-[0.78rem] font-semibold text-forest shadow-soft transition-all duration-300 hover:brightness-105 2xl:px-5"
-        (click)="onNavClick()"
-      >
+      <a routerLink="/donate" class="btn btn-sm btn-primary" (click)="onNavClick()">
         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
         </svg>
-        <span class="2xl:hidden">{{ i18n.t('header.donateShort') }}</span>
-        <span class="hidden 2xl:inline">{{ i18n.t('header.donate') }}</span>
+        {{ i18n.t('header.donate') }}
       </a>
 
-      <div
-        class="flex h-10 items-center rounded-full border border-cream/25 p-0.5 text-[0.68rem] font-semibold"
-        [attr.aria-label]="i18n.t('header.langAria')"
-      >
-        <button
-          type="button"
-          class="rounded-full px-2.5 py-1.5 transition-colors"
-          [class.bg-white/15]="i18n.lang() === 'en'"
-          [class.text-gold-300]="i18n.lang() === 'en'"
-          [class.text-cream/70]="i18n.lang() !== 'en'"
-          [attr.aria-pressed]="i18n.lang() === 'en'"
-          (click)="i18n.setLang('en')"
-        >
-          {{ i18n.t('header.langEn') }}
-        </button>
-        <button
-          type="button"
-          class="rounded-full px-2.5 py-1.5 transition-colors"
-          [class.bg-white/15]="i18n.lang() === 'ur'"
-          [class.text-gold-300]="i18n.lang() === 'ur'"
-          [class.text-cream/70]="i18n.lang() !== 'ur'"
-          [attr.aria-pressed]="i18n.lang() === 'ur'"
-          (click)="i18n.setLang('ur')"
-        >
-          {{ i18n.t('header.langUr') }}
-        </button>
-      </div>
-
       @if (memberAuth.member()) {
-        <a
-          routerLink="/membership/home"
-          class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-semibold text-gold-300 transition-all duration-300 hover:border-gold/65 hover:bg-gold/15 2xl:px-4"
-          (click)="onNavClick()"
-        >
+        <a routerLink="/membership/home" class="btn btn-sm btn-ghost" (click)="onNavClick()">
           {{ i18n.t('header.myMembership') }}
         </a>
       } @else {
-        <a
-          routerLink="/membership/login"
-          class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-semibold text-gold-300 transition-all duration-300 hover:border-gold/65 hover:bg-gold/15 2xl:px-4"
-          (click)="onNavClick()"
-        >
-          {{ i18n.t('nav.memberLogin') }}
+        <a routerLink="/portals" class="btn btn-sm btn-ghost" (click)="onNavClick()">
+          <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.5" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 20a7 7 0 0 1 14 0" />
+          </svg>
+          {{ i18n.t('header.signIn') }}
         </a>
       }
-    </nav>
 
-    <!-- Tablet / mobile: Assistant + Donate + Sign in stay visible; Quiz/Halal from lg so the menu is not clipped -->
-    <div class="flex shrink-0 items-center gap-1 sm:gap-2 xl:hidden">
-      <a
-        [href]="org.quizUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hidden min-h-10 items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-white/5 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 lg:inline-flex min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
-        [attr.aria-label]="i18n.t('hero.quizAria')"
-      >
-        <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01M15 9h.01M9.5 13a3.5 3.5 0 0 0 5 0" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" />
-        </svg>
-        <span class="max-[360px]:sr-only">{{ i18n.t('header.quizShort') }}</span>
-      </a>
-      <a
-        [href]="org.halalCheckerUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hidden min-h-10 items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-white/5 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 lg:inline-flex min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
-        [attr.aria-label]="i18n.t('hero.halalCheckerAria')"
-      >
-        <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" d="M4 7v10M7 7v10M9 7v10M12 7v10M14 7v10M17 7v10M20 7v10" />
-        </svg>
-        <span class="max-[360px]:sr-only">{{ i18n.t('header.halalCheckerShort') }}</span>
-      </a>
       <button
         type="button"
-        class="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-white/5 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
-        [attr.aria-label]="i18n.t('header.assistant')"
-        (click)="openAssistant(); $event.stopPropagation()"
+        class="btn btn-sm border border-cream/25 text-cream/85 hover:border-gold/50 hover:text-white"
+        [attr.aria-label]="i18n.t('header.langAria')"
+        [attr.title]="i18n.t('header.langAria')"
+        (click)="toggleLang()"
       >
-        <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4l-4 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+        <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path stroke-linecap="round" d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" />
         </svg>
-        <span class="max-[360px]:sr-only">{{ i18n.t('header.assistantShort') }}</span>
+        <span [class.font-urdu]="i18n.lang() === 'en'" [attr.lang]="i18n.lang() === 'en' ? 'ur' : 'en'">{{ otherLangLabel() }}</span>
       </button>
-      <a
-        routerLink="/donate"
-        class="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-gold-300 to-gold px-2.5 py-2 text-[0.7rem] font-semibold text-forest shadow-soft min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
-        aria-label="Donate Now"
-        (click)="onNavClick()"
-      >
+    </nav>
+
+    <!-- Tablet / mobile: Donate + menu. Everything else lives in the panel. -->
+    <div class="flex shrink-0 items-center gap-2 xl:hidden">
+      <a routerLink="/donate" class="btn btn-sm btn-primary" aria-label="Donate Now" (click)="onNavClick()">
         <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
         </svg>
-        <span class="max-[360px]:sr-only">{{ i18n.t('header.donateShort') }}</span>
+        {{ i18n.t('header.donateShort') }}
       </a>
-      @if (memberAuth.member()) {
-        <a
-          routerLink="/membership/home"
-          class="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
-          (click)="onNavClick()"
-        >
-          {{ i18n.t('header.myMembershipShort') }}
-        </a>
-      } @else {
-        <a
-          routerLink="/membership/login"
-          class="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-2.5 py-2 text-[0.7rem] font-semibold text-gold-300 min-[400px]:px-3.5 min-[400px]:text-[0.75rem]"
-          (click)="onNavClick()"
-        >
-          {{ i18n.t('header.memberLoginShort') }}
-        </a>
-      }
-
-      @if (prayer.headerStatus(); as status) {
-        <a
-          routerLink="/namaz"
-          class="hidden min-h-10 max-w-[8.5rem] flex-col items-end justify-center rounded-full border border-gold/20 bg-white/5 px-3 py-1 text-right md:inline-flex"
-          [attr.aria-label]="
-            status.kind === 'current'
-              ? status.name + ' now, ends in ' + status.remaining + ' (' + prayer.placeTown() + ')'
-              : 'Next ' + status.name + ' in ' + status.remaining + ' (' + prayer.placeTown() + ')'
-          "
-          (click)="onNavClick()"
-        >
-          @if (status.kind === 'current') {
-            <span class="text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-emerald-500">
-              Now · {{ status.name }}
-            </span>
-            <span class="text-[0.62rem] tabular-nums text-gold-300">{{ status.remaining }}</span>
-          } @else {
-            <span class="text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-gold-300">
-              Next · {{ status.name }}
-            </span>
-            <span class="text-[0.62rem] tabular-nums text-cream/75">{{ status.remaining }}</span>
-          }
-        </a>
-      }
 
       <button
         type="button"
@@ -429,41 +276,41 @@
   <!-- Mobile / tablet: sectioned panel -->
   @if (menuOpen()) {
     <nav
-      class="mx-4 mb-4 max-h-[min(70vh,36rem)] overflow-y-auto rounded-2xl border border-gold/15 bg-forest/98 shadow-portal backdrop-blur-xl xl:hidden"
+      class="mx-4 mb-4 max-h-[min(72vh,38rem)] overflow-y-auto rounded-2xl border border-gold/15 bg-forest/98 shadow-portal backdrop-blur-xl xl:hidden"
       aria-label="Site sections"
       (click)="$event.stopPropagation()"
     >
-      <div class="border-b border-white/10 p-3">
-        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-        <a
-          routerLink="/donate"
-          (click)="onNavClick()"
-          class="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 py-3 text-sm font-semibold text-forest shadow-soft"
-        >
+      <div class="grid grid-cols-2 gap-2 border-b border-white/10 p-3">
+        <button type="button" class="btn btn-secondary" (click)="openAssistant(); $event.stopPropagation()">
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4l-4 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
           </svg>
-          {{ i18n.t('header.donate') }}
-        </a>
+          {{ i18n.t('header.assistant') }}
+        </button>
         @if (memberAuth.member()) {
-          <a
-            routerLink="/membership/home"
-            (click)="onNavClick()"
-            class="flex items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold-300"
-          >
+          <a routerLink="/membership/home" (click)="onNavClick()" class="btn btn-secondary">
             {{ i18n.t('header.myMembership') }}
           </a>
         } @else {
-          <a
-            routerLink="/membership/login"
-            (click)="onNavClick()"
-            class="flex items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold-300"
-          >
-            {{ i18n.t('nav.memberLogin') }}
+          <a routerLink="/portals" (click)="onNavClick()" class="btn btn-secondary">
+            {{ i18n.t('header.signIn') }}
           </a>
         }
-        </div>
       </div>
+
+      @if (prayer.headerStatus(); as status) {
+        <a
+          routerLink="/namaz"
+          class="mx-3 mt-3 flex items-center justify-between rounded-xl border border-gold/20 bg-white/5 px-4 py-2.5"
+          (click)="onNavClick()"
+        >
+          <span class="text-[0.65rem] font-semibold uppercase tracking-[0.16em]" [class.text-emerald-500]="status.kind === 'current'" [class.text-gold-300]="status.kind !== 'current'">
+            {{ status.kind === 'current' ? 'Now' : 'Next' }} · {{ status.name }}
+          </span>
+          <span class="text-xs tabular-nums text-cream/80">{{ status.remaining }} · {{ prayer.placeTown() }}</span>
+        </a>
+      }
 
       <div class="flex flex-col gap-1 p-3">
         @for (group of groups(); track group.id) {
@@ -547,7 +394,7 @@
 
       <div class="border-t border-white/10 p-3">
         <div
-          class="mb-3 flex items-center justify-center gap-1 rounded-full border border-cream/20 p-1 text-sm font-semibold"
+          class="flex items-center justify-center gap-1 rounded-full border border-cream/20 p-1 text-sm font-semibold"
           [attr.aria-label]="i18n.t('header.langAria')"
         >
           <button

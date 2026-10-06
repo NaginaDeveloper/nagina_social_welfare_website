@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ORGANIZATION } from '../../config/organization.config';
@@ -15,9 +15,6 @@ export class HeroTopActions {
   protected readonly i18n = inject(LanguageService);
   private readonly launcher = inject(AssistantLauncherService);
   private readonly router = inject(Router);
-
-  /** When true, use home-hero full-width stacked layout. Otherwise compact page-shell strip. */
-  readonly variant = input<'hero' | 'compact'>('hero');
 
   protected readonly currentPath = signal('/');
 

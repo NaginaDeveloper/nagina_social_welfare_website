@@ -32,6 +32,7 @@ export class HomeHub implements OnInit {
   protected readonly prayer = inject(PrayerTimesService);
 
   protected readonly query = signal('');
+  protected readonly showAll = signal(false);
 
   protected readonly tiles: readonly HubTile[] = [
     {
@@ -92,12 +93,12 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'apply',
-      labelKey: 'nav.madrasa',
-      hintKey: 'nav.madrasaHint',
+      labelKey: 'nav.applyOnline',
+      hintKey: 'nav.applyOnlineHint',
       path: '/apply',
       tone: 'featured',
       groupKey: 'hub.group.about',
-      keywords: ['madrasa', 'apply', 'admission', 'enrol', 'class'],
+      keywords: ['madrasa', 'apply', 'admission', 'admissions', 'enrol', 'class'],
     },
     {
       id: 'quran',
@@ -244,22 +245,13 @@ export class HomeHub implements OnInit {
       keywords: ['membership', 'member', 'join', 'apply'],
     },
     {
-      id: 'portals',
-      labelKey: 'header.login',
-      hintKey: 'nav.staffPortalHint',
+      id: 'sign-in',
+      labelKey: 'header.signIn',
+      hintKey: 'nav.signInHint',
       path: '/portals',
-      tone: 'default',
-      groupKey: 'hub.group.connect',
-      keywords: ['login', 'sign in', 'portal', 'parent', 'student', 'teacher', 'collector', 'admin'],
-    },
-    {
-      id: 'member-login',
-      labelKey: 'nav.memberLogin',
-      hintKey: 'nav.memberLoginHint',
-      path: '/membership/login',
       tone: 'featured',
       groupKey: 'hub.group.connect',
-      keywords: ['login', 'sign in', 'signin', 'member', 'account', 'portal'],
+      keywords: ['login', 'sign in', 'signin', 'member', 'account', 'portal', 'parent', 'student', 'teacher', 'collector', 'admin'],
     },
     {
       id: 'work',
@@ -308,8 +300,29 @@ export class HomeHub implements OnInit {
     });
   });
 
+  /** Eight headline tiles by default; the full list behind "Show all" or any search. */
+  protected readonly visibleTiles = computed(() => {
+    if (this.query().trim() || this.showAll()) {
+      return this.filteredTiles();
+    }
+    return this.tiles.filter((tile) => tile.tone !== 'default');
+  });
+
+  protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
+
   ngOnInit(): void {
     void this.prayer.load();
+  }
+
+  protected showAllLabel(): string {
+    if (this.showAll()) {
+      return this.i18n.t('hub.showFewer');
+    }
+    return this.i18n.t('hub.showAll').replace('{n}', String(this.hiddenTileCount()));
+  }
+
+  protected toggleShowAll(): void {
+    this.showAll.update((v) => !v);
   }
 
   protected onSearch(value: string): void {

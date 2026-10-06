@@ -1,5 +1,5 @@
 <app-header />
-<main>
+<main class="pb-24 sm:pb-0">
   <router-outlet />
 </main>
 @if (showDonateInvite()) {
@@ -8,7 +8,7 @@
 <app-footer />
 @if (showFloatingWhatsapp() || showFloatingAssistant()) {
   <div
-    class="fixed bottom-4 right-4 z-[70] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6"
+    class="fixed bottom-4 right-4 z-[70] flex flex-col items-center gap-3 sm:bottom-6 sm:right-6"
     aria-label="Quick contact"
   >
     @if (showFloatingWhatsapp()) {

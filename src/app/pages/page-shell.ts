@@ -1,11 +1,10 @@
 import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../i18n/language.service';
-import { HeroTopActions } from '../components/hero-top-actions/hero-top-actions';
 
 @Component({
   selector: 'app-page-shell',
-  imports: [RouterLink, HeroTopActions],
+  imports: [RouterLink],
   template: `
     <div class="border-b border-mist/80 bg-sand/80 pt-[var(--header-clearance)]">
       <div class="site-wrap py-3 sm:py-3.5">
@@ -19,7 +18,6 @@ import { HeroTopActions } from '../components/hero-top-actions/hero-top-actions'
           <span class="text-mist" aria-hidden="true">/</span>
           <span class="text-sm font-semibold text-forest">{{ title() }}</span>
         </div>
-        <app-hero-top-actions class="mt-3 block" variant="compact" />
       </div>
     </div>
     <div class="page-shell-body">

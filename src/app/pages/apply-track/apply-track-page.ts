@@ -14,13 +14,13 @@ import { ApplicationStatusPanel } from '../../components/apply/application-statu
           class="mx-auto max-w-2xl px-5 sm:px-8"
           [attr.dir]="i18n.isUr() ? 'rtl' : null"
         >
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+          <p class="eyebrow">
             {{ i18n.t('applyTrack.eyebrow') }}
           </p>
-          <h1 class="mt-4 font-display text-3xl font-bold text-forest sm:text-4xl">
+          <h1 class="page-title mt-4">
             {{ i18n.t('applyTrack.title') }}
           </h1>
-          <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+          <p class="page-lead">
             {{ i18n.t('applyTrack.lead') }}
           </p>
 

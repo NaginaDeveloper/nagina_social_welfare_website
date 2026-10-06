@@ -9,7 +9,8 @@
     "assistant:ingest": "node scripts/ingest-assistant-knowledge.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "campuses:snapshot": "node scripts/fetch-campuses.mjs"
+    "campuses:snapshot": "node scripts/fetch-campuses.mjs",
+    "deploy": "npm run build && node scripts/deploy-gh-pages.mjs"
   },
   "private": true,
   "packageManager": "npm@11.11.0",
