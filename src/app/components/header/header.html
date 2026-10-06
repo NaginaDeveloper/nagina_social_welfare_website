@@ -220,8 +220,12 @@
           {{ i18n.t('header.myMembership') }}
         </a>
       } @else {
-        <a routerLink="/membership/login" class="btn btn-sm btn-ghost" (click)="onNavClick()">
-          {{ i18n.t('nav.memberLogin') }}
+        <a routerLink="/portals" class="btn btn-sm btn-ghost" (click)="onNavClick()">
+          <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.5" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 20a7 7 0 0 1 14 0" />
+          </svg>
+          {{ i18n.t('header.signIn') }}
         </a>
       }
 
@@ -289,8 +293,8 @@
             {{ i18n.t('header.myMembership') }}
           </a>
         } @else {
-          <a routerLink="/membership/login" (click)="onNavClick()" class="btn btn-secondary">
-            {{ i18n.t('nav.memberLogin') }}
+          <a routerLink="/portals" (click)="onNavClick()" class="btn btn-secondary">
+            {{ i18n.t('header.signIn') }}
           </a>
         }
       </div>

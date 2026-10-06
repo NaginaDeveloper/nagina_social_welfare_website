@@ -296,7 +296,7 @@ export const APPS_SEO: PageSeo = {
 };
 
 export const PORTALS_SEO: PageSeo = {
-  title: 'Portal Sign In | Parents, Students, Teachers, Collectors, Admin',
+  title: 'Sign In | Parents, Students, Teachers, Collectors, Admin, Members',
   description:
     'Sign in to your Nagina Social Welfare portal: parents, students, teachers, charity collectors and administrators each have their own sign in page.',
   path: '/portals/',

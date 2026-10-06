@@ -180,9 +180,9 @@ export class Header implements OnInit {
     return this.openGroupId() === id;
   }
 
-  /** First two menus hang left; the rest hang right so wide panels never run off-screen. */
+  /** First half of the menus hang left; the rest hang right so wide panels never run off-screen. */
   protected panelAlign(index: number): string {
-    return index <= 1 ? 'left-0' : 'right-0';
+    return index < this.groups().length / 2 ? 'left-0' : 'right-0';
   }
 
   protected menuPanelWidth(group: NavGroup): string {

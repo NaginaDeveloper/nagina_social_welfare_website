@@ -64,14 +64,26 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
         { labelKey: 'nav.aboutUs', path: '/about', hintKey: 'nav.aboutUsHint', icon: 'about' },
         { labelKey: 'nav.ourWork', path: '/work', hintKey: 'nav.ourWorkHint', icon: 'work' },
         { labelKey: 'nav.impact', path: '/impact', hintKey: 'nav.impactHint', icon: 'work' },
-        { labelKey: 'nav.madrasa', path: '/madrasa', hintKey: 'nav.madrasaHint', icon: 'mosque' },
-        ...centreLinks,
         {
           labelKey: 'nav.spiritualGuide',
           path: '/spiritual-guide',
           hintKey: 'nav.spiritualGuideHint',
           icon: 'guide',
         },
+        { labelKey: 'nav.events', path: '/events', hintKey: 'nav.eventsHint', icon: 'events' },
+      ],
+    },
+    {
+      id: 'admissions',
+      labelKey: 'nav.admissions',
+      icon: 'mosque',
+      items: [
+        { labelKey: 'nav.applyOnline', path: '/apply', hintKey: 'nav.applyOnlineHint', icon: 'contact' },
+        { labelKey: 'nav.applyTrack', path: '/apply/track', hintKey: 'nav.applyTrackHint', icon: 'guides' },
+        { labelKey: 'nav.madrasa', path: '/madrasa', hintKey: 'nav.madrasaHint', icon: 'mosque' },
+        ...centreLinks,
+        { labelKey: 'nav.guides', path: '/guides', hintKey: 'nav.guidesHint', icon: 'guides' },
+        { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
       ],
     },
     {
@@ -119,8 +131,6 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
           icon: 'barcode',
         },
         { labelKey: 'nav.assistant', path: '/assistant', hintKey: 'nav.assistantHint', icon: 'assistant' },
-        { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
-        { labelKey: 'nav.guides', path: '/guides', hintKey: 'nav.guidesHint', icon: 'guides' },
       ],
     },
     {
@@ -128,12 +138,11 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
       labelKey: 'nav.connect',
       icon: 'connect',
       items: [
-        { labelKey: 'nav.events', path: '/events', hintKey: 'nav.eventsHint', icon: 'events' },
         { labelKey: 'nav.donate', path: '/donate', hintKey: 'nav.donateHint', icon: 'donate' },
         { labelKey: 'nav.contact', path: '/contact', hintKey: 'nav.contactHint', icon: 'contact' },
         { labelKey: 'nav.membership', path: '/membership', hintKey: 'nav.membershipHint', icon: 'about' },
         { labelKey: 'nav.membershipTrack', path: '/membership/track', hintKey: 'nav.membershipTrackHint', icon: 'contact' },
-        { labelKey: 'header.login', path: '/portals', hintKey: 'nav.staffPortalHint', icon: 'contact' },
+        { labelKey: 'header.signIn', path: '/portals', hintKey: 'nav.signInHint', icon: 'privacy' },
       ],
     },
   ];
