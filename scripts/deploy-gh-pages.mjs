@@ -12,7 +12,7 @@
  * load. Older generations are pruned so the branch does not grow forever.
  */
 import { execSync } from 'node:child_process';
-import { cpSync, existsSync, mkdtempSync, readdirSync, rmSync, statSync, unlinkSync } from 'node:fs';
+import { cpSync, existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -36,37 +36,46 @@ try {
   sh('git fetch origin gh-pages');
   sh(`git worktree add --detach "${worktree}" origin/gh-pages`);
 
-  const BUNDLE = /^(main|chunk|polyfills)-[A-Z0-9]+\.js$|^styles-[A-Z0-9]+\.css$/;
-  const KEEP_GENERATIONS = 2;
+  const BUNDLE = /^(main|chunk|polyfills)-[A-Za-z0-9_-]+\.js$|^styles-[A-Za-z0-9_-]+\.css$/;
+  const MANIFEST = 'deploy-manifest.json';
 
-  // Previous bundles, newest first (by mtime in the checkout is unreliable; use git log order).
-  const previousBundles = readdirSync(worktree).filter((f) => BUNDLE.test(f));
+  // Generations are tracked in a manifest committed with the site. File
+  // mtimes are useless here: a fresh checkout stamps every old file "now".
+  const readManifest = () => {
+    try {
+      return JSON.parse(readFileSync(join(worktree, MANIFEST), 'utf8'));
+    } catch {
+      return null;
+    }
+  };
+  const bundlesIn = (dir) => readdirSync(dir).filter((f) => BUNDLE.test(f)).sort();
+  const previous = readManifest();
+  // First run without a manifest: treat everything on the branch as the previous generation.
+  const previousGeneration = previous?.generations?.[0]?.files ?? bundlesIn(worktree);
+  const currentGeneration = bundlesIn(dist);
+  const keep = new Set([...currentGeneration, ...previousGeneration]);
 
-  // Remove everything except .git and previous bundles.
+  // Remove everything except .git and the bundles we keep, then lay the new build on top.
   for (const entry of readdirSync(worktree)) {
-    if (entry === '.git' || BUNDLE.test(entry)) continue;
+    if (entry === '.git' || (BUNDLE.test(entry) && keep.has(entry))) continue;
     rmSync(join(worktree, entry), { recursive: true, force: true });
   }
-
   cpSync(dist, worktree, { recursive: true });
 
-  // Prune bundle generations older than KEEP_GENERATIONS. A generation is
-  // identified by its main-*.js; anything not referenced by a kept index or
-  // the previous main is dropped.
-  const mains = readdirSync(worktree)
-    .filter((f) => /^main-[A-Z0-9]+\.js$/.test(f))
-    .map((f) => ({ f, t: statSync(join(worktree, f)).mtimeMs }))
-    .sort((a, b) => b.t - a.t);
-  const drop = mains.slice(KEEP_GENERATIONS).map((m) => m.f);
-  for (const f of drop) unlinkSync(join(worktree, f));
-  // Keep chunk/styles files only if they were in this build or were among the
-  // previous deploy's files (we cannot map chunks to mains cheaply, so keep
-  // the previous set once and let the next deploy prune).
-  const current = new Set(readdirSync(dist));
-  for (const f of readdirSync(worktree)) {
-    if (!BUNDLE.test(f) || current.has(f)) continue;
-    if (!previousBundles.includes(f)) unlinkSync(join(worktree, f));
-  }
+  const indexMain = (readFileSync(join(dist, 'index.html'), 'utf8').match(/main-[A-Za-z0-9_-]+\.js/) ?? [''])[0];
+  writeFileSync(
+    join(worktree, MANIFEST),
+    JSON.stringify(
+      {
+        generations: [
+          { main: indexMain, deployedAt: new Date().toISOString(), files: currentGeneration },
+          ...(previous?.generations?.[0] ? [previous.generations[0]] : [{ main: 'legacy', files: previousGeneration }]),
+        ],
+      },
+      null,
+      2,
+    ) + '\n',
+  );
 
   sh('git add -A', worktree);
   const status = out('git status --porcelain', worktree);
