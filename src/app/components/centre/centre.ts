@@ -12,13 +12,11 @@ import { PrayerTimesService } from '../../services/prayer-times.service';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 import { ContentReviewNote } from '../content-review-note/content-review-note';
 import { VenueMap } from '../venue-map/venue-map';
-import { DeathCommitteeCallout } from '../death-committee-callout/death-committee-callout';
-import { DEATH_COMMITTEE } from '../../config/death-committee.config';
 
 /** Local page for one centre, filled from the published campus list. */
 @Component({
   selector: 'app-centre',
-  imports: [RouterLink, RelatedPages, ContentReviewNote, VenueMap, DeathCommitteeCallout],
+  imports: [RouterLink, RelatedPages, ContentReviewNote, VenueMap],
   templateUrl: './centre.html',
 })
 export class Centre implements OnInit {
@@ -37,10 +35,6 @@ export class Centre implements OnInit {
   });
   protected readonly hasTimetable = computed(
     () => this.campus()?.id === MADRASA_TIMETABLE_CAMPUS_ID,
-  );
-  protected readonly deathCommitteePath = DEATH_COMMITTEE.path;
-  protected readonly hasDeathCommittee = computed(
-    () => this.campus()?.id === DEATH_COMMITTEE.campusId,
   );
   protected readonly isHeadOffice = computed(
     () => this.campus()?.postcode === ORGANIZATION.postalCode,

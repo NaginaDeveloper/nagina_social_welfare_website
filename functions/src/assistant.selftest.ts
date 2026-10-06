@@ -10,7 +10,6 @@ import {
 import type { StoredAssistantChunk } from './assistantShared';
 import { classifyQuestion } from './assistantScope';
 
-assert.equal(classifyQuestion('What is the Death Committee?'), 'site_help');
 assert.equal(classifyQuestion('How do I help with funeral costs in Manchester?'), 'site_help');
 assert.equal(classifyQuestion('ڈیتھ کمیٹی کیا ہے؟'), 'site_help');
 assert.equal(classifyQuestion('What is the Finality of Prophethood?'), 'islamic');

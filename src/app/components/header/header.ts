@@ -17,7 +17,6 @@ import { MemberAuthService } from '../../services/member-auth.service';
 import { AssistantLauncherService } from '../../services/assistant-launcher.service';
 import { ORGANIZATION } from '../../config/organization.config';
 import { centrePath } from '../../config/centre-pages.config';
-import { DEATH_COMMITTEE } from '../../config/death-committee.config';
 import { LanguageService } from '../../i18n/language.service';
 import { isEventToday } from '../../config/upcoming-events.config';
 import { campusTown } from '../../models/campus';
@@ -107,16 +106,7 @@ export class Header implements OnInit {
         path: centrePath(campus.id),
         icon: 'mosque',
       };
-      if (campus.id !== DEATH_COMMITTEE.campusId) return [centre];
-      return [
-        centre,
-        {
-          labelKey: 'nav.deathCommittee',
-          hintKey: 'nav.deathCommitteeHint',
-          path: DEATH_COMMITTEE.path,
-          icon: 'family',
-        },
-      ];
+      return [centre];
     }),
   );
 

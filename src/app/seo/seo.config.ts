@@ -86,19 +86,6 @@ export const MANCHESTER_SEO: PageSeo = {
   priority: 0.95,
 };
 
-export const DEATH_COMMITTEE_SEO: PageSeo = {
-  title: 'Death Committee Manchester | Funeral Support | Quran Academy',
-  description:
-    'Quran Academy Death Committee in Manchester — register for text alerts and give £10 or more towards funeral costs when a family in our community suffers a loss.',
-  path: '/death-committee/',
-  keywords:
-    'Death Committee Manchester, funeral committee Manchester, Muslim funeral support Partington, Quran Academy Death Committee, janazah costs Manchester',
-  type: 'website',
-  breadcrumb: 'Death Committee',
-  changefreq: 'monthly',
-  priority: 0.9,
-};
-
 /** Centres without their own top-level URL yet (`/centre/:id`). */
 export const CENTRE_SEO: PageSeo = {
   title: 'Our Centres | Nagina Social Welfare UK',
@@ -563,7 +550,6 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   WORK_SEO,
   PETERBOROUGH_SEO,
   MANCHESTER_SEO,
-  DEATH_COMMITTEE_SEO,
   MADRASA_SEO,
   APPLY_SEO,
   APPLY_SUCCESS_SEO,
