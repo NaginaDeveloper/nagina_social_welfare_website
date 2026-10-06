@@ -295,6 +295,18 @@ export const APPS_SEO: PageSeo = {
   priority: 0.7,
 };
 
+export const PORTALS_SEO: PageSeo = {
+  title: 'Portal Sign In | Parents, Students, Teachers, Collectors, Admin',
+  description:
+    'Sign in to your Nagina Social Welfare portal: parents, students, teachers, charity collectors and administrators each have their own sign in page.',
+  path: '/portals/',
+  keywords: 'Nagina portal login, Markaz Deen-e-Islam parent login, madrasa student login, teacher login',
+  type: 'website',
+  breadcrumb: 'Sign in',
+  changefreq: 'monthly',
+  priority: 0.7,
+};
+
 export const GUIDES_SEO: PageSeo = {
   title: 'Portal Guides — Videos & Manuals | Nagina Social Welfare',
   description:
@@ -579,6 +591,7 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   BOOKS_SEO,
   SERMONS_SEO,
   APPS_SEO,
+  PORTALS_SEO,
   GUIDES_SEO,
   EVENTS_SEO,
   DONATE_SEO,

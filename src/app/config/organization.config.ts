@@ -41,6 +41,13 @@ export const ORGANIZATION = {
 } as const;
 
 /** `digits` lets a madrasa event or page route to that madrasa's WhatsApp. */
+/** The five sign-in pages of the admin portal, one per kind of user. */
+export type PortalRole = 'admin' | 'teacher' | 'parent' | 'student' | 'collector';
+
+export function portalLoginUrl(role: PortalRole): string {
+  return `${ORGANIZATION.loginUrl}login/${role}`;
+}
+
 export function whatsappHref(prefill = '', digits: string = ORGANIZATION.whatsappDigits): string {
   const base = `https://wa.me/${digits || ORGANIZATION.whatsappDigits}`;
   const text = prefill.trim();

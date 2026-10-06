@@ -244,6 +244,15 @@ export class HomeHub implements OnInit {
       keywords: ['membership', 'member', 'join', 'apply'],
     },
     {
+      id: 'portals',
+      labelKey: 'header.login',
+      hintKey: 'nav.staffPortalHint',
+      path: '/portals',
+      tone: 'default',
+      groupKey: 'hub.group.connect',
+      keywords: ['login', 'sign in', 'portal', 'parent', 'student', 'teacher', 'collector', 'admin'],
+    },
+    {
       id: 'member-login',
       labelKey: 'nav.memberLogin',
       hintKey: 'nav.memberLoginHint',
