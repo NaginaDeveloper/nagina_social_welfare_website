@@ -2,9 +2,9 @@
   <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
 
   <div class="relative site-wrap py-12 sm:py-14">
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-      <!-- Brand -->
-      <div>
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+      <!-- Brand + contact -->
+      <div class="lg:col-span-4">
         <div class="flex items-center gap-3">
           <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/40">
             <img
@@ -35,38 +35,8 @@
             {{ i18n.t('footer.whatsapp') }}
           </a>
         </div>
-      </div>
 
-      <!-- Explore -->
-      <nav [attr.aria-label]="i18n.t('footer.explore')">
-        <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
-          {{ i18n.t('footer.explore') }}
-        </h3>
-        <ul class="mt-3 columns-2 gap-x-6 space-y-2">
-          @for (link of exploreLinks; track link.labelKey) {
-            <li>
-              @if (link.externalHref) {
-                <a
-                  [href]="link.externalHref"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-sm text-cream/65 transition-colors hover:text-gold-300"
-                >
-                  {{ i18n.t(link.labelKey) }}
-                </a>
-              } @else {
-                <a [routerLink]="link.path" class="text-sm text-cream/65 transition-colors hover:text-gold-300">
-                  {{ i18n.t(link.labelKey) }}
-                </a>
-              }
-            </li>
-          }
-        </ul>
-      </nav>
-
-      <!-- Contact -->
-      <div>
-        <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
+        <h3 class="mt-8 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
           {{ i18n.t('footer.contact') }}
         </h3>
         <ul class="mt-3 space-y-2.5 text-sm text-cream/65">
@@ -87,24 +57,17 @@
             {{ org.streetAddress }}<br />
             {{ org.addressLocality }} {{ org.postalCode }}
           </li>
+          @for (campus of campusService.campuses(); track campus.id) {
+            <li [attr.data-campus]="campus.id" class="leading-relaxed">
+              <a [routerLink]="centrePath(campus.id)" class="transition-colors hover:text-gold-300">
+                {{ campus.displayName }} · {{ town(campus) }}
+              </a>
+              <a [href]="'tel:' + campus.phoneE164" class="block text-xs text-cream/50 transition-colors hover:text-gold-300">
+                {{ campus.phoneDisplay }}
+              </a>
+            </li>
+          }
         </ul>
-        @if (campusService.campuses().length > 0) {
-          <h3 class="mt-5 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
-            {{ i18n.t('footer.madrasas') }}
-          </h3>
-          <ul class="mt-3 space-y-2 text-sm text-cream/65">
-            @for (campus of campusService.campuses(); track campus.id) {
-              <li [attr.data-campus]="campus.id">
-                <a [routerLink]="centrePath(campus.id)" class="transition-colors hover:text-gold-300">
-                  {{ campus.displayName }} · {{ town(campus) }}
-                </a>
-                <a [href]="'tel:' + campus.phoneE164" class="block text-xs text-cream/50 transition-colors hover:text-gold-300">
-                  {{ campus.phoneDisplay }}
-                </a>
-              </li>
-            }
-          </ul>
-        }
         <a routerLink="/contact" class="btn btn-sm btn-secondary mt-4">
           {{ i18n.t('footer.map') }}
         </a>
@@ -157,6 +120,37 @@
           </a>
         </div>
       </div>
+
+      <!-- Site sections, same grouping as the header menus -->
+      <nav class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-5" [attr.aria-label]="i18n.t('footer.explore')">
+        @for (group of groups(); track group.id) {
+          <div [attr.dir]="i18n.isUr() ? 'rtl' : null">
+            <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
+              {{ i18n.t(group.labelKey) }}
+            </h3>
+            <ul class="mt-3 space-y-2">
+              @for (item of group.items; track item.path ?? item.externalHref) {
+                <li>
+                  @if (item.externalHref) {
+                    <a
+                      [href]="item.externalHref"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-sm text-cream/65 transition-colors hover:text-gold-300"
+                    >
+                      {{ linkLabel(item) }}
+                    </a>
+                  } @else {
+                    <a [routerLink]="item.path" class="text-sm text-cream/65 transition-colors hover:text-gold-300">
+                      {{ linkLabel(item) }}
+                    </a>
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </nav>
     </div>
 
     <div

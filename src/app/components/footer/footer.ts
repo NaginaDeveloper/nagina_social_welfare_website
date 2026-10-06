@@ -1,4 +1,5 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
+import { buildNavGroups, type NavGroup, type NavLink } from '../../config/navigation.config';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { centrePath } from '../../config/centre-pages.config';
@@ -7,12 +8,6 @@ import { campusTown, fillTowns, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 import { VisitorStats } from '../visitor-stats/visitor-stats';
-
-interface FooterLink {
-  readonly labelKey: string;
-  readonly path?: string;
-  readonly externalHref?: string;
-}
 
 @Component({
   selector: 'app-footer',
@@ -29,33 +24,24 @@ export class Footer implements OnInit {
   protected readonly whatsapp = whatsappHref();
   protected readonly year = new Date().getFullYear();
 
-  protected readonly exploreLinks: readonly FooterLink[] = [
-    { labelKey: 'nav.spiritualGuide', path: '/spiritual-guide' },
-    { labelKey: 'nav.seedhaRastah', path: '/seedha-rastah' },
-    { labelKey: 'nav.quiz', externalHref: ORGANIZATION.quizUrl },
-    { labelKey: 'nav.halalChecker', externalHref: ORGANIZATION.halalCheckerUrl },
-    { labelKey: 'nav.aboutUs', path: '/about' },
-    { labelKey: 'nav.ourWork', path: '/work' },
-    { labelKey: 'nav.madrasa', path: '/madrasa' },
-    { labelKey: 'nav.guidance', path: '/guidance' },
-    { labelKey: 'nav.namazTimes', path: '/namaz' },
-    { labelKey: 'nav.zakat', path: '/zakat' },
-    { labelKey: 'nav.whatIsZakat', path: '/zakat/what-is-zakat' },
-    { labelKey: 'nav.duas', path: '/duas' },
-    { labelKey: 'nav.calendar', path: '/calendar' },
-    { labelKey: 'nav.ramadan', path: '/ramadan' },
-    { labelKey: 'nav.impact', path: '/impact' },
-    { labelKey: 'nav.events', path: '/events' },
-    { labelKey: 'nav.assistant', path: '/assistant' },
-    { labelKey: 'nav.membership', path: '/membership' },
-    { labelKey: 'nav.memberLogin', path: '/membership/login' },
-    { labelKey: 'nav.membershipTrack', path: '/membership/track' },
-    { labelKey: 'nav.apps', path: '/apps' },
-    { labelKey: 'nav.guides', path: '/guides' },
-    { labelKey: 'nav.donate', path: '/donate' },
-    { labelKey: 'nav.contact', path: '/contact' },
-    { labelKey: 'header.login', externalHref: ORGANIZATION.loginUrl },
-  ];
+  /** Same sections and links as the header menus. */
+  protected readonly groups = computed<readonly NavGroup[]>(() =>
+    buildNavGroups(
+      this.campusService.campuses().map(
+        (campus): NavLink => ({
+          labelKey: 'nav.centre',
+          label: campusTown(campus),
+          hint: campus.displayName,
+          path: centrePath(campus.id),
+          icon: 'mosque',
+        }),
+      ),
+    ),
+  );
+
+  protected linkLabel(item: NavLink): string {
+    return item.label ?? this.i18n.t(item.labelKey);
+  }
 
   ngOnInit(): void {
     void this.campusService.load();
