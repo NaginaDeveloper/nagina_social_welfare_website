@@ -40,6 +40,28 @@
 
   <!-- Google Search Console: verification meta is injected at build time from search-console.config.json -->
 
+  <!-- A stale cached index can point at a bundle removed by a newer deploy. Reload once instead of showing a blank page. -->
+  <script>
+    (function () {
+      var KEY = 'nsw-reloaded-once';
+      function recover() {
+        try {
+          if (sessionStorage.getItem(KEY)) return;
+          sessionStorage.setItem(KEY, '1');
+        } catch (e) {}
+        location.reload();
+      }
+      window.addEventListener('error', function (e) {
+        var t = e && e.target;
+        if (t && t.tagName === 'SCRIPT' && /\/(main|chunk|polyfills)-[A-Z0-9]+\.js/.test(t.src || '')) recover();
+      }, true);
+      window.addEventListener('unhandledrejection', function (e) {
+        var m = e && e.reason && String(e.reason.message || e.reason);
+        if (m && /(Failed to fetch dynamically imported module|ChunkLoadError|Importing a module script failed)/.test(m)) recover();
+      });
+    })();
+  </script>
+
   <script type="application/ld+json" id="nagina-jsonld">
   {
     "@context": "https://schema.org",

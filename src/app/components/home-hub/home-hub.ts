@@ -32,6 +32,7 @@ export class HomeHub implements OnInit {
   protected readonly prayer = inject(PrayerTimesService);
 
   protected readonly query = signal('');
+  protected readonly showAll = signal(false);
 
   protected readonly tiles: readonly HubTile[] = [
     {
@@ -308,8 +309,29 @@ export class HomeHub implements OnInit {
     });
   });
 
+  /** Eight headline tiles by default; the full list behind "Show all" or any search. */
+  protected readonly visibleTiles = computed(() => {
+    if (this.query().trim() || this.showAll()) {
+      return this.filteredTiles();
+    }
+    return this.tiles.filter((tile) => tile.tone !== 'default');
+  });
+
+  protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
+
   ngOnInit(): void {
     void this.prayer.load();
+  }
+
+  protected showAllLabel(): string {
+    if (this.showAll()) {
+      return this.i18n.t('hub.showFewer');
+    }
+    return this.i18n.t('hub.showAll').replace('{n}', String(this.hiddenTileCount()));
+  }
+
+  protected toggleShowAll(): void {
+    this.showAll.update((v) => !v);
   }
 
   protected onSearch(value: string): void {

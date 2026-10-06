@@ -76,5 +76,7 @@ export class App implements OnInit {
   private syncAssistantVisibility(url: string): void {
     const path = url.split('?')[0].split('#')[0] || '/';
     this.showFloatingAssistant.set(path !== '/assistant');
+    // The contact page is already full of WhatsApp buttons.
+    this.showFloatingWhatsapp.set(path !== '/contact');
   }
 }

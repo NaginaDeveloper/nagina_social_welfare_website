@@ -8,13 +8,12 @@ import { CampusService } from '../../services/campus.service';
 import { CampusCards } from '../campus-cards/campus-cards';
 import { CampusMap } from '../campus-map/campus-map';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
-import { VisitorStats } from '../visitor-stats/visitor-stats';
 
 type ContactReason = 'enrolment' | 'donation' | 'namaz' | 'general';
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule, RouterLink, CampusCards, CampusMap, WhatsappIcon, VisitorStats],
+  imports: [FormsModule, RouterLink, CampusCards, CampusMap, WhatsappIcon],
   templateUrl: './contact.html',
 })
 export class Contact implements OnInit {

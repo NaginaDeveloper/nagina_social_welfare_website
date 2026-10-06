@@ -77,7 +77,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'hub.eyebrow': 'Explore',
     'hub.title': 'Find what you need',
-    'hub.lead': 'Tap a tile — built for phones. Search to jump straight to a page.',
+    'hub.lead': 'Search, or pick a page below.',
+    'hub.showAll': 'Show all pages ({n} more)',
+    'hub.showFewer': 'Show fewer',
     'hub.searchLabel': 'Search the website',
     'hub.searchPlaceholder': 'Search prayer times, zakat, Quran, donate, quiz…',
     'hub.empty': 'No matches. Try another word, or clear the search.',
@@ -739,6 +741,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'hero.discover': 'Discover Our Vision',
     'hero.contact': 'Get in Touch',
     'hero.namaz': 'Prayer Times',
+    'hero.apply': 'Apply for Madrasa',
     'hero.quiz': 'Play Islamic Quiz',
     'hero.quizAria': 'Play Islamic Quiz (opens in a new tab)',
     'hero.halalChecker': 'Check Halal barcode',
@@ -750,6 +753,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'about.eyebrow': 'Our Vision',
     'about.title': 'Nagina Social Welfare',
+    'about.homeEyebrow': 'About us',
+    'about.homeTitle': 'Our Vision',
     'about.titleAccent': '',
     'about.registered': 'Registered Charity – United Kingdom',
     'about.lead':
@@ -949,7 +954,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'beliefs.contactCta': 'Contact Markaz for personal guidance',
 
     'namaz.eyebrow': 'Prayer Times (Salah)',
-    'namaz.title': 'Prayer times in',
+    'namaz.title': 'Prayer Times in',
     'namaz.titleAccent': 'the UK',
     'namaz.lead': 'Daily prayer windows for the town of each of our Madrasas — Begins and Ends, updated live for Europe/London time.',
     'namaz.placeLabel': 'Show times for:',
@@ -1451,7 +1456,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'hub.eyebrow': 'دریافت کریں',
     'hub.title': 'جو چاہیے تلاش کریں',
-    'hub.lead': 'ٹائل دبائیں — موبائل کے لیے۔ تلاش سے سیدھا صفحے پر جائیں۔',
+    'hub.lead': 'تلاش کریں، یا نیچے سے صفحہ چنیں۔',
+    'hub.showAll': 'تمام صفحات دکھائیں ({n} مزید)',
+    'hub.showFewer': 'کم دکھائیں',
     'hub.searchLabel': 'ویب سائٹ تلاش کریں',
     'hub.searchPlaceholder': 'نماز، زکوٰۃ، قرآن، عطیہ، کوئز تلاش کریں…',
     'hub.empty': 'کوئی نتیجہ نہیں۔ دوسرا لفظ آزمائیں، یا تلاش صاف کریں۔',
@@ -1986,6 +1993,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'hero.discover': 'ہمارا ویژن دیکھیں',
     'hero.contact': 'رابطہ کریں',
     'hero.namaz': 'نماز کے اوقات',
+    'hero.apply': 'مدرسہ میں داخلہ',
     'hero.quiz': 'اسلامی کوئز کھیلیں',
     'hero.quizAria': 'اسلامی کوئز کھیلیں (نئی ٹیب میں کھلے گی)',
     'hero.halalChecker': 'حلال بارکوڈ چیک کریں',
@@ -1997,6 +2005,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
 
     'about.eyebrow': 'ہمارا ویژن',
     'about.title': 'نگینہ سوشل ویلفیئر',
+    'about.homeEyebrow': 'ہمارے بارے میں',
+    'about.homeTitle': 'ہمارا ویژن',
     'about.titleAccent': '',
     'about.registered': 'رجسٹرڈ چیریٹی – متحدہ سلطنتِ برطانیہ',
     'about.lead':

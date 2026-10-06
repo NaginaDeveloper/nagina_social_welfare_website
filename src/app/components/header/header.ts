@@ -93,6 +93,13 @@ export class Header implements OnInit {
   protected readonly currentPath = signal('/');
   protected readonly latestEvent = this.events.latestDatedEvent;
 
+  /** Dark bar everywhere except the untouched top of the home page. */
+  protected readonly solid = computed(
+    () => this.scrolled() || this.menuOpen() || this.currentPath() !== '/' || !!this.latestEvent(),
+  );
+
+  private closeTimer: ReturnType<typeof setTimeout> | null = null;
+
   /**
    * Grouped navigation — every destination is a dedicated route (no hash links).
    * About = organisation; Beliefs = creed pages; kept separate so menus stay scannable.
@@ -286,12 +293,6 @@ export class Header implements OnInit {
           icon: 'about',
         },
         {
-          labelKey: 'nav.memberLogin',
-          path: '/membership/login',
-          hintKey: 'nav.memberLoginHint',
-          icon: 'contact',
-        },
-        {
           labelKey: 'nav.membershipTrack',
           path: '/membership/track',
           hintKey: 'nav.membershipTrackHint',
@@ -305,13 +306,6 @@ export class Header implements OnInit {
           hintKey: 'nav.staffPortalHint',
           icon: 'contact',
         },
-        {
-          labelKey: 'nav.safeguarding',
-          path: '/safeguarding',
-          hintKey: 'nav.safeguardingHint',
-          icon: 'privacy',
-        },
-        { labelKey: 'nav.privacy', path: '/privacy', hintKey: 'nav.privacyHint', icon: 'privacy' },
       ],
     },
   ]);
@@ -426,15 +420,49 @@ export class Header implements OnInit {
   }
 
   protected menuPanelWidth(group: NavGroup): string {
-    return group.items.length > 5 ? 'min(36rem, calc(100vw - 2rem))' : '17rem';
+    return group.items.length > 5 ? 'min(40rem, calc(100vw - 2rem))' : '18rem';
+  }
+
+  /** Mouse users get hover-to-open; touch and pen keep tap-to-toggle. */
+  protected onGroupPointerEnter(id: string, event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
+    this.cancelClose();
+    this.openGroupId.set(id);
+  }
+
+  protected onGroupPointerLeave(event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
+    this.cancelClose();
+    this.closeTimer = setTimeout(() => this.openGroupId.set(null), 150);
+  }
+
+  private cancelClose(): void {
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer);
+      this.closeTimer = null;
+    }
+  }
+
+  protected toggleLang(): void {
+    this.i18n.setLang(this.i18n.lang() === 'en' ? 'ur' : 'en');
+  }
+
+  protected otherLangLabel(): string {
+    return this.i18n.lang() === 'en' ? this.i18n.t('header.langUr') : this.i18n.t('header.langEn');
   }
 
   protected toggleGroup(id: string, event?: Event): void {
     event?.stopPropagation();
+    this.cancelClose();
     this.openGroupId.update((current) => (current === id ? null : id));
   }
 
   protected closeGroups(): void {
+    this.cancelClose();
     this.openGroupId.set(null);
   }
 

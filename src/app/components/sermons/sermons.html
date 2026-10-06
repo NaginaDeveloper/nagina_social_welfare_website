@@ -7,14 +7,14 @@
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
-      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+      <span class="mb-4 inline-block eyebrow">
         {{ i18n.t('sermons.eyebrow') }}
       </span>
-      <h1 class="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl lg:text-5xl 3xl:text-6xl">
+      <h1 class="page-title">
         {{ i18n.t('sermons.title') }}
-        <span class="text-gold-gradient">{{ i18n.t('sermons.titleAccent') }}</span>
+        {{ i18n.t('sermons.titleAccent') }}
       </h1>
-      <p class="mt-5 text-base leading-relaxed text-slate-warm sm:text-lg">
+      <p class="page-lead">
         {{ i18n.t('sermons.lead') }}
       </p>
     </div>
@@ -124,7 +124,7 @@
         <section>
           <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div class="max-w-xl">
-              <span class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+              <span class="eyebrow">
                 {{ i18n.t('sermons.naginaTvEyebrow') }}
               </span>
               <h2 class="mt-2 font-display text-2xl font-bold text-forest sm:text-3xl">
@@ -211,7 +211,7 @@
         <section>
           <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div class="max-w-xl">
-              <span class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+              <span class="eyebrow">
                 {{ i18n.t('sermons.youtubeEyebrow') }}
               </span>
               <h2 class="mt-2 font-display text-2xl font-bold text-forest sm:text-3xl">
@@ -296,7 +296,7 @@
         <section>
           <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div class="max-w-xl">
-              <span class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
+              <span class="eyebrow">
                 {{ i18n.t('sermons.tiktokEyebrow') }}
               </span>
               <h2 class="mt-2 font-display text-2xl font-bold text-forest sm:text-3xl">

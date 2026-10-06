@@ -1,4 +1,4 @@
-<section id="contact" class="relative overflow-hidden bg-cream py-24 sm:py-32">
+<section id="contact" class="relative overflow-hidden bg-cream py-20 sm:py-24">
   <div class="site-wrap">
     <div
       class="relative isolate overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-forest via-emerald to-forest-800 px-5 py-12 text-cream shadow-portal sm:rounded-[2rem] sm:px-12 sm:py-16"
@@ -6,27 +6,20 @@
     >
       <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
 
-      <span class="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">
+      <span class="eyebrow-on-dark mb-4 inline-block">
         {{ i18n.t('contact.eyebrow') }}
       </span>
       @if (headingLevel() === 'h1') {
-        <h1 class="max-w-2xl font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl 3xl:text-6xl">
-          {{ i18n.t('contact.title') }}
-        </h1>
+        <h1 class="page-title-on-dark max-w-2xl">{{ i18n.t('contact.title') }}</h1>
       } @else {
-        <h2 class="max-w-2xl font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl 3xl:text-6xl">
-          {{ i18n.t('contact.title') }}
-        </h2>
+        <h2 class="page-title-on-dark max-w-2xl">{{ i18n.t('contact.title') }}</h2>
       }
-      <p class="mt-5 max-w-xl text-base leading-relaxed text-sand/85 sm:text-lg">
+      <p class="page-lead-on-dark max-w-xl">
         {{ i18n.t('contact.lead') }}
       </p>
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        <a
-          routerLink="/apply"
-          class="inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-7 py-3.5 font-semibold text-forest shadow-soft"
-        >
+        <a routerLink="/apply" class="btn btn-lg btn-primary">
           {{ i18n.t('contact.applyCta') }}
         </a>
         @for (campus of campusService.campuses(); track campus.id) {
@@ -34,33 +27,22 @@
             [href]="campusWhatsapp(campus)"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white shadow-soft"
+            class="btn btn-lg btn-secondary"
             [attr.data-campus]="campus.id"
           >
-            <app-whatsapp-icon class="h-5 w-5" [inverse]="true" />
+            <app-whatsapp-icon class="h-5 w-5" />
             {{ i18n.t('contact.whatsapp') }} · {{ town(campus) }}
           </a>
         } @empty {
-          <a
-            [href]="whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white shadow-soft"
-          >
-            <app-whatsapp-icon class="h-5 w-5" [inverse]="true" />
+          <a [href]="whatsapp" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-secondary">
+            <app-whatsapp-icon class="h-5 w-5" />
             {{ i18n.t('contact.whatsapp') }}
           </a>
-          <a
-            [href]="'tel:' + org.phoneTel"
-            class="inline-flex min-h-12 items-center justify-center rounded-full border border-gold/45 bg-white/5 px-7 py-3.5 font-semibold text-gold-300"
-          >
+          <a [href]="'tel:' + org.phoneTel" class="btn btn-lg btn-secondary">
             {{ i18n.t('contact.phone') }} · {{ org.phoneDisplay }}
           </a>
         }
-        <a
-          [href]="'mailto:' + org.email"
-          class="inline-flex min-h-12 items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-7 py-3.5 font-medium text-gold-300"
-        >
+        <a [href]="'mailto:' + org.email" class="btn btn-lg btn-ghost">
           {{ i18n.t('contact.email') }}
         </a>
       </div>
@@ -116,30 +98,13 @@
             (ngModelChange)="message.set($event)"
           ></textarea>
         </label>
-        <button
-          type="submit"
-          class="inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-7 py-3 font-semibold text-forest"
-        >
+        <button type="submit" class="btn btn-lg btn-primary">
           {{ i18n.t('contact.formSubmit') }}
         </button>
       </form>
 
       <p class="mt-6 text-sm leading-relaxed text-cream/70">{{ i18n.t('contact.hours') }}</p>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a
-          routerLink="/donate"
-          class="inline-flex min-h-11 items-center rounded-full border border-gold/45 px-5 py-2.5 text-sm font-semibold text-gold-300"
-        >
-          {{ i18n.t('contact.donate') }}
-        </a>
-        <a
-          routerLink="/about"
-          class="inline-flex min-h-11 items-center rounded-full border border-gold/40 bg-gold/10 px-5 py-2.5 text-sm font-medium text-gold-300"
-        >
-          {{ i18n.t('contact.vision') }}
-        </a>
-      </div>
     </div>
 
     <div class="mt-10" [attr.dir]="i18n.isUr() ? 'rtl' : null">
@@ -150,6 +115,5 @@
       </div>
     </div>
 
-    <app-visitor-stats variant="card" />
   </div>
 </section>
