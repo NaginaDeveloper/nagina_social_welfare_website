@@ -51,6 +51,13 @@ export class Centre implements OnInit {
   protected readonly related: readonly RelatedPageLink[] = [
     { path: '/namaz', label: 'Prayer times', hint: 'Today’s namaz and Hijri date' },
     { path: '/madrasa', label: 'Madrasa', hint: 'Classes at every centre' },
+    {
+      path: '/safe-drop-off',
+      label: 'Safe drop-off & collection',
+      labelUr: 'محفوظ ڈراپ آف اور پک اپ',
+      hint: 'Parking and road safety video for parents',
+      hintUr: 'والدین کے لیے پارکنگ اور سڑک کی حفاظت کی ویڈیو',
+    },
     { path: '/events', label: 'Events', hint: 'Gatherings and announcements' },
     { path: '/work', label: 'Our work', hint: 'Education and welfare programmes' },
     { path: '/contact', label: 'Contact', hint: 'WhatsApp, phone and email' },

@@ -477,6 +477,19 @@ export const SAFEGUARDING_SEO: PageSeo = {
   priority: 0.6,
 };
 
+export const SAFE_DROP_OFF_SEO: PageSeo = {
+  title: 'Safe Drop-Off & Collection for Parents | Markaz Deen-e-Islam Peterborough',
+  description:
+    'A short video and four simple rules for parents dropping off and collecting children at Markaz Deen-e-Islam, 103 Burmer Road, Peterborough: park legally, never stop unsafely, use the pavement side, respect our neighbours.',
+  path: '/safe-drop-off/',
+  keywords: 'safe drop off, school run parking, Markaz Deen-e-Islam, Burmer Road Peterborough, Madrasa parents, child safety',
+  image: '/videos/safe-drop-off/poster.jpg',
+  type: 'article',
+  breadcrumb: 'Safe drop-off & collection',
+  changefreq: 'yearly',
+  priority: 0.6,
+};
+
 export const KHATME_NABUWWAT_SEO: PageSeo = {
   title: 'Finality of Prophethood | Nagina Social Welfare',
   description:
@@ -600,4 +613,5 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   CONTACT_SEO,
   PRIVACY_SEO,
   SAFEGUARDING_SEO,
+  SAFE_DROP_OFF_SEO,
 ];

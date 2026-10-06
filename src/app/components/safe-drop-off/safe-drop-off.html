@@ -1,0 +1,186 @@
+<section id="safe-drop-off" class="relative overflow-hidden bg-cream py-12 sm:py-16">
+  <div class="geo-pattern absolute inset-0 opacity-15" aria-hidden="true"></div>
+
+  <div class="relative site-wrap">
+    <!-- Title -->
+    <div
+      class="mx-auto max-w-3xl text-center"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <span class="eyebrow mb-4 inline-block">
+        {{ i18n.pick('For all parents · Markaz-e-Deen-e-Islam', 'تمام والدین کے لیے · مرکز دینِ اسلام') }}
+      </span>
+      <h1 class="page-title">{{ i18n.pick('Safe Drop-Off & Collection', 'محفوظ طریقے سے چھوڑنا اور لینا') }}</h1>
+      <p class="page-lead mx-auto">
+        {{
+          i18n.pick(
+            'Every child who comes through our door is a trust from God. Their safety starts on the street outside, before they reach the classroom.',
+            'ہمارے دروازے سے آنے والا ہر بچہ اللہ کی امانت ہے۔ ان کی حفاظت کلاس روم تک پہنچنے سے پہلے، باہر سڑک پر ہی شروع ہو جاتی ہے۔'
+          )
+        }}
+      </p>
+    </div>
+
+    <!-- Video -->
+    <figure class="mx-auto mt-10 max-w-4xl">
+      <div class="overflow-hidden rounded-3xl border border-forest/10 bg-forest shadow-portal">
+        <video
+          class="aspect-video w-full bg-forest"
+          controls
+          playsinline
+          preload="metadata"
+          [poster]="posterSrc"
+          [attr.aria-label]="i18n.pick('Safe drop-off and collection video for parents', 'والدین کے لیے محفوظ ڈراپ آف ویڈیو')"
+        >
+          <source [src]="videoSrc" type="video/mp4" />
+          {{ i18n.pick('Your browser cannot play this video.', 'آپ کا براؤزر یہ ویڈیو نہیں چلا سکتا۔') }}
+          <a [href]="videoSrc">{{ i18n.pick('Download the video', 'ویڈیو ڈاؤن لوڈ کریں') }}</a>
+        </video>
+      </div>
+      <figcaption
+        class="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1 text-sm text-slate-warm"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      >
+        <span>
+          {{ i18n.pick('Please watch this short video', 'براہِ کرم یہ مختصر ویڈیو دیکھیں') }} · {{ videoLength }}
+        </span>
+        <a [href]="videoSrc" download="MDI-safe-drop-off-parents.mp4" class="font-medium text-gold-700 hover:underline">
+          {{ i18n.pick('Download (7 MB)', 'ڈاؤن لوڈ (7 MB)') }}
+        </a>
+      </figcaption>
+    </figure>
+
+    <!-- Why it matters + where -->
+    <div class="mx-auto mt-10 grid max-w-5xl gap-5 lg:grid-cols-12" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <div class="rounded-2xl border border-gold/40 bg-gold/10 p-6 lg:col-span-7 sm:p-7">
+        <div class="flex items-start gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold text-forest" aria-hidden="true">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 4.6 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.6a2 2 0 0 0-3.4 0Z" />
+            </svg>
+          </span>
+          <div>
+            <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">
+              {{ i18n.pick('Why this matters', 'یہ کیوں ضروری ہے') }}
+            </h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-warm sm:text-base">
+              {{
+                i18n.pick(
+                  'Some cars have been stopping right outside the Institute: in the road, on the corner, on yellow lines, or across neighbours’ driveways. This puts children at serious risk and has led to complaints from our neighbours and concerns from Peterborough City Council.',
+                  'کچھ گاڑیاں ادارے کے بالکل باہر رک رہی ہیں: سڑک پر، موڑ پر، پیلی لکیروں پر، یا پڑوسیوں کے ڈرائیو وے کے سامنے۔ اس سے بچوں کو شدید خطرہ ہے، پڑوسیوں کی شکایات آئی ہیں اور پیٹربرو سٹی کونسل نے تشویش ظاہر کی ہے۔'
+                )
+              }}
+            </p>
+            <p class="mt-3 text-sm font-semibold leading-relaxed text-forest sm:text-base">
+              {{
+                i18n.pick(
+                  'If it continues, the Institute’s activities could be restricted, which would affect every child.',
+                  'اگر یہ جاری رہا تو ادارے کی سرگرمیاں محدود کی جا سکتی ہیں، جس کا اثر ہر بچے پر پڑے گا۔'
+                )
+              }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-mist bg-white p-6 shadow-soft lg:col-span-5 sm:p-7">
+        <p class="eyebrow">{{ i18n.pick('Where', 'جگہ') }}</p>
+        <p class="mt-3 font-display text-xl font-bold text-forest">MDI · Markaz-e-Deen-e-Islam</p>
+        <p class="mt-1 text-sm leading-relaxed text-slate-warm">{{ addressLine() }}</p>
+        <div class="mt-5 flex flex-wrap gap-2.5">
+          <a [href]="directionsHref()" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary-light">
+            {{ i18n.pick('Directions', 'راستہ') }}
+          </a>
+          @if (campus(); as c) {
+            <a [href]="'tel:' + c.phoneE164" class="btn btn-sm btn-secondary-light tabular-nums">{{ c.phoneDisplay }}</a>
+          }
+        </div>
+        <p class="mt-5 text-xs leading-relaxed text-slate-warm">
+          {{
+            i18n.pick(
+              'Where you can, walk or share lifts with other families. Fewer cars mean safer streets.',
+              'جہاں ممکن ہو پیدل آئیں یا دوسرے خاندانوں کے ساتھ گاڑی شیئر کریں۔ کم گاڑیاں، محفوظ گلیاں۔'
+            )
+          }}
+        </p>
+      </div>
+    </div>
+
+    <!-- The four rules -->
+    <div class="mx-auto mt-14 max-w-5xl" [attr.dir]="i18n.isUr() ? 'rtl' : null" [attr.lang]="i18n.isUr() ? 'ur' : null">
+      <div class="text-center">
+        <p class="eyebrow">{{ i18n.pick('Please follow', 'براہِ کرم عمل کریں') }}</p>
+        <h2 class="mt-2 font-display text-2xl font-bold text-forest sm:text-3xl">
+          {{ i18n.pick('Four simple rules', 'چار آسان اصول') }}
+        </h2>
+      </div>
+      <ol class="mt-8 grid gap-5 sm:grid-cols-2">
+        @for (rule of rules; track rule.icon; let i = $index) {
+          <li class="flex gap-5 rounded-2xl border border-mist bg-white p-6 shadow-soft">
+            <div class="flex shrink-0 flex-col items-center gap-3">
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald to-forest text-gold-300" aria-hidden="true">
+                @switch (rule.icon) {
+                  @case ('park') {
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <rect x="4" y="3" width="16" height="18" rx="3" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 17v-4m0 0V8h3.5a2.5 2.5 0 0 1 0 5H10Z" />
+                    </svg>
+                  }
+                  @case ('stop') {
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="12" cy="12" r="8.5" />
+                      <path stroke-linecap="round" d="m6 6 12 12" />
+                    </svg>
+                  }
+                  @case ('pavement') {
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="13" cy="4.5" r="1.8" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 21l2.5-6 2.5 2v4M8.5 12.5 11 9l3.5 1 2 3M11 9l-1 4.5" />
+                    </svg>
+                  }
+                  @case ('neighbours') {
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 11.5 12 4l9 7.5M5.5 10v10h13V10" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 20v-5h4v5" />
+                    </svg>
+                  }
+                }
+              </span>
+              <span class="text-xs font-bold tabular-nums text-gold-700">{{ i + 1 }}</span>
+            </div>
+            <div>
+              <h3 class="font-display text-lg font-bold text-forest sm:text-xl">{{ i18n.pick(rule.title, rule.titleUr) }}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.pick(rule.body, rule.bodyUr) }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+
+    <!-- Closing -->
+    <div
+      class="mx-auto mt-14 max-w-4xl rounded-3xl bg-gradient-to-br from-forest via-emerald to-forest-800 px-6 py-10 text-center text-cream shadow-portal sm:px-12"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <p class="font-display text-xl font-bold text-white sm:text-2xl">
+        {{
+          i18n.pick(
+            'Together we can keep our children safe and keep MDI Islamic Institute open for generations to come.',
+            'مل کر ہم اپنے بچوں کو محفوظ رکھ سکتے ہیں اور مرکز دینِ اسلام کو آنے والی نسلوں کے لیے کھلا رکھ سکتے ہیں۔'
+          )
+        }}
+      </p>
+      <p class="mt-2 text-sm text-cream/75">{{ i18n.pick('Thank you for your cooperation.', 'آپ کے تعاون کا شکریہ۔') }}</p>
+      <div class="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a [href]="shareHref()" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary">
+          {{ i18n.pick('Share with other parents', 'دوسرے والدین سے شیئر کریں') }}
+        </a>
+        <a routerLink="/safeguarding" class="btn btn-lg btn-secondary">
+          {{ i18n.pick('Safeguarding', 'حفاظت') }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
