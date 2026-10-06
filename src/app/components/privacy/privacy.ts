@@ -43,6 +43,41 @@ export class Privacy {
         'When you submit our Madrasa online admission form, we collect the Madrasa you choose, student and parent/guardian contact details, address, medical and emergency information, class preference, and your consents/declaration. We use this to review enrolment, create school records if accepted, and contact you. Access is limited to authorised staff. You may email info@naginasocialwelfare.co.uk to exercise UK GDPR rights relating to an application we hold.',
     },
     {
+      title: 'Our apps and portals',
+      body:
+        'We run sign-in portals and Android apps for the madrasas and the charity: the Parent Portal, Student Portal, Teacher Portal, NSW Collector Portal, and the Markaz-e Deen-e Islam and admin portal used by our office team. You reach each one from our Sign in page. Accounts are created by the madrasa or the office, so there is no public sign-up. The portals and apps use Google Firebase (sign-in, database, file storage and notifications) to keep your records, with each madrasa’s records kept separately for Peterborough and Manchester. We use email (SMTP) to send messages, SumUp to take card payments for fees, and Twilio to send text messages where used; each is bound by a data processing agreement. We do not use advertising or analytics trackers in the apps and we do not sell personal data.',
+    },
+    {
+      title: 'Parents and students',
+      body:
+        'In the Parent Portal we process the parent or guardian’s name, contact details and sign-in details, and, for each child, the child’s name, class, attendance, behaviour notes, learning progress, fee records and payments, and messages the madrasa sends. Students are children. A child’s account is created by the madrasa and linked to their parent or guardian, who can ask us to correct, export or erase the child’s data. In the Student Portal (Let’s Learn Islam) we process the student’s name, class, lesson progress, activity results and certificates. Where a parent pays fees by card, the card details are entered on SumUp’s pages and never reach us; we only receive the payment result. We use this information to run the madrasa, teach and keep children safe, communicate with families, collect fees and meet charity accounting duties. Where you have told us about a health condition, it is used only for safeguarding and first aid.',
+    },
+    {
+      title: 'Teachers',
+      body:
+        'In the Teacher Portal we process each teacher’s name, email, phone number, subject and assigned classes, and the records they make about pupils in their classes: attendance, behaviour, curriculum progress and activities, and fee payments they receive. Teachers can also open curriculum worksheets.',
+    },
+    {
+      title: 'Collectors',
+      body:
+        'In the NSW Collector Portal we process each collector’s name and contact details, the charity donation boxes they look after (box reference and the name and address of the place that hosts it), and the amounts collected and dates. Scanning a box’s QR code with the phone camera identifies the box; the camera picture is not stored.',
+    },
+    {
+      title: 'Administrators',
+      body:
+        'Office staff who sign in to the admin portal and the Markaz-e Deen-e Islam app have a name, username, email, phone number and a role that decides which madrasa and which areas (such as classes, fees, expenses, members or the Task Manager) they can open. To keep the system secure and accountable we keep an activity log of what an administrator did, when, and from which network address and browser. Administrators see only the information their role needs, and a madrasa’s administrators see only that madrasa’s records.',
+    },
+    {
+      title: 'Notifications and camera',
+      body:
+        'The Parent, Student and Teacher apps can send notifications (for example a new message or an alert from the madrasa). If you allow them, Google Firebase Cloud Messaging gives your device a token which we store against your account so we can reach your device; it is removed when you sign out, and you can turn notifications off in your phone’s settings at any time. The Parent, Student, Teacher and Collector apps may ask for camera permission, used only to scan a barcode or QR code (the Halal Checker and the collector’s box codes). Camera pictures are not saved or uploaded, and you can refuse the permission and still use the app.',
+    },
+    {
+      title: 'How long we keep information, and your rights in the apps',
+      body:
+        'Rejected admission applications are kept for about 12 months and messages to parents for about 24 months. Fee records may be anonymised if a family asks for erasure, with the amounts kept where the law requires us to keep accounts. Parents can download their data in the Parent Portal under Profile, then Export my data. To ask for access, correction, erasure or restriction for yourself or your child, or to ask a question about the apps, contact the madrasa office or email info@naginasocialwelfare.co.uk. You can also complain to the Information Commissioner’s Office (ico.org.uk).',
+    },
+    {
       title: 'Community membership',
       body:
         'When you apply at /membership to join the Nagina Social Welfare UK community, we collect your contact details, address, age in years (to confirm you are 18+), optional volunteer interests, and your consents. Applications are stored in Firebase/Google Cloud Firestore and reviewed by trustees. If approved, we create a membership register entry and email you a link to set a password for the member area on this website (/membership/home). Signed-in members may update contact details and volunteer interests, download a membership confirmation PDF, reset their password by email, donate by card (only after confirming that the payment will be linked to their membership for history), RSVP to events (we store your name and membership number to plan attendance), and — if you opt in to email updates — receive occasional emails and read past newsletter PDFs in the member area. Card donations started from the public /donate page remain anonymous and are not linked to membership. Membership is free and separate from donations. You may email info@naginasocialwelfare.co.uk to exercise UK GDPR rights.',
