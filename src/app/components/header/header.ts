@@ -301,7 +301,7 @@ export class Header implements OnInit {
         { labelKey: 'nav.contact', path: '/contact', hintKey: 'nav.contactHint', icon: 'contact' },
         {
           labelKey: 'header.login',
-          externalHref: ORGANIZATION.loginUrl,
+          path: '/portals',
           hintKey: 'nav.staffPortalHint',
           icon: 'contact',
         },
