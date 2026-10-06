@@ -74,19 +74,6 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
       ],
     },
     {
-      id: 'admissions',
-      labelKey: 'nav.admissions',
-      icon: 'mosque',
-      items: [
-        { labelKey: 'nav.applyOnline', path: '/apply', hintKey: 'nav.applyOnlineHint', icon: 'contact' },
-        { labelKey: 'nav.applyTrack', path: '/apply/track', hintKey: 'nav.applyTrackHint', icon: 'guides' },
-        { labelKey: 'nav.madrasa', path: '/madrasa', hintKey: 'nav.madrasaHint', icon: 'mosque' },
-        ...centreLinks,
-        { labelKey: 'nav.guides', path: '/guides', hintKey: 'nav.guidesHint', icon: 'guides' },
-        { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
-      ],
-    },
-    {
       id: 'beliefs',
       labelKey: 'nav.beliefs',
       icon: 'seal',
@@ -131,6 +118,19 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
           icon: 'barcode',
         },
         { labelKey: 'nav.assistant', path: '/assistant', hintKey: 'nav.assistantHint', icon: 'assistant' },
+      ],
+    },
+    {
+      id: 'admissions',
+      labelKey: 'nav.admissions',
+      icon: 'mosque',
+      items: [
+        { labelKey: 'nav.applyOnline', path: '/apply', hintKey: 'nav.applyOnlineHint', icon: 'contact' },
+        { labelKey: 'nav.applyTrack', path: '/apply/track', hintKey: 'nav.applyTrackHint', icon: 'guides' },
+        { labelKey: 'nav.madrasa', path: '/madrasa', hintKey: 'nav.madrasaHint', icon: 'mosque' },
+        ...centreLinks,
+        { labelKey: 'nav.guides', path: '/guides', hintKey: 'nav.guidesHint', icon: 'guides' },
+        { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
       ],
     },
     {
