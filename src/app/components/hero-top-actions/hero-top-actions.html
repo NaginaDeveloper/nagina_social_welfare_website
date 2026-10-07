@@ -1,14 +1,15 @@
-<div class="mt-9 flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
-  <a routerLink="/donate" class="btn btn-lg btn-primary shadow-portal transition-transform duration-300 hover:-translate-y-0.5">
+<!-- Phone: Donate full width, the other two side by side. Wider: one row of three. -->
+<div class="mt-8 grid w-full max-w-sm grid-cols-2 gap-2.5 sm:mt-9 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-3">
+  <a routerLink="/donate" class="btn btn-lg btn-primary col-span-2 shadow-portal transition-transform duration-300 hover:-translate-y-0.5 sm:col-auto">
     <app-icon name="donate" size="h-5 w-5" [strokeWidth]="2" />
     {{ i18n.t('header.donate') }}
   </a>
-  <a routerLink="/namaz" class="btn btn-lg btn-secondary transition-transform duration-300 hover:-translate-y-0.5">
-    <app-icon name="mosque" size="h-5 w-5" />
+  <a routerLink="/namaz" class="btn btn-secondary px-3 transition-transform duration-300 hover:-translate-y-0.5 sm:btn-lg sm:px-7">
+    <app-icon name="mosque" size="hidden h-5 w-5 sm:block" />
     {{ i18n.t('hero.namaz') }}
   </a>
-  <a routerLink="/apply" class="btn btn-lg btn-secondary transition-transform duration-300 hover:-translate-y-0.5">
-    <app-icon name="contact" size="h-5 w-5" />
+  <a routerLink="/apply" class="btn btn-secondary px-3 transition-transform duration-300 hover:-translate-y-0.5 sm:btn-lg sm:px-7">
+    <app-icon name="contact" size="hidden h-5 w-5 sm:block" />
     {{ i18n.t('hero.apply') }}
   </a>
 </div>

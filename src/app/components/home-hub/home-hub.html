@@ -17,7 +17,8 @@
   <img
     src="/brand/nagina.png"
     alt=""
-    class="animate-spin-slow hero-seal pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[34rem] w-[34rem] max-w-none -translate-x-1/2 -translate-y-1/2 select-none sm:h-[44rem] sm:w-[44rem] xl:h-[50rem] xl:w-[50rem]"
+    class="animate-spin-slow hero-seal pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[30rem] w-[30rem] max-w-none -translate-x-1/2 -translate-y-1/2 select-none sm:h-[44rem] sm:w-[44rem] xl:h-[50rem] xl:w-[50rem]"
+    style="top: 46%"
     width="490"
     height="509"
     decoding="async"
@@ -25,7 +26,7 @@
   />
 
   <div
-    class="site-wrap relative flex flex-col items-center justify-center pb-24 pt-28 text-center sm:pb-28 sm:pt-36 xl:min-h-[min(88vh,_52rem)]"
+    class="site-wrap relative flex flex-col items-center justify-center pb-20 pt-24 text-center sm:pb-28 sm:pt-36 xl:min-h-[min(88vh,_52rem)]"
   >
     <p
       class="animate-fade-up font-arabic text-2xl leading-tight text-gold-300 notranslate sm:text-3xl 3xl:text-4xl"
@@ -42,13 +43,13 @@
       {{ i18n.t('hero.bismillahEn') }}
     </p>
     <h1
-      class="animate-fade-up mt-6 font-display text-5xl font-bold leading-[0.95] tracking-tight text-white sm:text-7xl xl:text-8xl"
+      class="animate-fade-up mt-5 font-display text-[2.75rem] font-bold leading-[0.95] tracking-tight text-white sm:mt-6 sm:text-7xl xl:text-8xl"
       style="animation-delay: 160ms"
     >
       <span class="text-shimmer">Nagina Social Welfare</span>
     </h1>
     <p
-      class="animate-fade-up mx-auto mt-5 max-w-xl font-display text-xl font-medium italic text-gold-300/90 sm:text-2xl 3xl:text-3xl"
+      class="animate-fade-up mx-auto mt-4 max-w-xl font-display text-lg font-medium italic text-gold-300/90 sm:mt-5 sm:text-2xl 3xl:text-3xl"
       style="animation-delay: 240ms"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
@@ -62,7 +63,7 @@
 
     <!-- Both centres, one tap from the top of the page. -->
     <div
-      class="animate-fade-up mt-12 flex flex-col items-center gap-3"
+      class="animate-fade-up mt-9 flex flex-col items-center gap-2.5 sm:mt-12 sm:gap-3"
       style="animation-delay: 440ms"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       data-testid="hero-centres"
@@ -70,7 +71,7 @@
       <p class="text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-gold-300/70">
         {{ i18n.t('hero.centresLabel') }}
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-3">
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
         @for (chip of centreChips(); track chip.id) {
           <a
             [routerLink]="chip.path"
@@ -98,7 +99,7 @@
     </div>
 
     <a
-      class="animate-fade-up mt-10 inline-flex items-center gap-1.5 text-xs text-cream/60 transition-colors hover:text-white"
+      class="animate-fade-up mt-7 inline-flex items-center gap-1.5 text-xs text-cream/60 transition-colors hover:text-white sm:mt-10"
       style="animation-delay: 560ms"
       [href]="org.charityCommissionUrl"
       target="_blank"
@@ -112,7 +113,7 @@
     <!-- Scroll cue -->
     <a
       href="#home-centres-heading"
-      class="animate-cue absolute bottom-6 left-1/2 -translate-x-1/2 text-gold-300/80 transition-colors hover:text-white"
+      class="animate-cue absolute bottom-4 left-1/2 sm:bottom-6 -translate-x-1/2 text-gold-300/80 transition-colors hover:text-white"
       [attr.aria-label]="i18n.t('home.centresEyebrow')"
     >
       <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
