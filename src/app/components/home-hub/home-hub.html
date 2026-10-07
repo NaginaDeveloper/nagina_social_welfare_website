@@ -13,19 +13,16 @@
     aria-hidden="true"
   ></div>
   <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-50" aria-hidden="true"></div>
-  <svg
-    class="animate-spin-slow pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[38rem] w-[38rem] -translate-x-1/2 -translate-y-1/2 text-gold-300/15 sm:h-[48rem] sm:w-[48rem]"
-    viewBox="0 0 400 400"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1"
+  <!-- The NSW badge itself is the ring: it turns slowly behind the title, centre faded so the words stay clear. -->
+  <img
+    src="/brand/nagina.png"
+    alt=""
+    class="animate-spin-slow hero-seal pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[34rem] w-[34rem] max-w-none -translate-x-1/2 -translate-y-1/2 select-none sm:h-[44rem] sm:w-[44rem] xl:h-[50rem] xl:w-[50rem]"
+    width="490"
+    height="509"
+    decoding="async"
     aria-hidden="true"
-  >
-    <circle cx="200" cy="200" r="190" stroke-dasharray="4 10" />
-    <circle cx="200" cy="200" r="150" />
-    <path d="M200 50 243 157 350 200 243 243 200 350 157 243 50 200 157 157Z" />
-    <path d="M200 98 231 169 302 200 231 231 200 302 169 231 98 200 169 169Z" />
-  </svg>
+  />
 
   <div
     class="site-wrap relative flex flex-col items-center justify-center pb-24 pt-28 text-center sm:pb-28 sm:pt-36 xl:min-h-[min(88vh,_52rem)]"
@@ -48,7 +45,7 @@
       class="animate-fade-up mt-6 font-display text-5xl font-bold leading-[0.95] tracking-tight text-white sm:text-7xl xl:text-8xl"
       style="animation-delay: 160ms"
     >
-      Nagina <span class="text-shimmer">Social</span> Welfare
+      <span class="text-shimmer">Nagina Social Welfare</span>
     </h1>
     <p
       class="animate-fade-up mx-auto mt-5 max-w-xl font-display text-xl font-medium italic text-gold-300/90 sm:text-2xl 3xl:text-3xl"

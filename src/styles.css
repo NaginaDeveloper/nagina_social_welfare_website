@@ -477,9 +477,19 @@ html.urdu .spotlight-label {
 .animate-pulse-ring {
   animation: pulseRing 2.4s ease-out infinite;
 }
-/* Gold shimmer sweep across text (used on the hero title accent). */
+/* Faint rotating NSW seal behind the hero title; the centre is masked out so the words stay clear. */
+.hero-seal {
+  opacity: 0.16;
+  filter: saturate(0.6) brightness(1.4);
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(circle at center, transparent 34%, #000 46%, #000 100%);
+  mask-image: radial-gradient(circle at center, transparent 34%, #000 46%, #000 100%);
+}
+
+/* Gold shimmer sweep across text (used on the hero title). */
 .text-shimmer {
-  background: linear-gradient(110deg, #fbbf24 0%, #fff7e0 45%, #fbbf24 55%, #d97706 100%);
+  padding-inline: 0.08em;
+  background: linear-gradient(110deg, #fde68a 0%, #fbbf24 30%, #fffbeb 50%, #fbbf24 70%, #f59e0b 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
