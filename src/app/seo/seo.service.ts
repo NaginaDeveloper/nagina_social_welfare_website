@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ORGANIZATION } from '../config/organization.config';
 import { centrePath } from '../config/centre-pages.config';
-import { campusStoredCoords, campusTown, type Campus } from '../models/campus';
+import { campusLocation, campusTown, type Campus } from '../models/campus';
 import { CampusService } from '../services/campus.service';
 import {
   DEFAULT_OG_IMAGE,
@@ -243,7 +243,7 @@ export function madrasaNode(campus: Campus): Record<string, unknown> {
   const town = campusTown(campus);
   const parts = campus.addressLine.split(',').map((p) => p.trim()).filter(Boolean);
   const street = parts.length > 1 ? parts.slice(0, -1).join(', ') : campus.addressLine;
-  const coords = campusStoredCoords(campus);
+  const coords = campusLocation(campus);
   return {
     '@type': 'EducationalOrganization',
     '@id': `${SITE_ORIGIN}/#madrasa-${campus.id}`,

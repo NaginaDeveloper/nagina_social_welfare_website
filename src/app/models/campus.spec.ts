@@ -4,6 +4,8 @@ import { eventWhatsappDigits, toUpcomingEvent } from '../services/events.service
 import { madrasaNode } from '../seo/seo.service';
 import {
   campusStoredCoords,
+  campusMapsEmbedUrl,
+  campusDirectionsUrl,
   campusTown,
   parsePostcodeLookup,
   posterCaption,
@@ -159,7 +161,24 @@ describe('madrasa search data', () => {
       postalCode: 'M31 4FL',
       addressCountry: 'GB',
     });
-    expect(node['geo']).toEqual({ '@type': 'GeoCoordinates', latitude: 53.417784, longitude: -2.42617 });
+    expect(node['geo']).toEqual({ '@type': 'GeoCoordinates', latitude: 53.4167984, longitude: -2.4251937 });
     expect(node['url']).toBe('https://www.naginasocialwelfare.co.uk/manchester/');
+  });
+});
+
+describe('campus map pins', () => {
+  it('uses the confirmed Manchester pin for the embedded map and directions', () => {
+    expect(campusMapsEmbedUrl(MANCHESTER)).toBe(
+      'https://maps.google.com/maps?q=53.4167984%2C-2.4251937&z=17&output=embed',
+    );
+    expect(campusDirectionsUrl(MANCHESTER)).toBe(
+      'https://www.google.com/maps/search/?api=1&query=53.4167984%2C-2.4251937',
+    );
+  });
+
+  it('falls back to the address for a campus without a confirmed pin', () => {
+    const peterborough = { id: 'peterborough', addressLine: '103 Burmer Road, Peterborough PE1 3HT' };
+    expect(campusMapsEmbedUrl(peterborough)).toContain(encodeURIComponent('103 Burmer Road'));
+    expect(campusDirectionsUrl(peterborough)).toContain(encodeURIComponent('103 Burmer Road'));
   });
 });
