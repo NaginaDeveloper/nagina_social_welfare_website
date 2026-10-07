@@ -22,7 +22,7 @@ export class Ramadan implements OnInit {
   );
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/namaz', label: 'Prayer times', hint: 'Suhoor and Maghrib from today’s schedule' },
+    { path: '/namaz', label: 'Prayer Times', hint: 'Suhoor and Maghrib from today’s schedule' },
     { path: '/events', label: 'Events', hint: 'Ramadan gatherings when published' },
     { path: '/madrasa', label: 'Our Madrasas', hint: 'Addresses and contact for each Madrasa' },
     { path: '/donate', label: 'Donate', hint: 'Zakat and Sadaqah in Ramadan' },

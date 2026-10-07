@@ -96,12 +96,12 @@ const mukhtasarPages: readonly ShajraPage[] = [
     captionUr: 'آغاز — حضور ﷺ، اہل بیت اور صحابہ',
     saints: [
       s('Muhammad Rasool Allah ﷺ', 'حضور محمد رسول اللہ ﷺ', {
-        title: 'Sayyid of the two worlds, King of the Messengers',
+        title: 'Sayyid of the Two Worlds, King of the Messengers',
         titleUr: 'سید العالمین، سلطان الانبیاء',
         honorific: null,
       }),
       s('The Ahl-e-Bait', 'اہل بیت', {
-        title: 'The blessed family of Mustafa ﷺ',
+        title: 'The Blessed Family of Mustafa ﷺ',
         titleUr: 'آلِ مصطفیٰ ﷺ',
         honorific: RAHUM,
       }),
@@ -115,7 +115,7 @@ const mukhtasarPages: readonly ShajraPage[] = [
         titleUr: 'الصدیق الاکبر',
       }),
       s('Salman Farsi', 'سلمان فارسی', {
-        title: 'Pride of the holy ones',
+        title: 'Pride of the Holy Ones',
         titleUr: 'فخر الاصفیاء',
       }),
       s('Imam Qasim bin Abu Bakr Siddiq', 'امام قاسم بن ابو بکر صدیق'),
@@ -130,7 +130,7 @@ const mukhtasarPages: readonly ShajraPage[] = [
     captionUr: 'امام جعفر صادق تا خواجہ درویش',
     saints: [
       s('Imam Jafar Sadiq', 'امام جعفر صادق', {
-        title: 'Imam of the truthful',
+        title: 'Imam of the Truthful',
         titleUr: 'امام الصادقین',
       }),
       s('Bayazid Bastami', 'بایزید بسطامی'),
@@ -165,13 +165,13 @@ const mukhtasarPages: readonly ShajraPage[] = [
         titleUr: 'امام ربانی مجدد الف ثانی',
       }),
       s('Muhammad Masoom', 'محمد معصوم', {
-        title: 'Qayyum of the age',
+        title: 'Qayyum of the Age',
         titleUr: 'قیومِ زمانہ',
       }),
       s('Hujjatullah', 'حجت اللہ'),
       s('Muhammad Zubair', 'محمد زبیر'),
       s('Qutb-ud-Din', 'قطب الدین', {
-        title: 'Qutb of the gnostics',
+        title: 'Qutb of the Gnostics',
         titleUr: 'قطب العارفین',
       }),
       s('Jamalullah', 'جمال اللہ'),
@@ -179,7 +179,7 @@ const mukhtasarPages: readonly ShajraPage[] = [
       s('Noor Muhammad Chorahi', 'نور محمد چوراہی'),
       s('Bawa Ji Khwaja Faqir', 'باوا جی خواجہ فقیر'),
       s('The saints of Chora Sharif', 'چورا شریف کے اولیاء', {
-        title: 'Khak-e-Chora, like stars of the galaxy',
+        title: 'Khak-e-Chora, Like Stars of the Galaxy',
         titleUr: 'خاکِ چورا، کہکشاں کے ستاروں کی مانند',
         honorific: RAHUM,
       }),
@@ -198,13 +198,13 @@ const mukhtasarPages: readonly ShajraPage[] = [
       s('Ali Asghar', 'علی اصغر'),
       s('Shah Jamaat Ali', 'شاہ جماعت علی'),
       s('Shah Muhammad Hussain', 'شاہ محمد حسین', {
-        title: 'Pir of the perfect ones',
+        title: 'Pir of the Perfect Ones',
         titleUr: 'پیرِ کاملین',
       }),
       s('Amir-e-Millat', 'امیرِ ملت'),
       s('Hafiz', 'حافظ'),
       s('Murshid Haji Muhammad Yusuf Ali Nagina', 'مرشد حاجی محمد یوسف علی نگینہ', {
-        title: 'eloquent guide',
+        title: 'Eloquent Guide',
         titleUr: 'فصیح رہنما',
       }),
     ],
@@ -244,7 +244,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
             honorific: RAHUM,
           }),
           s('Imam Hussain', 'امام حسین', {
-            title: 'Shabbir, leader of Paradise',
+            title: 'Shabbir, Leader of Paradise',
             titleUr: 'شبیر، سردارِ جناں',
           }),
         ],
@@ -258,7 +258,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         captionUr: 'صحابہ اور ابو بکر صدیق',
         saints: [
           s('The noble Companions', 'صحابہ کرام', {
-            title: 'Leaders of the caravan',
+            title: 'Leaders of the Caravan',
             titleUr: 'امیرِ کارواں',
             honorific: RAHUM,
           }),
@@ -277,15 +277,15 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         captionUr: 'سلمان فارسی تا امام جعفر صادق',
         saints: [
           s('Salman Farsi', 'سلمان فارسی', {
-            title: 'Pride of the holy ones',
+            title: 'Pride of the Holy Ones',
             titleUr: 'فخر قدسیاں',
           }),
           s('Imam Qasim', 'حضرت قاسم', {
-            title: 'Eternal grace',
+            title: 'Eternal Grace',
             titleUr: 'لطفِ جاوداں',
           }),
           s('Imam Jafar Sadiq', 'امام جعفر صادق', {
-            title: 'Imam of the truthful',
+            title: 'Imam of the Truthful',
             titleUr: 'امام صادقاں',
           }),
         ],
@@ -300,7 +300,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         saints: [
           s('Bayazid Bastami', 'بایزید بسطامی'),
           s('Abul Hasan Kharqani', 'ابو الحسن خرقانی', {
-            title: 'Qutb of the world',
+            title: 'Qutb of the World',
             titleUr: 'قطبِ جہاں',
           }),
           s('Abu Ali Farmadi', 'ابو علی فارمدی'),
@@ -329,7 +329,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
           s('Alauddin Attar', 'علاؤ الدین عطار'),
           s('Sayyid Amir Kulal', 'سید امیر کلال'),
           s('Bahauddin Naqshband', 'شاہ بہاؤ الدین نقشبند', {
-            title: 'Master of masters',
+            title: 'Master of Masters',
             titleUr: 'خواجہ خواجگاں',
           }),
           s('Muhammad Yaqub Charkhi', 'محمد یعقوب چرخی'),
@@ -363,17 +363,17 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         captionUr: 'محمد معصوم تا شاہ جمال اللہ',
         saints: [
           s('Muhammad Masoom', 'حضرت معصوم', {
-            title: 'Qayyum of the age',
+            title: 'Qayyum of the Age',
             titleUr: 'قیومِ زماں',
           }),
           s('Hujjatullah', 'حجت اللہ'),
           s('Muhammad Zubair', 'محمد زبیر'),
           s('Qutb-ud-Din', 'خواجہ قطب الدین', {
-            title: 'Qutb of the gnostics',
+            title: 'Qutb of the Gnostics',
             titleUr: 'قطب عارفاں',
           }),
           s('Jamalullah', 'شاہ جمال اللہ', {
-            title: 'Pride of majesty',
+            title: 'Pride of Majesty',
             titleUr: 'فخر مہ و شاں',
           }),
         ],
@@ -387,16 +387,16 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         captionUr: 'شاہ عیسیٰ تا اولیاء چورا شریف',
         saints: [
           s('Shah Isa', 'سید عیسیٰ', {
-            title: 'Refuge of the helpless',
+            title: 'Refuge of the Helpless',
             titleUr: 'پناہِ بے کساں',
           }),
           s('Noor Muhammad Chorahi', 'خواجہ نور محمد چوراہی', {
-            title: 'Light of the world',
+            title: 'Light of the World',
             titleUr: 'نور جہاں',
           }),
           s('Bawa Ji Khwaja Faqir', 'باوا جی خواجہ فقیر'),
           s('The saints of Chora Sharif', 'چورا شریف کے اولیاء', {
-            title: 'Khak-e-Chora, like stars of the galaxy',
+            title: 'Khak-e-Chora, Like Stars of the Galaxy',
             titleUr: 'خاکِ چورا، مثلِ نجم و کہکشاں',
             honorific: RAHUM,
           }),
@@ -453,7 +453,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         captionUr: 'آغاز — حضور ﷺ، اہل بیت اور اوائل مشائخ',
         saints: [
           s('Muhammad Rasool Allah ﷺ', 'حضور محمد رسول اللہ ﷺ', {
-            title: 'Master of the world, King of the faith',
+            title: 'Master of the World, King of the Faith',
             titleUr: 'سرورِ عالم، شاہِ دیں',
             honorific: null,
           }),
@@ -462,7 +462,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
           }),
           s('The noble Companions', 'صحابہ کرام', { honorific: RAHUM }),
           s('Sayyidah Fatimah Zahra', 'سیدہ فاطمہ زہرا', {
-            title: 'Khair-un-Nisa of the worlds',
+            title: 'Khair-un-Nisa of the Worlds',
             titleUr: 'خیر النساء عالمیں',
             honorific: 'رضی اللہ تعالیٰ عنہا',
           }),
@@ -496,7 +496,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
           s('Moinuddin Chishti', 'شاہ معین الدین چشتی'),
           s('Qutbuddin Bakhtiyar Kaki', 'شاہ قطب الدین بختیار کاکی'),
           s('Fariduddin Ganjshakar', 'شاہ فرید الدین گنج شکر', {
-            title: 'Qibla of the lovers',
+            title: 'Qibla of the Lovers',
             titleUr: 'قبلہ عاشقین',
           }),
         ],
@@ -511,7 +511,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         saints: [
           s('Alauddin Sabir', 'شاہ علاؤ الدین'),
           s('Shamsuddin Turk', 'خواجہ شمس الدین', {
-            title: 'Shams of the gnostics',
+            title: 'Shams of the Gnostics',
             titleUr: 'شمس عارفین',
           }),
           s('Jalaluddin Panipati', 'شاہ جلال الدین'),
@@ -578,7 +578,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
             titleUr: 'شہ مشکل کشا',
           }),
           s('Imam Hussain', 'امام حسین', {
-            title: 'The martyr of Karbala',
+            title: 'The Martyr of Karbala',
             titleUr: 'شہیدِ کربلا',
           }),
           s('Imam Zayn al-Abidin', 'امام زین العابدین', {
@@ -586,7 +586,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
             titleUr: 'سید سجاد',
           }),
           s('Imam Muhammad al-Baqir', 'امام محمد باقر', {
-            title: 'Baqir of the people of guidance',
+            title: 'Baqir of the People of Guidance',
             titleUr: 'باقر اہل ہدیٰ',
           }),
         ],
@@ -661,11 +661,11 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         captionUr: 'حمزہ، شمس الدین اور آل رسول',
         saints: [
           s('Hamza', 'حمزہ', {
-            title: 'The martyr of love',
+            title: 'The Martyr of Love',
             titleUr: 'شہیدِ عشق',
           }),
           s('Shams-ud-Din', 'شمس الدین', {
-            title: 'Badr of the darkness',
+            title: 'Badr of the Darkness',
             titleUr: 'بدر الدجیٰ',
           }),
           s('The family of the Messenger', 'آل رسول', { honorific: RAHUM }),

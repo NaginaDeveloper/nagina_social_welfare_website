@@ -59,12 +59,12 @@ export class Madrasa implements OnInit {
   }
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/apply', label: 'Apply online', hint: '2026 admission form' },
+    { path: '/apply', label: 'Apply Online', hint: '2026 admission form' },
     { path: '/peterborough', label: 'Peterborough', hint: 'Markaz Deen-e-Islam centre' },
     { path: '/manchester', label: 'Manchester', hint: 'Quran Academy centre' },
     { path: '/safeguarding', label: 'Safeguarding', hint: 'How we keep children safe' },
-    { path: '/namaz', label: 'Prayer times', hint: 'Salah times for each centre' },
-    { path: '/work', label: 'Our work', hint: 'Education and welfare' },
+    { path: '/namaz', label: 'Prayer Times', hint: 'Salah times for each centre' },
+    { path: '/work', label: 'Our Work', hint: 'Education and welfare' },
     { path: '/contact', label: 'Contact', hint: 'WhatsApp, phone and email' },
   ];
 
@@ -76,19 +76,19 @@ export class Madrasa implements OnInit {
       textUr: 'منظم قرآن خوانی اور تجوید، شفیق اساتذہ اور واضح پیش رفت کے ساتھ۔',
     },
     {
-      title: 'Islamic teachings',
+      title: 'Islamic Teachings',
       titleUr: 'اسلامی تعلیمات',
       text: 'Prayer, manners and belief — age-appropriate Islamic education in a Hanafi Barelvi / Ahl al-Sunnah setting.',
       textUr: 'نماز، اخلاق اور عقیدہ — حنفی بریلوی / اہلِ سنت ماحول میں عمر کے مطابق اسلامی تعلیم۔',
     },
     {
-      title: 'Hadith studies',
+      title: 'Hadith Studies',
       titleUr: 'حدیث کی تعلیم',
       text: 'Sayings of Prophet Muhammad ﷺ, taught with care so children grow in love for the Messenger.',
       textUr: 'اقوالِ رسول محمد ﷺ، شفقت سے پڑھائے جاتے ہیں تاکہ بچے محبتِ رسول میں بڑھیں۔',
     },
     {
-      title: 'Islamic academics',
+      title: 'Islamic Academics',
       titleUr: 'اسلامی علوم',
       text: 'Arabic, duas and structured Islamic study alongside the evening timetable.',
       textUr: 'عربی، دعائیں اور منظم اسلامی مطالعہ، شام کی کلاسوں کے ساتھ۔',

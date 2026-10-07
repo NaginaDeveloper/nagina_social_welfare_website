@@ -52,7 +52,7 @@ export class PrayerTimes implements OnInit, OnDestroy {
     },
     {
       path: '/calendar',
-      label: 'Islamic calendar',
+      label: 'Islamic Calendar',
       hint: 'Hijri dates and method notes',
     },
     {

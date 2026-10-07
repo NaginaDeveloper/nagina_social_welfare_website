@@ -1,58 +1,14 @@
-<div class="mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
-  <a routerLink="/donate" class="btn btn-lg btn-primary shadow-portal">
+<div class="mt-9 flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
+  <a routerLink="/donate" class="btn btn-lg btn-primary shadow-portal transition-transform duration-300 hover:-translate-y-0.5">
     <app-icon name="donate" size="h-5 w-5" [strokeWidth]="2" />
     {{ i18n.t('header.donate') }}
   </a>
-  <a routerLink="/namaz" class="btn btn-lg btn-secondary">
+  <a routerLink="/namaz" class="btn btn-lg btn-secondary transition-transform duration-300 hover:-translate-y-0.5">
     <app-icon name="mosque" size="h-5 w-5" />
     {{ i18n.t('hero.namaz') }}
   </a>
+  <a routerLink="/apply" class="btn btn-lg btn-secondary transition-transform duration-300 hover:-translate-y-0.5">
+    <app-icon name="contact" size="h-5 w-5" />
+    {{ i18n.t('hero.apply') }}
+  </a>
 </div>
-
-<!-- Secondary destinations as small icon pills. -->
-<ul
-  class="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm"
-  [attr.dir]="i18n.isUr() ? 'rtl' : null"
->
-  <li>
-    <a routerLink="/apply" class="hero-pill">
-      <app-icon name="contact" size="h-4 w-4 text-gold-300" />
-      {{ i18n.t('hero.apply') }}
-    </a>
-  </li>
-  <li>
-    <a
-      [href]="org.quizUrl"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hero-pill"
-      [attr.aria-label]="i18n.t('hero.quizAria')"
-    >
-      <app-icon name="quiz" size="h-4 w-4 text-gold-300" />
-      {{ i18n.t('header.quiz') }}
-    </a>
-  </li>
-  <li>
-    <a
-      [href]="org.halalCheckerUrl"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hero-pill"
-      [attr.aria-label]="i18n.t('hero.halalCheckerAria')"
-    >
-      <app-icon name="barcode" size="h-4 w-4 text-gold-300" />
-      {{ i18n.t('header.halalChecker') }}
-    </a>
-  </li>
-  <li>
-    <button
-      type="button"
-      class="hero-pill"
-      [attr.aria-label]="i18n.t('hero.assistantAria')"
-      (click)="openAssistant()"
-    >
-      <app-icon name="assistant" size="h-4 w-4 text-gold-300" />
-      {{ i18n.t('header.assistant') }}
-    </button>
-  </li>
-</ul>

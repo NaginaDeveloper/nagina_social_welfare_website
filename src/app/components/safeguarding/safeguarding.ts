@@ -27,7 +27,7 @@ export class Safeguarding {
 
   protected readonly blocks: readonly SafeguardingBlock[] = [
     {
-      title: 'Our duty',
+      title: 'Our Duty',
       titleUr: 'ہماری ذمہ داری',
       body:
         'Our Madrasas teach children. Everyone who visits, teaches, or volunteers with us must help keep children and adults at risk safe from harm, abuse, and neglect.',
@@ -35,7 +35,7 @@ export class Safeguarding {
         'ہمارے مدارس بچوں کو تعلیم دیتے ہیں۔ جو بھی تشریف لائے، پڑھائے یا رضاکارانہ خدمت کرے، اسے بچوں اور خطرے میں بالغوں کو نقصان، زیادتی اور غفلت سے محفوظ رکھنے میں مدد کرنی چاہیے۔',
     },
     {
-      title: 'How we work',
+      title: 'How We Work',
       titleUr: 'ہم کیسے کام کرتے ہیں',
       body:
         'Nagina Social Welfare UK is a registered charity. We keep a full safeguarding policy, which trustees review. This page is a public summary, not the complete policy.',
@@ -43,7 +43,7 @@ export class Safeguarding {
         'نگینہ سوشل ویلفیئر (برطانیہ) ایک رجسٹرڈ چیریٹی ہے۔ ہمارے پاس مکمل حفاظتی پالیسی ہے جس کا ٹرسٹیز جائزہ لیتے ہیں۔ یہ صفحہ عوامی خلاصہ ہے، مکمل پالیسی نہیں۔',
     },
     {
-      title: 'If you are worried',
+      title: 'If You Are Worried',
       titleUr: 'اگر آپ پریشان ہیں',
       body:
         'If a child or adult may be at risk, contact us immediately by WhatsApp or email. In an emergency, call 999. You can also contact your local council’s children’s services team or the NSPCC (0808 800 5000).',
@@ -51,7 +51,7 @@ export class Safeguarding {
         'اگر کوئی بچہ یا بالغ خطرے میں ہو تو فوراً واٹس ایپ یا ای میل سے رابطہ کریں۔ ہنگامی صورت میں 999 پر کال کریں۔ اپنی مقامی کونسل کی چلڈرن سروسز یا NSPCC (0808 800 5000) سے بھی رابطہ کر سکتے ہیں۔',
     },
     {
-      title: 'Full policy',
+      title: 'Full Policy',
       titleUr: 'مکمل پالیسی',
       body:
         'Parents, staff, and volunteers may request the full safeguarding policy. We will share it on request by WhatsApp or email.',

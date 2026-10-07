@@ -45,9 +45,9 @@ export class Donations implements OnInit {
   );
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/zakat', label: 'Zakat calculator', hint: 'Estimate before you give' },
-    { path: '/zakat/what-is-zakat', label: 'What is Zakat?', hint: 'UK guide' },
-    { path: '/work', label: 'Our work', hint: 'Education and welfare' },
+    { path: '/zakat', label: 'Zakat Calculator', hint: 'Estimate before you give' },
+    { path: '/zakat/what-is-zakat', label: 'What Is Zakat?', hint: 'UK guide' },
+    { path: '/work', label: 'Our Work', hint: 'Education and welfare' },
     { path: '/impact', label: 'Impact', hint: 'Approved evidence' },
     { path: '/privacy', label: 'Privacy', hint: 'How donations are handled' },
     { path: '/contact', label: 'Contact', hint: 'Ask before you give' },

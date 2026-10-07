@@ -11,6 +11,7 @@ import { PrayerTimesService } from '../../services/prayer-times.service';
 import { HeroTopActions } from '../hero-top-actions/hero-top-actions';
 import { HomeCentres } from '../home-centres/home-centres';
 import { Icon } from '../ui/icon';
+import { Reveal } from '../../directives/reveal';
 
 export type HubTileTone = 'featured' | 'donate' | 'default';
 
@@ -38,7 +39,7 @@ export interface HeroCentreChip {
 
 @Component({
   selector: 'app-home-hub',
-  imports: [FormsModule, RouterLink, HeroTopActions, HomeCentres, Icon],
+  imports: [FormsModule, RouterLink, HeroTopActions, HomeCentres, Icon, Reveal],
   templateUrl: './home-hub.html',
 })
 export class HomeHub implements OnInit {
@@ -66,9 +67,6 @@ export class HomeHub implements OnInit {
     }));
   });
 
-  protected readonly centreCountLabel = computed(() =>
-    this.i18n.t('home.trust.centres').replace('{n}', String(this.centreChips().length)),
-  );
 
   protected readonly query = signal('');
   protected readonly showAll = signal(false);
@@ -398,7 +396,7 @@ export class HomeHub implements OnInit {
 
   protected tileClass(tone: HubTileTone): string {
     const base =
-      'group flex min-h-[8.5rem] flex-col rounded-2xl border p-4 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-portal active:scale-[0.99] sm:p-5';
+      'group flex w-full min-h-[8.5rem] flex-col rounded-2xl border p-4 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-portal active:scale-[0.99] sm:p-5';
     if (tone === 'featured') {
       return `${base} border-gold/40 bg-gradient-to-br from-gold/15 to-white hover:border-gold/60`;
     }

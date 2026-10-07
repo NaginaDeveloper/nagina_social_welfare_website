@@ -84,7 +84,7 @@ export const LOCAL_DATED_EVENTS: readonly UpcomingEvent[] = [
 export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
   {
     id: 'namaz-course',
-    title: 'Let’s Learn Salah (prayer)',
+    title: 'Let’s Learn Salah (Prayer)',
     titleUr: 'نماز سیکھیں',
     recurring: 'Weekly course',
     recurringUr: 'ہفتہ وار کورس',
@@ -96,7 +96,7 @@ export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
   },
   {
     id: 'sisters',
-    title: 'Sisters gathering — Let’s learn Islam',
+    title: 'Sisters Gathering — Let’s Learn Islam',
     titleUr: 'بہنوں کی محفل — اسلام سیکھیں',
     recurring: 'Monthly',
     recurringUr: 'ماہانہ',
@@ -108,7 +108,7 @@ export const STANDING_PROGRAMMES: readonly UpcomingEvent[] = [
   },
   {
     id: 'zikr-fikr',
-    title: 'Remembrance & reflection (Zikr & Fikr)',
+    title: 'Remembrance & Reflection (Zikr & Fikr)',
     titleUr: 'ذکر و فکر',
     recurring: 'Remembrance and reflection evenings',
     recurringUr: 'ذکر و فکر کی شامیں',

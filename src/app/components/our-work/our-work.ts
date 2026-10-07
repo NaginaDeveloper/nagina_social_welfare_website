@@ -36,7 +36,7 @@ export class OurWork {
     { path: '/peterborough', label: 'Peterborough', hint: 'Markaz Deen-e-Islam centre' },
     { path: '/manchester', label: 'Manchester', hint: 'Quran Academy centre' },
     { path: '/donate', label: 'Donate', hint: 'Zakat, Sadaqah and Lillah' },
-    { path: '/impact', label: 'Impact update', hint: 'Approved programme evidence' },
+    { path: '/impact', label: 'Impact Update', hint: 'Approved programme evidence' },
     { path: '/contact', label: 'Contact', hint: 'Ask for help or volunteer' },
     { path: '/safeguarding', label: 'Safeguarding', hint: 'How we keep people safe' },
   ];

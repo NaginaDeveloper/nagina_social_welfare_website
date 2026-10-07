@@ -15,10 +15,10 @@ export class WhatIsZakat {
   protected readonly org = ORGANIZATION;
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/zakat/rules', label: 'Zakat rules', hint: 'Assets, nisab and common questions' },
-    { path: '/zakat', label: 'Zakat calculator', hint: 'Estimate your Zakat amount' },
+    { path: '/zakat/rules', label: 'Zakat Rules', hint: 'Assets, nisab and common questions' },
+    { path: '/zakat', label: 'Zakat Calculator', hint: 'Estimate your Zakat amount' },
     { path: '/donate', label: 'Donate', hint: 'Give Zakat, Sadaqah or Lillah' },
-    { path: '/work', label: 'Our work', hint: 'How donations support programmes' },
+    { path: '/work', label: 'Our Work', hint: 'How donations support programmes' },
     { path: '/impact', label: 'Impact', hint: 'Approved programme evidence' },
   ];
 }

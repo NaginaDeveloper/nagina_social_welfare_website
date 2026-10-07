@@ -45,7 +45,7 @@ export class BasicBeliefs {
 
   protected readonly beliefCategories: readonly BeliefCategory[] = [
     {
-      title: 'Who we are — Ahl al-Sunnah / Hanafi Barelvi',
+      title: 'Who We Are — Ahl al-Sunnah / Hanafi Barelvi',
       titleUr: 'ہم کون ہیں — اہلِ سنت / حنفی بریلوی',
       lead: 'The starting point of our creed is belonging to the mainstream Sunni Ummah with the spiritual emphasis taught at Markaz.',
       leadUr: 'ہمارے عقیدے کا نقطۂ آغاز مرکزی سنی امت سے تعلق ہے، اس روحانی تاکید کے ساتھ جو مرکز میں سکھائی جاتی ہے۔',
@@ -77,7 +77,7 @@ export class BasicBeliefs {
       ],
     },
     {
-      title: 'Foundations of faith',
+      title: 'Foundations of Faith',
       titleUr: 'ایمان کی بنیادیں',
       lead: 'The pillars of belief rest upon Tawhid, the finality of prophethood, and following the Quran and Sunnah.',
       leadUr: 'عقیدے کے ارکان توحید، ختمِ نبوت، اور قرآن و سنت کی پیروی پر قائم ہیں۔',
@@ -131,7 +131,7 @@ export class BasicBeliefs {
       ],
     },
     {
-      title: 'Love, reverence, and balanced creed',
+      title: 'Love, Reverence, and Balanced Creed',
       titleUr: 'محبت، تعظیم اور متوازن عقیدہ',
       lead: 'Sunni spirituality includes deep love for the Prophet ﷺ and those Allah and His Messenger ﷺ honoured — always within the bounds of Tawhid.',
       leadUr: 'سنی روحانیت میں رسول ﷺ اور جنہیں اللہ اور اس کے رسول ﷺ نے معزز کیا ان سے گہری محبت شامل ہے — ہمیشہ توحید کی حدود میں۔',
@@ -188,7 +188,7 @@ export class BasicBeliefs {
       ],
     },
     {
-      title: 'Hanafi Barelvi worship and spirituality',
+      title: 'Hanafi Barelvi Worship and Spirituality',
       titleUr: 'حنفی بریلوی عبادت اور روحانیت',
       lead: 'Daily practice and spiritual life follow Hanafi fiqh and the gentle Sunni tradition taught at Markaz.',
       leadUr: 'روزمرہ عمل اور روحانی زندگی حنفی فقہ اور مرکز کی نرم سنی روایت پر قائم ہے۔',
@@ -242,7 +242,7 @@ export class BasicBeliefs {
       ],
     },
     {
-      title: 'What this page does not replace',
+      title: 'What This Page Does Not Replace',
       titleUr: 'یہ صفحہ کیا بدل نہیں سکتا',
       lead: 'Firm creed, gentle tone — and knowing the limits of general guidance.',
       leadUr: 'مضبوط عقیدہ، نرم لہجہ — اور عمومی رہنمائی کی حدود جاننا۔',

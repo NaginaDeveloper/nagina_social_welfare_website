@@ -346,7 +346,7 @@ export const ZAKAT_SEO: PageSeo = {
 };
 
 export const WHAT_IS_ZAKAT_SEO: PageSeo = {
-  title: 'What is Zakat? UK Guide | Nagina Social Welfare',
+  title: 'What Is Zakat? UK Guide | Nagina Social Welfare',
   description:
     'A clear UK guide to Zakat — what it is, who it helps, and how Nagina Social Welfare supports giving with trusted sources.',
   path: '/zakat/what-is-zakat/',

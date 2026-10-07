@@ -29,7 +29,7 @@ export class Guidance {
     { path: '/basic-beliefs', label: 'Basic Beliefs', hint: 'Creed FAQ' },
     { path: '/books', label: 'Books', hint: 'Seedha Rastah library' },
     { path: '/sermons', label: 'Sermons', hint: 'Video library' },
-    { path: '/duas', label: 'Daily duas', hint: 'Checked prayers' },
+    { path: '/duas', label: 'Daily Duas', hint: 'Checked prayers' },
     { path: '/contact', label: 'Contact', hint: 'Ask a question' },
   ];
 

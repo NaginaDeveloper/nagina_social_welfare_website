@@ -88,7 +88,7 @@ export class AuliaKaram {
   protected readonly auliaPoints: readonly CreedPoint[] = [
     {
       number: '01',
-      title: 'Who Are the Awliya Allah (friends of Allah)',
+      title: 'Who Are the Awliya Allah (Friends of Allah)',
       titleUr: 'اولیاء کرام کون ہیں',
       lead: 'In the creed of Ahl al-Sunnah wal-Jama‘ah, the Awliya Allah (friends of Allah) are the righteous believers whom Allah has honoured through faith, taqwa, and sincere obedience — not those who merely claim titles for themselves.',
       leadUr: 'اہلِ سنت والجماعت کے عقیدے میں اولیاء اللہ وہ نیک مومنین ہیں جنہیں اللہ نے ایمان، تقویٰ اور خلوصِ اطاعت سے معزز فرمایا — نہ کہ وہ جو صرف القابات کا دعویٰ کریں۔',

@@ -15,8 +15,8 @@ export class ZakatRules {
   protected readonly org = ORGANIZATION;
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/zakat/what-is-zakat', label: 'What is Zakat?', hint: 'Short educational overview' },
-    { path: '/zakat', label: 'Zakat calculator', hint: 'Estimate using live metal prices' },
+    { path: '/zakat/what-is-zakat', label: 'What Is Zakat?', hint: 'Short educational overview' },
+    { path: '/zakat', label: 'Zakat Calculator', hint: 'Estimate using live metal prices' },
     { path: '/donate', label: 'Donate', hint: 'Give Zakat through Nagina' },
   ];
 }
