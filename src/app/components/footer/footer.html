@@ -92,6 +92,12 @@
               <a [href]="'tel:' + campus.phoneE164" class="tabular-nums transition-colors hover:text-gold-300">
                 {{ campus.phoneDisplay }}
               </a>
+              @if (campus.email && campus.email !== org.email) {
+                <span class="text-cream/40">·</span>
+                <a [href]="'mailto:' + campus.email" class="break-words transition-colors hover:text-gold-300">
+                  {{ campus.email }}
+                </a>
+              }
             </li>
           }
           <li>

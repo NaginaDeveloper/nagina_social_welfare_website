@@ -78,7 +78,7 @@
                 </li>
               }
               <li>
-                <a [href]="'mailto:' + org.email" class="font-medium text-forest hover:text-gold-700">{{ org.email }}</a>
+                <a [href]="'mailto:' + (selectedCampus()?.email || org.email)" class="font-medium text-forest hover:text-gold-700">{{ selectedCampus()?.email || org.email }}</a>
               </li>
               <li>
                 <a routerLink="/apply/track" class="font-medium text-forest hover:text-gold-700">{{ i18n.t('applyTrack.title') }}</a>
@@ -739,7 +739,7 @@
             <a [href]="whatsappAsk()" target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-700 hover:underline">WhatsApp</a>
             ·
           }
-          <a [href]="'mailto:' + org.email" class="font-semibold text-gold-700 hover:underline">{{ org.email }}</a>
+          <a [href]="'mailto:' + (selectedCampus()?.email || org.email)" class="font-semibold text-gold-700 hover:underline">{{ selectedCampus()?.email || org.email }}</a>
           ·
           <a routerLink="/apply/track" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('applyTrack.title') }}</a>
         </p>
