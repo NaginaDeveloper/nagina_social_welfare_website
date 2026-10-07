@@ -1,4 +1,3 @@
-import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   HostListener,
@@ -22,10 +21,11 @@ import { LanguageService } from '../../i18n/language.service';
 import { isEventToday } from '../../config/upcoming-events.config';
 import { campusTown } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
+import { Icon } from '../ui/icon';
 
 @Component({
   selector: 'app-header',
-  imports: [NgTemplateOutlet, RouterLink],
+  imports: [RouterLink, Icon],
   templateUrl: './header.html',
 })
 export class Header implements OnInit {

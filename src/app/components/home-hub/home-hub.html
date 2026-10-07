@@ -5,52 +5,110 @@
   ></div>
   <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
   <div
-    class="absolute -right-20 top-0 -z-10 h-64 w-64 rounded-full bg-gold/15 blur-3xl"
+    class="animate-float-slow absolute -right-24 top-8 -z-10 h-80 w-80 rounded-full bg-gold/20 blur-3xl"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute -left-32 bottom-0 -z-10 h-72 w-72 rounded-full bg-emerald-500/20 blur-3xl"
     aria-hidden="true"
   ></div>
 
   <div
-    class="site-wrap flex flex-col items-center justify-center pb-10 pt-24 text-center sm:pb-14 sm:pt-28 xl:min-h-[36rem] 2xl:min-h-[40rem] 3xl:min-h-[min(68vh,_46rem)]"
+    class="site-wrap flex flex-col items-center justify-center pb-14 pt-24 text-center sm:pb-16 sm:pt-28 xl:min-h-[36rem] 2xl:min-h-[40rem] 3xl:min-h-[min(68vh,_46rem)]"
   >
-    <p class="font-arabic text-2xl leading-tight text-gold-300 notranslate sm:text-3xl 3xl:text-4xl" lang="ar" dir="rtl">
+    <p
+      class="animate-fade-up font-arabic text-2xl leading-tight text-gold-300 notranslate sm:text-3xl 3xl:text-4xl"
+      lang="ar"
+      dir="rtl"
+    >
       بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
     </p>
     <p
-      class="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-gold-300/75 sm:text-xs"
+      class="animate-fade-up mt-2 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-gold-300/75 sm:text-xs"
+      style="animation-delay: 80ms"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       {{ i18n.t('hero.bismillahEn') }}
     </p>
-    <h1 class="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl xl:text-6xl 3xl:text-7xl">
+    <h1
+      class="animate-fade-up mt-5 font-display text-4xl font-bold tracking-tight text-white sm:text-6xl xl:text-7xl"
+      style="animation-delay: 160ms"
+    >
       Nagina Social Welfare
     </h1>
     <p
-      class="mx-auto mt-3 max-w-xl font-display text-lg font-medium italic text-gold-300/90 sm:text-2xl 3xl:text-3xl"
+      class="animate-fade-up mx-auto mt-3 max-w-xl font-display text-lg font-medium italic text-gold-300/90 sm:text-2xl 3xl:text-3xl"
+      style="animation-delay: 240ms"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
       {{ i18n.t('hero.tagline') }}
     </p>
-    <p
-      class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-cream/85 sm:text-base xl:text-lg"
+
+    <div class="animate-fade-up flex w-full flex-col items-center" style="animation-delay: 320ms">
+      <app-hero-top-actions />
+    </div>
+
+    <!-- Both centres, one tap from the top of the page. -->
+    <div
+      class="animate-fade-up mt-8 flex flex-col items-center gap-3"
+      style="animation-delay: 420ms"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
-      [attr.lang]="i18n.isUr() ? 'ur' : null"
+      data-testid="hero-centres"
     >
-      {{ i18n.t('hero.lead') }}
-    </p>
-    <p class="mt-3 text-xs font-semibold tracking-wide text-gold-300/90 sm:text-sm">
-      {{ i18n.t('about.registered') }}
-      <span class="text-cream/50">·</span>
-      <a
-        class="underline decoration-gold/40 underline-offset-2 transition-colors hover:text-white"
-        [href]="org.charityCommissionUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {{ org.charityNumber }}
-      </a>
-    </p>
-    <app-hero-top-actions />
+      <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300/75">
+        {{ i18n.t('hero.centresLabel') }}
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-2.5">
+        @for (chip of centreChips(); track chip.id) {
+          <a
+            [routerLink]="chip.path"
+            class="group inline-flex min-h-11 items-center gap-2.5 rounded-full border border-gold/40 bg-white/10 py-1.5 pe-4 ps-1.5 text-start backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/70 hover:bg-white/15"
+            [attr.data-centre]="chip.id"
+          >
+            <span
+              class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold text-forest transition-transform duration-300 group-hover:scale-110"
+            >
+              <app-icon name="mosque" size="h-4 w-4" />
+            </span>
+            <span class="flex flex-col leading-tight">
+              <span class="text-sm font-semibold text-white">{{ chip.town }}</span>
+              @if (chip.name) {
+                <span class="text-[0.7rem] text-gold-300/85">{{ chip.name }}</span>
+              }
+            </span>
+            <app-icon name="arrow" size="h-4 w-4 text-gold-300/80 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
+          </a>
+        }
+      </div>
+    </div>
+
+    <!-- Trust strip -->
+    <ul
+      class="animate-fade-up mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-cream/75"
+      style="animation-delay: 520ms"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <li>
+        <a
+          class="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+          [href]="org.charityCommissionUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <app-icon name="shield" size="h-4 w-4 text-gold-300" />
+          {{ i18n.t('home.trust.charity') }} · <span class="font-semibold text-gold-300">{{ org.charityNumber }}</span>
+        </a>
+      </li>
+      <li class="inline-flex items-center gap-1.5">
+        <app-icon name="pin" size="h-4 w-4 text-gold-300" />
+        {{ centreCountLabel() }}
+      </li>
+      <li class="inline-flex items-center gap-1.5">
+        <app-icon name="sparkle" size="h-4 w-4 text-gold-300" />
+        {{ i18n.t('home.trust.services') }}
+      </li>
+    </ul>
   </div>
 
   <div
@@ -59,44 +117,49 @@
   ></div>
 </section>
 
-<section class="relative bg-cream pb-16 pt-5 sm:pb-20 sm:pt-6" aria-labelledby="hub-heading">
-  <div class="site-wrap">
-    <div class="mb-6 lg:sticky lg:top-[calc(var(--header-clearance)+0.75rem)] lg:z-20">
-      <label class="sr-only" for="home-hub-search">{{ i18n.t('hub.searchLabel') }}</label>
-      <div class="relative">
-        <svg
-          class="pointer-events-none absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-warm/70"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-          aria-hidden="true"
-        >
-          <circle cx="11" cy="11" r="7" />
-          <path stroke-linecap="round" d="m20 20-3.5-3.5" />
-        </svg>
-        <input
-          id="home-hub-search"
-          type="search"
-          enterkeyhint="search"
-          autocomplete="off"
-          [ngModel]="query()"
-          (ngModelChange)="onSearch($event)"
-          [placeholder]="i18n.t('hub.searchPlaceholder')"
-          class="w-full rounded-full border border-mist bg-white py-3.5 pe-4 ps-12 text-base text-forest shadow-soft outline-none ring-gold/30 placeholder:text-slate-warm/60 focus:border-gold/50 focus:ring-2 sm:text-sm"
-          [attr.dir]="i18n.isUr() ? 'rtl' : null"
-        />
-      </div>
-    </div>
+<app-home-centres />
 
-    <div class="mb-4" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-      <p class="eyebrow">
-        {{ i18n.t('hub.eyebrow') }}
-      </p>
-      <h2 id="hub-heading" class="mt-1 font-display text-xl font-bold text-forest sm:text-2xl 3xl:text-3xl">
-        {{ i18n.t('hub.title') }}
-      </h2>
-      <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('hub.lead') }}</p>
+<section class="relative bg-cream pb-16 pt-10 sm:pb-20 sm:pt-12" aria-labelledby="hub-heading">
+  <div class="site-wrap">
+    <div
+      class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <div>
+        <p class="eyebrow">
+          {{ i18n.t('hub.eyebrow') }}
+        </p>
+        <h2 id="hub-heading" class="mt-1 font-display text-2xl font-bold text-forest sm:text-3xl">
+          {{ i18n.t('hub.title') }}
+        </h2>
+      </div>
+      <div class="w-full lg:max-w-md">
+        <label class="sr-only" for="home-hub-search">{{ i18n.t('hub.searchLabel') }}</label>
+        <div class="relative">
+          <svg
+            class="pointer-events-none absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-warm/70"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path stroke-linecap="round" d="m20 20-3.5-3.5" />
+          </svg>
+          <input
+            id="home-hub-search"
+            type="search"
+            enterkeyhint="search"
+            autocomplete="off"
+            [ngModel]="query()"
+            (ngModelChange)="onSearch($event)"
+            [placeholder]="i18n.t('hub.searchPlaceholder')"
+            class="w-full rounded-full border border-mist bg-white py-3 pe-4 ps-12 text-base text-forest shadow-soft outline-none ring-gold/30 placeholder:text-slate-warm/60 focus:border-gold/50 focus:ring-2 sm:text-sm"
+            [attr.dir]="i18n.isUr() ? 'rtl' : null"
+          />
+        </div>
+      </div>
     </div>
 
     @if (filteredTiles().length === 0) {
@@ -104,7 +167,7 @@
         {{ i18n.t('hub.empty') }}
       </p>
     } @else {
-      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6">
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6">
         @for (tile of visibleTiles(); track tile.id) {
           @if (tile.externalHref; as href) {
             <a
@@ -115,14 +178,18 @@
               [attr.dir]="i18n.isUr() ? 'rtl' : null"
               [attr.aria-label]="tile.ariaKey ? i18n.t(tile.ariaKey) : null"
             >
-              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
-                {{ i18n.t(tile.groupKey) }}
-              </p>
-              <p class="mt-2 font-display text-base font-bold leading-snug text-forest sm:text-lg">
+              <span [class]="iconClass(tile.tone)">
+                <app-icon [name]="tile.icon" size="h-5 w-5" />
+              </span>
+              <p class="font-display text-base font-bold leading-snug text-forest sm:text-lg">
                 {{ i18n.t(tile.labelKey) }}
               </p>
-              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm sm:text-sm">
+              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm">
                 {{ i18n.t(tile.hintKey) }}
+              </p>
+              <p class="mt-auto inline-flex items-center gap-1 pt-3 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+                {{ i18n.t(tile.groupKey) }}
+                <app-icon name="external" size="h-3 w-3 opacity-70" />
               </p>
             </a>
           } @else if (tile.path; as path) {
@@ -131,18 +198,21 @@
               [class]="tileClass(tile.tone)"
               [attr.dir]="i18n.isUr() ? 'rtl' : null"
             >
-              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
-                {{ i18n.t(tile.groupKey) }}
-              </p>
-              <p class="mt-2 font-display text-base font-bold leading-snug text-forest sm:text-lg">
+              <span [class]="iconClass(tile.tone)">
+                <app-icon [name]="tile.icon" size="h-5 w-5" />
+              </span>
+              <p class="font-display text-base font-bold leading-snug text-forest sm:text-lg">
                 {{ i18n.t(tile.labelKey) }}
               </p>
-              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm sm:text-sm">
+              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm">
                 @if (tile.id === 'salah') {
                   {{ salahSubtitle() }}
                 } @else {
                   {{ i18n.t(tile.hintKey) }}
                 }
+              </p>
+              <p class="mt-auto pt-3 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+                {{ i18n.t(tile.groupKey) }}
               </p>
             </a>
           }

@@ -223,6 +223,10 @@
 @utility btn-ghost-light {
   @apply text-forest hover:bg-forest/5;
 }
+/* Small translucent pill on the dark hero (icon + label). */
+@utility hero-pill {
+  @apply inline-flex min-h-9 items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-cream/90 transition-all duration-200 hover:-translate-y-0.5 hover:border-gold/50 hover:bg-white/10 hover:text-white sm:text-sm;
+}
 /* Brand green, only for direct WhatsApp links. */
 @utility btn-whatsapp {
   @apply bg-[#25D366] text-white shadow-soft hover:brightness-110;
@@ -407,6 +411,19 @@ html.urdu .spotlight-label {
   animation: floatSlow 9s ease-in-out infinite;
 }
 
+/* Scroll reveal: `[appReveal]` adds .is-visible the first time it enters the viewport. */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -415,6 +432,12 @@ html.urdu .spotlight-label {
   .animate-fade-up,
   .animate-float-slow {
     animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

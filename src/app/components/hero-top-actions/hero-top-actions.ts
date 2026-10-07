@@ -4,10 +4,11 @@ import { filter } from 'rxjs/operators';
 import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import { AssistantLauncherService } from '../../services/assistant-launcher.service';
+import { Icon } from '../ui/icon';
 
 @Component({
   selector: 'app-hero-top-actions',
-  imports: [RouterLink],
+  imports: [RouterLink, Icon],
   templateUrl: './hero-top-actions.html',
 })
 export class HeroTopActions {

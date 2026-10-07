@@ -19,6 +19,8 @@ type ContactReason = 'enrolment' | 'donation' | 'namaz' | 'general';
 export class Contact implements OnInit {
   /** Use h2 when embedded on the homepage so only one H1 remains. */
   readonly headingLevel = input<'h1' | 'h2'>('h1');
+  /** The home page shows its own centre cards above, so it keeps only the map here. */
+  readonly showCentres = input(true);
 
   protected readonly i18n = inject(LanguageService);
   protected readonly campusService = inject(CampusService);
