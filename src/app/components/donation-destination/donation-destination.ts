@@ -3,12 +3,10 @@ import { LanguageService } from '../../i18n/language.service';
 import { ORGANIZATION } from '../../config/organization.config';
 import { campusTown, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
-import { PrayerPlaceService } from '../../services/prayer-place.service';
 
 /**
  * Which centre a gift supports. One of the published centres is always
- * selected: the visitor's saved prayer-times centre if they have one,
- * otherwise the head office. A `?campus=` link or a tap overrides it.
+ * selected: the head office by default. A `?campus=` link or a tap overrides it.
  */
 @Component({
   selector: 'app-donation-destination',
@@ -62,19 +60,17 @@ export class DonationDestination implements OnInit {
 
   protected readonly i18n = inject(LanguageService);
   protected readonly campusService = inject(CampusService);
-  private readonly prayerPlace = inject(PrayerPlaceService);
 
   /** True once the selection names a published centre. */
   protected readonly hasChoice = computed(() => this.campusService.byId(this.selected()) !== null);
 
   constructor() {
-    // Pre-select a centre as soon as the list is known, unless the page already set one.
+    // Pre-select the head office as soon as the list is known, unless the page already set one.
     effect(() => {
       const campuses = this.campusService.campuses();
       if (campuses.length === 0 || this.selected()) return;
-      const remembered = this.prayerPlace.campus();
       const head = campuses.find((c) => c.postcode === ORGANIZATION.postalCode);
-      this.selectedChange.emit((remembered ?? head ?? campuses[0]).id);
+      this.selectedChange.emit((head ?? campuses[0]).id);
     });
   }
 
