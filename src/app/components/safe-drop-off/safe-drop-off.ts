@@ -25,7 +25,7 @@ export class SafeDropOff implements OnInit {
 
   protected readonly videoSrc = '/videos/safe-drop-off/safe-drop-off-parents-720p.mp4';
   protected readonly posterSrc = '/videos/safe-drop-off/poster.jpg';
-  protected readonly videoLength = '2:45';
+  protected readonly videoLength = '2:40';
 
   protected readonly campus = computed(() => this.campusService.byId('peterborough'));
   protected readonly addressLine = computed(
