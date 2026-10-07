@@ -479,11 +479,11 @@ html.urdu .spotlight-label {
 }
 /* Faint rotating NSW seal behind the hero title; the centre is masked out so the words stay clear. */
 .hero-seal {
-  opacity: 0.13;
-  filter: saturate(0.6) brightness(1.4);
+  opacity: 0.42;
+  filter: saturate(0.85) brightness(1.25) contrast(1.05);
   mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(circle at center, transparent 34%, #000 46%, #000 100%);
-  mask-image: radial-gradient(circle at center, transparent 34%, #000 46%, #000 100%);
+  -webkit-mask-image: radial-gradient(circle at center, transparent 33%, #000 42%, #000 100%);
+  mask-image: radial-gradient(circle at center, transparent 33%, #000 42%, #000 100%);
 }
 
 /* Gold shimmer sweep across text (used on the hero title). */
