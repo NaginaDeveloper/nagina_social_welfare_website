@@ -37,6 +37,7 @@ import {
   WORK_SEO,
   MADRASA_SEO,
   SAFEGUARDING_SEO,
+  SAFE_DROP_OFF_SEO,
   APPLY_SEO,
   APPLY_SUCCESS_SEO,
   APPLY_TRACK_SEO,
@@ -370,6 +371,13 @@ export const routes: Routes = [
       import('./pages/safeguarding/safeguarding-page').then((m) => m.SafeguardingPage),
     title: SAFEGUARDING_SEO.title,
     data: { seo: SAFEGUARDING_SEO },
+  },
+  {
+    path: 'safe-drop-off',
+    loadComponent: () =>
+      import('./pages/safe-drop-off/safe-drop-off-page').then((m) => m.SafeDropOffPage),
+    title: SAFE_DROP_OFF_SEO.title,
+    data: { seo: SAFE_DROP_OFF_SEO },
   },
   { path: '**', redirectTo: '' },
 ];

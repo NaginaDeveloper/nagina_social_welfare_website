@@ -129,6 +129,7 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
         { labelKey: 'nav.applyTrack', path: '/apply/track', hintKey: 'nav.applyTrackHint', icon: 'guides' },
         { labelKey: 'nav.madrasa', path: '/madrasa', hintKey: 'nav.madrasaHint', icon: 'mosque' },
         ...centreLinks,
+        { labelKey: 'nav.safeDropOff', path: '/safe-drop-off', hintKey: 'nav.safeDropOffHint', icon: 'privacy' },
         { labelKey: 'nav.guides', path: '/guides', hintKey: 'nav.guidesHint', icon: 'guides' },
         { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
       ],

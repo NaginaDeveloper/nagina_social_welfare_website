@@ -605,6 +605,11 @@
                 <div class="rounded-2xl border border-mist bg-sand/40 p-5">
                   <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('apply.termsHeading') }}</h3>
                   <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('apply.termsLead') }}</p>
+                  <p class="mt-2 text-sm text-slate-warm">
+                    <a routerLink="/safe-drop-off" target="_blank" class="font-semibold text-gold-700 underline decoration-gold/40 underline-offset-2 hover:text-forest" (click)="$event.stopPropagation()">
+                      {{ i18n.t('apply.safeDropOffNote') }}
+                    </a>
+                  </p>
                   <ol class="mt-4 max-h-56 space-y-3 overflow-y-auto pr-1 text-sm leading-relaxed text-slate-warm">
                     @for (term of terms(); track term; let i = $index) {
                       <li class="flex gap-3">
