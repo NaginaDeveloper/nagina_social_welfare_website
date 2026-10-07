@@ -61,7 +61,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.donateCta': 'Donate',
     'spotlight.madrasaTitle': '2026 Madrasa Intake',
     'spotlight.madrasaLead':
-      'All three evening classes are open. Class 1 and 2 for under 10s; Class 3 (18:30–19:30) for ages 10+.',
+      'Places are open at both Madrasas. Peterborough runs three evening classes; Manchester runs one weekday class, 5–6 PM.',
     'spotlight.madrasaCta': 'Apply Online',
     'spotlight.quizCta': 'Play Now',
     'spotlight.quizTitle': 'Islamic Quiz',
@@ -105,7 +105,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.formMessage': 'Message',
     'contact.formSubmit': 'Open in WhatsApp',
     'contact.hours':
-      'Class 1 and 2 are for under 10s, Class 3 for ages 10+. Each Madrasa’s address, phone and WhatsApp are listed below.',
+      'Class times for each Madrasa are on its centre page. Each Madrasa’s address, phone and WhatsApp are listed below.',
     'contact.map': 'Our Madrasas',
     'contact.reason.enrolment': 'Madrasa enrolment question',
     'contact.reason.donation': 'Donation',
@@ -133,12 +133,13 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.general': 'General donation',
     'donate.generalHint': 'For Nagina Social Welfare as a whole — used wherever the need is greatest.',
     'donate.centreHint': 'For our centre in {town} — classes, programmes and running costs.',
+    'donate.chooseCentre': 'Please choose a centre first.',
     'donate.noteReference': 'If your app asks for a note or reference, use:',
     'donate.zakat': 'Zakat',
     'donate.zakatHint': 'Obligatory alms — used for eligible welfare need.',
     'donate.sadaqah': 'Sadaqah',
     'donate.sadaqahHint': 'Voluntary charity — education and community care.',
-    'donate.lillah': 'General gift (Lillah)',
+    'donate.lillah': 'General Donation (Lillah)',
     'donate.lillahHint': 'Unrestricted gift — Madrasa, programmes and running costs.',
     'donate.fitrana': 'Sadaqat al-Fitr (Eid charity)',
     'donate.fitranaHint': 'Given before Eid prayer (also called Fitrana).',
@@ -236,7 +237,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.enrolSecondary': 'Ask on WhatsApp',
     'madrasa.timetable': 'Class times',
     'madrasa.timetableLead':
-      'Evening classes so families can balance school and work. Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Apply online, or message your Madrasa with questions.',
+      'Evening classes so families can balance school and work. Peterborough runs three classes split by age; Manchester runs one weekday class for all ages. Apply online, or message your Madrasa with questions.',
     'madrasa.days': 'Days',
     'madrasa.time': 'Time',
     'madrasa.ages': 'Who',
@@ -254,12 +255,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.eyebrow': 'Nagina Social Welfare Madrasas',
     'apply.title': 'Online Admission',
     'apply.lead':
-      'All three evening classes are open. Class 1 and Class 2 are for children under 10; Class 3 is for ages 10 and above. Choose your Madrasa, complete this form and we will email you when we receive it and again after our review.',
+      'Places are open at both Madrasas. Choose your Madrasa, complete this form and we will email you when we receive it and again after our review.',
     'apply.intake.eyebrow': 'Nagina Social Welfare Madrasas',
     'apply.intake.title': 'Madrasa Admission',
     'apply.intake.subtitle': 'For the 2026 Intake',
     'apply.intake.lead':
-      'Places are open in all three evening classes. Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above.',
+      'Places are open at both Madrasas. Peterborough runs three evening classes split by age; Manchester runs one weekday class, 5:00–6:00 PM, for all ages.',
     'apply.intake.quran': 'Quran & Tajweed',
     'apply.intake.quranHint': 'Reading and recitation of the Holy Quran.',
     'apply.intake.teachings': 'Islamic teachings',
@@ -307,7 +308,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.progress': 'Step',
     'apply.progressOf': 'of',
     'apply.optional': 'optional',
-    'apply.dobHint': 'Choose Class 1 or 2 if the child is under 10, or Class 3 if they are 10 or older.',
+    'apply.dobHint': 'The class you choose later must match the child’s age.',
     'apply.dobDay': 'Day',
     'apply.dobMonth': 'Month',
     'apply.dobYear': 'Year',
@@ -362,6 +363,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.classSlot': 'Preferred class time',
     'apply.classSlotNote':
       'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above.',
+    'apply.classSlotNoteSingle':
+      'This Madrasa runs one class, Monday to Friday, 5:00–6:00 PM, for all ages.',
     'apply.classFull': 'Full',
     'apply.slot.class1': 'Class 1: 16:30 to 17:30',
     'apply.slot.class2': 'Class 2: 17:30 to 18:30',
@@ -676,7 +679,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.about': 'About',
     'nav.admissions': 'Admissions',
     'nav.applyOnline': 'Apply for Admission',
-    'nav.applyOnlineHint': 'Online form for Class 1, 2 and 3',
+    'nav.applyOnlineHint': 'Online form for both Madrasas',
     'nav.applyTrack': 'Track Application',
     'nav.applyTrackHint': 'Check the status with your application ID',
     'nav.safeDropOff': 'Safe Drop-Off & Collection',
@@ -1243,10 +1246,10 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.title': 'Islamic Institute in',
     'madrasa.titleAccent': 'the UK',
     'madrasa.lead':
-      'Nagina Social Welfare UK runs Madrasas in {towns}. The 2026 intake is open — Class 1 and 2 for under 10s, Class 3 for ages 10 and above. Choose your nearest Madrasa below and apply online.',
+      'Nagina Social Welfare UK runs Madrasas in {towns}. The 2026 intake is open — Peterborough runs three evening classes; Manchester runs one weekday class, 5–6 PM. Choose your nearest Madrasa below and apply online.',
     'madrasa.body': 'Parents searching for a local Madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At our Madrasas we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.',
     'madrasa.body2':
-      'Class 1 and Class 2 are for children under 10. Class 3 is for ages 10 and above. Please apply online, or contact your Madrasa with questions.',
+      'Class times for each Madrasa are listed below. Please apply online, or contact your Madrasa with questions.',
     'madrasa.offeringsTitle': 'What Children Learn with Us',
     'madrasa.titleLine': 'Madrasas & Islamic Education in',
     'madrasa.campusesTitle': 'Our Madrasas',
@@ -1291,7 +1294,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.service4': 'Welfare support enquiries for individuals and families in need',
     'centre.timetableTitle': 'Madrasa Timetable',
     'centre.timetableLead':
-      'All three evening classes are open. Apply online for the 2026 intake, or message us with questions.',
+      'Places are open for the 2026 intake. Apply online, or message us with questions.',
     'centre.timetableAsk':
       'Class times at {name} are shared by the centre directly. Message or call them, or apply online for the 2026 intake.',
     'centre.colClass': 'Class',
@@ -1485,7 +1488,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'spotlight.donateCta': 'عطیہ',
     'spotlight.madrasaTitle': 'داخلہ ۲۰۲۶',
     'spotlight.madrasaLead':
-      'تینوں شام کی کلاسیں کھلی ہیں۔ کلاس ۱ اور ۲ دس سال سے کم کے لیے؛ کلاس ۳ (شام ۶:۳۰–۷:۳۰) عمر ۱۰+ کے لیے۔',
+      'دونوں مدارس میں جگہیں کھلی ہیں۔ پیٹربرو میں شام کی تین کلاسیں؛ مانچسٹر میں ایک کلاس پیر تا جمعہ شام ۵–۶۔',
     'spotlight.madrasaCta': 'آن لائن درخواست',
     'spotlight.quizCta': 'اب کھیلیں',
     'spotlight.quizTitle': 'اسلامی کوئز',
@@ -1529,7 +1532,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.formMessage': 'پیغام',
     'contact.formSubmit': 'واٹس ایپ میں کھولیں',
     'contact.hours':
-      'کلاس ۱ اور ۲ دس سال سے کم کے لیے، کلاس ۳ عمر ۱۰+ کے لیے۔ ہر مدرسے کا پتہ، فون اور واٹس ایپ نیچے درج ہے۔',
+      'ہر مدرسے کے کلاس اوقات اس کے مرکز کے صفحے پر ہیں۔ ہر مدرسے کا پتہ، فون اور واٹس ایپ نیچے درج ہے۔',
     'contact.map': 'ہمارے مدارس',
     'contact.reason.enrolment': 'مدرسہ داخلہ کا سوال',
     'contact.reason.donation': 'عطیہ',
@@ -1557,12 +1560,13 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'donate.general': 'عمومی عطیہ',
     'donate.generalHint': 'پوری نگینہ سوشل ویلفیئر کے لیے — جہاں ضرورت سب سے زیادہ ہو۔',
     'donate.centreHint': '{town} میں ہمارے مرکز کے لیے — کلاسیں، پروگرام اور اخراجات۔',
+    'donate.chooseCentre': 'براہِ کرم پہلے مرکز منتخب کریں۔',
     'donate.noteReference': 'اگر ایپ نوٹ یا حوالہ مانگے تو یہ لکھیں:',
     'donate.zakat': 'زکوٰۃ',
     'donate.zakatHint': 'فرض صدقہ — اہل ضرورت فلاح کے لیے۔',
     'donate.sadaqah': 'صدقہ',
     'donate.sadaqahHint': 'نفلی خیرات — تعلیم اور کمیونٹی کی دیکھ بھال۔',
-    'donate.lillah': 'للہ',
+    'donate.lillah': 'عمومی عطیہ (للہ)',
     'donate.lillahHint': 'عمومی عطیہ — مدرسہ، پروگرام اور اخراجات۔',
     'donate.fitrana': 'فطرانہ',
     'donate.fitranaHint': 'صدقۃ الفطر — عید کی نماز سے پہلے۔',
@@ -1660,7 +1664,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.enrolSecondary': 'واٹس ایپ پر پوچھیں',
     'madrasa.timetable': 'کلاس کے اوقات',
     'madrasa.timetableLead':
-      'شام کی کلاسیں تاکہ خاندان اسکول اور کام کے ساتھ توازن رکھ سکیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ آن لائن درخواست دیں، یا سوال کے لیے اپنے مدرسے کو پیغام بھیجیں۔',
+      'شام کی کلاسیں تاکہ خاندان اسکول اور کام کے ساتھ توازن رکھ سکیں۔ پیٹربرو میں عمر کے لحاظ سے تین کلاسیں ہیں؛ مانچسٹر میں تمام عمروں کے لیے ایک کلاس پیر تا جمعہ۔ آن لائن درخواست دیں، یا سوال کے لیے اپنے مدرسے کو پیغام بھیجیں۔',
     'madrasa.days': 'دن',
     'madrasa.time': 'وقت',
     'madrasa.ages': 'کس کے لیے',
@@ -1678,12 +1682,12 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.eyebrow': 'نگینہ سوشل ویلفیئر کے مدارس',
     'apply.title': 'آن لائن داخلہ',
     'apply.lead':
-      'تینوں شام کی کلاسیں کھلی ہیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں؛ کلاس ۳ ۱۰ سال اور اس سے اوپر کے لیے ہے۔ اپنا مدرسہ منتخب کریں، یہ فارم پُر کریں؛ موصول ہونے اور جائزے کے بعد ہم ای میل کریں گے۔',
+      'دونوں مدارس میں جگہیں کھلی ہیں۔ اپنا مدرسہ منتخب کریں، یہ فارم پُر کریں؛ موصول ہونے اور جائزے کے بعد ہم ای میل کریں گے۔',
     'apply.intake.eyebrow': 'نگینہ سوشل ویلفیئر کے مدارس',
     'apply.intake.title': 'مدرسہ داخلہ',
     'apply.intake.subtitle': 'داخلہ ۲۰۲۶',
     'apply.intake.lead':
-      'تینوں شام کی کلاسوں میں جگہیں کھلی ہیں۔ کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔',
+      'دونوں مدارس میں جگہیں کھلی ہیں۔ پیٹربرو میں عمر کے لحاظ سے شام کی تین کلاسیں؛ مانچسٹر میں تمام عمروں کے لیے ایک کلاس، پیر تا جمعہ شام ۵:۰۰–۶:۰۰۔',
     'apply.intake.quran': 'قرآن اور تجوید',
     'apply.intake.quranHint': 'قرآنِ پاک کی خوانی اور تلاوت۔',
     'apply.intake.teachings': 'اسلامی تعلیمات',
@@ -1731,7 +1735,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.progress': 'مرحلہ',
     'apply.progressOf': 'از',
     'apply.optional': 'اختیاری',
-    'apply.dobHint': 'اگر بچہ دس سال سے کم ہے تو کلاس ۱ یا ۲، اگر ۱۰ یا اس سے زیادہ ہے تو کلاس ۳ منتخب کریں۔',
+    'apply.dobHint': 'بعد میں منتخب کی گئی کلاس بچے کی عمر کے مطابق ہونی چاہیے۔',
     'apply.dobDay': 'دن',
     'apply.dobMonth': 'مہینہ',
     'apply.dobYear': 'سال',
@@ -1786,6 +1790,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'apply.classSlot': 'ترجیحی کلاس کا وقت',
     'apply.classSlotNote':
       'کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔',
+    'apply.classSlotNoteSingle':
+      'اس مدرسے میں ایک کلاس ہے، پیر تا جمعہ، شام ۵:۰۰–۶:۰۰، تمام عمروں کے لیے۔',
     'apply.classFull': 'بھری ہوئی',
     'apply.slot.class1': 'کلاس ۱: ۴:۳۰ سے ۵:۳۰',
     'apply.slot.class2': 'کلاس ۲: ۵:۳۰ سے ۶:۳۰',
@@ -1974,7 +1980,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'nav.about': 'تعارف',
     'nav.admissions': 'داخلے',
     'nav.applyOnline': 'داخلے کی درخواست',
-    'nav.applyOnlineHint': 'کلاس 1، 2 اور 3 کے لیے آن لائن فارم',
+    'nav.applyOnlineHint': 'دونوں مدارس کے لیے آن لائن فارم',
     'nav.applyTrack': 'درخواست کی حیثیت',
     'nav.applyTrackHint': 'ایپلیکیشن آئی ڈی سے حیثیت دیکھیں',
     'nav.safeDropOff': 'محفوظ ڈراپ آف اور پک اپ',
@@ -2526,10 +2532,10 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'madrasa.title': 'اسلامی ادارہ',
     'madrasa.titleAccent': 'برطانیہ',
     'madrasa.lead':
-      'نگینہ سوشل ویلفیئر UK {towns} میں مدارس چلاتا ہے۔ داخلہ ۲۰۲۶ کھلا ہے — کلاس ۱ اور ۲ دس سال سے کم کے لیے، کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے۔ نیچے اپنا قریبی مدرسہ منتخب کریں اور آن لائن درخواست دیں۔',
+      'نگینہ سوشل ویلفیئر UK {towns} میں مدارس چلاتا ہے۔ داخلہ ۲۰۲۶ کھلا ہے — پیٹربرو میں شام کی تین کلاسیں؛ مانچسٹر میں ایک کلاس پیر تا جمعہ شام ۵–۶۔ نیچے اپنا قریبی مدرسہ منتخب کریں اور آن لائن درخواست دیں۔',
     'madrasa.body': 'مقامی مدرسہ، اسلامی اسکول یا بچوں کی اسلامی کلاسیں تلاش کرنے والے والدین اکثر گھر کے قریب قابلِ اعتماد جگہ چاہتے ہیں۔ ہمارے مدارس میں ہم منظم قرآن اور اسلامی تعلیم کے لیے گرم، باقاعدہ ماحول میں خوش آمدید کہتے ہیں — اہلِ سنت والجماعت / حنفی بریلوی تعلیم کے مطابق۔',
     'madrasa.body2':
-      'کلاس ۱ اور کلاس ۲ دس سال سے کم کے بچوں کے لیے ہیں۔ کلاس ۳ عمر ۱۰ سال اور اس سے اوپر کے لیے ہے۔ آن لائن درخواست دیں، یا سوال کے لیے اپنے مدرسے سے رابطہ کریں۔',
+      'ہر مدرسے کے کلاس اوقات نیچے درج ہیں۔ آن لائن درخواست دیں، یا سوال کے لیے اپنے مدرسے سے رابطہ کریں۔',
     'madrasa.offeringsTitle': 'بچے ہمارے ساتھ کیا سیکھتے ہیں',
     'madrasa.titleLine': 'مدارس اور اسلامی تعلیم',
     'madrasa.campusesTitle': 'ہمارے مدارس',
@@ -2574,7 +2580,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.service4': 'ضرورت مند افراد اور خاندانوں کے لیے فلاحی مدد کے استفسار',
     'centre.timetableTitle': 'مدرسہ ٹائم ٹیبل',
     'centre.timetableLead':
-      'تینوں شام کی کلاسیں کھلی ہیں۔ داخلہ ۲۰۲۶ کے لیے آن لائن درخواست دیں، یا سوال کے لیے پیغام بھیجیں۔',
+      'داخلہ ۲۰۲۶ کے لیے جگہیں کھلی ہیں۔ آن لائن درخواست دیں، یا سوال کے لیے پیغام بھیجیں۔',
     'centre.timetableAsk':
       '{name} کی کلاسوں کے اوقات مرکز براہِ راست بتاتا ہے۔ پیغام بھیجیں یا فون کریں، یا داخلہ ۲۰۲۶ کے لیے آن لائن درخواست دیں۔',
     'centre.colClass': 'کلاس',

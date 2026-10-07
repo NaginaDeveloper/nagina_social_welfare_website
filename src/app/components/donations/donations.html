@@ -43,7 +43,7 @@
 
     <app-donation-destination
       class="mx-auto mt-8 block max-w-3xl"
-      [selected]="destinationCampus()?.id ?? 'general'"
+      [selected]="destinationCampus()?.id ?? ''"
       (selectedChange)="selectDestination($event)"
     />
 
@@ -189,8 +189,12 @@
 {{ i18n.t('donate.payitHint') }}
           </p>
           <p class="mt-2 text-sm text-slate-warm">
-            {{ i18n.t('donate.noteReference') }}
-            <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
+            @if (destinationCampus()) {
+              {{ i18n.t('donate.noteReference') }}
+              <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
+            } @else {
+              {{ i18n.t('donate.chooseCentre') }}
+            }
           </p>
           <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
@@ -248,8 +252,12 @@
 {{ i18n.t('donate.paypalHint') }}
           </p>
           <p class="mt-2 text-sm text-slate-warm">
-            {{ i18n.t('donate.noteReference') }}
-            <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
+            @if (destinationCampus()) {
+              {{ i18n.t('donate.noteReference') }}
+              <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
+            } @else {
+              {{ i18n.t('donate.chooseCentre') }}
+            }
           </p>
           <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
@@ -333,8 +341,12 @@
         </dl>
 
         <p class="mt-2 rounded-2xl bg-sand/80 px-4 py-3 text-sm leading-relaxed text-slate-warm">
-          {{ i18n.t('donate.reference') }}
-          <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
+          @if (destinationCampus()) {
+            {{ i18n.t('donate.reference') }}
+            <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
+          } @else {
+            {{ i18n.t('donate.chooseCentre') }}
+          }
         </p>
       </div>
 

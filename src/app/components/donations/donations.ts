@@ -4,7 +4,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import {
-  GENERAL_DONATION,
   donationCampusField,
   donationReference,
 } from '../../models/donation-destination';
@@ -58,9 +57,10 @@ export class Donations implements OnInit {
   protected readonly customAmount = signal('');
   protected readonly checkoutLoading = signal(false);
   protected readonly checkoutError = signal<string | null>(null);
-  protected readonly fund = signal<DonationFund>('sadaqah');
-  protected readonly destination = signal<string>(GENERAL_DONATION);
-  /** Null for a general gift, or while a `?campus=` link waits for the campus list. */
+  protected readonly fund = signal<DonationFund>('lillah');
+  /** Empty until the donor picks a centre (or a `?campus=` link names one). */
+  protected readonly destination = signal<string>('');
+  /** Null until a published centre is chosen. */
   protected readonly destinationCampus = computed(() =>
     this.campusService.byId(this.destination()),
   );
@@ -69,7 +69,9 @@ export class Donations implements OnInit {
   protected readonly minDonationGbp = 5;
   protected readonly maxDonationGbp = 25_000;
 
+  /** General Donation first; a centre is chosen separately below. */
   protected readonly funds: readonly FundOption[] = [
+    { id: 'lillah', titleKey: 'donate.lillah', hintKey: 'donate.lillahHint', reference: 'LILLAH' },
     { id: 'zakat', titleKey: 'donate.zakat', hintKey: 'donate.zakatHint', reference: 'ZAKAT' },
     {
       id: 'sadaqah',
@@ -77,7 +79,6 @@ export class Donations implements OnInit {
       hintKey: 'donate.sadaqahHint',
       reference: 'SADAQAH',
     },
-    { id: 'lillah', titleKey: 'donate.lillah', hintKey: 'donate.lillahHint', reference: 'LILLAH' },
     {
       id: 'fitrana',
       titleKey: 'donate.fitrana',
@@ -125,7 +126,7 @@ export class Donations implements OnInit {
   }
 
   protected selectedFund(): FundOption {
-    return this.funds.find((item) => item.id === this.fund()) ?? this.funds[1];
+    return this.funds.find((item) => item.id === this.fund()) ?? this.funds[0];
   }
 
   protected paymentReference(): string {
@@ -162,7 +163,10 @@ export class Donations implements OnInit {
   protected canStartCheckout(): boolean {
     const amount = this.resolvedAmount();
     return (
-      amount !== null && amount >= this.minDonationGbp && amount <= this.maxDonationGbp
+      this.destinationCampus() !== null &&
+      amount !== null &&
+      amount >= this.minDonationGbp &&
+      amount <= this.maxDonationGbp
     );
   }
 

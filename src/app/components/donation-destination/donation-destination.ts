@@ -1,26 +1,15 @@
-import { Component, OnInit, inject, input, output } from '@angular/core';
+import { Component, OnInit, computed, inject, input, output } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
 import { campusTown, type Campus } from '../../models/campus';
-import { GENERAL_DONATION } from '../../models/donation-destination';
 import { CampusService } from '../../services/campus.service';
 
-/** General gift, or one of the published centres. */
+/** One of the published centres; every gift is attributed to a centre. */
 @Component({
   selector: 'app-donation-destination',
   template: `
     <fieldset [attr.dir]="i18n.isUr() ? 'rtl' : null" data-testid="donation-destination">
-      <legend class="text-sm font-semibold text-forest">{{ i18n.t('donate.destination') }}</legend>
+      <legend class="text-sm font-semibold text-forest">{{ i18n.t('donate.destination') }} *</legend>
       <div class="mt-3 grid gap-3 sm:grid-cols-2">
-        <button
-          type="button"
-          [class]="optionClass(selected() === general)"
-          [attr.aria-pressed]="selected() === general"
-          data-destination="general"
-          (click)="selectedChange.emit(general)"
-        >
-          <span class="block font-display text-lg font-bold">{{ i18n.t('donate.general') }}</span>
-          <span [class]="hintClass(selected() === general)">{{ i18n.t('donate.generalHint') }}</span>
-        </button>
         @for (campus of campusService.campuses(); track campus.id) {
           <button
             type="button"
@@ -34,6 +23,9 @@ import { CampusService } from '../../services/campus.service';
           </button>
         }
       </div>
+      @if (!hasChoice()) {
+        <p class="mt-2 text-sm text-gold-700" data-testid="donation-destination-required">{{ i18n.t('donate.chooseCentre') }}</p>
+      }
     </fieldset>
   `,
 })
@@ -43,7 +35,8 @@ export class DonationDestination implements OnInit {
 
   protected readonly i18n = inject(LanguageService);
   protected readonly campusService = inject(CampusService);
-  protected readonly general = GENERAL_DONATION;
+  /** True once the selection names a published centre. */
+  protected readonly hasChoice = computed(() => this.campusService.byId(this.selected()) !== null);
 
   ngOnInit(): void {
     void this.campusService.load();

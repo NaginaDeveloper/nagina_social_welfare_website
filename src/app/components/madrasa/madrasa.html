@@ -61,44 +61,46 @@
 
     <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
-        @if (timetableCampus(); as campus) {
-          {{ i18n.t('madrasa.timetableFor') }} {{ campus.displayName }}
-        } @else {
-          {{ i18n.t('madrasa.timetable') }}
-        }
+        {{ i18n.t('madrasa.timetable') }}
       </h2>
       <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
         {{ i18n.t('madrasa.timetableLead') }}
       </p>
-      <div class="mt-8 overflow-x-auto rounded-2xl border border-mist bg-white shadow-soft">
-        <table class="w-full min-w-[36rem] text-left text-sm">
-          <thead class="bg-sand/70 text-xs font-semibold uppercase tracking-[0.16em] text-slate-warm">
-            <tr>
-              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.timetable') }}</th>
-              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.days') }}</th>
-              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.time') }}</th>
-              <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.ages') }}</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-mist">
-            @for (session of sessions; track session.id) {
-              <tr>
-                <th scope="row" class="px-4 py-4 font-display text-base font-bold text-forest sm:px-6">
-                  {{ sessionTitle(session.id) }}
-                </th>
-                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionDays(session.id) }}</td>
-                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionTime(session.id) }}</td>
-                <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionAges(session.id) }}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-      @for (campus of otherCampuses(); track campus.id) {
-        <p class="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-slate-warm">
-          {{ timetableOther(campus.displayName) }}
-          <a [href]="'tel:' + campus.phoneE164" class="font-semibold text-gold-700 hover:underline">{{ campus.phoneDisplay }}</a>
-        </p>
+      @for (campus of campusService.campuses(); track campus.id) {
+        <h3 class="mt-10 font-display text-xl font-bold text-forest sm:text-2xl" [attr.data-campus]="campus.id">
+          {{ i18n.t('madrasa.timetableFor') }} {{ campus.displayName }}
+        </h3>
+        @if (sessionsFor(campus).length > 0) {
+          <div class="mt-4 overflow-x-auto rounded-2xl border border-mist bg-white shadow-soft">
+            <table class="w-full min-w-[36rem] text-left text-sm">
+              <thead class="bg-sand/70 text-xs font-semibold uppercase tracking-[0.16em] text-slate-warm">
+                <tr>
+                  <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.timetable') }}</th>
+                  <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.days') }}</th>
+                  <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.time') }}</th>
+                  <th scope="col" class="px-4 py-3 sm:px-6">{{ i18n.t('madrasa.ages') }}</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-mist">
+                @for (session of sessionsFor(campus); track session.id) {
+                  <tr>
+                    <th scope="row" class="px-4 py-4 font-display text-base font-bold text-forest sm:px-6">
+                      {{ sessionTitle(session) }}
+                    </th>
+                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionDays(session) }}</td>
+                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionTime(session) }}</td>
+                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionAges(session) }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        } @else {
+          <p class="mt-3 text-sm leading-relaxed text-slate-warm">
+            {{ timetableOther(campus.displayName) }}
+            <a [href]="'tel:' + campus.phoneE164" class="font-semibold text-gold-700 hover:underline">{{ campus.phoneDisplay }}</a>
+          </p>
+        }
       }
     </div>
 

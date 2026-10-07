@@ -10,7 +10,6 @@ import {
   type MemberPortalEvent,
 } from '../../services/member-portal.service';
 import type { DonationFund } from '../../models/membership';
-import { GENERAL_DONATION } from '../../models/donation-destination';
 import { isValidUkPhone, formatUkPhoneE164, formatUkPhoneForDisplay } from '../../validators/uk.validators';
 import { PageShell } from '../page-shell';
 import { MemberPortalShell } from '../../components/member-portal/member-portal-shell';
@@ -66,7 +65,8 @@ export class MembershipHomePage implements OnInit {
   protected readonly donatedBanner = signal(false);
 
   protected readonly donateFund = signal<DonationFund>('sadaqah');
-  protected readonly donateCampus = signal<string>(GENERAL_DONATION);
+  /** Empty until the member picks a centre; every gift is attributed to one. */
+  protected readonly donateCampus = signal<string>('');
   protected readonly donateAmount = signal<number | 'custom'>(25);
   protected readonly donateCustom = signal('');
   protected readonly donateLoading = signal(false);
@@ -197,6 +197,10 @@ export class MembershipHomePage implements OnInit {
     const amount = this.donateAmountValue();
     if (amount == null || amount < 5) {
       this.error.set(this.i18n.t('memberHome.donateMin'));
+      return;
+    }
+    if (!this.donateCampus()) {
+      this.error.set(this.i18n.t('donate.chooseCentre'));
       return;
     }
     this.donateLoading.set(true);
