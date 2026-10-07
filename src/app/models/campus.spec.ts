@@ -161,7 +161,7 @@ describe('madrasa search data', () => {
       postalCode: 'M31 4FL',
       addressCountry: 'GB',
     });
-    expect(node['geo']).toEqual({ '@type': 'GeoCoordinates', latitude: 53.417784, longitude: -2.42617 });
+    expect(node['geo']).toEqual({ '@type': 'GeoCoordinates', latitude: 53.4167984, longitude: -2.4251937 });
     expect(node['url']).toBe('https://www.naginasocialwelfare.co.uk/manchester/');
   });
 });
