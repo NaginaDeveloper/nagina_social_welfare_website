@@ -14,6 +14,8 @@ import { PrayerPlaceService } from '../../services/prayer-place.service';
 import {
   QiblaService,
   cardinalFromBearing,
+  compassHeadingFromAngles,
+  smoothHeading,
 } from '../../services/qibla.service';
 
 @Component({
@@ -32,6 +34,7 @@ export class Qibla implements OnInit, OnDestroy {
   protected readonly orientationError = signal<string | null>(null);
 
   private orientationHandler: ((event: DeviceOrientationEvent) => void) | null = null;
+  private noSensorTimer: ReturnType<typeof setTimeout> | null = null;
 
   /** Needle angle relative to the dial (Qibla − device heading when live). */
   protected readonly needleAngle = computed(() => {
@@ -143,17 +146,35 @@ export class Qibla implements OnInit, OnDestroy {
 
     this.orientationHandler = (event: DeviceOrientationEvent) => {
       const heading = readCompassHeading(event);
-      if (heading != null) {
-        this.deviceHeading.set(heading);
+      if (heading == null) return;
+      if (this.noSensorTimer) {
+        clearTimeout(this.noSensorTimer);
+        this.noSensorTimer = null;
       }
+      this.orientationError.set(null);
+      this.deviceHeading.set(smoothHeading(this.deviceHeading(), heading));
     };
 
     window.addEventListener('deviceorientationabsolute', this.orientationHandler as EventListener, true);
     window.addEventListener('deviceorientation', this.orientationHandler as EventListener, true);
+
+    // Desktops and some browsers expose the API but never send a reading.
+    this.noSensorTimer = setTimeout(() => {
+      this.noSensorTimer = null;
+      if (this.deviceHeading() == null) {
+        this.stopOrientation();
+        this.liveMode.set(false);
+        this.orientationError.set(this.i18n.t('qibla.compassUnavailable'));
+      }
+    }, 2500);
     return true;
   }
 
   private stopOrientation(): void {
+    if (this.noSensorTimer) {
+      clearTimeout(this.noSensorTimer);
+      this.noSensorTimer = null;
+    }
     if (this.orientationHandler) {
       window.removeEventListener('deviceorientationabsolute', this.orientationHandler as EventListener, true);
       window.removeEventListener('deviceorientation', this.orientationHandler as EventListener, true);
@@ -167,16 +188,24 @@ function normalizeDegrees(value: number): number {
   return ((value % 360) + 360) % 360;
 }
 
+/**
+ * Only absolute (true-north) readings are used. Chrome on Android also fires a
+ * relative `deviceorientation` event whose alpha starts from wherever the page
+ * loaded; mixing it in made the needle jump to a wrong direction.
+ */
 function readCompassHeading(event: DeviceOrientationEvent): number | null {
   const webkit = event as DeviceOrientationEvent & { webkitCompassHeading?: number };
   if (typeof webkit.webkitCompassHeading === 'number' && !Number.isNaN(webkit.webkitCompassHeading)) {
     return webkit.webkitCompassHeading;
   }
-  if (event.absolute && typeof event.alpha === 'number' && !Number.isNaN(event.alpha)) {
-    return normalizeDegrees(360 - event.alpha);
-  }
-  if (typeof event.alpha === 'number' && !Number.isNaN(event.alpha)) {
-    return normalizeDegrees(360 - event.alpha);
+  const isAbsolute = event.type === 'deviceorientationabsolute' || event.absolute === true;
+  if (
+    isAbsolute &&
+    typeof event.alpha === 'number' &&
+    typeof event.beta === 'number' &&
+    typeof event.gamma === 'number'
+  ) {
+    return compassHeadingFromAngles(event.alpha, event.beta, event.gamma);
   }
   return null;
 }

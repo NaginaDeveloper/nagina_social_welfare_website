@@ -3,6 +3,8 @@ import {
   KAABA_LAT,
   KAABA_LNG,
   cardinalFromBearing,
+  compassHeadingFromAngles,
+  smoothHeading,
   haversineKm,
   normalizeQibla,
 } from './qibla.service';
@@ -45,5 +47,25 @@ describe('qibla helpers', () => {
     expect(cardinalFromBearing(90)).toBe('East');
     expect(cardinalFromBearing(119.8)).toBe('East–southeast');
     expect(cardinalFromBearing(180)).toBe('South');
+  });
+});
+
+describe('compass heading', () => {
+  it('reads 0° (north) for a flat phone with alpha 0', () => {
+    expect(compassHeadingFromAngles(0, 0, 0)).toBeCloseTo(0, 5);
+  });
+
+  it('reads 90° (east) for a flat phone turned a quarter turn clockwise', () => {
+    expect(compassHeadingFromAngles(270, 0, 0)).toBeCloseTo(90, 5);
+  });
+
+  it('still reads north when the phone is tilted up to read the screen', () => {
+    expect(compassHeadingFromAngles(0, 60, 0)).toBeCloseTo(0, 5);
+  });
+
+  it('smooths the short way round north', () => {
+    const next = smoothHeading(350, 10, 0.5);
+    expect(next).toBeCloseTo(0, 5);
+    expect(smoothHeading(null, 123)).toBe(123);
   });
 });
