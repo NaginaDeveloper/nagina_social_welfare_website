@@ -172,3 +172,52 @@ function geolocationMessage(err: GeolocationPositionError): string {
       return 'Unable to use your location. Showing the Madrasa town instead.';
   }
 }
+
+/**
+ * Compass heading (degrees clockwise from north, 0–360) from absolute
+ * `deviceorientation` angles. Held roughly flat, it is the way the top of the
+ * screen points; held upright to look at, it is the way the back of the phone
+ * faces (the top of the screen would then point at the sky, with no heading).
+ */
+export function compassHeadingFromAngles(
+  alpha: number,
+  beta: number,
+  gamma: number,
+): number {
+  const rad = (deg: number) => (deg * Math.PI) / 180;
+  const a = rad(alpha);
+  const b = rad(beta);
+  const g = rad(gamma);
+  const cA = Math.cos(a);
+  const sA = Math.sin(a);
+  const sB = Math.sin(b);
+  const cB = Math.cos(b);
+  const cG = Math.cos(g);
+  const sG = Math.sin(g);
+
+  let east: number;
+  let north: number;
+  if (Math.abs(beta) <= 50) {
+    // Top of the screen (device y axis) projected on the ground.
+    east = -sA * cB;
+    north = cA * cB;
+  } else {
+    // Back of the phone (device -z axis) projected on the ground.
+    east = -cA * sG - sA * sB * cG;
+    north = -sA * sG + cA * sB * cG;
+  }
+  let heading = Math.atan2(east, north);
+  if (heading < 0) heading += 2 * Math.PI;
+  return (heading * 180) / Math.PI;
+}
+
+/** Moves [previous] towards [next] by [factor], taking the short way round 0/360. */
+export function smoothHeading(
+  previous: number | null,
+  next: number,
+  factor = 0.35,
+): number {
+  if (previous == null) return next;
+  const delta = ((((next - previous) % 360) + 540) % 360) - 180;
+  return (((previous + delta * factor) % 360) + 360) % 360;
+}
