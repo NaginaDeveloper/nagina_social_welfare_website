@@ -7,7 +7,7 @@ import {
   donationCampusField,
   donationReference,
 } from '../../models/donation-destination';
-import { campusTown } from '../../models/campus';
+import { campusTown, campusWhatsappHref, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { DonationService } from '../../services/donation.service';
 import { DonationDestination } from '../donation-destination/donation-destination';
@@ -37,7 +37,7 @@ interface FundOption {
 export class Donations implements OnInit {
   private readonly donations = inject(DonationService);
   private readonly route = inject(ActivatedRoute);
-  private readonly campusService = inject(CampusService);
+  protected readonly campusService = inject(CampusService);
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
   protected readonly givingWhatsApp = whatsappHref(
@@ -173,6 +173,21 @@ export class Donations implements OnInit {
       minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
     }).format(amount);
     return this.i18n.t('donate.payAmount').replace('{amount}', formatted);
+  }
+
+  protected town(campus: Campus): string {
+    return campusTown(campus);
+  }
+
+  protected campusEmail(campus: Campus): string {
+    return campus.email || ORGANIZATION.email;
+  }
+
+  protected campusWhatsapp(campus: Campus): string {
+    return campusWhatsappHref(
+      campus,
+      `Assalamu alaikum, I have a question about donating to ${campus.displayName}.`,
+    );
   }
 
   /** One line that restates the choice above the button. */
