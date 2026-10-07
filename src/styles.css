@@ -522,10 +522,10 @@ html.urdu .spotlight-label {
 @keyframes bouquetSway {
   0%,
   100% {
-    transform: rotate(-2.5deg);
+    rotate: -2.5deg;
   }
   50% {
-    transform: rotate(2.5deg);
+    rotate: 2.5deg;
   }
 }
 .petal-fall {
@@ -540,15 +540,14 @@ html.urdu .spotlight-label {
   box-shadow: 0 0 12px 3px rgba(251, 191, 36, 0.45);
   animation: sparkleBlink 2.6s ease-in-out infinite;
 }
-.bouquet-sway {
+.bouquet-sway,
+.bouquet-sway-alt {
   transform-origin: 50% 100%;
   filter: drop-shadow(0 14px 28px rgba(2, 44, 34, 0.45));
   animation: bouquetSway 7s ease-in-out infinite;
 }
 .bouquet-sway-alt {
-  transform-origin: 50% 100%;
-  filter: drop-shadow(0 14px 28px rgba(2, 44, 34, 0.45));
-  animation: bouquetSway 7s ease-in-out infinite reverse;
+  animation-direction: reverse;
 }
 
 /* Gold shimmer sweep across text (used on the hero title). */

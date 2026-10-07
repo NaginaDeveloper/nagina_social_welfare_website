@@ -50,19 +50,27 @@
     class="site-wrap relative grid items-center gap-6 pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:grid-cols-12 lg:gap-8 lg:pb-28 lg:pt-36 xl:min-h-[min(88vh,_52rem)]"
   >
     <!-- Seal: the ring turns, the centre mark stays still. Badge above the text on phones, artwork beside it on desktop. -->
-    <div class="relative mx-auto flex items-end justify-center lg:order-2 lg:col-span-5" aria-hidden="true">
-      <!-- Rose bouquets either side of the seal, as on al-nisar.com -->
+    <div class="relative mx-auto flex items-center justify-center lg:order-2 lg:col-span-5" aria-hidden="true">
+      <div
+        class="relative z-10 flex h-28 w-28 shrink-0 items-center justify-center sm:h-44 sm:w-44 lg:h-[20rem] lg:w-[20rem] xl:h-[22rem] xl:w-[22rem] 2xl:h-[26rem] 2xl:w-[26rem]"
+      >
+      <!-- Rose bouquets on the seal's lower corners, mirrored, as on al-nisar.com -->
       <img
         src="/decor/bouquet.webp"
         alt=""
         width="520"
         height="693"
         decoding="async"
-        class="bouquet-sway relative z-20 -me-7 mb-1 h-24 w-auto object-contain sm:-me-9 sm:h-36 lg:-me-14 lg:h-56 xl:h-64"
+        class="bouquet-sway absolute bottom-[2%] start-0 z-20 h-[78%] w-auto -translate-x-[55%] object-contain rtl:translate-x-[55%]"
       />
-      <div
-        class="relative z-10 flex h-28 w-28 shrink-0 items-center justify-center sm:h-44 sm:w-44 lg:h-[24rem] lg:w-[24rem] xl:h-[27rem] xl:w-[27rem]"
-      >
+      <img
+        src="/decor/bouquet.webp"
+        alt=""
+        width="520"
+        height="693"
+        decoding="async"
+        class="bouquet-sway-alt absolute bottom-[2%] end-0 z-20 h-[78%] w-auto translate-x-[55%] -scale-x-100 object-contain rtl:-translate-x-[55%]"
+      />
       <div class="absolute inset-[-18%] rounded-full bg-gold/25 blur-3xl" aria-hidden="true"></div>
       <div class="animate-pulse-ring absolute inset-0 rounded-full border border-gold-300/40"></div>
       <!-- Solid white disc under the centre mark, like the header badge; the PNG centre is translucent. -->
@@ -84,42 +92,30 @@
         decoding="async"
       />
       </div>
-      <img
-        src="/decor/bouquet.webp"
-        alt=""
-        width="520"
-        height="693"
-        decoding="async"
-        class="bouquet-sway-alt relative z-20 -ms-7 mb-1 h-24 w-auto -scale-x-100 object-contain sm:-ms-9 sm:h-36 lg:-ms-14 lg:h-56 xl:h-64"
-      />
     </div>
+
+    <!-- Bismillah, centred over the whole hero -->
+    <p
+      class="animate-fade-up order-first text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:text-4xl lg:col-span-12 lg:-mb-2 3xl:text-5xl"
+      lang="ar"
+      dir="rtl"
+    >
+      بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+    </p>
 
     <!-- Words -->
     <div
       class="flex flex-col items-center text-center lg:order-1 lg:col-span-7 lg:items-start lg:text-start"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
-      <p
-        class="animate-fade-up font-arabic text-2xl leading-tight text-gold-300 notranslate sm:text-3xl 3xl:text-4xl"
-        lang="ar"
-        dir="rtl"
-      >
-        بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
-      </p>
-      <p
-        class="animate-fade-up mt-2 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-gold-300/70 sm:text-xs"
-        style="animation-delay: 80ms"
-      >
-        {{ i18n.t('hero.bismillahEn') }}
-      </p>
       <h1
-        class="animate-fade-up mt-5 font-display text-[2.75rem] font-bold leading-[0.95] tracking-tight sm:mt-6 sm:text-6xl xl:text-7xl 2xl:text-8xl"
+        class="animate-fade-up font-display text-[2.75rem] font-bold leading-[0.95] tracking-tight sm:text-6xl xl:text-7xl 2xl:text-8xl"
         style="animation-delay: 160ms"
       >
         <span class="text-shimmer">Nagina Social Welfare</span>
       </h1>
       <p
-        class="animate-fade-up mt-4 max-w-xl font-display text-lg font-medium italic text-gold-300/90 sm:mt-5 sm:text-2xl 3xl:text-3xl"
+        class="animate-fade-up mt-4 max-w-xl font-display text-lg font-medium italic text-white sm:mt-5 sm:text-2xl 3xl:text-3xl"
         style="animation-delay: 240ms"
         [attr.lang]="i18n.isUr() ? 'ur' : null"
       >
