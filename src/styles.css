@@ -475,15 +475,17 @@ html.urdu .spotlight-label {
   animation: cueBounce 2.2s ease-in-out infinite;
 }
 .animate-pulse-ring {
-  animation: pulseRing 2.4s ease-out infinite;
+  animation: pulseRing 3.2s ease-out infinite;
 }
-/* Faint rotating NSW seal behind the hero title; the centre is masked out so the words stay clear. */
-.hero-seal {
-  opacity: 0.42;
-  filter: saturate(0.85) brightness(1.25) contrast(1.05);
-  mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(circle at center, transparent 33%, #000 42%, #000 100%);
-  mask-image: radial-gradient(circle at center, transparent 33%, #000 42%, #000 100%);
+/* NSW seal split in two layers: the lettered ring (turns) and the centre mark (still). */
+.seal-ring {
+  filter: drop-shadow(0 18px 40px rgba(2, 44, 34, 0.45));
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0 58%, #000 61%);
+  mask-image: radial-gradient(circle at center, transparent 0 58%, #000 61%);
+}
+.seal-core {
+  -webkit-mask-image: radial-gradient(circle at center, #000 0 59%, transparent 61%);
+  mask-image: radial-gradient(circle at center, #000 0 59%, transparent 61%);
 }
 
 /* Gold shimmer sweep across text (used on the hero title). */
