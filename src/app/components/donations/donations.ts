@@ -7,6 +7,7 @@ import {
   donationCampusField,
   donationReference,
 } from '../../models/donation-destination';
+import { campusTown } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { DonationService } from '../../services/donation.service';
 import { DonationDestination } from '../donation-destination/donation-destination';
@@ -158,6 +159,27 @@ export class Donations implements OnInit {
       return Number.isFinite(n) ? Math.round(n * 100) / 100 : null;
     }
     return this.selectedPreset() as number;
+  }
+
+  /** "Donate £25 by card", or the plain label while the amount is not valid yet. */
+  protected cardCtaLabel(): string {
+    const amount = this.resolvedAmount();
+    if (amount === null || amount < this.minDonationGbp || amount > this.maxDonationGbp) {
+      return this.i18n.t('donate.sumupCta');
+    }
+    const formatted = new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: 'GBP',
+      minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+    }).format(amount);
+    return this.i18n.t('donate.payAmount').replace('{amount}', formatted);
+  }
+
+  /** One line that restates the choice above the button. */
+  protected summaryLine(): string {
+    const campus = this.destinationCampus();
+    const fund = this.i18n.t(this.selectedFund().titleKey);
+    return campus ? `${fund} · ${campus.displayName} (${campusTown(campus)})` : fund;
   }
 
   protected canStartCheckout(): boolean {
