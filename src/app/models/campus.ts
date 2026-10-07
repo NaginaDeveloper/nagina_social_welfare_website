@@ -29,6 +29,28 @@ export function campusStoredCoords(campus: Pick<Campus, 'latitude' | 'longitude'
   return { latitude, longitude };
 }
 
+/**
+ * Exact map pins taken from each madrasa's Google Maps listing. A postcode only
+ * gives the middle of the area, and an address search can land on the wrong
+ * building, so these win wherever a map or directions link is shown.
+ */
+const MAP_PINS: Readonly<Record<string, CampusCoords>> = {
+  // "Jummah Salah / Quran Academy", Partington, Manchester M31 4FL.
+  manchester: { latitude: 53.4167984, longitude: -2.4251937 },
+};
+
+/** The confirmed pin for a campus, or null when it has none (the address is used instead). */
+export function campusMapPin(campus: Pick<Campus, 'id'>): CampusCoords | null {
+  return MAP_PINS[campus.id] ?? null;
+}
+
+/** Pin when confirmed, otherwise the stored postcode coordinates. */
+export function campusLocation(
+  campus: Pick<Campus, 'id' | 'latitude' | 'longitude'>,
+): CampusCoords | null {
+  return campusMapPin(campus) ?? campusStoredCoords(campus);
+}
+
 /** postcodes.io `/postcodes/{postcode}` body → coordinates. */
 export function parsePostcodeLookup(body: unknown): CampusCoords | null {
   const result = (body as { result?: { latitude?: unknown; longitude?: unknown } } | null)?.result;
@@ -73,12 +95,16 @@ export function campusWhatsappHref(campus: Pick<Campus, 'whatsappDigits'>, prefi
   return text ? `${base}?text=${encodeURIComponent(text)}` : base;
 }
 
-export function campusMapsEmbedUrl(campus: Pick<Campus, 'addressLine'>): string {
-  return `https://maps.google.com/maps?q=${encodeURIComponent(campus.addressLine)}&output=embed`;
+export function campusMapsEmbedUrl(campus: Pick<Campus, 'id' | 'addressLine'>): string {
+  const pin = campusMapPin(campus);
+  const query = pin ? `${pin.latitude},${pin.longitude}` : campus.addressLine;
+  return `https://maps.google.com/maps?q=${encodeURIComponent(query)}${pin ? '&z=17' : ''}&output=embed`;
 }
 
-export function campusDirectionsUrl(campus: Pick<Campus, 'addressLine'>): string {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(campus.addressLine)}`;
+export function campusDirectionsUrl(campus: Pick<Campus, 'id' | 'addressLine'>): string {
+  const pin = campusMapPin(campus);
+  const query = pin ? `${pin.latitude},${pin.longitude}` : campus.addressLine;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
 /** Keeps only well-formed entries so a bad API response cannot blank the page. */
