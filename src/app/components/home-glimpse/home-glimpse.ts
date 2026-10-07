@@ -29,6 +29,16 @@ export class HomeGlimpse {
 
   protected readonly tiles: readonly GlimpseTile[] = [
     {
+      id: 'sermons',
+      path: '/sermons',
+      image: '/gallery/munir/07-minbar.webp',
+      focus: 'object-[50%_30%]',
+      titleKey: 'home.glimpse.sermons',
+      hintKey: 'home.glimpse.sermonsHint',
+      icon: 'sermon',
+      wide: true,
+    },
+    {
       id: 'madrasa',
       path: '/madrasa',
       image: '/media/ahle-bait-students.jpg',
@@ -36,16 +46,6 @@ export class HomeGlimpse {
       titleKey: 'home.glimpse.madrasa',
       hintKey: 'home.glimpse.madrasaHint',
       icon: 'learn',
-      wide: true,
-    },
-    {
-      id: 'sermons',
-      path: '/sermons',
-      image: '/gallery/munir/09-dars.webp',
-      focus: 'object-[40%_30%]',
-      titleKey: 'home.glimpse.sermons',
-      hintKey: 'home.glimpse.sermonsHint',
-      icon: 'sermon',
     },
     {
       id: 'welfare',

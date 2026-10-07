@@ -374,6 +374,34 @@ export class HomeHub implements OnInit {
 
   protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
 
+  /** Rose petals that drift down the hero (hidden under reduced motion). */
+  protected readonly petals = [
+    { src: '/decor/petal-pink.webp', left: '4%', delay: '0s', duration: '13s', size: '2.2rem', drift: '-24px' },
+    { src: '/decor/petal-red.webp', left: '13%', delay: '2.2s', duration: '15s', size: '1.9rem', drift: '26px' },
+    { src: '/decor/petal-gold.webp', left: '22%', delay: '0.9s', duration: '14s', size: '2rem', drift: '-30px' },
+    { src: '/decor/petal-pink.webp', left: '34%', delay: '3.1s', duration: '16s', size: '2.4rem', drift: '18px' },
+    { src: '/decor/petal-red.webp', left: '45%', delay: '0.5s', duration: '12.5s', size: '1.8rem', drift: '-14px' },
+    { src: '/decor/petal-gold.webp', left: '56%', delay: '2.6s', duration: '14.5s', size: '2.1rem', drift: '28px' },
+    { src: '/decor/petal-pink.webp', left: '66%', delay: '1.4s', duration: '13.5s', size: '2rem', drift: '-24px' },
+    { src: '/decor/petal-red.webp', left: '75%', delay: '3.8s', duration: '15.5s', size: '2.3rem', drift: '16px' },
+    { src: '/decor/petal-gold.webp', left: '84%', delay: '1.8s', duration: '14s', size: '1.8rem', drift: '-28px' },
+    { src: '/decor/petal-pink.webp', left: '92%', delay: '2.9s', duration: '16.5s', size: '2.2rem', drift: '20px' },
+    { src: '/decor/petal-red.webp', left: '28%', delay: '5.2s', duration: '13s', size: '1.7rem', drift: '12px' },
+    { src: '/decor/petal-gold.webp', left: '61%', delay: '4.4s', duration: '15s', size: '2rem', drift: '-18px' },
+  ] as const;
+
+  /** Soft gold lights that blink around the hero. */
+  protected readonly sparkles = [
+    { left: '6%', top: '14%', delay: '0s', duration: '2.4s', size: '0.6rem' },
+    { left: '16%', top: '62%', delay: '0.7s', duration: '3s', size: '0.45rem' },
+    { left: '30%', top: '22%', delay: '1.3s', duration: '2.6s', size: '0.5rem' },
+    { left: '44%', top: '78%', delay: '0.4s', duration: '2.8s', size: '0.4rem' },
+    { left: '58%', top: '12%', delay: '1.9s', duration: '2.2s', size: '0.55rem' },
+    { left: '72%', top: '70%', delay: '0.9s', duration: '3.2s', size: '0.5rem' },
+    { left: '86%', top: '30%', delay: '1.6s', duration: '2.5s', size: '0.6rem' },
+    { left: '94%', top: '58%', delay: '0.2s', duration: '2.9s', size: '0.45rem' },
+  ] as const;
+
   ngOnInit(): void {
     void this.prayer.load();
     void this.campusService.load();

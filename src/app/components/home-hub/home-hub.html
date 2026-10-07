@@ -14,14 +14,55 @@
   ></div>
   <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-50" aria-hidden="true"></div>
 
+  <!-- Petal shower and soft gold lights, drifting over the whole hero. -->
+  <div class="pointer-events-none absolute inset-0 -z-[5] overflow-hidden" aria-hidden="true">
+    @for (petal of petals; track $index) {
+      <img
+        [src]="petal.src"
+        alt=""
+        width="48"
+        height="48"
+        loading="lazy"
+        decoding="async"
+        class="petal-fall absolute top-0"
+        [style.left]="petal.left"
+        [style.width]="petal.size"
+        [style.height]="petal.size"
+        [style.animation-delay]="petal.delay"
+        [style.animation-duration]="petal.duration"
+        [style.--petal-drift]="petal.drift"
+      />
+    }
+    @for (star of sparkles; track $index) {
+      <span
+        class="sparkle absolute block rounded-full"
+        [style.left]="star.left"
+        [style.top]="star.top"
+        [style.width]="star.size"
+        [style.height]="star.size"
+        [style.animation-delay]="star.delay"
+        [style.animation-duration]="star.duration"
+      ></span>
+    }
+  </div>
+
   <div
     class="site-wrap relative grid items-center gap-6 pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:grid-cols-12 lg:gap-8 lg:pb-28 lg:pt-36 xl:min-h-[min(88vh,_52rem)]"
   >
     <!-- Seal: the ring turns, the centre mark stays still. Badge above the text on phones, artwork beside it on desktop. -->
-    <div
-      class="relative mx-auto flex h-28 w-28 items-center justify-center sm:h-44 sm:w-44 lg:order-2 lg:col-span-5 lg:h-[26rem] lg:w-[26rem] xl:h-[30rem] xl:w-[30rem]"
-      aria-hidden="true"
-    >
+    <div class="relative mx-auto flex items-end justify-center lg:order-2 lg:col-span-5" aria-hidden="true">
+      <!-- Rose bouquets either side of the seal, as on al-nisar.com -->
+      <img
+        src="/decor/bouquet.webp"
+        alt=""
+        width="520"
+        height="693"
+        decoding="async"
+        class="bouquet-sway relative z-20 -me-7 mb-1 h-24 w-auto object-contain sm:-me-9 sm:h-36 lg:-me-14 lg:h-56 xl:h-64"
+      />
+      <div
+        class="relative z-10 flex h-28 w-28 shrink-0 items-center justify-center sm:h-44 sm:w-44 lg:h-[24rem] lg:w-[24rem] xl:h-[27rem] xl:w-[27rem]"
+      >
       <div class="absolute inset-[-18%] rounded-full bg-gold/25 blur-3xl" aria-hidden="true"></div>
       <div class="animate-pulse-ring absolute inset-0 rounded-full border border-gold-300/40"></div>
       <!-- Solid white disc under the centre mark, like the header badge; the PNG centre is translucent. -->
@@ -41,6 +82,15 @@
         width="490"
         height="509"
         decoding="async"
+      />
+      </div>
+      <img
+        src="/decor/bouquet.webp"
+        alt=""
+        width="520"
+        height="693"
+        decoding="async"
+        class="bouquet-sway-alt relative z-20 -ms-7 mb-1 h-24 w-auto -scale-x-100 object-contain sm:-ms-9 sm:h-36 lg:-ms-14 lg:h-56 xl:h-64"
       />
     </div>
 
