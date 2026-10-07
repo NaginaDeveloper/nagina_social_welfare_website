@@ -49,63 +49,62 @@
   <div
     class="site-wrap relative grid items-center gap-6 pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:grid-cols-12 lg:gap-8 lg:pb-28 lg:pt-36 xl:min-h-[min(88vh,_52rem)]"
   >
-    <!-- Seal: the ring turns, the centre mark stays still. Badge above the text on phones, artwork beside it on desktop. -->
-    <div class="relative mx-auto flex items-center justify-center lg:order-2 lg:col-span-5" aria-hidden="true">
-      <div
-        class="relative z-10 flex h-28 w-28 shrink-0 items-center justify-center sm:h-44 sm:w-44 lg:h-[20rem] lg:w-[20rem] xl:h-[22rem] xl:w-[22rem] 2xl:h-[26rem] 2xl:w-[26rem]"
+    <!-- Seal column: Bismillah on top, then bouquet | seal | bouquet. Badge-sized on phones, artwork on desktop. -->
+    <div class="flex flex-col items-center lg:order-2 lg:col-span-6">
+      <p
+        class="animate-fade-up text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:text-4xl lg:text-[2.6rem] 2xl:text-5xl"
+        lang="ar"
+        dir="rtl"
       >
-      <!-- Rose bouquets on the seal's lower corners, mirrored, as on al-nisar.com -->
-      <img
-        src="/decor/bouquet.webp"
-        alt=""
-        width="520"
-        height="693"
-        decoding="async"
-        class="bouquet-sway absolute bottom-[2%] start-0 z-20 h-[78%] w-auto -translate-x-[55%] object-contain rtl:translate-x-[55%]"
-      />
-      <img
-        src="/decor/bouquet.webp"
-        alt=""
-        width="520"
-        height="693"
-        decoding="async"
-        class="bouquet-sway-alt absolute bottom-[2%] end-0 z-20 h-[78%] w-auto translate-x-[55%] -scale-x-100 object-contain rtl:-translate-x-[55%]"
-      />
-      <div class="absolute inset-[-18%] rounded-full bg-gold/25 blur-3xl" aria-hidden="true"></div>
-      <div class="animate-pulse-ring absolute inset-0 rounded-full border border-gold-300/40"></div>
-      <!-- Solid white disc under the centre mark, like the header badge; the PNG centre is translucent. -->
-      <div class="absolute inset-[4%] rounded-full bg-white/95 shadow-portal" aria-hidden="true"></div>
-      <img
-        src="/brand/nagina.png"
-        alt=""
-        class="animate-spin-slow seal-ring absolute inset-0 h-full w-full select-none"
-        width="490"
-        height="509"
-        decoding="async"
-      />
-      <img
-        src="/brand/nagina.png"
-        alt=""
-        class="seal-core animate-float-slow absolute inset-0 h-full w-full select-none"
-        width="490"
-        height="509"
-        decoding="async"
-      />
+        بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+      </p>
+      <div class="mt-4 flex items-end justify-center gap-1 sm:mt-6 lg:mt-8" aria-hidden="true">
+        <img
+          src="/decor/bouquet.webp"
+          alt=""
+          width="520"
+          height="693"
+          decoding="async"
+          class="bouquet-sway relative z-20 mb-0.5 h-16 w-auto object-contain sm:h-24 lg:h-44 2xl:h-52"
+        />
+        <div
+          class="relative z-10 flex h-28 w-28 shrink-0 items-center justify-center sm:h-44 sm:w-44 lg:h-[18rem] lg:w-[18rem] 2xl:h-[22rem] 2xl:w-[22rem]"
+        >
+          <div class="absolute inset-[-18%] rounded-full bg-gold/25 blur-3xl" aria-hidden="true"></div>
+          <div class="animate-pulse-ring absolute inset-0 rounded-full border border-gold-300/40"></div>
+          <!-- Solid white disc under the centre mark, like the header badge; the PNG centre is translucent. -->
+          <div class="absolute inset-[4%] rounded-full bg-white/95 shadow-portal" aria-hidden="true"></div>
+          <img
+            src="/brand/nagina.png"
+            alt=""
+            class="animate-spin-slow seal-ring absolute inset-0 h-full w-full select-none"
+            width="490"
+            height="509"
+            decoding="async"
+          />
+          <img
+            src="/brand/nagina.png"
+            alt=""
+            class="seal-core animate-float-slow absolute inset-0 h-full w-full select-none"
+            width="490"
+            height="509"
+            decoding="async"
+          />
+        </div>
+        <img
+          src="/decor/bouquet.webp"
+          alt=""
+          width="520"
+          height="693"
+          decoding="async"
+          class="bouquet-sway-alt relative z-20 mb-0.5 h-16 w-auto -scale-x-100 object-contain sm:h-24 lg:h-44 2xl:h-52"
+        />
       </div>
     </div>
 
-    <!-- Bismillah, centred over the whole hero -->
-    <p
-      class="animate-fade-up order-first text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:text-4xl lg:col-span-12 lg:-mb-2 3xl:text-5xl"
-      lang="ar"
-      dir="rtl"
-    >
-      بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
-    </p>
-
     <!-- Words -->
     <div
-      class="flex flex-col items-center text-center lg:order-1 lg:col-span-7 lg:items-start lg:text-start"
+      class="flex flex-col items-center text-center lg:order-1 lg:col-span-6 lg:items-start lg:text-start"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h1
