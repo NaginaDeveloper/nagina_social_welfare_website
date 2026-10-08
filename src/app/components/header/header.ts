@@ -180,13 +180,16 @@ export class Header implements OnInit {
     return this.openGroupId() === id;
   }
 
-  /** First half of the menus hang left; the rest hang right so wide panels never run off-screen. */
+  /** Panels hang from the menu row: the first half from its left edge, the rest from its right. */
   protected panelAlign(index: number): string {
     return index < this.groups().length / 2 ? 'left-0' : 'right-0';
   }
 
+  /** Wide enough for the sub-headed columns plus the featured card, never wider than the screen. */
   protected menuPanelWidth(group: NavGroup): string {
-    return group.items.length > 5 ? 'min(40rem, calc(100vw - 2rem))' : '18rem';
+    const columns = group.sections.length;
+    const rem = columns >= 3 ? 58 : columns === 2 ? 48 : 36;
+    return `min(${rem}rem, calc(100vw - 2rem))`;
   }
 
   /** Mouse users get hover-to-open; touch and pen keep tap-to-toggle. */
