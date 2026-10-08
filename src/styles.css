@@ -477,37 +477,7 @@ html.urdu .spotlight-label {
 .animate-pulse-ring {
   animation: pulseRing 3.2s ease-out infinite;
 }
-/* NSW seal split in two layers: the lettered ring (turns) and the centre mark (still). */
-.seal-ring {
-  filter: drop-shadow(0 18px 40px rgba(2, 44, 34, 0.45));
-  -webkit-mask-image: radial-gradient(circle at center, transparent 0 58%, #000 61%);
-  mask-image: radial-gradient(circle at center, transparent 0 58%, #000 61%);
-}
-.seal-core {
-  -webkit-mask-image: radial-gradient(circle at center, #000 0 59%, transparent 61%);
-  mask-image: radial-gradient(circle at center, #000 0 59%, transparent 61%);
-}
-
-/* Petal shower, blinking gold lights and the swaying bouquets beside the seal. */
-@keyframes petalFall {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -8vh, 0) rotate(0deg) scale(0.9);
-  }
-  8% {
-    opacity: 0.95;
-  }
-  50% {
-    transform: translate3d(calc(var(--petal-drift, 16px) * 0.5), 50vh, 0) rotate(160deg) scale(1);
-  }
-  92% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(var(--petal-drift, 16px), 108vh, 0) rotate(330deg) scale(0.92);
-  }
-}
+/* Blinking gold lights over the hero. */
 @keyframes sparkleBlink {
   0%,
   100% {
@@ -519,35 +489,10 @@ html.urdu .spotlight-label {
     transform: scale(1.3);
   }
 }
-@keyframes bouquetSway {
-  0%,
-  100% {
-    rotate: -2.5deg;
-  }
-  50% {
-    rotate: 2.5deg;
-  }
-}
-.petal-fall {
-  object-fit: contain;
-  opacity: 0;
-  filter: drop-shadow(0 2px 6px rgba(2, 44, 34, 0.35));
-  will-change: transform, opacity;
-  animation: petalFall 14s ease-in-out infinite;
-}
 .sparkle {
   background: radial-gradient(circle, #fff7e0 0%, #fbbf24 45%, rgba(251, 191, 36, 0) 72%);
   box-shadow: 0 0 12px 3px rgba(251, 191, 36, 0.45);
   animation: sparkleBlink 2.6s ease-in-out infinite;
-}
-.bouquet-sway,
-.bouquet-sway-alt {
-  transform-origin: 50% 100%;
-  filter: drop-shadow(0 14px 28px rgba(2, 44, 34, 0.45));
-  animation: bouquetSway 7s ease-in-out infinite;
-}
-.bouquet-sway-alt {
-  animation-direction: reverse;
 }
 
 /* Desktop menu panel: a short rise-and-fade when it opens. */
@@ -617,12 +562,7 @@ html.urdu .spotlight-label {
     animation: none;
   }
 
-  .petal-fall {
-    display: none;
-  }
-  .sparkle,
-  .bouquet-sway,
-  .bouquet-sway-alt {
+  .sparkle {
     animation: none;
     opacity: 0.8;
   }

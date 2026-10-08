@@ -14,25 +14,8 @@
   ></div>
   <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-50" aria-hidden="true"></div>
 
-  <!-- Petal shower and soft gold lights, drifting over the whole hero. -->
+  <!-- Soft gold lights drifting over the hero. -->
   <div class="pointer-events-none absolute inset-0 -z-[5] overflow-hidden" aria-hidden="true">
-    @for (petal of petals; track $index) {
-      <img
-        [src]="petal.src"
-        alt=""
-        width="48"
-        height="48"
-        loading="lazy"
-        decoding="async"
-        class="petal-fall absolute top-0"
-        [style.left]="petal.left"
-        [style.width]="petal.size"
-        [style.height]="petal.size"
-        [style.animation-delay]="petal.delay"
-        [style.animation-duration]="petal.duration"
-        [style.--petal-drift]="petal.drift"
-      />
-    }
     @for (star of sparkles; track $index) {
       <span
         class="sparkle absolute block rounded-full"
@@ -49,56 +32,53 @@
   <div
     class="site-wrap relative grid items-center gap-6 pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:grid-cols-12 lg:items-start lg:gap-8 lg:pb-24 lg:pt-36"
   >
-    <!-- Seal column: Bismillah on top, then bouquet | seal | bouquet. Badge-sized on phones, artwork on desktop. -->
-    <div class="flex flex-col items-center lg:order-2 lg:col-span-6">
-      <p
-        class="animate-fade-up text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:text-4xl lg:text-[2.6rem] lg:leading-[1.25] 2xl:text-5xl"
-        lang="ar"
-        dir="rtl"
-      >
-        بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
-      </p>
-      <div class="mt-4 flex items-end justify-center gap-1 sm:mt-6 lg:mt-8" aria-hidden="true">
-        <img
-          src="/decor/bouquet.webp"
-          alt=""
-          width="520"
-          height="693"
-          decoding="async"
-          class="bouquet-sway relative z-20 mb-0.5 h-16 w-auto object-contain sm:h-24 lg:h-44 2xl:h-52"
-        />
-        <div
-          class="relative z-10 flex h-28 w-28 shrink-0 items-center justify-center sm:h-44 sm:w-44 lg:h-[18rem] lg:w-[18rem] 2xl:h-[22rem] 2xl:w-[22rem]"
-        >
-          <div class="absolute inset-[-18%] rounded-full bg-gold/25 blur-3xl" aria-hidden="true"></div>
-          <div class="animate-pulse-ring absolute inset-0 rounded-full border border-gold-300/40"></div>
-          <!-- Solid white disc under the centre mark, like the header badge; the PNG centre is translucent. -->
-          <div class="absolute inset-[4%] rounded-full bg-white/95 shadow-portal" aria-hidden="true"></div>
-          <img
-            src="/brand/nagina.png"
-            alt=""
-            class="animate-spin-slow seal-ring absolute inset-0 h-full w-full select-none"
-            width="490"
-            height="509"
-            decoding="async"
-          />
-          <img
-            src="/brand/nagina.png"
-            alt=""
-            class="seal-core animate-float-slow absolute inset-0 h-full w-full select-none"
-            width="490"
-            height="509"
-            decoding="async"
-          />
+    <!-- The two Holy Mosques in arched frames: Makkah in front, Madinah behind. -->
+    <div class="flex flex-col items-center lg:order-2 lg:col-span-6" data-testid="hero-haramain">
+      <div class="relative w-full max-w-[20rem] sm:max-w-md lg:max-w-[30rem]">
+        <div class="absolute inset-[-10%] rounded-full bg-gold/20 blur-3xl" aria-hidden="true"></div>
+        <div class="relative grid grid-cols-2 items-end gap-3 sm:gap-5">
+          @for (place of haramain; track place.src; let i = $index) {
+            <figure
+              class="animate-fade-up relative overflow-hidden rounded-t-[999px] rounded-b-2xl border-2 border-gold-300/70 bg-forest shadow-portal ring-4 ring-white/10"
+              [class.mb-8]="i === 0"
+              [class.sm:mb-12]="i === 0"
+              [style.animation-delay]="i * 140 + 'ms'"
+            >
+              <img
+                [src]="place.src"
+                [alt]="place.alt"
+                [attr.width]="place.width"
+                [attr.height]="place.height"
+                [attr.fetchpriority]="i === 0 ? 'high' : null"
+                decoding="async"
+                class="aspect-[3/4] w-full object-cover"
+                [style.object-position]="place.focus"
+              />
+              <figcaption
+                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/95 via-forest/60 to-transparent px-2 pb-2.5 pt-8 text-center sm:pb-3"
+              >
+                <span class="block font-display text-sm font-semibold text-gold-300 sm:text-lg">{{ place.name }}</span>
+              </figcaption>
+            </figure>
+          }
         </div>
-        <img
-          src="/decor/bouquet.webp"
-          alt=""
-          width="520"
-          height="693"
-          decoding="async"
-          class="bouquet-sway-alt relative z-20 mb-0.5 h-16 w-auto -scale-x-100 object-contain sm:h-24 lg:h-44 2xl:h-52"
-        />
+        <p class="relative mt-2 text-center text-[0.65rem] text-cream/50 lg:text-end">
+          Kaaba photo:
+          <a
+            class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
+            href="https://commons.wikimedia.org/wiki/File:Kaaba%D8%A7%D9%84%D9%83%D8%B9%D8%A8%D8%A9_%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%81%D8%A9%D8%8C%D8%B5%D9%84%D8%A7%D8%A9_%D8%A7%D9%84%D9%81%D8%AC%D8%B1.jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            >AishaAbdel</a
+          >,
+          <a
+            class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
+            href="https://creativecommons.org/licenses/by-sa/4.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >CC BY-SA 4.0</a
+          >, cropped
+        </p>
       </div>
     </div>
 

@@ -374,20 +374,24 @@ export class HomeHub implements OnInit {
 
   protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
 
-  /** Rose petals that drift down the hero (hidden under reduced motion). */
-  protected readonly petals = [
-    { src: '/decor/petal-pink.webp', left: '4%', delay: '0s', duration: '13s', size: '2.2rem', drift: '-24px' },
-    { src: '/decor/petal-red.webp', left: '13%', delay: '2.2s', duration: '15s', size: '1.9rem', drift: '26px' },
-    { src: '/decor/petal-gold.webp', left: '22%', delay: '0.9s', duration: '14s', size: '2rem', drift: '-30px' },
-    { src: '/decor/petal-pink.webp', left: '34%', delay: '3.1s', duration: '16s', size: '2.4rem', drift: '18px' },
-    { src: '/decor/petal-red.webp', left: '45%', delay: '0.5s', duration: '12.5s', size: '1.8rem', drift: '-14px' },
-    { src: '/decor/petal-gold.webp', left: '56%', delay: '2.6s', duration: '14.5s', size: '2.1rem', drift: '28px' },
-    { src: '/decor/petal-pink.webp', left: '66%', delay: '1.4s', duration: '13.5s', size: '2rem', drift: '-24px' },
-    { src: '/decor/petal-red.webp', left: '75%', delay: '3.8s', duration: '15.5s', size: '2.3rem', drift: '16px' },
-    { src: '/decor/petal-gold.webp', left: '84%', delay: '1.8s', duration: '14s', size: '1.8rem', drift: '-28px' },
-    { src: '/decor/petal-pink.webp', left: '92%', delay: '2.9s', duration: '16.5s', size: '2.2rem', drift: '20px' },
-    { src: '/decor/petal-red.webp', left: '28%', delay: '5.2s', duration: '13s', size: '1.7rem', drift: '12px' },
-    { src: '/decor/petal-gold.webp', left: '61%', delay: '4.4s', duration: '15s', size: '2rem', drift: '-18px' },
+  /** Makkah and Madinah for the hero. The Kaaba photo is CC BY-SA 4.0 (credited under it); the Green Dome photo is CC0. */
+  protected readonly haramain = [
+    {
+      src: '/media/haramain-kaaba.webp',
+      alt: 'The Holy Kaaba in Masjid al-Haram, Makkah, at Fajr',
+      name: 'Makkah',
+      width: 1588,
+      height: 1588,
+      focus: '55% 60%',
+    },
+    {
+      src: '/media/haramain-madinah.webp',
+      alt: 'The Green Dome and minarets of Masjid an-Nabawi, Madinah',
+      name: 'Madinah',
+      width: 1920,
+      height: 1280,
+      focus: '62% 50%',
+    },
   ] as const;
 
   /** Soft gold lights that blink around the hero. */
