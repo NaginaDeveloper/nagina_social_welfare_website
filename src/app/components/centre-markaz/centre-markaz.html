@@ -1,0 +1,128 @@
+<div class="mx-auto mt-16 max-w-5xl" dir="ltr" lang="en" data-testid="centre-markaz">
+  @if (i18n.isUr()) {
+    <p class="mb-6 text-center text-sm text-slate-warm" dir="rtl" lang="ur">{{ i18n.t('centreStory.englishOnly') }}</p>
+  }
+
+  <!-- Welcome: text beside two photos -->
+  <div class="grid items-center gap-10 md:grid-cols-2" appReveal>
+    <div>
+      <h2 class="font-display text-3xl font-bold text-forest sm:text-4xl">Welcome to Markaz</h2>
+      @for (para of about().intro; track $index) {
+        <p class="mt-4 text-base leading-relaxed text-slate-warm">{{ para }}</p>
+      }
+    </div>
+    <div class="relative mx-auto w-full max-w-md pb-10 sm:pb-16">
+      @for (photo of about().photos; track photo.src; let i = $index) {
+        <figure
+          class="overflow-hidden rounded-2xl border-4 border-white bg-white shadow-portal"
+          [class]="i === 0 ? 'relative z-10 w-[82%]' : 'absolute bottom-0 end-0 z-20 w-[58%] rotate-2'"
+        >
+          <img [src]="photo.src" [alt]="photo.alt" class="aspect-[4/3] w-full object-cover" loading="lazy" width="640" height="480" />
+          <!-- Top corner, so the overlapping photo never hides it. -->
+          <figcaption class="absolute start-2 top-2 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-forest shadow-soft">
+            {{ photo.caption }}
+          </figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+
+  <dl class="mt-10 grid gap-3 sm:grid-cols-3" appReveal>
+    @for (fact of about().facts; track fact.label) {
+      <div class="rounded-2xl border border-gold/30 bg-white px-5 py-4 shadow-soft">
+        <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">{{ fact.label }}</dt>
+        <dd class="mt-1 text-sm leading-relaxed text-forest">{{ fact.value }}</dd>
+      </div>
+    }
+  </dl>
+
+  <!-- Rhythm of the week and year: a timeline -->
+  <div class="mt-20" appReveal>
+    <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">Through the Week and the Year</h2>
+    <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">{{ about().rhythmLead }}</p>
+    <ol class="relative ms-5 mt-10 max-w-3xl border-s-2 sm:mx-auto border-gold/30 ps-8 sm:ps-10" data-testid="markaz-rhythm">
+      @for (item of about().rhythm; track item.title; let i = $index) {
+        <li class="relative pb-8 last:pb-0" [appReveal]="i * 60">
+          <span
+            class="absolute -start-[3.05rem] top-0 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-emerald to-forest text-gold-300 ring-4 ring-cream sm:-start-[3.55rem]"
+          >
+            <app-icon [name]="item.icon" size="h-5 w-5" />
+          </span>
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">{{ item.when }}</p>
+          <h3 class="mt-1 font-display text-xl font-bold text-forest">{{ item.title }}</h3>
+          <p class="mt-1 text-sm leading-relaxed text-slate-warm sm:text-base">{{ item.text }}</p>
+          @if (item.link) {
+            <a
+              [routerLink]="item.link.path"
+              class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-gold-600 underline decoration-gold/40 underline-offset-2 hover:text-forest"
+            >
+              {{ item.link.label }}
+              <app-icon name="arrow" size="h-3.5 w-3.5" />
+            </a>
+          }
+        </li>
+      }
+    </ol>
+  </div>
+
+  <!-- Spiritual guide -->
+  <div class="relative mt-20 overflow-hidden rounded-3xl bg-forest px-6 py-10 text-cream sm:px-12" appReveal data-testid="markaz-guide">
+    <div class="geo-pattern absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="relative grid items-center gap-8 md:grid-cols-[12rem_1fr]">
+      <img
+        [src]="about().guide.image"
+        [alt]="about().guide.name"
+        class="mx-auto h-40 w-40 rounded-full object-cover ring-4 ring-gold/50 sm:h-48 sm:w-48"
+        loading="lazy"
+        width="192"
+        height="192"
+      />
+      <div class="text-center md:text-start">
+        <span class="eyebrow-on-dark">Our Spiritual Guide</span>
+        <h2 class="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">{{ about().guide.name }}</h2>
+        @for (para of about().guide.text; track $index) {
+          <p class="mt-3 text-base leading-relaxed text-cream/85">{{ para }}</p>
+        }
+        <div class="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
+          @for (link of about().guide.links; track link.path) {
+            <a
+              [routerLink]="link.path"
+              class="inline-flex min-h-10 items-center rounded-full border border-gold/40 px-4 py-2 text-sm font-semibold text-gold-300 hover:bg-white/10"
+            >
+              {{ link.label }}
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Head office -->
+  <div class="mt-20 text-center" appReveal data-testid="markaz-head-office">
+    <h2 class="font-display text-2xl font-bold text-forest sm:text-3xl">The Charity’s Head Office</h2>
+    <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-warm sm:text-base">{{ about().headOffice.text }}</p>
+    <div class="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+      @for (link of about().headOffice.links; track link.path) {
+        <a
+          [routerLink]="link.path"
+          class="group flex flex-col items-center gap-2 rounded-2xl border border-mist bg-white px-4 py-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold/40"
+        >
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gold/15 text-gold-700 transition-colors group-hover:bg-gold/25">
+            <app-icon [name]="link.icon" size="h-5 w-5" />
+          </span>
+          <span class="text-sm font-semibold text-forest">{{ link.label }}</span>
+        </a>
+      }
+    </div>
+  </div>
+
+  <!-- Pillars -->
+  <div class="mt-20 grid gap-4 sm:grid-cols-3" appReveal data-testid="markaz-pillars">
+    @for (pillar of about().pillars; track pillar.title; let i = $index) {
+      <div class="rounded-2xl border-t-4 border-gold bg-sand/60 px-6 py-6 text-center" [appReveal]="i * 80">
+        <p class="font-display text-2xl font-bold text-forest">{{ pillar.title }}</p>
+        <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ pillar.text }}</p>
+      </div>
+    }
+  </div>
+</div>

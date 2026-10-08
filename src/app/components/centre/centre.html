@@ -26,8 +26,8 @@
           {{ lead() }}
         </p>
       </div>
-      <!-- A centre with its own story leads with actions and keeps Visit Us for the end. -->
-      @if (story()) {
+      <!-- A centre with its own page text leads with actions and keeps Visit Us for the end. -->
+      @if (own()) {
         <ng-container [ngTemplateOutlet]="actionLinks" />
       } @else {
         <ng-container [ngTemplateOutlet]="visitCard" />
@@ -36,6 +36,8 @@
       @if (story(); as story) {
         <!-- The centre's own activities replace the generic list below. -->
         <app-centre-story [story]="story" />
+      } @else if (markaz(); as markaz) {
+        <app-centre-markaz [about]="markaz" />
       } @else {
       <div
         class="mx-auto mt-14 max-w-3xl"
@@ -99,7 +101,7 @@
         }
       </div>
 
-      @if (story()) {
+      @if (own()) {
         <ng-container [ngTemplateOutlet]="visitCard" />
       } @else {
         <ng-container [ngTemplateOutlet]="actionLinks" />
@@ -141,10 +143,10 @@
       <ng-template #actionLinks>
       <div
         class="mx-auto flex flex-wrap items-center justify-center gap-3"
-        [class.mt-8]="story()"
-        [class.max-w-4xl]="story()"
-        [class.mt-14]="!story()"
-        [class.max-w-3xl]="!story()"
+        [class.mt-8]="own()"
+        [class.max-w-4xl]="own()"
+        [class.mt-14]="!own()"
+        [class.max-w-3xl]="!own()"
         [attr.dir]="i18n.isUr() ? 'rtl' : null"
       >
         <a

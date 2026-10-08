@@ -61,12 +61,12 @@ export const WORK_SEO: PageSeo = {
 };
 
 export const PETERBOROUGH_SEO: PageSeo = {
-  title: 'Peterborough Community | Nagina Social Welfare UK',
+  title: 'Markaz Deen-e-Islam, Peterborough | Nagina Social Welfare UK',
   description:
-    'Find Nagina Social Welfare in Peterborough — address, Madrasa timetable, prayer times, events, welfare support and how to contact us.',
+    'Markaz Deen-e-Islam, 103 Burmer Road: head office of Nagina Social Welfare UK and our Peterborough Madrasa. Evening classes, Let’s Learn Salah, sisters’ gatherings, Zikr & Fikr and the annual Mehfil-e-Naat.',
   path: '/peterborough/',
   keywords:
-    'Nagina Social Welfare Peterborough, Markaz Deen-e-Islam, Islamic community Peterborough, Burmer Road',
+    'Markaz Deen-e-Islam, Nagina Social Welfare Peterborough, Madrasa Peterborough, Burmer Road, Mehfil-e-Naat Peterborough, Zikr and Fikr, sisters gathering Peterborough, learn Salah Peterborough, Islamic community Peterborough',
   type: 'website',
   breadcrumb: 'Peterborough',
   image: `${SITE_ORIGIN}/brand/markaz.png`,
