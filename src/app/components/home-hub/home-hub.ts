@@ -374,18 +374,18 @@ export class HomeHub implements OnInit {
   protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
 
   /**
-   * Makkah, Madinah and Al-Aqsa for the hero (Wikimedia Commons). Kaaba:
-   * CC BY-SA 4.0 and Al-Aqsa: CC BY 2.0, both credited under the photos;
-   * Green Dome: CC0.
+   * Makkah, Madinah and Al-Aqsa for the hero. Makkah: supplied by the
+   * charity as free to use (8 Oct 2026). Madinah: Wikimedia Commons, CC0.
+   * Al-Aqsa: Wikimedia Commons, CC BY 2.0, credited under the photos.
    */
   protected readonly haramain = [
     {
-      src: '/media/haramain-kaaba.webp',
-      alt: 'The Holy Kaaba in Masjid al-Haram, Makkah, at Fajr',
+      src: '/media/haramain-makkah-arch.webp',
+      alt: 'The Holy Kaaba seen through an arch of Masjid al-Haram, Makkah',
       name: 'Holy Makkah',
-      width: 1588,
-      height: 1588,
-      focus: '55% 60%',
+      width: 498,
+      height: 888,
+      focus: '50% 55%',
     },
     {
       src: '/media/haramain-madinah.webp',
