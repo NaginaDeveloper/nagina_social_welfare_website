@@ -46,9 +46,13 @@
         <div class="relative grid grid-cols-3 items-start gap-2.5 sm:gap-4">
           @for (place of haramain; track place.src; let i = $index) {
             <figure class="animate-fade-up flex flex-col items-center" [style.animation-delay]="i * 140 + 'ms'">
-              <div
-                class="w-full overflow-hidden rounded-t-[999px] rounded-b-2xl border-2 border-gold-300/70 bg-forest shadow-portal ring-4 ring-white/10"
-              >
+              <!-- Mihrab frame: gold rim, dark gap, fine inner gold line, a star at the crown. -->
+              <div class="arch-frame w-full" [style.animation-delay]="i * 900 + 'ms'">
+                <svg class="arch-star" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0l2.6 5.7L20.5 3.5l-2.2 5.9L24 12l-5.7 2.6 2.2 5.9-5.9-2.2L12 24l-2.6-5.7-5.9 2.2 2.2-5.9L0 12l5.7-2.6L3.5 3.5l5.9 2.2z" />
+                </svg>
+                <div class="arch-frame-gap">
+                  <div class="arch-frame-photo">
                 <img
                   [src]="place.src"
                   [alt]="place.alt"
@@ -59,6 +63,8 @@
                   class="aspect-[3/4] w-full object-cover"
                   [style.object-position]="place.focus"
                 />
+                  </div>
+                </div>
               </div>
               <!-- Name under the arch, so it never sits on the photo. -->
               <figcaption class="mt-2 text-center font-display text-sm font-semibold leading-tight text-gold-300 sm:mt-3 sm:text-lg">

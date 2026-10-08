@@ -495,6 +495,75 @@ html.urdu .spotlight-label {
   animation: sparkleBlink 2.6s ease-in-out infinite;
 }
 
+/* Home hero: mihrab-shaped frames for the Holy Mosques. */
+@keyframes archGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(254, 243, 199, 0.25),
+      0 14px 32px rgba(2, 44, 34, 0.55),
+      0 0 22px rgba(251, 191, 36, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(254, 243, 199, 0.4),
+      0 14px 32px rgba(2, 44, 34, 0.55),
+      0 0 38px rgba(251, 191, 36, 0.42);
+  }
+}
+.arch-frame {
+  position: relative;
+  padding: 3px;
+  border-radius: 999px 999px 18px 18px;
+  background: linear-gradient(165deg, #fef3c7 0%, #fbbf24 24%, #b45309 50%, #fbbf24 76%, #fef3c7 100%);
+  animation: archGlow 5s ease-in-out infinite;
+}
+.arch-frame-gap {
+  padding: 3px;
+  border-radius: inherit;
+  background: #052e22;
+}
+.arch-frame-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+/* Fine inner gold line and a soft vignette over the photo. */
+.arch-frame-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(253, 230, 138, 0.65),
+    inset 0 0 26px rgba(2, 44, 34, 0.45);
+}
+.arch-star {
+  position: absolute;
+  top: -0.55rem;
+  left: 50%;
+  z-index: 1;
+  width: 1.15rem;
+  height: 1.15rem;
+  transform: translateX(-50%);
+  fill: #fbbf24;
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.75));
+}
+@media (min-width: 640px) {
+  .arch-frame {
+    padding: 4px;
+  }
+  .arch-frame-gap {
+    padding: 4px;
+  }
+  .arch-star {
+    top: -0.7rem;
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+}
+
 /* Desktop menu panel: a short rise-and-fade when it opens. */
 @keyframes menuIn {
   from {
@@ -565,6 +634,9 @@ html.urdu .spotlight-label {
   .sparkle {
     animation: none;
     opacity: 0.8;
+  }
+  .arch-frame {
+    animation: none;
   }
 }
 
