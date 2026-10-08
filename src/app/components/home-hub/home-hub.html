@@ -30,9 +30,9 @@
   </div>
 
   <div
-    class="site-wrap relative grid items-center gap-6 pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:grid-cols-12 lg:items-start lg:gap-8 lg:pb-24 lg:pt-36"
+    class="relative mx-auto grid w-full max-w-[var(--site-max)] items-center gap-6 px-[var(--site-gutter)] pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:max-w-[100rem] lg:grid-cols-12 lg:items-start lg:gap-8 lg:px-10 lg:pb-24 lg:pt-36 2xl:px-16"
   >
-    <!-- Bismillah over the two Holy Mosques in arched frames. -->
+    <!-- Bismillah over the three Holy Mosques in arched frames: Makkah, Madinah, Al-Aqsa. -->
     <div class="flex flex-col items-center lg:order-2 lg:col-span-6" data-testid="hero-haramain">
       <p
         class="animate-fade-up mb-5 text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:mb-6 sm:text-4xl lg:text-[2.6rem] lg:leading-[1.25] 2xl:text-5xl"
@@ -41,50 +41,62 @@
       >
         بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
       </p>
-      <div class="relative w-full max-w-[20rem] sm:max-w-md lg:max-w-[30rem]">
+      <div class="relative w-full max-w-[24rem] sm:max-w-xl lg:max-w-[40rem]">
         <div class="absolute inset-[-10%] rounded-full bg-gold/20 blur-3xl" aria-hidden="true"></div>
-        <div class="relative grid grid-cols-2 items-end gap-3 sm:gap-5">
+        <div class="relative grid grid-cols-3 items-start gap-2.5 sm:gap-4">
           @for (place of haramain; track place.src; let i = $index) {
-            <figure
-              class="animate-fade-up relative overflow-hidden rounded-t-[999px] rounded-b-2xl border-2 border-gold-300/70 bg-forest shadow-portal ring-4 ring-white/10"
-              [class.mb-8]="i === 0"
-              [class.sm:mb-12]="i === 0"
-              [style.animation-delay]="i * 140 + 'ms'"
-            >
-              <img
-                [src]="place.src"
-                [alt]="place.alt"
-                [attr.width]="place.width"
-                [attr.height]="place.height"
-                [attr.fetchpriority]="i === 0 ? 'high' : null"
-                decoding="async"
-                class="aspect-[3/4] w-full object-cover"
-                [style.object-position]="place.focus"
-              />
-              <figcaption
-                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 via-forest/35 to-transparent px-2 pb-2 pt-6 text-center sm:pb-2.5"
+            <figure class="animate-fade-up flex flex-col items-center" [style.animation-delay]="i * 140 + 'ms'">
+              <div
+                class="w-full overflow-hidden rounded-t-[999px] rounded-b-2xl border-2 border-gold-300/70 bg-forest shadow-portal ring-4 ring-white/10"
               >
-                <span class="block font-display text-sm font-semibold text-gold-300 sm:text-lg">{{ place.name }}</span>
+                <img
+                  [src]="place.src"
+                  [alt]="place.alt"
+                  [attr.width]="place.width"
+                  [attr.height]="place.height"
+                  [attr.fetchpriority]="i === 0 ? 'high' : null"
+                  decoding="async"
+                  class="aspect-[3/4] w-full object-cover"
+                  [style.object-position]="place.focus"
+                />
+              </div>
+              <!-- Name under the arch, so it never sits on the photo. -->
+              <figcaption class="mt-2 text-center font-display text-sm font-semibold leading-tight text-gold-300 sm:mt-3 sm:text-lg">
+                {{ place.name }}
               </figcaption>
             </figure>
           }
         </div>
         <p class="relative mt-2 text-center text-[0.65rem] text-cream/50 lg:text-end">
-          Kaaba photo:
+          Photos:
           <a
             class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
             href="https://commons.wikimedia.org/wiki/File:Kaaba%D8%A7%D9%84%D9%83%D8%B9%D8%A8%D8%A9_%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%81%D8%A9%D8%8C%D8%B5%D9%84%D8%A7%D8%A9_%D8%A7%D9%84%D9%81%D8%AC%D8%B1.jpg"
             target="_blank"
             rel="noopener noreferrer"
-            >AishaAbdel</a
-          >,
-          <a
+            >Kaaba by AishaAbdel</a
+          >
+          (<a
             class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
             href="https://creativecommons.org/licenses/by-sa/4.0/"
             target="_blank"
             rel="noopener noreferrer"
             >CC BY-SA 4.0</a
-          >, cropped
+          >, cropped) ·
+          <a
+            class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
+            href="https://commons.wikimedia.org/wiki/File:Dome_of_the_Rock,_Jerusalem_(16197850416).jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Al-Aqsa by yeowatzup</a
+          >
+          (<a
+            class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
+            href="https://creativecommons.org/licenses/by/2.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >CC BY 2.0</a
+          >)
         </p>
       </div>
     </div>
@@ -98,7 +110,15 @@
         class="animate-fade-up font-display text-[2.75rem] font-bold leading-[0.95] tracking-tight sm:text-6xl lg:whitespace-nowrap lg:text-5xl lg:leading-[1.1] xl:text-[3.4rem] 2xl:text-[4.2rem]"
         style="animation-delay: 160ms"
       >
-        <span class="text-shimmer">Nagina Social Welfare</span>
+        <span class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
+          <!-- The NSW seal on a white disc, like the header badge. -->
+          <span
+            class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white p-1 shadow-portal ring-2 ring-gold-300/60 sm:h-20 sm:w-20 lg:h-[4.5rem] lg:w-[4.5rem] 2xl:h-24 2xl:w-24"
+          >
+            <img src="/brand/nagina.png" alt="" width="490" height="509" class="h-full w-full object-contain" decoding="async" />
+          </span>
+          <span class="text-shimmer">Nagina Social Welfare</span>
+        </span>
       </h1>
       <p
         class="animate-fade-up mt-4 max-w-xl font-display text-lg font-medium italic text-white sm:mt-5 sm:text-2xl 3xl:text-3xl"

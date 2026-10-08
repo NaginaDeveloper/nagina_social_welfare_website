@@ -373,7 +373,11 @@ export class HomeHub implements OnInit {
 
   protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
 
-  /** Makkah and Madinah for the hero. The Kaaba photo is CC BY-SA 4.0 (credited under it); the Green Dome photo is CC0. */
+  /**
+   * Makkah, Madinah and Al-Aqsa for the hero (Wikimedia Commons). Kaaba:
+   * CC BY-SA 4.0 and Al-Aqsa: CC BY 2.0, both credited under the photos;
+   * Green Dome: CC0.
+   */
   protected readonly haramain = [
     {
       src: '/media/haramain-kaaba.webp',
@@ -390,6 +394,14 @@ export class HomeHub implements OnInit {
       width: 1280,
       height: 1920,
       focus: '40% 100%',
+    },
+    {
+      src: '/media/haramain-aqsa.webp',
+      alt: 'The golden Dome of the Rock in the Al-Aqsa compound, Jerusalem',
+      name: 'Al-Aqsa',
+      width: 1920,
+      height: 1280,
+      focus: '50% 50%',
     },
   ] as const;
 
