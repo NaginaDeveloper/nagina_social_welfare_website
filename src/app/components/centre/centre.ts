@@ -1,5 +1,7 @@
 import { Component, OnInit, computed, inject, input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { markazAbout } from '../../config/centre-about.config';
 import { centreLogo } from '../../config/centre-pages.config';
 import { ORGANIZATION } from '../../config/organization.config';
 import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
@@ -10,11 +12,12 @@ import { PrayerTimesService } from '../../services/prayer-times.service';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 import { ContentReviewNote } from '../content-review-note/content-review-note';
 import { VenueMap } from '../venue-map/venue-map';
+import { CentreMarkaz } from '../centre-markaz/centre-markaz';
 
 /** Local page for one centre, filled from the published campus list. */
 @Component({
   selector: 'app-centre',
-  imports: [RouterLink, RelatedPages, ContentReviewNote, VenueMap],
+  imports: [NgTemplateOutlet, RouterLink, RelatedPages, ContentReviewNote, VenueMap, CentreMarkaz],
   templateUrl: './centre.html',
 })
 export class Centre implements OnInit {
@@ -27,6 +30,26 @@ export class Centre implements OnInit {
 
   protected readonly campus = computed(() => this.campusService.byId(this.campusId()));
   protected readonly logo = computed(() => centreLogo(this.campusId()));
+  /** Peterborough's own page body, when the centre has one. */
+  protected readonly markaz = computed(() => markazAbout(this.campusId()));
+  /** Name and one-liner of a centre with its own page text, if any. */
+  protected readonly own = computed(() => this.markaz());
+  /** Ties the centre's own name back to the charity: "Nagina Social Welfare · Manchester". */
+  protected readonly eyebrow = computed(() =>
+    this.own() && !this.i18n.isUr()
+      ? `Nagina Social Welfare · ${this.town()}`
+      : this.i18n.t('centre.eyebrow'),
+  );
+  /** The centre's own name as the page title in English; "Nagina Social Welfare in {town}" otherwise. */
+  protected readonly heading = computed(() => {
+    const own = this.own();
+    return own && !this.i18n.isUr() ? own.name : this.text('centre.title');
+  });
+  /** The centre's own one-liner in English; the shared line otherwise. */
+  protected readonly lead = computed(() => {
+    const own = this.own();
+    return own && !this.i18n.isUr() ? own.lead : this.text('centre.lead');
+  });
   protected readonly town = computed(() => {
     const campus = this.campus();
     return campus ? campusTown(campus) : '';

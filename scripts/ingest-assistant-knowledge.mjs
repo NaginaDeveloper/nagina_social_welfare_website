@@ -84,6 +84,23 @@ async function extractClassProperty(filePath, propertyName) {
   return result;
 }
 
+async function extractExportedConst(filePath, constName) {
+  const source = await readFile(filePath, 'utf8');
+  const sf = ts.createSourceFile(filePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  let result = null;
+  function visit(node) {
+    if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) && node.name.text === constName && node.initializer) {
+      result = literalToValue(node.initializer);
+    }
+    ts.forEachChild(node, visit);
+  }
+  visit(sf);
+  if (result == null) {
+    throw new Error(`Could not find ${constName} in ${filePath}`);
+  }
+  return result;
+}
+
 function makeChunk({
   title,
   sourceType,
@@ -333,6 +350,7 @@ async function buildCuratedChunks() {
     },
   ];
   faq.push(...(await buildCampusFaq()));
+  faq.push(...(await buildMarkazFaq()));
   for (const item of faq) {
     chunks.push(
       makeChunk({
@@ -347,6 +365,38 @@ async function buildCuratedChunks() {
   }
 
   return chunks;
+}
+
+/** Peterborough's own page text (MARKAZ_ABOUT in centre-about.config.ts). */
+async function buildMarkazFaq() {
+  const pages = await extractExportedConst(
+    path.join(ROOT, 'src/app/config/centre-about.config.ts'),
+    'MARKAZ_ABOUT',
+  );
+  return Object.entries(pages).flatMap(([campusId, m]) => {
+    const pagePath = `/${campusId}`;
+    const tags = ['centre', 'about', campusId];
+    return [
+      {
+        title: `${m.name}: about`,
+        path: pagePath,
+        text: `${m.intro.join(' ')} ${m.facts.map((f) => `${f.label}: ${f.value}.`).join(' ')}`,
+        tags,
+      },
+      {
+        title: `${m.name}: the week and the year`,
+        path: pagePath,
+        text: `${m.rhythmLead} ${m.rhythm.map((r) => `${r.when}: ${r.title}. ${r.text}`).join(' ')}`,
+        tags: [...tags, 'activities', 'events'],
+      },
+      {
+        title: `${m.name}: spiritual guide and head office`,
+        path: pagePath,
+        text: `${m.guide.name}. ${m.guide.text.join(' ')} ${m.headOffice.text}`,
+        tags: [...tags, 'head-office'],
+      },
+    ];
+  });
 }
 
 /** One entry per madrasa from the office-editable campus list, so edits reach the assistant on the next ingest. */
