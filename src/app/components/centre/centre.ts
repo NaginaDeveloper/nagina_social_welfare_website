@@ -1,5 +1,6 @@
 import { Component, OnInit, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { centreLogo } from '../../config/centre-pages.config';
 import { ORGANIZATION } from '../../config/organization.config';
 import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
@@ -25,6 +26,7 @@ export class Centre implements OnInit {
   protected readonly org = ORGANIZATION;
 
   protected readonly campus = computed(() => this.campusService.byId(this.campusId()));
+  protected readonly logo = computed(() => centreLogo(this.campusId()));
   protected readonly town = computed(() => {
     const campus = this.campus();
     return campus ? campusTown(campus) : '';
