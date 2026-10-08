@@ -129,11 +129,7 @@
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">Visit &amp; Enrol</h2>
-      <p class="mt-4 text-sm text-slate-warm">
-        <a routerLink="/madrasa" fragment="madrasas" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('madrasa.campusesTitle') }}</a>
-        ·
-        <a [href]="'mailto:' + org.email" class="font-semibold text-gold-700 hover:underline">{{ org.email }}</a>
-      </p>
+      <app-centre-contacts class="mt-5 block text-start" prefill="Assalamu alaikum, I would like to enrol a child at" />
       <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
         <a
           routerLink="/apply"
@@ -146,14 +142,6 @@
           class="inline-flex items-center justify-center rounded-full border border-gold/40 bg-white px-6 py-3 text-sm font-semibold text-forest"
         >
           {{ i18n.t('applyTrack.title') }}
-        </a>
-        <a
-          [href]="enrolWhatsApp"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-full border border-gold/40 bg-white px-6 py-3 text-sm font-semibold text-forest"
-        >
-          {{ i18n.t('madrasa.enrolSecondary') }}
         </a>
         <a
           [href]="org.loginUrl"

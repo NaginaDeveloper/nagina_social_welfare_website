@@ -107,6 +107,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.hours':
       'Class times for each Madrasa are on its centre page. Each Madrasa’s address, phone and WhatsApp are listed below.',
     'contact.map': 'Our Madrasas',
+    'contacts.title': 'Contact a Centre',
+    'contacts.help': 'Need help? Message or call either centre.',
+    'floating.choose': 'Message a centre on WhatsApp',
     'contact.reason.enrolment': 'Madrasa enrolment question',
     'contact.reason.donation': 'Donation',
     'contact.reason.namaz': 'Prayer times (Salah)',
@@ -1576,6 +1579,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'contact.hours':
       'ہر مدرسے کے کلاس اوقات اس کے مرکز کے صفحے پر ہیں۔ ہر مدرسے کا پتہ، فون اور واٹس ایپ نیچے درج ہے۔',
     'contact.map': 'ہمارے مدارس',
+    'contacts.title': 'کسی مرکز سے رابطہ کریں',
+    'contacts.help': 'مدد چاہیے؟ کسی بھی مرکز کو پیغام بھیجیں یا کال کریں۔',
+    'floating.choose': 'واٹس ایپ پر مرکز کو پیغام بھیجیں',
     'contact.reason.enrolment': 'مدرسہ داخلہ کا سوال',
     'contact.reason.donation': 'عطیہ',
     'contact.reason.namaz': 'نماز کے اوقات',

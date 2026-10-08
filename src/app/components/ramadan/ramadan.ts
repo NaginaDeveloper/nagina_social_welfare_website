@@ -6,10 +6,11 @@ import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pag
 import { ContentReviewNote } from '../content-review-note/content-review-note';
 import { CampusService } from '../../services/campus.service';
 import { fillTowns } from '../../models/campus';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 @Component({
   selector: 'app-ramadan',
-  imports: [RouterLink, RelatedPages, ContentReviewNote],
+  imports: [CentreContacts, RouterLink, RelatedPages, ContentReviewNote],
   templateUrl: './ramadan.html',
 })
 export class Ramadan implements OnInit {

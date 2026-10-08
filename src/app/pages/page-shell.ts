@@ -15,6 +15,12 @@ import { LanguageService } from '../i18n/language.service';
           >
             {{ homeLabel() }}
           </a>
+          @if (parent(); as crumb) {
+            <span class="text-mist" aria-hidden="true">/</span>
+            <a [routerLink]="crumb.path" class="text-sm font-medium text-slate-warm transition-colors hover:text-forest">
+              {{ i18n.t(crumb.labelKey) }}
+            </a>
+          }
           <span class="text-mist" aria-hidden="true">/</span>
           <span class="text-sm font-semibold text-forest">{{ title() }}</span>
         </div>
@@ -26,10 +32,12 @@ import { LanguageService } from '../i18n/language.service';
   `,
 })
 export class PageShell {
-  private readonly i18n = inject(LanguageService);
+  protected readonly i18n = inject(LanguageService);
 
   readonly title = input.required<string>();
   readonly homeLabelKey = input('nav.home');
+  /** Middle crumb for nested pages, e.g. Apply above Track Application. */
+  readonly parent = input<{ path: string; labelKey: string } | null>(null);
 
   protected homeLabel(): string {
     return this.i18n.t(this.homeLabelKey());

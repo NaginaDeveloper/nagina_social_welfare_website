@@ -45,6 +45,7 @@ export class Assistant {
       id: campus.id,
       town: campusTown(campus),
       callHref: `tel:${campus.phoneE164}`,
+      emailHref: `mailto:${campus.email || ORGANIZATION.email}`,
       whatsappHref: campusWhatsappHref(
         campus,
         `Assalamu alaikum, I would like to get in touch with ${campus.displayName}.`,

@@ -4,12 +4,13 @@ import { LAST_MEMBERSHIP_ID_KEY } from '../../config/membership-api.config';
 import { LanguageService } from '../../i18n/language.service';
 import { PageShell } from '../page-shell';
 import { MembershipStatusPanel } from '../../components/membership/membership-status-panel';
+import { NextSteps } from '../../components/next-steps/next-steps';
 
 @Component({
   selector: 'app-membership-success-page',
-  imports: [PageShell, RouterLink, MembershipStatusPanel],
+  imports: [NextSteps, PageShell, RouterLink, MembershipStatusPanel],
   template: `
-    <app-page-shell title="Application sent">
+    <app-page-shell title="Application sent" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
       <section class="bg-cream py-16 sm:py-24">
         <div class="mx-auto max-w-2xl px-5 sm:px-8" [attr.dir]="i18n.isUr() ? 'rtl' : null">
           <div class="text-center">
@@ -56,6 +57,7 @@ import { MembershipStatusPanel } from '../../components/membership/membership-st
           </div>
         </div>
       </section>
+      <app-next-steps page="/membership/success" />
     </app-page-shell>
   `,
 })

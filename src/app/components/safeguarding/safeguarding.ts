@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { SAFEGUARDING_LAST_REVIEWED } from '../../config/content-review.config';
 import { LanguageService } from '../../i18n/language.service';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 interface SafeguardingBlock {
   readonly title: string;
@@ -11,6 +12,7 @@ interface SafeguardingBlock {
 }
 
 @Component({
+  imports: [CentreContacts],
   selector: 'app-safeguarding',
   templateUrl: './safeguarding.html',
 })

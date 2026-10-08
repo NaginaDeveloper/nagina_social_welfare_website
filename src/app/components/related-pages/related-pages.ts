@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../../i18n/language.service';
 
 export interface RelatedPageLink {
   readonly path: string;
@@ -16,6 +17,7 @@ export interface RelatedPageLink {
     <nav
       class="mx-auto mt-14 max-w-4xl rounded-2xl border border-mist bg-white/90 px-5 py-6 shadow-soft sm:px-8 sm:py-8"
       [attr.aria-label]="heading()"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h2 class="text-center font-display text-xl font-bold text-forest sm:text-2xl">
         {{ heading() }}
@@ -30,9 +32,9 @@ export interface RelatedPageLink {
               [routerLink]="link.path"
               class="flex h-full flex-col rounded-xl border border-mist bg-sand/40 px-4 py-3 transition-colors hover:border-gold/40 hover:bg-sand/70"
             >
-              <span class="text-sm font-semibold text-forest">{{ link.label }}</span>
+              <span class="text-sm font-semibold text-forest">{{ i18n.pick(link.label, link.labelUr ?? link.label) }}</span>
               @if (link.hint) {
-                <span class="mt-1 text-xs leading-relaxed text-slate-warm">{{ link.hint }}</span>
+                <span class="mt-1 text-xs leading-relaxed text-slate-warm">{{ i18n.pick(link.hint, link.hintUr ?? link.hint) }}</span>
               }
             </a>
           </li>
@@ -42,6 +44,7 @@ export interface RelatedPageLink {
   `,
 })
 export class RelatedPages {
+  protected readonly i18n = inject(LanguageService);
   readonly heading = input('Related pages');
   readonly lead = input<string | undefined>(undefined);
   readonly links = input.required<readonly RelatedPageLink[]>();

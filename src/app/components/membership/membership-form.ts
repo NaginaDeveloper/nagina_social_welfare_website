@@ -26,6 +26,7 @@ import {
 } from '../../config/membership-api.config';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { PRIVACY_NOTICE_VERSION } from '../../config/privacy-notice.config';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 function adultAgeValidator() {
   return (ctrl: AbstractControl) => {
@@ -45,7 +46,7 @@ function adultAgeValidator() {
 
 @Component({
   selector: 'app-membership-form',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [CentreContacts, ReactiveFormsModule, RouterLink],
   templateUrl: './membership-form.html',
   styleUrl: './membership-form.css',
 })

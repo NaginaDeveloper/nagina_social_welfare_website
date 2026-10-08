@@ -221,8 +221,7 @@
       ·
       {{ i18n.t('membership.trackPrompt') }}
       <a routerLink="/membership/track" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('membership.trackLink') }}</a>
-      ·
-      <a [href]="whatsappAsk" class="font-semibold text-gold-700 hover:underline" target="_blank" rel="noopener">{{ i18n.t('membership.whatsapp') }}</a>
     </p>
+    <app-centre-contacts class="mt-8 block" [title]="i18n.t('contacts.help')" prefill="Assalamu alaikum, I have a question about membership for" />
   </div>
 </section>

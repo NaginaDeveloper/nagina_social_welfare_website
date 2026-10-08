@@ -117,15 +117,8 @@
       <p class="mt-4 text-sm leading-relaxed text-sand/85 sm:text-base">
         {{ i18n.t('work.helpLead') }}
       </p>
+      <app-centre-contacts class="mt-6 block text-start" tone="dark" prefill="Assalamu alaikum, I would like to ask about welfare support from" />
       <div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a
-          [href]="helpWhatsApp"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-2.5 text-sm font-semibold text-forest"
-        >
-          {{ i18n.t('work.helpWhatsApp') }}
-        </a>
         <a
           routerLink="/contact"
           class="inline-flex min-h-11 items-center justify-center rounded-full border border-gold/40 px-6 py-2.5 text-sm font-semibold text-gold-300"

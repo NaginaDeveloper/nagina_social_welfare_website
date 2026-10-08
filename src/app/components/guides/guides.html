@@ -158,12 +158,8 @@
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <p class="font-semibold text-forest">{{ i18n.t('guides.helpTitle') }}</p>
-      <p class="mt-1">
-        {{ i18n.t('guides.help') }}
-        <a [href]="'mailto:' + org.email" class="font-medium text-emerald-600 hover:underline">{{ org.email }}</a>
-        ·
-        <a [href]="'tel:' + org.phoneTel" class="font-medium text-emerald-600 hover:underline" dir="ltr">{{ org.phoneDisplay }}</a>
-      </p>
+      <p class="mt-1">{{ i18n.t('guides.help') }}</p>
+      <app-centre-contacts class="mt-4 block text-start" prefill="Assalamu alaikum, I need help with the portal or app at" />
       <p class="mt-3">
         <a routerLink="/apps" class="font-medium text-forest underline-offset-4 hover:underline">{{ i18n.t('guides.appsLink') }}</a>
       </p>
