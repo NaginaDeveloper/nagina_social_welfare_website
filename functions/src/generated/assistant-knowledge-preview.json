@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-08T01:11:36.133Z",
-  "count": 459,
+  "version": "2026-10-08T13:53:59.270Z",
+  "count": 462,
   "chunks": [
     {
       "id": "55594f75b2720379",
@@ -590,6 +590,54 @@
         "madrasa",
         "campus",
         "manchester"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "61d565fea2bc8b3b",
+      "title": "Markaz Deen-e-Islam: about",
+      "sourceType": "faq",
+      "path": "/peterborough",
+      "text": "Markaz Deen-e-Islam on Burmer Road is the head office of Nagina Social Welfare UK. It is home to our Peterborough Madrasa, to regular gatherings of remembrance and learning, and to the day-to-day work of the charity. Our work here is rooted in Ahl al-Sunnah wa’l-Jama‘ah belief, love of the Prophet Muhammad ﷺ and sincere worship, and is guided by the teaching of Munir-e-Islam: sweet manner, patience, knowledge and charity. Children come each evening for Qur’an and Islamic studies. Sisters, brothers and families come for courses, gatherings and support. Head office: Nagina Social Welfare UK, registered charity 1196514. Madrasa: Three evening classes, split by age. Where: 103 Burmer Road, Peterborough PE1 3HT.",
+      "language": "en",
+      "tags": [
+        "centre",
+        "about",
+        "peterborough"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "d27a18f820095290",
+      "title": "Markaz Deen-e-Islam: the week and the year",
+      "sourceType": "faq",
+      "path": "/peterborough",
+      "text": "Something happens at Markaz every day. These are the regular parts of our week and year. Every evening: Madrasa classes. Three classes between 4:30 and 7:30 PM: two for children under 10 and one for ages 10 and above. Every week: Let’s Learn Salah. A weekly course to learn and improve Salah (Islah-e-Salah), for beginners and for anyone who wants to pray better. Every month: Sisters’ gathering. A monthly “Let’s Learn Islam” gathering for sisters. Through the year: Zikr & Fikr. Evenings of remembrance and reflection. Every year: Grand Annual Mehfil-e-Naat. Our yearly gathering in praise of the Prophet Muhammad ﷺ. Before Hajj: Hajj training. A seminar to help pilgrims prepare for Hajj.",
+      "language": "en",
+      "tags": [
+        "centre",
+        "about",
+        "peterborough",
+        "activities",
+        "events"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "b66d8f0f0d7cca2a",
+      "title": "Markaz Deen-e-Islam: spiritual guide and head office",
+      "sourceType": "faq",
+      "path": "/peterborough",
+      "text": "Munir-e-Islam, Allama Munir Ahmed Yusufi. A beloved scholar and Sufi guide whose teaching of sweet manner, patience, knowledge and charity continues to light the work of Markaz Deen-e-Islam. His sermons and books, preserved from the Seedha Rastah archive, are free to watch and read on this website. Markaz Deen-e-Islam is the registered head office of Nagina Social Welfare UK (charity 1196514), which runs Madrasas in Peterborough and Manchester. Giving, community membership and requests for help can all start here.",
+      "language": "en",
+      "tags": [
+        "centre",
+        "about",
+        "peterborough",
+        "head-office"
       ],
       "maslak": "site",
       "approved": true
