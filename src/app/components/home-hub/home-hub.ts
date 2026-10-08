@@ -373,20 +373,36 @@ export class HomeHub implements OnInit {
 
   protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
 
-  /** Rose petals that drift down the hero (hidden under reduced motion). */
-  protected readonly petals = [
-    { src: '/decor/petal-pink.webp', left: '4%', delay: '0s', duration: '13s', size: '2.2rem', drift: '-24px' },
-    { src: '/decor/petal-red.webp', left: '13%', delay: '2.2s', duration: '15s', size: '1.9rem', drift: '26px' },
-    { src: '/decor/petal-gold.webp', left: '22%', delay: '0.9s', duration: '14s', size: '2rem', drift: '-30px' },
-    { src: '/decor/petal-pink.webp', left: '34%', delay: '3.1s', duration: '16s', size: '2.4rem', drift: '18px' },
-    { src: '/decor/petal-red.webp', left: '45%', delay: '0.5s', duration: '12.5s', size: '1.8rem', drift: '-14px' },
-    { src: '/decor/petal-gold.webp', left: '56%', delay: '2.6s', duration: '14.5s', size: '2.1rem', drift: '28px' },
-    { src: '/decor/petal-pink.webp', left: '66%', delay: '1.4s', duration: '13.5s', size: '2rem', drift: '-24px' },
-    { src: '/decor/petal-red.webp', left: '75%', delay: '3.8s', duration: '15.5s', size: '2.3rem', drift: '16px' },
-    { src: '/decor/petal-gold.webp', left: '84%', delay: '1.8s', duration: '14s', size: '1.8rem', drift: '-28px' },
-    { src: '/decor/petal-pink.webp', left: '92%', delay: '2.9s', duration: '16.5s', size: '2.2rem', drift: '20px' },
-    { src: '/decor/petal-red.webp', left: '28%', delay: '5.2s', duration: '13s', size: '1.7rem', drift: '12px' },
-    { src: '/decor/petal-gold.webp', left: '61%', delay: '4.4s', duration: '15s', size: '2rem', drift: '-18px' },
+  /**
+   * Makkah, Madinah and Al-Aqsa for the hero. Makkah: supplied by the
+   * charity as free to use (8 Oct 2026). Madinah: Wikimedia Commons, CC0.
+   * Al-Aqsa: Wikimedia Commons, CC BY 2.0, credited under the photos.
+   */
+  protected readonly haramain = [
+    {
+      src: '/media/haramain-makkah-arch.webp',
+      alt: 'The Holy Kaaba seen through an arch of Masjid al-Haram, Makkah',
+      name: 'Holy Makkah',
+      width: 498,
+      height: 888,
+      focus: '50% 55%',
+    },
+    {
+      src: '/media/haramain-madinah.webp',
+      alt: 'The Green Dome and a minaret of Masjid an-Nabawi, Madinah, against a blue sky',
+      name: 'Blessed Madinah',
+      width: 1280,
+      height: 1920,
+      focus: '40% 100%',
+    },
+    {
+      src: '/media/haramain-aqsa.webp',
+      alt: 'The golden Dome of the Rock in the Al-Aqsa compound, Jerusalem',
+      name: 'Al-Aqsa',
+      width: 1920,
+      height: 1280,
+      focus: '50% 50%',
+    },
   ] as const;
 
   /** Soft gold lights that blink around the hero. */

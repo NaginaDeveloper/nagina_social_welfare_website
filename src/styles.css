@@ -477,37 +477,7 @@ html.urdu .spotlight-label {
 .animate-pulse-ring {
   animation: pulseRing 3.2s ease-out infinite;
 }
-/* NSW seal split in two layers: the lettered ring (turns) and the centre mark (still). */
-.seal-ring {
-  filter: drop-shadow(0 18px 40px rgba(2, 44, 34, 0.45));
-  -webkit-mask-image: radial-gradient(circle at center, transparent 0 58%, #000 61%);
-  mask-image: radial-gradient(circle at center, transparent 0 58%, #000 61%);
-}
-.seal-core {
-  -webkit-mask-image: radial-gradient(circle at center, #000 0 59%, transparent 61%);
-  mask-image: radial-gradient(circle at center, #000 0 59%, transparent 61%);
-}
-
-/* Petal shower, blinking gold lights and the swaying bouquets beside the seal. */
-@keyframes petalFall {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -8vh, 0) rotate(0deg) scale(0.9);
-  }
-  8% {
-    opacity: 0.95;
-  }
-  50% {
-    transform: translate3d(calc(var(--petal-drift, 16px) * 0.5), 50vh, 0) rotate(160deg) scale(1);
-  }
-  92% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(var(--petal-drift, 16px), 108vh, 0) rotate(330deg) scale(0.92);
-  }
-}
+/* Blinking gold lights over the hero. */
 @keyframes sparkleBlink {
   0%,
   100% {
@@ -519,35 +489,79 @@ html.urdu .spotlight-label {
     transform: scale(1.3);
   }
 }
-@keyframes bouquetSway {
-  0%,
-  100% {
-    rotate: -2.5deg;
-  }
-  50% {
-    rotate: 2.5deg;
-  }
-}
-.petal-fall {
-  object-fit: contain;
-  opacity: 0;
-  filter: drop-shadow(0 2px 6px rgba(2, 44, 34, 0.35));
-  will-change: transform, opacity;
-  animation: petalFall 14s ease-in-out infinite;
-}
 .sparkle {
   background: radial-gradient(circle, #fff7e0 0%, #fbbf24 45%, rgba(251, 191, 36, 0) 72%);
   box-shadow: 0 0 12px 3px rgba(251, 191, 36, 0.45);
   animation: sparkleBlink 2.6s ease-in-out infinite;
 }
-.bouquet-sway,
-.bouquet-sway-alt {
-  transform-origin: 50% 100%;
-  filter: drop-shadow(0 14px 28px rgba(2, 44, 34, 0.45));
-  animation: bouquetSway 7s ease-in-out infinite;
+
+/* Home hero: mihrab-shaped frames for the Holy Mosques. */
+@keyframes archGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(254, 243, 199, 0.25),
+      0 14px 32px rgba(2, 44, 34, 0.55),
+      0 0 22px rgba(251, 191, 36, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(254, 243, 199, 0.4),
+      0 14px 32px rgba(2, 44, 34, 0.55),
+      0 0 38px rgba(251, 191, 36, 0.42);
+  }
 }
-.bouquet-sway-alt {
-  animation-direction: reverse;
+.arch-frame {
+  position: relative;
+  padding: 3px;
+  border-radius: 999px 999px 18px 18px;
+  background: linear-gradient(165deg, #fef3c7 0%, #fbbf24 24%, #b45309 50%, #fbbf24 76%, #fef3c7 100%);
+  animation: archGlow 5s ease-in-out infinite;
+}
+.arch-frame-gap {
+  padding: 3px;
+  border-radius: inherit;
+  background: #052e22;
+}
+.arch-frame-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+/* Fine inner gold line and a soft vignette over the photo. */
+.arch-frame-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(253, 230, 138, 0.65),
+    inset 0 0 26px rgba(2, 44, 34, 0.45);
+}
+.arch-star {
+  position: absolute;
+  top: -0.55rem;
+  left: 50%;
+  z-index: 1;
+  width: 1.15rem;
+  height: 1.15rem;
+  transform: translateX(-50%);
+  fill: #fbbf24;
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.75));
+}
+@media (min-width: 640px) {
+  .arch-frame {
+    padding: 4px;
+  }
+  .arch-frame-gap {
+    padding: 4px;
+  }
+  .arch-star {
+    top: -0.7rem;
+    width: 1.45rem;
+    height: 1.45rem;
+  }
 }
 
 /* Desktop menu panel: a short rise-and-fade when it opens. */
@@ -617,14 +631,12 @@ html.urdu .spotlight-label {
     animation: none;
   }
 
-  .petal-fall {
-    display: none;
-  }
-  .sparkle,
-  .bouquet-sway,
-  .bouquet-sway-alt {
+  .sparkle {
     animation: none;
     opacity: 0.8;
+  }
+  .arch-frame {
+    animation: none;
   }
 }
 

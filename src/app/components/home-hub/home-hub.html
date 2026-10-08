@@ -14,25 +14,8 @@
   ></div>
   <div class="geo-pattern-dense absolute inset-0 -z-10 opacity-50" aria-hidden="true"></div>
 
-  <!-- Petal shower and soft gold lights, drifting over the whole hero. -->
+  <!-- Soft gold lights drifting over the hero. -->
   <div class="pointer-events-none absolute inset-0 -z-[5] overflow-hidden" aria-hidden="true">
-    @for (petal of petals; track $index) {
-      <img
-        [src]="petal.src"
-        alt=""
-        width="48"
-        height="48"
-        loading="lazy"
-        decoding="async"
-        class="petal-fall absolute top-0"
-        [style.left]="petal.left"
-        [style.width]="petal.size"
-        [style.height]="petal.size"
-        [style.animation-delay]="petal.delay"
-        [style.animation-duration]="petal.duration"
-        [style.--petal-drift]="petal.drift"
-      />
-    }
     @for (star of sparkles; track $index) {
       <span
         class="sparkle absolute block rounded-full"
@@ -47,58 +30,66 @@
   </div>
 
   <div
-    class="site-wrap relative grid items-center gap-6 pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:grid-cols-12 lg:items-start lg:gap-8 lg:pb-24 lg:pt-36"
+    class="relative mx-auto grid w-full max-w-[var(--site-max)] items-center gap-6 px-[var(--site-gutter)] pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:max-w-[100rem] lg:grid-cols-12 lg:items-start lg:gap-8 lg:px-10 lg:pb-24 lg:pt-36 2xl:px-16"
   >
-    <!-- Seal column: Bismillah on top, then bouquet | seal | bouquet. Badge-sized on phones, artwork on desktop. -->
-    <div class="flex flex-col items-center lg:order-2 lg:col-span-6">
+    <!-- Bismillah over the three Holy Mosques in arched frames: Makkah, Madinah, Al-Aqsa. -->
+    <div class="flex flex-col items-center lg:order-2 lg:col-span-6" data-testid="hero-haramain">
       <p
-        class="animate-fade-up text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:text-4xl lg:text-[2.6rem] lg:leading-[1.25] 2xl:text-5xl"
+        class="animate-fade-up mb-5 text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:mb-6 sm:text-4xl lg:text-[2.6rem] lg:leading-[1.25] 2xl:text-5xl"
         lang="ar"
         dir="rtl"
       >
         بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
       </p>
-      <div class="mt-4 flex items-end justify-center gap-1 sm:mt-6 lg:mt-8" aria-hidden="true">
-        <img
-          src="/decor/bouquet.webp"
-          alt=""
-          width="520"
-          height="693"
-          decoding="async"
-          class="bouquet-sway relative z-20 mb-0.5 h-16 w-auto object-contain sm:h-24 lg:h-44 2xl:h-52"
-        />
-        <div
-          class="relative z-10 flex h-28 w-28 shrink-0 items-center justify-center sm:h-44 sm:w-44 lg:h-[18rem] lg:w-[18rem] 2xl:h-[22rem] 2xl:w-[22rem]"
-        >
-          <div class="absolute inset-[-18%] rounded-full bg-gold/25 blur-3xl" aria-hidden="true"></div>
-          <div class="animate-pulse-ring absolute inset-0 rounded-full border border-gold-300/40"></div>
-          <!-- Solid white disc under the centre mark, like the header badge; the PNG centre is translucent. -->
-          <div class="absolute inset-[4%] rounded-full bg-white/95 shadow-portal" aria-hidden="true"></div>
-          <img
-            src="/brand/nagina.png"
-            alt=""
-            class="animate-spin-slow seal-ring absolute inset-0 h-full w-full select-none"
-            width="490"
-            height="509"
-            decoding="async"
-          />
-          <img
-            src="/brand/nagina.png"
-            alt=""
-            class="seal-core animate-float-slow absolute inset-0 h-full w-full select-none"
-            width="490"
-            height="509"
-            decoding="async"
-          />
+      <div class="relative w-full max-w-[24rem] sm:max-w-xl lg:max-w-[40rem]">
+        <div class="absolute inset-[-10%] rounded-full bg-gold/20 blur-3xl" aria-hidden="true"></div>
+        <div class="relative grid grid-cols-3 items-start gap-2.5 sm:gap-4">
+          @for (place of haramain; track place.src; let i = $index) {
+            <figure class="animate-fade-up flex flex-col items-center" [style.animation-delay]="i * 140 + 'ms'">
+              <!-- Mihrab frame: gold rim, dark gap, fine inner gold line, a star at the crown. -->
+              <div class="arch-frame w-full" [style.animation-delay]="i * 900 + 'ms'">
+                <svg class="arch-star" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0l2.6 5.7L20.5 3.5l-2.2 5.9L24 12l-5.7 2.6 2.2 5.9-5.9-2.2L12 24l-2.6-5.7-5.9 2.2 2.2-5.9L0 12l5.7-2.6L3.5 3.5l5.9 2.2z" />
+                </svg>
+                <div class="arch-frame-gap">
+                  <div class="arch-frame-photo">
+                <img
+                  [src]="place.src"
+                  [alt]="place.alt"
+                  [attr.width]="place.width"
+                  [attr.height]="place.height"
+                  [attr.fetchpriority]="i === 0 ? 'high' : null"
+                  decoding="async"
+                  class="aspect-[3/4] w-full object-cover"
+                  [style.object-position]="place.focus"
+                />
+                  </div>
+                </div>
+              </div>
+              <!-- Name under the arch, so it never sits on the photo. -->
+              <figcaption class="mt-2 text-center font-display text-sm font-semibold leading-tight text-gold-300 sm:mt-3 sm:text-lg">
+                {{ place.name }}
+              </figcaption>
+            </figure>
+          }
         </div>
-        <img
-          src="/decor/bouquet.webp"
-          alt=""
-          width="520"
-          height="693"
-          decoding="async"
-          class="bouquet-sway-alt relative z-20 mb-0.5 h-16 w-auto -scale-x-100 object-contain sm:h-24 lg:h-44 2xl:h-52"
-        />
+        <p class="relative mt-2 text-center text-[0.65rem] text-cream/50 lg:text-end">
+          Al-Aqsa photo:
+          <a
+            class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
+            href="https://commons.wikimedia.org/wiki/File:Dome_of_the_Rock,_Jerusalem_(16197850416).jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            >yeowatzup</a
+          >
+          (<a
+            class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
+            href="https://creativecommons.org/licenses/by/2.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >CC BY 2.0</a
+          >)
+        </p>
       </div>
     </div>
 
@@ -111,7 +102,15 @@
         class="animate-fade-up font-display text-[2.75rem] font-bold leading-[0.95] tracking-tight sm:text-6xl lg:whitespace-nowrap lg:text-5xl lg:leading-[1.1] xl:text-[3.4rem] 2xl:text-[4.2rem]"
         style="animation-delay: 160ms"
       >
-        <span class="text-shimmer">Nagina Social Welfare</span>
+        <span class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
+          <!-- The NSW seal on a white disc, to the right of the title (above it on phones). -->
+          <span
+            class="flex h-14 w-14 shrink-0 sm:order-last items-center justify-center rounded-full bg-white p-1 shadow-portal ring-2 ring-gold-300/60 sm:h-20 sm:w-20 lg:h-[4.5rem] lg:w-[4.5rem] 2xl:h-24 2xl:w-24"
+          >
+            <img src="/brand/nagina.png" alt="" width="490" height="509" class="h-full w-full object-contain" decoding="async" />
+          </span>
+          <span class="text-shimmer">Nagina Social Welfare</span>
+        </span>
       </h1>
       <p
         class="animate-fade-up mt-4 max-w-xl font-display text-lg font-medium italic text-white sm:mt-5 sm:text-2xl 3xl:text-3xl"
