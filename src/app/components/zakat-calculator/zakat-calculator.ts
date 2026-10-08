@@ -54,10 +54,10 @@ export class ZakatCalculator implements OnInit {
   private readonly zone = inject(NgZone);
 
   protected readonly related = [
-    { path: '/zakat/what-is-zakat', label: 'What is Zakat?', hint: 'UK guide' },
-    { path: '/zakat/rules', label: 'Zakat rules', hint: 'Assets, nisab and FAQs' },
+    { path: '/zakat/what-is-zakat', label: 'What Is Zakat?', hint: 'UK guide' },
+    { path: '/zakat/rules', label: 'Zakat Rules', hint: 'Assets, nisab and FAQs' },
     { path: '/donate', label: 'Donate', hint: 'Give your calculated Zakat' },
-    { path: '/work', label: 'Our work', hint: 'How gifts are used' },
+    { path: '/work', label: 'Our Work', hint: 'How gifts are used' },
     { path: '/impact', label: 'Impact', hint: 'Approved programme evidence' },
     { path: '/contact', label: 'Contact', hint: 'Questions about giving' },
   ] as const;

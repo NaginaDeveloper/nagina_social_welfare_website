@@ -1,10 +1,17 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { CENTRE_PAGE_PATHS, centrePath } from '../../config/centre-pages.config';
+import type { NavIcon } from '../../config/navigation.config';
 import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
+import { campusTown } from '../../models/campus';
+import { CampusService } from '../../services/campus.service';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import { HeroTopActions } from '../hero-top-actions/hero-top-actions';
+import { HomeCentres } from '../home-centres/home-centres';
+import { Icon } from '../ui/icon';
+import { Reveal } from '../../directives/reveal';
 
 export type HubTileTone = 'featured' | 'donate' | 'default';
 
@@ -17,19 +24,49 @@ export interface HubTile {
   readonly ariaKey?: string;
   readonly tone: HubTileTone;
   readonly groupKey: string;
+  readonly icon: NavIcon;
   /** Extra English search terms (not shown). */
   readonly keywords: readonly string[];
 }
 
+/** A centre link in the hero: live from the campus list, or the static route while it loads. */
+export interface HeroCentreChip {
+  readonly id: string;
+  readonly town: string;
+  readonly name: string | null;
+  readonly path: string;
+}
+
 @Component({
   selector: 'app-home-hub',
-  imports: [FormsModule, RouterLink, HeroTopActions],
+  imports: [FormsModule, RouterLink, HeroTopActions, HomeCentres, Icon, Reveal],
   templateUrl: './home-hub.html',
 })
 export class HomeHub implements OnInit {
   protected readonly org = ORGANIZATION;
   protected readonly i18n = inject(LanguageService);
   protected readonly prayer = inject(PrayerTimesService);
+  private readonly campusService = inject(CampusService);
+
+  /** Peterborough and Manchester chips; falls back to the fixed centre routes before the API answers. */
+  protected readonly centreChips = computed<readonly HeroCentreChip[]>(() => {
+    const campuses = this.campusService.campuses();
+    if (campuses.length > 0) {
+      return campuses.map((campus) => ({
+        id: campus.id,
+        town: campusTown(campus),
+        name: campus.displayName,
+        path: centrePath(campus.id),
+      }));
+    }
+    return Object.entries(CENTRE_PAGE_PATHS).map(([id, path]) => ({
+      id,
+      town: id.charAt(0).toUpperCase() + id.slice(1),
+      name: null,
+      path,
+    }));
+  });
+
 
   protected readonly query = signal('');
   protected readonly showAll = signal(false);
@@ -37,6 +74,7 @@ export class HomeHub implements OnInit {
   protected readonly tiles: readonly HubTile[] = [
     {
       id: 'quiz',
+      icon: 'quiz',
       labelKey: 'nav.quiz',
       hintKey: 'nav.quizHint',
       externalHref: ORGANIZATION.quizUrl,
@@ -47,6 +85,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'halal',
+      icon: 'barcode',
       labelKey: 'nav.halalChecker',
       hintKey: 'nav.halalCheckerHint',
       externalHref: ORGANIZATION.halalCheckerUrl,
@@ -57,6 +96,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'assistant',
+      icon: 'assistant',
       labelKey: 'nav.assistant',
       hintKey: 'nav.assistantHint',
       path: '/assistant',
@@ -66,6 +106,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'salah',
+      icon: 'mosque',
       labelKey: 'nav.namazTimes',
       hintKey: 'nav.namazTimesHint',
       path: '/namaz',
@@ -75,6 +116,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'zakat',
+      icon: 'zakat',
       labelKey: 'nav.zakat',
       hintKey: 'nav.zakatHint',
       path: '/zakat',
@@ -84,6 +126,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'donate',
+      icon: 'donate',
       labelKey: 'nav.donate',
       hintKey: 'nav.donateHint',
       path: '/donate',
@@ -93,6 +136,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'apply',
+      icon: 'contact',
       labelKey: 'nav.applyOnline',
       hintKey: 'nav.applyOnlineHint',
       path: '/apply',
@@ -102,6 +146,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'quran',
+      icon: 'quran',
       labelKey: 'nav.quranMajeed',
       hintKey: 'nav.quranMajeedHint',
       path: '/quran',
@@ -111,6 +156,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'hadith',
+      icon: 'hadith',
       labelKey: 'nav.hadith',
       hintKey: 'nav.hadithHint',
       path: '/hadith',
@@ -120,6 +166,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'beliefs',
+      icon: 'counsel',
       labelKey: 'nav.basicBeliefs',
       hintKey: 'nav.basicBeliefsHint',
       path: '/basic-beliefs',
@@ -129,6 +176,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'khatme',
+      icon: 'seal',
       labelKey: 'nav.khatmeNabuwwat',
       hintKey: 'nav.khatmeNabuwwatHint',
       path: '/khatme-nabuwwat',
@@ -138,6 +186,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'ahle',
+      icon: 'family',
       labelKey: 'nav.ahleBait',
       hintKey: 'nav.ahleBaitHint',
       path: '/ahle-bait',
@@ -147,6 +196,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'sahaba',
+      icon: 'companions',
       labelKey: 'nav.sahabaIkram',
       hintKey: 'nav.sahabaIkramHint',
       path: '/sahaba-ikram',
@@ -156,6 +206,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'awliya',
+      icon: 'guide',
       labelKey: 'nav.auliaKaram',
       hintKey: 'nav.auliaKaramHint',
       path: '/aulia-karam',
@@ -165,6 +216,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'seedha',
+      icon: 'seedha',
       labelKey: 'nav.seedhaRastah',
       hintKey: 'nav.seedhaRastahHint',
       path: '/seedha-rastah',
@@ -174,6 +226,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'books',
+      icon: 'book',
       labelKey: 'nav.books',
       hintKey: 'nav.booksHint',
       path: '/books',
@@ -183,6 +236,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'sermons',
+      icon: 'sermon',
       labelKey: 'nav.sermons',
       hintKey: 'nav.sermonsHint',
       path: '/sermons',
@@ -192,6 +246,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'guidance',
+      icon: 'counsel',
       labelKey: 'nav.guidance',
       hintKey: 'nav.guidanceHint',
       path: '/guidance',
@@ -201,6 +256,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'guide',
+      icon: 'guide',
       labelKey: 'nav.spiritualGuide',
       hintKey: 'nav.spiritualGuideHint',
       path: '/spiritual-guide',
@@ -210,6 +266,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'events',
+      icon: 'events',
       labelKey: 'nav.events',
       hintKey: 'nav.eventsHint',
       path: '/events',
@@ -219,6 +276,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'apps',
+      icon: 'apps',
       labelKey: 'nav.apps',
       hintKey: 'nav.appsHint',
       path: '/apps',
@@ -228,6 +286,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'guides',
+      icon: 'guides',
       labelKey: 'nav.guides',
       hintKey: 'nav.guidesHint',
       path: '/guides',
@@ -237,6 +296,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'membership',
+      icon: 'about',
       labelKey: 'nav.membership',
       hintKey: 'nav.membershipHint',
       path: '/membership',
@@ -246,6 +306,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'sign-in',
+      icon: 'privacy',
       labelKey: 'header.signIn',
       hintKey: 'nav.signInHint',
       path: '/portals',
@@ -255,6 +316,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'work',
+      icon: 'work',
       labelKey: 'nav.ourWork',
       hintKey: 'nav.ourWorkHint',
       path: '/work',
@@ -264,6 +326,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'about',
+      icon: 'about',
       labelKey: 'nav.aboutUs',
       hintKey: 'nav.aboutUsHint',
       path: '/about',
@@ -273,6 +336,7 @@ export class HomeHub implements OnInit {
     },
     {
       id: 'contact',
+      icon: 'contact',
       labelKey: 'nav.contact',
       hintKey: 'nav.contactHint',
       path: '/contact',
@@ -310,8 +374,37 @@ export class HomeHub implements OnInit {
 
   protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
 
+  /** Rose petals that drift down the hero (hidden under reduced motion). */
+  protected readonly petals = [
+    { src: '/decor/petal-pink.webp', left: '4%', delay: '0s', duration: '13s', size: '2.2rem', drift: '-24px' },
+    { src: '/decor/petal-red.webp', left: '13%', delay: '2.2s', duration: '15s', size: '1.9rem', drift: '26px' },
+    { src: '/decor/petal-gold.webp', left: '22%', delay: '0.9s', duration: '14s', size: '2rem', drift: '-30px' },
+    { src: '/decor/petal-pink.webp', left: '34%', delay: '3.1s', duration: '16s', size: '2.4rem', drift: '18px' },
+    { src: '/decor/petal-red.webp', left: '45%', delay: '0.5s', duration: '12.5s', size: '1.8rem', drift: '-14px' },
+    { src: '/decor/petal-gold.webp', left: '56%', delay: '2.6s', duration: '14.5s', size: '2.1rem', drift: '28px' },
+    { src: '/decor/petal-pink.webp', left: '66%', delay: '1.4s', duration: '13.5s', size: '2rem', drift: '-24px' },
+    { src: '/decor/petal-red.webp', left: '75%', delay: '3.8s', duration: '15.5s', size: '2.3rem', drift: '16px' },
+    { src: '/decor/petal-gold.webp', left: '84%', delay: '1.8s', duration: '14s', size: '1.8rem', drift: '-28px' },
+    { src: '/decor/petal-pink.webp', left: '92%', delay: '2.9s', duration: '16.5s', size: '2.2rem', drift: '20px' },
+    { src: '/decor/petal-red.webp', left: '28%', delay: '5.2s', duration: '13s', size: '1.7rem', drift: '12px' },
+    { src: '/decor/petal-gold.webp', left: '61%', delay: '4.4s', duration: '15s', size: '2rem', drift: '-18px' },
+  ] as const;
+
+  /** Soft gold lights that blink around the hero. */
+  protected readonly sparkles = [
+    { left: '6%', top: '14%', delay: '0s', duration: '2.4s', size: '0.6rem' },
+    { left: '16%', top: '62%', delay: '0.7s', duration: '3s', size: '0.45rem' },
+    { left: '30%', top: '22%', delay: '1.3s', duration: '2.6s', size: '0.5rem' },
+    { left: '44%', top: '78%', delay: '0.4s', duration: '2.8s', size: '0.4rem' },
+    { left: '58%', top: '12%', delay: '1.9s', duration: '2.2s', size: '0.55rem' },
+    { left: '72%', top: '70%', delay: '0.9s', duration: '3.2s', size: '0.5rem' },
+    { left: '86%', top: '30%', delay: '1.6s', duration: '2.5s', size: '0.6rem' },
+    { left: '94%', top: '58%', delay: '0.2s', duration: '2.9s', size: '0.45rem' },
+  ] as const;
+
   ngOnInit(): void {
     void this.prayer.load();
+    void this.campusService.load();
   }
 
   protected showAllLabel(): string {
@@ -331,7 +424,7 @@ export class HomeHub implements OnInit {
 
   protected tileClass(tone: HubTileTone): string {
     const base =
-      'group flex min-h-[7.5rem] flex-col rounded-2xl border p-4 shadow-soft transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.99] sm:min-h-[8.25rem] sm:p-5';
+      'group flex w-full min-h-[8.5rem] flex-col rounded-2xl border p-4 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-portal active:scale-[0.99] sm:p-5';
     if (tone === 'featured') {
       return `${base} border-gold/40 bg-gradient-to-br from-gold/15 to-white hover:border-gold/60`;
     }
@@ -339,6 +432,16 @@ export class HomeHub implements OnInit {
       return `${base} border-gold/30 bg-gold/10 hover:border-gold/50`;
     }
     return `${base} border-mist bg-white hover:border-gold/40`;
+  }
+
+  /** Icon badge colours per tile tone. */
+  protected iconClass(tone: HubTileTone): string {
+    const base =
+      'mb-3 flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 sm:h-11 sm:w-11';
+    if (tone === 'default') {
+      return `${base} bg-gradient-to-br from-emerald to-forest text-gold-300`;
+    }
+    return `${base} bg-gradient-to-br from-gold-300 to-gold text-forest shadow-soft`;
   }
 
   protected salahSubtitle(): string {

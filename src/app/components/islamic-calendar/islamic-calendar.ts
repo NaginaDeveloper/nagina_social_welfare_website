@@ -27,7 +27,7 @@ export class IslamicCalendar implements OnInit {
   });
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/namaz', label: 'Prayer times', hint: 'Today’s Hijri date with namaz' },
+    { path: '/namaz', label: 'Prayer Times', hint: 'Today’s Hijri date with namaz' },
     { path: '/ramadan', label: 'Ramadan', hint: 'How to find local Ramadan info' },
     { path: '/events', label: 'Events', hint: 'Gatherings tied to the Islamic year' },
     { path: '/madrasa', label: 'Our Madrasas', hint: 'Addresses and contact for each Madrasa' },

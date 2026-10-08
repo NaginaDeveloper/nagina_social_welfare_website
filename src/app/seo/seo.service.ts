@@ -138,12 +138,12 @@ export class SeoService {
       identifier: [
         {
           '@type': 'PropertyValue',
-          name: 'Charity number',
+          name: 'Charity Number',
           value: ORGANIZATION.charityNumber,
         },
         {
           '@type': 'PropertyValue',
-          name: 'Company number',
+          name: 'Company Number',
           value: ORGANIZATION.companyNumber,
         },
       ],

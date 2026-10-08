@@ -18,37 +18,37 @@ export class Privacy {
 
   protected readonly blocks: readonly PrivacyBlock[] = [
     {
-      title: 'Who we are',
+      title: 'Who We Are',
       body:
         'Nagina Social Welfare UK Limited (“we”, “us”) operates this website to share our education and community welfare work. Contact: info@naginasocialwelfare.co.uk · Registered office: 103 Burmer Road, Peterborough PE1 3HT, United Kingdom. Our centres are Markaz Deen-e-Islam in Peterborough and Quran Academy in Manchester (Partington Community Centre, M31 4FL); contact details for each are on the Contact page.',
     },
     {
-      title: 'What this site does not do',
+      title: 'What This Site Does Not Do',
       body:
         'We do not use advertising cookies or marketing pixels on this website. We do not sell your personal data. We may use Google Search Console to see how our pages appear in Google Search (search queries and clicks); that service is operated by Google and does not place advertising trackers on visitors’ browsers.',
     },
     {
-      title: 'Information we process',
+      title: 'Information We Process',
       body:
         'Browsing this site creates standard server and hosting logs (such as IP address, browser type, and pages requested) needed to deliver the site securely. If you email, call, or open WhatsApp from this website, the draft is sent in your own phone or email app — we do not store that unsent WhatsApp/email draft on our servers. Online Madrasa admission applications submitted via /apply and community membership applications via /membership are stored in our Firebase/Google Cloud Firestore and processed by our staff or trustees; acknowledgement and decision emails are sent from info@naginasocialwelfare.co.uk. Bank donation details and the NatWest PayIt / PayPal QR and payment links shown on this site are for you to use with your own bank, banking app, or PayPal. Online card or wallet donations via SumUp are started on this site (donation amount, chosen fund and, if you pick one, the centre it is for) and completed on SumUp’s secure payment page; we do not collect or store card numbers on this website. SumUp, NatWest and PayPal process those payments under their own privacy notices. Questions sent to the Nagina Assistant may be processed by our server and Google Gemini so the assistant can answer from our published site content.',
     },
     {
-      title: 'Visitor counter',
+      title: 'Visitor Counter',
       body:
         'We show a first-party visitor counter (live visitors, visitors today, and total visitors) on this website. Your browser stores a random visitor id in local storage and a session id in session storage so refreshes do not inflate the totals. Those ids, and a short-lived presence record, are stored on our Firebase infrastructure. We rate-limit requests by network address on the server but do not attach that address to the visitor counter records. This is not advertising analytics and we do not use third-party marketing trackers for it.',
     },
     {
-      title: 'Online admissions',
+      title: 'Online Admissions',
       body:
         'When you submit our Madrasa online admission form, we collect the Madrasa you choose, student and parent/guardian contact details, address, medical and emergency information, class preference, and your consents/declaration. We use this to review enrolment, create school records if accepted, and contact you. Access is limited to authorised staff. You may email info@naginasocialwelfare.co.uk to exercise UK GDPR rights relating to an application we hold.',
     },
     {
-      title: 'Our apps and portals',
+      title: 'Our Apps and Portals',
       body:
         'We run sign-in portals and Android apps for the madrasas and the charity: the Parent Portal, Student Portal, Teacher Portal, NSW Collector Portal, and the Markaz-e Deen-e Islam and admin portal used by our office team. You reach each one from our Sign in page. Accounts are created by the madrasa or the office, so there is no public sign-up. The portals and apps use Google Firebase (sign-in, database, file storage and notifications) to keep your records, with each madrasa’s records kept separately for Peterborough and Manchester. We use email (SMTP) to send messages, SumUp to take card payments for fees, and Twilio to send text messages where used; each is bound by a data processing agreement. We do not use advertising or analytics trackers in the apps and we do not sell personal data.',
     },
     {
-      title: 'Parents and students',
+      title: 'Parents and Students',
       body:
         'In the Parent Portal we process the parent or guardian’s name, contact details and sign-in details, and, for each child, the child’s name, class, attendance, behaviour notes, learning progress, fee records and payments, and messages the madrasa sends. Students are children. A child’s account is created by the madrasa and linked to their parent or guardian, who can ask us to correct, export or erase the child’s data. In the Student Portal (Let’s Learn Islam) we process the student’s name, class, lesson progress, activity results and certificates. Where a parent pays fees by card, the card details are entered on SumUp’s pages and never reach us; we only receive the payment result. We use this information to run the madrasa, teach and keep children safe, communicate with families, collect fees and meet charity accounting duties. Where you have told us about a health condition, it is used only for safeguarding and first aid.',
     },
@@ -68,17 +68,17 @@ export class Privacy {
         'Office staff who sign in to the admin portal and the Markaz-e Deen-e Islam app have a name, username, email, phone number and a role that decides which madrasa and which areas (such as classes, fees, expenses, members or the Task Manager) they can open. To keep the system secure and accountable we keep an activity log of what an administrator did, when, and from which network address and browser. Administrators see only the information their role needs, and a madrasa’s administrators see only that madrasa’s records.',
     },
     {
-      title: 'Notifications and camera',
+      title: 'Notifications and Camera',
       body:
         'The Parent, Student and Teacher apps can send notifications (for example a new message or an alert from the madrasa). If you allow them, Google Firebase Cloud Messaging gives your device a token which we store against your account so we can reach your device; it is removed when you sign out, and you can turn notifications off in your phone’s settings at any time. The Parent, Student, Teacher and Collector apps may ask for camera permission, used only to scan a barcode or QR code (the Halal Checker and the collector’s box codes). Camera pictures are not saved or uploaded, and you can refuse the permission and still use the app.',
     },
     {
-      title: 'How long we keep information, and your rights in the apps',
+      title: 'How Long We Keep Information, and Your Rights in the Apps',
       body:
         'Rejected admission applications are kept for about 12 months and messages to parents for about 24 months. Fee records may be anonymised if a family asks for erasure, with the amounts kept where the law requires us to keep accounts. Parents can download their data in the Parent Portal under Profile, then Export my data. To ask for access, correction, erasure or restriction for yourself or your child, or to ask a question about the apps, contact the madrasa office or email info@naginasocialwelfare.co.uk. You can also complain to the Information Commissioner’s Office (ico.org.uk).',
     },
     {
-      title: 'Community membership',
+      title: 'Community Membership',
       body:
         'When you apply at /membership to join the Nagina Social Welfare UK community, we collect your contact details, address, age in years (to confirm you are 18+), optional volunteer interests, and your consents. Applications are stored in Firebase/Google Cloud Firestore and reviewed by trustees. If approved, we create a membership register entry and email you a link to set a password for the member area on this website (/membership/home). Signed-in members may update contact details and volunteer interests, download a membership confirmation PDF, reset their password by email, donate by card (only after confirming that the payment will be linked to their membership for history), RSVP to events (we store your name and membership number to plan attendance), and — if you opt in to email updates — receive occasional emails and read past newsletter PDFs in the member area. Card donations started from the public /donate page remain anonymous and are not linked to membership. Membership is free and separate from donations. You may email info@naginasocialwelfare.co.uk to exercise UK GDPR rights.',
     },
@@ -88,17 +88,17 @@ export class Privacy {
         'When you choose “Donate securely with SumUp”, your browser contacts our payment server to create a checkout session, then you are redirected to SumUp (sumup.com) to pay. Payment status may also be confirmed via encrypted server-to-server messages from SumUp. PayPal donations use PayPal’s secure link or QR code (paypal.com); that payment is completed on PayPal’s systems. NatWest PayIt donations use NatWest’s secure payment link or QR code (paymentrequest.natwestpayit.com). Bank transfer details remain available if you prefer to pay from your own bank.',
     },
     {
-      title: 'Prayer times & Qibla',
+      title: 'Prayer Times & Qibla',
       body:
         'Prayer times are calculated for the town of the Madrasa you pick (the first listed Madrasa by default) using the AlAdhan service. The town’s coordinates come from the Madrasa’s postcode via postcodes.io — never from your device. Your Madrasa choice is remembered in your browser only. The Qibla compass uses the same Madrasa town. If you tap “Use my location”, your browser may share precise coordinates with us only long enough to request a Qibla bearing from AlAdhan; we do not store that location on our servers. Device compass (“Point to Qibla”) runs on your device and does not send heading data to us.',
     },
     {
-      title: 'Quran & Hadith text',
+      title: 'Quran & Hadith Text',
       body:
         'The Blessed Quran Majeed is loaded from the AlQuran Cloud API (Arabic text, Kanzul Iman translations, and audio). The Kutub al-Sittah Hadith reader loads Arabic, Urdu, and English chapter text from an open-source Hadith JSON dataset served via the jsDelivr CDN. Your browser contacts those providers to download the text; we do not store your reading history on our servers.',
     },
     {
-      title: 'Books & files',
+      title: 'Books & Files',
       body:
         'Book covers, PDFs, and event images are loaded from Google Firebase Storage so we can publish our library and gatherings. Your browser contacts Google’s servers to download those files.',
     },
@@ -113,12 +113,12 @@ export class Privacy {
         'Typefaces used on this site are self-hosted on our own domain. We do not load fonts from Google Fonts or other third-party font CDNs.',
     },
     {
-      title: 'Links to other services',
+      title: 'Links to Other Services',
       body:
         'Links to Facebook, Instagram, YouTube, TikTok, WhatsApp, Google Maps, Google Play, SumUp’s payment pages, PayPal, NatWest PayIt, Google Gemini services, the Seedha Rastah archive (seedharastah.com), and our member login portal (admin.naginasocialwelfare.co.uk) take you to those providers’ sites or apps, which have their own privacy notices. Our servers may periodically fetch public YouTube RSS and TikTok embed pages so this website can show the latest videos; visitor browsers then load those players from YouTube/TikTok when you watch.',
     },
     {
-      title: 'Your rights (UK GDPR)',
+      title: 'Your Rights (UK GDPR)',
       body:
         'Depending on the context, you may have rights to access, correct, erase, restrict, or object to certain processing, and to complain to the UK Information Commissioner’s Office (ico.org.uk). To exercise rights relating to data we hold about you, email info@naginasocialwelfare.co.uk.',
     },

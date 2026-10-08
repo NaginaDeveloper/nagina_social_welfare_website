@@ -1,4 +1,4 @@
-<section id="about" class="relative bg-cream py-20 sm:py-24">
+<section id="about" class="relative bg-cream py-16 sm:py-20" [class.sm:py-24]="headingLevel() === 'h1'">
   <div class="site-wrap">
     <div
       class="mx-auto max-w-5xl text-center"
@@ -8,28 +8,38 @@
       @if (headingLevel() === 'h1') {
         <span class="eyebrow mb-4 inline-block">{{ i18n.t('about.eyebrow') }}</span>
         <h1 class="page-title">{{ i18n.t('about.title') }}</h1>
+        <p class="mt-4 text-sm font-semibold tracking-wide text-forest/80 sm:text-base">
+          {{ i18n.t('about.registered') }}
+          <span class="text-slate-warm">·</span>
+          <a
+            class="text-gold-600 underline decoration-gold/40 underline-offset-2 transition-colors hover:text-forest"
+            [href]="org.charityCommissionUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ org.charityNumber }}
+          </a>
+        </p>
+        <p class="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
+          {{ i18n.t('about.lead') }}
+        </p>
       } @else {
         <span class="eyebrow mb-4 inline-block">{{ i18n.t('about.homeEyebrow') }}</span>
         <h2 class="page-title">{{ i18n.t('about.homeTitle') }}</h2>
-      }
-      <p class="mt-4 text-sm font-semibold tracking-wide text-forest/80 sm:text-base">
-        {{ i18n.t('about.registered') }}
-        <span class="text-slate-warm">·</span>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-warm sm:text-lg">
+          {{ i18n.t('about.homeLead') }}
+        </p>
         <a
-          class="text-gold-600 underline decoration-gold/40 underline-offset-2 transition-colors hover:text-forest"
-          [href]="org.charityCommissionUrl"
-          target="_blank"
-          rel="noopener noreferrer"
+          routerLink="/about"
+          class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 underline-offset-4 transition-colors hover:text-forest hover:underline"
         >
-          {{ org.charityNumber }}
+          {{ i18n.t('about.readMore') }}
+          <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
         </a>
-      </p>
-      <p class="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
-        {{ i18n.t('about.lead') }}
-      </p>
+      }
     </div>
 
-    @if (trustees.length) {
+    @if (headingLevel() === 'h1' && trustees.length) {
       <div class="mx-auto mt-16 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-8 shadow-soft sm:px-10">
         <h2
           class="text-center font-display text-2xl font-bold text-forest"
@@ -48,9 +58,10 @@
       </div>
     }
 
-    <div class="mt-16 grid gap-6 sm:grid-cols-3">
-      @for (pillar of pillars; track pillar.titleKey) {
+    <div class="mt-12 grid gap-6 sm:grid-cols-3" [class.mt-16]="headingLevel() === 'h1'">
+      @for (pillar of pillars; track pillar.titleKey; let i = $index) {
         <div
+          [appReveal]="i * 120"
           class="group rounded-2xl border border-mist bg-white p-5 text-center shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 sm:p-8"
           [attr.dir]="i18n.isUr() ? 'rtl' : null"
           [attr.lang]="i18n.isUr() ? 'ur' : null"

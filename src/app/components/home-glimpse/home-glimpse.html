@@ -1,0 +1,45 @@
+<section class="relative bg-cream pb-6 pt-12 sm:pt-16" aria-labelledby="home-glimpse-heading" data-testid="home-glimpse">
+  <div class="site-wrap">
+    <div class="mx-auto max-w-2xl text-center" [attr.dir]="i18n.isUr() ? 'rtl' : null" [attr.lang]="i18n.isUr() ? 'ur' : null">
+      <p class="eyebrow">{{ i18n.t('home.glimpseEyebrow') }}</p>
+      <h2 id="home-glimpse-heading" class="mt-2 font-display text-3xl font-bold tracking-tight text-forest sm:text-4xl">
+        {{ i18n.t('home.glimpseTitle') }}
+      </h2>
+    </div>
+
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      @for (tile of tiles; track tile.id; let i = $index) {
+        <li [appReveal]="i * 120" class="flex" [class.lg:col-span-2]="tile.wide" [class.lg:row-span-2]="tile.wide" [class.sm:col-span-2]="tile.wide">
+          <a
+            [routerLink]="tile.path"
+            class="group relative flex aspect-[4/3] w-full overflow-hidden rounded-3xl bg-forest shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:shadow-portal sm:aspect-[16/10] lg:aspect-auto lg:min-h-[12rem]"
+            [attr.lang]="i18n.isUr() ? 'ur' : null"
+          >
+            <img
+              [src]="tile.image"
+              alt=""
+              [class]="'animate-ken-burns absolute inset-0 h-full w-full object-cover ' + tile.focus"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/40 to-forest/5"
+              aria-hidden="true"
+            ></div>
+            <div class="relative mt-auto flex w-full items-end justify-between gap-3 p-5 text-start sm:p-6">
+              <div>
+                <p class="font-display text-xl font-bold text-white sm:text-2xl">{{ i18n.t(tile.titleKey) }}</p>
+                <p class="mt-1 text-xs text-cream/80 sm:text-sm">{{ i18n.t(tile.hintKey) }}</p>
+              </div>
+              <span
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold text-forest shadow-soft transition-transform duration-300 group-hover:scale-110"
+              >
+                <app-icon [name]="tile.icon" size="h-5 w-5" />
+              </span>
+            </div>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

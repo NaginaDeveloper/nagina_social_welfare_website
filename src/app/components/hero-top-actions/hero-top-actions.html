@@ -1,54 +1,15 @@
-<div class="mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
-  <a routerLink="/donate" class="btn btn-lg btn-primary shadow-portal">
-    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
-    </svg>
+<!-- Phone: Donate full width, the other two side by side. Wider: one row of three. -->
+<div class="mt-8 grid w-full max-w-sm grid-cols-2 gap-2.5 sm:mt-9 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-3 lg:justify-start">
+  <a routerLink="/donate" class="btn btn-lg btn-primary col-span-2 shadow-portal transition-transform duration-300 hover:-translate-y-0.5 sm:col-auto">
+    <app-icon name="donate" size="h-5 w-5" [strokeWidth]="2" />
     {{ i18n.t('header.donate') }}
   </a>
-  <a routerLink="/namaz" class="btn btn-lg btn-secondary">
-    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4 20V11l8-6 8 6v9" />
-      <path stroke-linecap="round" stroke-linejoin="round" d="M9 20v-5h6v5M12 5V3.5" />
-    </svg>
+  <a routerLink="/namaz" class="btn btn-secondary px-3 transition-transform duration-300 hover:-translate-y-0.5 sm:btn-lg sm:px-7">
+    <app-icon name="mosque" size="hidden h-5 w-5 sm:block" />
     {{ i18n.t('hero.namaz') }}
   </a>
-</div>
-
-<!-- Secondary destinations as quiet links, not a third row of buttons. -->
-<p
-  class="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-cream/80"
-  [attr.dir]="i18n.isUr() ? 'rtl' : null"
->
-  <a routerLink="/apply" class="font-medium text-gold-300 underline-offset-4 transition-colors hover:text-white hover:underline">
+  <a routerLink="/apply" class="btn btn-secondary px-3 transition-transform duration-300 hover:-translate-y-0.5 sm:btn-lg sm:px-7">
+    <app-icon name="contact" size="hidden h-5 w-5 sm:block" />
     {{ i18n.t('hero.apply') }}
   </a>
-  <span class="text-cream/40" aria-hidden="true">·</span>
-  <a
-    [href]="org.quizUrl"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="font-medium text-gold-300 underline-offset-4 transition-colors hover:text-white hover:underline"
-    [attr.aria-label]="i18n.t('hero.quizAria')"
-  >
-    {{ i18n.t('header.quiz') }}
-  </a>
-  <span class="text-cream/40" aria-hidden="true">·</span>
-  <a
-    [href]="org.halalCheckerUrl"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="font-medium text-gold-300 underline-offset-4 transition-colors hover:text-white hover:underline"
-    [attr.aria-label]="i18n.t('hero.halalCheckerAria')"
-  >
-    {{ i18n.t('header.halalChecker') }}
-  </a>
-  <span class="text-cream/40" aria-hidden="true">·</span>
-  <button
-    type="button"
-    class="font-medium text-gold-300 underline-offset-4 transition-colors hover:text-white hover:underline"
-    [attr.aria-label]="i18n.t('hero.assistantAria')"
-    (click)="openAssistant()"
-  >
-    {{ i18n.t('header.assistant') }}
-  </button>
-</p>
+</div>

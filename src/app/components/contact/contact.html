@@ -15,7 +15,7 @@
         <h2 class="page-title-on-dark max-w-2xl">{{ i18n.t('contact.title') }}</h2>
       }
       <p class="page-lead-on-dark max-w-xl">
-        {{ i18n.t('contact.lead') }}
+        {{ i18n.t(headingLevel() === 'h1' ? 'contact.lead' : 'contact.homeLead') }}
       </p>
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -108,9 +108,11 @@
     </div>
 
     <div class="mt-10" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-      <h2 class="mb-4 font-display text-2xl font-bold text-forest">{{ i18n.t('contact.map') }}</h2>
-      <app-campus-cards [showApply]="false" />
-      <div class="mt-6">
+      @if (showCentres()) {
+        <h2 class="mb-4 font-display text-2xl font-bold text-forest">{{ i18n.t('contact.map') }}</h2>
+        <app-campus-cards [showApply]="false" />
+      }
+      <div [class.mt-6]="showCentres()">
         <app-campus-map />
       </div>
     </div>

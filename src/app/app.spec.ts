@@ -38,6 +38,9 @@ describe('App', () => {
     expect(compiled.querySelector('#top')).toBeTruthy();
     expect(compiled.querySelector('#home-hub-search')).toBeTruthy();
     expect(compiled.querySelector('a[href="/assistant"]')).toBeTruthy();
+    expect(compiled.querySelector('[data-testid="hero-centres"] a[href="/peterborough"]')).toBeTruthy();
+    expect(compiled.querySelector('[data-testid="hero-centres"] a[href="/manchester"]')).toBeTruthy();
+    expect(compiled.querySelector('[data-testid="home-centres"]')).toBeTruthy();
     expect(compiled.querySelector('iframe[title^="Map of"]')).toBeTruthy();
     expect(compiled.querySelector('#photographs')).toBeNull();
     expect(compiled.querySelector('#sayings')).toBeNull();

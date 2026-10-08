@@ -211,7 +211,7 @@ export class AhleBait {
       leadUr: 'آلِ رسول ﷺ سے محبت روزمرہ عبادت سے جڑی ہے۔ ہر نماز میں مسلمان درودِ ابراہیمی پڑھتے ہیں:',
       quotes: [
         {
-          label: 'Abrahamic salutation (Durood Ibrahim)',
+          label: 'Abrahamic Salutation (Durood Ibrahim)',
           labelUr: 'درودِ ابراہیمی',
           text: 'O Allah, send peace upon Muhammad and upon the Family of Muhammad, as You sent peace upon Abraham and upon the family of Abraham…',
           textUr: 'اے اللہ! محمد اور آلِ محمد پر رحمت نازل فرما، جیسا کہ تو نے ابراہیم اور آلِ ابراہیم پر نازل فرمائی…',

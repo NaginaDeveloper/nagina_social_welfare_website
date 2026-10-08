@@ -48,28 +48,28 @@ export class SafeDropOff implements OnInit {
   protected readonly rules: readonly DropOffRule[] = [
     {
       icon: 'park',
-      title: 'Park legally',
+      title: 'Park Legally',
       titleUr: 'قانونی جگہ پر پارک کریں',
       body: 'Use a proper parking space nearby and walk your child to the door.',
       bodyUr: 'قریب کسی مناسب پارکنگ جگہ پر گاڑی کھڑی کریں اور بچے کو پیدل دروازے تک لے جائیں۔',
     },
     {
       icon: 'stop',
-      title: 'Never stop unsafely',
+      title: 'Never Stop Unsafely',
       titleUr: 'غیر محفوظ جگہ پر کبھی نہ رکیں',
       body: 'Do not stop in the middle of the road, on corners, on yellow lines, at bus stops or across driveways, not even for a moment.',
       bodyUr: 'سڑک کے بیچ، موڑ پر، پیلی لکیروں پر، بس اسٹاپ پر یا کسی کے ڈرائیو وے کے سامنے ہرگز نہ رکیں، ایک لمحے کے لیے بھی نہیں۔',
     },
     {
       icon: 'pavement',
-      title: 'Use the pavement side',
+      title: 'Use the Pavement Side',
       titleUr: 'فٹ پاتھ کی طرف سے اتاریں',
       body: 'Let children out on the pavement side of the car, hold younger children’s hands, arrive a few minutes early and collect your child on time.',
       bodyUr: 'بچوں کو گاڑی کی فٹ پاتھ والی طرف سے اتاریں، چھوٹے بچوں کا ہاتھ پکڑیں، چند منٹ پہلے پہنچیں اور وقت پر بچے کو لے جائیں۔',
     },
     {
       icon: 'neighbours',
-      title: 'Respect our neighbours',
+      title: 'Respect Our Neighbours',
       titleUr: 'پڑوسیوں کا احترام کریں',
       body: 'Keep driveways clear, switch off your engine while waiting, and avoid using your horn or gathering noisily in the street.',
       bodyUr: 'ڈرائیو وے خالی رکھیں، انتظار کے دوران انجن بند کریں، اور ہارن بجانے یا گلی میں شور کرنے سے گریز کریں۔',

@@ -19,7 +19,7 @@ export class Duas {
   protected readonly duas: readonly DailyDua[] = LETS_LEARN_ISLAM_DUAS;
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/namaz', label: 'Prayer times', hint: 'Daily namaz schedule' },
+    { path: '/namaz', label: 'Prayer Times', hint: 'Daily namaz schedule' },
     { path: '/quran', label: 'Qur’an', hint: 'Recitation and learning links' },
     { path: '/guidance', label: 'Guidance', hint: 'Posters and reminders' },
     { path: '/madrasa', label: 'Madrasa', hint: 'Children’s Islamic classes' },

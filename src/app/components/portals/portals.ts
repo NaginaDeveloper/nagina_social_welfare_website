@@ -44,7 +44,7 @@ export class Portals {
         "Follow your child's attendance, see fees and pay them online, and read messages from the madrasa.",
       descriptionUr:
         'اپنے بچے کی حاضری دیکھیں، فیس دیکھیں اور آن لائن ادا کریں، اور مدرسے کے پیغامات پڑھیں۔',
-      cta: 'Parent sign in',
+      cta: 'Parent Sign In',
       ctaUr: 'والدین سائن اِن',
       url: portalLoginUrl('parent'),
     },
@@ -58,7 +58,7 @@ export class Portals {
         "Learn with Let's Learn Islam: read lessons, take part in activities and keep track of your progress.",
       descriptionUr:
         'Let’s Learn Islam کے ساتھ سیکھیں: اسباق پڑھیں، سرگرمیوں میں حصہ لیں اور اپنی پیش رفت دیکھیں۔',
-      cta: 'Student sign in',
+      cta: 'Student Sign In',
       ctaUr: 'طالب علم سائن اِن',
       url: portalLoginUrl('student'),
     },
@@ -72,7 +72,7 @@ export class Portals {
         'Mark attendance, record behaviour and progress, set activities and take fee payments for your classes.',
       descriptionUr:
         'حاضری لگائیں، رویے اور پیش رفت کا اندراج کریں، سرگرمیاں دیں اور اپنی کلاسوں کی فیس وصول کریں۔',
-      cta: 'Teacher sign in',
+      cta: 'Teacher Sign In',
       ctaUr: 'استاد سائن اِن',
       url: portalLoginUrl('teacher'),
     },
@@ -86,7 +86,7 @@ export class Portals {
         'Record the donation boxes you collect and keep a clear account of every collection.',
       descriptionUr:
         'جمع کیے گئے ڈونیشن بکس کا اندراج کریں اور ہر کلیکشن کا واضح حساب رکھیں۔',
-      cta: 'Collector sign in',
+      cta: 'Collector Sign In',
       ctaUr: 'کلیکٹر سائن اِن',
       url: portalLoginUrl('collector'),
     },
@@ -100,13 +100,13 @@ export class Portals {
         'Manage the madrasas, students, fees, expenses and reports, the charity and community members, and the team.',
       descriptionUr:
         'مدارس، طلبہ، فیس، اخراجات اور رپورٹس، فلاحی کام، کمیونٹی ممبران اور ٹیم کا انتظام کریں۔',
-      cta: 'Admin sign in',
+      cta: 'Admin Sign In',
       ctaUr: 'ایڈمن سائن اِن',
       url: portalLoginUrl('admin'),
     },
     {
       role: 'member',
-      title: 'Community member',
+      title: 'Community Member',
       titleUr: 'کمیونٹی ممبر',
       who: 'For charity members',
       whoUr: 'فلاحی ممبران کے لیے',
@@ -114,7 +114,7 @@ export class Portals {
         'See your donations and Gift Aid record, book events, update your details and manage newsletters.',
       descriptionUr:
         'اپنے عطیات اور گفٹ ایڈ ریکارڈ دیکھیں، تقریبات بک کریں، تفصیلات اپ ڈیٹ کریں اور نیوز لیٹر کا انتظام کریں۔',
-      cta: 'Member sign in',
+      cta: 'Member Sign In',
       ctaUr: 'ممبر سائن اِن',
       path: '/membership/login',
     },

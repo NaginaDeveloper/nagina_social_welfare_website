@@ -1,7 +1,10 @@
 import { Component, inject, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ORGANIZATION } from '../../config/organization.config';
 import { PUBLIC_TRUSTEES } from '../../config/content-review.config';
 import { LanguageService } from '../../i18n/language.service';
+import { Reveal } from '../../directives/reveal';
+import { Icon } from '../ui/icon';
 
 interface Pillar {
   readonly titleKey: string;
@@ -11,6 +14,7 @@ interface Pillar {
 
 @Component({
   selector: 'app-about',
+  imports: [RouterLink, Icon, Reveal],
   templateUrl: './about.html',
 })
 export class About {
