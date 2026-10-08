@@ -38,6 +38,9 @@
                       {{ town(campus) }}
                     </p>
                     <p class="mt-1.5 text-sm font-medium text-gold-300/90">{{ campus.displayName }}</p>
+                    @if (message(campus); as message) {
+                      <p class="mt-1 text-xs font-semibold tracking-wide text-cream/85" lang="en" dir="ltr">{{ message }}</p>
+                    }
                   </div>
                   <span
                     class="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-white/95 p-2 shadow-soft ring-1 ring-gold/30 transition-transform duration-500 group-hover:scale-105 sm:h-24 sm:w-24"

@@ -1,0 +1,116 @@
+<div class="mx-auto mt-16 max-w-5xl" dir="ltr" lang="en" data-testid="centre-story">
+  @if (i18n.isUr()) {
+    <p class="mb-6 text-center text-sm text-slate-warm" dir="rtl" lang="ur">{{ i18n.t('centreStory.englishOnly') }}</p>
+  }
+
+  <!-- About Us -->
+  <div class="grid items-start gap-8 md:grid-cols-[1fr_16rem]" appReveal>
+    <div>
+      <span class="eyebrow">About Us</span>
+      <h2 class="mt-3 font-display text-3xl font-bold text-forest sm:text-4xl">{{ story().name }}</h2>
+      @for (para of story().about; track $index) {
+        <p class="mt-4 text-base leading-relaxed text-slate-warm">{{ para }}</p>
+      }
+    </div>
+    <dl class="grid gap-3 rounded-2xl border border-gold/30 bg-white p-5 shadow-soft">
+      <div>
+        <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">Established</dt>
+        <dd class="mt-1 font-display text-xl font-bold text-forest">{{ story().established }}</dd>
+      </div>
+      <div class="border-t border-mist pt-3">
+        <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">Where</dt>
+        <dd class="mt-1 text-sm leading-relaxed text-slate-warm">{{ story().venue }}</dd>
+      </div>
+      <div class="border-t border-mist pt-3">
+        <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">For</dt>
+        <dd class="mt-1 text-sm leading-relaxed text-slate-warm">Children, young people, families and adults</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- Activities -->
+  <div class="mt-16" appReveal>
+    <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">Our Community Activities</h2>
+    <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
+      {{ story().activitiesLead }}
+    </p>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-testid="centre-activities">
+      @for (activity of story().activities; track activity.label; let i = $index) {
+        <li
+          class="flex items-center gap-4 rounded-2xl border border-mist bg-white px-5 py-4 shadow-soft transition-transform duration-300 hover:-translate-y-1"
+          [appReveal]="i * 60"
+        >
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald to-forest text-gold-300">
+            <app-icon [name]="activity.icon" size="h-5 w-5" />
+          </span>
+          <span class="text-sm font-semibold leading-snug text-forest sm:text-base">{{ activity.label }}</span>
+        </li>
+      }
+    </ul>
+    <p class="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
+      {{ story().activitiesClosing }}
+    </p>
+  </div>
+
+  <!-- Next generation -->
+  <div class="mt-16 overflow-hidden rounded-3xl border border-mist bg-white shadow-soft md:grid md:grid-cols-2" appReveal>
+    <div class="p-6 sm:p-10">
+      <h2 class="font-display text-2xl font-bold text-forest sm:text-3xl">Nurturing the Next Generation</h2>
+      @for (para of story().nextGeneration; track $index) {
+        <p class="mt-4 text-base leading-relaxed text-slate-warm">{{ para }}</p>
+      }
+    </div>
+    <div class="relative flex items-center bg-gradient-to-br from-emerald to-forest p-6 sm:p-10">
+      <div class="geo-pattern absolute inset-0 opacity-30" aria-hidden="true"></div>
+      <p class="relative font-display text-xl font-semibold leading-relaxed text-cream sm:text-2xl">
+        <span class="text-gold-300">“</span>{{ story().nextGenerationHighlight }}<span class="text-gold-300">”</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Aim -->
+  <div class="mt-16" appReveal>
+    <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">Our Aim</h2>
+    <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-warm sm:text-base">
+      {{ story().aimLead }}
+    </p>
+    <ul class="mx-auto mt-8 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      @for (aim of story().aims; track aim) {
+        <li class="flex items-start gap-3 rounded-xl bg-sand/50 px-4 py-3 text-sm leading-snug text-forest sm:text-base">
+          <svg class="mt-0.5 h-5 w-5 shrink-0 text-gold-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+          </svg>
+          {{ aim }}
+        </li>
+      }
+    </ul>
+    <p class="mx-auto mt-6 max-w-2xl text-center text-sm font-semibold leading-relaxed text-forest sm:text-base">
+      {{ story().aimClosing }}
+    </p>
+  </div>
+
+  <!-- Vision -->
+  <div class="mx-auto mt-16 max-w-3xl text-center" appReveal>
+    <h2 class="font-display text-2xl font-bold text-forest sm:text-3xl">Our Vision</h2>
+    @for (para of story().vision; track $index) {
+      <p class="mt-4 text-base leading-relaxed text-slate-warm">{{ para }}</p>
+    }
+    <figure class="mx-auto mt-8 max-w-2xl rounded-2xl border-s-4 border-gold bg-white px-6 py-5 text-start shadow-soft">
+      <blockquote class="font-display text-lg italic leading-relaxed text-forest sm:text-xl">
+        “{{ story().verse.text }}”
+      </blockquote>
+      <figcaption class="mt-2 text-sm font-semibold text-gold-700">— {{ story().verse.reference }}</figcaption>
+    </figure>
+    <p class="mt-8 text-base leading-relaxed text-slate-warm">{{ story().visionClosing }}</p>
+  </div>
+
+  <!-- Message -->
+  <div class="relative mt-16 overflow-hidden rounded-3xl bg-forest px-6 py-12 text-center sm:px-12" appReveal data-testid="centre-message">
+    <div class="geo-pattern absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="relative">
+      <span class="eyebrow-on-dark">Our Message</span>
+      <p class="mt-4 font-display text-3xl font-bold tracking-tight text-gold-300 sm:text-5xl">{{ story().message }}</p>
+      <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-cream/85">{{ story().messageText }}</p>
+    </div>
+  </div>
+</div>

@@ -84,6 +84,23 @@ async function extractClassProperty(filePath, propertyName) {
   return result;
 }
 
+async function extractExportedConst(filePath, constName) {
+  const source = await readFile(filePath, 'utf8');
+  const sf = ts.createSourceFile(filePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  let result = null;
+  function visit(node) {
+    if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) && node.name.text === constName && node.initializer) {
+      result = literalToValue(node.initializer);
+    }
+    ts.forEachChild(node, visit);
+  }
+  visit(sf);
+  if (result == null) {
+    throw new Error(`Could not find ${constName} in ${filePath}`);
+  }
+  return result;
+}
+
 function makeChunk({
   title,
   sourceType,
@@ -333,6 +350,7 @@ async function buildCuratedChunks() {
     },
   ];
   faq.push(...(await buildCampusFaq()));
+  faq.push(...(await buildCentreStoryFaq()));
   for (const item of faq) {
     chunks.push(
       makeChunk({
@@ -347,6 +365,44 @@ async function buildCuratedChunks() {
   }
 
   return chunks;
+}
+
+/** Each centre's own About Us (src/app/config/centre-about.config.ts), as on its page. */
+async function buildCentreStoryFaq() {
+  const stories = await extractExportedConst(
+    path.join(ROOT, 'src/app/config/centre-about.config.ts'),
+    'CENTRE_ABOUT',
+  );
+  return Object.entries(stories).flatMap(([campusId, s]) => {
+    const pagePath = `/${campusId}`;
+    const tags = ['centre', 'about', campusId];
+    return [
+      {
+        title: `${s.name}: about us`,
+        path: pagePath,
+        text: `${s.about.join(' ')} Established ${s.established} at ${s.venue}.`,
+        tags,
+      },
+      {
+        title: `${s.name}: community activities`,
+        path: pagePath,
+        text: `${s.activitiesLead} ${s.activities.map((a) => a.label).join('; ')}. ${s.activitiesClosing}`,
+        tags: [...tags, 'activities', 'jumuah', 'ramadan'],
+      },
+      {
+        title: `${s.name}: nurturing the next generation`,
+        path: pagePath,
+        text: `${s.nextGeneration.join(' ')} ${s.nextGenerationHighlight}`,
+        tags: [...tags, 'children', 'hifz'],
+      },
+      {
+        title: `${s.name}: aim, vision and message`,
+        path: pagePath,
+        text: `${s.aimLead} ${s.aims.join('; ')}. ${s.aimClosing} ${s.vision.join(' ')} "${s.verse.text}" (${s.verse.reference}). ${s.visionClosing} Our message: ${s.message} ${s.messageText}`,
+        tags: [...tags, 'vision'],
+      },
+    ];
+  });
 }
 
 /** One entry per madrasa from the office-editable campus list, so edits reach the assistant on the next ingest. */

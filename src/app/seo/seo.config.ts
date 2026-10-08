@@ -75,12 +75,12 @@ export const PETERBOROUGH_SEO: PageSeo = {
 };
 
 export const MANCHESTER_SEO: PageSeo = {
-  title: 'Manchester Community | Nagina Social Welfare UK',
+  title: 'Quran Academy Partington, Manchester | Nagina Social Welfare UK',
   description:
-    'Find Nagina Social Welfare in Manchester — Quran Academy at Partington Community Centre: address, Madrasa admission, prayer times, events and how to contact us.',
+    'Quran Academy Partington, at Partington Community Centre since March 2023: Qur’an and Islamic studies, Hifz, Jumu’ah, Ramadan Iftar and Taraweeh, and food support. Address, admission and contacts.',
   path: '/manchester/',
   keywords:
-    'Nagina Social Welfare Manchester, Quran Academy Partington, Madrasa Manchester, Islamic community Manchester, Partington',
+    'Quran Academy Partington, Nagina Social Welfare Manchester, Madrasa Manchester, Quran classes Partington, Hifz Manchester, Jumuah Partington, Taraweeh Partington, Iftar Partington, Islamic community Manchester',
   type: 'website',
   breadcrumb: 'Manchester',
   image: `${SITE_ORIGIN}/brand/quran-academy.png`,

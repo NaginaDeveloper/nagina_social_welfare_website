@@ -1355,6 +1355,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.linkWork': 'Our work',
     'centre.linkDonate': 'Donate to {town}',
     'centre.linkWhatsApp': 'WhatsApp',
+    'centreStory.englishOnly': 'This introduction was written by the centre in English.',
 
     'whatIsZakat.eyebrow': 'Zakat Guide',
     'whatIsZakat.title': 'What Is Zakat?',
@@ -1462,6 +1463,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'ramadan.howEvents': 'published gatherings and programmes',
     'ramadan.linkContact': 'Contact',
     'ramadan.howContact': 'questions, welfare support or volunteer offers',
+    'ramadan.linkManchester': 'Quran Academy, Manchester',
+    'ramadan.howManchester': 'Iftar gatherings and Taraweeh prayers at Partington Community Centre',
     'ramadan.linkWhatsApp': 'Message on WhatsApp',
 
     'impact.eyebrow': 'Transparency',
@@ -2689,6 +2692,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.linkWork': 'ہمارا کام',
     'centre.linkDonate': '{town} کے لیے عطیہ',
     'centre.linkWhatsApp': 'واٹس ایپ',
+    'centreStory.englishOnly': 'یہ تعارف مرکز نے انگریزی میں لکھا ہے۔',
 
     'whatIsZakat.eyebrow': 'زکوٰۃ رہنمائی',
     'whatIsZakat.title': 'زکوٰۃ کیا ہے؟',
@@ -2796,6 +2800,8 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'ramadan.howEvents': 'شائع شدہ محفلیں اور پروگرام',
     'ramadan.linkContact': 'رابطہ',
     'ramadan.howContact': 'سوالات، فلاحی مدد یا رضاکارانہ پیشکش',
+    'ramadan.linkManchester': 'قرآن اکیڈمی، مانچسٹر',
+    'ramadan.howManchester': 'رمضان میں پارٹنگٹن کمیونٹی سینٹر میں افطار کے اجتماعات اور نمازِ تراویح۔',
     'ramadan.linkWhatsApp': 'واٹس ایپ پر پیغام',
 
     'impact.eyebrow': 'شفافیت',

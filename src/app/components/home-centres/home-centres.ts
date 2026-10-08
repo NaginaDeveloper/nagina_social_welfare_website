@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { centreAbout } from '../../config/centre-about.config';
 import { centreLogo, centrePath } from '../../config/centre-pages.config';
 import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
@@ -44,6 +45,11 @@ export class HomeCentres implements OnInit {
 
   protected path(campus: Campus): string {
     return centrePath(campus.id);
+  }
+
+  /** The centre's own short message, e.g. "Learn. Worship. Grow. Serve." */
+  protected message(campus: Campus): string {
+    return centreAbout(campus.id)?.message ?? '';
   }
 
   protected town(campus: Campus): string {

@@ -23,7 +23,7 @@
           {{ text('centre.title') }}
         </h1>
         <p class="page-lead mx-auto">
-          {{ text('centre.lead') }}
+          {{ lead() }}
         </p>
       </div>
 
@@ -55,6 +55,10 @@
         <app-venue-map class="mt-6 block" [campus]="campus" />
       </div>
 
+      @if (story(); as story) {
+        <!-- The centre's own activities replace the generic list below. -->
+        <app-centre-story [story]="story" />
+      } @else {
       <div
         class="mx-auto mt-14 max-w-3xl"
         [attr.dir]="i18n.isUr() ? 'rtl' : null"
@@ -73,6 +77,7 @@
           <li class="rounded-xl border border-mist bg-white/90 px-4 py-3 shadow-soft">{{ text('centre.service4') }}</li>
         </ul>
       </div>
+      }
 
       <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
         <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
