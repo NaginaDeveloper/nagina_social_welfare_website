@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { centrePath } from '../../config/centre-pages.config';
+import { centreLogo, centrePath } from '../../config/centre-pages.config';
 import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import {
@@ -21,15 +21,11 @@ interface CentreVisual {
   readonly panel: string;
 }
 
-/**
- * Picture panel per centre. Manchester (Quran Academy) has no photo or logo
- * yet, so it uses the charity mark on a gold panel; swap `logo` when one exists.
- */
-const CENTRE_VISUALS: Readonly<Record<string, CentreVisual>> = {
-  peterborough: { logo: '/brand/markaz.png', panel: 'from-emerald via-forest-800 to-forest' },
-  manchester: { logo: '/brand/nagina.png', panel: 'from-gold-600 via-emerald to-forest' },
+/** Picture panel per centre: its own seal on a coloured panel. */
+const CENTRE_PANELS: Readonly<Record<string, string>> = {
+  peterborough: 'from-emerald via-forest-800 to-forest',
+  manchester: 'from-gold-600 via-emerald to-forest',
 };
-const DEFAULT_VISUAL: CentreVisual = { logo: '/brand/nagina.png', panel: 'from-emerald to-forest' };
 
 /** Home page cards for every centre, filled from the published campus list. */
 @Component({
@@ -67,7 +63,7 @@ export class HomeCentres implements OnInit {
   }
 
   protected visual(campus: Campus): CentreVisual {
-    return CENTRE_VISUALS[campus.id] ?? DEFAULT_VISUAL;
+    return { logo: centreLogo(campus.id), panel: CENTRE_PANELS[campus.id] ?? 'from-emerald to-forest' };
   }
 
   protected whatsapp(campus: Campus): string {

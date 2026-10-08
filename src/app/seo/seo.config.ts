@@ -69,6 +69,7 @@ export const PETERBOROUGH_SEO: PageSeo = {
     'Nagina Social Welfare Peterborough, Markaz Deen-e-Islam, Islamic community Peterborough, Burmer Road',
   type: 'website',
   breadcrumb: 'Peterborough',
+  image: `${SITE_ORIGIN}/brand/markaz.png`,
   changefreq: 'weekly',
   priority: 0.95,
 };
@@ -82,6 +83,7 @@ export const MANCHESTER_SEO: PageSeo = {
     'Nagina Social Welfare Manchester, Quran Academy Partington, Madrasa Manchester, Islamic community Manchester, Partington',
   type: 'website',
   breadcrumb: 'Manchester',
+  image: `${SITE_ORIGIN}/brand/quran-academy.png`,
   changefreq: 'weekly',
   priority: 0.95,
 };

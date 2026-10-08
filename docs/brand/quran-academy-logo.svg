@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f4a35"/>
+      <stop offset="0.55" stop-color="#0a3a29"/>
+      <stop offset="1" stop-color="#052a1d"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7d774"/>
+      <stop offset="0.45" stop-color="#e0a92e"/>
+      <stop offset="1" stop-color="#b9781a"/>
+    </linearGradient>
+    <radialGradient id="disc" cx="0.5" cy="0.42" r="0.6">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f7f2e4"/>
+    </radialGradient>
+    <!-- text paths: top arc runs left-to-right over the top; bottom arc left-to-right under the bottom -->
+    <path id="topArc" d="M 115,500 A 385,385 0 0 1 885,500"/>
+    <path id="bottomArc" d="M 92,500 A 408,408 0 0 0 908,500"/>
+  </defs>
+
+  <!-- outer gold rim and green ring -->
+  <circle cx="500" cy="500" r="494" fill="url(#gold)"/>
+  <circle cx="500" cy="500" r="480" fill="url(#ring)"/>
+  <circle cx="500" cy="500" r="466" fill="none" stroke="url(#gold)" stroke-width="3" opacity="0.9"/>
+
+  <!-- ring lettering -->
+  <text font-family="DM Sans" font-weight="700" font-size="74" letter-spacing="9" fill="#ffffff">
+    <textPath xlink:href="#topArc" href="#topArc" startOffset="50%" text-anchor="middle">QURAN ACADEMY</textPath>
+  </text>
+  <text font-family="DM Sans" font-weight="700" font-size="50" letter-spacing="10" fill="#f3d27a">
+    <textPath xlink:href="#bottomArc" href="#bottomArc" startOffset="50%" text-anchor="middle">MANCHESTER · UK</textPath>
+  </text>
+
+  <!-- gold diamonds at 9 and 3 o'clock, as on the NSW seal -->
+  <g fill="url(#gold)" stroke="#7a4f0f" stroke-width="2">
+    <path d="M 70,500 L 92,476 L 114,500 L 92,524 Z"/>
+    <path d="M 886,500 L 908,476 L 930,500 L 908,524 Z"/>
+  </g>
+
+  <!-- inner white disc -->
+  <circle cx="500" cy="500" r="344" fill="url(#gold)"/>
+  <circle cx="500" cy="500" r="334" fill="url(#disc)"/>
+  <circle cx="500" cy="500" r="318" fill="none" stroke="#0f4a35" stroke-width="2" stroke-dasharray="2 10" opacity="0.5"/>
+
+  <!-- crescent and star -->
+  <g transform="translate(500,232)">
+    <path d="M -2,-34 A 34,34 0 1 0 30,22 A 27,27 0 1 1 -2,-34 Z" fill="url(#gold)"/>
+    <path d="M 22,-16 l 4.7,9.6 10.6,1.5 -7.7,7.5 1.8,10.5 -9.4,-5 -9.4,5 1.8,-10.5 -7.7,-7.5 10.6,-1.5 Z" fill="url(#gold)"/>
+  </g>
+
+  <!-- open Quran on a rehal (stand) -->
+  <g transform="translate(500,395)">
+    <!-- rehal: two crossing boards -->
+    <path d="M -150,120 L 150,-20 L 168,4 L -132,144 Z" fill="#b9781a"/>
+    <path d="M 150,120 L -150,-20 L -168,4 L 132,144 Z" fill="url(#gold)"/>
+    <!-- covers -->
+    <path d="M 0,-6 C -40,-46 -120,-66 -188,-40 L -188,62 C -122,36 -44,50 0,90 Z" fill="#0f4a35"/>
+    <path d="M 0,-6 C 40,-46 120,-66 188,-40 L 188,62 C 122,36 44,50 0,90 Z" fill="#0a3a29"/>
+    <!-- pages -->
+    <path d="M 0,4 C -38,-34 -114,-52 -174,-30 L -174,52 C -116,30 -42,42 0,80 Z" fill="#fffdf6" stroke="#d9c58f" stroke-width="2"/>
+    <path d="M 0,4 C 38,-34 114,-52 174,-30 L 174,52 C 116,30 42,42 0,80 Z" fill="#fffdf6" stroke="#d9c58f" stroke-width="2"/>
+    <!-- gold page borders and text lines -->
+    <g fill="none" stroke="url(#gold)" stroke-width="3">
+      <path d="M -24,8 C -60,-14 -116,-18 -154,-6 L -154,40 C -116,28 -60,30 -24,52 Z"/>
+      <path d="M 24,8 C 60,-14 116,-18 154,-6 L 154,40 C 116,28 60,30 24,52 Z"/>
+    </g>
+    <g fill="none" stroke="#0f4a35" stroke-width="2.4" stroke-linecap="round" opacity="0.55">
+      <path d="M -40,14 C -70,-2 -110,-4 -138,4"/><path d="M -40,26 C -70,10 -110,8 -138,16"/><path d="M -40,38 C -70,22 -110,20 -138,28"/>
+      <path d="M 40,14 C 70,-2 110,-4 138,4"/><path d="M 40,26 C 70,10 110,8 138,16"/><path d="M 40,38 C 70,22 110,20 138,28"/>
+    </g>
+    <!-- spine -->
+    <path d="M 0,-14 L 0,80" stroke="#b9781a" stroke-width="4"/>
+  </g>
+
+  <!-- Urdu name -->
+  <text x="500" y="632" text-anchor="middle" font-family="Noto Nastaliq Urdu" font-weight="700" font-size="54" fill="#0f4a35" direction="rtl">قرآن اکیڈمی</text>
+
+  <!-- parent charity -->
+  <path d="M 360,682 L 640,682" stroke="url(#gold)" stroke-width="2"/>
+  <text x="500" y="724" text-anchor="middle" font-family="Cormorant Garamond" font-weight="700" font-size="34" letter-spacing="1.5" fill="#0f4a35">Nagina Social Welfare UK</text>
+  <path d="M 490,752 L 500,742 L 510,752 L 500,762 Z" fill="url(#gold)"/>
+</svg>
