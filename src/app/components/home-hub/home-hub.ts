@@ -9,7 +9,6 @@ import { campusTown } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { PrayerTimesService } from '../../services/prayer-times.service';
 import { HeroTopActions } from '../hero-top-actions/hero-top-actions';
-import { HomeCentres } from '../home-centres/home-centres';
 import { Icon } from '../ui/icon';
 import { Reveal } from '../../directives/reveal';
 
@@ -39,7 +38,7 @@ export interface HeroCentreChip {
 
 @Component({
   selector: 'app-home-hub',
-  imports: [FormsModule, RouterLink, HeroTopActions, HomeCentres, Icon, Reveal],
+  imports: [FormsModule, RouterLink, HeroTopActions, Icon, Reveal],
   templateUrl: './home-hub.html',
 })
 export class HomeHub implements OnInit {
