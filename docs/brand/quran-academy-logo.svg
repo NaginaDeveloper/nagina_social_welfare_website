@@ -44,13 +44,13 @@
   <circle cx="500" cy="500" r="318" fill="none" stroke="#0f4a35" stroke-width="2" stroke-dasharray="2 10" opacity="0.5"/>
 
   <!-- crescent and star -->
-  <g transform="translate(500,232)">
+  <g transform="translate(500,250)">
     <path d="M -2,-34 A 34,34 0 1 0 30,22 A 27,27 0 1 1 -2,-34 Z" fill="url(#gold)"/>
     <path d="M 22,-16 l 4.7,9.6 10.6,1.5 -7.7,7.5 1.8,10.5 -9.4,-5 -9.4,5 1.8,-10.5 -7.7,-7.5 10.6,-1.5 Z" fill="url(#gold)"/>
   </g>
 
   <!-- open Quran on a rehal (stand) -->
-  <g transform="translate(500,395)">
+  <g transform="translate(500,420) scale(1.12)">
     <!-- rehal: two crossing boards -->
     <path d="M -150,120 L 150,-20 L 168,4 L -132,144 Z" fill="#b9781a"/>
     <path d="M 150,120 L -150,-20 L -168,4 L 132,144 Z" fill="url(#gold)"/>
@@ -73,11 +73,9 @@
     <path d="M 0,-14 L 0,80" stroke="#b9781a" stroke-width="4"/>
   </g>
 
-  <!-- Urdu name -->
-  <text x="500" y="632" text-anchor="middle" font-family="Noto Nastaliq Urdu" font-weight="700" font-size="54" fill="#0f4a35" direction="rtl">قرآن اکیڈمی</text>
 
   <!-- parent charity -->
-  <path d="M 360,682 L 640,682" stroke="url(#gold)" stroke-width="2"/>
-  <text x="500" y="724" text-anchor="middle" font-family="Cormorant Garamond" font-weight="700" font-size="34" letter-spacing="1.5" fill="#0f4a35">Nagina Social Welfare UK</text>
-  <path d="M 490,752 L 500,742 L 510,752 L 500,762 Z" fill="url(#gold)"/>
+  <path d="M 360,628 L 640,628" stroke="url(#gold)" stroke-width="2"/>
+  <text x="500" y="684" text-anchor="middle" font-family="Cormorant Garamond" font-weight="700" font-size="40" letter-spacing="1.5" fill="#0f4a35">Nagina Social Welfare UK</text>
+  <path d="M 490,722 L 500,712 L 510,722 L 500,732 Z" fill="url(#gold)"/>
 </svg>
