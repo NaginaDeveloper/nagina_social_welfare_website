@@ -4,6 +4,7 @@ import { LanguageService } from '../../i18n/language.service';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 import { CampusCards } from '../campus-cards/campus-cards';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 interface Programme {
   readonly id: string;
@@ -21,7 +22,7 @@ interface Programme {
 
 @Component({
   selector: 'app-our-work',
-  imports: [RouterLink, RelatedPages, CampusCards],
+  imports: [CentreContacts, RouterLink, RelatedPages, CampusCards],
   templateUrl: './our-work.html',
 })
 export class OurWork {

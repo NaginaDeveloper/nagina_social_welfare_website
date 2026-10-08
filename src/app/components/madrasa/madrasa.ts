@@ -1,16 +1,14 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
-import {
-  MADRASA_SESSIONS,
-  MADRASA_TIMETABLE_CAMPUS_ID,
-} from '../../config/madrasa-timetable.config';
+import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
-import { fillTowns, posterCaption } from '../../models/campus';
+import { fillTowns, posterCaption, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { CampusCards } from '../campus-cards/campus-cards';
 import { CampusMap } from '../campus-map/campus-map';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 interface Offering {
   readonly title: string;
@@ -21,14 +19,13 @@ interface Offering {
 
 @Component({
   selector: 'app-madrasa',
-  imports: [RouterLink, CampusCards, CampusMap, RelatedPages],
+  imports: [CentreContacts, RouterLink, CampusCards, CampusMap, RelatedPages],
   templateUrl: './madrasa.html',
 })
 export class Madrasa implements OnInit {
   protected readonly i18n = inject(LanguageService);
   protected readonly campusService = inject(CampusService);
   protected readonly org = ORGANIZATION;
-  protected readonly sessions = MADRASA_SESSIONS;
   protected readonly posterHref = '/posters/madrasa-admission-2026.webp';
   protected readonly enrolWhatsApp = whatsappHref(
     'Assalamu alaikum, I would like to enrol a child at one of your Madrasas. Madrasa: __  Age: __',
@@ -40,15 +37,15 @@ export class Madrasa implements OnInit {
   protected readonly lead = computed(() =>
     fillTowns(this.i18n.t('madrasa.lead'), this.campusService.towns()),
   );
-  protected readonly timetableCampus = computed(() =>
-    this.campusService.byId(MADRASA_TIMETABLE_CAMPUS_ID),
-  );
-  protected readonly otherCampuses = computed(() =>
-    this.campusService.campuses().filter((c) => c.id !== MADRASA_TIMETABLE_CAMPUS_ID),
-  );
+  /** The admission poster belongs to Markaz Deen-e-Islam. */
+  protected readonly posterCampus = computed(() => this.campusService.byId('peterborough'));
   protected readonly posterHint = computed(() =>
-    posterCaption(this.i18n.t('apply.intake.posterHint'), this.timetableCampus()?.displayName ?? ''),
+    posterCaption(this.i18n.t('apply.intake.posterHint'), this.posterCampus()?.displayName ?? ''),
   );
+
+  protected sessionsFor(campus: Campus): readonly MadrasaSession[] {
+    return madrasaSessions(campus.id);
+  }
 
   ngOnInit(): void {
     void this.campusService.load();
@@ -95,27 +92,19 @@ export class Madrasa implements OnInit {
     },
   ];
 
-  protected sessionTitle(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
-    return this.i18n.lang() === 'ur' ? session.titleUr : session.title;
+  protected sessionTitle(session: MadrasaSession): string {
+    return this.i18n.pick(session.title, session.titleUr);
   }
 
-  protected sessionDays(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
-    return this.i18n.lang() === 'ur' ? session.daysUr : session.days;
+  protected sessionDays(session: MadrasaSession): string {
+    return this.i18n.pick(session.days, session.daysUr);
   }
 
-  protected sessionTime(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
-    return this.i18n.lang() === 'ur' ? session.timeUr : session.time;
+  protected sessionTime(session: MadrasaSession): string {
+    return this.i18n.pick(session.time, session.timeUr);
   }
 
-  protected sessionAges(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
-    return this.i18n.lang() === 'ur' ? session.agesUr : session.ages;
+  protected sessionAges(session: MadrasaSession): string {
+    return this.i18n.pick(session.ages, session.agesUr);
   }
 }

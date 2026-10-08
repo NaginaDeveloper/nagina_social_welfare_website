@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { ORGANIZATION } from '../../config/organization.config';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 /** Manual and video pages are static HTML in public/, so they use plain hrefs. */
 interface PortalGuide {
@@ -23,7 +24,7 @@ interface PortalGuide {
 
 @Component({
   selector: 'app-guides',
-  imports: [RouterLink],
+  imports: [CentreContacts, RouterLink],
   templateUrl: './guides.html',
 })
 export class Guides {

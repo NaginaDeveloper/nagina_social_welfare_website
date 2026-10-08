@@ -12,7 +12,7 @@ import { CampusService } from '../../services/campus.service';
   selector: 'app-centre-page',
   imports: [PageShell, Centre],
   template: `
-    <app-page-shell [title]="title()">
+    <app-page-shell [title]="title()" [parent]="{ path: '/madrasa', labelKey: 'nav.madrasa' }">
       <app-centre [campusId]="campusId()" />
     </app-page-shell>
   `,

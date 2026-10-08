@@ -4,7 +4,7 @@
   [class.backdrop-blur-xl]="solid()"
   [class.shadow-soft]="scrolled()"
   [class.border-b]="solid()"
-  [class.border-gold/10]="solid()"
+  [class.border-gold/20]="solid()"
   [class.bg-transparent]="!solid()"
   (click)="closeGroups()"
 >
@@ -65,25 +65,27 @@
       </span>
     </a>
 
-    <!-- Desktop: grouped menus + two actions -->
+    <!-- Desktop: grouped mega menus + actions -->
     <nav class="hidden min-w-0 items-center gap-2 xl:flex" aria-label="Primary" (click)="$event.stopPropagation()">
-      <ul class="flex items-center">
+      <ul class="relative flex items-center gap-0.5">
         @for (group of groups(); track group.id; let gi = $index) {
           <li
-            class="relative"
             (pointerenter)="onGroupPointerEnter(group.id, $event)"
             (pointerleave)="onGroupPointerLeave($event)"
           >
             <button
               type="button"
-              class="relative inline-flex h-[4.25rem] items-center gap-1.5 px-3 text-[0.8125rem] font-medium tracking-wide transition-colors duration-200 2xl:px-3.5"
+              class="group/btn relative inline-flex h-10 items-center gap-1.5 rounded-full px-3 text-[0.8125rem] font-medium tracking-wide transition-all duration-200 2xl:px-3.5"
+              [class.bg-white/10]="isGroupActive(group) || isGroupOpen(group.id)"
               [class.text-white]="isGroupActive(group) || isGroupOpen(group.id)"
               [class.text-cream/80]="!isGroupActive(group) && !isGroupOpen(group.id)"
+              [class.hover:bg-white/5]="!isGroupActive(group) && !isGroupOpen(group.id)"
               [class.hover:text-white]="!isGroupActive(group) && !isGroupOpen(group.id)"
               [attr.aria-expanded]="isGroupOpen(group.id)"
               [attr.aria-controls]="'nav-panel-' + group.id"
               (click)="toggleGroup(group.id, $event)"
             >
+              <app-icon [name]="group.icon" size="h-3.5 w-3.5 text-gold-300/90" />
               {{ i18n.t(group.labelKey) }}
               <svg
                 class="h-3 w-3 opacity-60 transition-transform duration-200"
@@ -96,82 +98,105 @@
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
               </svg>
-              <!-- Gold underline marks the current section or the open menu -->
-              <span
-                class="absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-gold-300 transition-opacity duration-200"
-                [class.opacity-100]="isGroupActive(group) || isGroupOpen(group.id)"
-                [class.opacity-0]="!isGroupActive(group) && !isGroupOpen(group.id)"
-                aria-hidden="true"
-              ></span>
+              @if (isGroupActive(group)) {
+                <span class="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-gold-300" aria-hidden="true"></span>
+              }
             </button>
 
             @if (isGroupOpen(group.id)) {
+              <!-- Mega panel: sub-headed link columns plus one featured card. Hangs from the nav bar. -->
               <div
                 [id]="'nav-panel-' + group.id"
-                class="absolute top-full z-50 mt-1 max-h-[min(28rem,70vh)] overflow-y-auto rounded-2xl border border-mist bg-white py-2 text-forest shadow-portal"
-                [class]="panelAlign(gi)"
+                [class]="'absolute top-full z-50 pt-3 ' + panelAlign(gi)"
                 [style.width]="menuPanelWidth(group)"
                 role="menu"
                 [attr.aria-label]="i18n.t(group.labelKey)"
+                [attr.dir]="i18n.isUr() ? 'rtl' : null"
               >
-                <div
-                  class="grid"
-                  [class.grid-cols-1]="group.items.length <= 5"
-                  [class.grid-cols-2]="group.items.length > 5"
-                >
-                @for (item of group.items; track item.path ?? item.externalHref) {
-                  @if (item.externalHref) {
-                    <a
-                      [href]="item.externalHref"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      role="menuitem"
-                      class="flex items-start gap-3 px-4 py-2.5 text-forest transition-colors hover:bg-sand"
-                      (click)="onNavClick()"
-                    >
-                      <span
-                        class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-forest/5 text-gold-600"
-                        aria-hidden="true"
+                <div class="animate-menu-in max-h-[min(34rem,75vh)] overflow-y-auto rounded-3xl border border-mist bg-white text-forest shadow-portal">
+                  <div class="grid" [class.lg:grid-cols-[1fr_15rem]]="!!group.featured">
+                    <div class="grid gap-x-6 gap-y-5 p-5" [class.sm:grid-cols-2]="group.sections.length === 2" [class.sm:grid-cols-3]="group.sections.length >= 3">
+                      @for (section of group.sections; track section.labelKey) {
+                        <div>
+                          <p class="mb-2 px-2 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-gold-600">
+                            {{ i18n.t(section.labelKey) }}
+                          </p>
+                          <ul class="space-y-0.5">
+                            @for (item of section.items; track item.path ?? item.externalHref) {
+                              <li>
+                                @if (item.externalHref) {
+                                  <a
+                                    [href]="item.externalHref"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    role="menuitem"
+                                    class="group/item flex items-start gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-sand"
+                                    (click)="onNavClick()"
+                                  >
+                                    <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald/10 text-emerald-600 transition-colors group-hover/item:bg-gradient-to-br group-hover/item:from-gold-300 group-hover/item:to-gold group-hover/item:text-forest" aria-hidden="true">
+                                      <app-icon [name]="item.icon" size="h-4 w-4" />
+                                    </span>
+                                    <span class="flex min-w-0 flex-col">
+                                      <span class="inline-flex items-center gap-1.5 text-sm font-semibold leading-snug">
+                                        {{ linkLabel(item) }}
+                                        <svg class="h-3 w-3 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+                                        </svg>
+                                      </span>
+                                      @if (linkHint(item); as hint) {
+                                        <span class="text-[0.7rem] leading-snug text-slate-warm">{{ hint }}</span>
+                                      }
+                                    </span>
+                                  </a>
+                                } @else {
+                                  <a
+                                    [routerLink]="item.path"
+                                    role="menuitem"
+                                    class="group/item flex items-start gap-3 rounded-xl px-2 py-2 transition-colors"
+                                    [class.bg-gold/10]="isLinkActive(item)"
+                                    [class.hover:bg-sand]="!isLinkActive(item)"
+                                    [attr.aria-current]="isLinkActive(item) ? 'page' : null"
+                                    (click)="onNavClick()"
+                                  >
+                                    <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald/10 text-emerald-600 transition-colors group-hover/item:bg-gradient-to-br group-hover/item:from-gold-300 group-hover/item:to-gold group-hover/item:text-forest" aria-hidden="true">
+                                      <app-icon [name]="item.icon" size="h-4 w-4" />
+                                    </span>
+                                    <span class="flex min-w-0 flex-col">
+                                      <span class="text-sm font-semibold leading-snug">{{ linkLabel(item) }}</span>
+                                      @if (linkHint(item); as hint) {
+                                        <span class="text-[0.7rem] leading-snug text-slate-warm">{{ hint }}</span>
+                                      }
+                                    </span>
+                                  </a>
+                                }
+                              </li>
+                            }
+                          </ul>
+                        </div>
+                      }
+                    </div>
+
+                    @if (group.featured; as featured) {
+                      <a
+                        [routerLink]="featured.path"
+                        role="menuitem"
+                        class="group/feat relative m-3 hidden flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br from-forest via-emerald to-forest-800 p-5 text-cream lg:flex"
+                        (click)="onNavClick()"
                       >
-                        <app-icon [name]="item.icon" size="h-3.5 w-3.5" />
-                      </span>
-                      <span class="flex min-w-0 flex-col gap-0.5">
-                        <span class="inline-flex items-center gap-1.5 text-sm font-medium leading-snug">
-                          {{ linkLabel(item) }}
-                          <svg class="h-3 w-3 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-                          </svg>
+                        <div class="geo-pattern-dense absolute inset-0 opacity-60" aria-hidden="true"></div>
+                        <div class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gold/25 blur-2xl transition-transform duration-500 group-hover/feat:scale-150" aria-hidden="true"></div>
+                        <span class="relative mb-auto flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-gold-300 to-gold text-forest shadow-soft">
+                          <app-icon [name]="featured.icon" size="h-5 w-5" />
                         </span>
-                        @if (linkHint(item); as hint) {
-                          <span class="text-[0.7rem] leading-snug text-slate-warm">{{ hint }}</span>
-                        }
-                      </span>
-                    </a>
-                  } @else {
-                    <a
-                      [routerLink]="item.path"
-                      role="menuitem"
-                      class="flex items-start gap-3 px-4 py-2.5 text-forest transition-colors"
-                      [class.bg-gold/10]="isLinkActive(item)"
-                      [class.hover:bg-sand]="!isLinkActive(item)"
-                      [attr.aria-current]="isLinkActive(item) ? 'page' : null"
-                      (click)="onNavClick()"
-                    >
-                      <span
-                        class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-forest/5 text-gold-600"
-                        aria-hidden="true"
-                      >
-                        <app-icon [name]="item.icon" size="h-3.5 w-3.5" />
-                      </span>
-                      <span class="flex min-w-0 flex-col gap-0.5">
-                        <span class="text-sm font-medium leading-snug">{{ linkLabel(item) }}</span>
-                        @if (linkHint(item); as hint) {
-                          <span class="text-[0.7rem] leading-snug text-slate-warm">{{ hint }}</span>
-                        }
-                      </span>
-                    </a>
-                  }
-                }
+                        <span class="relative mt-6 font-display text-lg font-bold leading-tight text-white">{{ i18n.t(featured.titleKey) }}</span>
+                        <span class="relative mt-1.5 text-xs leading-relaxed text-cream/75">{{ i18n.t(featured.textKey) }}</span>
+                        <span class="relative mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-300 group-hover/feat:text-gold">
+                          {{ i18n.t(featured.ctaKey) }}
+                          <app-icon name="arrow" size="h-4 w-4 transition-transform group-hover/feat:translate-x-0.5 rtl:-scale-x-100" />
+                        </span>
+                      </a>
+                    }
+                  </div>
                 </div>
               </div>
             }
@@ -308,77 +333,79 @@
         </a>
       }
 
-      <div class="flex flex-col gap-1 p-3">
+      <div class="flex flex-col gap-2 p-3">
         @for (group of groups(); track group.id) {
-          <div class="rounded-xl bg-white/[0.03] p-2">
-            <p
-              class="flex items-center gap-2 px-2 pb-1.5 pt-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-300"
-            >
-              <app-icon [name]="group.icon" size="h-3.5 w-3.5" />
-              {{ i18n.t(group.labelKey) }}
-            </p>
-            <ul class="flex flex-col">
-              @for (item of group.items; track item.path ?? item.externalHref) {
-                <li>
-                  @if (item.externalHref) {
-                    <a
-                      [href]="item.externalHref"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      (click)="onNavClick()"
-                      class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-cream/90 transition-colors hover:bg-white/5 hover:text-gold-300"
-                    >
-                      <span
-                        class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/8 text-gold-300"
-                        aria-hidden="true"
-                      >
-                        <app-icon [name]="item.icon" size="h-4 w-4" />
-                      </span>
-                      <span class="flex min-w-0 flex-1 flex-col">
-                        <span class="inline-flex items-center gap-1.5 font-medium">
-                          {{ linkLabel(item) }}
-                          <svg class="h-3 w-3 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-                          </svg>
-                        </span>
-                        @if (linkHint(item); as hint) {
-                          <span class="text-[0.72rem] leading-snug text-cream/70">{{ hint }}</span>
+          <details class="group/acc rounded-xl bg-white/[0.04]" [open]="isGroupActive(group)">
+            <summary class="flex cursor-pointer list-none items-center gap-3 px-3 py-3 [&::-webkit-details-marker]:hidden">
+              <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-gold-300" aria-hidden="true">
+                <app-icon [name]="group.icon" size="h-4 w-4" />
+              </span>
+              <span class="flex-1 text-sm font-semibold text-white">{{ i18n.t(group.labelKey) }}</span>
+              <svg class="h-4 w-4 text-cream/60 transition-transform group-open/acc:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="space-y-3 px-2 pb-3">
+              @for (section of group.sections; track section.labelKey) {
+                <div>
+                  <p class="px-3 pb-1 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-gold-300/80">
+                    {{ i18n.t(section.labelKey) }}
+                  </p>
+                  <ul class="flex flex-col">
+                    @for (item of section.items; track item.path ?? item.externalHref) {
+                      <li>
+                        @if (item.externalHref) {
+                          <a
+                            [href]="item.externalHref"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            (click)="onNavClick()"
+                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-cream/90 transition-colors hover:bg-white/5 hover:text-gold-300"
+                          >
+                            <app-icon [name]="item.icon" size="h-4 w-4 shrink-0 text-gold-300/80" />
+                            <span class="flex min-w-0 flex-1 flex-col">
+                              <span class="inline-flex items-center gap-1.5 font-medium">
+                                {{ linkLabel(item) }}
+                                <svg class="h-3 w-3 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+                                </svg>
+                              </span>
+                              @if (linkHint(item); as hint) {
+                                <span class="text-[0.7rem] leading-snug text-cream/60">{{ hint }}</span>
+                              }
+                            </span>
+                          </a>
+                        } @else {
+                          <a
+                            [routerLink]="item.path"
+                            (click)="onNavClick()"
+                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors"
+                            [class.bg-white/10]="isLinkActive(item)"
+                            [class.text-gold-300]="isLinkActive(item)"
+                            [class.text-cream/90]="!isLinkActive(item)"
+                            [class.hover:bg-white/5]="!isLinkActive(item)"
+                            [class.hover:text-gold-300]="!isLinkActive(item)"
+                            [attr.aria-current]="isLinkActive(item) ? 'page' : null"
+                          >
+                            <app-icon [name]="item.icon" size="h-4 w-4 shrink-0 text-gold-300/80" />
+                            <span class="flex min-w-0 flex-1 flex-col">
+                              <span class="font-medium">{{ linkLabel(item) }}</span>
+                              @if (linkHint(item); as hint) {
+                                <span class="text-[0.7rem] leading-snug text-cream/60">{{ hint }}</span>
+                              }
+                            </span>
+                            @if (isLinkActive(item)) {
+                              <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
+                            }
+                          </a>
                         }
-                      </span>
-                    </a>
-                  } @else {
-                    <a
-                      [routerLink]="item.path"
-                      (click)="onNavClick()"
-                      class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors"
-                      [class.bg-white/10]="isLinkActive(item)"
-                      [class.text-gold-300]="isLinkActive(item)"
-                      [class.text-cream/90]="!isLinkActive(item)"
-                      [class.hover:bg-white/5]="!isLinkActive(item)"
-                      [class.hover:text-gold-300]="!isLinkActive(item)"
-                      [attr.aria-current]="isLinkActive(item) ? 'page' : null"
-                    >
-                      <span
-                        class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/8 text-gold-300"
-                        aria-hidden="true"
-                      >
-                        <app-icon [name]="item.icon" size="h-4 w-4" />
-                      </span>
-                      <span class="flex min-w-0 flex-1 flex-col">
-                        <span class="font-medium">{{ linkLabel(item) }}</span>
-                        @if (linkHint(item); as hint) {
-                          <span class="text-[0.72rem] leading-snug text-cream/70">{{ hint }}</span>
-                        }
-                      </span>
-                      @if (isLinkActive(item)) {
-                        <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
-                      }
-                    </a>
-                  }
-                </li>
+                      </li>
+                    }
+                  </ul>
+                </div>
               }
-            </ul>
-          </div>
+            </div>
+          </details>
         }
       </div>
 

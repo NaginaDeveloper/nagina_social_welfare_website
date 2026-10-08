@@ -574,21 +574,25 @@
                 <div formGroupName="preferences">
                   <fieldset>
                     <legend class="mb-1 text-sm font-medium text-forest">{{ i18n.t('apply.classSlot') }} *</legend>
-                    <p class="mb-3 text-sm text-slate-warm">{{ i18n.t('apply.classSlotNote') }}</p>
+                    <p class="mb-3 text-sm text-slate-warm">
+                      {{ i18n.t(classSlots().length === 1 ? 'apply.classSlotNoteSingle' : 'apply.classSlotNote') }}
+                    </p>
                     <div class="grid gap-3">
-                      @for (slot of classSlots; track slot.value) {
-                        <label [class]="choiceClass(form.controls.preferences.controls.classSlot.value === slot.value, false, slot.full)">
+                      @for (slot of classSlots(); track slot.slot) {
+                        <label [class]="choiceClass(form.controls.preferences.controls.classSlot.value === slot.slot, false, false)">
                           <input
                             type="radio"
                             class="sr-only"
                             formControlName="classSlot"
-                            [value]="slot.value"
-                            [disabled]="slot.full"
+                            [value]="slot.slot"
                           />
                           <span class="flex w-full flex-wrap items-center justify-between gap-2">
-                            <span>{{ i18n.t(slot.labelKey) }}</span>
+                            <span>
+                              {{ i18n.pick(slot.title, slot.titleUr) }}: {{ i18n.pick(slot.time, slot.timeUr) }}
+                              <span class="text-slate-warm">· {{ i18n.pick(slot.days, slot.daysUr) }}</span>
+                            </span>
                             <span class="shrink-0 rounded-full bg-sand px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-forest">
-                              {{ i18n.t(slot.ageKey) }}
+                              {{ i18n.pick(slot.ages, slot.agesUr) }}
                             </span>
                           </span>
                         </label>

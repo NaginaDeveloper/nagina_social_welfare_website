@@ -1,5 +1,8 @@
+import { madrasaSessions, type MadrasaSession } from '../config/madrasa-timetable.config';
+
 export type PreviousEducation = 'qaidah' | 'quran' | 'other_books' | 'none';
-export type ClassSlot = 'class1' | 'class2' | 'class3';
+/** Peterborough's three evening classes, or Manchester's single weekday class. */
+export type ClassSlot = 'class1' | 'class2' | 'class3' | 'weekday';
 
 export interface AdmissionSubmitPayload {
   /** Campus profile id from the admissions API. */
@@ -77,34 +80,14 @@ export interface ApplicationStatusResponse {
   note?: string;
 }
 
-export const CLASS_SLOT_OPTIONS: readonly {
-  value: ClassSlot;
-  labelKey: string;
-  ageKey: string;
-  full: boolean;
-}[] = [
-  {
-    value: 'class1',
-    labelKey: 'apply.slot.class1',
-    ageKey: 'apply.slot.under10',
-    full: false,
-  },
-  {
-    value: 'class2',
-    labelKey: 'apply.slot.class2',
-    ageKey: 'apply.slot.under10',
-    full: false,
-  },
-  {
-    value: 'class3',
-    labelKey: 'apply.slot.class3',
-    ageKey: 'apply.slot.age10plus',
-    full: false,
-  },
-] as const;
+/** The classes a parent can pick for a centre, from the published timetable. */
+export function classSlotOptions(campusId: string | null | undefined): readonly MadrasaSession[] {
+  return madrasaSessions(campusId);
+}
 
-/** Class 1 and 2: under 10. Class 3: 10+. */
+/** Class 1 and 2: under 10. Class 3: 10+. The weekday class takes all ages. */
 export function classSlotFitsAge(slot: ClassSlot, age: number): boolean {
+  if (slot === 'weekday') return true;
   if (slot === 'class1' || slot === 'class2') return age < 10;
   return age >= 10;
 }

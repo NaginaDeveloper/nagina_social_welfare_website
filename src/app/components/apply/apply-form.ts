@@ -10,7 +10,7 @@ import {
 import { LanguageService } from '../../i18n/language.service';
 import { AdmissionService } from '../../services/admission.service';
 import {
-  CLASS_SLOT_OPTIONS,
+  classSlotOptions,
   PREVIOUS_EDUCATION_OPTIONS,
   classSlotFitsAge,
   type AdmissionSubmitPayload,
@@ -82,7 +82,6 @@ export class ApplyForm implements OnInit {
   protected readonly i18n = inject(LanguageService);
   protected readonly campusService = inject(CampusService);
   protected readonly org = ORGANIZATION;
-  protected readonly classSlots = CLASS_SLOT_OPTIONS;
   protected readonly prevEduOptions = PREVIOUS_EDUCATION_OPTIONS;
   protected readonly months = MONTHS;
   protected readonly years: readonly string[];
@@ -172,6 +171,10 @@ export class ApplyForm implements OnInit {
   protected readonly terms = computed(() =>
     TERMS.map((t) => (t === FEE_TERM ? campusFeeTerm(this.selectedCampus()) : t)),
   );
+  /** Classes at the chosen Madrasa (Peterborough's list until a centre is picked, matching the server default). */
+  protected readonly classSlots = computed(() =>
+    classSlotOptions(this.selectedCampus()?.id ?? 'peterborough'),
+  );
   /** One WhatsApp link per Madrasa so parents can pick the centre they mean. */
   protected campusWhatsapp(campus: Campus): string {
     return campusWhatsappHref(
@@ -209,6 +212,18 @@ export class ApplyForm implements OnInit {
       const requested = this.campusService.byId(this.route.snapshot.queryParamMap.get('campus'));
       const pick = requested ?? (campuses.length === 1 ? campuses[0] : null);
       if (pick) campusCtrl.setValue(pick.id);
+    });
+
+    // A centre with one class needs no choice; a stale choice from another centre is cleared.
+    effect(() => {
+      const options = this.classSlots();
+      const slotCtrl = this.form.controls.preferences.controls.classSlot;
+      const current = slotCtrl.value;
+      if (options.length === 1) {
+        if (current !== options[0].slot) slotCtrl.setValue(options[0].slot);
+        return;
+      }
+      if (current && !options.some((o) => o.slot === current)) slotCtrl.setValue(null);
     });
 
     const now = new Date();

@@ -113,7 +113,7 @@ export const MADRASA_SEO: PageSeo = {
 export const APPLY_SEO: PageSeo = {
   title: 'Online Madrasa Admission 2026 | Nagina Social Welfare',
   description:
-    'Apply online to a Nagina Social Welfare Madrasa in Peterborough or Manchester. Class 1 and 2 for under 10s; Class 3 for ages 10+.',
+    'Apply online to a Nagina Social Welfare Madrasa in Peterborough or Manchester. Peterborough runs three evening classes by age; Manchester runs one weekday class, 5–6 PM.',
   path: '/apply/',
   keywords:
     'madrasa admission Peterborough 2026, Madrasa admission Manchester 2026, Markaz Deen-e-Islam apply, Quran Academy apply, online enrolment Islamic school',

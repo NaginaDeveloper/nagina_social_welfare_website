@@ -9,8 +9,10 @@ import {
   portalPrimaryBtnClass,
 } from './member-portal.shared';
 import type { MemberTab } from './member-portal.types';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 @Component({
+  imports: [CentreContacts],
   selector: 'app-member-overview-tab',
   templateUrl: './member-overview-tab.html',
 })

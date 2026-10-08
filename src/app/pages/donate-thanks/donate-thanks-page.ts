@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PageShell } from '../page-shell';
+import { NextSteps } from '../../components/next-steps/next-steps';
 
 @Component({
   selector: 'app-donate-thanks-page',
-  imports: [PageShell, RouterLink],
+  imports: [NextSteps, PageShell, RouterLink],
   template: `
-    <app-page-shell title="Thank you">
+    <app-page-shell title="Thank you" [parent]="{ path: '/donate', labelKey: 'nav.donate' }">
       <section class="bg-cream py-16 sm:py-24">
         <div class="mx-auto max-w-2xl px-5 text-center sm:px-8">
           <p class="eyebrow">
@@ -40,6 +41,7 @@ import { PageShell } from '../page-shell';
           </div>
         </div>
       </section>
+      <app-next-steps page="/donate/thanks" />
     </app-page-shell>
   `,
 })

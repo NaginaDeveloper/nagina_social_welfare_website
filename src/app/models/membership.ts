@@ -14,6 +14,8 @@ export type VolunteerInterest =
   | 'other';
 
 export interface MembershipSubmitPayload {
+  /** The centre this member belongs to (campus profile id). */
+  campusId: string;
   applicant: {
     fullName: string;
     email: string;

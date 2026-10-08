@@ -6,7 +6,7 @@ import { ZakatRules } from '../../components/zakat-rules/zakat-rules';
   selector: 'app-zakat-rules-page',
   imports: [PageShell, ZakatRules],
   template: `
-    <app-page-shell title="Zakat Rules">
+    <app-page-shell title="Zakat Rules" [parent]="{ path: '/zakat', labelKey: 'nav.zakat' }">
       <app-zakat-rules />
     </app-page-shell>
   `,

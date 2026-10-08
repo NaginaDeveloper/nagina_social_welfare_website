@@ -4,10 +4,10 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import {
-  GENERAL_DONATION,
   donationCampusField,
   donationReference,
 } from '../../models/donation-destination';
+import { campusTown, campusWhatsappHref, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { DonationService } from '../../services/donation.service';
 import { DonationDestination } from '../donation-destination/donation-destination';
@@ -37,7 +37,7 @@ interface FundOption {
 export class Donations implements OnInit {
   private readonly donations = inject(DonationService);
   private readonly route = inject(ActivatedRoute);
-  private readonly campusService = inject(CampusService);
+  protected readonly campusService = inject(CampusService);
   protected readonly i18n = inject(LanguageService);
   protected readonly org = ORGANIZATION;
   protected readonly givingWhatsApp = whatsappHref(
@@ -58,9 +58,10 @@ export class Donations implements OnInit {
   protected readonly customAmount = signal('');
   protected readonly checkoutLoading = signal(false);
   protected readonly checkoutError = signal<string | null>(null);
-  protected readonly fund = signal<DonationFund>('sadaqah');
-  protected readonly destination = signal<string>(GENERAL_DONATION);
-  /** Null for a general gift, or while a `?campus=` link waits for the campus list. */
+  protected readonly fund = signal<DonationFund>('lillah');
+  /** Empty until the donor picks a centre (or a `?campus=` link names one). */
+  protected readonly destination = signal<string>('');
+  /** Null until a published centre is chosen. */
   protected readonly destinationCampus = computed(() =>
     this.campusService.byId(this.destination()),
   );
@@ -69,7 +70,9 @@ export class Donations implements OnInit {
   protected readonly minDonationGbp = 5;
   protected readonly maxDonationGbp = 25_000;
 
+  /** General Donation first; a centre is chosen separately below. */
   protected readonly funds: readonly FundOption[] = [
+    { id: 'lillah', titleKey: 'donate.lillah', hintKey: 'donate.lillahHint', reference: 'LILLAH' },
     { id: 'zakat', titleKey: 'donate.zakat', hintKey: 'donate.zakatHint', reference: 'ZAKAT' },
     {
       id: 'sadaqah',
@@ -77,7 +80,6 @@ export class Donations implements OnInit {
       hintKey: 'donate.sadaqahHint',
       reference: 'SADAQAH',
     },
-    { id: 'lillah', titleKey: 'donate.lillah', hintKey: 'donate.lillahHint', reference: 'LILLAH' },
     {
       id: 'fitrana',
       titleKey: 'donate.fitrana',
@@ -125,7 +127,7 @@ export class Donations implements OnInit {
   }
 
   protected selectedFund(): FundOption {
-    return this.funds.find((item) => item.id === this.fund()) ?? this.funds[1];
+    return this.funds.find((item) => item.id === this.fund()) ?? this.funds[0];
   }
 
   protected paymentReference(): string {
@@ -159,10 +161,49 @@ export class Donations implements OnInit {
     return this.selectedPreset() as number;
   }
 
+  /** "Donate £25 by card", or the plain label while the amount is not valid yet. */
+  protected cardCtaLabel(): string {
+    const amount = this.resolvedAmount();
+    if (amount === null || amount < this.minDonationGbp || amount > this.maxDonationGbp) {
+      return this.i18n.t('donate.sumupCta');
+    }
+    const formatted = new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: 'GBP',
+      minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+    }).format(amount);
+    return this.i18n.t('donate.payAmount').replace('{amount}', formatted);
+  }
+
+  protected town(campus: Campus): string {
+    return campusTown(campus);
+  }
+
+  protected campusEmail(campus: Campus): string {
+    return campus.email || ORGANIZATION.email;
+  }
+
+  protected campusWhatsapp(campus: Campus): string {
+    return campusWhatsappHref(
+      campus,
+      `Assalamu alaikum, I have a question about donating to ${campus.displayName}.`,
+    );
+  }
+
+  /** One line that restates the choice above the button. */
+  protected summaryLine(): string {
+    const campus = this.destinationCampus();
+    const fund = this.i18n.t(this.selectedFund().titleKey);
+    return campus ? `${fund} · ${campus.displayName} (${campusTown(campus)})` : fund;
+  }
+
   protected canStartCheckout(): boolean {
     const amount = this.resolvedAmount();
     return (
-      amount !== null && amount >= this.minDonationGbp && amount <= this.maxDonationGbp
+      this.destinationCampus() !== null &&
+      amount !== null &&
+      amount >= this.minDonationGbp &&
+      amount <= this.maxDonationGbp
     );
   }
 

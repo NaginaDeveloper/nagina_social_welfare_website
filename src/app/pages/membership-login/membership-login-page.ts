@@ -4,12 +4,13 @@ import { Router, RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { MemberAuthService } from '../../services/member-auth.service';
 import { PageShell } from '../page-shell';
+import { NextSteps } from '../../components/next-steps/next-steps';
 
 @Component({
   selector: 'app-membership-login-page',
-  imports: [PageShell, FormsModule, RouterLink],
+  imports: [NextSteps, PageShell, FormsModule, RouterLink],
   template: `
-    <app-page-shell title="Member sign in">
+    <app-page-shell title="Member sign in" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
       <section class="bg-cream py-16 sm:py-24">
         <div class="mx-auto max-w-md px-5 sm:px-8" [attr.dir]="i18n.isUr() ? 'rtl' : null">
           <h1 class="font-display text-3xl font-bold text-forest">{{ i18n.t('memberLogin.title') }}</h1>
@@ -38,6 +39,7 @@ import { PageShell } from '../page-shell';
           </p>
         </div>
       </section>
+      <app-next-steps page="/membership/login" />
     </app-page-shell>
   `,
 })

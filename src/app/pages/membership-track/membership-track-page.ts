@@ -3,12 +3,13 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { PageShell } from '../page-shell';
 import { MembershipStatusPanel } from '../../components/membership/membership-status-panel';
+import { NextSteps } from '../../components/next-steps/next-steps';
 
 @Component({
   selector: 'app-membership-track-page',
-  imports: [PageShell, RouterLink, MembershipStatusPanel],
+  imports: [NextSteps, PageShell, RouterLink, MembershipStatusPanel],
   template: `
-    <app-page-shell title="Track membership application">
+    <app-page-shell title="Track membership application" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
       <section class="bg-cream py-16 sm:py-24">
         <div class="mx-auto max-w-2xl px-5 sm:px-8" [attr.dir]="i18n.isUr() ? 'rtl' : null">
           <p class="eyebrow">
@@ -31,6 +32,7 @@ import { MembershipStatusPanel } from '../../components/membership/membership-st
           </p>
         </div>
       </section>
+      <app-next-steps page="/membership/track" />
     </app-page-shell>
   `,
 })

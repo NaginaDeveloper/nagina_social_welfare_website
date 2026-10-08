@@ -42,9 +42,15 @@
             {{ i18n.t('contact.phone') }} · {{ org.phoneDisplay }}
           </a>
         }
-        <a [href]="'mailto:' + org.email" class="btn btn-lg btn-ghost">
-          {{ i18n.t('contact.email') }}
-        </a>
+        @for (campus of campusService.campuses(); track campus.id) {
+          <a [href]="'mailto:' + (campus.email || org.email)" class="btn btn-lg btn-ghost" [attr.data-campus-email]="campus.id">
+            {{ i18n.t('contact.email') }} · {{ town(campus) }}
+          </a>
+        } @empty {
+          <a [href]="'mailto:' + org.email" class="btn btn-lg btn-ghost">
+            {{ i18n.t('contact.email') }}
+          </a>
+        }
       </div>
 
       <form class="mt-10 grid gap-4 rounded-2xl bg-white/8 p-5 sm:p-7" (submit)="openWhatsAppForm(); $event.preventDefault()">
