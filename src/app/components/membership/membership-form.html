@@ -43,6 +43,28 @@
       (ngSubmit)="onFormSubmit()"
     >
       @if (step() === 0) {
+        @if (campusService.campuses().length > 0) {
+          <fieldset class="mb-8" data-testid="membership-campus" [attr.data-error]="invalid(form.controls.campusId) || null">
+            <legend class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.campusHeading') }} *</legend>
+            <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('membership.campusHint') }}</p>
+            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+              @for (campus of campusService.campuses(); track campus.id) {
+                <label [class]="choiceClass(form.controls.campusId.value === campus.id)" [attr.data-campus]="campus.id">
+                  <input type="radio" class="sr-only" formControlName="campusId" [value]="campus.id" />
+                  <span class="flex flex-col gap-0.5 text-start">
+                    <span class="text-base">{{ campusTown(campus) }}</span>
+                    <span class="text-xs font-medium opacity-80">{{ campus.displayName }} · {{ campus.addressLine }}</span>
+                  </span>
+                </label>
+              }
+            </div>
+            @if (invalid(form.controls.campusId)) {
+              <p class="mt-1.5 text-sm font-medium text-red-700">{{ i18n.t('membership.err.campus') }}</p>
+            }
+          </fieldset>
+        } @else if (!campusService.loaded()) {
+          <p class="mb-8 text-sm text-slate-warm" aria-live="polite">{{ i18n.t('campus.loading') }}</p>
+        }
         <div formGroupName="applicant" class="space-y-5">
           <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step1') }}</h2>
           <label class="block text-sm font-medium text-forest">
