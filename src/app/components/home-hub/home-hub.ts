@@ -378,7 +378,7 @@ export class HomeHub implements OnInit {
     {
       src: '/media/haramain-kaaba.webp',
       alt: 'The Holy Kaaba in Masjid al-Haram, Makkah, at Fajr',
-      name: 'Makkah',
+      name: 'Holy Makkah',
       width: 1588,
       height: 1588,
       focus: '55% 60%',
@@ -386,7 +386,7 @@ export class HomeHub implements OnInit {
     {
       src: '/media/haramain-madinah.webp',
       alt: 'The Green Dome and minarets of Masjid an-Nabawi, Madinah',
-      name: 'Madinah',
+      name: 'Blessed Madinah',
       width: 1920,
       height: 1280,
       focus: '62% 50%',
