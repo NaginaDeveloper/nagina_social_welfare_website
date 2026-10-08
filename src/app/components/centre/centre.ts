@@ -1,7 +1,7 @@
 import { Component, OnInit, computed, inject, input } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { centreAbout, markazAbout } from '../../config/centre-about.config';
+import { markazAbout } from '../../config/centre-about.config';
 import { centreLogo } from '../../config/centre-pages.config';
 import { ORGANIZATION } from '../../config/organization.config';
 import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
@@ -12,13 +12,12 @@ import { PrayerTimesService } from '../../services/prayer-times.service';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
 import { ContentReviewNote } from '../content-review-note/content-review-note';
 import { VenueMap } from '../venue-map/venue-map';
-import { CentreStory } from '../centre-story/centre-story';
 import { CentreMarkaz } from '../centre-markaz/centre-markaz';
 
 /** Local page for one centre, filled from the published campus list. */
 @Component({
   selector: 'app-centre',
-  imports: [NgTemplateOutlet, RouterLink, RelatedPages, ContentReviewNote, VenueMap, CentreStory, CentreMarkaz],
+  imports: [NgTemplateOutlet, RouterLink, RelatedPages, ContentReviewNote, VenueMap, CentreMarkaz],
   templateUrl: './centre.html',
 })
 export class Centre implements OnInit {
@@ -31,12 +30,10 @@ export class Centre implements OnInit {
 
   protected readonly campus = computed(() => this.campusService.byId(this.campusId()));
   protected readonly logo = computed(() => centreLogo(this.campusId()));
-  /** The centre's own About Us text, when it has supplied one. */
-  protected readonly story = computed(() => centreAbout(this.campusId()));
-  /** Peterborough's own page body (a different layout from Manchester's). */
+  /** Peterborough's own page body, when the centre has one. */
   protected readonly markaz = computed(() => markazAbout(this.campusId()));
   /** Name and one-liner of a centre with its own page text, if any. */
-  protected readonly own = computed(() => this.story() ?? this.markaz());
+  protected readonly own = computed(() => this.markaz());
   /** Ties the centre's own name back to the charity: "Nagina Social Welfare · Manchester". */
   protected readonly eyebrow = computed(() =>
     this.own() && !this.i18n.isUr()

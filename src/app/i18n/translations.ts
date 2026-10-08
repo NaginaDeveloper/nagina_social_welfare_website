@@ -1463,8 +1463,6 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'ramadan.howEvents': 'published gatherings and programmes',
     'ramadan.linkContact': 'Contact',
     'ramadan.howContact': 'questions, welfare support or volunteer offers',
-    'ramadan.linkManchester': 'Quran Academy, Manchester',
-    'ramadan.howManchester': 'Iftar gatherings and Taraweeh prayers at Partington Community Centre',
     'ramadan.linkWhatsApp': 'Message on WhatsApp',
 
     'impact.eyebrow': 'Transparency',
@@ -2800,8 +2798,6 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'ramadan.howEvents': 'شائع شدہ محفلیں اور پروگرام',
     'ramadan.linkContact': 'رابطہ',
     'ramadan.howContact': 'سوالات، فلاحی مدد یا رضاکارانہ پیشکش',
-    'ramadan.linkManchester': 'قرآن اکیڈمی، مانچسٹر',
-    'ramadan.howManchester': 'رمضان میں پارٹنگٹن کمیونٹی سینٹر میں افطار کے اجتماعات اور نمازِ تراویح۔',
     'ramadan.linkWhatsApp': 'واٹس ایپ پر پیغام',
 
     'impact.eyebrow': 'شفافیت',

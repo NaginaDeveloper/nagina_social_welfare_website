@@ -350,7 +350,6 @@ async function buildCuratedChunks() {
     },
   ];
   faq.push(...(await buildCampusFaq()));
-  faq.push(...(await buildCentreStoryFaq()));
   faq.push(...(await buildMarkazFaq()));
   for (const item of faq) {
     chunks.push(
@@ -366,44 +365,6 @@ async function buildCuratedChunks() {
   }
 
   return chunks;
-}
-
-/** Each centre's own About Us (src/app/config/centre-about.config.ts), as on its page. */
-async function buildCentreStoryFaq() {
-  const stories = await extractExportedConst(
-    path.join(ROOT, 'src/app/config/centre-about.config.ts'),
-    'CENTRE_ABOUT',
-  );
-  return Object.entries(stories).flatMap(([campusId, s]) => {
-    const pagePath = `/${campusId}`;
-    const tags = ['centre', 'about', campusId];
-    return [
-      {
-        title: `${s.name}: about us`,
-        path: pagePath,
-        text: `${s.about.join(' ')} Established ${s.established} at ${s.venue}.`,
-        tags,
-      },
-      {
-        title: `${s.name}: community activities`,
-        path: pagePath,
-        text: `${s.activitiesLead} ${s.activities.map((a) => a.label).join('; ')}. ${s.activitiesClosing}`,
-        tags: [...tags, 'activities', 'jumuah', 'ramadan'],
-      },
-      {
-        title: `${s.name}: nurturing the next generation`,
-        path: pagePath,
-        text: `${s.nextGeneration.join(' ')} ${s.nextGenerationHighlight}`,
-        tags: [...tags, 'children', 'hifz'],
-      },
-      {
-        title: `${s.name}: aim, vision and message`,
-        path: pagePath,
-        text: `${s.aimLead} ${s.aims.join('; ')}. ${s.aimClosing} ${s.vision.join(' ')} "${s.verse.text}" (${s.verse.reference}). ${s.visionClosing} Our message: ${s.message} ${s.messageText}`,
-        tags: [...tags, 'vision'],
-      },
-    ];
-  });
 }
 
 /** Peterborough's own page text (MARKAZ_ABOUT in centre-about.config.ts). */
