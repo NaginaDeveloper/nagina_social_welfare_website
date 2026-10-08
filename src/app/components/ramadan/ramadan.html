@@ -53,16 +53,7 @@
           — {{ i18n.t('ramadan.howContact') }}
         </li>
       </ul>
-      <div class="mt-8">
-        <a
-          [href]="contactWhatsApp"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest"
-        >
-          {{ i18n.t('ramadan.linkWhatsApp') }}
-        </a>
-      </div>
+      <app-centre-contacts class="mt-8 block" [title]="i18n.t('ramadan.linkWhatsApp')" prefill="Assalamu alaikum, I have a question about Ramadan at" />
     </div>
 
     <app-content-review-note pageId="ramadan" />

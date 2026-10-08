@@ -1,10 +1,7 @@
 import { Component, OnInit, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ORGANIZATION } from '../../config/organization.config';
-import {
-  MADRASA_SESSIONS,
-  MADRASA_TIMETABLE_CAMPUS_ID,
-} from '../../config/madrasa-timetable.config';
+import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
 import { campusTown, campusWhatsappHref } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
@@ -26,16 +23,14 @@ export class Centre implements OnInit {
   protected readonly campusService = inject(CampusService);
   private readonly prayer = inject(PrayerTimesService);
   protected readonly org = ORGANIZATION;
-  protected readonly sessions = MADRASA_SESSIONS;
 
   protected readonly campus = computed(() => this.campusService.byId(this.campusId()));
   protected readonly town = computed(() => {
     const campus = this.campus();
     return campus ? campusTown(campus) : '';
   });
-  protected readonly hasTimetable = computed(
-    () => this.campus()?.id === MADRASA_TIMETABLE_CAMPUS_ID,
-  );
+  protected readonly sessions = computed(() => madrasaSessions(this.campusId()));
+  protected readonly hasTimetable = computed(() => this.sessions().length > 0);
   protected readonly isHeadOffice = computed(
     () => this.campus()?.postcode === ORGANIZATION.postalCode,
   );
@@ -83,27 +78,19 @@ export class Centre implements OnInit {
     if (campus) void this.prayer.selectPlace(campus.id);
   }
 
-  protected sessionTitle(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
+  protected sessionTitle(session: MadrasaSession): string {
     return this.i18n.pick(session.title, session.titleUr);
   }
 
-  protected sessionDays(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
+  protected sessionDays(session: MadrasaSession): string {
     return this.i18n.pick(session.days, session.daysUr);
   }
 
-  protected sessionTime(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
+  protected sessionTime(session: MadrasaSession): string {
     return this.i18n.pick(session.time, session.timeUr);
   }
 
-  protected sessionAges(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
+  protected sessionAges(session: MadrasaSession): string {
     return this.i18n.pick(session.ages, session.agesUr);
   }
 }

@@ -6,7 +6,7 @@ import { WhatIsZakat } from '../../components/what-is-zakat/what-is-zakat';
   selector: 'app-what-is-zakat-page',
   imports: [PageShell, WhatIsZakat],
   template: `
-    <app-page-shell title="What is Zakat?">
+    <app-page-shell title="What is Zakat?" [parent]="{ path: '/zakat', labelKey: 'nav.zakat' }">
       <app-what-is-zakat />
     </app-page-shell>
   `,

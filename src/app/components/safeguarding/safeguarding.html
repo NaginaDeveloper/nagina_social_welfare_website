@@ -31,24 +31,11 @@
       }
     </div>
 
-    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-      <a
-        [href]="concernWhatsApp"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-6 py-3 text-sm font-semibold text-forest shadow-soft"
-      >
-        {{ i18n.t('safeguarding.concern') }}
-      </a>
-      <a
-        [href]="policyWhatsApp"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/15 bg-white px-6 py-3 text-sm font-semibold text-forest"
-      >
-        {{ i18n.t('safeguarding.policy') }}
-      </a>
-    </div>
+    <app-centre-contacts
+      class="mx-auto mt-8 block max-w-3xl"
+      [title]="i18n.t('safeguarding.concern')"
+      prefill="Assalamu alaikum, I would like to raise a safeguarding concern or request the safeguarding policy from"
+    />
 
     <p class="mt-6 text-center text-xs text-slate-warm/80">
       {{ i18n.t('safeguarding.lastReviewed') }} · {{ lastReviewed }}

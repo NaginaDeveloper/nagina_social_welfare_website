@@ -3,12 +3,13 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { PageShell } from '../page-shell';
 import { ApplicationStatusPanel } from '../../components/apply/application-status-panel';
+import { NextSteps } from '../../components/next-steps/next-steps';
 
 @Component({
   selector: 'app-apply-track-page',
-  imports: [PageShell, RouterLink, ApplicationStatusPanel],
+  imports: [NextSteps, PageShell, RouterLink, ApplicationStatusPanel],
   template: `
-    <app-page-shell title="Track application">
+    <app-page-shell title="Track application" [parent]="{ path: '/apply', labelKey: 'nav.applyOnline' }">
       <section class="bg-cream py-16 sm:py-24">
         <div
           class="mx-auto max-w-2xl px-5 sm:px-8"
@@ -36,6 +37,7 @@ import { ApplicationStatusPanel } from '../../components/apply/application-statu
           </p>
         </div>
       </section>
+      <app-next-steps page="/apply/track" />
     </app-page-shell>
   `,
 })

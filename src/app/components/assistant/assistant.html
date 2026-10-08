@@ -69,12 +69,21 @@
                           {{ i18n.t('assistant.whatsapp') }}
                         </a>
                       }
-                      <a
-                        [href]="emailHref"
-                        class="inline-flex min-h-9 items-center rounded-full border border-forest/20 bg-white px-3 py-1.5 text-xs font-semibold text-forest transition hover:border-gold/50"
-                      >
-                        {{ i18n.t('assistant.emailAction') }}
-                      </a>
+                      @for (centre of contactCentres(); track centre.id) {
+                        <a
+                          [href]="centre.emailHref"
+                          class="inline-flex min-h-9 items-center rounded-full border border-forest/20 bg-white px-3 py-1.5 text-xs font-semibold text-forest transition hover:border-gold/50"
+                        >
+                          {{ i18n.t('assistant.emailAction') }} · {{ centre.town }}
+                        </a>
+                      } @empty {
+                        <a
+                          [href]="emailHref"
+                          class="inline-flex min-h-9 items-center rounded-full border border-forest/20 bg-white px-3 py-1.5 text-xs font-semibold text-forest transition hover:border-gold/50"
+                        >
+                          {{ i18n.t('assistant.emailAction') }}
+                        </a>
+                      }
                       <a
                         href="/contact"
                         class="inline-flex min-h-9 items-center rounded-full border border-forest/20 bg-white px-3 py-1.5 text-xs font-semibold text-forest transition hover:border-gold/50"

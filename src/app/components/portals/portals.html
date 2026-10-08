@@ -80,20 +80,13 @@
       <div class="rounded-2xl border border-mist bg-white/80 p-5">
         <p class="font-semibold text-forest">{{ i18n.pick('Need help?', 'مدد چاہیے؟') }}</p>
         <p class="mt-1 leading-relaxed">
-          <a [href]="helpWhatsApp" target="_blank" rel="noopener noreferrer" class="font-semibold text-forest underline-offset-4 hover:underline">
-            WhatsApp
-          </a>
-          ·
-          <a [href]="'tel:' + org.phoneDisplay.replaceAll(' ', '')" class="font-semibold text-forest underline-offset-4 hover:underline">
-            {{ org.phoneDisplay }}
-          </a>
-          ·
-          <a routerLink="/contact" class="font-semibold text-forest underline-offset-4 hover:underline">
-            {{ i18n.pick('Contact', 'رابطہ') }}
-          </a>
+          {{ i18n.t('contacts.help') }}
+          <a routerLink="/contact" class="font-semibold text-forest underline-offset-4 hover:underline">{{ i18n.pick('Contact page', 'رابطہ صفحہ') }}</a>
         </p>
       </div>
     </div>
+
+    <app-centre-contacts class="mx-auto mt-4 block max-w-4xl" prefill="Assalamu alaikum, I need help signing in to the portal of" />
 
     <p class="mt-8 text-center text-xs text-slate-warm" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       {{

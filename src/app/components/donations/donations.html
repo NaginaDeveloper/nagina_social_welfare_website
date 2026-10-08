@@ -1,106 +1,86 @@
-<section id="donate" class="relative overflow-hidden bg-cream py-20 sm:py-32">
+<section id="donate" class="relative overflow-hidden bg-cream py-16 sm:py-24">
+  <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
   <div class="relative site-wrap">
-    <div class="mx-auto max-w-2xl text-center">
-      <span class="mb-4 inline-block eyebrow">
-        {{ i18n.t('donate.eyebrow') }}
-      </span>
-      <h1 class="page-title">
-        {{ i18n.t('donate.title') }}
-      </h1>
-      <p class="page-lead">
-        {{ i18n.t('donate.lead') }}
-      </p>
-      <p class="mt-3 text-sm text-slate-warm">{{ i18n.t('donate.trust') }}</p>
+    <div class="mx-auto max-w-2xl text-center" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <span class="mb-4 inline-block eyebrow">{{ i18n.t('donate.eyebrow') }}</span>
+      <h1 class="page-title">{{ i18n.t('donate.title') }}</h1>
+      <p class="page-lead mx-auto">{{ i18n.t('donate.leadShort') }}</p>
     </div>
 
-    <fieldset class="mx-auto mt-10 max-w-3xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-      <legend class="text-sm font-semibold text-forest">{{ i18n.t('donate.fund') }}</legend>
-      <div class="mt-3 grid gap-3 sm:grid-cols-2">
-        @for (option of funds; track option.id) {
-          <button
-            type="button"
-            class="rounded-2xl border px-4 py-3.5 text-left transition-colors"
-            [class.border-forest]="fund() === option.id"
-            [class.bg-forest]="fund() === option.id"
-            [class.text-cream]="fund() === option.id"
-            [class.border-mist]="fund() !== option.id"
-            [class.bg-white]="fund() !== option.id"
-            [class.text-forest]="fund() !== option.id"
-            (click)="selectFund(option.id)"
-          >
-            <span class="block font-display text-lg font-bold">{{ i18n.t(option.titleKey) }}</span>
-            <span
-              class="mt-1 block text-sm leading-relaxed"
-              [class.text-cream/75]="fund() === option.id"
-              [class.text-slate-warm]="fund() !== option.id"
-            >
-              {{ i18n.t(option.hintKey) }}
-            </span>
-          </button>
-        }
-      </div>
-    </fieldset>
-
-    <app-donation-destination
-      class="mx-auto mt-8 block max-w-3xl"
-      [selected]="destinationCampus()?.id ?? 'general'"
-      (selectedChange)="selectDestination($event)"
-    />
-
+    <!-- The one card a donor needs: gift, centre, amount, pay. -->
     <div
-      class="mx-auto mt-8 max-w-3xl rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft sm:rounded-[1.75rem] sm:p-10"
+      class="mx-auto mt-10 max-w-3xl rounded-[1.5rem] border border-mist bg-white p-5 shadow-portal sm:rounded-[1.75rem] sm:p-8"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      data-testid="donate-card"
     >
-      <p class="eyebrow">
-        {{ i18n.t('donate.zakatCalc') }}
-      </p>
-      <h2 class="mt-2 font-display text-xl font-bold text-forest sm:text-2xl">
-        {{ i18n.t('nav.zakat') }}
-      </h2>
-      <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('donate.zakatLead') }}</p>
-      <a
-        routerLink="/zakat"
-        class="mt-5 inline-flex min-h-11 items-center rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream hover:bg-emerald"
-      >
-        {{ i18n.t('donate.openZakatCalc') }}
-      </a>
-    </div>
-
-    <!-- Card / SumUp -->
-    <div
-      class="mx-auto mt-10 max-w-3xl rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft sm:mt-14 sm:rounded-[1.75rem] sm:p-10"
-    >
-      <div class="flex flex-col gap-3 border-b border-mist pb-5 sm:flex-row sm:items-start sm:justify-between sm:pb-6">
-        <div>
-          <p class="eyebrow">
-            {{ i18n.t('donate.cardTitle') }}
-          </p>
-          <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
-            {{ i18n.t('donate.cardLead') }}
-          </h3>
-          <p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-warm">
-{{ i18n.t('donate.cardHint') }}
-          </p>
+      <!-- 1. Gift type -->
+      <fieldset>
+        <legend class="flex items-center gap-2 text-sm font-semibold text-forest">
+          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-forest text-xs font-bold text-gold-300">1</span>
+          {{ i18n.t('donate.step1') }}
+        </legend>
+        <div class="mt-3 flex flex-wrap gap-2">
+          @for (option of funds; track option.id) {
+            <button
+              type="button"
+              class="min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition-colors"
+              [class.border-forest]="fund() === option.id"
+              [class.bg-forest]="fund() === option.id"
+              [class.text-cream]="fund() === option.id"
+              [class.border-mist]="fund() !== option.id"
+              [class.bg-white]="fund() !== option.id"
+              [class.text-forest]="fund() !== option.id"
+              [class.hover:border-gold/50]="fund() !== option.id"
+              [attr.aria-pressed]="fund() === option.id"
+              [attr.data-fund]="option.id"
+              (click)="selectFund(option.id)"
+            >
+              {{ i18n.t(option.titleKey) }}
+            </button>
+          }
         </div>
-        <span class="w-fit rounded-full bg-sand px-3.5 py-1.5 text-xs font-medium text-slate-warm">
-          GBP · Encrypted
-        </span>
+        <p class="mt-2 text-sm text-slate-warm">
+          {{ i18n.t(selectedFund().hintKey) }}
+          @if (fund() === 'zakat') {
+            <a routerLink="/zakat" class="font-semibold text-gold-700 underline decoration-gold/40 underline-offset-2 hover:text-gold-600">
+              {{ i18n.t('donate.zakatNudge') }}
+            </a>
+          }
+        </p>
+      </fieldset>
+
+      <!-- 2. Centre -->
+      <div class="mt-7">
+        <p class="flex items-center gap-2 text-sm font-semibold text-forest">
+          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-forest text-xs font-bold text-gold-300">2</span>
+          {{ i18n.t('donate.step2') }}
+        </p>
+        <app-donation-destination
+          class="mt-3 block"
+          [selected]="destinationCampus()?.id ?? ''"
+          (selectedChange)="selectDestination($event)"
+        />
       </div>
 
-      <fieldset class="mt-6">
-        <legend class="sr-only">{{ i18n.t('donate.amountLegend') }}</legend>
-        <div class="flex flex-wrap gap-2 sm:gap-3">
+      <!-- 3. Amount -->
+      <fieldset class="mt-7">
+        <legend class="flex items-center gap-2 text-sm font-semibold text-forest">
+          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-forest text-xs font-bold text-gold-300">3</span>
+          {{ i18n.t('donate.step3') }}
+        </legend>
+        <div class="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-6">
           @for (preset of presets; track preset) {
             <button
               type="button"
-              class="min-h-11 min-w-[4.5rem] rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors"
+              class="min-h-12 rounded-2xl border text-base font-semibold transition-colors"
               [class.border-forest]="selectedPreset() === preset"
               [class.bg-forest]="selectedPreset() === preset"
               [class.text-cream]="selectedPreset() === preset"
-              [class.border-forest/10]="selectedPreset() !== preset"
-              [class.bg-sand]="selectedPreset() !== preset"
+              [class.border-mist]="selectedPreset() !== preset"
+              [class.bg-white]="selectedPreset() !== preset"
               [class.text-forest]="selectedPreset() !== preset"
-              [class.hover:border-gold/40]="selectedPreset() !== preset"
+              [class.hover:border-gold/50]="selectedPreset() !== preset"
+              [attr.aria-pressed]="selectedPreset() === preset"
               (click)="selectPreset(preset)"
             >
               £{{ preset }}
@@ -108,14 +88,15 @@
           }
           <button
             type="button"
-            class="min-h-11 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors"
+            class="min-h-12 rounded-2xl border text-sm font-semibold transition-colors"
             [class.border-forest]="selectedPreset() === 'custom'"
             [class.bg-forest]="selectedPreset() === 'custom'"
             [class.text-cream]="selectedPreset() === 'custom'"
-            [class.border-forest/10]="selectedPreset() !== 'custom'"
-            [class.bg-sand]="selectedPreset() !== 'custom'"
+            [class.border-mist]="selectedPreset() !== 'custom'"
+            [class.bg-white]="selectedPreset() !== 'custom'"
             [class.text-forest]="selectedPreset() !== 'custom'"
-            [class.hover:border-gold/40]="selectedPreset() !== 'custom'"
+            [class.hover:border-gold/50]="selectedPreset() !== 'custom'"
+            [attr.aria-pressed]="selectedPreset() === 'custom'"
             (click)="selectPreset('custom')"
           >
             {{ i18n.t('donate.custom') }}
@@ -123,15 +104,10 @@
         </div>
 
         @if (selectedPreset() === 'custom') {
-          <label class="mt-4 block">
-            <span class="text-sm font-medium text-slate-warm">{{ i18n.t('donate.amountGbp') }}</span>
-            <div class="relative mt-2">
-              <span
-                class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-warm"
-                aria-hidden="true"
-              >
-                £
-              </span>
+          <label class="mt-3 block">
+            <span class="sr-only">{{ i18n.t('donate.amountGbp') }}</span>
+            <div class="relative">
+              <span class="pointer-events-none absolute inset-y-0 start-4 flex items-center text-lg font-semibold text-slate-warm" aria-hidden="true">£</span>
               <input
                 type="number"
                 inputmode="decimal"
@@ -140,10 +116,11 @@
                 step="0.01"
                 name="customAmount"
                 required
-                class="w-full rounded-2xl border border-mist bg-sand/50 py-3 pl-9 pr-4 text-base font-semibold text-forest outline-none transition-colors focus:border-gold/50 focus:bg-white"
+                autofocus
+                class="w-full rounded-2xl border border-mist bg-sand/50 py-3 pe-4 ps-10 text-lg font-semibold text-forest outline-none transition-colors focus:border-gold/50 focus:bg-white"
                 [ngModel]="customAmount()"
                 (ngModelChange)="onCustomAmountInput($event)"
-                placeholder="5.00"
+                placeholder="50.00"
               />
             </div>
             <p class="mt-2 text-xs text-slate-warm">{{ i18n.t('donate.minOnline').replace('{n}', '' + minDonationGbp) }}</p>
@@ -151,243 +128,226 @@
         }
       </fieldset>
 
-      @if (checkoutError()) {
-        <p class="mt-4 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
-          {{ checkoutError() }}
+      <!-- Pay -->
+      <div class="mt-7 rounded-2xl bg-sand/70 p-4 sm:p-5">
+        <p class="text-sm text-slate-warm" data-testid="donate-summary">{{ summaryLine() }}</p>
+        @if (checkoutError()) {
+          <p class="mt-3 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
+            {{ checkoutError() }}
+          </p>
+        }
+        <button
+          type="button"
+          class="btn btn-lg btn-primary mt-3 w-full shadow-portal disabled:cursor-not-allowed disabled:opacity-60"
+          [disabled]="checkoutLoading() || !canStartCheckout()"
+          (click)="startCardDonation()"
+          data-testid="donate-card-cta"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="12" rx="2" />
+            <path stroke-linecap="round" d="M3 10h18M7 15h4" />
+          </svg>
+          {{ checkoutLoading() ? i18n.t('donate.connecting') : cardCtaLabel() }}
+        </button>
+        <p class="mt-3 text-center text-xs leading-relaxed text-slate-warm">
+          {{ i18n.t('donate.cardHint') }}
+          <a routerLink="/privacy" class="font-semibold text-gold-700 underline decoration-gold/40 underline-offset-2 hover:text-gold-600">
+            {{ i18n.t('footer.privacy') }}
+          </a>
         </p>
-      }
-
-      <button
-        type="button"
-        class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-        [disabled]="checkoutLoading() || !canStartCheckout()"
-        (click)="startCardDonation()"
-      >
-        {{ checkoutLoading() ? i18n.t('donate.connecting') : i18n.t('donate.sumupCta') }}
-      </button>
-      <p class="mt-3 text-xs leading-relaxed text-slate-warm">
-        {{ i18n.t('donate.privacyNote') }}
-        <a routerLink="/privacy" class="font-semibold text-gold-700 underline decoration-gold/40 underline-offset-2 hover:text-gold-600">
-          {{ i18n.t('footer.privacy') }}
-        </a>
-      </p>
+      </div>
     </div>
 
-    <!-- NatWest PayIt -->
-    <div
-      class="mx-auto mt-8 max-w-3xl overflow-hidden rounded-[1.5rem] border border-mist bg-white shadow-soft sm:mt-10 sm:rounded-[1.75rem]"
-    >
-      <div class="grid items-stretch gap-0 lg:grid-cols-[1.15fr_minmax(15rem,17rem)]">
-        <div class="flex flex-col justify-center p-5 sm:p-10">
-          <p class="eyebrow">
-            {{ i18n.t('donate.payitTitle') }}
-          </p>
-          <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
-            {{ i18n.t('donate.payitLead') }}
-          </h3>
-          <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-warm">
-{{ i18n.t('donate.payitHint') }}
-          </p>
-          <p class="mt-2 text-sm text-slate-warm">
-            {{ i18n.t('donate.noteReference') }}
-            <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
-          </p>
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              [href]="payItUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald sm:w-auto"
-            >
-              {{ i18n.t('donate.openPayit') }}
-              <svg class="h-3.5 w-3.5 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-              </svg>
-            </a>
-            <button
-              type="button"
-              class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-forest/15 bg-sand px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 sm:w-auto"
-              (click)="copyValue('PayIt link', payItUrl)"
-            >
-              {{ copiedKey() === 'PayIt link' ? i18n.t('donate.linkCopied') : i18n.t('donate.copyLink') }}
-            </button>
-          </div>
-        </div>
+    <!-- Other ways to give: closed by default, each opens on its own. -->
+    <div class="mx-auto mt-8 max-w-3xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <p class="eyebrow text-center">{{ i18n.t('donate.otherWays') }}</p>
+      <p class="mt-2 text-center text-sm text-slate-warm">
+        {{ i18n.t('donate.reference') }}
+        <span class="font-mono font-semibold text-forest" data-testid="donate-reference">{{ paymentReference() }}</span>
+      </p>
 
-        <figure
-          class="flex items-center justify-center border-t border-mist bg-sand/50 px-5 py-7 lg:border-l lg:border-t-0 lg:px-6"
-        >
-          <div class="w-44 rounded-2xl bg-white p-3 shadow-soft ring-1 ring-mist sm:w-52">
+      <div class="mt-4 space-y-3">
+        <!-- NatWest PayIt -->
+        <details class="group rounded-2xl border border-mist bg-white shadow-soft open:border-gold/40" data-testid="donate-payit">
+          <summary class="flex cursor-pointer list-none items-center gap-3 px-5 py-4 [&::-webkit-details-marker]:hidden">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald/10 text-emerald-600">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="5" y="2.5" width="14" height="19" rx="2.5" />
+                <path stroke-linecap="round" d="M10 18h4" />
+              </svg>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-display text-lg font-bold text-forest">{{ i18n.t('donate.payitTitle') }}</span>
+              <span class="block text-sm text-slate-warm">{{ i18n.t('donate.payitLead') }}</span>
+            </span>
+            <svg class="h-5 w-5 shrink-0 text-slate-warm transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="grid gap-5 border-t border-mist px-5 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
+            <div>
+              <p class="text-sm leading-relaxed text-slate-warm">{{ i18n.t('donate.payitHint') }}</p>
+              <div class="mt-4 flex flex-col gap-2 sm:flex-row">
+                <a [href]="payItUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary-light">
+                  {{ i18n.t('donate.openPayit') }}
+                  <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+                  </svg>
+                </a>
+                <button type="button" class="btn btn-ghost-light" (click)="copyValue('PayIt link', payItUrl)">
+                  {{ copiedKey() === 'PayIt link' ? i18n.t('donate.linkCopied') : i18n.t('donate.copyLink') }}
+                </button>
+              </div>
+            </div>
             <img
               src="/media/natwest-payit-qr.png"
-              alt="NatWest PayIt QR code — Scan to pay Nagina Social Welfare UK Ltd"
+              alt="NatWest PayIt QR code — scan to pay Nagina Social Welfare UK Ltd"
               width="640"
               height="806"
-              class="mx-auto h-auto w-full object-contain"
+              class="mx-auto h-auto w-36 rounded-xl bg-white p-2 ring-1 ring-mist"
               loading="lazy"
               decoding="async"
             />
           </div>
-        </figure>
-      </div>
-    </div>
+        </details>
 
-    <!-- PayPal -->
-    <div
-      class="mx-auto mt-8 max-w-3xl overflow-hidden rounded-[1.5rem] border border-mist bg-white shadow-soft sm:mt-10 sm:rounded-[1.75rem]"
-    >
-      <div class="grid items-stretch gap-0 lg:grid-cols-[1.15fr_minmax(15rem,17rem)]">
-        <div class="flex flex-col justify-center p-5 sm:p-10">
-          <p class="eyebrow">
-            PayPal
-          </p>
-          <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
-            {{ i18n.t('donate.paypalTitle') }}
-          </h3>
-          <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-warm">
-{{ i18n.t('donate.paypalHint') }}
-          </p>
-          <p class="mt-2 text-sm text-slate-warm">
-            {{ i18n.t('donate.noteReference') }}
-            <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
-          </p>
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              [href]="payPalUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-emerald sm:w-auto"
-            >
-              {{ i18n.t('donate.openPaypal') }}
-              <svg class="h-3.5 w-3.5 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+        <!-- PayPal -->
+        <details class="group rounded-2xl border border-mist bg-white shadow-soft open:border-gold/40" data-testid="donate-paypal">
+          <summary class="flex cursor-pointer list-none items-center gap-3 px-5 py-4 [&::-webkit-details-marker]:hidden">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald/10 text-emerald-600">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 20 9 4h6.5a4 4 0 0 1 0 8H11l-1 8H7Z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 12h4a4 4 0 0 0 0-8" />
               </svg>
-            </a>
-            <button
-              type="button"
-              class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-forest/15 bg-sand px-6 py-3 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 sm:w-auto"
-              (click)="copyValue('PayPal link', payPalUrl)"
-            >
-              {{ copiedKey() === 'PayPal link' ? i18n.t('donate.linkCopied') : i18n.t('donate.copyLink') }}
-            </button>
-          </div>
-        </div>
-
-        <figure
-          class="flex items-center justify-center border-t border-mist bg-sand/50 px-5 py-7 lg:border-l lg:border-t-0 lg:px-6"
-        >
-          <div class="w-44 rounded-2xl bg-white p-3 shadow-soft ring-1 ring-mist sm:w-52">
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-display text-lg font-bold text-forest">{{ i18n.t('donate.paypalTitle') }}</span>
+              <span class="block text-sm text-slate-warm">{{ i18n.t('donate.paypalShort') }}</span>
+            </span>
+            <svg class="h-5 w-5 shrink-0 text-slate-warm transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="grid gap-5 border-t border-mist px-5 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
+            <div>
+              <p class="text-sm leading-relaxed text-slate-warm">{{ i18n.t('donate.paypalHint') }}</p>
+              <div class="mt-4 flex flex-col gap-2 sm:flex-row">
+                <a [href]="payPalUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary-light">
+                  {{ i18n.t('donate.openPaypal') }}
+                  <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+                  </svg>
+                </a>
+                <button type="button" class="btn btn-ghost-light" (click)="copyValue('PayPal link', payPalUrl)">
+                  {{ copiedKey() === 'PayPal link' ? i18n.t('donate.linkCopied') : i18n.t('donate.copyLink') }}
+                </button>
+              </div>
+            </div>
             <img
               src="/media/paypal-qr.png"
-              alt="PayPal QR code — Scan to pay Nagina Social Welfare UK Ltd"
+              alt="PayPal QR code — scan to pay Nagina Social Welfare UK Ltd"
               width="640"
               height="709"
-              class="mx-auto h-auto w-full object-contain"
+              class="mx-auto h-auto w-36 rounded-xl bg-white p-2 ring-1 ring-mist"
               loading="lazy"
               decoding="async"
             />
           </div>
-        </figure>
-      </div>
-    </div>
+        </details>
 
-    <div class="mt-10 grid items-stretch gap-6 sm:mt-14 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-      <!-- Bank details -->
-      <div class="rounded-[1.5rem] border border-mist bg-white p-5 shadow-soft sm:rounded-[1.75rem] sm:p-10">
-        <div class="flex flex-col gap-3 border-b border-mist pb-5 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-4 sm:pb-6">
-          <div>
-            <p class="eyebrow">
-              {{ i18n.t('donate.bankTitle') }}
-            </p>
-            <h3 class="mt-2 font-display text-xl font-bold text-forest sm:text-3xl">
-              {{ i18n.t('donate.ukAccount') }}
-            </h3>
-          </div>
-          <span class="w-fit rounded-full bg-sand px-3.5 py-1.5 text-xs font-medium text-slate-warm">
-            GBP · United Kingdom
-          </span>
-        </div>
-
-        <dl class="mt-2 divide-y divide-mist">
-          @for (field of fields; track field.labelKey) {
-            <div class="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-5">
-              <dt class="text-sm font-medium text-slate-warm">{{ i18n.t(field.labelKey) }}</dt>
-              <dd class="flex min-w-0 flex-col gap-2.5 sm:max-w-[22rem] sm:flex-row sm:items-center sm:justify-end sm:gap-3">
-                <span
-                  class="min-w-0 break-all text-left text-base font-semibold text-forest sm:text-right"
-                  [class.font-mono]="field.mono"
-                >
-                  {{ field.value }}
-                </span>
+        <!-- Bank transfer -->
+        <details class="group rounded-2xl border border-mist bg-white shadow-soft open:border-gold/40" data-testid="donate-bank">
+          <summary class="flex cursor-pointer list-none items-center gap-3 px-5 py-4 [&::-webkit-details-marker]:hidden">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald/10 text-emerald-600">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 9.5 12 4l9 5.5H3ZM5 10v8M10 10v8M14 10v8M19 10v8M3 20h18" />
+              </svg>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-display text-lg font-bold text-forest">{{ i18n.t('donate.bankTitle') }}</span>
+              <span class="block text-sm text-slate-warm">{{ i18n.t('donate.ukAccount') }} · NatWest</span>
+            </span>
+            <svg class="h-5 w-5 shrink-0 text-slate-warm transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <dl class="divide-y divide-mist border-t border-mist px-5">
+            @for (field of fields; track field.labelKey) {
+              <div class="flex items-center justify-between gap-4 py-3">
+                <dt class="text-sm text-slate-warm">{{ i18n.t(field.labelKey) }}</dt>
+                <dd class="flex min-w-0 items-center gap-2">
+                  <span class="min-w-0 break-all text-end text-sm font-semibold text-forest" [class.font-mono]="field.mono">{{ field.value }}</span>
+                  <button
+                    type="button"
+                    class="shrink-0 rounded-full border border-forest/10 bg-sand px-3 py-1 text-xs font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600"
+                    (click)="copyValue(field.labelKey, field.value)"
+                    [attr.aria-label]="i18n.t('donate.copy') + ' ' + i18n.t(field.labelKey)"
+                  >
+                    {{ copiedKey() === field.labelKey ? i18n.t('donate.copied') : i18n.t('donate.copy') }}
+                  </button>
+                </dd>
+              </div>
+            }
+            <div class="flex items-center justify-between gap-4 py-3">
+              <dt class="text-sm text-slate-warm">{{ i18n.t('donate.referenceLabel') }}</dt>
+              <dd class="flex items-center gap-2">
+                <span class="font-mono text-sm font-semibold text-forest">{{ paymentReference() }}</span>
                 <button
                   type="button"
-                  class="inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-full border border-forest/10 bg-sand px-4 py-2.5 text-sm font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600 sm:min-h-0 sm:w-auto sm:px-3 sm:py-1.5 sm:text-xs"
-                  (click)="copyValue(field.labelKey, field.value)"
-                  [attr.aria-label]="i18n.t(field.labelKey)"
+                  class="shrink-0 rounded-full border border-forest/10 bg-sand px-3 py-1 text-xs font-semibold text-forest transition-colors hover:border-gold/40 hover:text-gold-600"
+                  (click)="copyValue('Reference', paymentReference())"
                 >
-                  {{ copiedKey() === field.labelKey ? i18n.t('donate.copied') : i18n.t('donate.copy') }}
+                  {{ copiedKey() === 'Reference' ? i18n.t('donate.copied') : i18n.t('donate.copy') }}
                 </button>
               </dd>
             </div>
-          }
-        </dl>
-
-        <p class="mt-2 rounded-2xl bg-sand/80 px-4 py-3 text-sm leading-relaxed text-slate-warm">
-          {{ i18n.t('donate.reference') }}
-          <span class="font-mono font-semibold text-forest">{{ paymentReference() }}</span>
-        </p>
+          </dl>
+        </details>
       </div>
+    </div>
 
-      <!-- Side panel -->
-      <aside class="flex flex-col justify-between gap-8 rounded-[1.5rem] bg-gradient-to-br from-forest via-emerald to-forest-800 p-5 text-cream shadow-portal sm:rounded-[1.75rem] sm:p-10">
-        <div>
-          <p class="eyebrow-on-dark">
-            {{ i18n.t('donate.whereTitle') }}
-          </p>
-          <h3 class="mt-3 font-display text-xl font-bold leading-snug sm:text-3xl">
-            {{ i18n.t('donate.whereHeadline') }}
-          </h3>
-          <ul class="mt-6 space-y-3 text-sm leading-relaxed text-cream/75">
-            <li class="flex gap-3">
-              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>
-              {{ i18n.t('donate.where1') }}
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>
-              {{ i18n.t('donate.where2') }}
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>
-              {{ i18n.t('donate.where3') }}
-            </li>
-          </ul>
-        </div>
+    <!-- Where it goes + how to reach each centre -->
+    <div
+      class="mx-auto mt-10 max-w-3xl rounded-[1.5rem] bg-gradient-to-br from-forest via-emerald to-forest-800 p-6 text-cream shadow-portal sm:p-8"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      <p class="eyebrow-on-dark">{{ i18n.t('donate.whereTitle') }}</p>
+      <ul class="mt-3 grid gap-2 text-sm leading-relaxed text-cream/80 sm:grid-cols-3">
+        <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>{{ i18n.t('donate.where1') }}</li>
+        <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>{{ i18n.t('donate.where2') }}</li>
+        <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" aria-hidden="true"></span>{{ i18n.t('donate.where3') }}</li>
+      </ul>
 
-        <div class="border-t border-white/10 pt-6">
-          <p class="text-sm text-cream/70">{{ i18n.t('donate.whatsapp') }}</p>
-          <a
-            [href]="givingWhatsApp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-gold-300 transition-colors hover:text-gold"
-          >
+      <p class="mt-7 border-t border-white/10 pt-6 text-sm font-semibold text-white">{{ i18n.t('donate.whatsapp') }}</p>
+      <div class="mt-3 grid gap-4 sm:grid-cols-2" data-testid="donate-centre-contacts">
+        @for (campus of campusService.campuses(); track campus.id) {
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4" [attr.data-campus]="campus.id">
+            <p class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold-300">{{ town(campus) }}</p>
+            <p class="mt-1 font-display text-lg font-bold text-white">{{ campus.displayName }}</p>
+            <ul class="mt-3 space-y-1.5 text-sm">
+              <li>
+                <a [href]="campusWhatsapp(campus)" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-semibold text-gold-300 hover:text-gold">
+                  <app-whatsapp-icon class="h-4 w-4" />
+                  {{ i18n.t('header.whatsapp') }} · <span dir="ltr">{{ campus.phoneDisplay }}</span>
+                </a>
+              </li>
+              <li>
+                <a [href]="'tel:' + campus.phoneE164" class="font-medium text-cream/85 hover:text-white" dir="ltr">{{ campus.phoneDisplay }}</a>
+              </li>
+              <li>
+                <a [href]="'mailto:' + campusEmail(campus)" class="break-all font-medium text-cream/85 hover:text-white" dir="ltr">{{ campusEmail(campus) }}</a>
+              </li>
+            </ul>
+          </div>
+        } @empty {
+          <a [href]="givingWhatsApp" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-gold-300 hover:text-gold">
             <app-whatsapp-icon class="h-4 w-4" />
             {{ i18n.t('header.whatsapp') }}
           </a>
-          <a
-            [href]="'mailto:' + org.email"
-            class="mt-2 flex max-w-full items-center gap-2 break-all text-sm font-semibold text-gold-300 transition-colors hover:text-gold"
-          >
-            {{ org.email }}
-          </a>
-          <p class="mt-4 text-xs leading-relaxed text-cream/50">
-            {{ org.addressFull }}
-          </p>
-          <p class="mt-2 text-xs leading-relaxed text-cream/45">
-            {{ i18n.t('donate.trust') }}
-          </p>
-        </div>
-      </aside>
+          <a [href]="'mailto:' + org.email" class="block break-all text-sm font-semibold text-gold-300 hover:text-gold">{{ org.email }}</a>
+        }
+      </div>
+      <p class="mt-4 text-xs leading-relaxed text-cream/50">{{ i18n.t('donate.trust') }}</p>
     </div>
 
     <app-related-pages

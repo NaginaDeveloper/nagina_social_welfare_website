@@ -85,14 +85,14 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-mist">
-                @for (session of sessions; track session.id) {
+                @for (session of sessions(); track session.id) {
                   <tr>
                     <th scope="row" class="px-4 py-4 font-display text-base font-bold text-forest sm:px-6">
-                      {{ sessionTitle(session.id) }}
+                      {{ sessionTitle(session) }}
                     </th>
-                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionDays(session.id) }}</td>
-                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionTime(session.id) }}</td>
-                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionAges(session.id) }}</td>
+                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionDays(session) }}</td>
+                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionTime(session) }}</td>
+                    <td class="px-4 py-4 text-slate-warm sm:px-6">{{ sessionAges(session) }}</td>
                   </tr>
                 }
               </tbody>

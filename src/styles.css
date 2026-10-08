@@ -550,6 +550,22 @@ html.urdu .spotlight-label {
   animation-direction: reverse;
 }
 
+/* Desktop menu panel: a short rise-and-fade when it opens. */
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-menu-in {
+  transform-origin: top center;
+  animation: menuIn 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Gold shimmer sweep across text (used on the hero title). */
 .text-shimmer {
   padding-inline: 0.08em;
@@ -596,7 +612,8 @@ html.urdu .spotlight-label {
   .animate-ken-burns,
   .animate-cue,
   .animate-pulse-ring,
-  .text-shimmer {
+  .text-shimmer,
+  .animate-menu-in {
     animation: none;
   }
 

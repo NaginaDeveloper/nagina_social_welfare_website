@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { centrePath } from '../../config/centre-pages.config';
 import { LanguageService } from '../../i18n/language.service';
-import { campusTown, fillTowns, type Campus } from '../../models/campus';
+import { campusTown, campusWhatsappHref, fillTowns, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 import { VisitorStats } from '../visitor-stats/visitor-stats';
@@ -36,6 +36,10 @@ export class Footer implements OnInit {
 
   protected town(campus: Campus): string {
     return campusTown(campus);
+  }
+
+  protected campusWhatsapp(campus: Campus): string {
+    return campusWhatsappHref(campus, `Assalamu alaikum, I have a question for ${campus.displayName}.`);
   }
 
   protected centrePath(campusId: string): string {

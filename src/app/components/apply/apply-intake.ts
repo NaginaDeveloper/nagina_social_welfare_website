@@ -1,10 +1,8 @@
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  MADRASA_SESSIONS,
-  MADRASA_TIMETABLE_CAMPUS_ID,
-} from '../../config/madrasa-timetable.config';
+import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
+import type { Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 
 @Component({
@@ -16,31 +14,25 @@ export class ApplyIntake implements OnInit {
   protected readonly i18n = inject(LanguageService);
   protected readonly campusService = inject(CampusService);
   protected readonly posterHref = '/posters/madrasa-admission-2026.jpg';
-  protected readonly sessions = MADRASA_SESSIONS;
-  protected readonly timetableCampus = computed(() =>
-    this.campusService.byId(MADRASA_TIMETABLE_CAMPUS_ID),
-  );
 
   ngOnInit(): void {
     void this.campusService.load();
   }
 
-  protected sessionTitle(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
-    return this.i18n.lang() === 'ur' ? session.titleUr : session.title;
+  protected sessionsFor(campus: Campus): readonly MadrasaSession[] {
+    return madrasaSessions(campus.id);
   }
 
-  protected sessionTime(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
-    return this.i18n.lang() === 'ur' ? session.timeUr : session.time;
+  protected sessionTitle(session: MadrasaSession): string {
+    return this.i18n.pick(session.title, session.titleUr);
   }
 
-  protected sessionAges(id: string): string {
-    const session = this.sessions.find((item) => item.id === id);
-    if (!session) return '';
-    return this.i18n.lang() === 'ur' ? session.agesUr : session.ages;
+  protected sessionTime(session: MadrasaSession): string {
+    return `${this.i18n.pick(session.time, session.timeUr)} · ${this.i18n.pick(session.days, session.daysUr)}`;
+  }
+
+  protected sessionAges(session: MadrasaSession): string {
+    return this.i18n.pick(session.ages, session.agesUr);
   }
 
   protected scrollToForm(event: Event): void {

@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ORGANIZATION } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import {
   campusDirectionsUrl,
@@ -27,6 +28,9 @@ import { CampusService } from '../../services/campus.service';
               <a [href]="'tel:' + campus.phoneE164" class="font-semibold text-gold-700 hover:underline">
                 {{ i18n.t('campus.call') }} · {{ campus.phoneDisplay }}
               </a>
+            </p>
+            <p class="mt-1 text-sm">
+              <a [href]="'mailto:' + email(campus)" class="break-all font-medium text-forest hover:underline" dir="ltr">{{ email(campus) }}</a>
             </p>
             <div class="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
               @if (showApply()) {
@@ -80,6 +84,10 @@ export class CampusCards implements OnInit {
 
   protected town(campus: Campus): string {
     return campusTown(campus);
+  }
+
+  protected email(campus: Campus): string {
+    return campus.email || ORGANIZATION.email;
   }
 
   protected whatsapp(campus: Campus): string {

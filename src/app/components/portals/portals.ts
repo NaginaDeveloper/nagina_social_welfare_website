@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { ORGANIZATION, portalLoginUrl, whatsappHref, type PortalRole } from '../../config/organization.config';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 interface PortalCard {
   readonly role: PortalRole | 'member';
@@ -23,7 +24,7 @@ interface PortalCard {
 /** Where each kind of user signs in. One card per login page of the admin portal. */
 @Component({
   selector: 'app-portals',
-  imports: [RouterLink, NgTemplateOutlet],
+  imports: [CentreContacts, RouterLink, NgTemplateOutlet],
   templateUrl: './portals.html',
 })
 export class Portals {

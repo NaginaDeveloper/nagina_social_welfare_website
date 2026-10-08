@@ -1,6 +1,6 @@
-import { Component, ElementRef, inject, signal } from '@angular/core';
+import { Component, ElementRef, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   AbstractControl,
   FormBuilder,
@@ -26,6 +26,9 @@ import {
 } from '../../config/membership-api.config';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { PRIVACY_NOTICE_VERSION } from '../../config/privacy-notice.config';
+import { CentreContacts } from '../centre-contacts/centre-contacts';
+import { campusTown, type Campus } from '../../models/campus';
+import { CampusService } from '../../services/campus.service';
 
 function adultAgeValidator() {
   return (ctrl: AbstractControl) => {
@@ -45,7 +48,7 @@ function adultAgeValidator() {
 
 @Component({
   selector: 'app-membership-form',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [CentreContacts, ReactiveFormsModule, RouterLink],
   templateUrl: './membership-form.html',
   styleUrl: './membership-form.css',
 })
@@ -58,9 +61,11 @@ export class MembershipForm {
   protected readonly interests = VOLUNTEER_INTEREST_OPTIONS;
   protected readonly conduct = MEMBERSHIP_CODE_OF_CONDUCT;
 
+  protected readonly campusService = inject(CampusService);
   private readonly fb = inject(FormBuilder);
   private readonly membership = inject(MembershipService);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
   private readonly host = inject(ElementRef<HTMLElement>);
 
   protected readonly step = signal(0);
@@ -75,6 +80,7 @@ export class MembershipForm {
   ] as const;
 
   protected readonly form = this.fb.nonNullable.group({
+    campusId: ['', Validators.required],
     applicant: this.fb.nonNullable.group({
       fullName: ['', [Validators.required, Validators.maxLength(120)]],
       email: ['', [Validators.required, Validators.email]],
@@ -105,6 +111,17 @@ export class MembershipForm {
   });
 
   constructor() {
+    void this.campusService.load();
+    // Pre-select the centre from a ?campus= link, or the only centre when there is one.
+    effect(() => {
+      const campuses = this.campusService.campuses();
+      const ctrl = this.form.controls.campusId;
+      if (campuses.length === 0) return;
+      if (ctrl.value && this.campusService.byId(ctrl.value)) return;
+      const requested = this.campusService.byId(this.route.snapshot.queryParamMap.get('campus'));
+      const pick = requested ?? (campuses.length === 1 ? campuses[0] : null);
+      if (pick) ctrl.setValue(pick.id);
+    });
     this.form.controls.applicant.controls.fullName.valueChanges
       .pipe(takeUntilDestroyed())
       .subscribe((name) => {
@@ -148,6 +165,18 @@ export class MembershipForm {
     return this.i18n.t('membership.err.required');
   }
 
+  protected campusTown(campus: Campus): string {
+    return campusTown(campus);
+  }
+
+  protected choiceClass(selected: boolean): string {
+    const base =
+      'flex min-h-14 cursor-pointer items-center rounded-2xl border-2 px-4 py-3.5 text-sm font-semibold transition-colors';
+    return selected
+      ? `${base} border-forest bg-forest text-cream shadow-soft`
+      : `${base} border-mist bg-white text-forest hover:border-gold/55`;
+  }
+
   protected inputClass(ctrl: AbstractControl | null): string {
     const base =
       'mt-1.5 w-full min-h-12 rounded-2xl border bg-sand/40 px-4 py-3 text-base text-forest outline-none transition-colors placeholder:text-slate-warm/45 focus:bg-white';
@@ -186,7 +215,11 @@ export class MembershipForm {
   private validateCurrentStep(): boolean {
     const s = this.step();
     if (s === 0) {
-      return this.markValid(this.form.controls.applicant) && this.markValid(this.form.controls.address);
+      return (
+        this.markValid(this.form.controls.campusId) &&
+        this.markValid(this.form.controls.applicant) &&
+        this.markValid(this.form.controls.address)
+      );
     }
     if (s === 1) return true;
     return (
@@ -215,6 +248,7 @@ export class MembershipForm {
       const interests = raw.interests;
       const age = Number(raw.applicant.age);
       const payload: MembershipSubmitPayload = {
+        campusId: raw.campusId,
         applicant: {
           fullName: raw.applicant.fullName.trim(),
           email: raw.applicant.email.trim().toLowerCase(),
