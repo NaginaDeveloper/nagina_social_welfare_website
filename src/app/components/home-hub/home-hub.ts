@@ -385,11 +385,11 @@ export class HomeHub implements OnInit {
     },
     {
       src: '/media/haramain-madinah.webp',
-      alt: 'The Green Dome and minarets of Masjid an-Nabawi, Madinah',
+      alt: 'The Green Dome and a minaret of Masjid an-Nabawi, Madinah, against a blue sky',
       name: 'Blessed Madinah',
-      width: 1920,
-      height: 1280,
-      focus: '62% 50%',
+      width: 1280,
+      height: 1920,
+      focus: '40% 100%',
     },
   ] as const;
 
