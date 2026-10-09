@@ -13,11 +13,12 @@ import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pag
 import { ContentReviewNote } from '../content-review-note/content-review-note';
 import { VenueMap } from '../venue-map/venue-map';
 import { CentreMarkaz } from '../centre-markaz/centre-markaz';
+import { GoogleReviews } from '../google-reviews/google-reviews';
 
 /** Local page for one centre, filled from the published campus list. */
 @Component({
   selector: 'app-centre',
-  imports: [NgTemplateOutlet, RouterLink, RelatedPages, ContentReviewNote, VenueMap, CentreMarkaz],
+  imports: [NgTemplateOutlet, RouterLink, RelatedPages, ContentReviewNote, VenueMap, CentreMarkaz, GoogleReviews],
   templateUrl: './centre.html',
 })
 export class Centre implements OnInit {

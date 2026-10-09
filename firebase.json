@@ -63,6 +63,13 @@
           "functionId": "latestSocialVideos",
           "region": "europe-west2"
         }
+      },
+      {
+        "source": "/googleReviews",
+        "function": {
+          "functionId": "googleReviews",
+          "region": "europe-west2"
+        }
       }
     ]
   }

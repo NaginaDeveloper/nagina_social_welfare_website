@@ -4,3 +4,4 @@ export { askNaginaAssistant } from './askNaginaAssistant';
 export { syncAssistantKnowledge } from './syncAssistantKnowledge';
 export { pingVisitorStats, cleanupVisitorPresence } from './pingVisitorStats';
 export { latestSocialVideos } from './latestSocialVideos';
+export { googleReviews } from './googleReviews';

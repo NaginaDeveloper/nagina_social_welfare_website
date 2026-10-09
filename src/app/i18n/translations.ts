@@ -1360,6 +1360,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.linkDonate': 'Donate to {town}',
     'centre.linkWhatsApp': 'WhatsApp',
     'centre.linkReview': 'Leave a Google review',
+    'reviews.title': 'What families say on Google',
+    'reviews.count': '{n} Google reviews',
+    'reviews.starsLabel': '{n} out of 5 stars',
+    'reviews.attribution': 'Reviews are shown as posted on Google.',
+    'reviews.readAll': 'Read all reviews on Google',
     'centreStory.englishOnly': 'This introduction was written by the centre in English.',
 
     'whatIsZakat.eyebrow': 'Zakat Guide',
@@ -2700,6 +2705,11 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.linkDonate': '{town} کے لیے عطیہ',
     'centre.linkWhatsApp': 'واٹس ایپ',
     'centre.linkReview': 'گوگل پر جائزہ لکھیں',
+    'reviews.title': 'گوگل پر خاندانوں کی رائے',
+    'reviews.count': 'گوگل پر {n} جائزے',
+    'reviews.starsLabel': '5 میں سے {n} ستارے',
+    'reviews.attribution': 'یہ جائزے گوگل پر جیسے پوسٹ ہوئے ویسے ہی دکھائے گئے ہیں۔',
+    'reviews.readAll': 'گوگل پر تمام جائزے پڑھیں',
     'centreStory.englishOnly': 'یہ تعارف مرکز نے انگریزی میں لکھا ہے۔',
 
     'whatIsZakat.eyebrow': 'زکوٰۃ رہنمائی',
