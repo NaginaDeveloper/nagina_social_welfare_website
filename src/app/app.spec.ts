@@ -28,7 +28,7 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Nagina');
   });
 
-  it('should render the tile-based homepage with Assistant and map', async () => {
+  it('should render the tile-based homepage with Assistant and the about/contact teasers', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/');
@@ -42,7 +42,10 @@ describe('App', () => {
     expect(compiled.querySelector('[data-testid="hero-centres"] a[href="/manchester"]')).toBeTruthy();
     // The centre cards live on /about now; the hero chips still link to both centres.
     expect(compiled.querySelector('[data-testid="home-centres"]')).toBeNull();
-    expect(compiled.querySelector('iframe[title^="Map of"]')).toBeTruthy();
+    // About and Contact are short teasers on the home page; the map and form live on /contact.
+    expect(compiled.querySelector('[data-testid="home-closing"] a[href="/about"]')).toBeTruthy();
+    expect(compiled.querySelector('[data-testid="home-closing"] a[href="/contact"]')).toBeTruthy();
+    expect(compiled.querySelector('iframe[title^="Map of"]')).toBeNull();
     expect(compiled.querySelector('#photographs')).toBeNull();
     expect(compiled.querySelector('#sayings')).toBeNull();
     expect(compiled.querySelector('#shajra')).toBeNull();

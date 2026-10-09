@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
-import { CampusCards } from '../campus-cards/campus-cards';
 import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 interface Programme {
@@ -22,7 +21,7 @@ interface Programme {
 
 @Component({
   selector: 'app-our-work',
-  imports: [CentreContacts, RouterLink, RelatedPages, CampusCards],
+  imports: [CentreContacts, RouterLink, RelatedPages],
   templateUrl: './our-work.html',
 })
 export class OurWork {

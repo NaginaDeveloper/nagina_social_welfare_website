@@ -115,14 +115,4 @@
       }
     </div>
   </div>
-
-  <!-- Pillars -->
-  <div class="mt-20 grid gap-4 sm:grid-cols-3" appReveal data-testid="markaz-pillars">
-    @for (pillar of about().pillars; track pillar.title; let i = $index) {
-      <div class="rounded-2xl border-t-4 border-gold bg-sand/60 px-6 py-6 text-center" [appReveal]="i * 80">
-        <p class="font-display text-2xl font-bold text-forest">{{ pillar.title }}</p>
-        <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ pillar.text }}</p>
-      </div>
-    }
-  </div>
 </div>

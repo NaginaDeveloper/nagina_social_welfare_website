@@ -25,7 +25,7 @@ export class Guidance {
   protected readonly activePoster = signal<GuidancePoster | null>(null);
 
   protected readonly related: readonly RelatedPageLink[] = [
-    { path: '/spiritual-guide', label: 'Spiritual Guide', hint: 'Munir-e-Islam' },
+    { path: '/spiritual-guide', label: 'Spiritual Guide', hint: 'Munir-e-Islam رحمۃ اللہ علیہ' },
     { path: '/basic-beliefs', label: 'Basic Beliefs', hint: 'Creed FAQ' },
     { path: '/books', label: 'Books', hint: 'Seedha Rastah library' },
     { path: '/sermons', label: 'Sermons', hint: 'Video library' },

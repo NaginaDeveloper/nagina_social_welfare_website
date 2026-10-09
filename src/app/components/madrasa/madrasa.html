@@ -15,27 +15,42 @@
         lang="ur"
         dir="rtl"
       >
-        مرکز دینِ اسلام
+        مدارس
       </p>
-      <h1 class="mt-3 page-title">
+      <h1 class="mt-3 page-title text-balance">
         {{ i18n.t('madrasa.titleLine') }}
         <span class="text-gold-gradient">{{ towns() }}</span>
       </h1>
       <p class="page-lead mx-auto">
-        {{ lead() }}
+        {{
+          i18n.pick(
+            'The 2026 intake is open at both our Madrasas. Choose your nearest one and apply online.',
+            '۲۰۲۶ کے داخلے دونوں مدارس میں جاری ہیں۔ اپنا قریبی مدرسہ چنیں اور آن لائن درخواست دیں۔'
+          )
+        }}
       </p>
+
+      <!-- Key facts at a glance, then the two things parents come to do. -->
+      <ul class="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2.5" data-testid="madrasa-facts">
+        @for (fact of introFacts; track fact.en) {
+          <li class="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-white px-4 py-2 text-sm font-semibold text-forest shadow-soft">
+            <span class="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true"></span>
+            {{ i18n.pick(fact.en, fact.ur) }}
+          </li>
+        }
+      </ul>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a routerLink="/apply" fragment="apply-form" class="btn btn-primary">
+          {{ i18n.pick('Apply Online', 'آن لائن درخواست') }}
+        </a>
+        <a routerLink="/madrasa" fragment="class-times" class="btn btn-secondary-light">
+          {{ i18n.pick('See Class Times', 'کلاس کے اوقات دیکھیں') }}
+        </a>
+      </div>
     </div>
 
-    <div
-      class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg"
-      [attr.dir]="i18n.isUr() ? 'rtl' : null"
-      [attr.lang]="i18n.isUr() ? 'ur' : null"
-    >
-      <p>{{ i18n.t('madrasa.body') }}</p>
-      <p>{{ i18n.t('madrasa.body2') }}</p>
-    </div>
 
-    <div id="madrasas" class="mx-auto mt-16 max-w-5xl scroll-mt-24" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+    <div id="madrasas" class="mx-auto mt-20 max-w-5xl scroll-mt-24" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
         {{ i18n.t('madrasa.campusesTitle') }}
       </h2>
@@ -45,21 +60,76 @@
       <app-campus-cards />
     </div>
 
-    <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+    <div class="mx-auto mt-20 max-w-5xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
         {{ i18n.t('madrasa.offeringsTitle') }}
       </h2>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-5">
         @for (item of offerings; track item.title) {
-          <article class="border-t border-mist/80 pt-6 first:border-t-0 first:pt-0 sm:border-t sm:pt-6">
+          <article class="hub-card !min-h-0">
             <h3 class="font-display text-xl font-bold text-forest">{{ i18n.pick(item.title, item.titleUr) }}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-warm sm:text-base">{{ i18n.pick(item.text, item.textUr) }}</p>
+            <p class="mt-2 text-sm leading-relaxed text-slate-warm sm:text-base">{{ i18n.pick(item.text, item.textUr) }}</p>
           </article>
         }
       </div>
     </div>
 
-    <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+    <!-- Our vision: the charity's own poster beside a short message. -->
+    <div
+      class="mx-auto mt-20 grid max-w-5xl items-center gap-10 md:grid-cols-[1fr_minmax(0,22rem)] md:gap-12"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+      data-testid="madrasa-vision"
+    >
+      <div>
+        <span class="eyebrow">{{ i18n.pick('Our Vision', 'ہمارا وژن') }}</span>
+        <h2 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">
+          {{ i18n.pick('Rooted in the Qur’an and Sunnah, Ready for Any Path', 'قرآن و سنت سے جڑے، ہر راہ کے لیے تیار') }}
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-warm">
+          {{
+            i18n.pick(
+              'We want every child to carry the light of the Qur’an and the Sunnah into whatever they become, with knowledge, wisdom, good character and guidance as their moral compass, serving their community.',
+              'ہم چاہتے ہیں کہ ہر بچہ قرآن و سنت کا نور لے کر آگے بڑھے، وہ جو کچھ بھی بنے؛ علم، حکمت، اچھے اخلاق اور ہدایت کو اپنا رہنما بنا کر اپنی کمیونٹی کی خدمت کرے۔'
+            )
+          }}
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          @for (path of visionPaths; track path.en) {
+            <li class="rounded-full border border-gold/40 bg-white px-3.5 py-1.5 text-sm font-semibold text-forest shadow-soft">
+              {{ i18n.pick(path.en, path.ur) }}
+            </li>
+          }
+        </ul>
+        <p class="mt-6 font-arabic text-2xl leading-loose text-gold-600 notranslate" lang="ar" dir="rtl" [class.text-left]="!i18n.isUr()">
+          نور · علم · حکمت · اخلاق · ہدایت
+        </p>
+      </div>
+      <figure class="mx-auto w-full max-w-[22rem]">
+        <a
+          href="/media/madrasa-vision-poster.webp"
+          target="_blank"
+          rel="noopener"
+          class="vision-frame group block"
+          [attr.aria-label]="i18n.pick('Open the full poster', 'پورا پوسٹر کھولیں')"
+        >
+          <img
+            src="/media/madrasa-vision-poster.webp"
+            alt="Nagina Social Welfare UK poster: the Holy Qur’an and the Sunnah at the centre, guiding children to become doctors, engineers, pilots, scientists, lawyers and religious scholars, under the words light, knowledge, wisdom, character and guidance"
+            width="832"
+            height="1280"
+            loading="lazy"
+            decoding="async"
+            class="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
+          />
+        </a>
+        <figcaption class="mt-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-gold-600">
+          {{ i18n.pick('View full poster', 'پورا پوسٹر دیکھیں') }}
+        </figcaption>
+      </figure>
+    </div>
+
+    <div id="class-times" class="mx-auto mt-20 max-w-5xl scroll-mt-28" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
         {{ i18n.t('madrasa.timetable') }}
       </h2>
@@ -104,7 +174,9 @@
       }
     </div>
 
-    <figure class="mx-auto mt-12 max-w-md">
+    <!-- Admission poster beside Visit & Enrol; Safeguarding under Visit & Enrol. -->
+    <div class="mx-auto mt-20 grid max-w-5xl items-start gap-8 md:grid-cols-[minmax(0,19rem)_1fr]">
+    <figure class="mx-auto w-full max-w-[22rem] md:max-w-none">
       <a
         [href]="posterHref"
         target="_blank"
@@ -124,12 +196,12 @@
       </figcaption>
     </figure>
 
+    <div class="flex flex-col gap-6">
     <div
-      class="mx-auto mt-16 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-8 text-center sm:px-10"
+      class="rounded-2xl border border-gold/25 bg-sand/60 px-5 py-7 text-center sm:px-8"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">Visit &amp; Enrol</h2>
-      <app-centre-contacts class="mt-5 block text-start" prefill="Assalamu alaikum, I would like to enrol a child at" />
       <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
         <a
           routerLink="/apply"
@@ -175,7 +247,7 @@
     </div>
 
     <div
-      class="mx-auto mt-12 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-6 shadow-soft sm:px-8"
+      class="rounded-2xl border border-mist bg-white px-6 py-6 shadow-soft sm:px-8"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('madrasa.safeguardingBoxTitle') }}</h2>
@@ -189,13 +261,26 @@
         {{ i18n.t('madrasa.safeguardingCta') }} →
       </a>
     </div>
+    </div>
+    </div>
 
-    <div class="mx-auto mt-12 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-      <h2 class="mb-4 text-center font-display text-2xl font-bold text-forest">{{ i18n.t('madrasa.map') }}</h2>
+    <!-- About our Madrasas: the fuller description (also what search engines read). -->
+    <div
+      class="mx-auto mt-20 max-w-5xl border-t border-mist pt-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">{{ i18n.pick('About Our Madrasas', 'ہمارے مدارس کے بارے میں') }}</h2>
+      <p class="mt-3 max-w-3xl text-base leading-relaxed text-slate-warm">{{ i18n.t('madrasa.body') }}</p>
+    </div>
+
+    <div class="mx-auto mt-20 max-w-5xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <h2 class="mb-6 text-center font-display text-2xl font-bold text-forest sm:text-3xl">{{ i18n.t('madrasa.map') }}</h2>
       <app-campus-map />
     </div>
 
     <app-related-pages
+      class="mx-auto block max-w-5xl [&>nav]:mt-20 [&>nav]:max-w-none"
       [heading]="i18n.t('related.heading')"
       [lead]="i18n.t('related.lead')"
       [links]="related"

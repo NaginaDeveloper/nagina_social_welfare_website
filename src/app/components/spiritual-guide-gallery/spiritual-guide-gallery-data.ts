@@ -29,8 +29,8 @@ export const SPIRITUAL_GUIDE_PHOTOS: readonly SpiritualGuidePhoto[] = [
     id: 'faiz-e-nagina',
     src: '/gallery/shajra/00-hero.jpg',
     alt: 'Faiz-e-Nagina and Munir-e-Islam with the mashayikh, Nagina TV banner',
-    caption: 'Faiz-e-Nagina · Munir-e-Islam',
-    captionUr: 'فیضِ نگینہ · منیرِ اسلام',
+    caption: 'Faiz-e-Nagina · Munir-e-Islam رحمۃ اللہ علیہ',
+    captionUr: 'فیضِ نگینہ · منیرِ اسلام رحمۃ اللہ علیہ',
   },
   {
     id: 'portrait',
@@ -57,8 +57,8 @@ export const SPIRITUAL_GUIDE_PHOTOS: readonly SpiritualGuidePhoto[] = [
     id: 'munir-e-islam',
     src: '/gallery/munir/04-munir-e-islam.jpg',
     alt: 'Commemorative portrait of Munir-e-Islam, Allama Munir Ahmed Yusufi',
-    caption: 'Munir-e-Islam',
-    captionUr: 'منیرِ اسلام',
+    caption: 'Munir-e-Islam رحمۃ اللہ علیہ',
+    captionUr: 'منیرِ اسلام رحمۃ اللہ علیہ',
   },
   {
     id: 'smiling',

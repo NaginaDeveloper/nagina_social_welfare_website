@@ -31,7 +31,6 @@ export interface MarkazAbout {
     readonly text: string;
     readonly links: readonly { readonly path: string; readonly label: string; readonly icon: UiIconName }[];
   };
-  readonly pillars: readonly { readonly title: string; readonly text: string }[];
 }
 
 export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
@@ -40,7 +39,7 @@ export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
     lead: 'The head office of Nagina Social Welfare UK and home of our Peterborough Madrasa, on Burmer Road.',
     intro: [
       'Markaz Deen-e-Islam on Burmer Road is the head office of Nagina Social Welfare UK. It is home to our Peterborough Madrasa, to regular gatherings of remembrance and learning, and to the day-to-day work of the charity.',
-      'Our work here is rooted in Ahl al-Sunnah wa’l-Jama‘ah belief, love of the Prophet Muhammad ﷺ and sincere worship, and is guided by the teaching of Munir-e-Islam: sweet manner, patience, knowledge and charity.',
+      'Our work here is rooted in Ahl al-Sunnah wa’l-Jama‘ah belief, love of the Prophet Muhammad ﷺ and sincere worship, and is guided by the teaching of Munir-e-Islam رحمۃ اللہ علیہ: sweet manner, patience, knowledge and charity.',
       'Children come each evening for Qur’an and Islamic studies. Sisters, brothers and families come for courses, gatherings and support.',
     ],
     facts: [
@@ -101,7 +100,7 @@ export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
       },
     ],
     guide: {
-      name: 'Munir-e-Islam, Allama Munir Ahmed Yusufi',
+      name: 'Munir-e-Islam, Allama Munir Ahmed Yusufi رحمۃ اللہ علیہ',
       text: [
         'A beloved scholar and Sufi guide whose teaching of sweet manner, patience, knowledge and charity continues to light the work of Markaz Deen-e-Islam.',
         'His sermons and books, preserved from the Seedha Rastah archive, are free to watch and read on this website.',
@@ -122,11 +121,6 @@ export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
         { path: '/events', label: 'Events', icon: 'events' },
       ],
     },
-    pillars: [
-      { title: 'Faith', text: 'Rooted in Ahl al-Sunnah belief, love of the Prophet ﷺ, and sincere worship.' },
-      { title: 'Compassion', text: 'Welfare that uplifts families with dignity, care and practical help.' },
-      { title: 'Knowledge', text: 'Education that lights minds: Qur’an, Salah and lasting character.' },
-    ],
   },
 };
 
