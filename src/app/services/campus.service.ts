@@ -1,4 +1,5 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, PLATFORM_ID, computed, inject, signal } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import {
@@ -22,6 +23,7 @@ import {
 @Injectable({ providedIn: 'root' })
 export class CampusService {
   private readonly http = inject(HttpClient);
+  private readonly server = isPlatformServer(inject(PLATFORM_ID));
   private readonly campusesSignal = signal<Campus[]>([]);
   private readonly loadedSignal = signal(false);
   private loadPromise: Promise<void> | null = null;
@@ -85,7 +87,9 @@ export class CampusService {
   }
 
   private async fetch(): Promise<void> {
-    for (const url of [CAMPUSES_URL, CAMPUSES_FALLBACK_URL]) {
+    // The admissions API only answers browser origins; prerender uses the build snapshot.
+    const sources = this.server ? [CAMPUSES_FALLBACK_URL] : [CAMPUSES_URL, CAMPUSES_FALLBACK_URL];
+    for (const url of sources) {
       try {
         const list = parseCampusCatalog(await firstValueFrom(this.http.get(url)));
         if (list.length > 0) {

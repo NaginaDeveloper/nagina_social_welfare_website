@@ -1,6 +1,6 @@
 /**
- * After `ng build`, write static HTML shells for each public route so crawlers
- * and social previews see unique titles/descriptions (GitHub Pages / SPA-friendly).
+ * After `ng build` (which prerenders content routes), finalise each public route's
+ * head (canonical, Open Graph, Search Console token) and write shells for client-only routes.
  * Also regenerates `public/sitemap.xml` (and the built copy) from seo.config.ts.
  *
  * Run with: node --experimental-strip-types scripts/generate-route-html.mjs
@@ -184,25 +184,25 @@ if (!existsSync(join(outDir, 'index.html'))) {
   process.exit(1);
 }
 
-const baseHtml = readFileSync(join(outDir, 'index.html'), 'utf8');
+// Content routes are prerendered by `ng build`; patch their head in place. Client-only
+// routes (member/applicant flows) get a shell cloned from the client-side-render page.
+const csrPath = join(outDir, 'index.csr.html');
+const csrHtml = readFileSync(existsSync(csrPath) ? csrPath : join(outDir, 'index.html'), 'utf8');
 
 for (const page of PUBLIC_SEO_PAGES) {
-  const html = patchHtml(baseHtml, page);
   const dirName = pathToDir(page.path);
-  if (!dirName) {
-    writeFileSync(join(outDir, 'index.html'), html);
-    continue;
-  }
-  const dir = join(outDir, dirName);
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'index.html'), html);
-  console.log(`SEO shell: /${dirName}/`);
+  const target = join(outDir, dirName, 'index.html');
+  const prerendered = existsSync(target);
+  const html = patchHtml(prerendered ? readFileSync(target, 'utf8') : csrHtml, page);
+  if (dirName) mkdirSync(join(outDir, dirName), { recursive: true });
+  writeFileSync(target, html);
+  console.log(`SEO ${prerendered ? 'prerendered' : 'shell'}: /${dirName}`);
 }
 
 writeSitemap();
 
 // SPA fallback for client-side routes / deep links
-copyFileSync(join(outDir, 'index.html'), join(outDir, '404.html'));
+copyFileSync(existsSync(csrPath) ? csrPath : join(outDir, 'index.html'), join(outDir, '404.html'));
 if (GOOGLE_SITE_VERIFICATION) {
   console.log('SEO shells: Google Search Console verification meta injected');
 } else {
