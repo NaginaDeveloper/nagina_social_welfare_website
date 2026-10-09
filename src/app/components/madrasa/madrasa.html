@@ -59,6 +59,61 @@
       </div>
     </div>
 
+    <!-- Our vision: the charity's own poster beside a short message. -->
+    <div
+      class="mx-auto mt-20 grid max-w-5xl items-center gap-10 md:grid-cols-[1fr_minmax(0,22rem)] md:gap-12"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+      data-testid="madrasa-vision"
+    >
+      <div>
+        <span class="eyebrow">{{ i18n.pick('Our Vision', 'ہمارا وژن') }}</span>
+        <h2 class="mt-3 font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">
+          {{ i18n.pick('Rooted in the Qur’an and Sunnah, Ready for Any Path', 'قرآن و سنت سے جڑے، ہر راہ کے لیے تیار') }}
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-warm">
+          {{
+            i18n.pick(
+              'We want every child to carry the light of the Qur’an and the Sunnah into whatever they become, with knowledge, wisdom, good character and guidance as their moral compass, serving their community.',
+              'ہم چاہتے ہیں کہ ہر بچہ قرآن و سنت کا نور لے کر آگے بڑھے، وہ جو کچھ بھی بنے؛ علم، حکمت، اچھے اخلاق اور ہدایت کو اپنا رہنما بنا کر اپنی کمیونٹی کی خدمت کرے۔'
+            )
+          }}
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          @for (path of visionPaths; track path.en) {
+            <li class="rounded-full border border-gold/40 bg-white px-3.5 py-1.5 text-sm font-semibold text-forest shadow-soft">
+              {{ i18n.pick(path.en, path.ur) }}
+            </li>
+          }
+        </ul>
+        <p class="mt-6 font-arabic text-2xl leading-loose text-gold-600 notranslate" lang="ar" dir="rtl" [class.text-left]="!i18n.isUr()">
+          نور · علم · حکمت · اخلاق · ہدایت
+        </p>
+      </div>
+      <figure class="mx-auto w-full max-w-[22rem]">
+        <a
+          href="/media/madrasa-vision-poster.webp"
+          target="_blank"
+          rel="noopener"
+          class="vision-frame group block"
+          [attr.aria-label]="i18n.pick('Open the full poster', 'پورا پوسٹر کھولیں')"
+        >
+          <img
+            src="/media/madrasa-vision-poster.webp"
+            alt="Nagina Social Welfare UK poster: the Holy Qur’an and the Sunnah at the centre, guiding children to become doctors, engineers, pilots, scientists, lawyers and religious scholars, under the words light, knowledge, wisdom, character and guidance"
+            width="832"
+            height="1280"
+            loading="lazy"
+            decoding="async"
+            class="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
+          />
+        </a>
+        <figcaption class="mt-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-gold-600">
+          {{ i18n.pick('View full poster', 'پورا پوسٹر دیکھیں') }}
+        </figcaption>
+      </figure>
+    </div>
+
     <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
         {{ i18n.t('madrasa.timetable') }}

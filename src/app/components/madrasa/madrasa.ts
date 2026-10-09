@@ -65,6 +65,16 @@ export class Madrasa implements OnInit {
     { path: '/contact', label: 'Contact', hint: 'WhatsApp, phone and email' },
   ];
 
+  /** The paths in the vision poster, in English and Urdu. */
+  protected readonly visionPaths = [
+    { en: 'Doctor', ur: 'ڈاکٹر' },
+    { en: 'Engineer', ur: 'انجینئر' },
+    { en: 'Pilot', ur: 'پائلٹ' },
+    { en: 'Scientist', ur: 'سائنسدان' },
+    { en: 'Lawyer', ur: 'وکیل' },
+    { en: 'Religious Scholar', ur: 'عالمِ دین' },
+  ] as const;
+
   protected readonly offerings: readonly Offering[] = [
     {
       title: 'Quran & Tajweed',
