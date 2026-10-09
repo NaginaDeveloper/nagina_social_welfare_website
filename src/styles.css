@@ -564,6 +564,88 @@ html.urdu .spotlight-label {
   }
 }
 
+/* Home hero: the spiritual guide's portrait medallion. */
+@keyframes guideHalo {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+.guide-medallion {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 7.5rem;
+  height: 7.5rem;
+}
+.guide-halo {
+  position: absolute;
+  inset: -12%;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.38) 0%, rgba(251, 191, 36, 0.12) 45%, rgba(251, 191, 36, 0) 68%);
+  animation: guideHalo 6s ease-in-out infinite;
+}
+.guide-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: #fbbf24;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.45));
+}
+.guide-rim {
+  position: absolute;
+  inset: 17%;
+  border-radius: 9999px;
+  padding: 3px;
+  background: conic-gradient(from 210deg, #fef3c7, #fbbf24, #b45309, #fbbf24, #fef3c7, #fbbf24, #b45309, #fbbf24, #fef3c7);
+  box-shadow:
+    0 12px 30px rgba(2, 44, 34, 0.6),
+    0 0 26px rgba(251, 191, 36, 0.4);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .guide-rim {
+  transform: scale(1.05);
+}
+.guide-gap {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  padding: 3px;
+  background: #052e22;
+}
+.guide-gap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  object-fit: cover;
+  object-position: 52% 30%;
+}
+@media (min-width: 640px) {
+  .guide-medallion {
+    width: 9.5rem;
+    height: 9.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .guide-medallion {
+    width: 12rem;
+    height: 12rem;
+  }
+}
+
 /* Desktop menu panel: a short rise-and-fade when it opens. */
 @keyframes menuIn {
   from {
@@ -635,7 +717,8 @@ html.urdu .spotlight-label {
     animation: none;
     opacity: 0.8;
   }
-  .arch-frame {
+  .arch-frame,
+  .guide-halo {
     animation: none;
   }
 }
