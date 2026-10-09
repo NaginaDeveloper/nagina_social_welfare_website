@@ -1359,6 +1359,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.linkWork': 'Our work',
     'centre.linkDonate': 'Donate to {town}',
     'centre.linkWhatsApp': 'WhatsApp',
+    'centre.linkReview': 'Leave a Google review',
     'centreStory.englishOnly': 'This introduction was written by the centre in English.',
 
     'whatIsZakat.eyebrow': 'Zakat Guide',
@@ -2698,6 +2699,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'centre.linkWork': 'ہمارا کام',
     'centre.linkDonate': '{town} کے لیے عطیہ',
     'centre.linkWhatsApp': 'واٹس ایپ',
+    'centre.linkReview': 'گوگل پر جائزہ لکھیں',
     'centreStory.englishOnly': 'یہ تعارف مرکز نے انگریزی میں لکھا ہے۔',
 
     'whatIsZakat.eyebrow': 'زکوٰۃ رہنمائی',

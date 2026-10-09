@@ -189,6 +189,18 @@
         >
           {{ i18n.t('centre.linkWhatsApp') }}
         </a>
+        @if (reviewUrl(); as url) {
+          <a
+            [href]="url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-gold/40 bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+            data-testid="centre-review-link"
+          >
+            <span class="text-gold" aria-hidden="true">★</span>
+            {{ i18n.t('centre.linkReview') }}
+          </a>
+        }
       </div>
 
       </ng-template>

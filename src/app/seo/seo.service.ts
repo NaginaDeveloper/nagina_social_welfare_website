@@ -4,7 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ORGANIZATION } from '../config/organization.config';
-import { centrePath } from '../config/centre-pages.config';
+import { centreMapsProfileUrl, centrePath } from '../config/centre-pages.config';
 import { campusLocation, campusTown, type Campus } from '../models/campus';
 import { CampusService } from '../services/campus.service';
 import {
@@ -271,6 +271,7 @@ export function madrasaNode(campus: Campus): Record<string, unknown> {
   const parts = campus.addressLine.split(',').map((p) => p.trim()).filter(Boolean);
   const street = parts.length > 1 ? parts.slice(0, -1).join(', ') : campus.addressLine;
   const coords = campusLocation(campus);
+  const mapsProfile = centreMapsProfileUrl(campus.id);
   return {
     '@type': 'EducationalOrganization',
     '@id': `${SITE_ORIGIN}/#madrasa-${campus.id}`,
@@ -286,6 +287,7 @@ export function madrasaNode(campus: Campus): Record<string, unknown> {
     },
     telephone: campus.phoneE164,
     ...(campus.email ? { email: campus.email } : {}),
+    ...(mapsProfile ? { hasMap: mapsProfile, sameAs: [mapsProfile] } : {}),
     ...(coords
       ? { geo: { '@type': 'GeoCoordinates', latitude: coords.latitude, longitude: coords.longitude } }
       : {}),
