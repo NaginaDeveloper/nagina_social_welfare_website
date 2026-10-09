@@ -398,7 +398,7 @@ export class HomeHub implements OnInit {
     {
       src: '/media/haramain-aqsa.webp',
       alt: 'The golden Dome of the Rock in the Al-Aqsa compound, Jerusalem',
-      name: 'Al-Aqsa',
+      name: 'Sacred Al-Aqsa',
       width: 908,
       height: 1210,
       focus: '50% 45%',
