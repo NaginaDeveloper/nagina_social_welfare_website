@@ -18,6 +18,9 @@
       <!-- Loads when the browser is idle; a header "Ask" click before then is picked up on init. -->
       @defer (on idle) {
         <app-assistant />
+      } @placeholder {
+        <!-- Same size as the assistant button, so the WhatsApp button above it does not jump when it loads. -->
+        <span class="block h-13 w-13" aria-hidden="true"></span>
       }
     }
   </div>
