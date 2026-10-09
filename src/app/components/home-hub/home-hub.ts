@@ -374,9 +374,9 @@ export class HomeHub implements OnInit {
   protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
 
   /**
-   * Makkah, Madinah and Al-Aqsa for the hero. Makkah: supplied by the
-   * charity as free to use (8 Oct 2026). Madinah: Wikimedia Commons, CC0.
-   * Al-Aqsa: Wikimedia Commons, CC BY 2.0, credited under the photos.
+   * Makkah, Madinah and Al-Aqsa for the hero; none needs a credit. Makkah:
+   * supplied by the charity as free to use (8 Oct 2026). Madinah and
+   * Al-Aqsa: Wikimedia Commons, CC0 and public domain.
    */
   protected readonly haramain = [
     {
@@ -399,9 +399,9 @@ export class HomeHub implements OnInit {
       src: '/media/haramain-aqsa.webp',
       alt: 'The golden Dome of the Rock in the Al-Aqsa compound, Jerusalem',
       name: 'Al-Aqsa',
-      width: 1920,
-      height: 1280,
-      focus: '50% 50%',
+      width: 908,
+      height: 1210,
+      focus: '50% 45%',
     },
   ] as const;
 
