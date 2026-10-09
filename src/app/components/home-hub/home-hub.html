@@ -30,7 +30,7 @@
   </div>
 
   <div
-    class="relative mx-auto grid w-full max-w-[var(--site-max)] items-center gap-6 px-[var(--site-gutter)] pb-20 pt-16 sm:gap-10 sm:pb-24 sm:pt-32 lg:max-w-[100rem] lg:grid-cols-12 lg:items-start lg:gap-8 lg:px-10 lg:pb-24 lg:pt-36 2xl:px-16"
+    class="relative mx-auto grid w-full max-w-[var(--site-max)] items-center gap-2.5 px-[var(--site-gutter)] pb-20 pt-[3.5rem] sm:gap-10 sm:pb-24 sm:pt-32 lg:max-w-[100rem] lg:grid-cols-12 lg:items-start lg:gap-8 lg:px-10 lg:pb-24 lg:pt-36 2xl:px-16"
   >
     <!--
       The Holy Qur'an, illuminated: taught to children at our Madrasas. It comes
@@ -45,7 +45,7 @@
       data-testid="hero-quran"
       aria-label="The Holy Qur'an: Madrasa classes for children"
     >
-      <svg class="w-44 overflow-visible sm:w-52 xl:w-full" viewBox="0 0 400 290" aria-hidden="true">
+      <svg class="w-[7.5rem] overflow-visible sm:w-52 xl:w-full" viewBox="0 0 400 290" aria-hidden="true">
         <defs>
           <linearGradient id="hq-gold" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stop-color="#fde68a" />
@@ -141,21 +141,21 @@
           />
         }
       </svg>
-      <span class="-mt-1 font-arabic text-xl leading-tight text-gold-300 notranslate min-[1440px]:text-2xl" lang="ar" dir="rtl">القرآن الكريم</span>
+      <span class="-mt-1 font-arabic text-base leading-tight text-gold-300 notranslate sm:text-xl min-[1440px]:text-2xl" lang="ar" dir="rtl">القرآن الكريم</span>
     </a>
 
     <!-- Bismillah over the three Holy Mosques in arched frames: Makkah, Madinah, Al-Aqsa. On desktop it starts lower, leaving the Qur'an clear space above. -->
     <div class="flex flex-col items-center lg:order-2 lg:col-span-6 lg:col-start-7 lg:row-start-2 xl:row-start-1 xl:pt-[2.75rem] 2xl:pt-[4.5rem]" data-testid="hero-haramain">
       <p
-        class="animate-fade-up mb-5 text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:mb-6 sm:text-4xl lg:text-[2.6rem] lg:leading-[1.25] 2xl:text-5xl"
+        class="animate-fade-up mb-3 text-center font-arabic text-2xl leading-tight text-gold-300 notranslate sm:mb-6 sm:text-4xl lg:text-[2.6rem] lg:leading-[1.25] 2xl:text-5xl"
         lang="ar"
         dir="rtl"
       >
         بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
       </p>
-      <div class="relative w-full max-w-[24rem] sm:max-w-xl lg:max-w-[40rem]">
+      <div class="relative w-full max-w-[17.5rem] sm:max-w-xl lg:max-w-[40rem]">
         <div class="absolute inset-[-10%] rounded-full bg-gold/20 blur-3xl" aria-hidden="true"></div>
-        <div class="relative grid grid-cols-3 items-start gap-2.5 sm:gap-4">
+        <div class="relative grid grid-cols-3 items-start gap-2 sm:gap-4">
           @for (place of haramain; track place.src; let i = $index) {
             <figure class="animate-fade-up flex flex-col items-center" [style.animation-delay]="i * 140 + 'ms'">
               <!-- Mihrab frame: gold rim, dark gap, fine inner gold line, a star at the crown. -->
@@ -179,7 +179,7 @@
                 </div>
               </div>
               <!-- Name under the arch, so it never sits on the photo. -->
-              <figcaption class="mt-2 text-center font-display text-sm font-semibold leading-tight text-gold-300 sm:mt-3 sm:text-lg">
+              <figcaption class="mt-1.5 text-center font-display text-[0.72rem] font-semibold leading-tight text-gold-300 sm:mt-3 sm:text-lg">
                 {{ place.name }}
               </figcaption>
             </figure>
@@ -194,7 +194,7 @@
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <!-- Spiritual guide. -->
-      <div class="mb-6 flex w-full items-center justify-center gap-6 sm:mb-8 lg:justify-start">
+      <div class="mb-2 flex w-full items-center justify-center gap-6 sm:mb-8 lg:justify-start">
         <!-- Our spiritual guide: portrait medallion with his name turning around it. -->
         <a
           routerLink="/spiritual-guide"
@@ -229,10 +229,10 @@
           </span>
           <span class="flex flex-col items-start text-start">
             <span class="eyebrow-on-dark">{{ i18n.pick('Our Spiritual Guide', 'ہمارے روحانی رہنما') }}</span>
-            <span class="text-shimmer mt-1 font-display text-2xl font-bold leading-tight sm:mt-1.5 sm:text-[2.1rem] lg:text-[2.4rem]">
+            <span class="text-shimmer mt-0.5 font-display text-xl font-bold leading-tight sm:mt-1.5 sm:text-[2.1rem] lg:text-[2.4rem]">
               {{ i18n.pick('Munir-e-Islam', 'منیرِ اسلام') }}
             </span>
-            <span class="font-display text-base font-medium leading-snug text-cream/90 sm:text-xl lg:text-[1.35rem]">
+            <span class="font-display text-sm font-medium leading-snug text-cream/90 sm:text-xl lg:text-[1.35rem]">
               {{ i18n.pick('Allama Munir Ahmed Yusufi', 'علامہ منیر احمد یوسفی') }}
             </span>
             <span class="mt-0.5 font-arabic text-sm text-gold-300/90 notranslate sm:text-base" lang="ur" dir="rtl">
@@ -244,13 +244,13 @@
 
 
       <h1
-        class="animate-fade-up font-display text-[2.75rem] font-bold leading-[0.95] tracking-tight sm:text-6xl lg:whitespace-nowrap lg:text-5xl lg:leading-[1.1] xl:text-[3.4rem] 2xl:text-[4.2rem]"
+        class="animate-fade-up font-display text-[2rem] font-bold leading-[0.95] tracking-tight sm:text-6xl lg:whitespace-nowrap lg:text-5xl lg:leading-[1.1] xl:text-[3.4rem] 2xl:text-[4.2rem]"
         style="animation-delay: 160ms"
       >
         <span class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
           <!-- The NSW seal on a white disc, to the right of the title (above it on phones). -->
           <span
-            class="flex h-14 w-14 shrink-0 sm:order-last items-center justify-center rounded-full bg-white p-1 shadow-portal ring-2 ring-gold-300/60 sm:h-20 sm:w-20 lg:h-[4.5rem] lg:w-[4.5rem] 2xl:h-24 2xl:w-24"
+            class="flex h-10 w-10 shrink-0 sm:order-last items-center justify-center rounded-full bg-white p-1 shadow-portal ring-2 ring-gold-300/60 sm:h-20 sm:w-20 lg:h-[4.5rem] lg:w-[4.5rem] 2xl:h-24 2xl:w-24"
           >
             <img src="/brand/nagina.png" alt="" width="490" height="509" class="h-full w-full object-contain" decoding="async" />
           </span>

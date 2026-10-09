@@ -541,11 +541,11 @@ html.urdu .spotlight-label {
 }
 .arch-star {
   position: absolute;
-  top: -0.55rem;
+  top: -0.45rem;
   left: 50%;
   z-index: 1;
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 0.9rem;
+  height: 0.9rem;
   transform: translateX(-50%);
   fill: #fbbf24;
   filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.75));
@@ -580,8 +580,8 @@ html.urdu .spotlight-label {
   position: relative;
   display: block;
   flex-shrink: 0;
-  width: 7.5rem;
-  height: 7.5rem;
+  width: 5.75rem;
+  height: 5.75rem;
 }
 .guide-halo {
   position: absolute;
