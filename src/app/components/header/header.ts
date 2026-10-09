@@ -76,7 +76,6 @@ export class Header implements OnInit {
     void this.campusService.load();
     void this.events.load();
     this.syncPath(this.router.url);
-    this.schedulePrayerLoad();
 
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
@@ -89,6 +88,7 @@ export class Header implements OnInit {
   constructor() {
     afterNextRender(() => {
       this.onScroll();
+      this.schedulePrayerLoad();
     });
     effect(() => {
       const hasTicker = !!this.latestEvent();

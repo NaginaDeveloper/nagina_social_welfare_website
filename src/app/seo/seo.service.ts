@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
@@ -16,6 +17,7 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
+  private readonly doc = inject(DOCUMENT);
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly router = inject(Router);
@@ -99,12 +101,11 @@ export class SeoService {
   }
 
   private setCanonical(url: string): void {
-    if (typeof document === 'undefined') return;
-    let link = document.querySelector<HTMLLinkElement>("link[rel='canonical']");
+    let link = this.doc.querySelector<HTMLLinkElement>("link[rel='canonical']");
     if (!link) {
-      link = document.createElement('link');
+      link = this.doc.createElement('link');
       link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
+      this.doc.head.appendChild(link);
     }
     link.setAttribute('href', url);
   }
@@ -116,7 +117,6 @@ export class SeoService {
   }
 
   private setJsonLd(seo: PageSeo, url: string): void {
-    if (typeof document === 'undefined') return;
 
     const organization = {
       '@type': 'NGO',
@@ -227,12 +227,12 @@ export class SeoService {
       '@graph': graph,
     };
 
-    let script = document.getElementById('nagina-jsonld') as HTMLScriptElement | null;
+    let script = this.doc.getElementById('nagina-jsonld') as HTMLScriptElement | null;
     if (!script) {
-      script = document.createElement('script');
+      script = this.doc.createElement('script');
       script.id = 'nagina-jsonld';
       script.type = 'application/ld+json';
-      document.head.appendChild(script);
+      this.doc.head.appendChild(script);
     }
     script.textContent = JSON.stringify(payload);
   }
