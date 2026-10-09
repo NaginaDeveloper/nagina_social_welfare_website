@@ -42,7 +42,7 @@
     <!-- Brand -->
     <a
       routerLink="/"
-      class="group flex min-w-0 shrink-0 items-center gap-3"
+      class="group flex min-w-0 shrink items-center gap-2 sm:shrink-0 sm:gap-3"
       aria-label="Nagina Social Welfare home"
       (click)="onNavClick()"
     >
@@ -57,9 +57,10 @@
           height="40"
         />
       </span>
-      <span class="hidden min-w-0 flex-col leading-tight sm:flex">
-        <span class="font-display text-lg font-bold tracking-wide text-white">Nagina Social Welfare</span>
-        <span class="text-[0.58rem] font-medium uppercase tracking-[0.26em] text-gold-300/90">
+      <!-- Name beside the logo: small on phones, on two lines below 375px, so it never runs into Donate. -->
+      <span class="flex min-w-0 flex-col leading-tight">
+        <span class="truncate font-display text-[0.84rem] font-bold text-white max-[374px]:whitespace-normal max-[374px]:leading-[1.1] sm:text-lg sm:tracking-wide">Nagina Social Welfare</span>
+        <span class="truncate text-[0.46rem] font-medium uppercase tracking-[0.08em] text-gold-300/90 max-[374px]:hidden sm:text-[0.58rem] sm:tracking-[0.26em]">
           Education &amp; Welfare &middot; UK
         </span>
       </span>

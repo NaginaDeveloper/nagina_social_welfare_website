@@ -1,5 +1,6 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CENTRE_PAGE_PATHS, centrePath } from '../../config/centre-pages.config';
 import type { NavIcon } from '../../config/navigation.config';
@@ -38,7 +39,7 @@ export interface HeroCentreChip {
 
 @Component({
   selector: 'app-home-hub',
-  imports: [FormsModule, RouterLink, HeroTopActions, Icon, Reveal],
+  imports: [FormsModule, NgTemplateOutlet, RouterLink, HeroTopActions, Icon, Reveal],
   templateUrl: './home-hub.html',
 })
 export class HomeHub implements OnInit {
@@ -363,20 +364,32 @@ export class HomeHub implements OnInit {
     });
   });
 
-  /** Eight headline tiles by default; the full list behind "Show all" or any search. */
-  protected readonly visibleTiles = computed(() => {
-    if (this.query().trim() || this.showAll()) {
-      return this.filteredTiles();
-    }
-    return this.tiles.filter((tile) => tile.tone !== 'default');
+  /** What people come for most, as large cards first. */
+  private static readonly TOP_IDS = ['salah', 'donate', 'apply', 'sermons'] as const;
+  /** Next most used, as smaller cards; everything else is behind "Show all". */
+  private static readonly POPULAR_IDS = ['quran', 'assistant', 'quiz', 'zakat', 'halal', 'events', 'membership', 'sign-in'] as const;
+
+  private byIds(ids: readonly string[]): HubTile[] {
+    return ids.map((id) => this.tiles.find((t) => t.id === id)).filter((t): t is HubTile => !!t);
+  }
+
+  protected readonly searching = computed(() => this.query().trim().length > 0);
+  protected readonly topTiles = computed(() => this.byIds(HomeHub.TOP_IDS));
+  protected readonly popularTiles = computed(() => this.byIds(HomeHub.POPULAR_IDS));
+  protected readonly moreTiles = computed(() => {
+    const shown = new Set<string>([...HomeHub.TOP_IDS, ...HomeHub.POPULAR_IDS]);
+    return this.tiles.filter((t) => !shown.has(t.id));
   });
 
-  protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
+  /** While searching, every match as a small card. */
+  protected readonly visibleTiles = computed(() => this.filteredTiles());
+
+  protected readonly hiddenTileCount = computed(() => this.moreTiles().length);
 
   /**
-   * Makkah, Madinah and Al-Aqsa for the hero. Makkah: supplied by the
-   * charity as free to use (8 Oct 2026). Madinah: Wikimedia Commons, CC0.
-   * Al-Aqsa: Wikimedia Commons, CC BY 2.0, credited under the photos.
+   * Makkah, Madinah and Al-Aqsa for the hero; none needs a credit. Makkah:
+   * supplied by the charity as free to use (8 Oct 2026). Madinah and
+   * Al-Aqsa: Wikimedia Commons, CC0 and public domain.
    */
   protected readonly haramain = [
     {
@@ -398,14 +411,41 @@ export class HomeHub implements OnInit {
     {
       src: '/media/haramain-aqsa.webp',
       alt: 'The golden Dome of the Rock in the Al-Aqsa compound, Jerusalem',
-      name: 'Al-Aqsa',
-      width: 1920,
-      height: 1280,
-      focus: '50% 50%',
+      name: 'Sacred Al-Aqsa',
+      width: 908,
+      height: 1210,
+      focus: '50% 45%',
     },
   ] as const;
 
   /** Soft gold lights that blink around the hero. */
+  /** Light rays behind the illuminated Qur'an: long and short in turn, like a star. */
+  protected readonly quranRays = Array.from({ length: 24 }, (_, i) => ({
+    angle: i * 15,
+    length: i % 2 === 0 ? 168 : 112,
+    width: i % 2 === 0 ? 7 : 4.5,
+  }));
+
+  /** Small gold stars that twinkle around the Qur'an. */
+  protected readonly quranStars = [
+    { x: 92, y: 62, s: 0.9, delay: '0s' },
+    { x: 318, y: 48, s: 0.7, delay: '1.2s' },
+    { x: 340, y: 128, s: 0.55, delay: '2.1s' },
+    { x: 66, y: 140, s: 0.6, delay: '0.7s' },
+    { x: 262, y: 18, s: 0.5, delay: '1.7s' },
+  ];
+
+  /** Specks of light that rise from the Qur'an's pages. */
+  protected readonly quranSparks = [
+    { x: 168, r: 2.2, delay: '0s', duration: '4.2s' },
+    { x: 186, r: 1.6, delay: '1.1s', duration: '3.6s' },
+    { x: 200, r: 2.6, delay: '2.3s', duration: '4.8s' },
+    { x: 214, r: 1.8, delay: '0.6s', duration: '3.9s' },
+    { x: 232, r: 2.2, delay: '1.8s', duration: '4.4s' },
+    { x: 192, r: 1.4, delay: '3s', duration: '3.4s' },
+    { x: 222, r: 1.5, delay: '2.7s', duration: '3.8s' },
+  ];
+
   protected readonly sparkles = [
     { left: '6%', top: '14%', delay: '0s', duration: '2.4s', size: '0.6rem' },
     { left: '16%', top: '62%', delay: '0.7s', duration: '3s', size: '0.45rem' },
@@ -435,28 +475,6 @@ export class HomeHub implements OnInit {
 
   protected onSearch(value: string): void {
     this.query.set(value);
-  }
-
-  protected tileClass(tone: HubTileTone): string {
-    const base =
-      'group flex w-full min-h-[8.5rem] flex-col rounded-2xl border p-4 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-portal active:scale-[0.99] sm:p-5';
-    if (tone === 'featured') {
-      return `${base} border-gold/40 bg-gradient-to-br from-gold/15 to-white hover:border-gold/60`;
-    }
-    if (tone === 'donate') {
-      return `${base} border-gold/30 bg-gold/10 hover:border-gold/50`;
-    }
-    return `${base} border-mist bg-white hover:border-gold/40`;
-  }
-
-  /** Icon badge colours per tile tone. */
-  protected iconClass(tone: HubTileTone): string {
-    const base =
-      'mb-3 flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 sm:h-11 sm:w-11';
-    if (tone === 'default') {
-      return `${base} bg-gradient-to-br from-emerald to-forest text-gold-300`;
-    }
-    return `${base} bg-gradient-to-br from-gold-300 to-gold text-forest shadow-soft`;
   }
 
   protected salahSubtitle(): string {

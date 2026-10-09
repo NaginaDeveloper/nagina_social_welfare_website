@@ -541,11 +541,11 @@ html.urdu .spotlight-label {
 }
 .arch-star {
   position: absolute;
-  top: -0.55rem;
+  top: -0.45rem;
   left: 50%;
   z-index: 1;
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 0.9rem;
+  height: 0.9rem;
   transform: translateX(-50%);
   fill: #fbbf24;
   filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.75));
@@ -561,6 +561,497 @@ html.urdu .spotlight-label {
     top: -0.7rem;
     width: 1.45rem;
     height: 1.45rem;
+  }
+}
+
+/* Home hero: the spiritual guide's portrait medallion. */
+@keyframes guideHalo {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+.guide-medallion {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 5.75rem;
+  height: 5.75rem;
+}
+.guide-halo {
+  position: absolute;
+  inset: -12%;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.38) 0%, rgba(251, 191, 36, 0.12) 45%, rgba(251, 191, 36, 0) 68%);
+  animation: guideHalo 6s ease-in-out infinite;
+}
+.guide-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: #fbbf24;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.45));
+}
+.guide-rim {
+  position: absolute;
+  inset: 17%;
+  border-radius: 9999px;
+  padding: 3px;
+  background: conic-gradient(from 210deg, #fef3c7, #fbbf24, #b45309, #fbbf24, #fef3c7, #fbbf24, #b45309, #fbbf24, #fef3c7);
+  box-shadow:
+    0 12px 30px rgba(2, 44, 34, 0.6),
+    0 0 26px rgba(251, 191, 36, 0.4);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .guide-rim {
+  transform: scale(1.05);
+}
+.guide-gap {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  padding: 3px;
+  background: #052e22;
+}
+.guide-gap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  object-fit: cover;
+  object-position: 52% 30%;
+}
+@media (min-width: 640px) {
+  .guide-medallion {
+    width: 9.5rem;
+    height: 9.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .guide-medallion {
+    width: 12rem;
+    height: 12rem;
+  }
+}
+
+/* Home hero: the illuminated Qur'an. */
+@keyframes hqSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes hqGlow {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+@keyframes hqFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes hqSpark {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1.1);
+  }
+}
+.hq-rays {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  animation: hqSpin 60s linear infinite;
+}
+.hq-glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hqGlow 5s ease-in-out infinite;
+}
+.hq-book {
+  animation: hqFloat 6s ease-in-out infinite;
+}
+.hq-spark {
+  opacity: 0;
+  animation: hqSpark 4s ease-out infinite;
+}
+@keyframes hqTwinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.hq-twinkle {
+  animation: hqTwinkle 3s ease-in-out infinite;
+}
+
+/*
+ * From 1280px the Qur'an floats on the centre line of the screen, between the
+ * guide and the Holy Mosques, set a little higher. The hero grid is centred
+ * with equal padding, so 50% of it is the middle of the screen.
+ */
+@media (min-width: 1280px) {
+  .hero-quran {
+    --hq-w: 8.75rem;
+    width: var(--hq-w);
+    top: 4.5rem;
+    inset-inline-start: calc(50% - var(--hq-w) / 2);
+  }
+}
+@media (min-width: 1366px) {
+  .hero-quran {
+    --hq-w: 10.5rem;
+  }
+}
+@media (min-width: 1440px) {
+  .hero-quran {
+    --hq-w: 12.5rem;
+  }
+}
+@media (min-width: 1536px) {
+  .hero-quran {
+    --hq-w: 14rem;
+  }
+}
+@media (min-width: 1680px) {
+  .hero-quran {
+    --hq-w: 15.5rem;
+  }
+}
+
+/* Home "Find What You Need": tier labels, large top cards, refined small cards. */
+.hub-tier-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+}
+.hub-tier-label::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, rgba(217, 119, 6, 0.4), transparent);
+}
+[dir='rtl'].hub-tier-label::after {
+  background: linear-gradient(to left, rgba(217, 119, 6, 0.4), transparent);
+}
+
+.hub-top {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: 100%;
+  min-height: 12rem;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  padding: 1rem;
+  color: #fefce8;
+  background: linear-gradient(160deg, #0d5a40 0%, #073f2c 52%, #042a1d 100%);
+  box-shadow: 0 18px 40px -20px rgba(2, 44, 34, 0.6);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s,
+    border-color 0.45s;
+}
+.hub-top:hover {
+  transform: translateY(-6px);
+  border-color: rgba(251, 191, 36, 0.75);
+  box-shadow:
+    0 28px 54px -22px rgba(2, 44, 34, 0.65),
+    0 0 32px rgba(251, 191, 36, 0.22);
+}
+.hub-top__pattern {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.22;
+}
+.hub-top__glow {
+  position: absolute;
+  inset-block-start: -4rem;
+  inset-inline-end: -4rem;
+  z-index: -1;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.45), rgba(251, 191, 36, 0) 68%);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hub-top:hover .hub-top__glow {
+  transform: scale(1.35);
+}
+/* A soft band of light that sweeps across on hover. */
+.hub-top__shine {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 247, 214, 0.16) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hub-top:hover .hub-top__shine {
+  transform: translateX(120%);
+}
+/* Mihrab-shaped gold medallion, echoing the arches in the hero. */
+.hub-top__arch {
+  display: flex;
+  width: 2.75rem;
+  height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.35rem;
+  border-radius: 999px 999px 0.6rem 0.6rem;
+  color: #052e22;
+  background: linear-gradient(165deg, #fef3c7 0%, #fbbf24 40%, #b45309 100%);
+  box-shadow:
+    0 0 0 3px rgba(5, 46, 34, 0.9),
+    0 0 0 4px rgba(251, 191, 36, 0.55),
+    0 10px 24px rgba(251, 191, 36, 0.3);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hub-top:hover .hub-top__arch {
+  transform: translateY(-3px) scale(1.05);
+}
+.hub-top__group {
+  border-radius: 9999px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  padding: 0.15rem 0.55rem;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(253, 230, 138, 0.85);
+}
+.hub-top__title {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fde68a;
+}
+.hub-top__hint {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(254, 252, 232, 0.78);
+}
+.hub-top__go {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-top: 0.9rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fbbf24;
+}
+/* Donate: the gold card. */
+.hub-top--gold {
+  color: #052e22;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: linear-gradient(160deg, #fef3c7 0%, #fbbf24 38%, #d97706 78%, #b45309 100%);
+  box-shadow: 0 18px 40px -18px rgba(180, 83, 9, 0.6);
+}
+.hub-top--gold:hover {
+  border-color: #fff;
+  box-shadow:
+    0 28px 54px -22px rgba(180, 83, 9, 0.65),
+    0 0 34px rgba(251, 191, 36, 0.45);
+}
+.hub-top--gold .hub-top__pattern {
+  opacity: 0.18;
+  filter: brightness(0.4);
+}
+.hub-top--gold .hub-top__glow {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 68%);
+}
+.hub-top--gold .hub-top__arch {
+  color: #fde68a;
+  background: linear-gradient(165deg, #0d5a40 0%, #052e22 100%);
+  box-shadow:
+    0 0 0 3px rgba(254, 243, 199, 0.95),
+    0 0 0 4px rgba(5, 46, 34, 0.35),
+    0 10px 24px rgba(5, 46, 34, 0.35);
+}
+.hub-top--gold .hub-top__group {
+  border-color: rgba(5, 46, 34, 0.35);
+  color: rgba(5, 46, 34, 0.8);
+}
+.hub-top--gold .hub-top__title {
+  color: #052e22;
+}
+.hub-top--gold .hub-top__hint {
+  color: rgba(5, 46, 34, 0.8);
+}
+.hub-top--gold .hub-top__go {
+  color: #052e22;
+}
+
+.hub-card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 10rem;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(217, 197, 143, 0.55);
+  padding: 0.95rem 0.95rem 1rem;
+  background: linear-gradient(180deg, #fffdf6 0%, #fbf5e6 100%);
+  box-shadow: 0 12px 26px -18px rgba(2, 44, 34, 0.4);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s,
+    border-color 0.4s;
+}
+/* A thin gold line along the top that brightens on hover. */
+.hub-card::before {
+  content: '';
+  position: absolute;
+  inset-inline: 1.25rem;
+  inset-block-start: 0;
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+  background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+  opacity: 0.55;
+  transition: opacity 0.4s, inset-inline 0.4s;
+}
+.hub-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(217, 119, 6, 0.45);
+  box-shadow: 0 20px 36px -20px rgba(2, 44, 34, 0.45);
+}
+.hub-card:hover::before {
+  opacity: 1;
+  inset-inline: 0.4rem;
+}
+.hub-card__icon {
+  display: flex;
+  width: 2.35rem;
+  height: 2.8rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.3rem;
+  border-radius: 999px 999px 0.5rem 0.5rem;
+  color: #fbbf24;
+  background: linear-gradient(165deg, #0d5a40 0%, #052e22 100%);
+  box-shadow:
+    0 0 0 2px #fffdf6,
+    0 0 0 3px rgba(217, 119, 6, 0.45);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hub-card:hover .hub-card__icon {
+  transform: translateY(-2px);
+}
+.hub-card__group {
+  border-radius: 9999px;
+  background: rgba(251, 191, 36, 0.14);
+  padding: 0.15rem 0.5rem;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+}
+.hub-card__title {
+  margin-top: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-forest);
+}
+.hub-card__hint {
+  margin-top: 0.25rem;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--color-slate-warm, #57534e);
+}
+.hub-card__go {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-top: 0.75rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+.hub-card:hover .hub-card__go {
+  opacity: 1;
+}
+@media (min-width: 640px) {
+  .hub-top {
+    min-height: 13.5rem;
+    padding: 1.35rem;
+  }
+  .hub-top__arch {
+    width: 3.25rem;
+    height: 3.85rem;
+  }
+  .hub-top__title {
+    margin-top: 1.25rem;
+    font-size: 1.6rem;
+  }
+  .hub-top__hint {
+    font-size: 0.85rem;
+  }
+  .hub-card {
+    padding: 1.15rem 1.15rem 1.2rem;
+  }
+  .hub-card__title {
+    font-size: 1.22rem;
+  }
+  .hub-card__hint {
+    font-size: 0.8rem;
   }
 }
 
@@ -635,8 +1126,19 @@ html.urdu .spotlight-label {
     animation: none;
     opacity: 0.8;
   }
-  .arch-frame {
+  .hub-top__shine {
+    display: none;
+  }
+  .arch-frame,
+  .guide-halo,
+  .hq-rays,
+  .hq-glow,
+  .hq-book,
+  .hq-twinkle {
     animation: none;
+  }
+  .hq-spark {
+    display: none;
   }
 }
 

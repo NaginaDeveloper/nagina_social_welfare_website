@@ -30,20 +30,132 @@
   </div>
 
   <div
-    class="relative mx-auto grid w-full max-w-[var(--site-max)] items-center gap-6 px-[var(--site-gutter)] pb-20 pt-24 sm:gap-10 sm:pb-24 sm:pt-32 lg:max-w-[100rem] lg:grid-cols-12 lg:items-start lg:gap-8 lg:px-10 lg:pb-24 lg:pt-36 2xl:px-16"
+    class="relative mx-auto grid w-full max-w-[var(--site-max)] items-center gap-2.5 px-[var(--site-gutter)] pb-20 pt-[3.5rem] sm:gap-10 sm:pb-24 sm:pt-32 lg:max-w-[100rem] lg:grid-cols-12 lg:items-start lg:gap-8 lg:px-10 lg:pb-24 lg:pt-36 2xl:px-16"
   >
-    <!-- Bismillah over the three Holy Mosques in arched frames: Makkah, Madinah, Al-Aqsa. -->
-    <div class="flex flex-col items-center lg:order-2 lg:col-span-6" data-testid="hero-haramain">
+    <!--
+      The Holy Qur'an, illuminated: taught to children at our Madrasas. It comes
+      first, above everything else in the hero. On phones and tablets it leads the
+      section; from 1024px it heads the right column; from 1280px it sits in the
+      space between the guide and the Holy Mosques, sized to that space.
+    -->
+    <a
+      routerLink="/madrasa"
+      class="hero-quran animate-fade-up group flex flex-col items-center justify-self-center lg:col-span-6 lg:col-start-7 lg:row-start-1 xl:absolute xl:col-auto xl:row-auto"
+      style="animation-delay: 200ms"
+      data-testid="hero-quran"
+      aria-label="The Holy Qur'an: Madrasa classes for children"
+    >
+      <svg class="w-[7.5rem] overflow-visible sm:w-52 xl:w-full" viewBox="0 0 400 290" aria-hidden="true">
+        <defs>
+          <linearGradient id="hq-gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fde68a" />
+            <stop offset="0.45" stop-color="#f5b82e" />
+            <stop offset="1" stop-color="#b9781a" />
+          </linearGradient>
+          <linearGradient id="hq-cover" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#14583f" />
+            <stop offset="1" stop-color="#062d20" />
+          </linearGradient>
+          <linearGradient id="hq-page" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fffdf4" />
+            <stop offset="1" stop-color="#f3e7c4" />
+          </linearGradient>
+          <radialGradient id="hq-glow" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#fff3c4" stop-opacity="0.95" />
+            <stop offset="0.35" stop-color="#fbbf24" stop-opacity="0.45" />
+            <stop offset="1" stop-color="#fbbf24" stop-opacity="0" />
+          </radialGradient>
+          <filter id="hq-shadow" x="-20%" y="-20%" width="140%" height="160%">
+            <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#022c22" flood-opacity="0.6" />
+          </filter>
+          <radialGradient id="hq-core" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#fffdf0" stop-opacity="1" />
+            <stop offset="0.5" stop-color="#fde68a" stop-opacity="0.75" />
+            <stop offset="1" stop-color="#fbbf24" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="hq-ray" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fde68a" stop-opacity="0" />
+            <stop offset="1" stop-color="#fde68a" stop-opacity="0.55" />
+          </linearGradient>
+        </defs>
+        <!-- light rays turning slowly behind the book -->
+        <g transform="translate(200 140)">
+          <!-- turns about its own origin, the centre of the light -->
+          <g class="hq-rays">
+            @for (r of quranRays; track r.angle) {
+              <path
+                [attr.transform]="'rotate(' + r.angle + ')'"
+                [attr.d]="'M -' + r.width + ',0 L 0,-' + r.length + ' L ' + r.width + ',0 Z'"
+                fill="url(#hq-ray)"
+              />
+            }
+          </g>
+        </g>
+        <circle class="hq-glow" cx="200" cy="140" r="128" fill="url(#hq-glow)" />
+        <!-- bright core where the light begins -->
+        <circle cx="200" cy="140" r="34" fill="url(#hq-core)" />
+        <!-- soft pool of light over the open pages -->
+        <ellipse cx="200" cy="150" rx="86" ry="34" fill="url(#hq-glow)" opacity="0.8" />
+        <!-- twinkling gold stars -->
+        @for (t of quranStars; track $index) {
+          <path
+            class="hq-twinkle"
+            [attr.transform]="'translate(' + t.x + ' ' + t.y + ') scale(' + t.s + ')'"
+            [style.animation-delay]="t.delay"
+            d="M0,-10 L2.4,-2.4 L10,0 L2.4,2.4 L0,10 L-2.4,2.4 L-10,0 L-2.4,-2.4 Z"
+            fill="#fde68a"
+          />
+        }
+        <!-- the book on its rehal, gently floating -->
+        <g class="hq-book">
+          <g transform="translate(200 168) scale(0.86)" filter="url(#hq-shadow)">
+            <path d="M -150,120 L 150,-20 L 168,4 L -132,144 Z" fill="#9a6415" />
+            <path d="M 150,120 L -150,-20 L -168,4 L 132,144 Z" fill="url(#hq-gold)" />
+            <path d="M 0,-6 C -40,-46 -120,-66 -188,-40 L -188,62 C -122,36 -44,50 0,90 Z" fill="url(#hq-cover)" stroke="url(#hq-gold)" stroke-width="2" />
+            <path d="M 0,-6 C 40,-46 120,-66 188,-40 L 188,62 C 122,36 44,50 0,90 Z" fill="url(#hq-cover)" stroke="url(#hq-gold)" stroke-width="2" />
+            <path d="M 0,4 C -38,-34 -114,-52 -174,-30 L -174,52 C -116,30 -42,42 0,80 Z" fill="url(#hq-page)" stroke="#d9c58f" stroke-width="2" />
+            <path d="M 0,4 C 38,-34 114,-52 174,-30 L 174,52 C 116,30 42,42 0,80 Z" fill="url(#hq-page)" stroke="#d9c58f" stroke-width="2" />
+            <g fill="none" stroke="url(#hq-gold)" stroke-width="3">
+              <path d="M -24,8 C -60,-14 -116,-18 -154,-6 L -154,40 C -116,28 -60,30 -24,52 Z" />
+              <path d="M 24,8 C 60,-14 116,-18 154,-6 L 154,40 C 116,28 60,30 24,52 Z" />
+            </g>
+            <g fill="none" stroke="#0f4a35" stroke-width="2.4" stroke-linecap="round" opacity="0.5">
+              <path d="M -40,14 C -70,-2 -110,-4 -138,4" /><path d="M -40,26 C -70,10 -110,8 -138,16" /><path d="M -40,38 C -70,22 -110,20 -138,28" />
+              <path d="M 40,14 C 70,-2 110,-4 138,4" /><path d="M 40,26 C 70,10 110,8 138,16" /><path d="M 40,38 C 70,22 110,20 138,28" />
+            </g>
+            <!-- small gold rosettes on each page -->
+            <circle cx="-89" cy="-12" r="5" fill="url(#hq-gold)" /><circle cx="89" cy="-12" r="5" fill="url(#hq-gold)" />
+            <path d="M 0,-14 L 0,80" stroke="#b9781a" stroke-width="4" />
+          </g>
+        </g>
+        <!-- specks of light rising from the pages -->
+        @for (s of quranSparks; track $index) {
+          <circle
+            class="hq-spark"
+            [attr.cx]="s.x"
+            cy="150"
+            [attr.r]="s.r"
+            fill="#fff3c4"
+            [style.animation-delay]="s.delay"
+            [style.animation-duration]="s.duration"
+          />
+        }
+      </svg>
+      <span class="-mt-1 font-arabic text-base leading-tight text-gold-300 notranslate sm:text-xl min-[1440px]:text-2xl" lang="ar" dir="rtl">القرآن الكريم</span>
+    </a>
+
+    <!-- Bismillah over the three Holy Mosques in arched frames: Makkah, Madinah, Al-Aqsa. On desktop it starts lower, leaving the Qur'an clear space above. -->
+    <div class="flex flex-col items-center lg:order-2 lg:col-span-6 lg:col-start-7 lg:row-start-2 xl:row-start-1 xl:pt-[2.75rem] 2xl:pt-[4.5rem]" data-testid="hero-haramain">
       <p
-        class="animate-fade-up mb-5 text-center font-arabic text-3xl leading-tight text-gold-300 notranslate sm:mb-6 sm:text-4xl lg:text-[2.6rem] lg:leading-[1.25] 2xl:text-5xl"
+        class="animate-fade-up mb-3 text-center font-arabic text-2xl leading-tight text-gold-300 notranslate sm:mb-6 sm:text-4xl lg:text-[2.6rem] lg:leading-[1.25] 2xl:text-5xl"
         lang="ar"
         dir="rtl"
       >
         بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
       </p>
-      <div class="relative w-full max-w-[24rem] sm:max-w-xl lg:max-w-[40rem]">
+      <div class="relative w-full max-w-[17.5rem] sm:max-w-xl lg:max-w-[40rem]">
         <div class="absolute inset-[-10%] rounded-full bg-gold/20 blur-3xl" aria-hidden="true"></div>
-        <div class="relative grid grid-cols-3 items-start gap-2.5 sm:gap-4">
+        <div class="relative grid grid-cols-3 items-start gap-2 sm:gap-4">
           @for (place of haramain; track place.src; let i = $index) {
             <figure class="animate-fade-up flex flex-col items-center" [style.animation-delay]="i * 140 + 'ms'">
               <!-- Mihrab frame: gold rim, dark gap, fine inner gold line, a star at the crown. -->
@@ -67,45 +179,78 @@
                 </div>
               </div>
               <!-- Name under the arch, so it never sits on the photo. -->
-              <figcaption class="mt-2 text-center font-display text-sm font-semibold leading-tight text-gold-300 sm:mt-3 sm:text-lg">
+              <figcaption class="mt-1.5 text-center font-display text-[0.72rem] font-semibold leading-tight text-gold-300 sm:mt-3 sm:text-lg">
                 {{ place.name }}
               </figcaption>
             </figure>
           }
         </div>
-        <p class="relative mt-2 text-center text-[0.65rem] text-cream/50 lg:text-end">
-          Al-Aqsa photo:
-          <a
-            class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
-            href="https://commons.wikimedia.org/wiki/File:Dome_of_the_Rock,_Jerusalem_(16197850416).jpg"
-            target="_blank"
-            rel="noopener noreferrer"
-            >yeowatzup</a
-          >
-          (<a
-            class="underline decoration-cream/30 underline-offset-2 hover:text-cream/80"
-            href="https://creativecommons.org/licenses/by/2.0/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >CC BY 2.0</a
-          >)
-        </p>
       </div>
     </div>
 
     <!-- Words -->
     <div
-      class="flex flex-col items-center text-center lg:order-1 lg:col-span-6 lg:items-start lg:text-start"
+      class="flex flex-col items-center text-center lg:order-1 lg:col-span-6 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:items-start lg:text-start xl:row-span-2"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
+      <!-- Spiritual guide. -->
+      <div class="mb-2 flex w-full items-center justify-center gap-6 sm:mb-8 lg:justify-start">
+        <!-- Our spiritual guide: portrait medallion with his name turning around it. -->
+        <a
+          routerLink="/spiritual-guide"
+          class="group animate-fade-up flex shrink-0 items-center gap-3.5 sm:gap-5"
+          style="animation-delay: 60ms"
+          data-testid="hero-guide"
+        >
+          <span class="guide-medallion" aria-hidden="true">
+            <span class="guide-halo"></span>
+            <svg class="guide-ring animate-spin-slow" viewBox="0 0 200 200">
+              <defs>
+                <path id="guide-ring-path" d="M100,100 m-87,0 a87,87 0 1,1 174,0 a87,87 0 1,1 -174,0" />
+              </defs>
+              <text>
+                <textPath href="#guide-ring-path" textLength="546" lengthAdjust="spacing">
+                  MUNIR-E-ISLAM ✦ ALLAMA MUNIR AHMED YUSUFI ✦
+                </textPath>
+              </text>
+            </svg>
+            <span class="guide-rim">
+              <span class="guide-gap">
+                <img
+                  src="/media/guide-munir-e-islam.webp"
+                  alt=""
+                  width="446"
+                  height="448"
+                  decoding="async"
+                  fetchpriority="high"
+                />
+              </span>
+            </span>
+          </span>
+          <span class="flex flex-col items-start text-start">
+            <span class="eyebrow-on-dark">{{ i18n.pick('Our Spiritual Guide', 'ہمارے روحانی رہنما') }}</span>
+            <span class="text-shimmer mt-0.5 font-display text-xl font-bold leading-tight sm:mt-1.5 sm:text-[2.1rem] lg:text-[2.4rem]">
+              {{ i18n.pick('Munir-e-Islam', 'منیرِ اسلام') }}
+            </span>
+            <span class="font-display text-sm font-medium leading-snug text-cream/90 sm:text-xl lg:text-[1.35rem]">
+              {{ i18n.pick('Allama Munir Ahmed Yusufi', 'علامہ منیر احمد یوسفی') }}
+            </span>
+            <span class="mt-0.5 font-arabic text-sm text-gold-300/90 notranslate sm:text-base" lang="ur" dir="rtl">
+              رضی اللہ تعالیٰ عنہ
+            </span>
+          </span>
+        </a>
+      </div>
+
+
       <h1
-        class="animate-fade-up font-display text-[2.75rem] font-bold leading-[0.95] tracking-tight sm:text-6xl lg:whitespace-nowrap lg:text-5xl lg:leading-[1.1] xl:text-[3.4rem] 2xl:text-[4.2rem]"
+        class="animate-fade-up font-display text-[2rem] font-bold leading-[0.95] tracking-tight sm:text-6xl lg:whitespace-nowrap lg:text-5xl lg:leading-[1.1] xl:text-[3.4rem] 2xl:text-[4.2rem]"
         style="animation-delay: 160ms"
       >
         <span class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
           <!-- The NSW seal on a white disc, to the right of the title (above it on phones). -->
           <span
-            class="flex h-14 w-14 shrink-0 sm:order-last items-center justify-center rounded-full bg-white p-1 shadow-portal ring-2 ring-gold-300/60 sm:h-20 sm:w-20 lg:h-[4.5rem] lg:w-[4.5rem] 2xl:h-24 2xl:w-24"
+            class="flex h-10 w-10 shrink-0 sm:order-last items-center justify-center rounded-full bg-white p-1 shadow-portal ring-2 ring-gold-300/60 sm:h-20 sm:w-20 lg:h-[4.5rem] lg:w-[4.5rem] 2xl:h-24 2xl:w-24"
           >
             <img src="/brand/nagina.png" alt="" width="490" height="509" class="h-full w-full object-contain" decoding="async" />
           </span>
@@ -124,16 +269,36 @@
         <app-hero-top-actions />
       </div>
 
+      <a
+        class="animate-fade-up mt-7 inline-flex items-center gap-1.5 text-xs text-cream/60 transition-colors hover:text-white sm:mt-9"
+        style="animation-delay: 560ms"
+        [href]="org.charityCommissionUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <app-icon name="shield" size="h-3.5 w-3.5 text-gold-300" />
+        {{ i18n.t('home.trust.charity') }} · <span class="font-semibold text-gold-300">{{ org.charityNumber }}</span>
+      </a>
+
+    </div>
+
+    <!-- Centres: under the buttons on phones, under the Holy Mosques on desktop. -->
+    <div
+      class="mt-3 flex flex-col items-center text-center sm:mt-1 lg:order-3 lg:col-span-6 lg:col-start-7 lg:row-start-3 lg:mt-2 xl:row-start-2"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
       <!-- Both centres, one tap from the top of the page. -->
       <div
-        class="animate-fade-up mt-9 flex flex-col items-center gap-2.5 sm:mt-11 sm:gap-3 lg:items-start"
+        class="animate-fade-up flex flex-col items-center gap-2.5 sm:gap-3"
         style="animation-delay: 440ms"
         data-testid="hero-centres"
       >
-        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-gold-300/70">
+        <p class="flex items-center gap-3 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-gold-300/70">
+          <span class="h-px w-8 bg-gradient-to-r from-transparent to-gold-300/60 sm:w-12" aria-hidden="true"></span>
           {{ i18n.t('hero.centresLabel') }}
+          <span class="h-px w-8 bg-gradient-to-l from-transparent to-gold-300/60 sm:w-12" aria-hidden="true"></span>
         </p>
-        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:justify-start">
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           @for (chip of centreChips(); track chip.id) {
             <a
               [routerLink]="chip.path"
@@ -157,16 +322,6 @@
         </div>
       </div>
 
-      <a
-        class="animate-fade-up mt-7 inline-flex items-center gap-1.5 text-xs text-cream/60 transition-colors hover:text-white sm:mt-9"
-        style="animation-delay: 560ms"
-        [href]="org.charityCommissionUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <app-icon name="shield" size="h-3.5 w-3.5 text-gold-300" />
-        {{ i18n.t('home.trust.charity') }} · <span class="font-semibold text-gold-300">{{ org.charityNumber }}</span>
-      </a>
     </div>
 
     <!-- Scroll cue -->
@@ -231,66 +386,71 @@
       </div>
     </div>
 
-    @if (filteredTiles().length === 0) {
-      <p class="rounded-2xl border border-mist bg-white px-5 py-8 text-center text-sm text-slate-warm">
-        {{ i18n.t('hub.empty') }}
-      </p>
+    @if (searching()) {
+      @if (filteredTiles().length === 0) {
+        <p class="rounded-2xl border border-mist bg-white px-5 py-8 text-center text-sm text-slate-warm">
+          {{ i18n.t('hub.empty') }}
+        </p>
+      } @else {
+        <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4" data-testid="hub-results">
+          @for (tile of visibleTiles(); track tile.id) {
+            <li class="flex"><ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{ $implicit: tile }" /></li>
+          }
+        </ul>
+      }
     } @else {
-      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6">
-        @for (tile of visibleTiles(); track tile.id; let i = $index) {
-          <div class="flex" [appReveal]="(i % 8) * 60">
-          @if (tile.externalHref; as href) {
+      <!-- Most visited: large green-and-gold cards with an arch medallion. -->
+      <p class="hub-tier-label" [attr.dir]="i18n.isUr() ? 'rtl' : null">{{ i18n.t('hub.topTitle') }}</p>
+      <ul class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5" data-testid="hub-top">
+        @for (tile of topTiles(); track tile.id; let i = $index) {
+          <li class="flex" [appReveal]="i * 80">
             <a
-              [href]="href"
-              target="_blank"
-              rel="noopener noreferrer"
-              [class]="tileClass(tile.tone)"
-              [attr.dir]="i18n.isUr() ? 'rtl' : null"
-              [attr.aria-label]="tile.ariaKey ? i18n.t(tile.ariaKey) : null"
-            >
-              <span [class]="iconClass(tile.tone)">
-                <app-icon [name]="tile.icon" size="h-5 w-5" />
-              </span>
-              <p class="font-display text-base font-bold leading-snug text-forest sm:text-lg">
-                {{ i18n.t(tile.labelKey) }}
-              </p>
-              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm">
-                {{ i18n.t(tile.hintKey) }}
-              </p>
-              <p class="mt-auto inline-flex items-center gap-1 pt-3 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
-                {{ i18n.t(tile.groupKey) }}
-                <app-icon name="external" size="h-3 w-3 opacity-70" />
-              </p>
-            </a>
-          } @else if (tile.path; as path) {
-            <a
-              [routerLink]="path"
-              [class]="tileClass(tile.tone)"
+              [routerLink]="tile.path"
+              class="hub-top group"
+              [class.hub-top--gold]="tile.id === 'donate'"
               [attr.dir]="i18n.isUr() ? 'rtl' : null"
             >
-              <span [class]="iconClass(tile.tone)">
-                <app-icon [name]="tile.icon" size="h-5 w-5" />
+              <span class="hub-top__pattern geo-pattern" aria-hidden="true"></span>
+              <span class="hub-top__glow" aria-hidden="true"></span>
+              <span class="hub-top__shine" aria-hidden="true"></span>
+              <span class="relative flex items-start justify-between gap-2">
+                <span class="hub-top__arch">
+                  <app-icon [name]="tile.icon" size="h-5 w-5 sm:h-6 sm:w-6" />
+                </span>
+                <span class="hub-top__group">{{ i18n.t(tile.groupKey) }}</span>
               </span>
-              <p class="font-display text-base font-bold leading-snug text-forest sm:text-lg">
-                {{ i18n.t(tile.labelKey) }}
-              </p>
-              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm">
+              <span class="hub-top__title">{{ i18n.t(tile.labelKey) }}</span>
+              <span class="hub-top__hint">
                 @if (tile.id === 'salah') {
                   {{ salahSubtitle() }}
                 } @else {
                   {{ i18n.t(tile.hintKey) }}
                 }
-              </p>
-              <p class="mt-auto pt-3 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
-                {{ i18n.t(tile.groupKey) }}
-              </p>
+              </span>
+              <span class="hub-top__go">
+                {{ i18n.t('hub.open') }}
+                <app-icon name="arrow" size="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
+              </span>
             </a>
-          }
-          </div>
+          </li>
         }
-      </div>
-      @if (!query().trim() && hiddenTileCount() > 0) {
-        <div class="mt-6 flex justify-center">
+      </ul>
+
+      <!-- More to explore: refined cream cards. -->
+      <p class="hub-tier-label mt-10 sm:mt-12" [attr.dir]="i18n.isUr() ? 'rtl' : null">{{ i18n.t('hub.moreTitle') }}</p>
+      <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4" data-testid="hub-popular">
+        @for (tile of popularTiles(); track tile.id; let i = $index) {
+          <li class="flex" [appReveal]="(i % 4) * 60"><ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{ $implicit: tile }" /></li>
+        }
+        @if (showAll()) {
+          @for (tile of moreTiles(); track tile.id; let i = $index) {
+            <li class="flex" [appReveal]="(i % 4) * 60"><ng-container [ngTemplateOutletContext]="{ $implicit: tile }" [ngTemplateOutlet]="card" /></li>
+          }
+        }
+      </ul>
+
+      @if (hiddenTileCount() > 0) {
+        <div class="mt-8 flex justify-center">
           <button type="button" class="btn btn-secondary-light" [attr.aria-expanded]="showAll()" (click)="toggleShowAll()">
             {{ showAllLabel() }}
             <svg class="h-4 w-4 transition-transform" [class.rotate-180]="showAll()" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -300,5 +460,46 @@
         </div>
       }
     }
+
+    <!-- One small card, shared by "More to explore", "Show all" and search results. -->
+    <ng-template #card let-tile>
+      @if (tile.externalHref; as href) {
+        <a
+          [href]="href"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hub-card group"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+          [attr.aria-label]="tile.ariaKey ? i18n.t(tile.ariaKey) : null"
+        >
+          <span class="relative flex items-start justify-between gap-2">
+            <span class="hub-card__icon"><app-icon [name]="tile.icon" size="h-[1.15rem] w-[1.15rem]" /></span>
+            <span class="hub-card__group">{{ i18n.t(tile.groupKey) }}</span>
+          </span>
+          <span class="hub-card__title">{{ i18n.t(tile.labelKey) }}</span>
+          <span class="hub-card__hint">{{ i18n.t(tile.hintKey) }}</span>
+          <span class="hub-card__go">{{ i18n.t('hub.open') }} <app-icon name="external" size="h-3 w-3" /></span>
+        </a>
+      } @else {
+        <a [routerLink]="tile.path" class="hub-card group" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+          <span class="relative flex items-start justify-between gap-2">
+            <span class="hub-card__icon"><app-icon [name]="tile.icon" size="h-[1.15rem] w-[1.15rem]" /></span>
+            <span class="hub-card__group">{{ i18n.t(tile.groupKey) }}</span>
+          </span>
+          <span class="hub-card__title">{{ i18n.t(tile.labelKey) }}</span>
+          <span class="hub-card__hint">
+            @if (tile.id === 'salah') {
+              {{ salahSubtitle() }}
+            } @else {
+              {{ i18n.t(tile.hintKey) }}
+            }
+          </span>
+          <span class="hub-card__go">
+            {{ i18n.t('hub.open') }}
+            <app-icon name="arrow" size="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 rtl:-scale-x-100" />
+          </span>
+        </a>
+      }
+    </ng-template>
   </div>
 </section>
