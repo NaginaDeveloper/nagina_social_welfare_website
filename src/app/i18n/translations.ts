@@ -880,7 +880,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'seedha.title': 'Seedha',
     'seedha.titleAccent': 'Rastah',
     'seedha.lead':
-      'The main public educational contribution of Munir-e-Islam, Allama Munir Ahmed Yusufi. The PDF books, audio, and YouTube sermons shared on this website were preserved from the Seedha Rastah archive.',
+      'The main public educational contribution of Munir-e-Islam, Allama Munir Ahmed Yusufi رحمۃ اللہ علیہ. The PDF books, audio, and YouTube sermons shared on this website were preserved from the Seedha Rastah archive.',
     'seedha.visit': 'Visit seedharastah.com',
     'seedha.visitAria': 'Visit seedharastah.com (opens in a new tab)',
     'seedha.openLibrary': 'Open our library',
@@ -899,7 +899,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'seedha.cardSermonsLead': 'Search blessed sermons from the Seedha Rastah collection, many via Nagina TV on YouTube.',
     'seedha.cardSermonsCta': 'Open Sermons →',
     'seedha.cardOriginal': 'Original website',
-    'seedha.cardOriginalLead': 'Visit seedharastah.com — the educational portal founded under the guidance of Munir-e-Islam.',
+    'seedha.cardOriginalLead': 'Visit seedharastah.com — the educational portal founded under the guidance of Munir-e-Islam رحمۃ اللہ علیہ.',
     'seedha.cardOriginalCta': 'Open seedharastah.com',
     'seedha.dirEyebrow': 'On the Original Website',
     'seedha.dirTitle': 'Main Sections of',
@@ -924,22 +924,22 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'seedha.dir.calendarHint': 'Islamic dates',
     'seedha.dir.magazine': 'Magazine',
     'seedha.dir.magazineHint': 'New arrivals & issues',
-    'seedha.dir.yousafi': 'Maulana Yusufi',
-    'seedha.dir.yousafiHint': 'About Munir-e-Islam',
+    'seedha.dir.yousafi': 'Maulana Yusufi رحمۃ اللہ علیہ',
+    'seedha.dir.yousafiHint': 'About Munir-e-Islam رحمۃ اللہ علیہ',
     'seedha.dir.society': 'Nagina Society',
     'seedha.dir.societyHint': 'Organisation overview',
     'seedha.dir.tv': 'Nagina TV',
     'seedha.dir.tvHint': 'Live programmes',
     'seedha.tributeEyebrow': 'In Honour',
     'seedha.tributeLead':
-      'May Allah elevate the rank of Munir-e-Islam. Seedha Rastah continues to light hearts with knowledge, sweet manner, and sincere charity — a legacy carried forward by Nagina Social Welfare and Markaz Deen-e-Islam. Ameen.',
+      'May Allah elevate the rank of Munir-e-Islam رحمۃ اللہ علیہ. Seedha Rastah continues to light hearts with knowledge, sweet manner, and sincere charity — a legacy carried forward by Nagina Social Welfare and Markaz Deen-e-Islam. Ameen.',
     'seedha.tributeGuide': 'Spiritual Guide',
     'seedha.tributeTv': 'Nagina TV',
     'seedha.spotlightEyebrow': 'Cherry on the Cake',
     'seedha.spotlightTitle': 'Seedha',
     'seedha.spotlightAccent': 'Rastah',
     'seedha.spotlightLead':
-      'The educational archive of Munir-e-Islam — books, sermons, and the original website that inspired our library.',
+      'The educational archive of Munir-e-Islam رحمۃ اللہ علیہ — books, sermons, and the original website that inspired our library.',
     'seedha.spotlightCta': 'Explore the Archive',
 
     'books.source': 'Source',
@@ -954,9 +954,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'photos.close': 'Close photograph',
 
     'sayings.eyebrow': 'Malfoozat',
-    'sayings.title': 'Sayings of Munir-e-Islam',
+    'sayings.title': 'Sayings of Munir-e-Islam رحمۃ اللہ علیہ',
     'sayings.lead':
-      'Selected sayings of Munir-e-Islam, Allama Munir Ahmed Yusufi, shared for reflection and guidance. May Allah elevate his rank. Ameen.',
+      'Selected sayings of Munir-e-Islam, Allama Munir Ahmed Yusufi رحمۃ اللہ علیہ, shared for reflection and guidance. May Allah elevate his rank. Ameen.',
 
     'shajra.eyebrow': 'Spiritual Lineage (Shajra Sharif)',
     'shajra.openHero': 'Open spiritual lineage hero: Faiz-e-Nagina (“grace of Nagina”) and Munir-e-Islam',
@@ -2232,7 +2232,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'seedha.title': 'سیدھا',
     'seedha.titleAccent': 'راستہ',
     'seedha.lead':
-      'منیرِ اسلام حضرت علامہ منیر احمد یوسفی کا اہم عوامی تعلیمی کارنامہ۔ اس ویب سائٹ پر موجود پی ڈی ایف کتب، آڈیو اور یوٹیوب بیانات اسی سیدھا راستہ آرکائیو سے محفوظ کیے گئے ہیں۔',
+      'منیرِ اسلام حضرت علامہ منیر احمد یوسفی رحمۃ اللہ علیہ کا اہم عوامی تعلیمی کارنامہ۔ اس ویب سائٹ پر موجود پی ڈی ایف کتب، آڈیو اور یوٹیوب بیانات اسی سیدھا راستہ آرکائیو سے محفوظ کیے گئے ہیں۔',
     'seedha.visit': 'seedharastah.com دیکھیں',
     'seedha.visitAria': 'seedharastah.com کھولیں (نئی ٹیب میں)',
     'seedha.openLibrary': 'ہمارا کتب خانہ کھولیں',
@@ -2251,7 +2251,7 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'seedha.cardSermonsLead': 'سیدھا راستہ مجموعے کے مبارک بیانات تلاش کریں — اکثر نگینہ ٹی وی کے ذریعے۔',
     'seedha.cardSermonsCta': 'بیانات کھولیں ←',
     'seedha.cardOriginal': 'اصل ویب سائٹ',
-    'seedha.cardOriginalLead': 'seedharastah.com دیکھیں — منیرِ اسلام کی رہنمائی میں قائم تعلیمی پورٹل۔',
+    'seedha.cardOriginalLead': 'seedharastah.com دیکھیں — منیرِ اسلام رحمۃ اللہ علیہ کی رہنمائی میں قائم تعلیمی پورٹل۔',
     'seedha.cardOriginalCta': 'seedharastah.com کھولیں',
     'seedha.dirEyebrow': 'اصل ویب سائٹ پر',
     'seedha.dirTitle': 'سیدھا راستہ کے',
@@ -2276,22 +2276,22 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'seedha.dir.calendarHint': 'اسلامی تاریخیں',
     'seedha.dir.magazine': 'میگزین',
     'seedha.dir.magazineHint': 'نئی اشاعتیں',
-    'seedha.dir.yousafi': 'مولانا یوسفی',
-    'seedha.dir.yousafiHint': 'منیرِ اسلام کے بارے میں',
+    'seedha.dir.yousafi': 'مولانا یوسفی رحمۃ اللہ علیہ',
+    'seedha.dir.yousafiHint': 'منیرِ اسلام رحمۃ اللہ علیہ کے بارے میں',
     'seedha.dir.society': 'نگینہ سوسائٹی',
     'seedha.dir.societyHint': 'تنظیم کا تعارف',
     'seedha.dir.tv': 'نگینہ ٹی وی',
     'seedha.dir.tvHint': 'براہِ راست پروگرام',
     'seedha.tributeEyebrow': 'تکریم میں',
     'seedha.tributeLead':
-      'اللہ تعالیٰ منیرِ اسلام کا درجہ بلند فرمائے۔ سیدھا راستہ علم، شیریں گفتاری اور خلوصِ خیرات سے دلوں کو روشن کرتا ہے — یہ میراث نگینہ سوشل ویلفیئر اور مرکز دینِ اسلام آگے بڑھا رہے ہیں۔ آمین۔',
+      'اللہ تعالیٰ منیرِ اسلام رحمۃ اللہ علیہ کا درجہ بلند فرمائے۔ سیدھا راستہ علم، شیریں گفتاری اور خلوصِ خیرات سے دلوں کو روشن کرتا ہے — یہ میراث نگینہ سوشل ویلفیئر اور مرکز دینِ اسلام آگے بڑھا رہے ہیں۔ آمین۔',
     'seedha.tributeGuide': 'روحانی رہنما',
     'seedha.tributeTv': 'نگینہ ٹی وی',
     'seedha.spotlightEyebrow': 'خاص اضافہ',
     'seedha.spotlightTitle': 'سیدھا',
     'seedha.spotlightAccent': 'راستہ',
     'seedha.spotlightLead':
-      'منیرِ اسلام کا تعلیمی آرکائیو — کتب، بیانات، اور وہ اصل ویب سائٹ جس سے ہمارا کتب خانہ متاثر ہوا۔',
+      'منیرِ اسلام رحمۃ اللہ علیہ کا تعلیمی آرکائیو — کتب، بیانات، اور وہ اصل ویب سائٹ جس سے ہمارا کتب خانہ متاثر ہوا۔',
     'seedha.spotlightCta': 'آرکائیو دیکھیں',
 
     'books.source': 'ماخذ',
@@ -2306,9 +2306,9 @@ export const TRANSLATIONS: Record<UiLang, Record<string, string>> = {
     'photos.close': 'تصویر بند کریں',
 
     'sayings.eyebrow': 'ملفوظات',
-    'sayings.title': 'ملفوظاتِ منیرِ اسلام',
+    'sayings.title': 'ملفوظاتِ منیرِ اسلام رحمۃ اللہ علیہ',
     'sayings.lead':
-      'منیرِ اسلام علامہ منیر احمد یوسفی کے منتخب ملفوظات، غور و فکر اور رہنمائی کے لیے۔ اللہ تعالیٰ ان کا درجہ بلند فرمائے۔ آمین۔',
+      'منیرِ اسلام علامہ منیر احمد یوسفی رحمۃ اللہ علیہ کے منتخب ملفوظات، غور و فکر اور رہنمائی کے لیے۔ اللہ تعالیٰ ان کا درجہ بلند فرمائے۔ آمین۔',
 
     'shajra.eyebrow': 'شجرہ شریف',
     'shajra.openHero': 'شجرہ ہیرو کھولیں: فیضِ نگینہ اور منیرِ اسلام',
