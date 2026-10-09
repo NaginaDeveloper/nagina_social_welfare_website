@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID, computed, inject, signal } from '@angular/core';
+import { Injectable, PLATFORM_ID, TransferState, computed, inject, makeStateKey, signal } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
@@ -20,14 +20,26 @@ import {
  * Madrasa campuses from the admissions API, so office edits in Control Center
  * reach the website without a release. Falls back to the build-time snapshot.
  */
+/** Campus list rendered into the prerendered page, so hydration starts with it instead of a loading state. */
+const CAMPUSES_STATE = makeStateKey<Campus[]>('nagina-campuses');
+
 @Injectable({ providedIn: 'root' })
 export class CampusService {
   private readonly http = inject(HttpClient);
   private readonly server = isPlatformServer(inject(PLATFORM_ID));
+  private readonly transfer = inject(TransferState);
   private readonly campusesSignal = signal<Campus[]>([]);
   private readonly loadedSignal = signal(false);
   private loadPromise: Promise<void> | null = null;
   private readonly coordsCache = new Map<string, Promise<CampusCoords | null>>();
+
+  constructor() {
+    const saved = this.transfer.get(CAMPUSES_STATE, null);
+    if (saved?.length) {
+      this.campusesSignal.set(saved);
+      this.loadedSignal.set(true);
+    }
+  }
 
   readonly campuses = this.campusesSignal.asReadonly();
   readonly loaded = this.loadedSignal.asReadonly();
@@ -94,6 +106,7 @@ export class CampusService {
         const list = parseCampusCatalog(await firstValueFrom(this.http.get(url)));
         if (list.length > 0) {
           this.campusesSignal.set(list);
+          if (this.server) this.transfer.set(CAMPUSES_STATE, list);
           break;
         }
       } catch (err) {

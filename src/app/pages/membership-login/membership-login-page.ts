@@ -54,7 +54,7 @@ export class MembershipLoginPage implements OnInit {
   protected readonly error = signal<string | null>(null);
 
   ngOnInit(): void {
-    void this.auth.restoreSession().then(() => {
+    void this.auth.restoreSession(true).then(() => {
       if (this.auth.member()) {
         void this.router.navigate(['/membership/home']);
       }

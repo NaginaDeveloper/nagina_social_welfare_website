@@ -101,7 +101,7 @@ export class MembershipHomePage implements OnInit {
       }
     });
 
-    void this.auth.restoreSession().then(() => {
+    void this.auth.restoreSession(true).then(() => {
       const m = this.auth.member();
       if (!m) {
         void this.router.navigate(['/membership/login']);

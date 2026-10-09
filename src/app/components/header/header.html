@@ -50,7 +50,7 @@
         class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 p-1 ring-1 ring-gold/35 transition-colors group-hover:ring-gold/60"
       >
         <img
-          src="/brand/nagina.png"
+          src="/brand/nagina-128.webp"
           alt="Nagina Social Welfare UK logo"
           class="h-full w-full object-contain"
           width="40"
@@ -257,6 +257,8 @@
         [attr.aria-label]="i18n.t('header.langAria')"
         [attr.title]="i18n.t('header.langAria')"
         (click)="toggleLang()"
+        (pointerenter)="i18n.preloadUrdu()"
+        (focus)="i18n.preloadUrdu()"
       >
         <svg class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <circle cx="12" cy="12" r="9" />
@@ -432,6 +434,8 @@
             [class.text-gold-300]="i18n.lang() === 'ur'"
             [attr.aria-pressed]="i18n.lang() === 'ur'"
             (click)="i18n.setLang('ur')"
+            (pointerenter)="i18n.preloadUrdu()"
+            (focus)="i18n.preloadUrdu()"
           >
             {{ i18n.t('header.langUr') }}
           </button>

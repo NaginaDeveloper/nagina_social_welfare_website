@@ -10,13 +10,13 @@ export function centrePath(campusId: string): string {
 
 /** Each centre's own seal: Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester). */
 export const CENTRE_LOGOS: Readonly<Record<string, string>> = {
-  peterborough: '/brand/markaz.png',
-  manchester: '/brand/quran-academy.webp',
+  peterborough: '/brand/markaz-256.webp',
+  manchester: '/brand/quran-academy-256.webp',
 };
 
 /** The centre's seal, or the charity mark for a centre without one. */
 export function centreLogo(campusId: string): string {
-  return CENTRE_LOGOS[campusId] ?? '/brand/nagina.png';
+  return CENTRE_LOGOS[campusId] ?? '/brand/nagina-256.webp';
 }
 
 /**

@@ -13,3 +13,6 @@ export const MEMBERSHIP_API_BASE =
 export const LAST_MEMBERSHIP_ID_KEY = 'nagina-membership-id';
 export const LAST_MEMBERSHIP_EMAIL_KEY = 'nagina-membership-email';
 export const MEMBER_SESSION_KEY = 'nagina-member-session';
+
+/** Set while a member is signed in on this browser, so other pages know to restore the session. */
+export const MEMBER_HINT_KEY = 'nagina-member-hint';
