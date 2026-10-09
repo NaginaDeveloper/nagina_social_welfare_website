@@ -29,7 +29,7 @@ export const CONTENT_REVIEW: Record<string, ContentReviewEntry> = {
   guidance: {
     pageId: 'guidance',
     lastChecked: '14 September 2026',
-    sources: ['Teachings preserved via Seedha Rastah / Munir-e-Islam'],
+    sources: ['Teachings preserved via Seedha Rastah / Munir-e-Islam رحمۃ اللہ علیہ'],
   },
   'what-is-zakat': {
     pageId: 'what-is-zakat',
