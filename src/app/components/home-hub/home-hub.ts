@@ -393,27 +393,27 @@ export class HomeHub implements OnInit {
    */
   protected readonly haramain = [
     {
-      src: '/media/haramain-makkah-arch.webp',
+      src: '/media/haramain-makkah-arch-400.webp',
       alt: 'The Holy Kaaba seen through an arch of Masjid al-Haram, Makkah',
       name: 'Holy Makkah',
-      width: 498,
-      height: 888,
+      width: 400,
+      height: 533,
       focus: '50% 55%',
     },
     {
-      src: '/media/haramain-madinah-480.webp',
+      src: '/media/haramain-madinah-400.webp',
       alt: 'The Green Dome and a minaret of Masjid an-Nabawi, Madinah, against a blue sky',
       name: 'Blessed Madinah',
-      width: 480,
-      height: 720,
+      width: 400,
+      height: 533,
       focus: '40% 100%',
     },
     {
-      src: '/media/haramain-aqsa-480.webp',
+      src: '/media/haramain-aqsa-400.webp',
       alt: 'The golden Dome of the Rock in the Al-Aqsa compound, Jerusalem',
       name: 'Sacred Al-Aqsa',
-      width: 480,
-      height: 640,
+      width: 400,
+      height: 533,
       focus: '50% 45%',
     },
   ] as const;
