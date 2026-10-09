@@ -142,6 +142,8 @@
     ]
   }
   </script>
+  <!-- Metric-matched fallback fonts (tuned to DM Sans and Cormorant Garamond: size-adjust from average advance width over the site text, ascent/descent from the font files; recompute if the fonts change). Kept inline so they exist before the first layout. -->
+  <style>@font-face { font-family: 'DM Sans Fallback'; font-style: normal; font-weight: 300 500; src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Arimo'); size-adjust: 103.17%; ascent-override: 96.15%; descent-override: 30.05%; line-gap-override: 0%;} @font-face { font-family: 'DM Sans Fallback'; font-style: normal; font-weight: 600 700; src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Arimo Bold'); size-adjust: 102.08%; ascent-override: 97.18%; descent-override: 30.37%; line-gap-override: 0%;} @font-face { font-family: 'Cormorant Garamond Fallback'; font-style: normal; font-weight: 500; src: local('Georgia'); size-adjust: 89%; ascent-override: 103.82%; descent-override: 32.25%; line-gap-override: 0%;} @font-face { font-family: 'Cormorant Garamond Fallback'; font-style: normal; font-weight: 600 700; src: local('Georgia Bold'), local('Georgia-Bold'); size-adjust: 77.2%; ascent-override: 119.7%; descent-override: 37.2%; line-gap-override: 0%;} @font-face { font-family: 'Cormorant Garamond Fallback'; font-style: italic; font-weight: 500; src: local('Georgia Italic'), local('Georgia-Italic'); size-adjust: 79.34%; ascent-override: 116.46%; descent-override: 36.17%; line-gap-override: 0%;} </style>
 </head>
 <body>
   <app-root></app-root>

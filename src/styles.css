@@ -25,6 +25,7 @@
   font-display: swap;
   src: url('/fonts/cormorant-garamond-latin-500-italic.woff2') format('woff2');
 }
+/* Metric-matched fallback faces (DM Sans Fallback, Cormorant Garamond Fallback) live inline in index.html so they are in the first paint. */
 @font-face {
   font-family: 'Amiri';
   font-style: normal;
@@ -107,8 +108,8 @@
   --color-ink: #1c1917;
   --color-slate-warm: #57534e;
 
-  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
-  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Cormorant Garamond Fallback", ui-serif, Georgia, serif;
+  --font-body: "DM Sans", "DM Sans Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-arabic: "Amiri", "Noto Naskh Arabic", "Scheherazade New", serif;
   --font-urdu: "Noto Nastaliq Urdu", "Amiri", "Noto Naskh Arabic", serif;
 
