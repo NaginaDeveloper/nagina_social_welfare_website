@@ -30,16 +30,22 @@ export class SeoService {
     if (this.started) return;
     this.started = true;
 
-    this.apply(this.resolveSeo(this.router.routerState.snapshot.root));
-    void this.campuses.load().then(() =>
-      this.apply(this.resolveSeo(this.router.routerState.snapshot.root)),
-    );
+    // Before the first navigation finishes the snapshot has no route data, and falling
+    // back to the home page would briefly rewrite the prerendered canonical, title and
+    // Open Graph tags (which Googlebot can capture). Leave the server-rendered head alone
+    // until a route supplies its own SEO.
+    this.applyCurrentRoute(false);
+    void this.campuses.load().then(() => this.applyCurrentRoute(false));
 
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
-      .subscribe(() => {
-        this.apply(this.resolveSeo(this.router.routerState.snapshot.root));
-      });
+      .subscribe(() => this.applyCurrentRoute(true));
+  }
+
+  private applyCurrentRoute(fallbackToHome: boolean): void {
+    const seo = this.resolveSeo(this.router.routerState.snapshot.root);
+    if (seo) this.apply(seo);
+    else if (fallbackToHome) this.apply(HOME_SEO);
   }
 
   apply(seo: PageSeo): void {
@@ -71,7 +77,7 @@ export class SeoService {
     this.setJsonLd(seo, url);
   }
 
-  private resolveSeo(root: ActivatedRouteSnapshot): PageSeo {
+  private resolveSeo(root: ActivatedRouteSnapshot): PageSeo | undefined {
     let route: ActivatedRouteSnapshot | null = root;
     let seo: PageSeo | undefined;
 
@@ -81,7 +87,7 @@ export class SeoService {
       route = route.firstChild;
     }
 
-    return seo ?? HOME_SEO;
+    return seo;
   }
 
   private absoluteUrl(path: string): string {
