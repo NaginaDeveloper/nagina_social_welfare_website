@@ -99,6 +99,8 @@
         }
       </div>
 
+      <app-google-reviews [campusId]="campus.id" />
+
       @if (own()) {
         <ng-container [ngTemplateOutlet]="visitCard" />
       } @else {
