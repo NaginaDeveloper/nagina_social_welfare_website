@@ -21,21 +21,28 @@ const root = join(__dirname, '..');
 const outDir = join(root, 'dist', 'nagina-social-welfare-website', 'browser');
 const publicDir = join(root, 'public');
 
-function loadSearchConsoleToken() {
+/** Site-verification codes from search-console.config.json (Google Search Console, Bing Webmaster Tools). */
+function loadVerificationTokens() {
   const configPath = join(root, 'search-console.config.json');
+  const none = { google: '', bing: '' };
   if (!existsSync(configPath)) {
-    return '';
+    return none;
   }
   try {
     const config = JSON.parse(readFileSync(configPath, 'utf8'));
-    return String(config.googleSiteVerification ?? '').trim();
+    return {
+      google: String(config.googleSiteVerification ?? '').trim(),
+      bing: String(config.bingSiteVerification ?? '').trim(),
+    };
   } catch {
     console.warn('SEO shells: could not read search-console.config.json');
-    return '';
+    return none;
   }
 }
 
-const GOOGLE_SITE_VERIFICATION = loadSearchConsoleToken();
+const TOKENS = loadVerificationTokens();
+const GOOGLE_SITE_VERIFICATION = TOKENS.google;
+const BING_SITE_VERIFICATION = TOKENS.bing;
 
 function escapeHtml(value) {
   return value
@@ -131,19 +138,24 @@ function patchHtml(html, page) {
   return next;
 }
 
-function injectSearchConsoleMeta(html) {
-  if (!GOOGLE_SITE_VERIFICATION) {
+/** Adds or refreshes one `<meta name="..." content="...">` in the head. */
+function injectVerificationMeta(html, name, token) {
+  if (!token) {
     return html;
   }
-  if (/name="google-site-verification"/i.test(html)) {
-    return html.replace(
-      /<meta\s+name="google-site-verification"\s+content="[^"]*"\s*\/?>/i,
-      `<meta name="google-site-verification" content="${escapeHtml(GOOGLE_SITE_VERIFICATION)}">`,
-    );
+  const tag = `<meta name="${name}" content="${escapeHtml(token)}">`;
+  const existing = new RegExp(`<meta\\s+name="${name.replace('.', '\\.')}"\\s+content="[^"]*"\\s*\\/?>`, 'i');
+  if (existing.test(html)) {
+    return html.replace(existing, tag);
   }
-  return html.replace(
-    '</head>',
-    `  <meta name="google-site-verification" content="${escapeHtml(GOOGLE_SITE_VERIFICATION)}">\n</head>`,
+  return html.replace('</head>', `  ${tag}\n</head>`);
+}
+
+function injectSearchConsoleMeta(html) {
+  return injectVerificationMeta(
+    injectVerificationMeta(html, 'google-site-verification', GOOGLE_SITE_VERIFICATION),
+    'msvalidate.01',
+    BING_SITE_VERIFICATION,
   );
 }
 
@@ -296,5 +308,8 @@ if (GOOGLE_SITE_VERIFICATION) {
   console.log(
     'SEO shells: add googleSiteVerification to search-console.config.json for Search Console',
   );
+}
+if (BING_SITE_VERIFICATION) {
+  console.log('SEO shells: Bing Webmaster Tools verification meta injected');
 }
 console.log('SEO shells: done (including 404.html fallback)');
