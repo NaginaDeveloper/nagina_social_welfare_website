@@ -1,6 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
+import { SeoService } from '../../seo/seo.service';
+import { SITE_ORIGIN } from '../../seo/seo.config';
+import { faqPageJsonLd } from '../../seo/structured-data';
 
 interface BeliefFaq {
   readonly question: string;
@@ -280,4 +283,15 @@ export class BasicBeliefs {
       ],
     },
   ];
+
+  constructor() {
+    const seo = inject(SeoService);
+    // Mirrors the visible questions and answers (English) so the markup matches the page.
+    const faqs = this.beliefCategories.flatMap((c) =>
+      c.faqs.map((f) => ({ question: f.question, answer: f.answer })),
+    );
+    const node = faqPageJsonLd(faqs, `${SITE_ORIGIN}/basic-beliefs/`);
+    seo.setExtraJsonLd('faq', node ? [node] : null);
+    inject(DestroyRef).onDestroy(() => seo.setExtraJsonLd('faq', null));
+  }
 }
