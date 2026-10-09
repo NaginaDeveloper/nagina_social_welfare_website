@@ -715,6 +715,47 @@ html.urdu .spotlight-label {
   animation: hqTwinkle 3s ease-in-out infinite;
 }
 
+/*
+ * From 1280px the Qur'an floats in the space between the guide and the Holy
+ * Mosques, centred in it and set a little higher. The guide is 457px wide from
+ * the column edge; the photo column starts 16px past the grid's centre, and the
+ * arches (at most 640px wide) are centred inside it. The Qur'an is centred
+ * between the guide's edge and the first arch.
+ */
+@media (min-width: 1280px) {
+  .hero-quran {
+    --hq-w: 8.75rem;
+    --hq-pad: 2.5rem;
+    width: var(--hq-w);
+    top: 6.25rem;
+    /* + a quarter of how far the arches (max 40rem) sit inside their column */
+    inset-inline-start: calc(
+      25% + (var(--hq-pad) + 473px - var(--hq-w)) / 2 + max(0px, (50% - var(--hq-pad) - 656px) / 4)
+    );
+  }
+}
+@media (min-width: 1366px) {
+  .hero-quran {
+    --hq-w: 10.5rem;
+  }
+}
+@media (min-width: 1440px) {
+  .hero-quran {
+    --hq-w: 12.5rem;
+  }
+}
+@media (min-width: 1536px) {
+  .hero-quran {
+    --hq-w: 14rem;
+    --hq-pad: 4rem;
+  }
+}
+@media (min-width: 1680px) {
+  .hero-quran {
+    --hq-w: 15.5rem;
+  }
+}
+
 /* Desktop menu panel: a short rise-and-fade when it opens. */
 @keyframes menuIn {
   from {
