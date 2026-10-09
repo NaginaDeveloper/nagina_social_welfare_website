@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
-import { fillTowns, posterCaption, type Campus } from '../../models/campus';
+import { posterCaption, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { CampusCards } from '../campus-cards/campus-cards';
 import { CampusMap } from '../campus-map/campus-map';
@@ -34,9 +34,6 @@ export class Madrasa implements OnInit {
   protected readonly towns = computed(
     () => this.campusService.towns() || this.i18n.t('madrasa.titleAccent'),
   );
-  protected readonly lead = computed(() =>
-    fillTowns(this.i18n.t('madrasa.lead'), this.campusService.towns()),
-  );
   /** The admission poster belongs to Markaz Deen-e-Islam. */
   protected readonly posterCampus = computed(() => this.campusService.byId('peterborough'));
   protected readonly posterHint = computed(() =>
@@ -64,6 +61,14 @@ export class Madrasa implements OnInit {
     { path: '/work', label: 'Our Work', hint: 'Education and welfare' },
     { path: '/contact', label: 'Contact', hint: 'WhatsApp, phone and email' },
   ];
+
+  /** Key facts under the page title. */
+  protected readonly introFacts = [
+    { en: '2026 intake open', ur: '۲۰۲۶ داخلے جاری' },
+    { en: 'Peterborough: 3 evening classes by age', ur: 'پیٹربرا: عمر کے لحاظ سے ۳ شام کی کلاسیں' },
+    { en: 'Manchester: Mon–Fri, 5–6 PM', ur: 'مانچسٹر: پیر تا جمعہ، شام ۵ تا ۶' },
+    { en: 'Ahl al-Sunnah / Hanafi Barelvi', ur: 'اہلِ سنت / حنفی بریلوی' },
+  ] as const;
 
   /** The paths in the vision poster, in English and Urdu. */
   protected readonly visionPaths = [

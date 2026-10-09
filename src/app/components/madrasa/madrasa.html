@@ -15,25 +15,40 @@
         lang="ur"
         dir="rtl"
       >
-        مرکز دینِ اسلام
+        مدارس
       </p>
       <h1 class="mt-3 page-title">
         {{ i18n.t('madrasa.titleLine') }}
         <span class="text-gold-gradient">{{ towns() }}</span>
       </h1>
       <p class="page-lead mx-auto">
-        {{ lead() }}
+        {{
+          i18n.pick(
+            'The 2026 intake is open at both our Madrasas. Choose your nearest one and apply online.',
+            '۲۰۲۶ کے داخلے دونوں مدارس میں جاری ہیں۔ اپنا قریبی مدرسہ چنیں اور آن لائن درخواست دیں۔'
+          )
+        }}
       </p>
+
+      <!-- Key facts at a glance, then the two things parents come to do. -->
+      <ul class="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-2.5" data-testid="madrasa-facts">
+        @for (fact of introFacts; track fact.en) {
+          <li class="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-white px-4 py-2 text-sm font-semibold text-forest shadow-soft">
+            <span class="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true"></span>
+            {{ i18n.pick(fact.en, fact.ur) }}
+          </li>
+        }
+      </ul>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a routerLink="/apply" fragment="apply-form" class="btn btn-primary">
+          {{ i18n.pick('Apply Online', 'آن لائن درخواست') }}
+        </a>
+        <a routerLink="/madrasa" fragment="class-times" class="btn btn-secondary-light">
+          {{ i18n.pick('See Class Times', 'کلاس کے اوقات دیکھیں') }}
+        </a>
+      </div>
     </div>
 
-    <div
-      class="mx-auto mt-10 max-w-3xl space-y-4 text-center text-base leading-relaxed text-slate-warm sm:text-lg"
-      [attr.dir]="i18n.isUr() ? 'rtl' : null"
-      [attr.lang]="i18n.isUr() ? 'ur' : null"
-    >
-      <p>{{ i18n.t('madrasa.body') }}</p>
-      <p>{{ i18n.t('madrasa.body2') }}</p>
-    </div>
 
     <div id="madrasas" class="mx-auto mt-20 max-w-5xl scroll-mt-24" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
@@ -114,7 +129,7 @@
       </figure>
     </div>
 
-    <div class="mx-auto mt-20 max-w-5xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+    <div id="class-times" class="mx-auto mt-20 max-w-5xl scroll-mt-28" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
         {{ i18n.t('madrasa.timetable') }}
       </h2>
@@ -248,6 +263,16 @@
       </a>
     </div>
     </div>
+    </div>
+
+    <!-- About our Madrasas: the fuller description (also what search engines read). -->
+    <div
+      class="mx-auto mt-20 max-w-5xl border-t border-mist pt-10"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+      [attr.lang]="i18n.isUr() ? 'ur' : null"
+    >
+      <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">{{ i18n.pick('About Our Madrasas', 'ہمارے مدارس کے بارے میں') }}</h2>
+      <p class="mt-3 max-w-3xl text-base leading-relaxed text-slate-warm">{{ i18n.t('madrasa.body') }}</p>
     </div>
 
     <div class="mx-auto mt-20 max-w-5xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
