@@ -182,3 +182,12 @@ describe('campus map pins', () => {
     expect(campusDirectionsUrl(peterborough)).toContain(encodeURIComponent('103 Burmer Road'));
   });
 });
+
+describe('Google Business Profile structured data', () => {
+  it('adds the Maps listing to the Peterborough node only', () => {
+    const node = madrasaNode(PETERBOROUGH);
+    expect(node['hasMap']).toBe('https://maps.google.com/?cid=7180850669849561719');
+    expect(node['sameAs']).toEqual(['https://maps.google.com/?cid=7180850669849561719']);
+    expect(madrasaNode(MANCHESTER)['sameAs']).toBeUndefined();
+  });
+});
