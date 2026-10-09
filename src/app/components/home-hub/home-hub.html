@@ -386,66 +386,71 @@
       </div>
     </div>
 
-    @if (filteredTiles().length === 0) {
-      <p class="rounded-2xl border border-mist bg-white px-5 py-8 text-center text-sm text-slate-warm">
-        {{ i18n.t('hub.empty') }}
-      </p>
+    @if (searching()) {
+      @if (filteredTiles().length === 0) {
+        <p class="rounded-2xl border border-mist bg-white px-5 py-8 text-center text-sm text-slate-warm">
+          {{ i18n.t('hub.empty') }}
+        </p>
+      } @else {
+        <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4" data-testid="hub-results">
+          @for (tile of visibleTiles(); track tile.id) {
+            <li class="flex"><ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{ $implicit: tile }" /></li>
+          }
+        </ul>
+      }
     } @else {
-      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6">
-        @for (tile of visibleTiles(); track tile.id; let i = $index) {
-          <div class="flex" [appReveal]="(i % 8) * 60">
-          @if (tile.externalHref; as href) {
+      <!-- Most visited: large green-and-gold cards with an arch medallion. -->
+      <p class="hub-tier-label" [attr.dir]="i18n.isUr() ? 'rtl' : null">{{ i18n.t('hub.topTitle') }}</p>
+      <ul class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5" data-testid="hub-top">
+        @for (tile of topTiles(); track tile.id; let i = $index) {
+          <li class="flex" [appReveal]="i * 80">
             <a
-              [href]="href"
-              target="_blank"
-              rel="noopener noreferrer"
-              [class]="tileClass(tile.tone)"
-              [attr.dir]="i18n.isUr() ? 'rtl' : null"
-              [attr.aria-label]="tile.ariaKey ? i18n.t(tile.ariaKey) : null"
-            >
-              <span [class]="iconClass(tile.tone)">
-                <app-icon [name]="tile.icon" size="h-5 w-5" />
-              </span>
-              <p class="font-display text-base font-bold leading-snug text-forest sm:text-lg">
-                {{ i18n.t(tile.labelKey) }}
-              </p>
-              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm">
-                {{ i18n.t(tile.hintKey) }}
-              </p>
-              <p class="mt-auto inline-flex items-center gap-1 pt-3 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
-                {{ i18n.t(tile.groupKey) }}
-                <app-icon name="external" size="h-3 w-3 opacity-70" />
-              </p>
-            </a>
-          } @else if (tile.path; as path) {
-            <a
-              [routerLink]="path"
-              [class]="tileClass(tile.tone)"
+              [routerLink]="tile.path"
+              class="hub-top group"
+              [class.hub-top--gold]="tile.id === 'donate'"
               [attr.dir]="i18n.isUr() ? 'rtl' : null"
             >
-              <span [class]="iconClass(tile.tone)">
-                <app-icon [name]="tile.icon" size="h-5 w-5" />
+              <span class="hub-top__pattern geo-pattern" aria-hidden="true"></span>
+              <span class="hub-top__glow" aria-hidden="true"></span>
+              <span class="hub-top__shine" aria-hidden="true"></span>
+              <span class="relative flex items-start justify-between gap-2">
+                <span class="hub-top__arch">
+                  <app-icon [name]="tile.icon" size="h-5 w-5 sm:h-6 sm:w-6" />
+                </span>
+                <span class="hub-top__group">{{ i18n.t(tile.groupKey) }}</span>
               </span>
-              <p class="font-display text-base font-bold leading-snug text-forest sm:text-lg">
-                {{ i18n.t(tile.labelKey) }}
-              </p>
-              <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-warm">
+              <span class="hub-top__title">{{ i18n.t(tile.labelKey) }}</span>
+              <span class="hub-top__hint">
                 @if (tile.id === 'salah') {
                   {{ salahSubtitle() }}
                 } @else {
                   {{ i18n.t(tile.hintKey) }}
                 }
-              </p>
-              <p class="mt-auto pt-3 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
-                {{ i18n.t(tile.groupKey) }}
-              </p>
+              </span>
+              <span class="hub-top__go">
+                {{ i18n.t('hub.open') }}
+                <app-icon name="arrow" size="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
+              </span>
             </a>
-          }
-          </div>
+          </li>
         }
-      </div>
-      @if (!query().trim() && hiddenTileCount() > 0) {
-        <div class="mt-6 flex justify-center">
+      </ul>
+
+      <!-- More to explore: refined cream cards. -->
+      <p class="hub-tier-label mt-10 sm:mt-12" [attr.dir]="i18n.isUr() ? 'rtl' : null">{{ i18n.t('hub.moreTitle') }}</p>
+      <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4" data-testid="hub-popular">
+        @for (tile of popularTiles(); track tile.id; let i = $index) {
+          <li class="flex" [appReveal]="(i % 4) * 60"><ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{ $implicit: tile }" /></li>
+        }
+        @if (showAll()) {
+          @for (tile of moreTiles(); track tile.id; let i = $index) {
+            <li class="flex" [appReveal]="(i % 4) * 60"><ng-container [ngTemplateOutletContext]="{ $implicit: tile }" [ngTemplateOutlet]="card" /></li>
+          }
+        }
+      </ul>
+
+      @if (hiddenTileCount() > 0) {
+        <div class="mt-8 flex justify-center">
           <button type="button" class="btn btn-secondary-light" [attr.aria-expanded]="showAll()" (click)="toggleShowAll()">
             {{ showAllLabel() }}
             <svg class="h-4 w-4 transition-transform" [class.rotate-180]="showAll()" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -455,5 +460,46 @@
         </div>
       }
     }
+
+    <!-- One small card, shared by "More to explore", "Show all" and search results. -->
+    <ng-template #card let-tile>
+      @if (tile.externalHref; as href) {
+        <a
+          [href]="href"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hub-card group"
+          [attr.dir]="i18n.isUr() ? 'rtl' : null"
+          [attr.aria-label]="tile.ariaKey ? i18n.t(tile.ariaKey) : null"
+        >
+          <span class="relative flex items-start justify-between gap-2">
+            <span class="hub-card__icon"><app-icon [name]="tile.icon" size="h-[1.15rem] w-[1.15rem]" /></span>
+            <span class="hub-card__group">{{ i18n.t(tile.groupKey) }}</span>
+          </span>
+          <span class="hub-card__title">{{ i18n.t(tile.labelKey) }}</span>
+          <span class="hub-card__hint">{{ i18n.t(tile.hintKey) }}</span>
+          <span class="hub-card__go">{{ i18n.t('hub.open') }} <app-icon name="external" size="h-3 w-3" /></span>
+        </a>
+      } @else {
+        <a [routerLink]="tile.path" class="hub-card group" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+          <span class="relative flex items-start justify-between gap-2">
+            <span class="hub-card__icon"><app-icon [name]="tile.icon" size="h-[1.15rem] w-[1.15rem]" /></span>
+            <span class="hub-card__group">{{ i18n.t(tile.groupKey) }}</span>
+          </span>
+          <span class="hub-card__title">{{ i18n.t(tile.labelKey) }}</span>
+          <span class="hub-card__hint">
+            @if (tile.id === 'salah') {
+              {{ salahSubtitle() }}
+            } @else {
+              {{ i18n.t(tile.hintKey) }}
+            }
+          </span>
+          <span class="hub-card__go">
+            {{ i18n.t('hub.open') }}
+            <app-icon name="arrow" size="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 rtl:-scale-x-100" />
+          </span>
+        </a>
+      }
+    </ng-template>
   </div>
 </section>

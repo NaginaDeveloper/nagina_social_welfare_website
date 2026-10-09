@@ -1,5 +1,6 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CENTRE_PAGE_PATHS, centrePath } from '../../config/centre-pages.config';
 import type { NavIcon } from '../../config/navigation.config';
@@ -38,7 +39,7 @@ export interface HeroCentreChip {
 
 @Component({
   selector: 'app-home-hub',
-  imports: [FormsModule, RouterLink, HeroTopActions, Icon, Reveal],
+  imports: [FormsModule, NgTemplateOutlet, RouterLink, HeroTopActions, Icon, Reveal],
   templateUrl: './home-hub.html',
 })
 export class HomeHub implements OnInit {
@@ -363,15 +364,27 @@ export class HomeHub implements OnInit {
     });
   });
 
-  /** Eight headline tiles by default; the full list behind "Show all" or any search. */
-  protected readonly visibleTiles = computed(() => {
-    if (this.query().trim() || this.showAll()) {
-      return this.filteredTiles();
-    }
-    return this.tiles.filter((tile) => tile.tone !== 'default');
+  /** What people come for most, as large cards first. */
+  private static readonly TOP_IDS = ['salah', 'donate', 'apply', 'sermons'] as const;
+  /** Next most used, as smaller cards; everything else is behind "Show all". */
+  private static readonly POPULAR_IDS = ['quran', 'assistant', 'quiz', 'zakat', 'halal', 'events', 'membership', 'sign-in'] as const;
+
+  private byIds(ids: readonly string[]): HubTile[] {
+    return ids.map((id) => this.tiles.find((t) => t.id === id)).filter((t): t is HubTile => !!t);
+  }
+
+  protected readonly searching = computed(() => this.query().trim().length > 0);
+  protected readonly topTiles = computed(() => this.byIds(HomeHub.TOP_IDS));
+  protected readonly popularTiles = computed(() => this.byIds(HomeHub.POPULAR_IDS));
+  protected readonly moreTiles = computed(() => {
+    const shown = new Set<string>([...HomeHub.TOP_IDS, ...HomeHub.POPULAR_IDS]);
+    return this.tiles.filter((t) => !shown.has(t.id));
   });
 
-  protected readonly hiddenTileCount = computed(() => this.tiles.length - this.visibleTiles().length);
+  /** While searching, every match as a small card. */
+  protected readonly visibleTiles = computed(() => this.filteredTiles());
+
+  protected readonly hiddenTileCount = computed(() => this.moreTiles().length);
 
   /**
    * Makkah, Madinah and Al-Aqsa for the hero; none needs a credit. Makkah:
@@ -462,28 +475,6 @@ export class HomeHub implements OnInit {
 
   protected onSearch(value: string): void {
     this.query.set(value);
-  }
-
-  protected tileClass(tone: HubTileTone): string {
-    const base =
-      'group flex w-full min-h-[8.5rem] flex-col rounded-2xl border p-4 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-portal active:scale-[0.99] sm:p-5';
-    if (tone === 'featured') {
-      return `${base} border-gold/40 bg-gradient-to-br from-gold/15 to-white hover:border-gold/60`;
-    }
-    if (tone === 'donate') {
-      return `${base} border-gold/30 bg-gold/10 hover:border-gold/50`;
-    }
-    return `${base} border-mist bg-white hover:border-gold/40`;
-  }
-
-  /** Icon badge colours per tile tone. */
-  protected iconClass(tone: HubTileTone): string {
-    const base =
-      'mb-3 flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 sm:h-11 sm:w-11';
-    if (tone === 'default') {
-      return `${base} bg-gradient-to-br from-emerald to-forest text-gold-300`;
-    }
-    return `${base} bg-gradient-to-br from-gold-300 to-gold text-forest shadow-soft`;
   }
 
   protected salahSubtitle(): string {
