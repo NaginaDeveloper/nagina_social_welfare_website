@@ -2,9 +2,9 @@ import { Directive, ElementRef, OnDestroy, afterNextRender, inject, input } from
 
 /**
  * Fades an element up the first time it scrolls into view. Pure CSS does the
- * motion (see `.reveal` in styles.css); this only flips `is-visible`. Without
- * IntersectionObserver, or when the user prefers reduced motion, the element
- * is simply shown.
+ * motion (see `.reveal` in styles.css); this arms elements that start below the
+ * fold and flips `is-visible`. Elements already on screen, and every element when
+ * IntersectionObserver is missing or the user prefers reduced motion, are simply shown.
  */
 @Directive({
   selector: '[appReveal]',
@@ -24,10 +24,13 @@ export class Reveal implements OnDestroy {
   private observe(): void {
     const node = this.el.nativeElement;
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || typeof IntersectionObserver === 'undefined') {
+    if (reduce || typeof IntersectionObserver === 'undefined') return;
+    // Already on screen: leave it as rendered, so nothing hides and then pops back in.
+    if (node.getBoundingClientRect().top < window.innerHeight * 0.92) {
       node.classList.add('is-visible');
       return;
     }
+    node.classList.add('reveal-armed');
     this.observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

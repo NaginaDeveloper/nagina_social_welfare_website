@@ -41,7 +41,7 @@ export class HomeGlimpse {
     {
       id: 'madrasa',
       path: '/madrasa',
-      image: '/media/ahle-bait-students.jpg',
+      image: '/media/ahle-bait-students-720.webp',
       focus: 'object-[50%_35%]',
       titleKey: 'home.glimpse.madrasa',
       hintKey: 'home.glimpse.madrasaHint',
@@ -50,7 +50,7 @@ export class HomeGlimpse {
     {
       id: 'welfare',
       path: '/work',
-      image: '/media/community-langar.jpg',
+      image: '/media/community-langar-560.webp',
       focus: 'object-[50%_60%]',
       titleKey: 'home.glimpse.welfare',
       hintKey: 'home.glimpse.welfareHint',

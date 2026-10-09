@@ -49,12 +49,12 @@ export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
     ],
     photos: [
       {
-        src: '/media/ahle-bait-students.jpg',
+        src: '/media/ahle-bait-students-720.webp',
         alt: 'Students of Markaz Deen-e-Islam holding certificates with their teachers',
         caption: 'Students with their certificates',
       },
       {
-        src: '/media/ahle-bait-gathering.jpg',
+        src: '/media/ahle-bait-gathering-720.webp',
         alt: 'Teachers and well-wishers gathered together at Markaz Deen-e-Islam',
         caption: 'Teachers and well-wishers',
       },

@@ -1097,15 +1097,22 @@ html.urdu .spotlight-label {
   animation: shimmer 6s linear infinite;
 }
 
-/* Scroll reveal: `[appReveal]` adds .is-visible the first time it enters the viewport. */
+/*
+ * Scroll reveal. Everything is visible in the prerendered HTML and without JavaScript;
+ * `[appReveal]` arms (hides) only elements that start below the fold, then adds .is-visible
+ * the first time they enter the viewport. Hiding content in the HTML itself would delay
+ * first paint and the largest contentful paint until the scripts ran.
+ */
 .reveal {
-  opacity: 0;
-  transform: translateY(22px);
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.reveal.is-visible {
+.reveal.reveal-armed {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.reveal.reveal-armed.is-visible {
   opacity: 1;
   transform: none;
 }
@@ -1120,7 +1127,8 @@ html.urdu .spotlight-label {
     animation: none;
   }
 
-  .reveal {
+  .reveal,
+  .reveal.reveal-armed {
     opacity: 1;
     transform: none;
     transition: none;

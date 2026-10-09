@@ -15,7 +15,10 @@
       <app-floating-whatsapp />
     }
     @if (showFloatingAssistant()) {
-      <app-assistant />
+      <!-- Loads when the browser is idle; a header "Ask" click before then is picked up on init. -->
+      @defer (on idle) {
+        <app-assistant />
+      }
     }
   </div>
 }
