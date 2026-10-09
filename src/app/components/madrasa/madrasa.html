@@ -27,7 +27,7 @@
     </div>
 
     <div
-      class="mx-auto mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-slate-warm sm:text-lg"
+      class="mx-auto mt-10 max-w-3xl space-y-4 text-center text-base leading-relaxed text-slate-warm sm:text-lg"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
       [attr.lang]="i18n.isUr() ? 'ur' : null"
     >
@@ -35,7 +35,7 @@
       <p>{{ i18n.t('madrasa.body2') }}</p>
     </div>
 
-    <div id="madrasas" class="mx-auto mt-16 max-w-5xl scroll-mt-24" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+    <div id="madrasas" class="mx-auto mt-20 max-w-5xl scroll-mt-24" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
         {{ i18n.t('madrasa.campusesTitle') }}
       </h2>
@@ -45,15 +45,15 @@
       <app-campus-cards />
     </div>
 
-    <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+    <div class="mx-auto mt-20 max-w-5xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
         {{ i18n.t('madrasa.offeringsTitle') }}
       </h2>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-5">
         @for (item of offerings; track item.title) {
-          <article class="border-t border-mist/80 pt-6 first:border-t-0 first:pt-0 sm:border-t sm:pt-6">
+          <article class="hub-card !min-h-0">
             <h3 class="font-display text-xl font-bold text-forest">{{ i18n.pick(item.title, item.titleUr) }}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-warm sm:text-base">{{ i18n.pick(item.text, item.textUr) }}</p>
+            <p class="mt-2 text-sm leading-relaxed text-slate-warm sm:text-base">{{ i18n.pick(item.text, item.textUr) }}</p>
           </article>
         }
       </div>
@@ -114,7 +114,7 @@
       </figure>
     </div>
 
-    <div class="mx-auto mt-16 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+    <div class="mx-auto mt-20 max-w-5xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">
         {{ i18n.t('madrasa.timetable') }}
       </h2>
@@ -159,7 +159,9 @@
       }
     </div>
 
-    <figure class="mx-auto mt-12 max-w-md">
+    <!-- Admission poster beside Visit & Enrol; Safeguarding under Visit & Enrol. -->
+    <div class="mx-auto mt-20 grid max-w-5xl items-start gap-8 md:grid-cols-[minmax(0,19rem)_1fr]">
+    <figure class="mx-auto w-full max-w-[22rem] md:max-w-none">
       <a
         [href]="posterHref"
         target="_blank"
@@ -179,8 +181,9 @@
       </figcaption>
     </figure>
 
+    <div class="flex flex-col gap-6">
     <div
-      class="mx-auto mt-16 max-w-3xl rounded-2xl border border-gold/25 bg-sand/60 px-6 py-8 text-center sm:px-10"
+      class="rounded-2xl border border-gold/25 bg-sand/60 px-5 py-7 text-center sm:px-8"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">Visit &amp; Enrol</h2>
@@ -230,7 +233,7 @@
     </div>
 
     <div
-      class="mx-auto mt-12 max-w-3xl rounded-2xl border border-mist bg-white px-6 py-6 shadow-soft sm:px-8"
+      class="rounded-2xl border border-mist bg-white px-6 py-6 shadow-soft sm:px-8"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('madrasa.safeguardingBoxTitle') }}</h2>
@@ -244,13 +247,16 @@
         {{ i18n.t('madrasa.safeguardingCta') }} →
       </a>
     </div>
+    </div>
+    </div>
 
-    <div class="mx-auto mt-12 max-w-4xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-      <h2 class="mb-4 text-center font-display text-2xl font-bold text-forest">{{ i18n.t('madrasa.map') }}</h2>
+    <div class="mx-auto mt-20 max-w-5xl" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+      <h2 class="mb-6 text-center font-display text-2xl font-bold text-forest sm:text-3xl">{{ i18n.t('madrasa.map') }}</h2>
       <app-campus-map />
     </div>
 
     <app-related-pages
+      class="mx-auto block max-w-5xl [&>nav]:mt-20 [&>nav]:max-w-none"
       [heading]="i18n.t('related.heading')"
       [lead]="i18n.t('related.lead')"
       [links]="related"
