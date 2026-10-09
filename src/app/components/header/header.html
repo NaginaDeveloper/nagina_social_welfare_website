@@ -59,9 +59,9 @@
       </span>
       <!-- Name beside the logo: small on phones, on two lines below 375px, so it never runs into Donate. -->
       <span class="flex min-w-0 flex-col leading-tight">
-        <span class="truncate font-display text-[0.84rem] font-bold text-white max-[374px]:whitespace-normal max-[374px]:leading-[1.1] sm:text-lg sm:tracking-wide">Nagina Social Welfare</span>
+        <span class="truncate font-display text-[0.77rem] font-bold text-white max-[374px]:whitespace-normal max-[374px]:leading-[1.1] sm:text-lg sm:tracking-wide xl:text-base xl:tracking-normal">Nagina Social Welfare UK</span>
         <span class="truncate text-[0.46rem] font-medium uppercase tracking-[0.08em] text-gold-300/90 max-[374px]:hidden sm:text-[0.58rem] sm:tracking-[0.26em]">
-          Education &amp; Welfare &middot; UK
+          Education &amp; Welfare
         </span>
       </span>
     </a>
@@ -210,7 +210,7 @@
       @if (prayer.headerStatus(); as status) {
         <a
           routerLink="/namaz"
-          class="hidden h-9 items-center gap-2 whitespace-nowrap rounded-full border border-gold/25 bg-white/5 px-3 transition-colors hover:border-gold/45 hover:bg-white/10 2xl:inline-flex"
+          class="hidden h-9 items-center gap-2 whitespace-nowrap rounded-full border border-gold/25 bg-white/5 px-3 transition-colors hover:border-gold/45 hover:bg-white/10 min-[1920px]:inline-flex"
           [attr.aria-label]="
             status.kind === 'current'
               ? status.name + ' now, ends in ' + status.remaining + ' (' + prayer.placeTown() + ')'
