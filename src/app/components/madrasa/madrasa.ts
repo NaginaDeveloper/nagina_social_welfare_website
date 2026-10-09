@@ -65,8 +65,8 @@ export class Madrasa implements OnInit {
   /** Key facts under the page title. */
   protected readonly introFacts = [
     { en: '2026 intake open', ur: '۲۰۲۶ داخلے جاری' },
-    { en: 'Peterborough: 3 evening classes by age', ur: 'پیٹربرا: عمر کے لحاظ سے ۳ شام کی کلاسیں' },
-    { en: 'Manchester: Mon–Fri, 5–6 PM', ur: 'مانچسٹر: پیر تا جمعہ، شام ۵ تا ۶' },
+    { en: 'Peterborough · 3 evening classes', ur: 'پیٹربرا · ۳ شام کی کلاسیں' },
+    { en: 'Manchester · Mon–Fri, 5–6 PM', ur: 'مانچسٹر · پیر تا جمعہ، شام ۵ تا ۶' },
     { en: 'Ahl al-Sunnah / Hanafi Barelvi', ur: 'اہلِ سنت / حنفی بریلوی' },
   ] as const;
 
