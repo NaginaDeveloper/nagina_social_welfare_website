@@ -15,13 +15,17 @@
             class="group relative flex aspect-[4/3] w-full overflow-hidden rounded-3xl bg-forest shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:shadow-portal sm:aspect-[16/10] lg:aspect-auto lg:min-h-[12rem]"
             [attr.lang]="i18n.isUr() ? 'ur' : null"
           >
-            <img
-              [src]="tile.image"
-              alt=""
-              [class]="'animate-ken-burns absolute inset-0 h-full w-full object-cover ' + tile.focus"
-              loading="lazy"
-              decoding="async"
-            />
+            <!-- Photos load as the card nears the screen, so the first view only pays for what it shows. -->
+            @defer (on viewport({ rootMargin: '300px' })) {
+              <img
+                [src]="tile.image"
+                alt=""
+                [class]="'animate-ken-burns absolute inset-0 h-full w-full object-cover ' + tile.focus"
+                decoding="async"
+              />
+            } @placeholder {
+              <span class="absolute inset-0" aria-hidden="true"></span>
+            }
             <div
               class="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/40 to-forest/5"
               aria-hidden="true"
