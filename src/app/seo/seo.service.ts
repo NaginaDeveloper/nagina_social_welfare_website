@@ -236,6 +236,26 @@ export class SeoService {
     }
     script.textContent = JSON.stringify(payload);
   }
+
+  /**
+   * Page-specific structured data (Event, FAQPage) kept beside the site graph.
+   * Pass `null` to remove it, e.g. when the page is destroyed.
+   */
+  setExtraJsonLd(key: string, nodes: readonly object[] | null): void {
+    const id = `nagina-jsonld-${key}`;
+    let script = this.doc.getElementById(id) as HTMLScriptElement | null;
+    if (!nodes || nodes.length === 0) {
+      script?.remove();
+      return;
+    }
+    if (!script) {
+      script = this.doc.createElement('script');
+      script.id = id;
+      script.type = 'application/ld+json';
+      this.doc.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(nodes.length === 1 ? nodes[0] : nodes);
+  }
 }
 
 /** One search-data entry per madrasa, from the office-editable campus list. */
