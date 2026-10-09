@@ -12,6 +12,7 @@ import {
   HOME_SEO,
   SITE_NAME,
   SITE_ORIGIN,
+  pageOgImage,
   type PageSeo,
 } from './seo.config';
 
@@ -43,7 +44,7 @@ export class SeoService {
 
   apply(seo: PageSeo): void {
     const url = this.absoluteUrl(seo.path);
-    const image = seo.image ?? DEFAULT_OG_IMAGE;
+    const image = pageOgImage(seo);
     const type = seo.type ?? 'website';
 
     this.title.setTitle(seo.title);
