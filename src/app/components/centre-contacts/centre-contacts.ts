@@ -1,4 +1,5 @@
-import { Component, OnInit, inject, input } from '@angular/core';
+import { Component, OnInit, booleanAttribute, inject, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { LanguageService } from '../../i18n/language.service';
 import {
@@ -18,8 +19,39 @@ import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
  */
 @Component({
   selector: 'app-centre-contacts',
-  imports: [Icon, WhatsappIcon],
+  imports: [Icon, RouterLink, WhatsappIcon],
   template: `
+    @if (compact()) {
+      <!-- One slim line: each centre's WhatsApp and phone, then the Contact page. -->
+      <div
+        class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 text-sm"
+        [attr.dir]="i18n.isUr() ? 'rtl' : null"
+        data-testid="centre-contacts-compact"
+      >
+        @if (title()) {
+          <span [class]="dark() ? 'font-semibold text-white' : 'font-semibold text-forest'">{{ title() }}</span>
+        }
+        @for (campus of campusService.campuses(); track campus.id) {
+          <span class="inline-flex flex-wrap items-center gap-2" [attr.data-campus]="campus.id">
+            <span [class]="dark() ? 'font-semibold text-gold-300' : 'font-semibold text-gold-600'">{{ town(campus) }}</span>
+            <a [href]="whatsapp(campus)" target="_blank" rel="noopener noreferrer" [class]="primaryClass()">
+              <app-whatsapp-icon class="h-4 w-4" [inverse]="dark()" />
+              {{ i18n.t('campus.whatsapp') }}
+            </a>
+            <a [href]="'tel:' + campus.phoneE164" [class]="linkClass()" dir="ltr">
+              <app-icon name="phone" size="h-4 w-4 shrink-0" />
+              {{ campus.phoneDisplay }}
+            </a>
+          </span>
+        }
+        <a
+          routerLink="/contact"
+          [class]="dark() ? 'font-semibold text-gold-300 underline decoration-gold/40 underline-offset-2 hover:text-white' : 'font-semibold text-gold-700 underline decoration-gold/40 underline-offset-2 hover:text-forest'"
+        >
+          {{ i18n.pick('All contact details', 'تمام رابطے کی تفصیلات') }} →
+        </a>
+      </div>
+    } @else {
     <div [attr.dir]="i18n.isUr() ? 'rtl' : null" data-testid="centre-contacts">
       @if (title()) {
         <p [class]="dark() ? 'text-sm font-semibold text-white' : 'text-sm font-semibold text-forest'">{{ title() }}</p>
@@ -78,6 +110,7 @@ import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
         </div>
       }
     </div>
+    }
   `,
 })
 export class CentreContacts implements OnInit {
@@ -87,6 +120,8 @@ export class CentreContacts implements OnInit {
   readonly tone = input<'light' | 'dark'>('light');
   /** Show the street address with a directions link. */
   readonly showAddress = input(false);
+  /** One slim line (WhatsApp and phone per centre, then the Contact page) instead of cards. */
+  readonly compact = input(false, { transform: booleanAttribute });
   /** Start of the WhatsApp message; the centre name is appended. */
   readonly prefill = input('Assalamu alaikum, I have a question for');
 

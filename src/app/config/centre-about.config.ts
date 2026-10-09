@@ -31,7 +31,6 @@ export interface MarkazAbout {
     readonly text: string;
     readonly links: readonly { readonly path: string; readonly label: string; readonly icon: UiIconName }[];
   };
-  readonly pillars: readonly { readonly title: string; readonly text: string }[];
 }
 
 export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
@@ -122,11 +121,6 @@ export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
         { path: '/events', label: 'Events', icon: 'events' },
       ],
     },
-    pillars: [
-      { title: 'Faith', text: 'Rooted in Ahl al-Sunnah belief, love of the Prophet ﷺ, and sincere worship.' },
-      { title: 'Compassion', text: 'Welfare that uplifts families with dignity, care and practical help.' },
-      { title: 'Knowledge', text: 'Education that lights minds: Qur’an, Salah and lasting character.' },
-    ],
   },
 };
 

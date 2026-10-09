@@ -8,7 +8,6 @@ import { CampusService } from '../../services/campus.service';
 import { CampusCards } from '../campus-cards/campus-cards';
 import { CampusMap } from '../campus-map/campus-map';
 import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pages';
-import { CentreContacts } from '../centre-contacts/centre-contacts';
 
 interface Offering {
   readonly title: string;
@@ -19,7 +18,7 @@ interface Offering {
 
 @Component({
   selector: 'app-madrasa',
-  imports: [CentreContacts, RouterLink, CampusCards, CampusMap, RelatedPages],
+  imports: [RouterLink, CampusCards, CampusMap, RelatedPages],
   templateUrl: './madrasa.html',
 })
 export class Madrasa implements OnInit {
