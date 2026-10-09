@@ -406,6 +406,33 @@ export class HomeHub implements OnInit {
   ] as const;
 
   /** Soft gold lights that blink around the hero. */
+  /** Light rays behind the illuminated Qur'an: long and short in turn, like a star. */
+  protected readonly quranRays = Array.from({ length: 24 }, (_, i) => ({
+    angle: i * 15,
+    length: i % 2 === 0 ? 168 : 112,
+    width: i % 2 === 0 ? 7 : 4.5,
+  }));
+
+  /** Small gold stars that twinkle around the Qur'an. */
+  protected readonly quranStars = [
+    { x: 92, y: 62, s: 0.9, delay: '0s' },
+    { x: 318, y: 48, s: 0.7, delay: '1.2s' },
+    { x: 340, y: 128, s: 0.55, delay: '2.1s' },
+    { x: 66, y: 140, s: 0.6, delay: '0.7s' },
+    { x: 262, y: 18, s: 0.5, delay: '1.7s' },
+  ];
+
+  /** Specks of light that rise from the Qur'an's pages. */
+  protected readonly quranSparks = [
+    { x: 168, r: 2.2, delay: '0s', duration: '4.2s' },
+    { x: 186, r: 1.6, delay: '1.1s', duration: '3.6s' },
+    { x: 200, r: 2.6, delay: '2.3s', duration: '4.8s' },
+    { x: 214, r: 1.8, delay: '0.6s', duration: '3.9s' },
+    { x: 232, r: 2.2, delay: '1.8s', duration: '4.4s' },
+    { x: 192, r: 1.4, delay: '3s', duration: '3.4s' },
+    { x: 222, r: 1.5, delay: '2.7s', duration: '3.8s' },
+  ];
+
   protected readonly sparkles = [
     { left: '6%', top: '14%', delay: '0s', duration: '2.4s', size: '0.6rem' },
     { left: '16%', top: '62%', delay: '0.7s', duration: '3s', size: '0.45rem' },

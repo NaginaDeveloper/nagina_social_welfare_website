@@ -646,6 +646,75 @@ html.urdu .spotlight-label {
   }
 }
 
+/* Home hero: the illuminated Qur'an. */
+@keyframes hqSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes hqGlow {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+@keyframes hqFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes hqSpark {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1.1);
+  }
+}
+.hq-rays {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  animation: hqSpin 60s linear infinite;
+}
+.hq-glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hqGlow 5s ease-in-out infinite;
+}
+.hq-book {
+  animation: hqFloat 6s ease-in-out infinite;
+}
+.hq-spark {
+  opacity: 0;
+  animation: hqSpark 4s ease-out infinite;
+}
+@keyframes hqTwinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.hq-twinkle {
+  animation: hqTwinkle 3s ease-in-out infinite;
+}
+
 /* Desktop menu panel: a short rise-and-fade when it opens. */
 @keyframes menuIn {
   from {
@@ -718,8 +787,15 @@ html.urdu .spotlight-label {
     opacity: 0.8;
   }
   .arch-frame,
-  .guide-halo {
+  .guide-halo,
+  .hq-rays,
+  .hq-glow,
+  .hq-book,
+  .hq-twinkle {
     animation: none;
+  }
+  .hq-spark {
+    display: none;
   }
 }
 
