@@ -54,7 +54,7 @@
           >
             <img
               [src]="book.coverUrl"
-              [alt]="book.title"
+              [alt]="'Cover of ' + book.title + ' (' + book.language + ' book)'"
               class="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
               decoding="async"

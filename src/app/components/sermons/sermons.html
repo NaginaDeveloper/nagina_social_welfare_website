@@ -59,7 +59,7 @@
                   @if (hit.thumbnail; as thumb) {
                     <img
                       [src]="thumb"
-                      [alt]="hit.title"
+                      [alt]="'Sermon video thumbnail: ' + hit.title"
                       class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                       decoding="async"
@@ -161,7 +161,7 @@
                   >
                     <img
                       [src]="video.thumbnail || ('https://i.ytimg.com/vi/' + video.id + '/hqdefault.jpg')"
-                      [alt]="video.title || video.id"
+                      [alt]="'Sermon video thumbnail: ' + (video.title || video.id)"
                       class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                       decoding="async"
@@ -247,7 +247,7 @@
                 >
                   <img
                     [src]="video.thumbnail || ('https://i.ytimg.com/vi/' + video.id + '/hqdefault.jpg')"
-                    [alt]="video.title || video.id"
+                    [alt]="'Sermon video thumbnail: ' + (video.title || video.id)"
                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
