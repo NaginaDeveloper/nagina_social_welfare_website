@@ -77,7 +77,7 @@ export function pageOgImage(page: PageSeo): string {
 }
 
 export const HOME_SEO: PageSeo = {
-  title: 'Nagina Social Welfare UK | Islamic Education & Welfare',
+  title: 'Nagina Social Welfare UK | Madrasa & Islamic Education',
   description:
     'Nagina Social Welfare UK supports Islamic education and community welfare, with Madrasas in Peterborough and Manchester, trusted resources and charitable work.',
   path: '/',
@@ -90,9 +90,9 @@ export const HOME_SEO: PageSeo = {
 };
 
 export const ABOUT_SEO: PageSeo = {
-  title: 'Our Vision | Nagina Social Welfare UK',
+  title: 'About Us & Our Vision | Nagina Social Welfare UK',
   description:
-    'Nagina Social Welfare UK (charity 1196514) — our vision for knowledge, compassion and character across the UK, with Madrasas in Peterborough and Manchester.',
+    'About Nagina Social Welfare UK (charity 1196514): our vision for Islamic knowledge, compassion and character, with Madrasas in Peterborough and Manchester.',
   path: '/about/',
   keywords: 'About Nagina Social Welfare, UK based charity 1196514, Islamic charity UK vision',
   type: 'website',
@@ -102,9 +102,9 @@ export const ABOUT_SEO: PageSeo = {
 };
 
 export const WORK_SEO: PageSeo = {
-  title: 'Our Work | Education & Charity | Nagina Social Welfare',
+  title: 'Our Work: Islamic Education & Charity | Nagina Social',
   description:
-    'Islamic education at our Madrasas in Peterborough and Manchester, and community welfare from Nagina Social Welfare UK — who we help and how to ask.',
+    'Islamic education at our Madrasas in Peterborough and Manchester, and community welfare from Nagina Social Welfare UK: who we help and how to ask.',
   path: '/work/',
   keywords: 'Our Work, Markaz Deen-e-Islam, community welfare UK, Islamic education, charity',
   type: 'website',
@@ -114,9 +114,9 @@ export const WORK_SEO: PageSeo = {
 };
 
 export const PETERBOROUGH_SEO: PageSeo = {
-  title: 'Markaz Deen-e-Islam, Peterborough | Nagina Social Welfare UK',
+  title: 'Madrasa in Peterborough | Markaz Deen-e-Islam',
   description:
-    'Markaz Deen-e-Islam, 103 Burmer Road: head office of Nagina Social Welfare UK and our Peterborough Madrasa. Evening classes, Let’s Learn Salah, sisters’ gatherings, Zikr & Fikr and the annual Mehfil-e-Naat.',
+    'Markaz Deen-e-Islam, 103 Burmer Road, Peterborough: evening Madrasa classes by age, Let’s Learn Salah, sisters’ gatherings and Zikr & Fikr.',
   path: '/peterborough/',
   keywords:
     'Markaz Deen-e-Islam, Nagina Social Welfare Peterborough, Madrasa Peterborough, Burmer Road, Mehfil-e-Naat Peterborough, Zikr and Fikr, sisters gathering Peterborough, learn Salah Peterborough, Islamic community Peterborough',
@@ -127,9 +127,9 @@ export const PETERBOROUGH_SEO: PageSeo = {
 };
 
 export const MANCHESTER_SEO: PageSeo = {
-  title: 'Manchester Community | Nagina Social Welfare UK',
+  title: 'Madrasa in Manchester | Nagina Social Welfare UK',
   description:
-    'Find Nagina Social Welfare in Manchester — Quran Academy at Partington Community Centre: address, Madrasa admission, prayer times, events and how to contact us.',
+    'Nagina Social Welfare in Manchester: Quran Academy at Partington Community Centre. Address, Madrasa admission, prayer times, events and how to contact us.',
   path: '/manchester/',
   keywords:
     'Nagina Social Welfare Manchester, Quran Academy Partington, Madrasa Manchester, Islamic community Manchester, Partington',
@@ -151,9 +151,9 @@ export const CENTRE_SEO: PageSeo = {
 };
 
 export const MADRASA_SEO: PageSeo = {
-  title: 'Madrasas in Peterborough & Manchester | Nagina Social Welfare',
+  title: 'Madrasa Peterborough & Manchester | Nagina Social Welfare',
   description:
-    'Nagina Social Welfare Madrasas in Peterborough and Manchester — addresses, ages, class times, safeguarding and online admission.',
+    'Our Madrasas in Peterborough and Manchester: addresses, ages, class times, safeguarding and online admission for children and families.',
   path: '/madrasa/',
   keywords:
     'madrasa Peterborough, Madrasa Manchester, Islamic school Peterborough, Quran classes for children Manchester, Quran Academy Partington, 2026 Madrasa intake, Markaz Deen-e-Islam',
@@ -164,9 +164,9 @@ export const MADRASA_SEO: PageSeo = {
 };
 
 export const APPLY_SEO: PageSeo = {
-  title: 'Online Madrasa Admission 2026 | Nagina Social Welfare',
+  title: 'Madrasa Admission 2026 | Apply Online | Nagina Social',
   description:
-    'Apply online to a Nagina Social Welfare Madrasa in Peterborough or Manchester. Peterborough runs three evening classes by age; Manchester runs one weekday class, 5–6 PM.',
+    'Apply online to a Nagina Social Welfare Madrasa in Peterborough or Manchester. Peterborough: three evening classes by age. Manchester: weekday class, 5–6 PM.',
   path: '/apply/',
   keywords:
     'madrasa admission Peterborough 2026, Madrasa admission Manchester 2026, Markaz Deen-e-Islam apply, Quran Academy apply, online enrolment Islamic school',
@@ -195,9 +195,9 @@ export const APPLY_TRACK_SEO: PageSeo = {
 };
 
 export const MEMBERSHIP_SEO: PageSeo = {
-  title: 'Community Membership | Nagina Social Welfare UK',
+  title: 'Community Membership | Join Nagina Social Welfare UK',
   description:
-    'Apply online to join the Nagina Social Welfare UK community. Free membership for adults aged 18+, reviewed by trustees.',
+    'Apply online to join the Nagina Social Welfare UK community. Free membership for adults aged 18+, reviewed by trustees, with a member area.',
   path: '/membership/',
   keywords: 'Nagina Social Welfare membership, charity community UK, volunteer Peterborough, volunteer Manchester',
   type: 'website',
@@ -239,9 +239,9 @@ export const MEMBERSHIP_HOME_SEO: PageSeo = {
 };
 
 export const SPIRITUAL_GUIDE_SEO: PageSeo = {
-  title: 'Spiritual Guide | Munir-e-Islam | Nagina Social Welfare',
+  title: 'Allama Munir Ahmed Yusufi (Munir-e-Islam) | Spiritual Guide',
   description:
-    'Honouring Allama Munir Ahmed Yusufi — Munir-e-Islam — with the Yusufi Shajra Sharif and photographs from Nagina TV.',
+    'Honouring Allama Munir Ahmed Yusufi, Munir-e-Islam, with the Yusufi Shajra Sharif and photographs from Nagina TV.',
   path: '/spiritual-guide/',
   keywords:
     'Spiritual Guide, Munir-e-Islam, Allama Munir Ahmed Yusufi, Pir-o-Murshid, Shajra Sharif, Naqshbandi Mujaddidi Yusufi',
@@ -252,9 +252,9 @@ export const SPIRITUAL_GUIDE_SEO: PageSeo = {
 };
 
 export const GUIDANCE_SEO: PageSeo = {
-  title: 'Guidance | Teachings & Counsel | Nagina Social Welfare',
+  title: 'Islamic Guidance & Teachings | Nagina Social Welfare',
   description:
-    'Timeless teachings that guide character, knowledge and charity — counsel from Munir-e-Islam for students and supporters.',
+    'Timeless teachings that guide character, knowledge and charity: counsel from Munir-e-Islam for students and supporters.',
   path: '/guidance/',
   keywords: 'Islamic guidance, Munir-e-Islam teachings, character and charity',
   type: 'website',
@@ -264,9 +264,9 @@ export const GUIDANCE_SEO: PageSeo = {
 };
 
 export const NAMAZ_SEO: PageSeo = {
-  title: 'Prayer Times Peterborough & Manchester | Salah | Nagina Social Welfare UK',
+  title: 'Prayer Times Peterborough & Manchester | Salah Timetable',
   description:
-    'Daily Salah prayer times for Peterborough and Manchester, UK — source, method and last-checked date, plus a Qibla compass. Personal begin/end times, not jamat.',
+    'Daily Salah (namaz) times for Peterborough and Manchester, UK, with source, method, last-checked date and a Qibla compass. Begin and end times, not jamat.',
   path: '/namaz/',
   keywords: 'prayer times Peterborough, prayer times Manchester, Salah times Partington, salah timetable UK, Qibla compass',
   type: 'website',
@@ -276,9 +276,9 @@ export const NAMAZ_SEO: PageSeo = {
 };
 
 export const QURAN_SEO: PageSeo = {
-  title: 'Blessed Quran Majeed with Kanzul Iman | Nagina Social Welfare',
+  title: 'Read Quran Online | Kanzul Iman Urdu Translation',
   description:
-    'Read the Blessed Quran Majeed in Arabic with Kanzul Iman Urdu translation, English toggle, and Alafasy recitation.',
+    'Read the Blessed Quran Majeed online in Arabic with Kanzul Iman Urdu translation, an English toggle and Alafasy recitation.',
   path: '/quran/',
   keywords: 'Quran Majeed, Kanzul Iman, Holy Quran Urdu, Ahmed Raza Khan, Quran with translation',
   type: 'website',
@@ -288,9 +288,9 @@ export const QURAN_SEO: PageSeo = {
 };
 
 export const HADITH_SEO: PageSeo = {
-  title: 'Kutub al-Sittah | Six Authentic Books of Hadith | Nagina Social Welfare',
+  title: 'Kutub al-Sittah: Six Books of Hadith Online',
   description:
-    'Browse the six authentic books of Hadith — Sahih al-Bukhari, Sahih Muslim, Abu Dawud, Tirmidhi, Nasa\'i, and Ibn Majah — in Arabic with Urdu and English.',
+    'Read the six authentic books of Hadith (Bukhari, Muslim, Abu Dawud, Tirmidhi, Nasa\'i and Ibn Majah) in Arabic with Urdu and English.',
   path: '/hadith/',
   keywords: 'Kutub al-Sittah, Sahih Bukhari, Sahih Muslim, Hadith Urdu, six authentic books',
   type: 'website',
@@ -300,9 +300,9 @@ export const HADITH_SEO: PageSeo = {
 };
 
 export const SEEDHA_RASTAH_SEO: PageSeo = {
-  title: 'Seedha Rastah | Educational Archive of Munir-e-Islam | Nagina Social Welfare',
+  title: 'Seedha Rastah: Islamic Archive of Munir-e-Islam',
   description:
-    'Honouring Seedha Rastah — the educational archive of Allama Munir Ahmed Yusufi (Munir-e-Islam). PDF books, sermons and links.',
+    'Honouring Seedha Rastah, the educational archive of Allama Munir Ahmed Yusufi (Munir-e-Islam): PDF books, sermons and links.',
   path: '/seedha-rastah/',
   keywords: 'Seedha Rastah, Munir-e-Islam, Allama Munir Ahmed Yusufi, Islamic books archive',
   type: 'website',
@@ -312,9 +312,9 @@ export const SEEDHA_RASTAH_SEO: PageSeo = {
 };
 
 export const BOOKS_SEO: PageSeo = {
-  title: 'Islamic Books Library | Seedha Rastah | Nagina Social Welfare',
+  title: 'Free Islamic Books PDF | Seedha Rastah Library',
   description:
-    'Browse and download Islamic books from the Seedha Rastah library — free PDFs from Nagina Social Welfare UK.',
+    'Browse and download free Islamic books as PDFs from the Seedha Rastah library of Nagina Social Welfare UK, with the language shown for each title.',
   path: '/books/',
   keywords: 'Islamic books PDF, Seedha Rastah, free Islamic library UK, Urdu Islamic books',
   type: 'website',
@@ -324,7 +324,7 @@ export const BOOKS_SEO: PageSeo = {
 };
 
 export const SERMONS_SEO: PageSeo = {
-  title: 'Sermons by Baba Ji Sarkar | Nagina Social Welfare',
+  title: 'Sermons by Baba Ji Sarkar | Nagina TV Videos',
   description:
     'Watch blessed sermons by Baba Ji Sarkar from the Seedha Rastah collection on YouTube (Nagina TV), plus short clips on TikTok.',
   path: '/sermons/',
@@ -337,9 +337,9 @@ export const SERMONS_SEO: PageSeo = {
 };
 
 export const APPS_SEO: PageSeo = {
-  title: 'Mobile Apps | Nagina Social Welfare',
+  title: 'Madrasa Apps for Parents & Teachers | Google Play',
   description:
-    'Purpose-built mobile apps for parents, teachers, administrators and collectors — on the Google Play Store.',
+    'Purpose-built mobile apps for parents, teachers, administrators and collectors of Nagina Social Welfare UK, available on the Google Play Store.',
   path: '/apps/',
   keywords: 'Nagina apps, Markaz Deen-e-Islam app, Islamic school app UK',
   type: 'website',
@@ -349,7 +349,7 @@ export const APPS_SEO: PageSeo = {
 };
 
 export const PORTALS_SEO: PageSeo = {
-  title: 'Sign In | Parents, Students, Teachers, Collectors, Admin, Members',
+  title: 'Portal Sign In | Nagina Social Welfare UK',
   description:
     'Sign in to your Nagina Social Welfare portal: parents, students, teachers, charity collectors and administrators each have their own sign in page.',
   path: '/portals/',
@@ -361,7 +361,7 @@ export const PORTALS_SEO: PageSeo = {
 };
 
 export const GUIDES_SEO: PageSeo = {
-  title: 'Portal Guides — Videos & Manuals | Nagina Social Welfare',
+  title: 'Portal Guides: Videos & Manuals | Nagina Social Welfare',
   description:
     'Video guides and user manuals for the Madrasa Parent, Teacher and Student portals: sign in, messages, fees, attendance, leave and more.',
   path: '/guides/',
@@ -375,7 +375,7 @@ export const GUIDES_SEO: PageSeo = {
 };
 
 export const EVENTS_SEO: PageSeo = {
-  title: 'Events | Gatherings & Announcements | Nagina Social Welfare',
+  title: 'Events in Peterborough & Manchester | Nagina Social Welfare',
   description:
     'Event photos, posters and programmes from our Madrasas in Peterborough and Manchester. Message us on WhatsApp for the next date.',
   path: '/events/',
@@ -387,9 +387,9 @@ export const EVENTS_SEO: PageSeo = {
 };
 
 export const ZAKAT_SEO: PageSeo = {
-  title: 'Zakat Calculator | Nagina Social Welfare UK',
+  title: 'Zakat Calculator UK | Gold, Silver & Nisab',
   description:
-    'Zakat calculator: 2.5%, gold and silver jewellery, UK nisab, tola and grams. Then give zakat to charity 1196514.',
+    'Zakat calculator for UK Muslims: 2.5%, gold and silver jewellery, nisab, tola and grams. Then give your zakat to Nagina Social Welfare UK (charity 1196514).',
   path: '/zakat/',
   keywords: 'zakat calculator UK, nisab, gold jewellery zakat, silver nisab, Nagina Social Welfare',
   type: 'website',
@@ -399,9 +399,9 @@ export const ZAKAT_SEO: PageSeo = {
 };
 
 export const WHAT_IS_ZAKAT_SEO: PageSeo = {
-  title: 'What Is Zakat? UK Guide | Nagina Social Welfare',
+  title: 'What Is Zakat? A Clear UK Guide | Nagina Social Welfare',
   description:
-    'A clear UK guide to Zakat — what it is, who it helps, and how Nagina Social Welfare supports giving with trusted sources.',
+    'A clear UK guide to Zakat: what it is, who it helps and how to give. Nagina Social Welfare supports your giving with trusted sources.',
   path: '/zakat/what-is-zakat/',
   keywords: 'what is zakat UK, zakat explained, Islamic charity, Nagina Social Welfare',
   type: 'article',
@@ -411,9 +411,9 @@ export const WHAT_IS_ZAKAT_SEO: PageSeo = {
 };
 
 export const ZAKAT_RULES_SEO: PageSeo = {
-  title: 'Zakat Rules in the UK | Nagina Social Welfare',
+  title: 'Zakat Rules in the UK | Nisab & Assets | Nagina',
   description:
-    'Zakat rules for UK Muslims — assets, nisab source and date, common questions and a clear disclaimer before using the calculator.',
+    'Zakat rules for UK Muslims: assets, nisab source and date, common questions and a clear disclaimer before using the calculator.',
   path: '/zakat/rules/',
   keywords: 'zakat rules UK, nisab UK, zakat assets, hawl, Nagina Social Welfare',
   type: 'article',
@@ -423,9 +423,9 @@ export const ZAKAT_RULES_SEO: PageSeo = {
 };
 
 export const DUAS_SEO: PageSeo = {
-  title: 'Daily Duas and Prayers | Nagina Social Welfare UK',
+  title: 'Daily Duas in Arabic, English & Urdu | Nagina Social',
   description:
-    'Seventeen everyday duas from Let’s Learn Islam — Arabic with English and Urdu meanings for children and families across the UK.',
+    'Seventeen everyday duas from Let’s Learn Islam: Arabic with English and Urdu meanings for children and families across the UK.',
   path: '/duas/',
   keywords: 'daily duas, Let’s Learn Islam, Islamic prayers English Urdu, Nagina Social Welfare',
   type: 'article',
@@ -435,9 +435,9 @@ export const DUAS_SEO: PageSeo = {
 };
 
 export const CALENDAR_SEO: PageSeo = {
-  title: 'Islamic Calendar | Nagina Social Welfare UK',
+  title: 'Islamic Calendar UK | Hijri & Gregorian Dates',
   description:
-    'Interactive Islamic calendar with Gregorian and Hijri dates for the UK — AlAdhan conversion, with links to prayer times and Ramadan.',
+    'Interactive Islamic calendar with Gregorian and Hijri dates for the UK, using AlAdhan conversion, with links to prayer times and Ramadan.',
   path: '/calendar/',
   keywords: 'Islamic calendar, Hijri calendar UK, Islamic dates, Nagina Social Welfare',
   type: 'website',
@@ -447,9 +447,9 @@ export const CALENDAR_SEO: PageSeo = {
 };
 
 export const RAMADAN_SEO: PageSeo = {
-  title: 'Ramadan in Peterborough & Manchester | Nagina Social Welfare UK',
+  title: 'Ramadan in Peterborough & Manchester | Nagina Social',
   description:
-    'Ramadan in Peterborough and Manchester — how to use local prayer times, events and contact Nagina Social Welfare for support information.',
+    'Ramadan in Peterborough and Manchester: how to use local prayer times and events, and how to contact Nagina Social Welfare for support information.',
   path: '/ramadan/',
   keywords: 'Ramadan Peterborough, Ramadan Manchester, iftar Peterborough, iftar Manchester, Taraweeh, Nagina Social Welfare',
   type: 'website',
@@ -459,9 +459,9 @@ export const RAMADAN_SEO: PageSeo = {
 };
 
 export const IMPACT_SEO: PageSeo = {
-  title: 'Impact Update | Nagina Social Welfare UK',
+  title: 'Community Impact Updates | Nagina Social Welfare UK',
   description:
-    'Approved updates on Nagina Social Welfare UK programmes, dates and community impact — published only with trustee approval.',
+    'Approved updates on Nagina Social Welfare UK programmes, dates and community impact, published only with trustee approval.',
   path: '/impact/',
   keywords: 'Nagina Social Welfare impact, charity annual report, Peterborough community welfare, Manchester community welfare',
   type: 'website',
@@ -471,9 +471,9 @@ export const IMPACT_SEO: PageSeo = {
 };
 
 export const DONATE_SEO: PageSeo = {
-  title: 'Donate | Support Our Mission | Nagina Social Welfare UK',
+  title: 'Donate Zakat & Sadaqah Online | Nagina Social Welfare UK',
   description:
-    'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514) — as a general gift or for our Peterborough or Manchester centre — by SumUp, PayPal, NatWest PayIt or bank transfer.',
+    'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514), as a general gift or for our Peterborough or Manchester centre.',
   path: '/donate/',
   keywords: 'Donate Nagina Social Welfare, Zakat, SumUp donation UK, Islamic charity Peterborough, Islamic charity Manchester',
   type: 'website',
@@ -485,7 +485,7 @@ export const DONATE_SEO: PageSeo = {
 export const ASSISTANT_SEO: PageSeo = {
   title: 'Nagina Assistant | Islamic Guidance & Site Help',
   description:
-    'Ask Nagina Assistant in English or Urdu about creed pages, guidance, books, donations and site information.',
+    'Ask Nagina Assistant in English or Urdu about our creed pages, guidance, books, donations and general site information.',
   path: '/assistant/',
   keywords: 'Nagina Assistant, Islamic AI assistant, Urdu Islamic help, Nagina guidance assistant',
   type: 'website',
@@ -495,9 +495,9 @@ export const ASSISTANT_SEO: PageSeo = {
 };
 
 export const CONTACT_SEO: PageSeo = {
-  title: 'Contact | Nagina Social Welfare UK',
+  title: 'Contact Nagina Social Welfare UK | Peterborough & Manchester',
   description:
-    'Contact Nagina Social Welfare UK — WhatsApp, phone or email for our Peterborough and Manchester Madrasas, donations and general enquiries.',
+    'Contact Nagina Social Welfare UK by WhatsApp, phone or email for our Peterborough and Manchester Madrasas, donations and general enquiries.',
   path: '/contact/',
   keywords: 'Contact Nagina Social Welfare, Peterborough Islamic centre contact, Manchester Madrasa contact, Madrasa admission',
   type: 'website',
@@ -509,7 +509,7 @@ export const CONTACT_SEO: PageSeo = {
 export const PRIVACY_SEO: PageSeo = {
   title: 'Privacy Notice | Nagina Social Welfare UK',
   description:
-    'How Nagina Social Welfare handles information when you use this website, including donations via SumUp.',
+    'How Nagina Social Welfare UK handles your information when you use this website, including donations made through SumUp.',
   path: '/privacy/',
   keywords: 'Privacy notice, GDPR, Nagina Social Welfare data protection',
   type: 'website',
@@ -519,9 +519,9 @@ export const PRIVACY_SEO: PageSeo = {
 };
 
 export const SAFEGUARDING_SEO: PageSeo = {
-  title: 'Safeguarding | Nagina Social Welfare UK',
+  title: 'Safeguarding Policy | Nagina Social Welfare UK',
   description:
-    'How Nagina Social Welfare and our Madrasas keep children and adults at risk safe — WhatsApp, email or request the full policy.',
+    'How Nagina Social Welfare and our Madrasas keep children and adults at risk safe: WhatsApp, email or request the full policy.',
   path: '/safeguarding/',
   keywords: 'Safeguarding, child protection, Markaz Deen-e-Islam, Quran Academy, Nagina Social Welfare',
   type: 'website',
@@ -531,9 +531,9 @@ export const SAFEGUARDING_SEO: PageSeo = {
 };
 
 export const SAFE_DROP_OFF_SEO: PageSeo = {
-  title: 'Safe Drop-Off & Collection for Parents | Markaz Deen-e-Islam Peterborough',
+  title: 'Safe Drop-Off & Collection | Markaz Deen-e-Islam',
   description:
-    'A short video and four simple rules for parents dropping off and collecting children at Markaz Deen-e-Islam, 103 Burmer Road, Peterborough: park legally, never stop unsafely, use the pavement side, respect our neighbours.',
+    'Four simple rules and a short video for parents dropping off and collecting children at Markaz Deen-e-Islam, Peterborough: park legally, respect neighbours.',
   path: '/safe-drop-off/',
   keywords: 'safe drop off, school run parking, Markaz Deen-e-Islam, Burmer Road Peterborough, Madrasa parents, child safety',
   image: '/videos/safe-drop-off/poster.jpg',
@@ -544,9 +544,9 @@ export const SAFE_DROP_OFF_SEO: PageSeo = {
 };
 
 export const KHATME_NABUWWAT_SEO: PageSeo = {
-  title: 'Finality of Prophethood | Nagina Social Welfare',
+  title: 'Khatme Nabuwwat: Finality of Prophethood',
   description:
-    'Belief in the absolute finality of the Prophethood of Muhammad ﷺ — the Seal of the Prophets — a cornerstone of Islamic faith for Ahl al-Sunnah.',
+    'Belief in the absolute finality of the Prophethood of Muhammad ﷺ, the Seal of the Prophets, a cornerstone of Islamic faith for Ahl al-Sunnah.',
   path: '/khatme-nabuwwat/',
   keywords: 'Finality of Prophethood, Khatam-un-Nabiyyin, Seal of the Prophets, Quran 33:40',
   image: `${SITE_ORIGIN}/media/khatme-nabuwwat.webp`,
@@ -557,9 +557,9 @@ export const KHATME_NABUWWAT_SEO: PageSeo = {
 };
 
 export const AHLE_BAIT_SEO: PageSeo = {
-  title: 'Ahl al-Bayt | The Prophet’s Family | Nagina Social Welfare',
+  title: 'Ahl al-Bayt: The Prophet’s Family | Nagina Social Welfare',
   description:
-    'The elevated status of Ahl al-Bayt — the Blessed Household of the Prophet Muhammad ﷺ — in the light of the Quran and Sunnah.',
+    'The elevated status of Ahl al-Bayt, the Blessed Household of the Prophet Muhammad ﷺ, in the light of the Quran and Sunnah.',
   path: '/ahle-bait/',
   keywords: 'Ahl al-Bayt, Prophet’s family, Aal-e-Pak, Ayat al-Tathir, Hadith al-Thaqalayn',
   image: `${SITE_ORIGIN}/media/shan-ahle-bait.webp`,
@@ -570,9 +570,9 @@ export const AHLE_BAIT_SEO: PageSeo = {
 };
 
 export const SAHABA_IKRAM_SEO: PageSeo = {
-  title: 'Companions of the Prophet ﷺ | Sahabah | Nagina Social Welfare',
+  title: 'Sahaba Ikram: Companions of the Prophet ﷺ',
   description:
-    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah — upright Companions of the Messenger of Allah ﷺ.',
+    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Sahabah, the upright Companions of the Messenger of Allah ﷺ, honoured in the light of Quran and Hadith.',
   path: '/sahaba-ikram/',
   keywords: 'Companions of the Prophet, Sahabah, Ahl al-Sunnah, Khulafa ar-Rashidun',
   image: `${SITE_ORIGIN}/media/sahaba-ikram.webp`,
@@ -583,9 +583,9 @@ export const SAHABA_IKRAM_SEO: PageSeo = {
 };
 
 export const AULIA_KARAM_SEO: PageSeo = {
-  title: 'Awliya Allah | Friends of Allah | Nagina Social Welfare',
+  title: 'Awliya Allah: Friends of Allah | Nagina Social Welfare',
   description:
-    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah — friends of Allah honoured through faith and taqwa.',
+    'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah, the friends of Allah, honoured through faith and taqwa.',
   path: '/aulia-karam/',
   keywords: 'Awliya Allah, friends of Allah, Yunus 10:62, Ahl al-Sunnah, Hanafi Barelvi',
   image: `${SITE_ORIGIN}/media/aulia-karam.webp`,
@@ -596,9 +596,9 @@ export const AULIA_KARAM_SEO: PageSeo = {
 };
 
 export const BASIC_BELIEFS_SEO: PageSeo = {
-  title: 'Basic Beliefs | Hanafi Barelvi Ahl al-Sunnah FAQ | Nagina Social Welfare',
+  title: 'Basic Beliefs of Ahl al-Sunnah | Hanafi Barelvi FAQ',
   description:
-    'FAQ on the basic creed of Hanafi Barelvi Ahl al-Sunnah — Tawhid, Finality of Prophethood, Ahl al-Bayt, Companions and Awliya.',
+    'FAQ on the basic creed of Hanafi Barelvi Ahl al-Sunnah: Tawhid, Finality of Prophethood, Ahl al-Bayt, Companions and Awliya.',
   path: '/basic-beliefs/',
   keywords: 'Basic beliefs, aqidah, Hanafi Barelvi, Ahl al-Sunnah, iman, Tawhid',
   type: 'article',
