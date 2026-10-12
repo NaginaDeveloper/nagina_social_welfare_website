@@ -114,7 +114,7 @@ export const WORK_SEO: PageSeo = {
 };
 
 export const PETERBOROUGH_SEO: PageSeo = {
-  title: 'Madrasa in Peterborough | Markaz Deen-e-Islam',
+  title: 'Markaz Deen-e-Islam Peterborough | Nagina Social Welfare UK',
   description:
     'Markaz Deen-e-Islam, 103 Burmer Road, Peterborough: evening Madrasa classes by age, Let’s Learn Salah, sisters’ gatherings and Zikr & Fikr.',
   path: '/peterborough/',
@@ -127,7 +127,7 @@ export const PETERBOROUGH_SEO: PageSeo = {
 };
 
 export const MANCHESTER_SEO: PageSeo = {
-  title: 'Madrasa in Manchester | Nagina Social Welfare UK',
+  title: 'Quran Academy Manchester | Nagina Social Welfare UK',
   description:
     'Nagina Social Welfare in Manchester: Quran Academy at Partington Community Centre. Address, Madrasa admission, prayer times, events and how to contact us.',
   path: '/manchester/',
