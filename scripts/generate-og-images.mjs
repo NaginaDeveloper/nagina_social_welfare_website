@@ -51,10 +51,12 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:${headline(p
 .foot b{color:#f59e0b;font-weight:700}
 .logo{position:absolute;right:96px;top:50%;transform:translateY(-50%);width:270px;height:270px;border-radius:50%;background:#fff;padding:14px;box-shadow:0 0 0 8px rgba(217,119,6,.5)}
 .logo img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.logo.crest{width:320px;height:320px;border-radius:0;background:none;padding:0;box-shadow:none;right:84px;filter:drop-shadow(0 10px 28px rgba(0,0,0,.45))}
+.logo.crest img{border-radius:0}
 </style></head><body><div class="glow"></div><div class="frame"></div>
 <div class="wrap"><div class="eyebrow">${esc(eyebrow(page))}</div><h1>${esc(headline(page))}</h1>
 <div class="foot">Registered charity <b>1196514</b> &nbsp;·&nbsp; naginasocialwelfare.co.uk</div></div>
-<div class="logo"><img src="${logoFor(page)}" alt=""></div></body></html>`;
+<div class="logo${LOGOS[page.path] ? ' crest' : ''}"><img src="${logoFor(page)}" alt=""></div></body></html>`;
 
 const pages = PUBLIC_SEO_PAGES.filter(
   (p) => !p.image && !(p.robots ?? '').toLowerCase().includes('noindex'),
