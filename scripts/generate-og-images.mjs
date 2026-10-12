@@ -26,12 +26,19 @@ const LOGOS = { '/peterborough/': 'markaz.png', '/manchester/': 'quran-academy.p
 const logoFor = (page) => pathToFileURL(join(root, 'public', 'brand', LOGOS[page.path] ?? 'nagina.png')).href;
 const esc = (s) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
+const CENTRES = {
+  '/peterborough/': { name: 'Markaz Deen-e-Islam', place: 'Peterborough' },
+  '/manchester/': { name: 'Quran Academy', place: 'Manchester' },
+};
+
 function headline(page) {
+  if (CENTRES[page.path]) return CENTRES[page.path].name;
   if (page.path === '/') return 'Islamic Education & Community Welfare';
   return page.title.split('|')[0].trim();
 }
 
 function eyebrow(page) {
+  if (CENTRES[page.path]) return `Nagina Social Welfare UK · ${CENTRES[page.path].place}`;
   const place = /peterborough/i.test(page.path) ? 'Peterborough' : /manchester/i.test(page.path) ? 'Manchester' : 'United Kingdom';
   return page.path === '/' ? 'Nagina Social Welfare UK' : `Nagina Social Welfare · ${place}`;
 }
@@ -54,7 +61,7 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:${headline(p
 .logo.crest{width:320px;height:320px;border-radius:0;background:none;padding:0;box-shadow:none;right:84px;filter:drop-shadow(0 10px 28px rgba(0,0,0,.45))}
 .logo.crest img{border-radius:0}
 </style></head><body><div class="glow"></div><div class="frame"></div>
-<div class="wrap"><div class="eyebrow">${esc(eyebrow(page))}</div><h1>${esc(headline(page))}</h1>
+<div class="wrap"><div class="eyebrow">${esc(eyebrow(page))}</div><h1>${esc(headline(page)).replace('Deen-e-Islam', '<span style="white-space:nowrap">Deen-e-Islam</span>')}</h1>
 <div class="foot">Registered charity <b>1196514</b> &nbsp;·&nbsp; naginasocialwelfare.co.uk</div></div>
 <div class="logo${LOGOS[page.path] ? ' crest' : ''}"><img src="${logoFor(page)}" alt=""></div></body></html>`;
 
