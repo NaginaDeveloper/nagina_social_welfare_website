@@ -1,7 +1,7 @@
 import { Component, OnInit, computed, inject, input } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { markazAbout } from '../../config/centre-about.config';
+import { markazAbout, quranAcademyAbout } from '../../config/centre-about.config';
 import { centreLogo, centreReviewUrl } from '../../config/centre-pages.config';
 import { ORGANIZATION } from '../../config/organization.config';
 import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
@@ -13,12 +13,13 @@ import { RelatedPages, type RelatedPageLink } from '../related-pages/related-pag
 import { ContentReviewNote } from '../content-review-note/content-review-note';
 import { VenueMap } from '../venue-map/venue-map';
 import { CentreMarkaz } from '../centre-markaz/centre-markaz';
+import { CentreQuranAcademy } from '../centre-quran-academy/centre-quran-academy';
 import { GoogleReviews } from '../google-reviews/google-reviews';
 
 /** Local page for one centre, filled from the published campus list. */
 @Component({
   selector: 'app-centre',
-  imports: [NgTemplateOutlet, RouterLink, RelatedPages, ContentReviewNote, VenueMap, CentreMarkaz, GoogleReviews],
+  imports: [NgTemplateOutlet, RouterLink, RelatedPages, ContentReviewNote, VenueMap, CentreMarkaz, CentreQuranAcademy, GoogleReviews],
   templateUrl: './centre.html',
 })
 export class Centre implements OnInit {
@@ -35,8 +36,10 @@ export class Centre implements OnInit {
   protected readonly reviewUrl = computed(() => centreReviewUrl(this.campusId()));
   /** Peterborough's own page body, when the centre has one. */
   protected readonly markaz = computed(() => markazAbout(this.campusId()));
+  /** Manchester's own page body (Quran Academy), when the centre has one. */
+  protected readonly academy = computed(() => quranAcademyAbout(this.campusId()));
   /** Name and one-liner of a centre with its own page text, if any. */
-  protected readonly own = computed(() => this.markaz());
+  protected readonly own = computed(() => this.markaz() ?? this.academy());
   /** Ties the centre's own name back to the charity: "Nagina Social Welfare · Manchester". */
   protected readonly eyebrow = computed(() =>
     this.own() && !this.i18n.isUr()

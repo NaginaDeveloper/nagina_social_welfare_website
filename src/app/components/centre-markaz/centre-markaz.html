@@ -36,6 +36,9 @@
     }
   </dl>
 
+  <!-- Inspiration, the chain, legacy and commitment (shared with Quran Academy) -->
+  <app-centre-legacy centreId="peterborough" />
+
   <!-- Rhythm of the week and year: a timeline -->
   <div class="mt-20" appReveal>
     <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">Through the Week and the Year</h2>
@@ -63,38 +66,6 @@
         </li>
       }
     </ol>
-  </div>
-
-  <!-- Spiritual guide -->
-  <div class="relative mt-20 overflow-hidden rounded-3xl bg-forest px-6 py-10 text-cream sm:px-12" appReveal data-testid="markaz-guide">
-    <div class="geo-pattern absolute inset-0 opacity-30" aria-hidden="true"></div>
-    <div class="relative grid items-center gap-8 md:grid-cols-[12rem_1fr]">
-      <img
-        [src]="about().guide.image"
-        [alt]="about().guide.name"
-        class="mx-auto h-40 w-40 rounded-full object-cover ring-4 ring-gold/50 sm:h-48 sm:w-48"
-        loading="lazy"
-        width="192"
-        height="192"
-      />
-      <div class="text-center md:text-start">
-        <span class="eyebrow-on-dark">Our Spiritual Guide</span>
-        <h2 class="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">{{ about().guide.name }}</h2>
-        @for (para of about().guide.text; track $index) {
-          <p class="mt-3 text-base leading-relaxed text-cream/85">{{ para }}</p>
-        }
-        <div class="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
-          @for (link of about().guide.links; track link.path) {
-            <a
-              [routerLink]="link.path"
-              class="inline-flex min-h-10 items-center rounded-full border border-gold/40 px-4 py-2 text-sm font-semibold text-gold-300 hover:bg-white/10"
-            >
-              {{ link.label }}
-            </a>
-          }
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Head office -->

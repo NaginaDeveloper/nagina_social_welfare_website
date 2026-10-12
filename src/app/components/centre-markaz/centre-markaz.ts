@@ -3,12 +3,13 @@ import { RouterLink } from '@angular/router';
 import type { MarkazAbout } from '../../config/centre-about.config';
 import { Reveal } from '../../directives/reveal';
 import { LanguageService } from '../../i18n/language.service';
+import { CentreLegacy } from '../centre-legacy/centre-legacy';
 import { Icon } from '../ui/icon';
 
 /** Peterborough's own page body: photos, week-and-year rhythm, guide, head office (English text). */
 @Component({
   selector: 'app-centre-markaz',
-  imports: [Reveal, Icon, RouterLink],
+  imports: [Reveal, Icon, RouterLink, CentreLegacy],
   templateUrl: './centre-markaz.html',
 })
 export class CentreMarkaz {

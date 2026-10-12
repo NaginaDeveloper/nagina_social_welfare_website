@@ -127,3 +127,35 @@ export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
 export function markazAbout(campusId: string): MarkazAbout | null {
   return MARKAZ_ABOUT[campusId] ?? null;
 }
+
+/** Manchester's own page opening (Quran Academy); the legacy text is in centre-legacy.config.ts. */
+export interface QuranAcademyAbout {
+  readonly name: string;
+  readonly lead: string;
+  readonly intro: readonly string[];
+  readonly facts: readonly { readonly label: string; readonly value: string; readonly link?: { readonly path: string; readonly label: string } }[];
+}
+
+export const QURAN_ACADEMY_ABOUT: Readonly<Record<string, QuranAcademyAbout>> = {
+  manchester: {
+    name: 'Quran Academy',
+    lead: 'Qur’an and Islamic learning at Partington Community Centre, and a link in the Nagina Social Welfare chain.',
+    intro: [
+      'Quran Academy is the Nagina Social Welfare UK Madrasa at Partington Community Centre in Manchester. Classes run on weekday evenings, open to children of all ages.',
+      'Everything we do here is part of something larger: the chain of Nagina Social Welfare, held together by our head office, Markaz Deen-e-Islam in Peterborough.',
+    ],
+    facts: [
+      { label: 'Where', value: 'Partington Community Centre, Manchester M31 4FL' },
+      { label: 'Madrasa', value: 'Monday to Friday, 5–6 PM, all ages' },
+      {
+        label: 'Head office',
+        value: 'Markaz Deen-e-Islam, Peterborough',
+        link: { path: '/peterborough', label: 'Visit the head office page' },
+      },
+    ],
+  },
+};
+
+export function quranAcademyAbout(campusId: string): QuranAcademyAbout | null {
+  return QURAN_ACADEMY_ABOUT[campusId] ?? null;
+}

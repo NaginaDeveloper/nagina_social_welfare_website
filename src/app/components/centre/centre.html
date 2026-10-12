@@ -36,6 +36,8 @@
       @if (markaz(); as markaz) {
         <!-- The centre's own page body replaces the generic list below. -->
         <app-centre-markaz [about]="markaz" />
+      } @else if (academy(); as academy) {
+        <app-centre-quran-academy [about]="academy" [centreId]="campus.id" />
       } @else {
       <div
         class="mx-auto mt-14 max-w-3xl"
