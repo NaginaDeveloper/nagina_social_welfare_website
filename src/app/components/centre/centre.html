@@ -144,9 +144,9 @@
 
       <ng-template #actionLinks>
       <div
-        class="mx-auto flex flex-wrap items-center justify-center gap-3"
+        class="mx-auto flex flex-wrap items-center justify-center gap-2"
         [class.mt-8]="own()"
-        [class.max-w-4xl]="own()"
+        [class.max-w-6xl]="own()"
         [class.mt-14]="!own()"
         [class.max-w-3xl]="!own()"
         [attr.dir]="i18n.isUr() ? 'rtl' : null"
@@ -155,33 +155,33 @@
           routerLink="/apply"
           [queryParams]="{ campus: campus.id }"
           fragment="apply-form"
-          class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-5 py-2.5 text-sm font-semibold text-forest"
+          class="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-gold-300 to-gold px-4 py-2.5 text-sm font-semibold text-forest"
         >
           {{ i18n.t('centre.linkApply') }}
         </a>
         <a
           routerLink="/namaz"
           (click)="showPrayerTimesHere()"
-          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-4 py-2.5 text-sm font-semibold text-forest shadow-soft"
         >
           {{ i18n.t('centre.linkNamaz') }}
         </a>
         <a
           routerLink="/events"
-          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-4 py-2.5 text-sm font-semibold text-forest shadow-soft"
         >
           {{ i18n.t('centre.linkEvents') }}
         </a>
         <a
           routerLink="/work"
-          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-4 py-2.5 text-sm font-semibold text-forest shadow-soft"
         >
           {{ i18n.t('centre.linkWork') }}
         </a>
         <a
           routerLink="/donate"
           [queryParams]="{ campus: campus.id }"
-          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-mist bg-white px-4 py-2.5 text-sm font-semibold text-forest shadow-soft"
         >
           {{ text('centre.linkDonate') }}
         </a>
@@ -189,7 +189,7 @@
           [href]="contactWhatsApp()"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex min-h-11 items-center justify-center rounded-full border border-gold/40 bg-sand/50 px-5 py-2.5 text-sm font-semibold text-forest"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-gold/40 bg-sand/50 px-4 py-2.5 text-sm font-semibold text-forest"
         >
           {{ i18n.t('centre.linkWhatsApp') }}
         </a>
@@ -198,7 +198,7 @@
             [href]="url"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-gold/40 bg-white px-5 py-2.5 text-sm font-semibold text-forest shadow-soft"
+            class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-gold/40 bg-white px-4 py-2.5 text-sm font-semibold text-forest shadow-soft"
             data-testid="centre-review-link"
           >
             <span class="text-gold" aria-hidden="true">★</span>
