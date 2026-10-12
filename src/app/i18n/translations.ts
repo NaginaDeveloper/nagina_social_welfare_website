@@ -1359,7 +1359,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'centre.linkWork': 'Our work',
   'centre.linkDonate': 'Donate to {town}',
   'centre.linkWhatsApp': 'WhatsApp',
-  'centre.linkReview': 'Leave a Google review',
+  'centre.linkReview': 'Google review',
   'reviews.title': 'What families say on Google',
   'reviews.count': '{n} Google reviews',
   'reviews.starsLabel': '{n} out of 5 stars',

@@ -1,0 +1,32 @@
+<div class="mx-auto mt-16 max-w-5xl" dir="ltr" lang="en" data-testid="centre-quran-academy">
+  @if (i18n.isUr()) {
+    <p class="mb-6 text-center text-sm text-slate-warm" dir="rtl" lang="ur">{{ i18n.t('centreStory.englishOnly') }}</p>
+  }
+
+  <div class="mx-auto max-w-3xl text-center" appReveal>
+    <h2 class="font-display text-3xl font-bold text-forest sm:text-4xl">Welcome to Quran Academy</h2>
+    @for (para of about().intro; track $index) {
+      <p class="mt-4 text-base leading-relaxed text-slate-warm sm:text-lg">{{ para }}</p>
+    }
+  </div>
+
+  <dl class="mt-10 grid gap-3 sm:grid-cols-3" appReveal>
+    @for (fact of about().facts; track fact.label) {
+      <div class="rounded-2xl border border-gold/30 bg-white px-5 py-4 shadow-soft">
+        <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">{{ fact.label }}</dt>
+        <dd class="mt-1 text-sm leading-relaxed text-forest">{{ fact.value }}</dd>
+        @if (fact.link) {
+          <a
+            [routerLink]="fact.link.path"
+            class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-gold-600 underline decoration-gold/40 underline-offset-2 hover:text-forest"
+          >
+            {{ fact.link.label }}
+            <app-icon name="arrow" size="h-3.5 w-3.5" />
+          </a>
+        }
+      </div>
+    }
+  </dl>
+
+  <app-centre-legacy [centreId]="centreId()" />
+</div>
