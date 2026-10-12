@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-08T13:53:59.270Z",
-  "count": 462,
+  "version": "2026-10-12T21:56:31.529Z",
+  "count": 471,
   "chunks": [
     {
       "id": "55594f75b2720379",
@@ -599,8 +599,8 @@
       "title": "Markaz Deen-e-Islam: about",
       "sourceType": "faq",
       "path": "/peterborough",
-      "text": "Markaz Deen-e-Islam on Burmer Road is the head office of Nagina Social Welfare UK. It is home to our Peterborough Madrasa, to regular gatherings of remembrance and learning, and to the day-to-day work of the charity. Our work here is rooted in Ahl al-Sunnah wa’l-Jama‘ah belief, love of the Prophet Muhammad ﷺ and sincere worship, and is guided by the teaching of Munir-e-Islam: sweet manner, patience, knowledge and charity. Children come each evening for Qur’an and Islamic studies. Sisters, brothers and families come for courses, gatherings and support. Head office: Nagina Social Welfare UK, registered charity 1196514. Madrasa: Three evening classes, split by age. Where: 103 Burmer Road, Peterborough PE1 3HT.",
-      "language": "en",
+      "text": "Markaz Deen-e-Islam on Burmer Road is the head office of Nagina Social Welfare UK. It is home to our Peterborough Madrasa, to regular gatherings of remembrance and learning, and to the day-to-day work of the charity. Our work here is rooted in Ahl al-Sunnah wa’l-Jama‘ah belief, love of the Prophet Muhammad ﷺ and sincere worship, and is guided by the teaching of Munir-e-Islam رحمۃ اللہ علیہ: sweet manner, patience, knowledge and charity. Children come each evening for Qur’an and Islamic studies. Sisters, brothers and families come for courses, gatherings and support. Head office: Nagina Social Welfare UK, registered charity 1196514. Madrasa: Three evening classes, split by age. Where: 103 Burmer Road, Peterborough PE1 3HT.",
+      "language": "mixed",
       "tags": [
         "centre",
         "about",
@@ -627,17 +627,168 @@
       "approved": true
     },
     {
-      "id": "b66d8f0f0d7cca2a",
+      "id": "21ae4d59d6bf6a95",
       "title": "Markaz Deen-e-Islam: spiritual guide and head office",
       "sourceType": "faq",
       "path": "/peterborough",
-      "text": "Munir-e-Islam, Allama Munir Ahmed Yusufi. A beloved scholar and Sufi guide whose teaching of sweet manner, patience, knowledge and charity continues to light the work of Markaz Deen-e-Islam. His sermons and books, preserved from the Seedha Rastah archive, are free to watch and read on this website. Markaz Deen-e-Islam is the registered head office of Nagina Social Welfare UK (charity 1196514), which runs Madrasas in Peterborough and Manchester. Giving, community membership and requests for help can all start here.",
-      "language": "en",
+      "text": "Munir-e-Islam, Allama Munir Ahmed Yusufi رحمۃ اللہ علیہ. A beloved scholar and Sufi guide whose teaching of sweet manner, patience, knowledge and charity continues to light the work of Markaz Deen-e-Islam. His sermons and books, preserved from the Seedha Rastah archive, are free to watch and read on this website. Markaz Deen-e-Islam is the registered head office of Nagina Social Welfare UK (charity 1196514), which runs Madrasas in Peterborough and Manchester. Giving, community membership and requests for help can all start here.",
+      "language": "mixed",
       "tags": [
         "centre",
         "about",
         "peterborough",
         "head-office"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "85e8c5b31a3fe186",
+      "title": "Quran Academy: about",
+      "sourceType": "faq",
+      "path": "/manchester",
+      "text": "Quran Academy is the Nagina Social Welfare UK Madrasa at Partington Community Centre in Manchester. Classes run on weekday evenings, open to children of all ages. Everything we do here is part of something larger: the chain of Nagina Social Welfare, held together by our head office, Markaz Deen-e-Islam in Peterborough. Where: Partington Community Centre, Manchester M31 4FL. Madrasa: Monday to Friday, 5–6 PM, all ages. Head office: Markaz Deen-e-Islam, Peterborough.",
+      "language": "en",
+      "tags": [
+        "centre",
+        "about",
+        "manchester"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "399851760119a4cd",
+      "title": "Quran Academy Partington: our Islamic inspiration",
+      "sourceType": "faq",
+      "path": "/manchester",
+      "text": "Quran Academy Partington is proud to be the second institution in the United Kingdom inspired by the teachings, vision and legacy of the great Islamic scholar, Shaykh Munir Ahmed Yusufi رحمہ اللہ. The foundation of our work is inspired by a simple but profound principle: true Islamic education is not only about gaining knowledge; it is about transforming hearts, building character and serving humanity. Shaykh Munir Ahmed Yusufi رحمہ اللہ dedicated his life to the teaching and propagation of Islam. Through his knowledge, humility, character and commitment to serving the Ummah, his teachings touched the hearts and lives of countless people. His legacy continues through the institutions and charitable work established upon his vision.",
+      "language": "mixed",
+      "tags": [
+        "centre",
+        "legacy",
+        "manchester",
+        "inspiration",
+        "munir-ahmed-yusufi"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "8dc6084040e1087f",
+      "title": "Quran Academy Partington: one chain, one family",
+      "sourceType": "faq",
+      "path": "/manchester",
+      "text": "A Link in the Chain of Nagina Social Welfare. Quran Academy does not stand alone. It is a link in the chain of Nagina Social Welfare, joined to our head office, Markaz Deen-e-Islam in Peterborough, and through it to the legacy that began in Pakistan. We say it plainly and with gratitude: this academy is nothing without the head office’s support and guidance. Its standards, its direction and its ability to serve all flow from that connection. We believe in unity. A chain is only as strong as its links are joined, and together, under one vision, we are far stronger than any one of us alone. The chain: Nagina Social Welfare, Pakistan (Founded by Shaykh Munir Ahmed Yusufi رحمہ اللہ) → Markaz Deen-e-Islam (Peterborough · Head office, Nagina Social Welfare UK) → Quran Academy (Partington, Manchester · Second institution in the UK).",
+      "language": "mixed",
+      "tags": [
+        "centre",
+        "legacy",
+        "manchester",
+        "head-office",
+        "unity"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "fd171ee14e6f51e0",
+      "title": "Quran Academy Partington: a legacy of education and community service",
+      "sourceType": "faq",
+      "path": "/manchester",
+      "text": "Shaykh Munir Ahmed Yusufi رحمہ اللہ was the founder of Nagina Social Welfare, Pakistan, an organisation established with a commitment to Islamic education, community welfare and service to humanity. Places of worship and learning: Through this legacy, many mosques and educational institutions have been established and supported, providing places of worship and learning for communities across Pakistan. Qur’an, Fiqh and Islamic teachings: Thousands of children have had the opportunity to learn the Qur’an, Fiqh and Islamic teachings. Recognised academic pathways: Educational institutions connected with this work have sought to provide structured Islamic education and recognised academic pathways. This remarkable legacy reminds us that the most valuable investment we can make is in people — their faith, their knowledge, their character and their future. Our purpose is not simply to teach children to read the Qur’an. We aspire to nurture a generation that understands the Qur’an, lives by its teachings and reflects its values through beautiful character and conduct. We believe that when knowledge enters the heart and is reflected in character, it becomes a source of benefit for the individual, the family and the wider community.",
+      "language": "mixed",
+      "tags": [
+        "centre",
+        "legacy",
+        "manchester",
+        "pakistan",
+        "education"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "958814037bf300af",
+      "title": "Quran Academy Partington: our commitment and du’a",
+      "sourceType": "faq",
+      "path": "/manchester",
+      "text": "We pray that Quran Academy Partington becomes a sadaqah jariyah — a continuous source of benefit — by nurturing generations who carry the Qur’an in their hearts, embody the Sunnah in their character and dedicate themselves to serving humanity. Our inspiration comes from the Qur’an, the Sunnah and the legacy of scholars who dedicated their lives to spreading knowledge and serving the Ummah. May Allah ﷻ accept this humble effort, bless our teachers and students, preserve the legacy of our scholars, and allow future generations to carry the light of Qur’an and Sunnah forward. Ameen. “And say: My Lord, increase me in knowledge.” (Surah Ta-Ha, 20:114). Our Commitment: To educate with wisdom. To inspire with faith. To nurture with compassion. To serve with sincerity. And to build a generation connected to Allah ﷻ and the Messenger of Allah ﷺ.",
+      "language": "en",
+      "tags": [
+        "centre",
+        "legacy",
+        "manchester",
+        "commitment",
+        "dua"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "fcb590c8f33fc3e0",
+      "title": "Markaz Deen-e-Islam: our Islamic inspiration",
+      "sourceType": "faq",
+      "path": "/peterborough",
+      "text": "Markaz Deen-e-Islam is the home of this legacy in the United Kingdom, and Quran Academy Partington in Manchester is the second institution here inspired by the teachings, vision and legacy of the great Islamic scholar, Shaykh Munir Ahmed Yusufi رحمہ اللہ. The foundation of our work is inspired by a simple but profound principle: true Islamic education is not only about gaining knowledge; it is about transforming hearts, building character and serving humanity. Shaykh Munir Ahmed Yusufi رحمہ اللہ dedicated his life to the teaching and propagation of Islam. Through his knowledge, humility, character and commitment to serving the Ummah, his teachings touched the hearts and lives of countless people. His legacy continues through the institutions and charitable work established upon his vision.",
+      "language": "mixed",
+      "tags": [
+        "centre",
+        "legacy",
+        "peterborough",
+        "inspiration",
+        "munir-ahmed-yusufi"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "7f6bb0e74e8254f0",
+      "title": "Markaz Deen-e-Islam: one chain, one family",
+      "sourceType": "faq",
+      "path": "/peterborough",
+      "text": "Where the Chain Is Held Together. Markaz Deen-e-Islam is the head office of Nagina Social Welfare UK. From here we guide, support and stand behind every centre in the chain, including Quran Academy Partington in Manchester. We believe in unity. A centre grows strongest when it is joined to the rest, and a head office is only as strong as the centres it serves. Neither stands alone. One family, one vision, one mission: knowledge, character and service. The chain: Nagina Social Welfare, Pakistan (Founded by Shaykh Munir Ahmed Yusufi رحمہ اللہ) → Markaz Deen-e-Islam (Peterborough · Head office, Nagina Social Welfare UK) → Quran Academy (Partington, Manchester · Second institution in the UK).",
+      "language": "mixed",
+      "tags": [
+        "centre",
+        "legacy",
+        "peterborough",
+        "head-office",
+        "unity"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "1e91d4c6f3ce5c28",
+      "title": "Markaz Deen-e-Islam: a legacy of education and community service",
+      "sourceType": "faq",
+      "path": "/peterborough",
+      "text": "Shaykh Munir Ahmed Yusufi رحمہ اللہ was the founder of Nagina Social Welfare, Pakistan, an organisation established with a commitment to Islamic education, community welfare and service to humanity. Places of worship and learning: Through this legacy, many mosques and educational institutions have been established and supported, providing places of worship and learning for communities across Pakistan. Qur’an, Fiqh and Islamic teachings: Thousands of children have had the opportunity to learn the Qur’an, Fiqh and Islamic teachings. Recognised academic pathways: Educational institutions connected with this work have sought to provide structured Islamic education and recognised academic pathways. This remarkable legacy reminds us that the most valuable investment we can make is in people — their faith, their knowledge, their character and their future. Our purpose is not simply to teach children to read the Qur’an. We aspire to nurture a generation that understands the Qur’an, lives by its teachings and reflects its values through beautiful character and conduct. We believe that when knowledge enters the heart and is reflected in character, it becomes a source of benefit for the individual, the family and the wider community.",
+      "language": "mixed",
+      "tags": [
+        "centre",
+        "legacy",
+        "peterborough",
+        "pakistan",
+        "education"
+      ],
+      "maslak": "site",
+      "approved": true
+    },
+    {
+      "id": "89fb36edf742fdf0",
+      "title": "Markaz Deen-e-Islam: our commitment and du’a",
+      "sourceType": "faq",
+      "path": "/peterborough",
+      "text": "We pray that Markaz Deen-e-Islam becomes a sadaqah jariyah — a continuous source of benefit — by nurturing generations who carry the Qur’an in their hearts, embody the Sunnah in their character and dedicate themselves to serving humanity. Our inspiration comes from the Qur’an, the Sunnah and the legacy of scholars who dedicated their lives to spreading knowledge and serving the Ummah. May Allah ﷻ accept this humble effort, bless our teachers and students, preserve the legacy of our scholars, and allow future generations to carry the light of Qur’an and Sunnah forward. Ameen. “And say: My Lord, increase me in knowledge.” (Surah Ta-Ha, 20:114). Our Commitment: To educate with wisdom. To inspire with faith. To nurture with compassion. To serve with sincerity. And to build a generation connected to Allah ﷻ and the Messenger of Allah ﷺ.",
+      "language": "en",
+      "tags": [
+        "centre",
+        "legacy",
+        "peterborough",
+        "commitment",
+        "dua"
       ],
       "maslak": "site",
       "approved": true
