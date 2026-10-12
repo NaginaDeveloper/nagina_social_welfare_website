@@ -4,6 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import ts from 'typescript';
+import { Agent } from 'undici';
 import { PDFParse } from 'pdf-parse';
 
 const ROOT = process.cwd();
@@ -351,6 +352,7 @@ async function buildCuratedChunks() {
   ];
   faq.push(...(await buildCampusFaq()));
   faq.push(...(await buildMarkazFaq()));
+  faq.push(...(await buildLegacyFaq()));
   for (const item of faq) {
     chunks.push(
       makeChunk({
@@ -397,6 +399,69 @@ async function buildMarkazFaq() {
       },
     ];
   });
+}
+
+/** Transpiles a TS config (types only erased) and loads it, for files that use template strings. */
+async function importTsModule(filePath) {
+  const source = await readFile(filePath, 'utf8');
+  const { outputText } = ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, isolatedModules: true },
+  });
+  return import(`data:text/javascript;base64,${Buffer.from(outputText).toString('base64')}`);
+}
+
+/**
+ * Manchester's own opening (QURAN_ACADEMY_ABOUT) and the legacy, chain and commitment text
+ * shared by the Peterborough and Manchester pages (centre-legacy.config.ts).
+ */
+async function buildLegacyFaq() {
+  const academy = await extractExportedConst(
+    path.join(ROOT, 'src/app/config/centre-about.config.ts'),
+    'QURAN_ACADEMY_ABOUT',
+  );
+  const legacy = await importTsModule(path.join(ROOT, 'src/app/config/centre-legacy.config.ts'));
+  const items = [];
+  for (const [campusId, m] of Object.entries(academy)) {
+    items.push({
+      title: `${m.name}: about`,
+      path: `/${campusId}`,
+      text: `${m.intro.join(' ')} ${m.facts.map((f) => `${f.label}: ${f.value}.`).join(' ')}`,
+      tags: ['centre', 'about', campusId],
+    });
+  }
+  const chain = legacy.CHAIN_NODES.map((n) => `${n.name} (${n.role})`).join(' → ');
+  for (const campusId of Object.keys(legacy.CENTRE_LEGACY)) {
+    const c = legacy.centreLegacy(campusId);
+    const tags = ['centre', 'legacy', campusId];
+    const pagePath = `/${campusId}`;
+    items.push(
+      {
+        title: `${c.centreName}: our Islamic inspiration`,
+        path: pagePath,
+        text: `${c.inspirationOpening} ${legacy.INSPIRATION.paragraphs.join(' ')}`,
+        tags: [...tags, 'inspiration', 'munir-ahmed-yusufi'],
+      },
+      {
+        title: `${c.centreName}: one chain, one family`,
+        path: pagePath,
+        text: `${c.chainTitle}. ${c.chainText.join(' ')} The chain: ${chain}.`,
+        tags: [...tags, 'head-office', 'unity'],
+      },
+      {
+        title: `${c.centreName}: a legacy of education and community service`,
+        path: pagePath,
+        text: `${legacy.LEGACY.intro} ${legacy.LEGACY.cards.map((x) => `${x.title}: ${x.text}`).join(' ')} ${legacy.LEGACY.closing} ${legacy.PURPOSE.join(' ')}`,
+        tags: [...tags, 'pakistan', 'education'],
+      },
+      {
+        title: `${c.centreName}: our commitment and du’a`,
+        path: pagePath,
+        text: `${legacy.duaText(c.centreName).join(' ')} ${legacy.AYAH.translation} (${legacy.AYAH.source}). ${legacy.COMMITMENT.title}: ${legacy.COMMITMENT.lines.join(' ')} ${legacy.COMMITMENT.closing}`,
+        tags: [...tags, 'commitment', 'dua'],
+      },
+    );
+  }
+  return items;
 }
 
 /** One entry per madrasa from the office-editable campus list, so edits reach the assistant on the next ingest. */
@@ -492,7 +557,9 @@ async function main() {
     throw new Error('ASSISTANT_SYNC_TOKEN is missing.');
   }
 
+  // The function embeds every chunk before it replies (up to 540s), so wait longer than fetch's 5 minutes.
   const response = await fetch(SYNC_URL, {
+    dispatcher: new Agent({ headersTimeout: 600_000, bodyTimeout: 600_000 }),
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
