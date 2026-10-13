@@ -44,7 +44,7 @@ export class Guides {
         'سائن ان کریں، مدرسہ کے پیغامات پڑھیں، فیس دیکھیں اور ادا کریں، اپنے بچے کی حاضری، چیک لسٹ اور تعلیم دیکھیں، اور چھٹی کی درخواست دیں۔',
       videoUrl: '/parent-portal-video/',
       videoPoster: '/parent-portal-video/poster.jpg',
-      videoLength: '4:39',
+      videoLength: '5:23',
       manualUrl: '/parent-portal-manual/',
       pdfUrl: '/parent-portal-manual/Parent-Portal-User-Manual.pdf',
       signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/parent',
