@@ -367,11 +367,62 @@ export const GUIDES_SEO: PageSeo = {
   path: '/guides/',
   keywords:
     'Parent Portal guide, Markaz Deen-e-Islam portal, Madrasa parent app help, teacher portal manual, Nagina guides',
-  image: `${SITE_ORIGIN}/parent-portal-video/poster.jpg`,
+  image: `${SITE_ORIGIN}/guides/parent-portal-video/poster.jpg`,
   type: 'website',
   breadcrumb: 'Guides',
   changefreq: 'monthly',
   priority: 0.7,
+};
+
+export const PARENT_PORTAL_MANUAL_SEO: PageSeo = {
+  title: 'Parent Portal User Manual | Nagina Social Welfare',
+  description:
+    'Page-by-page guide to the NSW Parent Portal app and web portal: sign in, messages, fees, attendance, leave, daily checklist, Let’s Learn Islam and your profile. Peterborough and Manchester.',
+  path: '/guides/parent-portal-manual/',
+  keywords: 'Parent Portal manual, NSW Parent Portal app, Madrasa parent portal guide, Markaz Deen-e-Islam, Quran Academy Manchester',
+  image: '/guides/parent-portal-manual/screenshots/05-home.png',
+  type: 'article',
+  breadcrumb: 'Parent Portal manual',
+  changefreq: 'monthly',
+  priority: 0.6,
+};
+
+export const STUDENT_PORTAL_MANUAL_SEO: PageSeo = {
+  title: 'Student Portal User Manual | Nagina Social Welfare',
+  description:
+    'How students use the Student Portal: sign in, daily checklist, Let’s Learn Islam, rewards, messages, records, leave and profile. For Markaz Deen-e-Islam and Quran Academy.',
+  path: '/guides/student-portal-manual/',
+  keywords: 'Student Portal manual, Madrasa student portal, Let’s Learn Islam, daily checklist, Nagina Social Welfare',
+  image: '/guides/student-portal-manual/screenshots/05-home.png',
+  type: 'article',
+  breadcrumb: 'Student Portal manual',
+  changefreq: 'monthly',
+  priority: 0.6,
+};
+
+export const TEACHER_PORTAL_MANUAL_SEO: PageSeo = {
+  title: 'Teacher Portal User Manual | Nagina Social Welfare',
+  description:
+    'How teachers use the Teacher Portal and Android app: attendance, fees, leave requests, incidents and behaviour, activities, participation and Star of the Week.',
+  path: '/guides/teacher-portal-manual/',
+  keywords: 'Teacher Portal manual, Madrasa teacher app, Markaz-e Deen-e Islam app, Nagina Social Welfare',
+  type: 'article',
+  breadcrumb: 'Teacher Portal manual',
+  changefreq: 'monthly',
+  priority: 0.6,
+};
+
+export const PARENT_PORTAL_VIDEO_SEO: PageSeo = {
+  title: 'Parent Portal Video Guide | Nagina Social Welfare',
+  description:
+    'A 5-minute video guide to the NSW Parent Portal for Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester): sign in, messages, fees, your child’s progress, leave, your details and the Android app.',
+  path: '/guides/parent-portal-video/',
+  keywords: 'Parent Portal video, Madrasa parent portal tutorial, NSW Parent Portal app, Nagina Social Welfare',
+  image: '/guides/parent-portal-video/poster.jpg',
+  type: 'article',
+  breadcrumb: 'Parent Portal video',
+  changefreq: 'monthly',
+  priority: 0.6,
 };
 
 export const EVENTS_SEO: PageSeo = {
@@ -659,6 +710,10 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   APPS_SEO,
   PORTALS_SEO,
   GUIDES_SEO,
+  PARENT_PORTAL_MANUAL_SEO,
+  STUDENT_PORTAL_MANUAL_SEO,
+  TEACHER_PORTAL_MANUAL_SEO,
+  PARENT_PORTAL_VIDEO_SEO,
   EVENTS_SEO,
   DONATE_SEO,
   ASSISTANT_SEO,
