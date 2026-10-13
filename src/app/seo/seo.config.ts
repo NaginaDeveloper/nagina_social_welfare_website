@@ -324,12 +324,12 @@ export const BOOKS_SEO: PageSeo = {
 };
 
 export const SERMONS_SEO: PageSeo = {
-  title: 'Sermons by Baba Ji Sarkar | Nagina TV Videos',
+  title: 'Sermons by Baba Ji Sarkar (Munir-e-Islam) | Nagina TV',
   description:
-    'Watch sermons from the Seedha Rastah archive of Allama Munir Ahmed Yusufi (Munir-e-Islam) on YouTube (Nagina TV), plus short clips on TikTok.',
+    'Watch sermons by Baba Ji Sarkar, Allama Munir Ahmed Yusufi (Munir-e-Islam), from the Seedha Rastah archive on YouTube (Nagina TV), plus short clips on TikTok.',
   path: '/sermons/',
   keywords:
-    'Baba Ji Sarkar sermons, Seedha Rastah sermons, Nagina TV, TikTok, Islamic lectures UK',
+    'Baba Ji Sarkar sermons, Allama Munir Ahmed Yusufi sermons, Seedha Rastah sermons, Nagina TV, TikTok, Islamic lectures UK',
   type: 'website',
   breadcrumb: 'Sermons',
   changefreq: 'weekly',
