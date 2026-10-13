@@ -47,6 +47,12 @@ const GUIDES = [
     source: join(root, 'guide-sources/parent-portal-video.html'),
     title: 'Parent Portal Video Guide',
   },
+  {
+    id: 'student-portal-video',
+    kind: 'video',
+    source: join(root, 'guide-sources/student-portal-video.html'),
+    title: 'Student Portal Video Guide',
+  },
 ];
 
 /** Old standalone URLs → Angular routes, for links inside the pages. */
@@ -55,6 +61,9 @@ const LINK_REWRITES = [
   ['https://www.naginasocialwelfare.co.uk/student-portal-manual/', '/guides/student-portal-manual/'],
   ['https://www.naginasocialwelfare.co.uk/teacher-portal-manual/', '/guides/teacher-portal-manual/'],
   ['https://www.naginasocialwelfare.co.uk/parent-portal-video/', '/guides/parent-portal-video/'],
+  ['https://www.naginasocialwelfare.co.uk/guides/student-portal-video/', '/guides/student-portal-video/'],
+  ['../student-portal-manual/Student-Portal-User-Manual.pdf', '/guides/student-portal-manual/Student-Portal-User-Manual.pdf'],
+  ['../student-portal-manual/', '/guides/student-portal-manual/'],
   ['https://www.naginasocialwelfare.co.uk/guides/', '/guides/'],
   ['../parent-portal-manual/Parent-Portal-User-Manual.pdf', '/guides/parent-portal-manual/Parent-Portal-User-Manual.pdf'],
   ['../parent-portal-manual/logos/', '/guides/parent-portal-manual/logos/'],

@@ -425,6 +425,19 @@ export const PARENT_PORTAL_VIDEO_SEO: PageSeo = {
   priority: 0.6,
 };
 
+export const STUDENT_PORTAL_VIDEO_SEO: PageSeo = {
+  title: 'Student Portal Video Guide | Nagina Social Welfare',
+  description:
+    'A 5-minute video guide to the Student Portal for Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester): sign in, daily checklist, Let’s Learn Islam, rewards, messages, records, leave and My Space.',
+  path: '/guides/student-portal-video/',
+  keywords: 'Student Portal video, Madrasa student portal tutorial, Let’s Learn Islam, daily checklist, Nagina Social Welfare',
+  image: '/guides/student-portal-video/poster.jpg',
+  type: 'article',
+  breadcrumb: 'Student Portal video',
+  changefreq: 'monthly',
+  priority: 0.6,
+};
+
 export const EVENTS_SEO: PageSeo = {
   title: 'Events in Peterborough & Manchester | Nagina Social Welfare',
   description:
@@ -714,6 +727,7 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   STUDENT_PORTAL_MANUAL_SEO,
   TEACHER_PORTAL_MANUAL_SEO,
   PARENT_PORTAL_VIDEO_SEO,
+  STUDENT_PORTAL_VIDEO_SEO,
   EVENTS_SEO,
   DONATE_SEO,
   ASSISTANT_SEO,
