@@ -1,6 +1,6 @@
 {
   "/": {
-    "hash": "4bd26fd793ef5fe0",
+    "hash": "69fb7d9ea8675ba9",
     "lastmod": "2026-10-13"
   },
   "/about/": {
@@ -80,11 +80,11 @@
     "lastmod": "2026-10-09"
   },
   "/namaz/": {
-    "hash": "29925617910d5540",
+    "hash": "57fc28229551624b",
     "lastmod": "2026-10-13"
   },
   "/zakat/": {
-    "hash": "f9998790af195046",
+    "hash": "9297815d05600245",
     "lastmod": "2026-10-13"
   },
   "/zakat/what-is-zakat/": {
@@ -100,7 +100,7 @@
     "lastmod": "2026-10-09"
   },
   "/calendar/": {
-    "hash": "5cf9f650ec7a59a3",
+    "hash": "641d7d8590768bb2",
     "lastmod": "2026-10-13"
   },
   "/ramadan/": {
@@ -140,7 +140,7 @@
     "lastmod": "2026-10-09"
   },
   "/guides/": {
-    "hash": "e6ab815e74304fe3",
+    "hash": "464787de7d2803bb",
     "lastmod": "2026-10-13"
   },
   "/guides/parent-portal-manual/": {
@@ -148,7 +148,7 @@
     "lastmod": "2026-10-13"
   },
   "/guides/student-portal-manual/": {
-    "hash": "e24994b252ab7288",
+    "hash": "f9226790eb43d250",
     "lastmod": "2026-10-13"
   },
   "/guides/teacher-portal-manual/": {
@@ -156,7 +156,11 @@
     "lastmod": "2026-10-13"
   },
   "/guides/parent-portal-video/": {
-    "hash": "6842f4c2511ac96a",
+    "hash": "a3011199e6456670",
+    "lastmod": "2026-10-13"
+  },
+  "/guides/student-portal-video/": {
+    "hash": "0eea2073fa60f0e7",
     "lastmod": "2026-10-13"
   },
   "/events/": {
@@ -192,7 +196,7 @@
     "lastmod": "2026-10-09"
   },
   "/ur/": {
-    "hash": "480798d0ca7b616b",
+    "hash": "ba126e4286fb31eb",
     "lastmod": "2026-10-13"
   },
   "/ur/about/": {
@@ -212,7 +216,7 @@
     "lastmod": "2026-10-13"
   },
   "/ur/zakat/": {
-    "hash": "c9890aedcc1553c7",
+    "hash": "067a4852da29667f",
     "lastmod": "2026-10-13"
   },
   "/ur/zakat/what-is-zakat/": {
@@ -260,7 +264,7 @@
     "lastmod": "2026-10-13"
   },
   "/ur/namaz/": {
-    "hash": "c9401699fd0a9254",
+    "hash": "0447f1eed8f1ed2e",
     "lastmod": "2026-10-13"
   },
   "/ur/duas/": {
