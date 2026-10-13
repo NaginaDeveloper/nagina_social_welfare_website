@@ -1,6 +1,6 @@
 {
   "/": {
-    "hash": "a4193cbfb9364118",
+    "hash": "10595bb61466e281",
     "lastmod": "2026-10-13"
   },
   "/about/": {
@@ -80,11 +80,11 @@
     "lastmod": "2026-10-09"
   },
   "/namaz/": {
-    "hash": "735c2019609fd99b",
+    "hash": "e01aee00f2249927",
     "lastmod": "2026-10-13"
   },
   "/zakat/": {
-    "hash": "8b3f697f27b00979",
+    "hash": "ce713c1edb52bf87",
     "lastmod": "2026-10-13"
   },
   "/zakat/what-is-zakat/": {
@@ -174,5 +174,89 @@
   "/safe-drop-off/": {
     "hash": "55977cff13a67b6e",
     "lastmod": "2026-10-09"
+  },
+  "/ur/": {
+    "hash": "5af6575931001bf4",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/about/": {
+    "hash": "f19b2463409e8a2f",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/work/": {
+    "hash": "49fca463d0d43bfb",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/madrasa/": {
+    "hash": "8eb4494b11de9b83",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/donate/": {
+    "hash": "1ee63739b1fd36f0",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/zakat/": {
+    "hash": "067a4852da29667f",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/zakat/what-is-zakat/": {
+    "hash": "b7fc5b5a71502c03",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/zakat/rules/": {
+    "hash": "d25246b6f323957c",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/spiritual-guide/": {
+    "hash": "315fbb09b36e6d51",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/sermons/": {
+    "hash": "592c4e0e6e232b2d",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/seedha-rastah/": {
+    "hash": "5e1b52ccfe5072ce",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/guidance/": {
+    "hash": "5f1203af593344d5",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/basic-beliefs/": {
+    "hash": "58c66fea7e90242a",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/khatme-nabuwwat/": {
+    "hash": "24cc8c97d73d7027",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/ahle-bait/": {
+    "hash": "63529aca0021268c",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/sahaba-ikram/": {
+    "hash": "218f13311b115d4a",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/aulia-karam/": {
+    "hash": "c294a98fbe31723c",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/namaz/": {
+    "hash": "1c6585b89806a65e",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/duas/": {
+    "hash": "19f027223070c702",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/calendar/": {
+    "hash": "691ea51dca03f2cc",
+    "lastmod": "2026-10-13"
+  },
+  "/ur/contact/": {
+    "hash": "d480d61c49a53944",
+    "lastmod": "2026-10-13"
   }
 }
