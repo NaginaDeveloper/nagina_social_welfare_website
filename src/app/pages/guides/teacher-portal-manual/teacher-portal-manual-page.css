@@ -321,6 +321,29 @@
       grid-template-columns: 1fr;
       gap: 14px;
     }
+    .phones {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0 8px;
+    }
+    .phones figure { margin: 0; }
+    img.phone-shot { width: 100%; max-width: 320px; margin: 0 auto; }
+    .links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 0 0 28px;
+    }
+    .link-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 16px 8px;
+    }
+    .link-card h4 { margin: 4px 0 6px; font-size: 18px; }
+    .link-card p { font-size: 15px; }
+    .link-card.wide { grid-column: 1 / -1; }
     table, thead, tbody, tr, th, td { display: block; width: 100%; }
     table {
       background: transparent;
@@ -363,6 +386,9 @@
       color: var(--muted);
       font-size: 14px;
     }
+    table.branches th:nth-child(1), table.branches td:nth-child(1) { width: 30%; }
+    table.branches th:nth-child(2), table.branches td:nth-child(2) { width: 34%; }
+    table.branches td { font-size: 14.5px; overflow-wrap: anywhere; }
     @media (max-width: 959px) {
       figure { overflow-x: auto; }
       figure img { width: 720px; max-width: none; }
@@ -372,6 +398,8 @@
         width: 100%;
         max-width: 420px;
       }
+      figure img.phone-shot { width: 100%; max-width: 320px; }
+      .phones figure { overflow: visible; }
       figcaption { position: sticky; left: 0; }
     }
     @media (min-width: 960px) {
@@ -406,6 +434,8 @@
       h3 { font-size: 34px; margin: 56px 0 10px; }
       .split { grid-template-columns: 1.15fr 0.85fr; }
       .pair { grid-template-columns: 1fr 1fr; }
+      .phones { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+      .links { grid-template-columns: 1fr 1fr; }
       .store-link { display: inline-block; text-align: left; }
       table { display: table; width: 100%; border-collapse: collapse; background: var(--card); border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
       thead { display: table-header-group; position: static; width: auto; height: auto; overflow: visible; clip: auto; }
@@ -428,11 +458,15 @@
         width: 100% !important;
         max-width: 100% !important;
       }
+      figure img.phone-shot { max-width: 230px !important; }
+      .phones { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .links { grid-template-columns: 1fr 1fr; }
       table { display: table; }
       thead { display: table-header-group; position: static; width: auto; height: auto; clip: auto; }
       tbody { display: table-row-group; }
       tr { display: table-row; }
       th, td { display: table-cell; }
-      .cover, figure, .panel, ol.steps li { break-inside: avoid; box-shadow: none; }
+      .cover, figure, .panel, .link-card, .note, .tip, ol.steps li, tr { break-inside: avoid; box-shadow: none; }
+      table:not(.branches) th:first-child, table:not(.branches) td:first-child { width: 55%; }
       a { color: inherit; }
     }

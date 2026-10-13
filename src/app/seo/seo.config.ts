@@ -403,9 +403,10 @@ export const STUDENT_PORTAL_MANUAL_SEO: PageSeo = {
 export const TEACHER_PORTAL_MANUAL_SEO: PageSeo = {
   title: 'Teacher Portal User Manual | Nagina Social Welfare',
   description:
-    'How teachers use the Teacher Portal and Android app: attendance, fees, leave requests, incidents and behaviour, activities, participation and Star of the Week.',
+    'How teachers at Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester) use the Teacher Portal and Android app: register, fees, leave, incidents and behaviour, activities, Star of the Week, the daily checklist and Teaching Resources.',
   path: '/guides/teacher-portal-manual/',
   keywords: 'Teacher Portal manual, Madrasa teacher app, Markaz-e Deen-e Islam app, Nagina Social Welfare',
+  image: '/guides/teacher-portal-manual/screenshots/05-dashboard.png',
   type: 'article',
   breadcrumb: 'Teacher Portal manual',
   changefreq: 'monthly',
