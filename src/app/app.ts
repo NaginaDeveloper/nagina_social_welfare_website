@@ -6,6 +6,7 @@ import { FloatingWhatsapp } from './components/floating-whatsapp/floating-whatsa
 import { DonateInvite } from './components/donate-invite/donate-invite';
 import { Footer } from './components/footer/footer';
 import { Header } from './components/header/header';
+import { withoutUrduPrefix } from './i18n/urdu-routes';
 import { SeoService } from './seo/seo.service';
 
 @Component({
@@ -59,7 +60,7 @@ export class App implements OnInit {
   }
 
   private syncDonateInvite(url: string): void {
-    const path = url.split('?')[0].split('#')[0] || '/';
+    const path = withoutUrduPrefix(url).split('?')[0].split('#')[0] || '/';
     const hide =
       path === '/donate' ||
       path === '/assistant' ||
@@ -74,7 +75,7 @@ export class App implements OnInit {
   }
 
   private syncAssistantVisibility(url: string): void {
-    const path = url.split('?')[0].split('#')[0] || '/';
+    const path = withoutUrduPrefix(url).split('?')[0].split('#')[0] || '/';
     this.showFloatingAssistant.set(path !== '/assistant');
     // The contact page is already full of WhatsApp buttons.
     this.showFloatingWhatsapp.set(path !== '/contact');

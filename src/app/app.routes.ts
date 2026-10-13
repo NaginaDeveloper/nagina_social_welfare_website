@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { isUrduPage, toUrduPath } from './i18n/urdu-routes';
 import {
   ABOUT_SEO,
   AHLE_BAIT_SEO,
@@ -48,7 +49,7 @@ import {
   MEMBERSHIP_HOME_SEO,
 } from './seo/seo.config';
 
-export const routes: Routes = [
+const siteRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/home/home').then((m) => m.Home),
@@ -381,3 +382,15 @@ export const routes: Routes = [
   },
   { path: '**', redirectTo: '' },
 ];
+
+/**
+ * Urdu twins (/ur/…) of the English pages. They exist so the build discovers and
+ * prerenders them; at run time the URL serializer maps /ur/about/ onto the plain
+ * `about` route and switches the language, so these entries are never matched.
+ */
+const urduTwinRoutes: Routes = siteRoutes
+  .filter((route) => route.path !== undefined && isUrduPage(`/${route.path}`))
+  .map((route) => ({ ...route, path: toUrduPath(`/${route.path}`).replace(/^\/|\/$/g, '') }));
+
+const catchAll = siteRoutes[siteRoutes.length - 1];
+export const routes: Routes = [...siteRoutes.slice(0, -1), ...urduTwinRoutes, catchAll];
