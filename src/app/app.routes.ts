@@ -7,6 +7,10 @@ import {
   APPS_SEO,
   PORTALS_SEO,
   GUIDES_SEO,
+  PARENT_PORTAL_MANUAL_SEO,
+  STUDENT_PORTAL_MANUAL_SEO,
+  TEACHER_PORTAL_MANUAL_SEO,
+  PARENT_PORTAL_VIDEO_SEO,
   BOOKS_SEO,
   CALENDAR_SEO,
   CONTACT_SEO,
@@ -328,6 +332,42 @@ const siteRoutes: Routes = [
     loadComponent: () => import('./pages/guides/guides-page').then((m) => m.GuidesPage),
     title: GUIDES_SEO.title,
     data: { seo: GUIDES_SEO },
+  },
+  {
+    path: 'guides/parent-portal-manual',
+    loadComponent: () =>
+      import('./pages/guides/parent-portal-manual/parent-portal-manual-page').then(
+        (m) => m.ParentPortalManualPage,
+      ),
+    title: PARENT_PORTAL_MANUAL_SEO.title,
+    data: { seo: PARENT_PORTAL_MANUAL_SEO },
+  },
+  {
+    path: 'guides/student-portal-manual',
+    loadComponent: () =>
+      import('./pages/guides/student-portal-manual/student-portal-manual-page').then(
+        (m) => m.StudentPortalManualPage,
+      ),
+    title: STUDENT_PORTAL_MANUAL_SEO.title,
+    data: { seo: STUDENT_PORTAL_MANUAL_SEO },
+  },
+  {
+    path: 'guides/teacher-portal-manual',
+    loadComponent: () =>
+      import('./pages/guides/teacher-portal-manual/teacher-portal-manual-page').then(
+        (m) => m.TeacherPortalManualPage,
+      ),
+    title: TEACHER_PORTAL_MANUAL_SEO.title,
+    data: { seo: TEACHER_PORTAL_MANUAL_SEO },
+  },
+  {
+    path: 'guides/parent-portal-video',
+    loadComponent: () =>
+      import('./pages/guides/parent-portal-video/parent-portal-video-page').then(
+        (m) => m.ParentPortalVideoPage,
+      ),
+    title: PARENT_PORTAL_VIDEO_SEO.title,
+    data: { seo: PARENT_PORTAL_VIDEO_SEO },
   },
   {
     path: 'events',

@@ -160,12 +160,8 @@ function injectSearchConsoleMeta(html) {
   );
 }
 
-const STATIC_SITEMAP_PAGES = [
-  { path: '/parent-portal-manual/', changefreq: 'monthly', priority: 0.6 },
-  { path: '/parent-portal-video/', changefreq: 'monthly', priority: 0.6 },
-  { path: '/teacher-portal-manual/', changefreq: 'monthly', priority: 0.6 },
-  { path: '/student-portal-manual/', changefreq: 'monthly', priority: 0.6 },
-];
+/** Static HTML pages in public/ that are not Angular routes (none at present; the guides moved under /guides/). */
+const STATIC_SITEMAP_PAGES = [];
 
 const URDU_PATHS = new Set(URDU_PAGE_PATHS);
 
@@ -321,6 +317,11 @@ const LEGACY_REDIRECTS = {
   '/contact-us/': '/contact/',
   '/privacy-policy/': '/privacy/',
   '/about-us/': '/about/',
+  // The portal guides were standalone HTML at the site root until October 2026.
+  '/parent-portal-manual/': '/guides/parent-portal-manual/',
+  '/student-portal-manual/': '/guides/student-portal-manual/',
+  '/teacher-portal-manual/': '/guides/teacher-portal-manual/',
+  '/parent-portal-video/': '/guides/parent-portal-video/',
 };
 
 for (const [from, to] of Object.entries(LEGACY_REDIRECTS)) {

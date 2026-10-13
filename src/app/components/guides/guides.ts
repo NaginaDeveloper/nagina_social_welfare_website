@@ -4,7 +4,7 @@ import { LanguageService } from '../../i18n/language.service';
 import { ORGANIZATION } from '../../config/organization.config';
 import { CentreContacts } from '../centre-contacts/centre-contacts';
 
-/** Manual and video pages are static HTML in public/, so they use plain hrefs. */
+/** Manual and video pages are Angular routes under /guides/; PDFs are static files in public/. */
 interface PortalGuide {
   readonly id: string;
   readonly icon: 'parent' | 'teacher' | 'student';
@@ -42,11 +42,11 @@ export class Guides {
         "Sign in, read Madrasa messages, check and pay fees, follow your child's attendance, checklist and learning, and request leave.",
       descriptionUr:
         'سائن ان کریں، مدرسہ کے پیغامات پڑھیں، فیس دیکھیں اور ادا کریں، اپنے بچے کی حاضری، چیک لسٹ اور تعلیم دیکھیں، اور چھٹی کی درخواست دیں۔',
-      videoUrl: '/parent-portal-video/',
-      videoPoster: '/parent-portal-video/poster.jpg',
+      videoUrl: '/guides/parent-portal-video/',
+      videoPoster: '/guides/parent-portal-video/poster.jpg',
       videoLength: '5:23',
-      manualUrl: '/parent-portal-manual/',
-      pdfUrl: '/parent-portal-manual/Parent-Portal-User-Manual.pdf',
+      manualUrl: '/guides/parent-portal-manual/',
+      pdfUrl: '/guides/parent-portal-manual/Parent-Portal-User-Manual.pdf',
       signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/parent',
       appUrl: 'https://play.google.com/store/apps/details?id=com.learning.mdi_parent_app',
     },
@@ -60,8 +60,8 @@ export class Guides {
         'Mark attendance, receive fees, handle leave requests, record incidents and behaviour, and run activities, participation and Star of the Week.',
       descriptionUr:
         'حاضری لگائیں، فیس وصول کریں، چھٹی کی درخواستیں سنبھالیں، واقعات اور رویہ درج کریں، اور سرگرمیاں، شرکت اور ہفتے کا ستارہ چلائیں۔',
-      manualUrl: '/teacher-portal-manual/',
-      pdfUrl: '/teacher-portal-manual/Teacher-Portal-User-Manual.pdf',
+      manualUrl: '/guides/teacher-portal-manual/',
+      pdfUrl: '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf',
       signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/teacher',
       appUrl: 'https://play.google.com/store/apps/details?id=com.education.markaz_e_deen_islam',
     },
@@ -75,8 +75,8 @@ export class Guides {
         "Sign in to Let's Learn Islam, work through lessons and cards, tick the daily checklist, and earn certificates.",
       descriptionUr:
         'لیٹس لرن اسلام میں سائن ان کریں، اسباق اور کارڈز مکمل کریں، روزانہ چیک لسٹ پر نشان لگائیں، اور سرٹیفکیٹ حاصل کریں۔',
-      manualUrl: '/student-portal-manual/',
-      pdfUrl: '/student-portal-manual/Student-Portal-User-Manual.pdf',
+      manualUrl: '/guides/student-portal-manual/',
+      pdfUrl: '/guides/student-portal-manual/Student-Portal-User-Manual.pdf',
       signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/student',
     },
   ];
