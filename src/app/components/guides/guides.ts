@@ -57,9 +57,9 @@ export class Guides {
       roleUr: 'اساتذہ کے لیے',
       name: 'Teacher Portal',
       description:
-        'Mark attendance, receive fees, handle leave requests, record incidents and behaviour, and run activities, participation and Star of the Week.',
+        'Take the register, receive fees, review leave, report incidents and behaviour, mark activities, choose Star of the Week, and teach from Let’s Learn Islam.',
       descriptionUr:
-        'حاضری لگائیں، فیس وصول کریں، چھٹی کی درخواستیں سنبھالیں، واقعات اور رویہ درج کریں، اور سرگرمیاں، شرکت اور ہفتے کا ستارہ چلائیں۔',
+        'حاضری لگائیں، فیس وصول کریں، چھٹی کی درخواستیں دیکھیں، واقعات اور رویہ درج کریں، سرگرمیاں درج کریں، ہفتے کا ستارہ چنیں، اور لیٹس لرن اسلام سے پڑھائیں۔',
       manualUrl: '/guides/teacher-portal-manual/',
       pdfUrl: '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf',
       signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/teacher',

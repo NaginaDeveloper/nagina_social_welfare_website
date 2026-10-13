@@ -213,6 +213,31 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.naginasocialwelfare.co.uk/guides/parent-portal-manual/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/guides/student-portal-manual/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/guides/teacher-portal-manual/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/guides/parent-portal-video/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/guides/student-portal-video/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.naginasocialwelfare.co.uk/events/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -420,25 +445,5 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/contact/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.naginasocialwelfare.co.uk/parent-portal-manual/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.naginasocialwelfare.co.uk/parent-portal-video/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.naginasocialwelfare.co.uk/teacher-portal-manual/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.naginasocialwelfare.co.uk/student-portal-manual/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>
