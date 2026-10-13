@@ -341,7 +341,7 @@ export const APPS_SEO: PageSeo = {
   description:
     'Purpose-built mobile apps for parents, teachers, administrators and collectors of Nagina Social Welfare UK, available on the Google Play Store.',
   path: '/apps/',
-  keywords: 'Nagina apps, Markaz Deen-e-Islam app, Islamic school app UK',
+  keywords: 'Nagina apps, NSW Parent Portal, NSW Admin Portal, NSW Collector Portal, Markaz Deen-e-Islam app, Islamic school app UK',
   type: 'website',
   breadcrumb: 'Apps',
   changefreq: 'monthly',
@@ -405,7 +405,7 @@ export const TEACHER_PORTAL_MANUAL_SEO: PageSeo = {
   description:
     'How teachers at Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester) use the Teacher Portal and Android app: register, fees, leave, incidents and behaviour, activities, Star of the Week, the daily checklist and Teaching Resources.',
   path: '/guides/teacher-portal-manual/',
-  keywords: 'Teacher Portal manual, Madrasa teacher app, Markaz-e Deen-e Islam app, Nagina Social Welfare',
+  keywords: 'Teacher Portal manual, Madrasa teacher app, NSW Teacher Portal, NSW Admin Portal app, Nagina Social Welfare',
   image: '/guides/teacher-portal-manual/screenshots/05-dashboard.png',
   type: 'article',
   breadcrumb: 'Teacher Portal manual',

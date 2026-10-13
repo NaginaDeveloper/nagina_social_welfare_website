@@ -24,7 +24,7 @@ export class Apps {
   protected readonly apps: readonly AppLink[] = [
     {
       id: 'mdi-parent',
-      name: 'MDI Parent Portal',
+      name: 'NSW Parent Portal',
       role: 'For Parents',
       roleUr: 'والدین کے لیے',
       description:
@@ -36,7 +36,7 @@ export class Apps {
     },
     {
       id: 'mdi',
-      name: 'Markaz-e Deen-e Islam',
+      name: 'NSW Admin Portal',
       role: 'For Admins & Teachers',
       roleUr: 'منتظمین اور اساتذہ کے لیے',
       description:
@@ -48,7 +48,7 @@ export class Apps {
     },
     {
       id: 'charity',
-      name: 'Nagina Social Welfare UK',
+      name: 'NSW Collector Portal',
       role: 'For Admins & Collectors',
       roleUr: 'منتظمین اور کلیکٹرز کے لیے',
       description:

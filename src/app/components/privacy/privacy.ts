@@ -45,7 +45,7 @@ export class Privacy {
     {
       title: 'Our Apps and Portals',
       body:
-        'We run sign-in portals and Android apps for the madrasas and the charity: the Parent Portal, Student Portal, Teacher Portal, NSW Collector Portal, and the Markaz-e Deen-e Islam and admin portal used by our office team. You reach each one from our Sign in page. Accounts are created by the madrasa or the office, so there is no public sign-up. The portals and apps use Google Firebase (sign-in, database, file storage and notifications) to keep your records, with each madrasa’s records kept separately for Peterborough and Manchester. We use email (SMTP) to send messages, SumUp to take card payments for fees, and Twilio to send text messages where used; each is bound by a data processing agreement. We do not use advertising or analytics trackers in the apps and we do not sell personal data.',
+        'We run sign-in portals and Android apps for the madrasas and the charity: the NSW Parent Portal, NSW Student Portal, NSW Teacher Portal, NSW Collector Portal, and the NSW Admin Portal used by our office team. You reach each one from our Sign in page. Accounts are created by the madrasa or the office, so there is no public sign-up. The portals and apps use Google Firebase (sign-in, database, file storage and notifications) to keep your records, with each madrasa’s records kept separately for Peterborough and Manchester. We use email (SMTP) to send messages, SumUp to take card payments for fees, and Twilio to send text messages where used; each is bound by a data processing agreement. We do not use advertising or analytics trackers in the apps and we do not sell personal data.',
     },
     {
       title: 'Parents and Students',
@@ -65,7 +65,7 @@ export class Privacy {
     {
       title: 'Administrators',
       body:
-        'Office staff who sign in to the admin portal and the Markaz-e Deen-e Islam app have a name, username, email, phone number and a role that decides which madrasa and which areas (such as classes, fees, expenses, members or the Task Manager) they can open. To keep the system secure and accountable we keep an activity log of what an administrator did, when, and from which network address and browser. Administrators see only the information their role needs, and a madrasa’s administrators see only that madrasa’s records.',
+        'Office staff who sign in to the admin portal and the NSW Admin Portal app have a name, username, email, phone number and a role that decides which madrasa and which areas (such as classes, fees, expenses, members or the Task Manager) they can open. To keep the system secure and accountable we keep an activity log of what an administrator did, when, and from which network address and browser. Administrators see only the information their role needs, and a madrasa’s administrators see only that madrasa’s records.',
     },
     {
       title: 'Notifications and Camera',
