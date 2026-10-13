@@ -281,9 +281,42 @@
       ol.chapters { grid-template-columns: repeat(3, 1fr); }
       .links { grid-template-columns: repeat(3, 1fr); }
     }
+    /* Site navigation shared with the main website */
+    .site-nav { background: #022c22; border-bottom: 1px solid rgba(251, 191, 36, 0.25); color: #fafaf9; font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif; }
+    .site-nav .wrap { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 10px 16px; }
+    .site-nav .home { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; margin-right: auto; }
+    .site-nav .home img { width: 38px; height: 38px; border-radius: 50%; background: #fff; padding: 2px; object-fit: contain; box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.35); }
+    .site-nav .home b { display: block; font-size: 15px; font-weight: 700; line-height: 1.1; }
+    .site-nav .home small { display: block; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(251, 191, 36, 0.9); }
+    .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px; }
+    .site-nav li a { display: inline-block; padding: 7px 11px; border-radius: 999px; color: rgba(250, 250, 249, 0.82); font-size: 13.5px; font-weight: 500; text-decoration: none; letter-spacing: 0.01em; }
+    .site-nav li a:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+    .site-nav li a.current { color: #fbbf24; }
+    .site-nav li a.donate { background: #d97706; color: #fff; font-weight: 700; }
+    .site-nav li a.donate:hover { background: #b45309; }
+    .site-footer { background: #022c22; color: rgba(250, 250, 249, 0.8); font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif; font-size: 14px; padding: 22px 16px 28px; text-align: center; }
+    .site-footer a { color: #fbbf24; text-decoration: none; margin: 0 8px; }
+    .site-footer p { margin: 6px 0; }
+    @media print { .site-nav, .site-footer { display: none !important; } }
   </style>
 </head>
 <body>
+  <div class="site-nav">
+    <div class="wrap">
+      <a class="home" href="/" aria-label="Nagina Social Welfare home"><img src="/brand/nagina-128.webp" alt="" width="38" height="38" /><span><b>Nagina Social Welfare UK</b><small>Education &amp; Welfare</small></span></a>
+      <ul aria-label="Site">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/madrasa/">Madrasa</a></li>
+        <li><a href="/apply/">Admissions</a></li>
+        <li><a class="current" href="/guides/">Guides</a></li>
+        <li><a href="/portals/">Sign in</a></li>
+        <li><a href="/namaz/">Namaz</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a class="donate" href="/donate/">Donate</a></li>
+      </ul>
+    </div>
+  </div>
   <header class="topbar">
     <img src="../parent-portal-manual/logos/markaz.png" alt="Markaz Deen-e-Islam" />
     <img src="../parent-portal-manual/logos/nagina.png" alt="Nagina Social Welfare UK" />
@@ -403,5 +436,9 @@
       });
     })();
   </script>
+  <footer class="site-footer">
+    <p><a href="/">Home</a><a href="/guides/">All guides</a><a href="/portals/">Sign in</a><a href="/contact/">Contact</a><a href="/donate/">Donate</a><a href="/safeguarding/">Safeguarding</a><a href="/privacy/">Privacy</a></p>
+    <p>Nagina Social Welfare UK · Registered charity 1196514 · naginasocialwelfare.co.uk</p>
+  </footer>
 </body>
 </html>
