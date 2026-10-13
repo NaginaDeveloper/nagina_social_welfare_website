@@ -75,6 +75,9 @@ export class Guides {
         "Sign in to Let's Learn Islam, work through lessons and cards, tick the daily checklist, and earn certificates.",
       descriptionUr:
         'لیٹس لرن اسلام میں سائن ان کریں، اسباق اور کارڈز مکمل کریں، روزانہ چیک لسٹ پر نشان لگائیں، اور سرٹیفکیٹ حاصل کریں۔',
+      videoUrl: '/guides/student-portal-video/',
+      videoPoster: '/guides/student-portal-video/poster.jpg',
+      videoLength: '4:39',
       manualUrl: '/guides/student-portal-manual/',
       pdfUrl: '/guides/student-portal-manual/Student-Portal-User-Manual.pdf',
       signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/student',
