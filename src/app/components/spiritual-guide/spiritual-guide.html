@@ -46,6 +46,12 @@
       1945 &ndash; 2019
     </p>
 
+    @if (!i18n.isUr()) {
+      <p class="mt-3 text-sm text-slate-warm/80">
+        Also spelt Munir Ahmad Yousafi, Munir Ahmed Yousufi or Munir Ahmad Yusufi.
+      </p>
+    }
+
     <p
       class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-warm sm:text-lg"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"

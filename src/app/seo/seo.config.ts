@@ -116,7 +116,7 @@ export const WORK_SEO: PageSeo = {
 export const PETERBOROUGH_SEO: PageSeo = {
   title: 'Markaz Deen-e-Islam Peterborough | Nagina Social Welfare UK',
   description:
-    'Markaz Deen-e-Islam, 103 Burmer Road, Peterborough: evening Madrasa classes by age, Let’s Learn Salah, sisters’ gatherings and Zikr & Fikr.',
+    'Madrasa and Quran classes at Markaz Deen-e-Islam, 103 Burmer Road, Peterborough: evening classes by age, Let’s Learn Salah, sisters’ gatherings and Zikr & Fikr.',
   path: '/peterborough/',
   keywords:
     'Markaz Deen-e-Islam, Nagina Social Welfare Peterborough, Madrasa Peterborough, Burmer Road, Mehfil-e-Naat Peterborough, Zikr and Fikr, sisters gathering Peterborough, learn Salah Peterborough, Islamic community Peterborough',
@@ -129,7 +129,7 @@ export const PETERBOROUGH_SEO: PageSeo = {
 export const MANCHESTER_SEO: PageSeo = {
   title: 'Quran Academy Manchester | Nagina Social Welfare UK',
   description:
-    'Nagina Social Welfare in Manchester: Quran Academy at Partington Community Centre. Address, Madrasa admission, prayer times, events and how to contact us.',
+    'Quran Academy at Partington Community Centre, Manchester: weekday Madrasa class, address, admission, prayer times, events and how to contact us.',
   path: '/manchester/',
   keywords:
     'Nagina Social Welfare Manchester, Quran Academy Partington, Madrasa Manchester, Islamic community Manchester, Partington',
@@ -153,7 +153,7 @@ export const CENTRE_SEO: PageSeo = {
 export const MADRASA_SEO: PageSeo = {
   title: 'Madrasa Peterborough & Manchester | Nagina Social Welfare',
   description:
-    'Our Madrasas in Peterborough and Manchester: addresses, ages, class times, safeguarding and online admission for children and families.',
+    'Madrasa and Quran classes for children in Peterborough and Manchester: addresses, ages, class times, safeguarding and online admission.',
   path: '/madrasa/',
   keywords:
     'madrasa Peterborough, Madrasa Manchester, Islamic school Peterborough, Quran classes for children Manchester, Quran Academy Partington, 2026 Madrasa intake, Markaz Deen-e-Islam',
@@ -241,7 +241,7 @@ export const MEMBERSHIP_HOME_SEO: PageSeo = {
 export const SPIRITUAL_GUIDE_SEO: PageSeo = {
   title: 'Allama Munir Ahmed Yusufi (Munir-e-Islam) | Spiritual Guide',
   description:
-    'Honouring Allama Munir Ahmed Yusufi, Munir-e-Islam, with the Yusufi Shajra Sharif and photographs from Nagina TV.',
+    'Honouring Allama Munir Ahmed Yusufi (also spelt Yousafi, Yousufi), Munir-e-Islam, with the Yusufi Shajra Sharif and photographs from Nagina TV.',
   path: '/spiritual-guide/',
   keywords:
     'Spiritual Guide, Munir-e-Islam, Allama Munir Ahmed Yusufi, Pir-o-Murshid, Shajra Sharif, Naqshbandi Mujaddidi Yusufi',
@@ -326,7 +326,7 @@ export const BOOKS_SEO: PageSeo = {
 export const SERMONS_SEO: PageSeo = {
   title: 'Sermons by Baba Ji Sarkar | Nagina TV Videos',
   description:
-    'Watch blessed sermons by Baba Ji Sarkar from the Seedha Rastah collection on YouTube (Nagina TV), plus short clips on TikTok.',
+    'Watch sermons from the Seedha Rastah archive of Allama Munir Ahmed Yusufi (Munir-e-Islam) on YouTube (Nagina TV), plus short clips on TikTok.',
   path: '/sermons/',
   keywords:
     'Baba Ji Sarkar sermons, Seedha Rastah sermons, Nagina TV, TikTok, Islamic lectures UK',

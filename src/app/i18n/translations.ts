@@ -132,7 +132,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'visitor.socialLead': 'Follow us for updates from Markaz and the community.',
 
   'donate.eyebrow': 'Support Our Mission',
-  'donate.title': 'Donate with Confidence',
+  'donate.title': 'Donate Zakat & Sadaqah',
   'donate.lead':
     'Your generosity funds Islamic education at our Madrasas and community welfare across the UK. Choose a fund, then give by card, PayPal, NatWest PayIt, or bank transfer.',
   'donate.fund': 'What kind of gift is this?',
@@ -141,7 +141,8 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'donate.generalHint': 'For Nagina Social Welfare as a whole — used wherever the need is greatest.',
   'donate.centreHint': 'For our centre in {town} — classes, programmes and running costs.',
   'donate.chooseCentre': 'Please choose a centre first.',
-  'donate.leadShort': 'Choose a gift, pick your centre, enter an amount — then pay by card in a minute. Bank, PayPal and PayIt are below.',
+  'donate.leadShort':
+    'Give Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK, a registered Islamic charity (1196514), for our Peterborough or Manchester centre. Choose a gift, pick your centre, enter an amount — then pay by card in a minute. Bank, PayPal and PayIt are below.',
   'donate.step1': 'What kind of gift?',
   'donate.step2': 'Which centre?',
   'donate.step3': 'How much?',
@@ -178,7 +179,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'zakat.eyebrow': 'Pillar of Islam',
   'zakat.title': 'Zakat Calculator',
   'zakat.lead':
-    'A simple estimate for UK households. Gold and silver jewellery is included even if worn. Confirm unusual cases with a scholar.',
+    'A simple estimate for UK households. Gold and silver jewellery is included even if worn. Confirm unusual cases with a scholar. When you are ready, donate your zakat to Nagina Social Welfare UK for our Peterborough and Manchester centres.',
   'zakat.goldNisab': 'Gold nisab',
   'zakat.silverNisab': 'Silver nisab',
   'zakat.spotPrices': 'Spot prices',
@@ -1140,7 +1141,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'sermons.title': 'Sermons by',
   'sermons.titleAccent': 'Baba Ji Sarkar',
   'sermons.lead':
-    'Watch latest clips from Nagina TV and Nagina Social Welfare, or search the Seedha Rastah sermon archive.',
+    'Watch sermons from the Seedha Rastah archive of Allama Munir Ahmed Yusufi (Munir-e-Islam), plus the latest clips from Nagina TV and Nagina Social Welfare.',
   'sermons.search': 'Search Nagina TV, YouTube & sermons…',
   'sermons.searchLabel': 'Search Videos and Sermons',
   'sermons.searchHint':
