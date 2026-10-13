@@ -164,6 +164,7 @@ const STATIC_SITEMAP_PAGES = [
   { path: '/parent-portal-manual/', changefreq: 'monthly', priority: 0.6 },
   { path: '/parent-portal-video/', changefreq: 'monthly', priority: 0.6 },
   { path: '/teacher-portal-manual/', changefreq: 'monthly', priority: 0.6 },
+  { path: '/student-portal-manual/', changefreq: 'monthly', priority: 0.6 },
 ];
 
 const URDU_PATHS = new Set(URDU_PAGE_PATHS);
