@@ -18,6 +18,7 @@ import { ORGANIZATION } from '../../config/organization.config';
 import { buildNavGroups, type NavGroup, type NavLink } from '../../config/navigation.config';
 import { centrePath } from '../../config/centre-pages.config';
 import { LanguageService } from '../../i18n/language.service';
+import { withoutUrduPrefix } from '../../i18n/urdu-routes';
 import { isEventToday } from '../../config/upcoming-events.config';
 import { campusTown } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
@@ -258,7 +259,7 @@ export class Header implements OnInit {
   }
 
   private syncPath(url: string): void {
-    const path = url.split('?')[0].split('#')[0] || '/';
+    const path = withoutUrduPrefix(url).split('?')[0].split('#')[0] || '/';
     this.currentPath.set(path === '' ? '/' : path);
   }
 }

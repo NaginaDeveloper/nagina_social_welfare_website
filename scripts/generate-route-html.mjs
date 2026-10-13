@@ -9,6 +9,7 @@ import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync, copyFileSync, existsSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { URDU_PAGE_PATHS, toUrduPath } from '../src/app/i18n/urdu-routes.ts';
 import {
   DEFAULT_OG_IMAGE,
   PUBLIC_SEO_PAGES,
@@ -165,16 +166,33 @@ const STATIC_SITEMAP_PAGES = [
   { path: '/teacher-portal-manual/', changefreq: 'monthly', priority: 0.6 },
 ];
 
+const URDU_PATHS = new Set(URDU_PAGE_PATHS);
+
+/** hreflang pair for a page that has an Urdu twin (empty string otherwise). */
+function alternateLinks(englishPath) {
+  if (!URDU_PATHS.has(englishPath)) return '';
+  const en = escapeXml(canonicalUrl(englishPath));
+  const ur = escapeXml(canonicalUrl(toUrduPath(englishPath)));
+  return `
+    <xhtml:link rel="alternate" hreflang="en-GB" href="${en}"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="${ur}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${en}"/>`;
+}
+
 function writeSitemap(lastmods = {}) {
   const indexed = PUBLIC_SEO_PAGES.filter(isIndexed);
-  const urls = [...indexed, ...STATIC_SITEMAP_PAGES]
+  const urduPages = indexed
+    .filter((page) => URDU_PATHS.has(page.path))
+    .map((page) => ({ ...page, path: toUrduPath(page.path), englishPath: page.path }));
+  const urls = [...indexed.map((p) => ({ ...p, englishPath: p.path })), ...urduPages, ...STATIC_SITEMAP_PAGES]
     .map((page) => {
       const loc = escapeXml(canonicalUrl(page.path));
       const changefreq = page.changefreq ?? 'monthly';
       const priority = page.priority ?? 0.5;
       const lastmod = lastmods[page.path] ? `\n    <lastmod>${lastmods[page.path]}</lastmod>` : '';
+      const alternates = alternateLinks(page.englishPath ?? page.path);
       return `  <url>
-    <loc>${loc}</loc>${lastmod}
+    <loc>${loc}</loc>${lastmod}${alternates}
     <changefreq>${changefreq}</changefreq>
     <priority>${priority.toFixed(1)}</priority>
   </url>`;
@@ -182,7 +200,7 @@ function writeSitemap(lastmods = {}) {
     .join('\n');
 
   const wrap = (body) => `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${body}
 </urlset>
 `;
@@ -193,7 +211,7 @@ ${body}
   if (existsSync(outDir)) {
     writeFileSync(join(outDir, 'sitemap.xml'), xml);
   }
-  console.log(`SEO sitemap: ${indexed.length} indexed URLs`);
+  console.log(`SEO sitemap: ${indexed.length} indexed URLs + ${urduPages.length} Urdu twins`);
 }
 
 if (!existsSync(join(outDir, 'index.html'))) {
@@ -260,6 +278,35 @@ for (const page of PUBLIC_SEO_PAGES) {
   manifest[page.path] = { hash, lastmod };
   lastmods[page.path] = lastmod;
 }
+
+// Urdu twins are prerendered by `ng build` as well. Check that each one carries its own Urdu title,
+// canonical and the hreflang pair, and date it like any other page.
+for (const englishPath of URDU_PAGE_PATHS) {
+  const urduPath = toUrduPath(englishPath);
+  const dirName = pathToDir(urduPath);
+  const target = join(outDir, dirName, 'index.html');
+  if (!existsSync(target)) {
+    console.error(`SEO: Urdu twin missing from the build: ${urduPath}`);
+    process.exit(1);
+  }
+  const html = injectSearchConsoleMeta(readFileSync(target, 'utf8'));
+  const problems = [];
+  if (!html.includes('<html lang="ur" dir="rtl"')) problems.push('html lang/dir');
+  if (!html.includes(`<link rel="canonical" href="${canonicalUrl(urduPath)}">`)) problems.push('canonical');
+  if (!html.includes('hreflang="ur"') || !html.includes('hreflang="en-GB"')) problems.push('hreflang');
+  if (problems.length) {
+    console.error(`SEO: Urdu twin ${urduPath} is missing: ${problems.join(', ')}`);
+    process.exit(1);
+  }
+  writeFileSync(target, html);
+  console.log(`SEO prerendered (Urdu): ${urduPath}`);
+  const hash = contentHash(html);
+  const before = previousManifest[urduPath];
+  const lastmod = before && before.hash === hash ? before.lastmod : today;
+  manifest[urduPath] = { hash, lastmod };
+  lastmods[urduPath] = lastmod;
+}
+
 if (missingCards.length) {
   console.error('SEO: social card image missing from the build:', missingCards.join(', '));
   console.error('Run: node --experimental-strip-types scripts/generate-og-images.mjs');

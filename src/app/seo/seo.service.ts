@@ -1,9 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, effect, inject, untracked } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ORGANIZATION } from '../config/organization.config';
+import { LanguageService } from '../i18n/language.service';
+import { isUrduPage, normalisePath, toUrduPath } from '../i18n/urdu-routes';
 import { centreMapsProfileUrl, centrePath } from '../config/centre-pages.config';
 import { campusLocation, campusTown, type Campus } from '../models/campus';
 import { CampusService } from '../services/campus.service';
@@ -15,6 +17,7 @@ import {
   pageOgImage,
   type PageSeo,
 } from './seo.config';
+import { URDU_SEO } from './seo-ur';
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -23,7 +26,18 @@ export class SeoService {
   private readonly meta = inject(Meta);
   private readonly router = inject(Router);
   private readonly campuses = inject(CampusService);
+  private readonly language = inject(LanguageService);
   private started = false;
+
+  constructor() {
+    // Switching language changes the title, description and canonical without a navigation.
+    effect(() => {
+      this.language.lang();
+      untracked(() => {
+        if (this.started) this.applyCurrentRoute(false);
+      });
+    });
+  }
 
   /** Listen to route changes and apply SEO from route data (or home defaults). */
   start(): void {
@@ -48,9 +62,14 @@ export class SeoService {
     else if (fallbackToHome) this.apply(HOME_SEO);
   }
 
-  apply(seo: PageSeo): void {
+  apply(english: PageSeo): void {
+    // Pages with an Urdu twin are described in Urdu (and canonical to /ur/…) while Urdu is active.
+    const urdu = this.language.isUr() && isUrduPage(english.path) ? URDU_SEO[normalisePath(english.path)] : undefined;
+    const seo: PageSeo = urdu
+      ? { ...english, title: urdu.title, description: urdu.description, path: toUrduPath(english.path), keywords: undefined }
+      : english;
     const url = this.absoluteUrl(seo.path);
-    const image = pageOgImage(seo);
+    const image = pageOgImage(english);
     const type = seo.type ?? 'website';
 
     this.title.setTitle(seo.title);
@@ -66,7 +85,7 @@ export class SeoService {
     this.upsertProperty('og:description', seo.description);
     this.upsertProperty('og:url', url);
     this.upsertProperty('og:image', image);
-    this.upsertProperty('og:locale', 'en_GB');
+    this.upsertProperty('og:locale', urdu ? 'ur_PK' : 'en_GB');
 
     this.upsertName('twitter:card', 'summary_large_image');
     this.upsertName('twitter:title', seo.title);
@@ -74,7 +93,8 @@ export class SeoService {
     this.upsertName('twitter:image', image);
 
     this.setCanonical(url);
-    this.setJsonLd(seo, url);
+    this.setAlternates(english.path);
+    this.setJsonLd(seo, url, !!urdu);
   }
 
   private resolveSeo(root: ActivatedRouteSnapshot): PageSeo | undefined {
@@ -117,13 +137,33 @@ export class SeoService {
     link.setAttribute('href', url);
   }
 
+  /** hreflang pair for pages with an Urdu twin; removed again on pages without one. */
+  private setAlternates(englishPath: string): void {
+    this.doc.querySelectorAll("link[rel='alternate'][hreflang]").forEach((el) => el.remove());
+    if (!isUrduPage(englishPath)) return;
+    const english = this.absoluteUrl(normalisePath(englishPath));
+    const urdu = this.absoluteUrl(toUrduPath(englishPath));
+    for (const [hreflang, href] of [
+      ['en-GB', english],
+      ['ur', urdu],
+      ['x-default', english],
+    ]) {
+      const link = this.doc.createElement('link');
+      link.setAttribute('rel', 'alternate');
+      link.setAttribute('hreflang', hreflang);
+      link.setAttribute('href', href);
+      this.doc.head.appendChild(link);
+    }
+  }
+
   private breadcrumbLabel(seo: PageSeo): string {
     if (seo.breadcrumb) return seo.breadcrumb;
     const beforePipe = seo.title.split('|')[0]?.trim();
     return beforePipe || seo.title;
   }
 
-  private setJsonLd(seo: PageSeo, url: string): void {
+  private setJsonLd(seo: PageSeo, url: string, urdu = false): void {
+    const inLanguage = urdu ? 'ur' : 'en-GB';
 
     const organization = {
       '@type': 'NGO',
@@ -189,7 +229,7 @@ export class SeoService {
       description: seo.description,
       isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
       about: { '@id': `${SITE_ORIGIN}/#organization` },
-      inLanguage: 'en-GB',
+      inLanguage,
     };
 
     const graph: Record<string, unknown>[] = [organization, ...madrasas, website, webpage];
@@ -202,8 +242,8 @@ export class SeoService {
           {
             '@type': 'ListItem',
             position: 1,
-            name: 'Home',
-            item: `${SITE_ORIGIN}/`,
+            name: urdu ? 'ہوم' : 'Home',
+            item: urdu ? `${SITE_ORIGIN}/ur/` : `${SITE_ORIGIN}/`,
           },
           {
             '@type': 'ListItem',
