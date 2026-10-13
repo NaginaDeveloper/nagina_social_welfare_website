@@ -1141,7 +1141,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'sermons.title': 'Sermons by',
   'sermons.titleAccent': 'Baba Ji Sarkar',
   'sermons.lead':
-    'Watch sermons from the Seedha Rastah archive of Allama Munir Ahmed Yusufi (Munir-e-Islam), plus the latest clips from Nagina TV and Nagina Social Welfare.',
+    'Watch sermons by Baba Ji Sarkar, Allama Munir Ahmed Yusufi (Munir-e-Islam), from the Seedha Rastah archive, plus the latest clips from Nagina TV and Nagina Social Welfare.',
   'sermons.search': 'Search Nagina TV, YouTube & sermons…',
   'sermons.searchLabel': 'Search Videos and Sermons',
   'sermons.searchHint':
