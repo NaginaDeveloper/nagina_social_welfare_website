@@ -844,7 +844,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'home.glimpseTitle': 'Faith, Learning and Service',
   'home.guidesEyebrow': 'Video guides',
   'home.guidesTitle': 'Learn the Portals in a Few Minutes',
-  'home.guidesLead': 'Short step-by-step videos for parents, teachers and students. Press play to watch here, or read the manual.',
+  'home.guidesLead': 'Short step-by-step videos for parents and students. Press play to watch here, or read the manual.',
   'home.guidesSteps': 'Jump to a step',
   'home.guidesAll': 'All guides and manuals',
   'home.glimpse.madrasa': 'Madrasa Classes',
