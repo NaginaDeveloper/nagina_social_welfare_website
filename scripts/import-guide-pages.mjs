@@ -65,6 +65,12 @@ const GUIDES = [
     source: join(root, 'guide-sources/teacher-portal-video.html'),
     title: 'Teacher Portal Video Guide',
   },
+  {
+    id: 'collector-portal-video',
+    kind: 'video',
+    source: join(root, 'guide-sources/collector-portal-video.html'),
+    title: 'Collector Portal Video Guide',
+  },
 ];
 
 /** Old standalone URLs → Angular routes, for links inside the pages. */
@@ -75,6 +81,9 @@ const LINK_REWRITES = [
   ['https://www.naginasocialwelfare.co.uk/parent-portal-video/', '/guides/parent-portal-video/'],
   ['https://www.naginasocialwelfare.co.uk/guides/student-portal-video/', '/guides/student-portal-video/'],
   ['https://www.naginasocialwelfare.co.uk/guides/teacher-portal-video/', '/guides/teacher-portal-video/'],
+  ['https://www.naginasocialwelfare.co.uk/guides/collector-portal-video/', '/guides/collector-portal-video/'],
+  ['../collector-portal-manual/Collector-Portal-User-Manual.pdf', '/guides/collector-portal-manual/Collector-Portal-User-Manual.pdf'],
+  ['../collector-portal-manual/', '/guides/collector-portal-manual/'],
   ['../teacher-portal-manual/Teacher-Portal-User-Manual.pdf', '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf'],
   ['../teacher-portal-manual/', '/guides/teacher-portal-manual/'],
   ['../student-portal-manual/Student-Portal-User-Manual.pdf', '/guides/student-portal-manual/Student-Portal-User-Manual.pdf'],

@@ -15,7 +15,8 @@
         <label class="toc-toggle" for="toc-open"><span class="show">Contents</span><span class="hide">Close</span></label>
       </div>
       <ol>
-        <li><a routerLink="/guides/collector-portal-manual/" fragment="links">Links: app, web portal, guides</a></li>
+        <li><a routerLink="/guides/collector-portal-manual/" fragment="links">Links: app, web portal, video, guides</a></li>
+        <li><a routerLink="/guides/collector-portal-manual/" fragment="video">Watch the video guide</a></li>
         <li><a routerLink="/guides/collector-portal-manual/" fragment="start">1. Before you begin</a></li>
         <li><a routerLink="/guides/collector-portal-manual/" fragment="branches" class="sub">Our two branches</a></li>
         <li><a routerLink="/guides/collector-portal-manual/" fragment="apps">2. The Android app</a></li>
@@ -83,13 +84,31 @@
           <p class="url">https://admin.naginasocialwelfare.co.uk/login/collector</p>
           <a class="store-link" href="https://admin.naginasocialwelfare.co.uk/login/collector">Open the collector web portal</a>
         </article>
-        <article class="link-card wide">
+        <article class="link-card">
+          <span class="badge live">Video guide</span>
+          <h4>Watch the Collector Portal video</h4>
+          <p>A 4-minute step-by-step video with voiceover, in full HD. Tap any step to jump straight to it.</p>
+          <p class="url">/guides/collector-portal-video/</p>
+          <a class="store-link" href="/guides/collector-portal-video/">Watch the video</a>
+        </article>
+        <article class="link-card">
           <span class="badge live">Guides</span>
           <h4>All portal guides</h4>
           <p>The Parent, Student, Teacher and Collector Portal manuals and videos live on one page.</p>
           <p class="url">/guides/</p>
           <a class="store-link" href="/guides/">Open the guides page</a>
         </article>
+      </section>
+
+      <section class="video-guide" id="video" aria-label="Video guide">
+        <h4>Watch the video guide</h4>
+        <p>A 4-minute step-by-step video of the Collector Portal, with voiceover, in full HD. <span class="screen-only">Press play to watch it here.</span></p>
+        <video controls playsinline preload="none" poster="/guides/collector-portal-manual/screenshots/video-poster.jpg">
+          <source src="/guides/collector-portal-video/Collector-Portal-Guide.mp4" type="video/mp4" />
+          Your browser cannot play this video. <a href="/guides/collector-portal-video/">Watch it on the video page</a> instead.
+        </video>
+        <img class="video-print" src="/guides/collector-portal-manual/screenshots/video-poster.jpg" width="1280" height="720" alt="Collector Portal video guide" />
+        <p class="video-meta">4 min · Full HD 1080p · with voiceover · To jump to a step, open the <a href="/guides/collector-portal-video/">video page</a>: /guides/collector-portal-video/</p>
       </section>
 
       <section id="start">
@@ -442,7 +461,7 @@
 
       <footer class="colophon">
         <p>Nagina Social Welfare UK · Markaz Deen-e-Islam, Peterborough · Quran Academy, Manchester · Collector Portal user manual · 14 October 2026.</p>
-        <p>Android app: <a href="https://play.google.com/store/apps/details?id=com.naginaorganization.charity_collection_app">NSW Collector Portal on Google Play</a> · Collector web portal: <a href="https://admin.naginasocialwelfare.co.uk/login/collector">admin.naginasocialwelfare.co.uk/login/collector</a> · This manual online: <a href="/guides/collector-portal-manual/">naginasocialwelfare.co.uk/guides/collector-portal-manual</a> · All guides: <a href="/guides/">naginasocialwelfare.co.uk/guides</a></p>
+        <p>Android app: <a href="https://play.google.com/store/apps/details?id=com.naginaorganization.charity_collection_app">NSW Collector Portal on Google Play</a> · Collector web portal: <a href="https://admin.naginasocialwelfare.co.uk/login/collector">admin.naginasocialwelfare.co.uk/login/collector</a> · Video guide: <a href="/guides/collector-portal-video/">naginasocialwelfare.co.uk/guides/collector-portal-video</a> · This manual online: <a href="/guides/collector-portal-manual/">naginasocialwelfare.co.uk/guides/collector-portal-manual</a> · All guides: <a href="/guides/">naginasocialwelfare.co.uk/guides</a></p>
       </footer>
     </div>
   </div>

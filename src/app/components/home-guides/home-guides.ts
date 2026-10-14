@@ -17,8 +17,8 @@ import { Icon } from '../ui/icon';
 })
 export class HomeGuides {
   protected readonly i18n = inject(LanguageService);
-  /** Families' videos only: the Teacher video stays on the Guides page. */
+  /** Families' videos only: the Teacher and Collector videos stay on the Guides page. */
   protected readonly guides = PORTAL_GUIDES.filter(
-    (g) => g.id !== 'teacher' && g.videoFile && g.videoPoster,
+    (g) => (g.id === 'parent' || g.id === 'student') && g.videoFile && g.videoPoster,
   );
 }
