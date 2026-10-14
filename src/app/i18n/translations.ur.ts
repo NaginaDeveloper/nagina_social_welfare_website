@@ -713,7 +713,7 @@ export const TRANSLATIONS_UR: Record<string, string> = {
   'home.glimpseTitle': 'ایمان، تعلیم اور خدمت',
   'home.guidesEyebrow': 'ویڈیو رہنمائی',
   'home.guidesTitle': 'چند منٹ میں پورٹلز سیکھیں',
-  'home.guidesLead': 'والدین، اساتذہ اور طلبہ کے لیے مختصر، مرحلہ وار ویڈیوز۔ یہیں دیکھنے کے لیے پلے دبائیں، یا کتابچہ پڑھیں۔',
+  'home.guidesLead': 'والدین اور طلبہ کے لیے مختصر، مرحلہ وار ویڈیوز۔ یہیں دیکھنے کے لیے پلے دبائیں، یا کتابچہ پڑھیں۔',
   'home.guidesSteps': 'کسی مرحلے پر جائیں',
   'home.guidesAll': 'تمام رہنمائیاں اور کتابچے',
   'home.glimpse.madrasa': 'مدرسہ کی کلاسز',
