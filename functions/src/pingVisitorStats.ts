@@ -10,6 +10,8 @@ import { clampString, setSecurityHeaders } from './security';
 const RATE_MAX = 30;
 const RATE_WINDOW_MS = 60_000;
 const LIVE_WINDOW_MS = 2 * 60 * 1000;
+/** A tab that has been quiet this long starts a new visit on its next ping. */
+export const VISIT_IDLE_MS = 30 * 60 * 1000;
 const MAX_ID_CHARS = 64;
 const ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/;
 
@@ -30,6 +32,14 @@ export function londonDateKey(now = new Date()): string {
     month: '2-digit',
     day: '2-digit',
   }).format(now);
+}
+
+/**
+ * A ping starts a new visit when its tab session has never pinged before, or
+ * has been idle for VISIT_IDLE_MS. Heartbeats inside a live session don't count.
+ */
+export function isNewVisit(sessionLastSeenMs: number | undefined, nowMs: number): boolean {
+  return typeof sessionLastSeenMs !== 'number' || nowMs - sessionLastSeenMs >= VISIT_IDLE_MS;
 }
 
 function parseId(value: unknown): string | null {
@@ -101,22 +111,41 @@ export const pingVisitorStats = onRequest(
 
     try {
       const counts = await db.runTransaction(async (tx) => {
-        const [countersSnap, visitorSnap] = await Promise.all([
+        const [countersSnap, visitorSnap, presenceSnap] = await Promise.all([
           tx.get(countersRef),
           tx.get(visitorRef),
+          tx.get(presenceRef),
         ]);
 
         const counters = countersSnap.data() as
-          | { totalVisitors?: number; todayVisitors?: number; todayDate?: string }
+          | {
+              totalVisitors?: number;
+              todayVisitors?: number;
+              totalVisits?: number;
+              todayVisits?: number;
+              todayDate?: string;
+            }
           | undefined;
 
+        // totalVisitors / todayVisitors = unique browsers (kept for reference).
+        // totalVisits / todayVisits = every visit; they start from the unique
+        // counts the first time this runs so the public total carries on.
         let totalVisitors = typeof counters?.totalVisitors === 'number' ? counters.totalVisitors : 0;
         let todayVisitors = typeof counters?.todayVisitors === 'number' ? counters.todayVisitors : 0;
+        let totalVisits = typeof counters?.totalVisits === 'number' ? counters.totalVisits : totalVisitors;
+        let todayVisits = typeof counters?.todayVisits === 'number' ? counters.todayVisits : todayVisitors;
         let todayDate = typeof counters?.todayDate === 'string' ? counters.todayDate : '';
 
         if (todayDate !== todayKey) {
           todayDate = todayKey;
           todayVisitors = 0;
+          todayVisits = 0;
+        }
+
+        const presence = presenceSnap.data() as { lastSeenMs?: number } | undefined;
+        if (isNewVisit(presence?.lastSeenMs, now)) {
+          totalVisits += 1;
+          todayVisits += 1;
         }
 
         const visitor = visitorSnap.data() as
@@ -152,6 +181,8 @@ export const pingVisitorStats = onRequest(
           {
             totalVisitors,
             todayVisitors,
+            totalVisits,
+            todayVisits,
             todayDate,
             updatedAt: FieldValue.serverTimestamp(),
           },
@@ -164,13 +195,15 @@ export const pingVisitorStats = onRequest(
           updatedAt: Timestamp.fromMillis(now),
         });
 
-        return { totalVisitors, todayVisitors };
+        return { totalVisitors, todayVisitors, totalVisits, todayVisits };
       });
 
       const liveVisitors = await countLiveSessions(db, now - LIVE_WINDOW_MS);
 
       res.status(200).json({
         liveVisitors,
+        todayVisits: counts.todayVisits,
+        totalVisits: counts.totalVisits,
         todayVisitors: counts.todayVisitors,
         totalVisitors: counts.totalVisitors,
       });
@@ -181,7 +214,10 @@ export const pingVisitorStats = onRequest(
   },
 );
 
-/** Remove stale presence docs so live counts stay cheap. */
+/**
+ * Remove stale presence docs so live counts stay cheap. They are kept for the
+ * idle window so a returning tab within it is not counted as a new visit.
+ */
 export const cleanupVisitorPresence = onSchedule(
   {
     schedule: 'every 5 minutes',
@@ -190,7 +226,7 @@ export const cleanupVisitorPresence = onSchedule(
   },
   async () => {
     const db = getFirestore();
-    const cutoff = Date.now() - LIVE_WINDOW_MS * 2;
+    const cutoff = Date.now() - VISIT_IDLE_MS;
     const snap = await db
       .collection('visitor_presence')
       .where('lastSeenMs', '<', cutoff)
