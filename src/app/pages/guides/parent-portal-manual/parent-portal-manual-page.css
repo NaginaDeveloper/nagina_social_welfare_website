@@ -469,3 +469,28 @@
       .cover, figure, .panel, ol.steps li { break-inside: avoid; box-shadow: none; }
       a { color: inherit; }
     }
+    /* Video guide, embedded near the top. In print the poster stands in for the player. */
+    .video-guide {
+      margin: 0 0 28px;
+      padding: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+    .video-guide h4 { margin: 0 0 4px; font-size: 20px; }
+    .video-guide p { margin: 0 0 12px; }
+    .video-guide video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      background: #0b1d1e;
+    }
+    .video-guide .video-print { display: none; }
+    .video-guide .video-meta { margin: 10px 0 0; font-size: 15px; color: var(--muted); }
+    @media print {
+      .video-guide { break-inside: avoid; }
+      .video-guide video { display: none; }
+      .video-guide .screen-only { display: none; }
+      .video-guide .video-print { display: block; width: 100%; border-radius: 12px; }
+    }

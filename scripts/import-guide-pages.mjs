@@ -98,7 +98,7 @@ function rewriteAssetUrls(html, id) {
   out = out
     // In-page anchors must go through the router: a bare href="#x" resolves against <base href="/">.
     .replace(/href="#([A-Za-z0-9-]+)"/g, `routerLink="${base}" fragment="$1"`)
-    .replace(/(src|href)="screenshots\//g, `$1="${base}screenshots/`)
+    .replace(/(src|href|poster)="screenshots\//g, `$1="${base}screenshots/`)
     .replace(/(src|href)="logos\//g, `$1="${base}logos/`)
     .replace(/(src|href|poster)="([A-Za-z0-9-]+\.(?:pdf|mp4|jpg|png))"/g, `$1="${base}$2"`);
   return out;
