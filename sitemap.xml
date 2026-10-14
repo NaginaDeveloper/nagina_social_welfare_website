@@ -56,7 +56,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/membership/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -293,6 +293,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/donate/"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/appeals/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/assistant/</loc>

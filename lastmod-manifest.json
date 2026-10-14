@@ -1,6 +1,6 @@
 {
   "/": {
-    "hash": "8870e0faabfcbf1b",
+    "hash": "8ab4de1d2ddcf73a",
     "lastmod": "2026-10-14"
   },
   "/about/": {
@@ -36,8 +36,8 @@
     "lastmod": "2026-10-09"
   },
   "/membership/": {
-    "hash": "4e93d21baa5b3f98",
-    "lastmod": "2026-10-09"
+    "hash": "60526b3c5f956bd4",
+    "lastmod": "2026-10-14"
   },
   "/membership/success/": {
     "hash": "da39a3ee5e6b4b0d",
@@ -80,11 +80,11 @@
     "lastmod": "2026-10-09"
   },
   "/namaz/": {
-    "hash": "88304a1c9208d516",
+    "hash": "66545f5d2e45b1a3",
     "lastmod": "2026-10-14"
   },
   "/zakat/": {
-    "hash": "8b3f697f27b00979",
+    "hash": "774955d43efdfc52",
     "lastmod": "2026-10-14"
   },
   "/zakat/what-is-zakat/": {
@@ -175,6 +175,10 @@
     "hash": "b181b2ece46faf3c",
     "lastmod": "2026-10-13"
   },
+  "/appeals/": {
+    "hash": "feefc9163c19d156",
+    "lastmod": "2026-10-14"
+  },
   "/assistant/": {
     "hash": "4e67a0852fcf66b2",
     "lastmod": "2026-10-09"
@@ -200,7 +204,7 @@
     "lastmod": "2026-10-09"
   },
   "/ur/": {
-    "hash": "b178440918fec1c3",
+    "hash": "d65e268887810c75",
     "lastmod": "2026-10-14"
   },
   "/ur/about/": {
@@ -268,7 +272,7 @@
     "lastmod": "2026-10-13"
   },
   "/ur/namaz/": {
-    "hash": "bc2512feba23fd2a",
+    "hash": "c557798dedca2cd9",
     "lastmod": "2026-10-14"
   },
   "/ur/duas/": {
@@ -276,7 +280,7 @@
     "lastmod": "2026-10-13"
   },
   "/ur/calendar/": {
-    "hash": "1772990a3e4e6df6",
+    "hash": "b97a20e954c829b1",
     "lastmod": "2026-10-14"
   },
   "/ur/contact/": {
