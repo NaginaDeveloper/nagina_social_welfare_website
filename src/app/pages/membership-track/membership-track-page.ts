@@ -9,7 +9,7 @@ import { NextSteps } from '../../components/next-steps/next-steps';
   selector: 'app-membership-track-page',
   imports: [NextSteps, PageShell, RouterLink, MembershipStatusPanel],
   template: `
-    <app-page-shell title="Track membership application" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
+    <app-page-shell [title]="i18n.t('crumb.trackMembership')" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
       <section class="bg-cream py-16 sm:py-24">
         <div class="mx-auto max-w-2xl px-5 sm:px-8" [attr.dir]="i18n.isUr() ? 'rtl' : null">
           <p class="eyebrow">

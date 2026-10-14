@@ -11,7 +11,7 @@ import { Icon, type UiIconName } from '../../components/ui/icon';
   selector: 'app-membership-success-page',
   imports: [NextSteps, PageShell, RouterLink, MembershipStatusPanel, Icon],
   template: `
-    <app-page-shell title="Application sent" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
+    <app-page-shell [title]="i18n.t('crumb.applicationSent')" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
       <section class="bg-cream py-12 sm:py-20">
         <div class="site-wrap" [attr.dir]="i18n.isUr() ? 'rtl' : null">
           <div class="mx-auto max-w-2xl">

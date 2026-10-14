@@ -17,7 +17,7 @@ import { Icon } from '../ui/icon';
         <div class="min-w-0">
           <p class="eyebrow">{{ i18n.t('memberHome.eyebrow') }}</p>
           <h1 class="mt-2 font-display text-2xl font-bold leading-tight text-forest sm:text-4xl">
-            {{ i18n.t('memberHome.greeting') }},
+            {{ i18n.t('memberHome.greeting') }}
             <span class="text-gold-gradient">{{ firstName() }}</span>
           </h1>
           <p class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-warm">

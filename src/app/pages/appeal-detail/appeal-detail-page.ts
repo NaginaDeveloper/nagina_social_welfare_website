@@ -96,7 +96,7 @@ import { formatPortalDate } from '../../components/member-portal/member-portal.t
                 <div class="card">
                   <p class="font-display text-3xl font-bold leading-none text-forest" dir="ltr">{{ raised() }}</p>
                   <p class="mt-1 text-sm text-slate-warm">
-                    {{ i18n.t('memberHome.appeal.raised') }} · {{ i18n.t('memberHome.appeal.of') }}
+                    {{ i18n.t('memberHome.appeal.raised') }} {{ i18n.t('memberHome.appeal.of') }}
                     <span class="font-semibold text-forest" dir="ltr">{{ target() }}</span>
                   </p>
                   <div

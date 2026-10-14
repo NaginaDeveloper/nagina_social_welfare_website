@@ -1,8 +1,8 @@
-<app-page-shell [title]="pageTitle()" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
+<app-page-shell [title]="pageTitle()" [parent]="{ path: '/membership', labelKey: 'nav.membershipHub' }">
   <section class="bg-cream py-8 sm:py-12 lg:py-14">
     <div class="site-wrap" [attr.dir]="i18n.isUr() ? 'rtl' : null">
       @if (!ready() || loading()) {
-        <div class="grid gap-6 lg:grid-cols-[16rem_1fr]">
+        <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[16rem_minmax(0,1fr)]">
           <div class="hidden h-96 animate-pulse rounded-3xl bg-mist/60 lg:block" aria-hidden="true"></div>
           <div>
             <p class="sr-only" role="status">{{ i18n.t('memberHome.loading') }}</p>
@@ -17,7 +17,7 @@
           (signOut)="logout()"
         />
 
-        <div class="mt-6 grid items-start gap-6 lg:mt-8 lg:grid-cols-[16rem_1fr] lg:gap-8">
+        <div class="mt-6 grid grid-cols-[minmax(0,1fr)] items-start gap-6 lg:mt-8 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-8">
           <app-member-sidebar [active]="tab()" (signOut)="logout()" />
 
           <div class="min-w-0">

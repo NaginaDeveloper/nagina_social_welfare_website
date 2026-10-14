@@ -101,6 +101,10 @@
   --color-gold: #d97706;
   --color-gold-600: #b45309;
   --color-gold-300: #fbbf24;
+  /* Darker / lighter accents used by links, labels and soft tints. */
+  --color-gold-700: #92400e;
+  --color-gold-200: #fde68a;
+  --color-gold-100: #fef3c7;
 
   --color-cream: #fafaf9;
   --color-sand: #f5f2ea;

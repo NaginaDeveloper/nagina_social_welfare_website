@@ -1499,7 +1499,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'nav.appeals': 'Appeals',
   'nav.appealsHint': 'Live fundraising appeals',
 
-  'memberHome.greeting': 'Assalamu alaikum',
+  'memberHome.greeting': 'Assalamu alaikum,',
   'memberHome.navLabel': 'Member area sections',
   'memberHome.tabAppeals': 'Appeals',
   'memberHome.tabDonations': 'My donations',
@@ -1674,4 +1674,13 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'membershipSuccess.step3Title': 'Email to set your password',
   'membershipSuccess.step3Text': 'Once approved, we email your membership number and a link to set your password.',
   'membershipSuccess.seeAppeals': 'See our appeals',
+  // Breadcrumbs for the membership pages
+  'nav.membershipHub': 'Membership',
+  'crumb.memberSignIn': 'Member sign in',
+  'crumb.emailPreferences': 'Email preferences',
+  'crumb.forgotPassword': 'Forgot password',
+  'crumb.setPassword': 'Set password',
+  'crumb.resetPassword': 'Reset password',
+  'crumb.trackMembership': 'Track application',
+  'crumb.applicationSent': 'Application sent',
 };
