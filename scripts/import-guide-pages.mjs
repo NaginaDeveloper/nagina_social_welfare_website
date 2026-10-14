@@ -3,7 +3,7 @@
  * and the video guide page) into Angular page templates under src/app/pages/guides/.
  *
  * Sources:
- *   parent, student and teacher manuals -> the admin monorepo, docs/<name>/index.html
+ *   parent, student, teacher and collector manuals -> the admin monorepo, docs/<name>/index.html
  *   parent and student videos           -> guide-sources/<name>.html in this repo
  *
  * Assets (screenshots, logos, PDFs, video, poster) live in public/guides/<name>/ and are
@@ -40,6 +40,12 @@ const GUIDES = [
     kind: 'manual',
     source: join(adminRepo, 'docs/teacher-portal-manual/index.html'),
     title: 'Teacher Portal User Manual',
+  },
+  {
+    id: 'collector-portal-manual',
+    kind: 'manual',
+    source: join(adminRepo, 'docs/collector-portal-manual/index.html'),
+    title: 'Collector Portal User Manual',
   },
   {
     id: 'parent-portal-video',

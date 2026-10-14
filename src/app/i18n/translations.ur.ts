@@ -1049,7 +1049,7 @@ export const TRANSLATIONS_UR: Record<string, string> = {
 
   'guides.eyebrow': 'مدد اور رہنمائی',
   'guides.title': 'پورٹل رہنمائی',
-  'guides.titleAccent': 'والدین، اساتذہ اور طلبہ کے لیے',
+  'guides.titleAccent': 'والدین، اساتذہ، طلبہ اور کلیکٹرز کے لیے',
   'guides.lead':
     'مدرسہ پورٹلز کے لیے مرحلہ وار ویڈیوز اور دستی کتابچے۔ آن لائن دیکھیں، کتابچہ پڑھیں، یا محفوظ رکھنے کے لیے پی ڈی ایف ڈاؤن لوڈ کریں۔',
   'guides.watch': 'ویڈیو دیکھیں',

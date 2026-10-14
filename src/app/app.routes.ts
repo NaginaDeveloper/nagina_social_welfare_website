@@ -13,6 +13,7 @@ import {
   PARENT_PORTAL_MANUAL_SEO,
   STUDENT_PORTAL_MANUAL_SEO,
   TEACHER_PORTAL_MANUAL_SEO,
+  COLLECTOR_PORTAL_MANUAL_SEO,
   PARENT_PORTAL_VIDEO_SEO,
   STUDENT_PORTAL_VIDEO_SEO,
   TEACHER_PORTAL_VIDEO_SEO,
@@ -373,6 +374,15 @@ const siteRoutes: Routes = [
       ),
     title: TEACHER_PORTAL_MANUAL_SEO.title,
     data: { seo: TEACHER_PORTAL_MANUAL_SEO },
+  },
+  {
+    path: 'guides/collector-portal-manual',
+    loadComponent: () =>
+      import('./pages/guides/collector-portal-manual/collector-portal-manual-page').then(
+        (m) => m.CollectorPortalManualPage,
+      ),
+    title: COLLECTOR_PORTAL_MANUAL_SEO.title,
+    data: { seo: COLLECTOR_PORTAL_MANUAL_SEO },
   },
   {
     path: 'guides/parent-portal-video',
