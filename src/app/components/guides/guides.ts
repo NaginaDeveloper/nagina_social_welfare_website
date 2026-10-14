@@ -60,6 +60,9 @@ export class Guides {
         'Take the register, receive fees, review leave, report incidents and behaviour, mark activities, choose Star of the Week, and teach from Let’s Learn Islam.',
       descriptionUr:
         'حاضری لگائیں، فیس وصول کریں، چھٹی کی درخواستیں دیکھیں، واقعات اور رویہ درج کریں، سرگرمیاں درج کریں، ہفتے کا ستارہ چنیں، اور لیٹس لرن اسلام سے پڑھائیں۔',
+      videoUrl: '/guides/teacher-portal-video/',
+      videoPoster: '/guides/teacher-portal-video/poster.jpg',
+      videoLength: '6:05',
       manualUrl: '/guides/teacher-portal-manual/',
       pdfUrl: '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf',
       signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/teacher',

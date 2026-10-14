@@ -12,6 +12,7 @@ import {
   TEACHER_PORTAL_MANUAL_SEO,
   PARENT_PORTAL_VIDEO_SEO,
   STUDENT_PORTAL_VIDEO_SEO,
+  TEACHER_PORTAL_VIDEO_SEO,
   BOOKS_SEO,
   CALENDAR_SEO,
   CONTACT_SEO,
@@ -378,6 +379,15 @@ const siteRoutes: Routes = [
       ),
     title: STUDENT_PORTAL_VIDEO_SEO.title,
     data: { seo: STUDENT_PORTAL_VIDEO_SEO },
+  },
+  {
+    path: 'guides/teacher-portal-video',
+    loadComponent: () =>
+      import('./pages/guides/teacher-portal-video/teacher-portal-video-page').then(
+        (m) => m.TeacherPortalVideoPage,
+      ),
+    title: TEACHER_PORTAL_VIDEO_SEO.title,
+    data: { seo: TEACHER_PORTAL_VIDEO_SEO },
   },
   {
     path: 'events',
