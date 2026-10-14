@@ -61,12 +61,12 @@ export class Apps {
     {
       id: 'charity',
       name: 'NSW Collector Portal',
-      role: 'For Admins & Collectors',
-      roleUr: 'منتظمین اور کلیکٹرز کے لیے',
+      role: 'For Collectors',
+      roleUr: 'کلیکٹرز کے لیے',
       description:
-        'Submit and monitor daily charity collection reports with transparent, secure record-keeping between admins and collectors.',
+        'Scan a charity box’s QR code, record the collection, text the receipt, and see your collection history. Login details are issued by the office.',
       descriptionUr:
-        'منتظمین اور کلیکٹرز کے درمیان شفاف، محفوظ ریکارڈ کے ساتھ یومیہ خیراتی وصولی کی رپورٹیں جمع اور نگرانی کریں۔',
+        'خیراتی ڈبے کا کیو آر کوڈ اسکین کریں، وصولی درج کریں، رسید ٹیکسٹ کریں، اور اپنی وصولیوں کی تاریخ دیکھیں۔ لاگ ان تفصیلات دفتر جاری کرتا ہے۔',
       url: 'https://play.google.com/store/apps/details?id=com.naginaorganization.charity_collection_app',
       icon: 'charity',
     },
