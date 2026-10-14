@@ -1048,6 +1048,8 @@ export const TRANSLATIONS_UR: Record<string, string> = {
   'guides.lead':
     'مدرسہ پورٹلز کے لیے مرحلہ وار ویڈیوز اور دستی کتابچے۔ آن لائن دیکھیں، کتابچہ پڑھیں، یا محفوظ رکھنے کے لیے پی ڈی ایف ڈاؤن لوڈ کریں۔',
   'guides.watch': 'ویڈیو دیکھیں',
+  'guides.steps': 'ویڈیو صفحہ: کسی بھی مرحلے پر جائیں',
+  'guides.videoMeta': 'فل ایچ ڈی، آواز کے ساتھ',
   'guides.read': 'کتابچہ پڑھیں',
   'guides.pdf': 'پی ڈی ایف ڈاؤن لوڈ کریں',
   'guides.videoSoon': 'ویڈیو رہنمائی جلد آ رہی ہے',
