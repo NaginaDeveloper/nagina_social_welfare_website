@@ -5,6 +5,10 @@ import { PING_VISITOR_STATS_URL } from '../config/visitor-stats-api.config';
 
 export interface VisitorStatsSnapshot {
   readonly liveVisitors: number;
+  /** Every visit (new tab, or back after 30 min idle). */
+  readonly todayVisits?: number;
+  readonly totalVisits?: number;
+  /** Unique browsers; fallback for an older API. */
   readonly todayVisitors: number;
   readonly totalVisitors: number;
 }
@@ -20,17 +24,18 @@ function randomId(): string {
   return `id${Date.now().toString(36)}${Math.random().toString(36).slice(2, 12)}`;
 }
 
-function readOrCreateId(storage: Storage, key: string): string {
+/** Falls back to `fallback` when storage is blocked, so the id stays stable for this page. */
+function readOrCreateId(storage: () => Storage, key: string, fallback: string): string {
   try {
-    const existing = storage.getItem(key)?.trim();
+    const store = storage();
+    const existing = store.getItem(key)?.trim();
     if (existing && /^[A-Za-z0-9_-]{8,64}$/.test(existing)) {
       return existing;
     }
-    const created = randomId().slice(0, 32);
-    storage.setItem(key, created);
-    return created;
+    store.setItem(key, fallback);
+    return fallback;
   } catch {
-    return randomId().slice(0, 32);
+    return fallback;
   }
 }
 
@@ -40,6 +45,8 @@ export class VisitorStatsService {
 
   private started = false;
   private timer: ReturnType<typeof setInterval> | null = null;
+  private readonly fallbackVisitorId = randomId().slice(0, 32);
+  private readonly fallbackSessionId = randomId().slice(0, 32);
 
   private readonly liveVisitorsSignal = signal(0);
   private readonly todayVisitorsSignal = signal(0);
@@ -65,8 +72,12 @@ export class VisitorStatsService {
 
   private async ping(): Promise<void> {
     try {
-      const visitorId = readOrCreateId(window.localStorage, VISITOR_ID_KEY);
-      const sessionId = readOrCreateId(window.sessionStorage, SESSION_ID_KEY);
+      const visitorId = readOrCreateId(() => window.localStorage, VISITOR_ID_KEY, this.fallbackVisitorId);
+      const sessionId = readOrCreateId(
+        () => window.sessionStorage,
+        SESSION_ID_KEY,
+        this.fallbackSessionId,
+      );
       const response = await firstValueFrom(
         this.http.post<VisitorStatsSnapshot>(PING_VISITOR_STATS_URL, {
           visitorId,
@@ -74,8 +85,10 @@ export class VisitorStatsService {
         }),
       );
       this.liveVisitorsSignal.set(Math.max(0, Number(response.liveVisitors) || 0));
-      this.todayVisitorsSignal.set(Math.max(0, Number(response.todayVisitors) || 0));
-      this.totalVisitorsSignal.set(Math.max(0, Number(response.totalVisitors) || 0));
+      const today = response.todayVisits ?? response.todayVisitors;
+      const total = response.totalVisits ?? response.totalVisitors;
+      this.todayVisitorsSignal.set(Math.max(0, Number(today) || 0));
+      this.totalVisitorsSignal.set(Math.max(0, Number(total) || 0));
       this.readySignal.set(true);
       this.errorSignal.set(null);
     } catch {
