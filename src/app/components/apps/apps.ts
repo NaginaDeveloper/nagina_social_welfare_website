@@ -10,7 +10,7 @@ interface AppLink {
   readonly description: string;
   readonly descriptionUr: string;
   readonly url: string;
-  readonly icon: 'parent' | 'teacher' | 'charity';
+  readonly icon: 'parent' | 'student' | 'teacher' | 'charity';
 }
 
 @Component({
@@ -33,6 +33,18 @@ export class Apps {
         'براہِ راست باخبر رہیں — اپنے بچے کی یومیہ حاضری اور فیس کے ریکارڈ دیکھیں۔ لاگ ان تفصیلات ادارہ جاری کرتا ہے۔',
       url: 'https://play.google.com/store/apps/details?id=com.learning.mdi_parent_app',
       icon: 'parent',
+    },
+    {
+      id: 'mdi-student',
+      name: 'NSW Student Portal',
+      role: 'For Students',
+      roleUr: 'طلبہ کے لیے',
+      description:
+        "Tick your daily checklist, learn with Let's Learn Islam, collect stars and badges, and read messages from your madrasa. Login details are issued by the madrasa office.",
+      descriptionUr:
+        'روزانہ چیک لسٹ پر نشان لگائیں، لیٹس لرن اسلام سے سیکھیں، ستارے اور بیجز جمع کریں، اور مدرسہ کے پیغامات پڑھیں۔ لاگ ان تفصیلات مدرسہ کا دفتر جاری کرتا ہے۔',
+      url: 'https://play.google.com/store/apps/details?id=com.learning.mdi_student_app',
+      icon: 'student',
     },
     {
       id: 'mdi',

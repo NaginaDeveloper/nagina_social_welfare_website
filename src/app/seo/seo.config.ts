@@ -337,11 +337,11 @@ export const SERMONS_SEO: PageSeo = {
 };
 
 export const APPS_SEO: PageSeo = {
-  title: 'Madrasa Apps for Parents, Admins & Collectors | Google Play',
+  title: 'Madrasa Apps for Parents, Students, Admins & Collectors | Google Play',
   description:
-    'Purpose-built mobile apps for parents, administrators and collectors of Nagina Social Welfare UK, available on the Google Play Store. Teacher and student apps are coming soon.',
+    'Purpose-built mobile apps for parents, students, administrators and collectors of Nagina Social Welfare UK, available on the Google Play Store. The teachers’ app is coming soon.',
   path: '/apps/',
-  keywords: 'Nagina apps, NSW Parent Portal, NSW Admin Portal, NSW Collector Portal, Markaz Deen-e-Islam app, Islamic school app UK',
+  keywords: 'Nagina apps, NSW Parent Portal, NSW Student Portal, NSW Admin Portal, NSW Collector Portal, Markaz Deen-e-Islam app, Islamic school app UK',
   type: 'website',
   breadcrumb: 'Apps',
   changefreq: 'monthly',

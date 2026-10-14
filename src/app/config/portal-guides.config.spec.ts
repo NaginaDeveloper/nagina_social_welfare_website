@@ -16,7 +16,7 @@ describe('PORTAL_GUIDES', () => {
     }
   });
 
-  it('links an app only for the parent portal, the one live on Google Play', () => {
-    expect(PORTAL_GUIDES.filter((g) => g.appUrl).map((g) => g.id)).toEqual(['parent']);
+  it('links the apps live on Google Play: parent and student, not teacher yet', () => {
+    expect(PORTAL_GUIDES.filter((g) => g.appUrl).map((g) => g.id)).toEqual(['parent', 'student']);
   });
 });

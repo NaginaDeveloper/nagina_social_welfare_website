@@ -77,5 +77,6 @@ export const PORTAL_GUIDES: readonly PortalGuide[] = [
     manualUrl: '/guides/student-portal-manual/',
     pdfUrl: '/guides/student-portal-manual/Student-Portal-User-Manual.pdf',
     signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/student',
+    appUrl: 'https://play.google.com/store/apps/details?id=com.learning.mdi_student_app',
   },
 ];
