@@ -12,7 +12,7 @@ import { Icon } from '../../components/ui/icon';
   selector: 'app-membership-forgot-password-page',
   imports: [NextSteps, PageShell, FormsModule, RouterLink, AuthSplitLayout, Icon],
   template: `
-    <app-page-shell title="Forgot password" [parent]="{ path: '/membership/login', labelKey: 'nav.memberLogin' }">
+    <app-page-shell [title]="i18n.t('crumb.forgotPassword')" [parent]="{ path: '/membership/login', labelKey: 'nav.memberLogin' }">
       <app-auth-split-layout
         [eyebrow]="i18n.t('auth.recoveryEyebrow')"
         [heading]="i18n.t('memberForgot.title')"

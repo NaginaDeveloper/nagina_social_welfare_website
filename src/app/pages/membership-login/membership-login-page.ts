@@ -13,7 +13,7 @@ import { PasswordField } from '../../components/ui/password-field';
   selector: 'app-membership-login-page',
   imports: [NextSteps, PageShell, FormsModule, RouterLink, AuthSplitLayout, PasswordField],
   template: `
-    <app-page-shell title="Member sign in" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
+    <app-page-shell [title]="i18n.t('crumb.memberSignIn')" [parent]="{ path: '/membership', labelKey: 'nav.membershipHub' }">
       <app-auth-split-layout
         [eyebrow]="i18n.t('auth.signInEyebrow')"
         [heading]="i18n.t('memberLogin.title')"

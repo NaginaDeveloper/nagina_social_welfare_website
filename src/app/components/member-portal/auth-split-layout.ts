@@ -62,7 +62,7 @@ import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
                 }
               </ul>
 
-              <div class="mt-auto pt-10">
+              <div class="mt-10 border-t border-white/10 pt-6">
                 <a
                   [href]="helpWhatsapp"
                   target="_blank"
@@ -97,7 +97,7 @@ import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 
         <p class="mt-6 text-center text-sm text-slate-warm">
           <a routerLink="/" class="inline-flex items-center gap-1.5 font-semibold text-forest hover:text-gold-700">
-            <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
+            <app-icon name="arrow" size="h-4 w-4 -scale-x-100 rtl:scale-x-100" />
             {{ i18n.t('auth.backHome') }}
           </a>
         </p>

@@ -5,6 +5,8 @@ import { LanguageService } from '../i18n/language.service';
 @Component({
   selector: 'app-page-shell',
   imports: [RouterLink],
+  // `title` is an input; drop the native attribute so the browser does not show it as a tooltip.
+  host: { '[attr.title]': 'null' },
   template: `
     <div class="border-b border-mist/80 bg-sand/80 pt-[var(--header-clearance)]">
       <div class="site-wrap py-3 sm:py-3.5">

@@ -12,7 +12,7 @@ import { PasswordField } from '../../components/ui/password-field';
   selector: 'app-membership-reset-password-page',
   imports: [NextSteps, PageShell, RouterLink, AuthSplitLayout, Icon, PasswordField],
   template: `
-    <app-page-shell title="Reset password" [parent]="{ path: '/membership/login', labelKey: 'nav.memberLogin' }">
+    <app-page-shell [title]="i18n.t('crumb.resetPassword')" [parent]="{ path: '/membership/login', labelKey: 'nav.memberLogin' }">
       <app-auth-split-layout
         [eyebrow]="i18n.t('auth.recoveryEyebrow')"
         [heading]="i18n.t('memberReset.title')"

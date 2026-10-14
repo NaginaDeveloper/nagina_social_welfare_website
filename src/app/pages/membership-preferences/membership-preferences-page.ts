@@ -17,7 +17,7 @@ type PrefsState = 'loading' | 'invalid' | 'ready' | 'saved';
   selector: 'app-membership-preferences-page',
   imports: [PageShell, RouterLink, Icon],
   template: `
-    <app-page-shell title="Email preferences" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
+    <app-page-shell [title]="i18n.t('crumb.emailPreferences')" [parent]="{ path: '/membership', labelKey: 'nav.membershipHub' }">
       <section class="bg-cream py-12 sm:py-20">
         <div class="site-wrap" [attr.dir]="i18n.isUr() ? 'rtl' : null">
           <div class="mx-auto max-w-xl">
