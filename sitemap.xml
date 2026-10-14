@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/"/>
     <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/"/>
@@ -125,7 +125,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/namaz/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/namaz/"/>
     <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/namaz/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/namaz/"/>
@@ -134,7 +134,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/zakat/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/zakat/"/>
     <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/zakat/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/zakat/"/>
@@ -170,7 +170,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/calendar/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/calendar/"/>
     <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/calendar/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/calendar/"/>
@@ -239,7 +239,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/guides/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -257,7 +257,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/guides/teacher-portal-manual/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -270,6 +270,12 @@
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/guides/student-portal-video/</loc>
     <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/guides/teacher-portal-video/</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -323,7 +329,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/ur/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/"/>
     <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/"/>
@@ -422,7 +428,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/ur/namaz/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/namaz/"/>
     <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/namaz/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/namaz/"/>
@@ -467,7 +473,7 @@
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/ur/calendar/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/calendar/"/>
     <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/calendar/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/calendar/"/>

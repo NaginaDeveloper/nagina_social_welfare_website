@@ -1,7 +1,7 @@
 {
   "/": {
-    "hash": "5197e16c82904f5d",
-    "lastmod": "2026-10-13"
+    "hash": "e2baad1fbf2e8fbc",
+    "lastmod": "2026-10-14"
   },
   "/about/": {
     "hash": "6f227afcd7d282f6",
@@ -80,12 +80,12 @@
     "lastmod": "2026-10-09"
   },
   "/namaz/": {
-    "hash": "b5a2f3841d399dee",
-    "lastmod": "2026-10-13"
+    "hash": "844381c3b08e6545",
+    "lastmod": "2026-10-14"
   },
   "/zakat/": {
-    "hash": "258a38171684ef68",
-    "lastmod": "2026-10-13"
+    "hash": "edae6f2ea97b2a82",
+    "lastmod": "2026-10-14"
   },
   "/zakat/what-is-zakat/": {
     "hash": "1fdd3201778ff68b",
@@ -100,8 +100,8 @@
     "lastmod": "2026-10-09"
   },
   "/calendar/": {
-    "hash": "641d7d8590768bb2",
-    "lastmod": "2026-10-13"
+    "hash": "c7f3db5291260b1e",
+    "lastmod": "2026-10-14"
   },
   "/ramadan/": {
     "hash": "1081816f3b7a9a2f",
@@ -140,8 +140,8 @@
     "lastmod": "2026-10-09"
   },
   "/guides/": {
-    "hash": "730345c525ff83e9",
-    "lastmod": "2026-10-13"
+    "hash": "90846ee53b09bf7b",
+    "lastmod": "2026-10-14"
   },
   "/guides/parent-portal-manual/": {
     "hash": "2e39c5592c30b12e",
@@ -152,8 +152,8 @@
     "lastmod": "2026-10-13"
   },
   "/guides/teacher-portal-manual/": {
-    "hash": "5c35134a2badd445",
-    "lastmod": "2026-10-13"
+    "hash": "7135669cc4738811",
+    "lastmod": "2026-10-14"
   },
   "/guides/parent-portal-video/": {
     "hash": "a3011199e6456670",
@@ -162,6 +162,10 @@
   "/guides/student-portal-video/": {
     "hash": "0eea2073fa60f0e7",
     "lastmod": "2026-10-13"
+  },
+  "/guides/teacher-portal-video/": {
+    "hash": "9d4e74d7a8c86a69",
+    "lastmod": "2026-10-14"
   },
   "/events/": {
     "hash": "314316f6598aba34",
@@ -196,8 +200,8 @@
     "lastmod": "2026-10-09"
   },
   "/ur/": {
-    "hash": "1a7706901d671dfa",
-    "lastmod": "2026-10-13"
+    "hash": "261ad3b055063bae",
+    "lastmod": "2026-10-14"
   },
   "/ur/about/": {
     "hash": "f19b2463409e8a2f",
@@ -264,16 +268,16 @@
     "lastmod": "2026-10-13"
   },
   "/ur/namaz/": {
-    "hash": "571a9dd1266c6cea",
-    "lastmod": "2026-10-13"
+    "hash": "57010aa43ce585c1",
+    "lastmod": "2026-10-14"
   },
   "/ur/duas/": {
     "hash": "19f027223070c702",
     "lastmod": "2026-10-13"
   },
   "/ur/calendar/": {
-    "hash": "691ea51dca03f2cc",
-    "lastmod": "2026-10-13"
+    "hash": "1772990a3e4e6df6",
+    "lastmod": "2026-10-14"
   },
   "/ur/contact/": {
     "hash": "d480d61c49a53944",
