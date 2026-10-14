@@ -1191,9 +1191,9 @@ export const TRANSLATIONS_EN: Record<string, string> = {
 
   'guides.eyebrow': 'Help & Guides',
   'guides.title': 'Portal Guides for',
-  'guides.titleAccent': 'Parents, Teachers and Students',
+  'guides.titleAccent': 'Parents, Teachers, Students and Collectors',
   'guides.lead':
-    'Step-by-step videos and user manuals for the Madrasa portals. Watch online, read the manual, or save the PDF to keep.',
+    'Step-by-step videos and user manuals for the Madrasa and charity portals. Watch online, read the manual, or save the PDF to keep.',
   'guides.watch': 'Watch the video',
   'guides.steps': 'Video page: jump to any step',
   'guides.videoMeta': 'Full HD with voiceover',

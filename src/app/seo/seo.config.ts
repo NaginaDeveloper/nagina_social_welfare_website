@@ -393,7 +393,7 @@ export const PORTALS_SEO: PageSeo = {
 export const GUIDES_SEO: PageSeo = {
   title: 'Portal Guides: Videos & Manuals | Nagina Social Welfare',
   description:
-    'Video guides and user manuals for the Madrasa Parent, Teacher and Student portals: sign in, messages, fees, attendance, leave and more.',
+    'Video guides and user manuals for the Parent, Teacher, Student and Collector portals: sign in, messages, fees, attendance, leave, charity box collections and more.',
   path: '/guides/',
   keywords:
     'Parent Portal guide, Markaz Deen-e-Islam portal, Madrasa parent app help, teacher portal manual, Nagina guides',
@@ -439,6 +439,19 @@ export const TEACHER_PORTAL_MANUAL_SEO: PageSeo = {
   image: '/guides/teacher-portal-manual/screenshots/05-dashboard.png',
   type: 'article',
   breadcrumb: 'Teacher Portal manual',
+  changefreq: 'monthly',
+  priority: 0.6,
+};
+
+export const COLLECTOR_PORTAL_MANUAL_SEO: PageSeo = {
+  title: 'Collector Portal User Manual | Nagina Social Welfare',
+  description:
+    'How charity box collectors use the NSW Collector Portal app and web portal: find a box by number or QR code, Collect Cash, Send Receipt, My Collections and My Profile. For Peterborough and Manchester.',
+  path: '/guides/collector-portal-manual/',
+  keywords: 'Collector Portal manual, NSW Collector Portal, charity box collection app, Nagina Social Welfare',
+  image: '/guides/collector-portal-manual/screenshots/05-home.png',
+  type: 'article',
+  breadcrumb: 'Collector Portal manual',
   changefreq: 'monthly',
   priority: 0.6,
 };
@@ -770,6 +783,7 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   PARENT_PORTAL_MANUAL_SEO,
   STUDENT_PORTAL_MANUAL_SEO,
   TEACHER_PORTAL_MANUAL_SEO,
+  COLLECTOR_PORTAL_MANUAL_SEO,
   PARENT_PORTAL_VIDEO_SEO,
   STUDENT_PORTAL_VIDEO_SEO,
   TEACHER_PORTAL_VIDEO_SEO,

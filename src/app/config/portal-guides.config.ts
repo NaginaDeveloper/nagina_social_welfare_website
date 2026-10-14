@@ -5,7 +5,7 @@
  */
 export interface PortalGuide {
   readonly id: string;
-  readonly icon: 'parent' | 'teacher' | 'student';
+  readonly icon: 'parent' | 'teacher' | 'student' | 'collector';
   readonly role: string;
   readonly roleUr: string;
   readonly name: string;
@@ -78,5 +78,20 @@ export const PORTAL_GUIDES: readonly PortalGuide[] = [
     pdfUrl: '/guides/student-portal-manual/Student-Portal-User-Manual.pdf',
     signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/student',
     appUrl: 'https://play.google.com/store/apps/details?id=com.learning.mdi_student_app',
+  },
+  {
+    id: 'collector',
+    icon: 'collector',
+    role: 'For Collectors',
+    roleUr: 'کلیکٹرز کے لیے',
+    name: 'Collector Portal',
+    description:
+      'Find a charity box by number or QR code, record the collection, send the receipt by text, and follow your month’s collections.',
+    descriptionUr:
+      'نمبر یا کیو آر کوڈ سے خیراتی ڈبہ تلاش کریں، وصولی درج کریں، رسید ٹیکسٹ کریں، اور مہینے کی وصولیاں دیکھیں۔',
+    manualUrl: '/guides/collector-portal-manual/',
+    pdfUrl: '/guides/collector-portal-manual/Collector-Portal-User-Manual.pdf',
+    signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/collector',
+    appUrl: 'https://play.google.com/store/apps/details?id=com.naginaorganization.charity_collection_app',
   },
 ];
