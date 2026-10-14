@@ -259,6 +259,7 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
           labelKey: 'nav.section.give',
           items: [
             { labelKey: 'nav.donate', path: '/donate', hintKey: 'nav.donateHint', icon: 'donate' },
+            { labelKey: 'nav.appeals', path: '/appeals', hintKey: 'nav.appealsHint', icon: 'events' },
             { labelKey: 'nav.zakat', path: '/zakat', hintKey: 'nav.zakatHint', icon: 'zakat' },
           ],
         },

@@ -224,6 +224,73 @@
   @apply mt-4 max-w-2xl text-base leading-relaxed text-sand/85 sm:text-lg;
 }
 
+/* ==========================================================================
+   Member portal / forms design system — cards, fields, banners, tiles.
+   Shared by the membership pages, appeals and the apply form so every screen
+   reads as one product. Pair `nav-item` / `choice` with their `-active` twin.
+   ========================================================================== */
+@utility card {
+  @apply rounded-3xl border border-mist bg-white p-5 shadow-soft sm:p-7;
+}
+@utility card-dark {
+  @apply relative overflow-hidden rounded-3xl border border-emerald/40 bg-gradient-to-br from-forest via-emerald to-forest-800 p-5 text-cream shadow-portal sm:p-7;
+}
+@utility field {
+  @apply mt-1.5 block w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4 py-3 text-base text-forest outline-none transition-colors placeholder:text-slate-warm/45 focus:border-gold/60 focus:bg-white disabled:opacity-70 read-only:bg-sand/60;
+}
+@utility field-invalid {
+  @apply border-red-400 focus:border-red-500;
+}
+@utility field-label {
+  @apply block text-sm font-medium text-forest;
+}
+@utility field-hint {
+  @apply mt-1.5 block text-xs leading-relaxed text-slate-warm;
+}
+@utility field-error {
+  @apply mt-1 block text-sm font-medium text-red-700;
+}
+@utility banner-ok {
+  @apply rounded-2xl border border-emerald/30 bg-emerald/10 px-4 py-3 text-sm leading-relaxed text-forest;
+}
+@utility banner-error {
+  @apply rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm leading-relaxed text-red-900;
+}
+@utility banner-info {
+  @apply rounded-2xl border border-gold/30 bg-gold/5 px-4 py-3 text-sm leading-relaxed text-forest;
+}
+@utility stat-tile {
+  @apply flex items-start gap-4 rounded-2xl border border-mist bg-white px-5 py-4 shadow-soft;
+}
+/* Width-based progress bar: the fill is a block child so it anchors at inline-start in RTL too. */
+@utility progress-track {
+  @apply h-2 w-full overflow-hidden rounded-full bg-mist;
+}
+@utility progress-fill {
+  @apply block h-full rounded-full bg-gradient-to-r from-gold-300 to-gold transition-[width] duration-700;
+}
+@utility progress-fill-on-dark {
+  @apply block h-full rounded-full bg-gradient-to-r from-gold-300 to-gold;
+}
+@utility nav-item {
+  @apply flex min-h-11 w-full items-center gap-3 rounded-xl px-3.5 text-sm font-semibold text-forest/80 transition-colors hover:bg-forest/5 hover:text-forest;
+}
+@utility nav-item-active {
+  @apply bg-forest text-cream shadow-soft hover:bg-forest hover:text-cream;
+}
+@utility choice {
+  @apply flex min-h-14 cursor-pointer items-center gap-3 rounded-2xl border-2 border-mist bg-white px-4 py-3.5 text-start text-sm font-semibold text-forest transition-colors hover:border-gold/55;
+}
+@utility choice-active {
+  @apply border-forest bg-forest text-cream shadow-soft hover:border-forest;
+}
+@utility pill {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+}
+@utility section-number {
+  @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest font-display text-sm font-bold text-gold-300;
+}
+
 html {
   scroll-behavior: smooth;
   /* Matches sticky header (nav only); taller when event ticker is present */

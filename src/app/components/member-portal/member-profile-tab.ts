@@ -4,16 +4,11 @@ import { LanguageService } from '../../i18n/language.service';
 import {
   VOLUNTEER_INTEREST_OPTIONS,
   type MemberInterests,
+  type MemberProfile,
   type VolunteerInterest,
 } from '../../models/membership';
-import type { MemberProfile } from '../../models/membership';
 import { formatUkPhoneForDisplay } from '../../validators/uk.validators';
-import {
-  portalCardClass,
-  portalInputClass,
-  portalPrimaryBtnClass,
-  portalSuccessBannerClass,
-} from './member-portal.shared';
+import { Icon } from '../ui/icon';
 
 export interface MemberProfileSavePayload {
   phone: string;
@@ -27,18 +22,19 @@ export interface MemberProfileSavePayload {
   interests: MemberInterests;
 }
 
+/**
+ * Profile: Contact, Address, Volunteering and Email preferences cards with one sticky
+ * save bar. Name and email are read-only (trustees change those). `marketingOptIn` is the
+ * single email preference: appeals and news emails.
+ */
 @Component({
   selector: 'app-member-profile-tab',
-  imports: [FormsModule],
+  imports: [FormsModule, Icon],
   templateUrl: './member-profile-tab.html',
 })
 export class MemberProfileTab {
   protected readonly i18n = inject(LanguageService);
   protected readonly interestOptions = VOLUNTEER_INTEREST_OPTIONS;
-  protected readonly portalCardClass = portalCardClass;
-  protected readonly portalInputClass = portalInputClass;
-  protected readonly portalPrimaryBtnClass = portalPrimaryBtnClass;
-  protected readonly portalSuccessBannerClass = portalSuccessBannerClass;
 
   readonly member = input.required<MemberProfile>();
   readonly saving = input(false);
@@ -48,21 +44,23 @@ export class MemberProfileTab {
   readonly save = output<MemberProfileSavePayload>();
 
   protected phone = '';
-  protected marketingOptIn = false;
+  protected readonly marketingOptIn = signal(false);
   protected addressLine1 = '';
   protected addressLine2 = '';
   protected addressCity = '';
   protected addressPostcode = '';
-  protected volunteerInterests = signal<VolunteerInterest[]>([]);
+  protected readonly volunteerInterests = signal<VolunteerInterest[]>([]);
   protected skills = '';
   protected languages = '';
   protected heardAbout = '';
+  /** True once the member edits anything after the last load or save. */
+  protected readonly dirty = signal(false);
 
   constructor() {
     effect(() => {
       const m = this.member();
       this.phone = formatUkPhoneForDisplay(m.phone ?? '');
-      this.marketingOptIn = m.marketingOptIn === true;
+      this.marketingOptIn.set(m.marketingOptIn === true);
       this.addressLine1 = m.address?.line1 ?? '';
       this.addressLine2 = m.address?.line2 ?? '';
       this.addressCity = m.address?.city ?? '';
@@ -71,7 +69,15 @@ export class MemberProfileTab {
       this.skills = m.interests?.skills ?? '';
       this.languages = m.interests?.languages ?? '';
       this.heardAbout = m.interests?.heardAbout ?? '';
+      this.dirty.set(false);
     });
+    effect(() => {
+      if (this.saved()) this.dirty.set(false);
+    });
+  }
+
+  protected markDirty(): void {
+    this.dirty.set(true);
   }
 
   protected interestChecked(value: VolunteerInterest): boolean {
@@ -83,6 +89,12 @@ export class MemberProfileTab {
     if (checked) set.add(value);
     else set.delete(value);
     this.volunteerInterests.set([...set]);
+    this.markDirty();
+  }
+
+  protected toggleMarketing(): void {
+    this.marketingOptIn.update((v) => !v);
+    this.markDirty();
   }
 
   protected submitProfile(event: Event): void {
@@ -95,7 +107,7 @@ export class MemberProfileTab {
     };
     this.save.emit({
       phone: this.phone,
-      marketingOptIn: this.marketingOptIn,
+      marketingOptIn: this.marketingOptIn(),
       address: {
         line1: this.addressLine1,
         line2: this.addressLine2,

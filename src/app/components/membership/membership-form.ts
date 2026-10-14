@@ -29,6 +29,8 @@ import { PRIVACY_NOTICE_VERSION } from '../../config/privacy-notice.config';
 import { CentreContacts } from '../centre-contacts/centre-contacts';
 import { campusTown, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
+import { FormStepper } from '../ui/form-stepper';
+import { Icon } from '../ui/icon';
 
 function adultAgeValidator() {
   return (ctrl: AbstractControl) => {
@@ -48,7 +50,7 @@ function adultAgeValidator() {
 
 @Component({
   selector: 'app-membership-form',
-  imports: [CentreContacts, ReactiveFormsModule, RouterLink],
+  imports: [CentreContacts, ReactiveFormsModule, RouterLink, FormStepper, Icon],
   templateUrl: './membership-form.html',
   styleUrl: './membership-form.css',
 })
@@ -77,6 +79,13 @@ export class MembershipForm {
     { key: 'membership.step1', hint: 'membership.step1Hint' },
     { key: 'membership.step2', hint: 'membership.step2Hint' },
     { key: 'membership.step3', hint: 'membership.step3Hint' },
+  ] as const;
+
+  protected readonly asideBenefits = [
+    'membership.aside1',
+    'membership.aside2',
+    'membership.aside3',
+    'membership.aside4',
   ] as const;
 
   protected readonly form = this.fb.nonNullable.group({
@@ -169,22 +178,6 @@ export class MembershipForm {
     return campusTown(campus);
   }
 
-  protected choiceClass(selected: boolean): string {
-    const base =
-      'flex min-h-14 cursor-pointer items-center rounded-2xl border-2 px-4 py-3.5 text-sm font-semibold transition-colors';
-    return selected
-      ? `${base} border-forest bg-forest text-cream shadow-soft`
-      : `${base} border-mist bg-white text-forest hover:border-gold/55`;
-  }
-
-  protected inputClass(ctrl: AbstractControl | null): string {
-    const base =
-      'mt-1.5 w-full min-h-12 rounded-2xl border bg-sand/40 px-4 py-3 text-base text-forest outline-none transition-colors placeholder:text-slate-warm/45 focus:bg-white';
-    return this.invalid(ctrl)
-      ? `${base} border-red-400 focus:border-red-500`
-      : `${base} border-mist focus:border-gold/60`;
-  }
-
   protected onFormSubmit(): void {
     if (this.step() < 2) {
       this.next();
@@ -204,6 +197,15 @@ export class MembershipForm {
     this.attempted.set(false);
     this.step.update((s) => Math.min(s + 1, 2));
     this.host.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /** Stepper jumps go back only; moving forward always validates the current step. */
+  protected goTo(index: number): void {
+    if (index < this.step()) {
+      this.error.set(null);
+      this.attempted.set(false);
+      this.step.set(index);
+    }
   }
 
   protected back(): void {
@@ -316,7 +318,7 @@ export class MembershipForm {
     queueMicrotask(() => {
       const el =
         this.host.nativeElement.querySelector('[data-error]') ??
-        this.host.nativeElement.querySelector('.text-red-700');
+        this.host.nativeElement.querySelector('.field-error');
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   }

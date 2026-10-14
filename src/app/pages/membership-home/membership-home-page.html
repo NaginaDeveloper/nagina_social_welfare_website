@@ -1,87 +1,109 @@
-<app-page-shell [title]="pageTitle()" homeLabelKey="nav.home">
-  <section class="bg-cream py-16 sm:py-24">
+<app-page-shell [title]="pageTitle()" [parent]="{ path: '/membership', labelKey: 'nav.membership' }">
+  <section class="bg-cream py-8 sm:py-12 lg:py-14">
     <div class="site-wrap" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-      @if (loading()) {
-        <app-member-portal-loading [rows]="4" [offsetTop]="false" />
+      @if (!ready() || loading()) {
+        <div class="grid gap-6 lg:grid-cols-[16rem_1fr]">
+          <div class="hidden h-96 animate-pulse rounded-3xl bg-mist/60 lg:block" aria-hidden="true"></div>
+          <div>
+            <p class="sr-only" role="status">{{ i18n.t('memberHome.loading') }}</p>
+            <app-member-portal-loading [rows]="4" [offsetTop]="false" />
+          </div>
+        </div>
       } @else if (member(); as m) {
-        <div class="mx-auto max-w-4xl">
-          <app-member-portal-shell
-            [fullName]="m.fullName"
-            [activeTab]="tab()"
-            [tabs]="tabs"
-            (tabChange)="setTab($event)"
-          />
+        <app-member-portal-shell
+          [fullName]="m.fullName"
+          [membershipNumber]="m.membershipNumber"
+          [campusName]="m.campusName || ''"
+          (signOut)="logout()"
+        />
 
-          @if (error()) {
-            <p [class]="portalErrorBannerClass + ' mt-6'">{{ error() }}</p>
-          }
+        <div class="mt-6 grid items-start gap-6 lg:mt-8 lg:grid-cols-[16rem_1fr] lg:gap-8">
+          <app-member-sidebar [active]="tab()" (signOut)="logout()" />
 
-          @if (tab() === 'overview') {
-            <app-member-overview-tab
-              [member]="m"
-              [certificateLoading]="certificateLoading()"
-              [orgWhatsApp]="orgWhatsApp"
-              (downloadCertificate)="downloadCertificate()"
-              (logout)="logout()"
-              (navigateTab)="setTab($event)"
-            />
-          }
+          <div class="min-w-0">
+            @if (error(); as err) {
+              <p class="banner-error mb-6" role="alert">{{ err }}</p>
+            }
 
-          @if (tab() === 'profile') {
-            <app-member-profile-tab
-              [member]="m"
-              [saving]="saving()"
-              [saved]="saved()"
-              [phoneError]="phoneError()"
-              (save)="saveProfile($event)"
-            />
-          }
-
-          @if (tab() === 'donate') {
-            <app-member-donate-tab
-              [donatedBanner]="donatedBanner()"
-              [donateFund]="donateFund()"
-              [donateCampus]="donateCampus()"
-              [donateAmount]="donateAmount()"
-              [donateCustom]="donateCustom()"
-              [donateLoading]="donateLoading()"
-              [donateAcknowledged]="donateAcknowledged()"
-              [donations]="donations()"
-              [donationsLoading]="donationsLoading()"
-              (fundChange)="donateFund.set($event)"
-              (campusChange)="donateCampus.set($event)"
-              (amountChange)="donateAmount.set($event)"
-              (customAmountChange)="donateCustom.set($event)"
-              (acknowledgeChange)="donateAcknowledged.set($event)"
-              (startDonation)="startDonation()"
-            />
-          }
-
-          @if (tab() === 'events') {
-            <app-member-events-tab
-              [events]="events()"
-              [eventsLoading]="eventsLoading()"
-              [rsvpBusy]="rsvpBusy()"
-              (setRsvp)="setRsvp($event.event, $event.status)"
-            />
-          }
-
-          @if (tab() === 'newsletters') {
-            <app-member-newsletters-tab
-              [marketingOptIn]="m.marketingOptIn === true"
-              [newsletters]="newsletters()"
-              [newslettersLoading]="newslettersLoading()"
-              [newslettersError]="newslettersError()"
-              (openProfile)="setTab('profile')"
-            />
-          }
+            @switch (tab()) {
+              @case ('overview') {
+                <app-member-overview-tab
+                  [member]="m"
+                  [certificateLoading]="certificateLoading()"
+                  [donations]="donations()"
+                  [donationsLoading]="donationsLoading()"
+                  [events]="events()"
+                  [eventsLoading]="eventsLoading()"
+                  [appeals]="appeals()"
+                  [appealsLoading]="appealsLoading()"
+                  (downloadCertificate)="downloadCertificate()"
+                />
+              }
+              @case ('appeals') {
+                <app-member-appeals-tab
+                  [appeals]="appeals()"
+                  [loading]="appealsLoading()"
+                  [error]="appealsError()"
+                  [campusId]="m.campusId || ''"
+                  (retry)="reloadAppeals()"
+                />
+              }
+              @case ('donate') {
+                <app-member-donate-tab
+                  [donatedBanner]="donatedBanner()"
+                  [appeal]="donateAppeal()"
+                  [appealLoading]="donateAppealLoading()"
+                  [appealMissing]="donateAppealMissing()"
+                  [donateFund]="donateFund()"
+                  [donateCampus]="donateCampus()"
+                  [donateAmount]="donateAmount()"
+                  [donateCustom]="donateCustom()"
+                  [donateLoading]="donateLoading()"
+                  [donateAcknowledged]="donateAcknowledged()"
+                  (fundChange)="donateFund.set($event)"
+                  (campusChange)="donateCampus.set($event)"
+                  (amountChange)="donateAmount.set($event)"
+                  (customAmountChange)="donateCustom.set($event)"
+                  (acknowledgeChange)="donateAcknowledged.set($event)"
+                  (startDonation)="startDonation()"
+                  (clearAppeal)="clearAppeal()"
+                />
+              }
+              @case ('donations') {
+                <app-member-donations-tab [donations]="donations()" [loading]="donationsLoading()" />
+              }
+              @case ('events') {
+                <app-member-events-tab
+                  [events]="events()"
+                  [eventsLoading]="eventsLoading()"
+                  [rsvpBusy]="rsvpBusy()"
+                  (setRsvp)="setRsvp($event.event, $event.status)"
+                />
+              }
+              @case ('newsletters') {
+                <app-member-newsletters-tab
+                  [marketingOptIn]="m.marketingOptIn === true"
+                  [newsletters]="newsletters()"
+                  [newslettersLoading]="newslettersLoading()"
+                  [newslettersError]="newslettersError()"
+                />
+              }
+              @case ('profile') {
+                <app-member-profile-tab
+                  [member]="m"
+                  [saving]="saving()"
+                  [saved]="saved()"
+                  [phoneError]="phoneError()"
+                  (save)="saveProfile($event)"
+                />
+              }
+            }
+          </div>
         </div>
       } @else {
-        <div class="mx-auto max-w-md text-center">
-          <p class="text-slate-warm">{{ i18n.t('memberHome.signInRequired') }}</p>
-          <a routerLink="/membership/login" [class]="portalPrimaryBtnClass + ' mt-4'">
-            {{ i18n.t('memberLogin.signIn') }}
-          </a>
+        <div class="card mx-auto max-w-md text-center">
+          <p class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.signInRequired') }}</p>
+          <a routerLink="/membership/login" class="btn btn-primary mt-6">{{ i18n.t('memberLogin.signIn') }}</a>
         </div>
       }
     </div>

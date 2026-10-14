@@ -16,6 +16,23 @@ export interface MemberDonationRecord {
   paidAt: string | null;
   checkoutReference: string;
   receiptId?: string | null;
+  /** Appeal this gift was made to, when it came from an appeal link. */
+  appealId?: string | null;
+  appealTitle?: string | null;
+}
+
+export interface DonationCheckoutRequest {
+  amount: number;
+  fund: DonationFund;
+  campus: string;
+  /** When given, the server locks fund and centre to the appeal's own. */
+  appealId?: string | null;
+}
+
+export interface MemberEmailPreferences {
+  emailMasked: string;
+  fullName: string;
+  marketingOptIn: boolean;
 }
 
 export interface MemberPortalEvent {
@@ -56,16 +73,41 @@ export class MemberPortalService {
     return { Authorization: `Bearer ${token}` };
   }
 
-  async startDonationCheckout(amount: number, fund: DonationFund, campus: string): Promise<string> {
+  async startDonationCheckout(request: DonationCheckoutRequest): Promise<string> {
     const headers = await this.bearerHeaders();
+    const { amount, fund, campus, appealId } = request;
     const res = await firstValueFrom(
       this.http.post<{ ok: boolean; hostedCheckoutUrl: string }>(
         `${MEMBERSHIP_API_BASE}/api/membership/donate/checkout`,
-        { amount, fund, campus },
+        { amount, fund, campus, ...(appealId ? { appealId } : {}) },
         { headers },
       ),
     );
     return res.hostedCheckoutUrl;
+  }
+
+  /** Email preferences behind the tokenised link in campaign emails (no sign-in). */
+  async getPreferences(token: string): Promise<MemberEmailPreferences> {
+    const res = await firstValueFrom(
+      this.http.get<{ ok: boolean } & MemberEmailPreferences>(
+        `${MEMBERSHIP_API_BASE}/api/membership/public/preferences`,
+        { params: { token: token.trim() } },
+      ),
+    );
+    return { emailMasked: res.emailMasked, fullName: res.fullName, marketingOptIn: res.marketingOptIn === true };
+  }
+
+  async updatePreferences(
+    token: string,
+    patch: { marketingOptIn?: boolean; unsubscribeAll?: boolean },
+  ): Promise<boolean> {
+    const res = await firstValueFrom(
+      this.http.post<{ ok: boolean; marketingOptIn: boolean }>(
+        `${MEMBERSHIP_API_BASE}/api/membership/public/preferences`,
+        { token: token.trim(), ...patch },
+      ),
+    );
+    return res.marketingOptIn === true;
   }
 
   async listDonations(): Promise<MemberDonationRecord[]> {

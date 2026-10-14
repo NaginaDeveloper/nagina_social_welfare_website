@@ -2,6 +2,9 @@ import { Routes } from '@angular/router';
 import { isUrduPage, toUrduPath } from './i18n/urdu-routes';
 import {
   ABOUT_SEO,
+  APPEALS_SEO,
+  APPEAL_DETAIL_SEO,
+  MEMBERSHIP_PREFERENCES_SEO,
   AHLE_BAIT_SEO,
   ASSISTANT_SEO,
   APPS_SEO,
@@ -169,6 +172,15 @@ const siteRoutes: Routes = [
       ),
     title: MEMBERSHIP_HOME_SEO.title,
     data: { seo: MEMBERSHIP_HOME_SEO, robots: 'noindex, follow' },
+  },
+  {
+    path: 'membership/preferences',
+    loadComponent: () =>
+      import('./pages/membership-preferences/membership-preferences-page').then(
+        (m) => m.MembershipPreferencesPage,
+      ),
+    title: MEMBERSHIP_PREFERENCES_SEO.title,
+    data: { seo: MEMBERSHIP_PREFERENCES_SEO },
   },
   {
     path: 'membership/forgot-password',
@@ -400,6 +412,19 @@ const siteRoutes: Routes = [
     loadComponent: () => import('./pages/donate/donate-page').then((m) => m.DonatePage),
     title: DONATE_SEO.title,
     data: { seo: DONATE_SEO },
+  },
+  {
+    path: 'appeals',
+    loadComponent: () => import('./pages/appeals/appeals-page').then((m) => m.AppealsPage),
+    title: APPEALS_SEO.title,
+    data: { seo: APPEALS_SEO },
+  },
+  {
+    path: 'appeals/:id',
+    loadComponent: () =>
+      import('./pages/appeal-detail/appeal-detail-page').then((m) => m.AppealDetailPage),
+    title: APPEAL_DETAIL_SEO.title,
+    data: { seo: APPEAL_DETAIL_SEO },
   },
   {
     path: 'assistant',

@@ -60,6 +60,7 @@ export const OG_CARD_SLUGS: readonly string[] = [
   'portals',
   'events',
   'donate',
+  'appeals',
   'assistant',
   'contact',
   'privacy',
@@ -236,6 +237,35 @@ export const MEMBERSHIP_HOME_SEO: PageSeo = {
   path: '/membership/home/',
   robots: 'noindex, follow',
   type: 'website',
+};
+
+export const MEMBERSHIP_PREFERENCES_SEO: PageSeo = {
+  title: 'Email Preferences | Nagina Social Welfare UK',
+  description: 'Choose whether to receive appeal and news emails from Nagina Social Welfare UK.',
+  path: '/membership/preferences/',
+  robots: 'noindex, follow',
+  type: 'website',
+};
+
+export const APPEALS_SEO: PageSeo = {
+  title: 'Fundraising Appeals | Nagina Social Welfare UK',
+  description:
+    'Live fundraising appeals from Nagina Social Welfare UK (charity 1196514) for our Peterborough and Manchester centres. See progress and give online.',
+  path: '/appeals/',
+  keywords: 'Nagina Social Welfare appeal, charity appeal UK, Islamic charity fundraising, Peterborough mosque appeal, Manchester madrasa appeal',
+  type: 'website',
+  breadcrumb: 'Appeals',
+  changefreq: 'weekly',
+  priority: 0.8,
+};
+
+/** Route default for `/appeals/:id`; the page replaces it at runtime once the appeal loads. */
+export const APPEAL_DETAIL_SEO: PageSeo = {
+  title: 'Appeal | Nagina Social Welfare UK',
+  description: 'A fundraising appeal from Nagina Social Welfare UK (charity 1196514). See the story and progress, and give online.',
+  path: '/appeals/',
+  type: 'article',
+  breadcrumb: 'Appeal',
 };
 
 export const SPIRITUAL_GUIDE_SEO: PageSeo = {
@@ -745,6 +775,7 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   TEACHER_PORTAL_VIDEO_SEO,
   EVENTS_SEO,
   DONATE_SEO,
+  APPEALS_SEO,
   ASSISTANT_SEO,
   DONATE_THANKS_SEO,
   CONTACT_SEO,

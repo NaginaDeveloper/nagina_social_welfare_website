@@ -1,71 +1,141 @@
-<div
-  id="member-panel-overview"
-  role="tabpanel"
-  aria-labelledby="member-tab-overview"
-  class="mt-8 space-y-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0"
->
-  <div
-    class="rounded-[1.5rem] border border-emerald/30 bg-gradient-to-br from-forest via-emerald to-forest-800 px-6 py-7 text-cream shadow-portal lg:col-span-1"
-  >
-    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold-300">
-      {{ i18n.t('memberHome.cardLabel') }}
-    </p>
-    <p class="mt-3 font-mono text-2xl font-bold tracking-wide sm:text-3xl">
-      {{ member().membershipNumber }}
-    </p>
-    <p class="mt-3 text-sm leading-relaxed opacity-90">{{ i18n.t('memberHome.cardHint') }}</p>
+<div id="member-panel-overview" role="tabpanel" aria-labelledby="member-tab-overview" class="space-y-6">
+  <app-member-card
+    [member]="member()"
+    [certificateLoading]="certificateLoading()"
+    (downloadCertificate)="downloadCertificate.emit()"
+  />
+
+  <div class="grid gap-3 sm:grid-cols-3">
+    <app-stat-tile
+      icon="heart"
+      [label]="i18n.t('memberHome.stat.givenYear')"
+      [value]="donationsLoading() ? '…' : givenThisYear()"
+      [hint]="i18n.t('memberHome.stat.givenHint')"
+    />
+    <app-stat-tile
+      icon="receipt"
+      [label]="i18n.t('memberHome.stat.gifts')"
+      [value]="donationsLoading() ? '…' : giftCount()"
+      [hint]="i18n.t('memberHome.stat.giftsHint')"
+    />
+    <app-stat-tile
+      icon="calendar"
+      [label]="i18n.t('memberHome.stat.events')"
+      [value]="eventsLoading() ? '…' : upcomingCount()"
+      [hint]="i18n.t('memberHome.stat.eventsHint')"
+    />
   </div>
 
-  <div [class]="portalCardClass + ' flex flex-col justify-center gap-3'">
-    <h2 class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.quickLinks') }}</h2>
-    <div class="flex flex-wrap gap-2">
-      <button type="button" [class]="portalPrimaryBtnClass + ' min-h-11 px-4'" (click)="navigateTab.emit('donate')">
-        {{ i18n.t('memberHome.tabDonate') }}
-      </button>
-      <a
-        [href]="org.quizUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        [class]="portalOutlineBtnClass"
-        [attr.aria-label]="i18n.t('memberHome.quizAria')"
-      >
-        {{ i18n.t('memberHome.quiz') }}
+  <!-- Live appeals -->
+  <section>
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <p class="eyebrow">{{ i18n.t('memberHome.tabAppeals') }}</p>
+        <h2 class="mt-1 font-display text-2xl font-bold text-forest">{{ i18n.t('memberHome.appeal.liveTitle') }}</h2>
+      </div>
+      <a routerLink="/membership/home" [queryParams]="{ tab: 'appeals' }" class="btn btn-ghost-light btn-sm">
+        {{ i18n.t('memberHome.appeal.viewAll') }}
+        <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
       </a>
-      <a
-        [href]="org.halalCheckerUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        [class]="portalOutlineBtnClass"
-        [attr.aria-label]="i18n.t('memberHome.halalCheckerAria')"
-      >
-        {{ i18n.t('memberHome.halalChecker') }}
-      </a>
-      <button type="button" [class]="portalOutlineBtnClass" (click)="navigateTab.emit('events')">
-        {{ i18n.t('memberHome.tabEvents') }}
-      </button>
-      <button type="button" [class]="portalOutlineBtnClass" (click)="navigateTab.emit('profile')">
-        {{ i18n.t('memberHome.tabProfile') }}
-      </button>
     </div>
+    @if (appealsLoading()) {
+      <app-member-portal-loading [rows]="1" />
+    } @else if (!topAppeals().length) {
+      <div class="mt-4 rounded-3xl border border-dashed border-mist bg-sand/40 px-6 py-8 text-center">
+        <app-icon name="megaphone" size="mx-auto h-8 w-8 text-gold-600" [strokeWidth]="1.5" />
+        <p class="mt-3 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.appeal.empty') }}</p>
+      </div>
+    } @else {
+      <div class="mt-4 grid gap-5 md:grid-cols-2">
+        @for (appeal of topAppeals(); track appeal.id) {
+          <app-appeal-card [appeal]="appeal" [donateLink]="donateLink(appeal)" [compact]="true" />
+        }
+      </div>
+    }
+  </section>
+
+  <div class="grid gap-6 lg:grid-cols-2">
+    <!-- Next event -->
+    <section class="card flex flex-col">
+      <p class="eyebrow">{{ i18n.t('memberHome.nextEvent') }}</p>
+      @if (eventsLoading()) {
+        <app-member-portal-loading [rows]="1" />
+      } @else if (nextEvent(); as event) {
+        <h3 class="mt-3 font-display text-xl font-bold leading-snug text-forest">{{ eventTitle(event) }}</h3>
+        <p class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-warm">
+          <span class="inline-flex items-center gap-1.5"><app-icon name="calendar" size="h-4 w-4 text-gold-600" />{{ event.date }}@if (event.time) {<span>, {{ event.time }}</span>}</span>
+          @if (event.venue) {
+            <span class="inline-flex items-center gap-1.5"><app-icon name="pin" size="h-4 w-4 text-gold-600" />{{ event.venue }}</span>
+          }
+        </p>
+        @if (event.rsvpStatus === 'going') {
+          <span class="pill mt-3 self-start bg-emerald/10 text-emerald-600">
+            <app-icon name="check" size="h-3.5 w-3.5" [strokeWidth]="2.4" />
+            {{ i18n.t('memberHome.rsvpGoing') }}
+          </span>
+        }
+        <a routerLink="/membership/home" [queryParams]="{ tab: 'events' }" class="btn btn-secondary-light mt-5 self-start">
+          {{ i18n.t('memberHome.seeEvents') }}
+          <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
+        </a>
+      } @else {
+        <p class="mt-3 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.nextEventEmpty') }}</p>
+        <a routerLink="/events" class="btn btn-secondary-light mt-5 self-start">{{ i18n.t('memberHome.seeEvents') }}</a>
+      }
+    </section>
+
+    <!-- Quick links -->
+    <section class="card">
+      <p class="eyebrow">{{ i18n.t('memberHome.quickLinks') }}</p>
+      <div class="mt-4 grid grid-cols-2 gap-2.5">
+        <a routerLink="/membership/home" [queryParams]="{ tab: 'donate' }" class="choice choice-active">
+          <app-icon name="heart" size="h-5 w-5 shrink-0 text-gold-300" />
+          {{ i18n.t('memberHome.quickDonate') }}
+        </a>
+        <a routerLink="/membership/home" [queryParams]="{ tab: 'donations' }" class="choice">
+          <app-icon name="receipt" size="h-5 w-5 shrink-0 text-emerald-600" />
+          {{ i18n.t('memberHome.quickReceipts') }}
+        </a>
+        <a routerLink="/membership/home" [queryParams]="{ tab: 'profile' }" class="choice">
+          <app-icon name="user" size="h-5 w-5 shrink-0 text-emerald-600" />
+          {{ i18n.t('memberHome.quickProfile') }}
+        </a>
+        <a routerLink="/membership/home" [queryParams]="{ tab: 'newsletters' }" class="choice">
+          <app-icon name="newsletter" size="h-5 w-5 shrink-0 text-emerald-600" />
+          {{ i18n.t('memberHome.tabNewsletters') }}
+        </a>
+        <a
+          [href]="org.quizUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="choice"
+          [attr.aria-label]="i18n.t('memberHome.quizAria')"
+        >
+          <app-icon name="quiz" size="h-5 w-5 shrink-0 text-emerald-600" />
+          {{ i18n.t('memberHome.quiz') }}
+        </a>
+        <a
+          [href]="org.halalCheckerUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="choice"
+          [attr.aria-label]="i18n.t('memberHome.halalCheckerAria')"
+        >
+          <app-icon name="barcode" size="h-5 w-5 shrink-0 text-emerald-600" />
+          {{ i18n.t('memberHome.halalChecker') }}
+        </a>
+      </div>
+    </section>
   </div>
 
-  <div class="flex flex-wrap gap-3 lg:col-span-2">
-    <button
-      type="button"
-      [class]="portalGoldBtnClass"
-      [disabled]="certificateLoading()"
-      (click)="downloadCertificate.emit()"
-    >
-      {{ certificateLoading() ? i18n.t('memberHome.downloading') : i18n.t('memberHome.downloadPdf') }}
-    </button>
-    <button type="button" [class]="portalOutlineBtnClass" (click)="logout.emit()">
-      {{ i18n.t('memberHome.signOut') }}
-    </button>
-  </div>
-
-  <div [class]="portalCardClass + ' lg:col-span-2'">
-    <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.volunteerTitle') }}</h2>
-    <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.volunteerLead') }}</p>
-    <app-centre-contacts class="mt-4 block" compact prefill="Assalamu alaikum, I am a community member and would like to volunteer with" />
-  </div>
+  <!-- Volunteering -->
+  <section class="card">
+    <p class="eyebrow">{{ i18n.t('memberHome.volunteerTitle') }}</p>
+    <p class="mt-3 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.volunteerLead') }}</p>
+    <app-centre-contacts
+      class="mt-5 block"
+      compact
+      prefill="Assalamu alaikum, I am a community member and would like to volunteer with"
+    />
+  </section>
 </div>

@@ -1,45 +1,57 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { MemberPortalService, portalErrorMessage } from '../../services/member-portal.service';
 import { PageShell } from '../page-shell';
 import { NextSteps } from '../../components/next-steps/next-steps';
+import { AuthSplitLayout } from '../../components/member-portal/auth-split-layout';
+import { Icon } from '../../components/ui/icon';
+import { PasswordField } from '../../components/ui/password-field';
 
 @Component({
   selector: 'app-membership-reset-password-page',
-  imports: [NextSteps, PageShell, FormsModule, RouterLink],
+  imports: [NextSteps, PageShell, RouterLink, AuthSplitLayout, Icon, PasswordField],
   template: `
     <app-page-shell title="Reset password" [parent]="{ path: '/membership/login', labelKey: 'nav.memberLogin' }">
-      <section class="bg-cream py-16 sm:py-24">
-        <div class="mx-auto max-w-md px-5 sm:px-8" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-          <h1 class="font-display text-3xl font-bold text-forest">{{ i18n.t('memberReset.title') }}</h1>
-          <p class="mt-4 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberReset.lead') }}</p>
-          @if (done()) {
-            <p class="mt-6 rounded-2xl border border-emerald/30 bg-emerald/10 px-4 py-3 text-sm text-forest">{{ i18n.t('memberReset.done') }}</p>
-            <a routerLink="/membership/login" class="mt-6 inline-flex min-h-12 items-center rounded-full bg-forest px-6 text-sm font-semibold text-cream">
-              {{ i18n.t('memberLogin.signIn') }}
-            </a>
-          } @else {
-            <form class="mt-8 space-y-4 rounded-[1.5rem] border border-mist bg-white px-5 py-8 shadow-soft" (submit)="$event.preventDefault(); submit()">
-              <label class="block text-sm font-medium text-forest">
-                {{ i18n.t('memberReset.password') }}
-                <input type="password" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="password" name="password" autocomplete="new-password" minlength="8" />
-              </label>
-              <label class="block text-sm font-medium text-forest">
-                {{ i18n.t('memberReset.confirm') }}
-                <input type="password" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="confirm" name="confirm" autocomplete="new-password" />
-              </label>
-              @if (error()) {
-                <p class="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">{{ error() }}</p>
-              }
-              <button type="submit" [disabled]="loading() || !token" class="w-full min-h-12 rounded-full bg-forest text-sm font-semibold text-cream disabled:opacity-60">
-                {{ loading() ? i18n.t('memberReset.saving') : i18n.t('memberReset.save') }}
-              </button>
-            </form>
-          }
-        </div>
-      </section>
+      <app-auth-split-layout
+        [eyebrow]="i18n.t('auth.recoveryEyebrow')"
+        [heading]="i18n.t('memberReset.title')"
+        [lead]="i18n.t('memberReset.lead')"
+      >
+        @if (done()) {
+          <div class="banner-ok flex items-start gap-3" role="status">
+            <app-icon name="check" size="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" [strokeWidth]="2.4" />
+            <p>{{ i18n.t('memberReset.done') }}</p>
+          </div>
+          <a routerLink="/membership/login" class="btn btn-primary btn-lg mt-6 w-full">{{ i18n.t('memberLogin.signIn') }}</a>
+        } @else if (!token) {
+          <div class="banner-error" role="alert">{{ i18n.t('memberReset.invalidLink') }}</div>
+          <a routerLink="/membership/forgot-password" class="btn btn-secondary-light mt-6">{{ i18n.t('auth.requestNewLink') }}</a>
+        } @else {
+          <form class="space-y-5" (submit)="$event.preventDefault(); submit()" novalidate>
+            <app-password-field
+              [label]="i18n.t('memberReset.password')"
+              [(value)]="password"
+              name="password"
+              autocomplete="new-password"
+              [minlength]="8"
+              [hint]="i18n.t('auth.passwordRule')"
+            />
+            <app-password-field
+              [label]="i18n.t('memberReset.confirm')"
+              [(value)]="confirm"
+              name="confirm"
+              autocomplete="new-password"
+            />
+            @if (error(); as err) {
+              <p class="banner-error" role="alert">{{ err }}</p>
+            }
+            <button type="submit" [disabled]="loading()" class="btn btn-primary btn-lg w-full">
+              {{ loading() ? i18n.t('memberReset.saving') : i18n.t('memberReset.save') }}
+            </button>
+          </form>
+        }
+      </app-auth-split-layout>
       <app-next-steps page="/membership/login" />
     </app-page-shell>
   `,
@@ -58,9 +70,6 @@ export class MembershipResetPasswordPage implements OnInit {
 
   ngOnInit(): void {
     this.token = this.route.snapshot.queryParamMap.get('token')?.trim() ?? '';
-    if (!this.token) {
-      this.error.set(this.i18n.t('memberReset.invalidLink'));
-    }
   }
 
   protected async submit(): Promise<void> {

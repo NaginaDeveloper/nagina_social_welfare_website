@@ -89,7 +89,28 @@ export interface MemberProfile {
     postcode?: string;
   };
   interests?: MemberInterests;
-  joinedAt?: unknown;
+  /** Campus profile id of the centre that holds this membership ("" for legacy records). */
+  campusId?: string;
+  /** "Markaz Deen-e-Islam, Peterborough" style label from the API ("" when unknown). */
+  campusName?: string;
+  /** ISO string from the API; older sessions may still hold a Timestamp-like JSON object. */
+  joinedAt?: string | null | { seconds?: number; _seconds?: number } | unknown;
+}
+
+/** Joined date as a Date, parsed defensively (ISO string or Firestore Timestamp JSON). */
+export function memberJoinedDate(member: Pick<MemberProfile, 'joinedAt'>): Date | null {
+  const raw = member.joinedAt;
+  if (!raw) return null;
+  if (typeof raw === 'string') {
+    const d = new Date(raw);
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+  if (typeof raw === 'object') {
+    const obj = raw as { seconds?: unknown; _seconds?: unknown };
+    const secs = typeof obj.seconds === 'number' ? obj.seconds : obj._seconds;
+    if (typeof secs === 'number' && Number.isFinite(secs)) return new Date(secs * 1000);
+  }
+  return null;
 }
 
 export const VOLUNTEER_INTEREST_OPTIONS: readonly {

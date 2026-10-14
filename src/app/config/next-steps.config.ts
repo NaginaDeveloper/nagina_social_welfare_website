@@ -22,6 +22,7 @@ export const NEXT_STEPS: Readonly<Record<string, readonly string[]>> = {
   '/quran': ['/hadith', '/duas', '/namaz', '/books', '/sermons', '/assistant'],
   '/hadith': ['/quran', '/duas', '/books', '/sahaba-ikram', '/guidance', '/assistant'],
   '/contact': ['/apply', '/donate', '/namaz', '/events', '/safeguarding', '/assistant'],
+  '/appeals': ['/donate', '/membership', '/membership/login', '/zakat', '/impact', '/contact'],
   '/donate/thanks': ['/impact', '/work', '/zakat', '/events', '/membership', '/contact'],
   '/events': ['/namaz', '/calendar', '/ramadan', '/spiritual-guide', '/donate', '/contact'],
   '/guides': ['/apps', '/portals', '/apply/track', '/safe-drop-off', '/madrasa', '/contact'],

@@ -1,165 +1,214 @@
-<div id="member-panel-donate" role="tabpanel" aria-labelledby="member-tab-donate" class="mt-8 space-y-8">
+<div id="member-panel-donate" role="tabpanel" aria-labelledby="member-tab-donate" class="space-y-6">
   @if (donatedBanner()) {
-    <div class="space-y-2">
-      <p [class]="portalSuccessBannerClass">{{ i18n.t('memberHome.donateThanks') }}</p>
-      <p class="text-sm text-slate-warm">{{ i18n.t('memberHome.receiptEmailNote') }}</p>
+    <div class="banner-ok flex items-start gap-3" role="status">
+      <app-icon name="check" size="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" [strokeWidth]="2.4" />
+      <div>
+        <p class="font-semibold">{{ i18n.t('memberHome.donateThanks') }}</p>
+        <p class="mt-1 text-slate-warm">{{ i18n.t('memberHome.receiptEmailNote') }}</p>
+        <a routerLink="/membership/home" [queryParams]="{ tab: 'donations' }" class="mt-2 inline-flex items-center gap-1 font-semibold text-gold-700 hover:underline">
+          {{ i18n.t('memberHome.donate.historyLink') }}
+          <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
+        </a>
+      </div>
     </div>
   }
 
-  <div [class]="portalCardClass">
-    <h2 class="font-display text-xl font-bold text-forest sm:text-2xl">{{ i18n.t('memberHome.donateTitle') }}</h2>
-    <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.donateLead') }}</p>
-    <p class="mt-3 text-sm leading-relaxed text-slate-warm">
-      {{ i18n.t('memberHome.donatePrivacyPrefix') }}
-      <a routerLink="/privacy" class="font-semibold text-gold-700 underline">{{ i18n.t('nav.privacy') }}</a>
-      {{ i18n.t('memberHome.donatePrivacySuffix') }}
-    </p>
+  <div class="card">
+    <p class="eyebrow">{{ i18n.t('memberHome.tabDonate') }}</p>
+    <h2 class="mt-2 font-display text-2xl font-bold text-forest sm:text-3xl">{{ i18n.t('memberHome.donateTitle') }}</h2>
+    <p class="mt-2 max-w-2xl text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.donateLead') }}</p>
 
-    <fieldset class="mt-8">
-      <legend class="text-sm font-semibold text-forest">{{ i18n.t('donate.fund') }}</legend>
-      <div class="mt-3 grid gap-3 sm:grid-cols-2">
-        @for (option of funds; track option.id) {
-          <button
-            type="button"
-            class="rounded-2xl border px-4 py-3.5 text-left transition-colors"
-            [class.border-forest]="donateFund() === option.id"
-            [class.bg-forest]="donateFund() === option.id"
-            [class.text-cream]="donateFund() === option.id"
-            [class.border-mist]="donateFund() !== option.id"
-            [class.bg-white]="donateFund() !== option.id"
-            [class.text-forest]="donateFund() !== option.id"
-            (click)="fundChange.emit(option.id)"
-          >
-            <span class="block font-display text-lg font-bold">{{ i18n.t(option.titleKey) }}</span>
-            <span
-              class="mt-1 block text-sm leading-relaxed"
-              [class.text-cream/75]="donateFund() === option.id"
-              [class.text-slate-warm]="donateFund() !== option.id"
-            >
-              {{ i18n.t(option.hintKey) }}
-            </span>
-          </button>
-        }
-      </div>
-    </fieldset>
-
-    <app-donation-destination
-      class="mt-8 block"
-      [selected]="donateCampus()"
-      (selectedChange)="campusChange.emit($event)"
-    />
-
-    <p class="mt-8 text-sm font-semibold text-forest">{{ i18n.t('memberHome.chooseAmount') }}</p>
-    <div class="mt-3 flex flex-wrap gap-2">
-      @for (p of presets; track p) {
-        <button
-          type="button"
-          class="min-h-11 rounded-full px-4 text-sm font-semibold transition-colors"
-          [class.bg-gold-600]="donateAmount() === p"
-          [class.text-forest]="donateAmount() === p"
-          [class.border]="donateAmount() !== p"
-          [class.border-mist]="donateAmount() !== p"
-          [class.bg-white]="donateAmount() !== p"
-          (click)="amountChange.emit(p)"
-        >
-          £{{ p }}
-        </button>
-      }
-      <button
-        type="button"
-        class="min-h-11 rounded-full border border-mist px-4 text-sm font-semibold transition-colors"
-        [class.bg-gold-600]="donateAmount() === 'custom'"
-        [class.text-forest]="donateAmount() === 'custom'"
-        (click)="amountChange.emit('custom')"
-      >
-        {{ i18n.t('memberHome.customAmount') }}
-      </button>
-    </div>
-
-    @if (donateAmount() === 'custom') {
-      <label class="mt-4 block text-sm font-medium text-forest">
-        {{ i18n.t('memberHome.amountGbp') }}
-        <input
-          type="number"
-          min="5"
-          step="0.01"
-          [class]="portalInputClass"
-          [ngModel]="donateCustom()"
-          (ngModelChange)="customAmountChange.emit($event)"
-          name="customAmount"
-        />
-      </label>
+    @if (appealMissing()) {
+      <p class="banner-info mt-5" role="status">{{ i18n.t('memberHome.appeal.notFound') }}</p>
     }
 
-    <label class="mt-6 flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
-      <input
-        type="checkbox"
-        class="mt-1 accent-[#022c22]"
-        [ngModel]="donateAcknowledged()"
-        (ngModelChange)="acknowledgeChange.emit($event)"
-        name="donateAck"
-      />
-      <span class="text-sm text-forest">{{ i18n.t('memberHome.donateAcknowledge') }}</span>
-    </label>
-
-    <button
-      type="button"
-      class="mt-6"
-      [class]="portalPrimaryBtnClass"
-      [disabled]="donateLoading() || !donateAcknowledged()"
-      (click)="startDonation.emit()"
-    >
-      {{ donateLoading() ? i18n.t('memberHome.donateProcessing') : i18n.t('memberHome.donateNow') }}
-    </button>
-  </div>
-
-  <div [class]="portalCardClass">
-    <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.donateHistory') }}</h2>
-    @if (donationsLoading()) {
-      <app-member-portal-loading [rows]="2" [offsetTop]="false" />
-    } @else if (!donations().length) {
-      <app-member-portal-empty [message]="i18n.t('memberHome.donateEmpty')" [offsetTop]="false" />
-    } @else {
-      @if (receiptError()) {
-        <p class="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
-          {{ receiptError() }}
-        </p>
-      }
-      <ul class="mt-4 space-y-3">
-        @for (d of donations(); track d.id) {
-          <li class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-mist bg-sand/30 px-4 py-3">
-            <div>
-              <p class="text-sm font-semibold text-forest">
-                {{ fundLabel(d.fund) }}
-                @if (d.campusName) {
-                  <span class="font-normal text-slate-warm">· {{ d.campusName }}</span>
-                }
+    <!-- 1. Appeal (only when arriving from an appeal link) -->
+    @if (appealLoading()) {
+      <app-member-portal-loading [rows]="1" />
+    } @else if (appeal(); as a) {
+      <section class="mt-8" aria-labelledby="donate-section-appeal">
+        <div class="flex items-center gap-3">
+          <span class="section-number">1</span>
+          <h3 id="donate-section-appeal" class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.donate.sectionAppeal') }}</h3>
+        </div>
+        <div class="card-dark mt-4 !p-5">
+          <div class="geo-pattern-dense absolute inset-0 opacity-50" aria-hidden="true"></div>
+          <div class="relative sm:flex sm:items-start sm:gap-5">
+            @if (a.coverImageUrl; as cover) {
+              <img [src]="cover" alt="" class="mb-4 h-32 w-full rounded-2xl object-cover sm:mb-0 sm:h-28 sm:w-40 sm:shrink-0" loading="lazy" decoding="async" />
+            }
+            <div class="min-w-0 flex-1">
+              <p class="eyebrow-on-dark">{{ i18n.t('memberHome.appeal.banner') }}</p>
+              <p class="mt-1 font-display text-xl font-bold leading-snug text-white sm:text-2xl">{{ appealTitle() }}</p>
+              <p class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-sand/80">
+                <span class="inline-flex items-center gap-1"><app-icon name="pin" size="h-3.5 w-3.5" />{{ appealCentre() }}</span>
+                <span class="inline-flex items-center gap-1"><app-icon name="clock" size="h-3.5 w-3.5" />{{ daysLabel() }}</span>
               </p>
-              <p class="text-xs text-slate-warm">{{ formatDate(d.paidAt) }}</p>
-              @if (d.receiptId) {
-                <p class="mt-1 text-xs text-slate-warm">
-                  {{ i18n.t('memberHome.receiptNumber') }}: {{ d.receiptId }}
-                </p>
-              }
+              <div class="progress-track mt-3 bg-white/15" role="progressbar" [attr.aria-valuenow]="a.progressPct" aria-valuemin="0" aria-valuemax="100" [attr.aria-label]="i18n.t('appeals.progressAria')">
+                <span class="progress-fill-on-dark" [style.width.%]="a.progressPct"></span>
+              </div>
+              <p class="mt-2 text-xs text-sand/85" dir="ltr">
+                <span class="font-semibold text-white">{{ appealRaised() }}</span> {{ i18n.t('memberHome.appeal.raised') }} ·
+                {{ i18n.t('memberHome.appeal.of') }} {{ appealTarget() }} · {{ a.donorCount }} {{ i18n.t('memberHome.appeal.donors') }}
+              </p>
+              <p class="mt-3 text-xs text-sand/70">{{ i18n.t('memberHome.appeal.bannerLocked') }}</p>
             </div>
-            <div class="flex flex-wrap items-center gap-3">
-              <p class="font-display text-lg font-bold text-forest">{{ formatMoney(d.amount, d.currency) }}</p>
+          </div>
+          <div class="relative mt-4 flex flex-wrap gap-2">
+            <a [routerLink]="['/appeals', a.id]" class="btn btn-secondary btn-sm">{{ i18n.t('memberHome.appeal.readMore') }}</a>
+            <button type="button" class="btn btn-ghost btn-sm" (click)="clearAppeal.emit()">{{ i18n.t('memberHome.appeal.bannerClear') }}</button>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- 2. Fund -->
+    <section class="mt-8" aria-labelledby="donate-section-fund">
+      <div class="flex items-center gap-3">
+        <span class="section-number">{{ 1 + offset() }}</span>
+        <h3 id="donate-section-fund" class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.donate.sectionFund') }}</h3>
+      </div>
+      @if (appeal(); as a) {
+        <div class="choice choice-active mt-4 cursor-default">
+          <app-icon name="check" size="h-5 w-5 shrink-0 text-gold-300" [strokeWidth]="2.4" />
+          <span>
+            <span class="block font-display text-lg font-bold">{{ fundLabel(a.fund) }}</span>
+            <span class="block text-xs font-normal text-cream/75">{{ i18n.t('donate.' + a.fund + 'Hint') }}</span>
+          </span>
+        </div>
+      } @else {
+        <fieldset class="mt-4">
+          <legend class="sr-only">{{ i18n.t('donate.fund') }}</legend>
+          <div class="grid gap-3 sm:grid-cols-2">
+            @for (option of funds; track option.id) {
               <button
                 type="button"
-                [class]="portalOutlineBtnClass"
-                [disabled]="isReceiptBusy(d.id)"
-                (click)="downloadReceipt(d)"
+                role="radio"
+                class="choice"
+                [class.choice-active]="donateFund() === option.id"
+                [attr.aria-checked]="donateFund() === option.id"
+                (click)="fundChange.emit(option.id)"
               >
-                {{
-                  isReceiptBusy(d.id)
-                    ? i18n.t('memberHome.receiptDownloading')
-                    : i18n.t('memberHome.receiptDownload')
-                }}
+                <span>
+                  <span class="block font-display text-lg font-bold">{{ i18n.t(option.titleKey) }}</span>
+                  <span class="block text-xs font-normal leading-relaxed" [class.text-cream/75]="donateFund() === option.id" [class.text-slate-warm]="donateFund() !== option.id">
+                    {{ i18n.t(option.hintKey) }}
+                  </span>
+                </span>
               </button>
-            </div>
-          </li>
+            }
+          </div>
+        </fieldset>
+      }
+    </section>
+
+    <!-- 3. Centre -->
+    <section class="mt-8" aria-labelledby="donate-section-centre">
+      <div class="flex items-center gap-3">
+        <span class="section-number">{{ 2 + offset() }}</span>
+        <h3 id="donate-section-centre" class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.donate.sectionCentre') }}</h3>
+      </div>
+      @if (appeal()) {
+        <div class="choice choice-active mt-4 cursor-default">
+          <app-icon name="pin" size="h-5 w-5 shrink-0 text-gold-300" />
+          <span>
+            <span class="block text-xs font-normal text-cream/75">{{ i18n.t('memberHome.donate.lockedCentre') }}</span>
+            <span class="block font-display text-lg font-bold">{{ appealCentre() }}</span>
+          </span>
+        </div>
+      } @else {
+        <app-donation-destination class="mt-4 block" [selected]="donateCampus()" (selectedChange)="campusChange.emit($event)" />
+      }
+    </section>
+
+    <!-- 4. Amount -->
+    <section class="mt-8" aria-labelledby="donate-section-amount">
+      <div class="flex items-center gap-3">
+        <span class="section-number">{{ 3 + offset() }}</span>
+        <h3 id="donate-section-amount" class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.donate.sectionAmount') }}</h3>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2" role="radiogroup" [attr.aria-label]="i18n.t('memberHome.chooseAmount')">
+        @for (p of presets; track p) {
+          <button
+            type="button"
+            role="radio"
+            class="btn min-w-[4.5rem]"
+            [class.btn-primary]="donateAmount() === p"
+            [class.btn-secondary-light]="donateAmount() !== p"
+            [attr.aria-checked]="donateAmount() === p"
+            (click)="amountChange.emit(p)"
+            dir="ltr"
+          >
+            £{{ p }}
+          </button>
         }
-      </ul>
-    }
+        <button
+          type="button"
+          role="radio"
+          class="btn"
+          [class.btn-primary]="donateAmount() === 'custom'"
+          [class.btn-secondary-light]="donateAmount() !== 'custom'"
+          [attr.aria-checked]="donateAmount() === 'custom'"
+          (click)="amountChange.emit('custom')"
+        >
+          {{ i18n.t('memberHome.customAmount') }}
+        </button>
+      </div>
+
+      @if (donateAmount() === 'custom') {
+        <label class="field-label mt-4 max-w-xs">
+          {{ i18n.t('memberHome.amountGbp') }}
+          <span class="relative block">
+            <span class="pointer-events-none absolute inset-y-0 start-0 mt-1.5 flex items-center ps-4 text-slate-warm" aria-hidden="true">£</span>
+            <input
+              type="number"
+              min="5"
+              step="0.01"
+              inputmode="decimal"
+              class="field ps-9"
+              dir="ltr"
+              [ngModel]="donateCustom()"
+              (ngModelChange)="customAmountChange.emit($event)"
+              name="customAmount"
+            />
+          </span>
+        </label>
+      }
+      <p class="field-hint mt-3">{{ i18n.t('memberHome.donateMin') }}</p>
+    </section>
+
+    <!-- Confirm & pay -->
+    <div class="mt-8 rounded-2xl border border-mist bg-sand/40 p-4 sm:p-5">
+      <label class="flex cursor-pointer items-start gap-3">
+        <input
+          type="checkbox"
+          class="mt-1 h-4 w-4 accent-[#022c22]"
+          [ngModel]="donateAcknowledged()"
+          (ngModelChange)="acknowledgeChange.emit($event)"
+          name="donateAck"
+        />
+        <span class="text-sm leading-relaxed text-forest">{{ i18n.t('memberHome.donateAcknowledge') }}</span>
+      </label>
+      <p class="mt-3 text-xs leading-relaxed text-slate-warm">
+        {{ i18n.t('memberHome.donatePrivacyPrefix') }}
+        <a routerLink="/privacy" class="font-semibold text-gold-700 underline">{{ i18n.t('nav.privacy') }}</a>
+        {{ i18n.t('memberHome.donatePrivacySuffix') }}
+      </p>
+      <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+        <p class="text-sm text-slate-warm">
+          {{ i18n.t('memberHome.donate.secure') }}
+        </p>
+        <button
+          type="button"
+          class="btn btn-primary btn-lg"
+          [disabled]="donateLoading() || !donateAcknowledged()"
+          (click)="startDonation.emit()"
+        >
+          <app-icon name="heart" size="h-4 w-4" />
+          {{ donateLoading() ? i18n.t('memberHome.donateProcessing') : i18n.t('memberHome.donateNow') }}
+          <span dir="ltr">· {{ summaryAmount() }}</span>
+        </button>
+      </div>
+    </div>
   </div>
 </div>

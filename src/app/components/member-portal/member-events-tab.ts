@@ -3,22 +3,19 @@ import { LanguageService } from '../../i18n/language.service';
 import { whatsappHref } from '../../config/organization.config';
 import { eventDescriptionHtml } from '../../utils/event-html';
 import type { MemberPortalEvent } from '../../services/member-portal.service';
-import { MemberPortalEmpty } from './member-portal-empty';
+import { Icon } from '../ui/icon';
+import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 import { MemberPortalLoading } from './member-portal-loading';
-import { portalCardClass, portalOutlineBtnClass, portalPrimaryBtnClass } from './member-portal.shared';
 
 @Component({
   selector: 'app-member-events-tab',
-  imports: [MemberPortalLoading, MemberPortalEmpty],
+  imports: [Icon, WhatsappIcon, MemberPortalLoading],
   templateUrl: './member-events-tab.html',
 })
 export class MemberEventsTab {
   protected readonly i18n = inject(LanguageService);
-  protected readonly portalCardClass = portalCardClass;
-  protected readonly portalPrimaryBtnClass = portalPrimaryBtnClass;
-  protected readonly portalOutlineBtnClass = portalOutlineBtnClass;
 
-  readonly events = input<MemberPortalEvent[]>([]);
+  readonly events = input<readonly MemberPortalEvent[]>([]);
   readonly eventsLoading = input(false);
   readonly rsvpBusy = input<string | null>(null);
 
@@ -28,8 +25,12 @@ export class MemberEventsTab {
     return event.images ?? [];
   }
 
+  protected title(event: MemberPortalEvent): string {
+    return this.i18n.pick(event.title, event.titleUr || event.title);
+  }
+
   protected descriptionHtml(event: MemberPortalEvent): string {
-    return eventDescriptionHtml(event.description);
+    return eventDescriptionHtml(this.i18n.pick(event.description, event.descriptionUr || event.description));
   }
 
   protected memberUpdateHtml(raw: string): string {
