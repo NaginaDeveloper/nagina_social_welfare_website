@@ -89,6 +89,10 @@ export const PORTAL_GUIDES: readonly PortalGuide[] = [
       'Find a charity box by number or QR code, record the collection, send the receipt by text, and follow your month’s collections.',
     descriptionUr:
       'نمبر یا کیو آر کوڈ سے خیراتی ڈبہ تلاش کریں، وصولی درج کریں، رسید ٹیکسٹ کریں، اور مہینے کی وصولیاں دیکھیں۔',
+    videoUrl: '/guides/collector-portal-video/',
+    videoPoster: '/guides/collector-portal-video/poster.jpg',
+    videoFile: '/guides/collector-portal-video/Collector-Portal-Guide.mp4',
+    videoLength: '4:00',
     manualUrl: '/guides/collector-portal-manual/',
     pdfUrl: '/guides/collector-portal-manual/Collector-Portal-User-Manual.pdf',
     signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/collector',

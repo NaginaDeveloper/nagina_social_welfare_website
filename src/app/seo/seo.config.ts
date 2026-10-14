@@ -495,6 +495,19 @@ export const TEACHER_PORTAL_VIDEO_SEO: PageSeo = {
   priority: 0.6,
 };
 
+export const COLLECTOR_PORTAL_VIDEO_SEO: PageSeo = {
+  title: 'Collector Portal Video Guide | Nagina Social Welfare',
+  description:
+    'A 4-minute video guide to the NSW Collector Portal for charity box collectors in Peterborough and Manchester: sign in, find a box by number or QR code, Collect Cash, Send Receipt, All Boxes, My Collections and the Android app.',
+  path: '/guides/collector-portal-video/',
+  keywords: 'Collector Portal video, NSW Collector Portal, charity box collection app tutorial, Nagina Social Welfare',
+  image: '/guides/collector-portal-video/poster.jpg',
+  type: 'article',
+  breadcrumb: 'Collector Portal video',
+  changefreq: 'monthly',
+  priority: 0.6,
+};
+
 export const EVENTS_SEO: PageSeo = {
   title: 'Events in Peterborough & Manchester | Nagina Social Welfare',
   description:
@@ -787,6 +800,7 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   PARENT_PORTAL_VIDEO_SEO,
   STUDENT_PORTAL_VIDEO_SEO,
   TEACHER_PORTAL_VIDEO_SEO,
+  COLLECTOR_PORTAL_VIDEO_SEO,
   EVENTS_SEO,
   DONATE_SEO,
   APPEALS_SEO,

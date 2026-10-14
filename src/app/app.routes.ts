@@ -17,6 +17,7 @@ import {
   PARENT_PORTAL_VIDEO_SEO,
   STUDENT_PORTAL_VIDEO_SEO,
   TEACHER_PORTAL_VIDEO_SEO,
+  COLLECTOR_PORTAL_VIDEO_SEO,
   BOOKS_SEO,
   CALENDAR_SEO,
   CONTACT_SEO,
@@ -410,6 +411,15 @@ const siteRoutes: Routes = [
       ),
     title: TEACHER_PORTAL_VIDEO_SEO.title,
     data: { seo: TEACHER_PORTAL_VIDEO_SEO },
+  },
+  {
+    path: 'guides/collector-portal-video',
+    loadComponent: () =>
+      import('./pages/guides/collector-portal-video/collector-portal-video-page').then(
+        (m) => m.CollectorPortalVideoPage,
+      ),
+    title: COLLECTOR_PORTAL_VIDEO_SEO.title,
+    data: { seo: COLLECTOR_PORTAL_VIDEO_SEO },
   },
   {
     path: 'events',

@@ -248,6 +248,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.naginasocialwelfare.co.uk/guides/collector-portal-video/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.naginasocialwelfare.co.uk/events/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
