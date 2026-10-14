@@ -2,7 +2,29 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import type { NavIcon } from '../../config/navigation.config';
 
 /** Extra stroke icons used on the home page, on top of the nav set. */
-export type UiIconName = NavIcon | 'pin' | 'phone' | 'mail' | 'arrow' | 'external' | 'shield' | 'sparkle';
+export type UiIconName =
+  | NavIcon
+  | 'pin'
+  | 'phone'
+  | 'mail'
+  | 'arrow'
+  | 'external'
+  | 'shield'
+  | 'sparkle'
+  // Member portal and appeals
+  | 'heart'
+  | 'receipt'
+  | 'calendar'
+  | 'newsletter'
+  | 'user'
+  | 'megaphone'
+  | 'home'
+  | 'eye'
+  | 'eye-off'
+  | 'check'
+  | 'logout'
+  | 'download'
+  | 'clock';
 
 /**
  * One shared set of stroke icons (24×24 viewBox, currentColor). Size with the
@@ -150,6 +172,53 @@ export type UiIconName = NavIcon | 'pin' | 'phone' | 'mail' | 'arrow' | 'externa
         }
         @case ('sparkle') {
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4M12 17v4M3 12h4M17 12h4M6.5 6.5l2.5 2.5M15 15l2.5 2.5M6.5 17.5 9 15M15 9l2.5-2.5" />
+        }
+        @case ('heart') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 0 1 0-6.364Z" />
+        }
+        @case ('receipt') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z" />
+          <path stroke-linecap="round" d="M9 8h6M9 12h6" />
+        }
+        @case ('calendar') {
+          <rect x="3.5" y="5" width="17" height="15" rx="2" />
+          <path stroke-linecap="round" d="M8 3v4M16 3v4M3.5 10h17" />
+        }
+        @case ('newsletter') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v12a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2V6Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2M8 8h5M8 12h5M8 16h3" />
+        }
+        @case ('user') {
+          <circle cx="12" cy="8" r="3.5" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 20a7 7 0 0 1 14 0" />
+        }
+        @case ('megaphone') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 10v4a1 1 0 0 0 1 1h3l8 4V5L8 9H5a1 1 0 0 0-1 1Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9.5a3.5 3.5 0 0 1 0 5M8 15l1.5 5h2.5l-1-5" />
+        }
+        @case ('home') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5Z" />
+        }
+        @case ('eye') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" />
+          <circle cx="12" cy="12" r="3" />
+        }
+        @case ('eye-off') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c6 0 9.5 6 9.5 6a16.6 16.6 0 0 1-3.2 3.8M6.6 6.6C4 8.5 2.5 12 2.5 12s3.5 6 9.5 6a9 9 0 0 0 3.4-.7" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+        }
+        @case ('check') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5L20 7" />
+        }
+        @case ('logout') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M15 8l4 4-4 4M19 12H9" />
+        }
+        @case ('download') {
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0 4-4m-4 4-4-4M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
+        }
+        @case ('clock') {
+          <circle cx="12" cy="12" r="8.5" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5V12l3 2" />
         }
         @default {
           <circle cx="12" cy="12" r="7" />

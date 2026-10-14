@@ -14,6 +14,8 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'membership/home', renderMode: RenderMode.Client },
   { path: 'membership/forgot-password', renderMode: RenderMode.Client },
   { path: 'membership/reset-password', renderMode: RenderMode.Client },
+  { path: 'membership/preferences', renderMode: RenderMode.Client },
+  { path: 'appeals/:id', renderMode: RenderMode.Client },
   { path: 'donate/thanks', renderMode: RenderMode.Client },
   { path: 'centre/:campusId', renderMode: RenderMode.Client },
   { path: '**', renderMode: RenderMode.Prerender },

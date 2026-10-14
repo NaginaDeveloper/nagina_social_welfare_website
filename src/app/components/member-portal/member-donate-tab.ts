@@ -1,52 +1,36 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
+import { appealDaysLeft, appealIsGeneral, formatGbp, type PublicAppeal } from '../../models/appeal';
 import type { DonationFund } from '../../models/membership';
-import {
-  MemberPortalService,
-  portalErrorMessage,
-  type MemberDonationRecord,
-} from '../../services/member-portal.service';
 import { DonationDestination } from '../donation-destination/donation-destination';
-import { MemberPortalEmpty } from './member-portal-empty';
+import { Icon } from '../ui/icon';
 import { MemberPortalLoading } from './member-portal-loading';
-import {
-  MEMBER_DONATION_FUNDS,
-  portalCardClass,
-  portalInputClass,
-  portalOutlineBtnClass,
-  portalPrimaryBtnClass,
-  portalSuccessBannerClass,
-} from './member-portal.shared';
+import { DONATION_PRESETS, MEMBER_DONATION_FUNDS } from './member-portal.types';
 
 @Component({
   selector: 'app-member-donate-tab',
-  imports: [FormsModule, RouterLink, MemberPortalLoading, MemberPortalEmpty, DonationDestination],
+  imports: [FormsModule, RouterLink, Icon, DonationDestination, MemberPortalLoading],
   templateUrl: './member-donate-tab.html',
 })
 export class MemberDonateTab {
   protected readonly i18n = inject(LanguageService);
-  private readonly portal = inject(MemberPortalService);
   protected readonly funds = MEMBER_DONATION_FUNDS;
-  protected readonly presets = [5, 10, 25, 50, 100] as const;
-  protected readonly portalCardClass = portalCardClass;
-  protected readonly portalInputClass = portalInputClass;
-  protected readonly portalPrimaryBtnClass = portalPrimaryBtnClass;
-  protected readonly portalOutlineBtnClass = portalOutlineBtnClass;
-  protected readonly portalSuccessBannerClass = portalSuccessBannerClass;
-  protected readonly receiptBusy = signal<string | null>(null);
-  protected readonly receiptError = signal<string | null>(null);
+  protected readonly presets = DONATION_PRESETS;
 
   readonly donatedBanner = input(false);
+  /** Appeal from `?appeal=`; locks fund and centre. */
+  readonly appeal = input<PublicAppeal | null>(null);
+  readonly appealLoading = input(false);
+  /** `?appeal=` named something that is no longer open. */
+  readonly appealMissing = input(false);
   readonly donateFund = input.required<DonationFund>();
   readonly donateCampus = input.required<string>();
   readonly donateAmount = input.required<number | 'custom'>();
   readonly donateCustom = input('');
   readonly donateLoading = input(false);
   readonly donateAcknowledged = input(false);
-  readonly donations = input<MemberDonationRecord[]>([]);
-  readonly donationsLoading = input(false);
 
   readonly fundChange = output<DonationFund>();
   readonly campusChange = output<string>();
@@ -54,34 +38,42 @@ export class MemberDonateTab {
   readonly customAmountChange = output<string>();
   readonly acknowledgeChange = output<boolean>();
   readonly startDonation = output<void>();
+  readonly clearAppeal = output<void>();
+
+  protected readonly locked = computed(() => this.appeal() !== null);
+  /** Section numbers shift by one when the appeal banner is shown. */
+  protected readonly offset = computed(() => (this.locked() ? 1 : 0));
+
+  protected readonly appealTitle = computed(() => {
+    const a = this.appeal();
+    return a ? this.i18n.pick(a.title, a.titleUr || a.title) : '';
+  });
+  protected readonly appealCentre = computed(() => {
+    const a = this.appeal();
+    if (!a) return '';
+    return appealIsGeneral(a) ? this.i18n.t('memberHome.appeal.general') : a.campusName || a.campusId;
+  });
+  protected readonly appealRaised = computed(() => (this.appeal() ? formatGbp(this.appeal()!.raisedTotal) : ''));
+  protected readonly appealTarget = computed(() => (this.appeal() ? formatGbp(this.appeal()!.targetAmount) : ''));
+  protected readonly appealDays = computed(() => (this.appeal() ? appealDaysLeft(this.appeal()!) : null));
+
+  protected readonly summaryAmount = computed(() => {
+    const amount = this.donateAmount();
+    if (amount === 'custom') {
+      const n = Number(this.donateCustom());
+      return Number.isFinite(n) && n > 0 ? formatGbp(n, 2) : '—';
+    }
+    return formatGbp(amount);
+  });
 
   protected fundLabel(fund: DonationFund): string {
     return this.i18n.t(`donate.${fund}`);
   }
 
-  protected formatMoney(amount: number, currency = 'GBP'): string {
-    return new Intl.NumberFormat('en-GB', { style: 'currency', currency }).format(amount);
-  }
-
-  protected formatDate(iso: string | null): string {
-    if (!iso) return '—';
-    return new Date(iso).toLocaleDateString('en-GB', { timeZone: 'Europe/London' });
-  }
-
-  protected isReceiptBusy(donationId: string): boolean {
-    return this.receiptBusy() === donationId;
-  }
-
-  protected async downloadReceipt(d: MemberDonationRecord): Promise<void> {
-    if (this.receiptBusy()) return;
-    this.receiptError.set(null);
-    this.receiptBusy.set(d.id);
-    try {
-      await this.portal.downloadDonationReceipt(d.id, d.receiptId);
-    } catch (err) {
-      this.receiptError.set(portalErrorMessage(err));
-    } finally {
-      this.receiptBusy.set(null);
-    }
+  protected daysLabel(): string {
+    const days = this.appealDays();
+    if (days === null) return this.i18n.t('memberHome.appeal.openEnded');
+    if (days === 0) return this.i18n.t('memberHome.appeal.closesToday');
+    return `${days} ${this.i18n.t(days === 1 ? 'memberHome.appeal.dayLeft' : 'memberHome.appeal.daysLeft')}`;
   }
 }

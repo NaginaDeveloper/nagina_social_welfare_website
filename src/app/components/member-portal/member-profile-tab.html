@@ -2,110 +2,202 @@
   id="member-panel-profile"
   role="tabpanel"
   aria-labelledby="member-tab-profile"
-  [class]="portalCardClass + ' mt-8 space-y-5'"
+  class="space-y-6"
   (submit)="submitProfile($event)"
+  (input)="markDirty()"
+  novalidate
 >
-  <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.profile') }}</h2>
-
-  <div class="grid gap-4 sm:grid-cols-2">
-    <label class="block text-sm font-medium text-forest sm:col-span-2">
-      {{ i18n.t('membership.fullName') }}
-      <input type="text" [class]="portalInputClass + ' bg-sand/60'" [value]="member().fullName" readonly />
-    </label>
-    <label class="block text-sm font-medium text-forest sm:col-span-2">
-      {{ i18n.t('membership.email') }}
-      <input type="email" [class]="portalInputClass + ' bg-sand/60'" [value]="member().email" readonly />
-    </label>
+  <div>
+    <p class="eyebrow">{{ i18n.t('memberHome.tabProfile') }}</p>
+    <h2 class="mt-1 font-display text-2xl font-bold text-forest sm:text-3xl">{{ i18n.t('memberHome.profile') }}</h2>
+    <p class="mt-2 max-w-2xl text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.prof.lead') }}</p>
   </div>
 
-  <label class="block text-sm font-medium text-forest">
-    {{ i18n.t('membership.phone') }}
-    <input
-      type="tel"
-      [class]="portalInputClass"
-      [(ngModel)]="phone"
-      name="phone"
-      autocomplete="tel"
-      [class.border-red-400]="phoneError()"
-    />
-    <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('apply.phoneHint') }}</p>
-    @if (phoneError(); as msg) {
-      <p class="mt-1 text-xs text-red-700">{{ msg }}</p>
-    }
-  </label>
+  <!-- Contact -->
+  <section class="card" aria-labelledby="profile-contact">
+    <div class="flex items-center gap-3">
+      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold-600" aria-hidden="true">
+        <app-icon name="user" size="h-5 w-5" />
+      </span>
+      <div>
+        <h3 id="profile-contact" class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.prof.contact') }}</h3>
+        <p class="text-xs text-slate-warm">{{ i18n.t('memberHome.prof.contactHint') }}</p>
+      </div>
+    </div>
 
-  <div class="space-y-4 border-t border-mist pt-6">
-    <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.addressSection') }}</h3>
-    <label class="block text-sm font-medium text-forest">
-      {{ i18n.t('membership.address1') }}
-      <input type="text" [class]="portalInputClass" [(ngModel)]="addressLine1" name="line1" />
-    </label>
-    <label class="block text-sm font-medium text-forest">
-      {{ i18n.t('membership.address2') }}
-      <input type="text" [class]="portalInputClass" [(ngModel)]="addressLine2" name="line2" />
-    </label>
-    <div class="grid gap-4 sm:grid-cols-2">
-      <label class="block text-sm font-medium text-forest">
-        {{ i18n.t('membership.city') }}
-        <input type="text" [class]="portalInputClass" [(ngModel)]="addressCity" name="city" />
+    <div class="mt-6 grid gap-5 sm:grid-cols-2">
+      <label class="field-label">
+        {{ i18n.t('membership.fullName') }}
+        <input type="text" class="field" [value]="member().fullName" readonly />
       </label>
-      <label class="block text-sm font-medium text-forest">
-        {{ i18n.t('membership.postcode') }}
-        <input type="text" [class]="portalInputClass" [(ngModel)]="addressPostcode" name="postcode" />
+      <label class="field-label">
+        {{ i18n.t('membership.email') }}
+        <input type="email" class="field" dir="ltr" [value]="member().email" readonly />
+      </label>
+      <label class="field-label sm:col-span-2">
+        {{ i18n.t('membership.phone') }}
+        <input
+          type="tel"
+          class="field"
+          dir="ltr"
+          [class.field-invalid]="phoneError()"
+          [(ngModel)]="phone"
+          name="phone"
+          autocomplete="tel"
+          [attr.aria-invalid]="phoneError() ? true : null"
+        />
+        <span class="field-hint">{{ i18n.t('apply.phoneHint') }}</span>
+        @if (phoneError(); as msg) {
+          <span class="field-error" role="alert">{{ msg }}</span>
+        }
       </label>
     </div>
-  </div>
+    <p class="field-hint mt-4">{{ i18n.t('memberHome.prof.readOnlyNote') }}</p>
+  </section>
 
-  <div class="space-y-4 border-t border-mist pt-6">
-    <h3 class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.interestsSection') }}</h3>
-    <fieldset class="space-y-2">
-      <legend class="text-sm font-medium text-forest">{{ i18n.t('membership.volunteerInterests') }}</legend>
-      @for (opt of interestOptions; track opt.value) {
-        <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-mist px-4 py-3 transition-colors hover:border-gold/30">
-          <input
-            type="checkbox"
-            class="mt-1 accent-[#022c22]"
-            [checked]="interestChecked(opt.value)"
-            (change)="toggleInterest(opt.value, $any($event.target).checked)"
-          />
-          <span class="text-sm text-forest">{{ i18n.t(opt.labelKey) }}</span>
+  <!-- Address -->
+  <section class="card" aria-labelledby="profile-address">
+    <div class="flex items-center gap-3">
+      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold-600" aria-hidden="true">
+        <app-icon name="pin" size="h-5 w-5" />
+      </span>
+      <h3 id="profile-address" class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.addressSection') }}</h3>
+    </div>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2">
+      <label class="field-label sm:col-span-2">
+        {{ i18n.t('membership.address1') }}
+        <input type="text" class="field" [(ngModel)]="addressLine1" name="line1" autocomplete="address-line1" />
+      </label>
+      <label class="field-label sm:col-span-2">
+        {{ i18n.t('membership.address2') }}
+        <input type="text" class="field" [(ngModel)]="addressLine2" name="line2" autocomplete="address-line2" />
+      </label>
+      <label class="field-label">
+        {{ i18n.t('membership.city') }}
+        <input type="text" class="field" [(ngModel)]="addressCity" name="city" autocomplete="address-level2" />
+      </label>
+      <label class="field-label">
+        {{ i18n.t('membership.postcode') }}
+        <input type="text" class="field uppercase" dir="ltr" [(ngModel)]="addressPostcode" name="postcode" autocomplete="postal-code" />
+      </label>
+    </div>
+  </section>
+
+  <!-- Volunteering -->
+  <section class="card" aria-labelledby="profile-volunteering">
+    <div class="flex items-center gap-3">
+      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold-600" aria-hidden="true">
+        <app-icon name="heart" size="h-5 w-5" />
+      </span>
+      <div>
+        <h3 id="profile-volunteering" class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.interestsSection') }}</h3>
+        <p class="text-xs text-slate-warm">{{ i18n.t('memberHome.prof.volunteerHint') }}</p>
+      </div>
+    </div>
+
+    <fieldset class="mt-6">
+      <legend class="field-label">{{ i18n.t('membership.volunteerInterests') }}</legend>
+      <div class="mt-3 grid gap-2.5 sm:grid-cols-2">
+        @for (opt of interestOptions; track opt.value) {
+          <label class="choice" [class.choice-active]="interestChecked(opt.value)">
+            <input
+              type="checkbox"
+              class="sr-only"
+              [checked]="interestChecked(opt.value)"
+              (change)="toggleInterest(opt.value, $any($event.target).checked)"
+            />
+            <span
+              class="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2"
+              [class.border-gold-300]="interestChecked(opt.value)"
+              [class.bg-gold-300]="interestChecked(opt.value)"
+              [class.text-forest]="interestChecked(opt.value)"
+              [class.border-mist]="!interestChecked(opt.value)"
+              aria-hidden="true"
+            >
+              @if (interestChecked(opt.value)) {
+                <app-icon name="check" size="h-3.5 w-3.5" [strokeWidth]="3" />
+              }
+            </span>
+            <span>{{ i18n.t(opt.labelKey) }}</span>
+          </label>
+        }
+      </div>
+    </fieldset>
+
+    <div class="mt-6 grid gap-5 sm:grid-cols-2">
+      <label class="field-label">
+        {{ i18n.t('membership.skills') }}
+        <textarea class="field min-h-24" [(ngModel)]="skills" name="skills" rows="3"></textarea>
+      </label>
+      <label class="field-label">
+        {{ i18n.t('membership.languages') }}
+        <textarea class="field min-h-24" [(ngModel)]="languages" name="languages" rows="3"></textarea>
+      </label>
+      @if (heardAbout) {
+        <label class="field-label sm:col-span-2">
+          {{ i18n.t('membership.heardAbout') }}
+          <input type="text" class="field" [value]="heardAbout" readonly />
         </label>
       }
-    </fieldset>
-    <label class="block text-sm font-medium text-forest">
-      {{ i18n.t('membership.skills') }}
-      <textarea
-        [class]="portalInputClass + ' min-h-24 py-3'"
-        [(ngModel)]="skills"
-        name="skills"
-      ></textarea>
-    </label>
-    <label class="block text-sm font-medium text-forest">
-      {{ i18n.t('membership.languages') }}
-      <textarea
-        [class]="portalInputClass + ' min-h-20 py-3'"
-        [(ngModel)]="languages"
-        name="languages"
-      ></textarea>
-    </label>
-    @if (heardAbout) {
-      <label class="block text-sm font-medium text-forest">
-        {{ i18n.t('membership.heardAbout') }}
-        <input type="text" [class]="portalInputClass + ' bg-sand/60'" [value]="heardAbout" readonly />
-      </label>
-    }
+    </div>
+  </section>
+
+  <!-- Email preferences -->
+  <section class="card" aria-labelledby="profile-email">
+    <div class="flex items-center gap-3">
+      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold-600" aria-hidden="true">
+        <app-icon name="mail" size="h-5 w-5" />
+      </span>
+      <h3 id="profile-email" class="font-display text-lg font-bold text-forest">{{ i18n.t('memberHome.prefTitle') }}</h3>
+    </div>
+
+    <div class="mt-5 flex items-start justify-between gap-4 rounded-2xl border border-mist bg-sand/40 p-4 sm:p-5">
+      <div class="min-w-0">
+        <p id="pref-marketing-label" class="font-semibold text-forest">{{ i18n.t('memberHome.prefMarketing') }}</p>
+        <p id="pref-marketing-hint" class="mt-1 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberHome.prefMarketingHint') }}</p>
+      </div>
+      <button
+        type="button"
+        role="switch"
+        class="relative mt-1 inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+        [class.bg-forest]="marketingOptIn()"
+        [class.bg-mist]="!marketingOptIn()"
+        [attr.aria-checked]="marketingOptIn()"
+        aria-labelledby="pref-marketing-label"
+        aria-describedby="pref-marketing-hint"
+        (click)="toggleMarketing()"
+      >
+        <span
+          class="inline-block h-5 w-5 rounded-full bg-white shadow-soft transition-transform"
+          [class.translate-x-6]="marketingOptIn() && !i18n.isUr()"
+          [class.translate-x-1]="!marketingOptIn() && !i18n.isUr()"
+          [class.-translate-x-6]="marketingOptIn() && i18n.isUr()"
+          [class.-translate-x-1]="!marketingOptIn() && i18n.isUr()"
+        ></span>
+      </button>
+    </div>
+    <p class="field-hint mt-3">{{ i18n.t('memberHome.prefServiceNote') }}</p>
+  </section>
+
+  <!-- Sticky save bar -->
+  <div class="sticky bottom-3 z-10 sm:bottom-5">
+    <div
+      class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-mist bg-white/95 px-4 py-3 shadow-portal backdrop-blur sm:px-5"
+    >
+      <p class="flex items-center gap-2 text-sm" role="status" aria-live="polite">
+        @if (dirty()) {
+          <span class="h-2 w-2 rounded-full bg-gold" aria-hidden="true"></span>
+          <span class="font-semibold text-forest">{{ i18n.t('memberHome.prof.unsaved') }}</span>
+        } @else if (saved()) {
+          <app-icon name="check" size="h-4 w-4 text-emerald-600" [strokeWidth]="2.6" />
+          <span class="font-semibold text-emerald-700">{{ i18n.t('memberHome.saved') }}</span>
+        } @else {
+          <span class="text-slate-warm">{{ i18n.t('memberHome.prof.upToDate') }}</span>
+        }
+      </p>
+      <button type="submit" class="btn btn-primary" [disabled]="saving() || !dirty()">
+        {{ saving() ? i18n.t('memberHome.saving') : i18n.t('memberHome.save') }}
+      </button>
+    </div>
   </div>
-
-  <label class="flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
-    <input type="checkbox" class="mt-1 accent-[#022c22]" [(ngModel)]="marketingOptIn" name="marketingOptIn" />
-    <span class="text-sm text-forest">{{ i18n.t('membership.consentMarketing') }}</span>
-  </label>
-
-  @if (saved()) {
-    <p [class]="portalSuccessBannerClass">{{ i18n.t('memberHome.saved') }}</p>
-  }
-
-  <button type="submit" [disabled]="saving()" [class]="portalPrimaryBtnClass">
-    {{ saving() ? i18n.t('memberHome.saving') : i18n.t('memberHome.save') }}
-  </button>
 </form>

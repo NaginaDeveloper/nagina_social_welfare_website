@@ -1,249 +1,343 @@
+<section class="bg-cream py-10 sm:py-14" [attr.dir]="i18n.isUr() ? 'rtl' : null">
+  <div class="site-wrap">
+    <header class="max-w-3xl">
+      <p class="eyebrow">{{ i18n.t('membership.eyebrow') }}</p>
+      <h1 class="page-title mt-4">{{ i18n.t('membership.title') }}</h1>
+      <p class="page-lead">{{ i18n.t('membership.lead') }}</p>
+    </header>
 
-<section class="bg-cream py-12 sm:py-16" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-  <div class="mx-auto max-w-3xl px-5 sm:px-8">
-    <p class="eyebrow">
-      {{ i18n.t('membership.eyebrow') }}
-    </p>
-    <h1 class="page-title mt-4">
-      {{ i18n.t('membership.title') }}
-    </h1>
-    <p class="mt-4 text-base leading-relaxed text-slate-warm sm:text-lg">
-      {{ i18n.t('membership.lead') }}
-    </p>
-    <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-warm">
-      <li>{{ i18n.t('membership.bullet1') }}</li>
-      <li>{{ i18n.t('membership.bullet2') }}</li>
-      <li>{{ i18n.t('membership.bullet3') }}</li>
-    </ul>
+    <div class="mt-10 grid items-start gap-8 lg:grid-cols-[1fr_20rem] lg:gap-10">
+      <!-- Form column -->
+      <div class="min-w-0">
+        <div class="mb-5 lg:hidden">
+          <app-form-stepper variant="bar" [steps]="stepMeta" [current]="step()" (goTo)="goTo($event)" />
+        </div>
 
-    <p class="mt-6 text-sm text-slate-warm">
-      {{ i18n.t('membership.signInPrompt') }}
-      <a routerLink="/membership/login" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('membership.signInLink') }}</a>
-    </p>
+        <form class="card" [formGroup]="form" (ngSubmit)="onFormSubmit()" novalidate>
+          @if (step() === 0) {
+            @if (campusService.campuses().length > 0) {
+              <fieldset class="mb-10" data-testid="membership-campus" [attr.data-error]="invalid(form.controls.campusId) || null">
+                <legend class="flex items-center gap-3">
+                  <span class="section-number">1</span>
+                  <span class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.campusHeading') }} *</span>
+                </legend>
+                <p class="mt-2 text-sm text-slate-warm">{{ i18n.t('membership.campusHint') }}</p>
+                <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                  @for (campus of campusService.campuses(); track campus.id) {
+                    <label class="choice" [class.choice-active]="form.controls.campusId.value === campus.id" [attr.data-campus]="campus.id">
+                      <input type="radio" class="sr-only" formControlName="campusId" [value]="campus.id" />
+                      <app-icon
+                        name="pin"
+                        [size]="'h-5 w-5 shrink-0 ' + (form.controls.campusId.value === campus.id ? 'text-gold-300' : 'text-emerald-600')"
+                      />
+                      <span class="flex flex-col gap-0.5 text-start">
+                        <span class="text-base">{{ campusTown(campus) }}</span>
+                        <span class="text-xs font-medium opacity-80">{{ campus.displayName }} · {{ campus.addressLine }}</span>
+                      </span>
+                    </label>
+                  }
+                </div>
+                @if (invalid(form.controls.campusId)) {
+                  <p class="field-error mt-2">{{ i18n.t('membership.err.campus') }}</p>
+                }
+              </fieldset>
+            } @else if (!campusService.loaded()) {
+              <p class="mb-8 text-sm text-slate-warm" aria-live="polite">{{ i18n.t('campus.loading') }}</p>
+            }
 
-    <div class="mt-8 flex flex-wrap gap-2">
-      @for (meta of stepMeta; track meta.key; let i = $index) {
-        <span
-          class="rounded-full px-3 py-1 text-xs font-semibold"
-          [class.bg-forest]="step() === i"
-          [class.text-cream]="step() === i"
-          [class.bg-white]="step() !== i"
-          [class.text-forest]="step() !== i"
-          [class.border]="step() !== i"
-          [class.border-mist]="step() !== i"
-        >
-          {{ i + 1 }}. {{ i18n.t(meta.key) }}
-        </span>
-      }
-    </div>
+            <div formGroupName="applicant">
+              <h2 class="flex items-center gap-3">
+                <span class="section-number">{{ campusService.campuses().length > 0 ? 2 : 1 }}</span>
+                <span class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step1') }}</span>
+              </h2>
+              <div class="mt-5 grid gap-5 sm:grid-cols-2">
+                <label class="field-label sm:col-span-2">
+                  {{ i18n.t('membership.fullName') }} *
+                  <input
+                    type="text"
+                    formControlName="fullName"
+                    autocomplete="name"
+                    class="field"
+                    [class.field-invalid]="invalid(form.controls.applicant.controls.fullName)"
+                    [attr.data-error]="invalid(form.controls.applicant.controls.fullName) || null"
+                  />
+                  @if (message(form.controls.applicant.controls.fullName); as msg) {
+                    <span class="field-error">{{ msg }}</span>
+                  }
+                </label>
+                <label class="field-label">
+                  {{ i18n.t('membership.email') }} *
+                  <input
+                    type="email"
+                    formControlName="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    dir="ltr"
+                    class="field"
+                    [class.field-invalid]="invalid(form.controls.applicant.controls.email)"
+                    [attr.data-error]="invalid(form.controls.applicant.controls.email) || null"
+                  />
+                  @if (message(form.controls.applicant.controls.email); as msg) {
+                    <span class="field-error">{{ msg }}</span>
+                  }
+                </label>
+                <label class="field-label">
+                  {{ i18n.t('membership.phone') }} *
+                  <input
+                    type="tel"
+                    formControlName="phone"
+                    autocomplete="tel"
+                    dir="ltr"
+                    class="field"
+                    [class.field-invalid]="invalid(form.controls.applicant.controls.phone)"
+                  />
+                  <span class="field-hint">{{ i18n.t('apply.phoneHint') }}</span>
+                  @if (message(form.controls.applicant.controls.phone); as msg) {
+                    <span class="field-error">{{ msg }}</span>
+                  }
+                </label>
+                <label class="field-label">
+                  {{ i18n.t('membership.age') }} *
+                  <input
+                    type="number"
+                    inputmode="numeric"
+                    min="18"
+                    max="120"
+                    step="1"
+                    formControlName="age"
+                    class="field"
+                    [class.field-invalid]="invalid(form.controls.applicant.controls.age)"
+                    [attr.data-error]="invalid(form.controls.applicant.controls.age) || null"
+                  />
+                  <span class="field-hint">{{ i18n.t('membership.ageHint') }}</span>
+                  @if (message(form.controls.applicant.controls.age); as msg) {
+                    <span class="field-error">{{ msg }}</span>
+                  }
+                </label>
+              </div>
+            </div>
 
-    <form
-      class="mt-8 rounded-[1.5rem] border border-mist bg-white px-5 py-8 shadow-soft sm:px-8"
-      [formGroup]="form"
-      (ngSubmit)="onFormSubmit()"
-    >
-      @if (step() === 0) {
-        @if (campusService.campuses().length > 0) {
-          <fieldset class="mb-8" data-testid="membership-campus" [attr.data-error]="invalid(form.controls.campusId) || null">
-            <legend class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.campusHeading') }} *</legend>
-            <p class="mt-1 text-sm text-slate-warm">{{ i18n.t('membership.campusHint') }}</p>
-            <div class="mt-4 grid gap-3 sm:grid-cols-2">
-              @for (campus of campusService.campuses(); track campus.id) {
-                <label [class]="choiceClass(form.controls.campusId.value === campus.id)" [attr.data-campus]="campus.id">
-                  <input type="radio" class="sr-only" formControlName="campusId" [value]="campus.id" />
-                  <span class="flex flex-col gap-0.5 text-start">
-                    <span class="text-base">{{ campusTown(campus) }}</span>
-                    <span class="text-xs font-medium opacity-80">{{ campus.displayName }} · {{ campus.addressLine }}</span>
+            <div formGroupName="address" class="mt-10 border-t border-mist pt-8">
+              <h2 class="flex items-center gap-3">
+                <span class="section-number">{{ campusService.campuses().length > 0 ? 3 : 2 }}</span>
+                <span class="font-display text-xl font-bold text-forest">{{ i18n.t('memberHome.addressSection') }}</span>
+              </h2>
+              <div class="mt-5 grid gap-5 sm:grid-cols-2">
+                <label class="field-label sm:col-span-2">
+                  {{ i18n.t('membership.address1') }} *
+                  <input type="text" formControlName="line1" autocomplete="address-line1" class="field" [class.field-invalid]="invalid(form.controls.address.controls.line1)" />
+                  @if (message(form.controls.address.controls.line1); as msg) {
+                    <span class="field-error">{{ msg }}</span>
+                  }
+                </label>
+                <label class="field-label sm:col-span-2">
+                  {{ i18n.t('membership.address2') }}
+                  <input type="text" formControlName="line2" autocomplete="address-line2" class="field" />
+                </label>
+                <label class="field-label">
+                  {{ i18n.t('membership.city') }} *
+                  <input type="text" formControlName="city" autocomplete="address-level2" class="field" [class.field-invalid]="invalid(form.controls.address.controls.city)" />
+                  @if (message(form.controls.address.controls.city); as msg) {
+                    <span class="field-error">{{ msg }}</span>
+                  }
+                </label>
+                <label class="field-label">
+                  {{ i18n.t('membership.postcode') }} *
+                  <input type="text" formControlName="postcode" autocomplete="postal-code" dir="ltr" class="field uppercase" [class.field-invalid]="invalid(form.controls.address.controls.postcode)" />
+                  @if (message(form.controls.address.controls.postcode); as msg) {
+                    <span class="field-error">{{ msg }}</span>
+                  }
+                </label>
+              </div>
+            </div>
+          }
+
+          @if (step() === 1) {
+            <div formGroupName="interests">
+              <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step2') }}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-slate-warm">{{ i18n.t('membership.interestsLead') }}</p>
+              <fieldset class="mt-6">
+                <legend class="field-label">{{ i18n.t('membership.volunteerInterests') }}</legend>
+                <div class="mt-3 grid gap-2.5 sm:grid-cols-2">
+                  @for (opt of interests; track opt.value) {
+                    <label class="choice" [class.choice-active]="hasInterest(opt.value)">
+                      <input
+                        type="checkbox"
+                        class="sr-only"
+                        [checked]="hasInterest(opt.value)"
+                        (change)="toggleInterest(opt.value, $any($event.target).checked)"
+                      />
+                      <span
+                        class="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2"
+                        [class.border-gold-300]="hasInterest(opt.value)"
+                        [class.bg-gold-300]="hasInterest(opt.value)"
+                        [class.text-forest]="hasInterest(opt.value)"
+                        [class.border-mist]="!hasInterest(opt.value)"
+                        aria-hidden="true"
+                      >
+                        @if (hasInterest(opt.value)) {
+                          <app-icon name="check" size="h-3.5 w-3.5" [strokeWidth]="3" />
+                        }
+                      </span>
+                      <span>{{ i18n.t(opt.labelKey) }}</span>
+                    </label>
+                  }
+                </div>
+              </fieldset>
+              <div class="mt-6 grid gap-5 sm:grid-cols-2">
+                <label class="field-label sm:col-span-2">
+                  {{ i18n.t('membership.skills') }}
+                  <textarea rows="3" formControlName="skills" class="field min-h-24"></textarea>
+                </label>
+                <label class="field-label">
+                  {{ i18n.t('membership.languages') }}
+                  <input type="text" formControlName="languages" class="field" />
+                </label>
+                <label class="field-label">
+                  {{ i18n.t('membership.heardAbout') }}
+                  <input type="text" formControlName="heardAbout" class="field" />
+                </label>
+              </div>
+            </div>
+          }
+
+          @if (step() === 2) {
+            <div class="space-y-6">
+              <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step3') }}</h2>
+              <div class="rounded-2xl border border-mist bg-sand/40 px-5 py-5 text-sm leading-relaxed text-forest">
+                <p class="font-semibold">{{ i18n.t('membership.conductTitle') }}</p>
+                <ul class="mt-3 list-disc space-y-2 ps-5">
+                  @for (line of conduct; track line) {
+                    <li>{{ line }}</li>
+                  }
+                </ul>
+              </div>
+
+              <div formGroupName="consents" class="space-y-3">
+                <label
+                  class="flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-3.5 transition-colors hover:border-gold/40"
+                  [class.border-red-400]="invalid(form.controls.consents.controls.privacyNoticeRead)"
+                  [class.border-mist]="!invalid(form.controls.consents.controls.privacyNoticeRead)"
+                >
+                  <input type="checkbox" formControlName="privacyNoticeRead" class="mt-0.5 h-4 w-4 shrink-0 accent-[#022c22]" />
+                  <span class="text-sm text-forest">
+                    {{ i18n.t('membership.consentPrivacyPrefix') }}
+                    <a routerLink="/privacy" class="font-semibold text-gold-700 underline">{{ i18n.t('nav.privacy') }}</a>
+                    {{ i18n.t('membership.consentPrivacySuffix') }} *
                   </span>
                 </label>
-              }
+                <label
+                  class="flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-3.5 transition-colors hover:border-gold/40"
+                  [class.border-red-400]="invalid(form.controls.consents.controls.codeOfConductAgreed)"
+                  [class.border-mist]="!invalid(form.controls.consents.controls.codeOfConductAgreed)"
+                >
+                  <input type="checkbox" formControlName="codeOfConductAgreed" class="mt-0.5 h-4 w-4 shrink-0 accent-[#022c22]" />
+                  <span class="text-sm text-forest">{{ i18n.t('membership.consentConduct') }} *</span>
+                </label>
+                <label
+                  class="flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-3.5 transition-colors hover:border-gold/40"
+                  [class.border-red-400]="invalid(form.controls.consents.controls.ageConfirmed18Plus)"
+                  [class.border-mist]="!invalid(form.controls.consents.controls.ageConfirmed18Plus)"
+                >
+                  <input type="checkbox" formControlName="ageConfirmed18Plus" class="mt-0.5 h-4 w-4 shrink-0 accent-[#022c22]" />
+                  <span class="text-sm text-forest">{{ i18n.t('membership.consentAge') }} *</span>
+                </label>
+                <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-mist px-4 py-3.5 transition-colors hover:border-gold/40">
+                  <input type="checkbox" formControlName="marketingOptIn" class="mt-0.5 h-4 w-4 shrink-0 accent-[#022c22]" />
+                  <span class="text-sm text-forest">{{ i18n.t('membership.consentMarketing') }}</span>
+                </label>
+              </div>
+
+              <div formGroupName="declaration">
+                <label class="field-label">
+                  {{ i18n.t('membership.signedBy') }} *
+                  <input
+                    type="text"
+                    formControlName="signedBy"
+                    class="field font-display text-lg"
+                    [class.field-invalid]="invalid(form.controls.declaration.controls.signedBy)"
+                  />
+                  @if (message(form.controls.declaration.controls.signedBy); as msg) {
+                    <span class="field-error">{{ msg }}</span>
+                  }
+                </label>
+              </div>
             </div>
-            @if (invalid(form.controls.campusId)) {
-              <p class="mt-1.5 text-sm font-medium text-red-700">{{ i18n.t('membership.err.campus') }}</p>
-            }
-          </fieldset>
-        } @else if (!campusService.loaded()) {
-          <p class="mb-8 text-sm text-slate-warm" aria-live="polite">{{ i18n.t('campus.loading') }}</p>
-        }
-        <div formGroupName="applicant" class="space-y-5">
-          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step1') }}</h2>
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.fullName') }} *
-            <input type="text" formControlName="fullName" [class]="inputClass(form.controls.applicant.controls.fullName)" [attr.data-error]="invalid(form.controls.applicant.controls.fullName) || null" />
-            @if (message(form.controls.applicant.controls.fullName); as msg) {
-              <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
-            }
-          </label>
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.email') }} *
-            <input type="email" formControlName="email" autocomplete="email" [class]="inputClass(form.controls.applicant.controls.email)" [attr.data-error]="invalid(form.controls.applicant.controls.email) || null" />
-            @if (message(form.controls.applicant.controls.email); as msg) {
-              <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
-            }
-          </label>
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.phone') }} *
-            <input type="tel" formControlName="phone" autocomplete="tel" [class]="inputClass(form.controls.applicant.controls.phone)" />
-            <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('apply.phoneHint') }}</p>
-            @if (message(form.controls.applicant.controls.phone); as msg) {
-              <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
-            }
-          </label>
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.age') }} *
-            <input
-              type="number"
-              inputmode="numeric"
-              min="18"
-              max="120"
-              step="1"
-              formControlName="age"
-              [class]="inputClass(form.controls.applicant.controls.age)"
-              [attr.data-error]="invalid(form.controls.applicant.controls.age) || null"
-            />
-            <p class="mt-1.5 text-xs text-slate-warm">{{ i18n.t('membership.ageHint') }}</p>
-            @if (message(form.controls.applicant.controls.age); as msg) {
-              <span class="mt-1 block text-sm text-red-700">{{ msg }}</span>
-            }
-          </label>
-        </div>
+          }
 
-        <div formGroupName="address" class="mt-8 space-y-5 border-t border-mist pt-8">
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.address1') }} *
-            <input type="text" formControlName="line1" autocomplete="address-line1" [class]="inputClass(form.controls.address.controls.line1)" />
-          </label>
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.address2') }}
-            <input type="text" formControlName="line2" autocomplete="address-line2" [class]="inputClass(form.controls.address.controls.line2)" />
-          </label>
-          <div class="grid gap-5 sm:grid-cols-2">
-            <label class="block text-sm font-medium text-forest">
-              {{ i18n.t('membership.city') }} *
-              <input type="text" formControlName="city" autocomplete="address-level2" [class]="inputClass(form.controls.address.controls.city)" />
-            </label>
-            <label class="block text-sm font-medium text-forest">
-              {{ i18n.t('membership.postcode') }} *
-              <input type="text" formControlName="postcode" autocomplete="postal-code" [class]="inputClass(form.controls.address.controls.postcode)" />
-            </label>
+          @if (error()) {
+            <p class="banner-error mt-6" role="alert" data-error>{{ error() }}</p>
+          }
+
+          <div class="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-mist pt-6">
+            @if (step() > 0) {
+              <button type="button" class="btn btn-secondary-light btn-lg" (click)="back()">
+                <app-icon name="arrow" size="h-4 w-4 rotate-180 rtl:rotate-0" />
+                {{ i18n.t('membership.back') }}
+              </button>
+            } @else {
+              <span class="text-xs text-slate-warm">{{ i18n.t('membership.requiredNote') }}</span>
+            }
+            <button type="submit" [disabled]="submitting()" class="btn btn-primary btn-lg">
+              {{
+                submitting()
+                  ? i18n.t('membership.submitting')
+                  : step() < 2
+                    ? i18n.t('membership.continue')
+                    : i18n.t('membership.submit')
+              }}
+              @if (!submitting() && step() < 2) {
+                <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
+              }
+            </button>
           </div>
-        </div>
-      }
+        </form>
+      </div>
 
-      @if (step() === 1) {
-        <div formGroupName="interests" class="space-y-5">
-          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step2') }}</h2>
-          <p class="text-sm leading-relaxed text-slate-warm">{{ i18n.t('membership.interestsLead') }}</p>
-          <fieldset class="space-y-2">
-            <legend class="text-sm font-medium text-forest">{{ i18n.t('membership.volunteerInterests') }}</legend>
-            @for (opt of interests; track opt.value) {
-              <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-mist px-4 py-3">
-                <input
-                  type="checkbox"
-                  class="mt-1"
-                  [checked]="hasInterest(opt.value)"
-                  (change)="toggleInterest(opt.value, $any($event.target).checked)"
-                />
-                <span class="text-sm text-forest">{{ i18n.t(opt.labelKey) }}</span>
-              </label>
-            }
-          </fieldset>
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.skills') }}
-            <textarea rows="3" formControlName="skills" [class]="inputClass(form.controls.interests.controls.skills)"></textarea>
-          </label>
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.languages') }}
-            <input type="text" formControlName="languages" [class]="inputClass(form.controls.interests.controls.languages)" />
-          </label>
-          <label class="block text-sm font-medium text-forest">
-            {{ i18n.t('membership.heardAbout') }}
-            <input type="text" formControlName="heardAbout" [class]="inputClass(form.controls.interests.controls.heardAbout)" />
-          </label>
+      <!-- Aside -->
+      <aside class="space-y-5 lg:sticky lg:top-28">
+        <div class="card hidden !p-4 lg:block">
+          <app-form-stepper variant="list" [steps]="stepMeta" [current]="step()" (goTo)="goTo($event)" />
         </div>
-      }
 
-      @if (step() === 2) {
-        <div class="space-y-6">
-          <h2 class="font-display text-xl font-bold text-forest">{{ i18n.t('membership.step3') }}</h2>
-          <div class="rounded-2xl border border-mist bg-sand/40 px-4 py-4 text-sm leading-relaxed text-forest">
-            <p class="font-semibold">{{ i18n.t('membership.conductTitle') }}</p>
-            <ul class="mt-3 list-disc space-y-2 ps-5">
-              @for (line of conduct; track line) {
-                <li>{{ line }}</li>
+        <div class="card-dark">
+          <div class="geo-pattern-dense absolute inset-0 opacity-50" aria-hidden="true"></div>
+          <div class="relative">
+            <p class="eyebrow-on-dark">{{ i18n.t('membership.asideTitle') }}</p>
+            <ul class="mt-4 space-y-3">
+              @for (key of asideBenefits; track key) {
+                <li class="flex items-start gap-3 text-sm leading-relaxed text-cream/95">
+                  <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/20 text-gold-300" aria-hidden="true">
+                    <app-icon name="check" size="h-3 w-3" [strokeWidth]="2.6" />
+                  </span>
+                  <span>{{ i18n.t(key) }}</span>
+                </li>
               }
             </ul>
-          </div>
-
-          <div formGroupName="consents" class="space-y-3">
-            <label class="flex items-start gap-3 rounded-2xl border px-4 py-3" [class.border-red-400]="invalid(form.controls.consents.controls.privacyNoticeRead)" [class.border-mist]="!invalid(form.controls.consents.controls.privacyNoticeRead)">
-              <input type="checkbox" formControlName="privacyNoticeRead" class="mt-0.5" />
-              <span class="text-sm text-forest">
-                {{ i18n.t('membership.consentPrivacyPrefix') }}
-                <a routerLink="/privacy" class="font-semibold text-gold-700 underline">{{ i18n.t('nav.privacy') }}</a>
-                {{ i18n.t('membership.consentPrivacySuffix') }} *
-              </span>
-            </label>
-            <label class="flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
-              <input type="checkbox" formControlName="codeOfConductAgreed" class="mt-0.5" />
-              <span class="text-sm text-forest">{{ i18n.t('membership.consentConduct') }} *</span>
-            </label>
-            <label class="flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
-              <input type="checkbox" formControlName="ageConfirmed18Plus" class="mt-0.5" />
-              <span class="text-sm text-forest">{{ i18n.t('membership.consentAge') }} *</span>
-            </label>
-            <label class="flex items-start gap-3 rounded-2xl border border-mist px-4 py-3">
-              <input type="checkbox" formControlName="marketingOptIn" class="mt-0.5" />
-              <span class="text-sm text-forest">{{ i18n.t('membership.consentMarketing') }}</span>
-            </label>
-          </div>
-
-          <div formGroupName="declaration">
-            <label class="block text-sm font-medium text-forest">
-              {{ i18n.t('membership.signedBy') }} *
-              <input type="text" formControlName="signedBy" [class]="inputClass(form.controls.declaration.controls.signedBy)" />
-            </label>
+            <ul class="mt-5 space-y-1.5 border-t border-white/15 pt-4 text-xs leading-relaxed text-sand/75">
+              <li>{{ i18n.t('membership.bullet1') }}</li>
+              <li>{{ i18n.t('membership.bullet2') }}</li>
+              <li>{{ i18n.t('membership.bullet3') }}</li>
+            </ul>
           </div>
         </div>
-      }
 
-      @if (error()) {
-        <p class="mt-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900" role="alert" data-error>
-          {{ error() }}
-        </p>
-      }
+        <div class="card !p-5">
+          <p class="font-semibold text-forest">{{ i18n.t('membership.signInPrompt') }}</p>
+          <p class="mt-1 text-sm leading-relaxed text-slate-warm">{{ i18n.t('membership.asideSignInLead') }}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a routerLink="/membership/login" class="btn btn-secondary-light btn-sm">{{ i18n.t('membership.signInLink') }}</a>
+            <a routerLink="/membership/track" class="btn btn-ghost-light btn-sm">{{ i18n.t('membership.trackLink') }}</a>
+          </div>
+        </div>
 
-      <div class="mt-8 flex flex-wrap items-center justify-between gap-3">
-        @if (step() > 0) {
-          <button type="button" class="min-h-12 rounded-full border border-mist px-6 text-sm font-semibold text-forest" (click)="back()">
-            {{ i18n.t('membership.back') }}
-          </button>
-        } @else {
-          <span></span>
-        }
-        <button
-          type="submit"
-          [disabled]="submitting()"
-          class="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-8 text-sm font-semibold text-cream shadow-soft disabled:opacity-60"
-        >
-          {{
-            submitting()
-              ? i18n.t('membership.submitting')
-              : step() < 2
-                ? i18n.t('membership.continue')
-                : i18n.t('membership.submit')
-          }}
-        </button>
-      </div>
-    </form>
-
-    <p class="mt-6 text-center text-sm text-slate-warm">
-      {{ i18n.t('membership.signInPrompt') }}
-      <a routerLink="/membership/login" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('membership.signInLink') }}</a>
-      ·
-      {{ i18n.t('membership.trackPrompt') }}
-      <a routerLink="/membership/track" class="font-semibold text-gold-700 hover:underline">{{ i18n.t('membership.trackLink') }}</a>
-    </p>
-    <app-centre-contacts class="mt-8 block" compact [title]="i18n.t('contacts.help')" prefill="Assalamu alaikum, I have a question about membership for" />
+        <app-centre-contacts
+          class="block"
+          compact
+          [title]="i18n.t('contacts.help')"
+          prefill="Assalamu alaikum, I have a question about membership for"
+        />
+      </aside>
+    </div>
   </div>
 </section>

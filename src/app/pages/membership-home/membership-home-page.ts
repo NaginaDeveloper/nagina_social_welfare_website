@@ -1,5 +1,6 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router, RouterLink, type ParamMap } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { MemberAuthService } from '../../services/member-auth.service';
 import {
@@ -9,20 +10,35 @@ import {
   type MemberNewsletter,
   type MemberPortalEvent,
 } from '../../services/member-portal.service';
+import { AppealsService } from '../../services/appeals.service';
+import { appealIsGeneral, appealIsOpen, type PublicAppeal } from '../../models/appeal';
 import type { DonationFund } from '../../models/membership';
-import { isValidUkPhone, formatUkPhoneE164, formatUkPhoneForDisplay } from '../../validators/uk.validators';
+import { isValidUkPhone, formatUkPhoneE164 } from '../../validators/uk.validators';
+import { loginUrlFor } from '../../utils/safe-return-url';
 import { PageShell } from '../page-shell';
 import { MemberPortalShell } from '../../components/member-portal/member-portal-shell';
 import { MemberPortalLoading } from '../../components/member-portal/member-portal-loading';
+import { MemberSidebar } from '../../components/member-portal/member-sidebar';
 import { MemberOverviewTab } from '../../components/member-portal/member-overview-tab';
+import { MemberAppealsTab } from '../../components/member-portal/member-appeals-tab';
 import { MemberProfileTab, type MemberProfileSavePayload } from '../../components/member-portal/member-profile-tab';
 import { MemberDonateTab } from '../../components/member-portal/member-donate-tab';
+import { MemberDonationsTab } from '../../components/member-portal/member-donations-tab';
 import { MemberEventsTab } from '../../components/member-portal/member-events-tab';
 import { MemberNewslettersTab } from '../../components/member-portal/member-newsletters-tab';
-import { MEMBER_TABS, parseMemberTab, type MemberTab } from '../../components/member-portal/member-portal.types';
-import { whatsappHref } from '../../config/organization.config';
-import { portalErrorBannerClass, portalPrimaryBtnClass } from '../../components/member-portal/member-portal.shared';
+import {
+  DONATION_PRESETS,
+  parseMemberTab,
+  type MemberTab,
+} from '../../components/member-portal/member-portal.types';
 
+const FUNDS: readonly DonationFund[] = ['zakat', 'sadaqah', 'lillah', 'fitrana'];
+
+/**
+ * Member dashboard. Sidebar on desktop, scrolling tabs on phones; the active section is the
+ * `?tab=` query parameter so campaign emails can deep-link (`?tab=donate&appeal=…&amount=…`).
+ * Signed-out visitors are sent to sign in with a `returnUrl` back to the same view.
+ */
 @Component({
   selector: 'app-membership-home-page',
   imports: [
@@ -30,9 +46,12 @@ import { portalErrorBannerClass, portalPrimaryBtnClass } from '../../components/
     RouterLink,
     MemberPortalShell,
     MemberPortalLoading,
+    MemberSidebar,
     MemberOverviewTab,
+    MemberAppealsTab,
     MemberProfileTab,
     MemberDonateTab,
+    MemberDonationsTab,
     MemberEventsTab,
     MemberNewslettersTab,
   ],
@@ -41,21 +60,19 @@ import { portalErrorBannerClass, portalPrimaryBtnClass } from '../../components/
 })
 export class MembershipHomePage implements OnInit {
   protected readonly i18n = inject(LanguageService);
-  protected readonly orgWhatsApp = whatsappHref(
-    'Assalamu alaikum, I am interested in volunteering with Nagina Social Welfare UK.',
-  );
-  protected readonly tabs = MEMBER_TABS;
-  protected readonly portalErrorBannerClass = portalErrorBannerClass;
-  protected readonly portalPrimaryBtnClass = portalPrimaryBtnClass;
 
   private readonly auth = inject(MemberAuthService);
   private readonly portal = inject(MemberPortalService);
+  private readonly appealsApi = inject(AppealsService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly member = this.auth.member;
   protected readonly loading = this.auth.loading;
   protected readonly tab = signal<MemberTab>('overview');
+  /** True once the session check has finished, so the signed-out state never flashes. */
+  protected readonly ready = signal(false);
 
   protected readonly saving = signal(false);
   protected readonly saved = signal(false);
@@ -74,6 +91,17 @@ export class MembershipHomePage implements OnInit {
   protected readonly donations = signal<MemberDonationRecord[]>([]);
   protected readonly donationsLoading = signal(false);
 
+  /** Appeal named by `?appeal=`; locks the fund and centre on the donate tab. */
+  protected readonly donateAppeal = signal<PublicAppeal | null>(null);
+  protected readonly donateAppealLoading = signal(false);
+  protected readonly donateAppealMissing = signal(false);
+  private appealParam = '';
+
+  protected readonly appeals = signal<PublicAppeal[]>([]);
+  protected readonly appealsLoading = signal(false);
+  protected readonly appealsError = signal<string | null>(null);
+  private appealsLoaded = false;
+
   protected readonly events = signal<MemberPortalEvent[]>([]);
   protected readonly eventsLoading = signal(false);
   protected readonly rsvpBusy = signal<string | null>(null);
@@ -81,34 +109,25 @@ export class MembershipHomePage implements OnInit {
   protected readonly newsletters = signal<MemberNewsletter[]>([]);
   protected readonly newslettersLoading = signal(false);
   protected readonly newslettersError = signal<string | null>(null);
+  private newslettersLoaded = false;
 
   ngOnInit(): void {
-    const params = this.route.snapshot.queryParamMap;
-    if (params.get('donated') === '1') {
-      this.donatedBanner.set(true);
-      this.activateTab('donate', { syncUrl: false });
-    } else {
-      this.tab.set(parseMemberTab(params.get('tab')));
-    }
+    this.applyParams(this.route.snapshot.queryParamMap, true);
 
-    this.route.queryParamMap.subscribe((map) => {
-      if (map.get('donated') === '1') {
-        this.donatedBanner.set(true);
-      }
-      const next = parseMemberTab(map.get('tab'));
-      if (next !== this.tab()) {
-        this.activateTab(next, { syncUrl: false });
-      }
-    });
+    this.route.queryParamMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((map) => this.applyParams(map, false));
 
     void this.auth.restoreSession(true).then(() => {
-      const m = this.auth.member();
-      if (!m) {
-        void this.router.navigate(['/membership/login']);
+      this.ready.set(true);
+      if (!this.auth.member()) {
+        const login = loginUrlFor(this.router.url);
+        void this.router.navigate([login.path], { queryParams: login.queryParams, replaceUrl: true });
         return;
       }
       void this.loadDonations();
       void this.loadEvents();
+      void this.loadAppeals();
       if (this.tab() === 'newsletters') void this.loadNewsletters();
     });
   }
@@ -117,24 +136,74 @@ export class MembershipHomePage implements OnInit {
     return this.i18n.t('memberHome.pageTitle');
   }
 
-  protected setTab(id: MemberTab): void {
-    this.activateTab(id, { syncUrl: true });
+  /** Reads `?tab=&appeal=&fund=&amount=&donated=` (on load and on every in-app link). */
+  private applyParams(map: ParamMap, initial: boolean): void {
+    const donated = map.get('donated') === '1';
+    if (donated) this.donatedBanner.set(true);
+
+    const next: MemberTab = donated && !map.get('tab') ? 'donate' : parseMemberTab(map.get('tab'));
+    if (initial || next !== this.tab()) this.activateTab(next);
+
+    const fund = map.get('fund');
+    if (fund && (FUNDS as readonly string[]).includes(fund)) this.donateFund.set(fund as DonationFund);
+
+    const amount = Number(map.get('amount'));
+    if (map.get('amount') && Number.isFinite(amount) && amount >= 5 && amount <= 100_000) {
+      if ((DONATION_PRESETS as readonly number[]).includes(amount)) {
+        this.donateAmount.set(amount);
+      } else {
+        this.donateAmount.set('custom');
+        this.donateCustom.set(String(amount));
+      }
+    }
+
+    const appealId = (map.get('appeal') ?? '').trim();
+    if (appealId !== this.appealParam) {
+      this.appealParam = appealId;
+      void this.loadDonateAppeal(appealId);
+    }
   }
 
-  private activateTab(id: MemberTab, options: { syncUrl: boolean }): void {
+  private activateTab(id: MemberTab): void {
     this.tab.set(id);
     this.error.set(null);
-    if (id === 'donate') void this.loadDonations();
+    if (!this.auth.member()) return;
+    if (id === 'donate' || id === 'donations' || id === 'overview') void this.loadDonations();
     if (id === 'events') void this.loadEvents();
-    if (id === 'newsletters') void this.loadNewsletters();
-    if (options.syncUrl) {
-      void this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: { tab: id === 'overview' ? null : id },
-        queryParamsHandling: 'merge',
-        replaceUrl: true,
-      });
+    if (id === 'newsletters' && !this.newslettersLoaded) void this.loadNewsletters();
+    if ((id === 'appeals' || id === 'overview') && !this.appealsLoaded) void this.loadAppeals();
+  }
+
+  private async loadDonateAppeal(id: string): Promise<void> {
+    this.donateAppealMissing.set(false);
+    if (!id) {
+      this.donateAppeal.set(null);
+      return;
     }
+    this.donateAppealLoading.set(true);
+    try {
+      const appeal = await this.appealsApi.get(id);
+      if (id !== this.appealParam) return;
+      if (appeal && appealIsOpen(appeal)) {
+        this.donateAppeal.set(appeal);
+        this.donateFund.set(appeal.fund);
+        if (!appealIsGeneral(appeal)) this.donateCampus.set(appeal.campusId);
+      } else {
+        this.donateAppeal.set(null);
+        this.donateAppealMissing.set(true);
+      }
+    } finally {
+      if (id === this.appealParam) this.donateAppealLoading.set(false);
+    }
+  }
+
+  protected clearAppeal(): void {
+    void this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { appeal: null, amount: null, donated: null },
+      queryParamsHandling: 'merge',
+      replaceUrl: true,
+    });
   }
 
   protected async saveProfile(payload: MemberProfileSavePayload): Promise<void> {
@@ -161,6 +230,7 @@ export class MembershipHomePage implements OnInit {
         interests: payload.interests,
       });
       this.saved.set(true);
+      this.newslettersLoaded = false;
     } catch (err) {
       this.error.set(portalErrorMessage(err));
     } finally {
@@ -180,7 +250,7 @@ export class MembershipHomePage implements OnInit {
     }
   }
 
-  protected donateAmountValue(): number | null {
+  private donateAmountValue(): number | null {
     if (this.donateAmount() === 'custom') {
       const n = Number(this.donateCustom());
       return Number.isFinite(n) ? n : null;
@@ -199,18 +269,21 @@ export class MembershipHomePage implements OnInit {
       this.error.set(this.i18n.t('memberHome.donateMin'));
       return;
     }
-    if (!this.donateCampus()) {
+    const appeal = this.donateAppeal();
+    const campus = appeal ? appeal.campusId : this.donateCampus();
+    if (!campus) {
       this.error.set(this.i18n.t('donate.chooseCentre'));
       return;
     }
     this.donateLoading.set(true);
     this.error.set(null);
     try {
-      const url = await this.portal.startDonationCheckout(
+      const url = await this.portal.startDonationCheckout({
         amount,
-        this.donateFund(),
-        this.donateCampus(),
-      );
+        fund: appeal ? appeal.fund : this.donateFund(),
+        campus,
+        appealId: appeal?.id ?? null,
+      });
       window.location.href = url;
     } catch (err) {
       this.error.set(portalErrorMessage(err));
@@ -237,7 +310,13 @@ export class MembershipHomePage implements OnInit {
     await this.router.navigate(['/membership/login']);
   }
 
+  protected reloadAppeals(): void {
+    this.appealsLoaded = false;
+    void this.loadAppeals();
+  }
+
   private async loadDonations(): Promise<void> {
+    if (this.donationsLoading()) return;
     this.donationsLoading.set(true);
     try {
       this.donations.set(await this.portal.listDonations());
@@ -259,11 +338,28 @@ export class MembershipHomePage implements OnInit {
     }
   }
 
+  private async loadAppeals(): Promise<void> {
+    if (this.appealsLoading()) return;
+    this.appealsLoading.set(true);
+    this.appealsError.set(null);
+    try {
+      const all = await this.appealsApi.list(this.auth.member()?.campusId || null);
+      this.appeals.set(all.filter((a) => appealIsOpen(a)));
+      this.appealsLoaded = true;
+    } catch (err) {
+      this.appeals.set([]);
+      this.appealsError.set(portalErrorMessage(err));
+    } finally {
+      this.appealsLoading.set(false);
+    }
+  }
+
   private async loadNewsletters(): Promise<void> {
     this.newslettersLoading.set(true);
     this.newslettersError.set(null);
     try {
       this.newsletters.set(await this.portal.listNewsletters());
+      this.newslettersLoaded = true;
     } catch (err) {
       this.newsletters.set([]);
       this.newslettersError.set(portalErrorMessage(err));

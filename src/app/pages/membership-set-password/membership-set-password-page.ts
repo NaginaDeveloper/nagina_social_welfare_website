@@ -3,42 +3,50 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LanguageService } from '../../i18n/language.service';
 import { MemberAuthService } from '../../services/member-auth.service';
+import { safeReturnUrl } from '../../utils/safe-return-url';
 import { PageShell } from '../page-shell';
 import { NextSteps } from '../../components/next-steps/next-steps';
+import { AuthSplitLayout } from '../../components/member-portal/auth-split-layout';
+import { PasswordField } from '../../components/ui/password-field';
 
 @Component({
   selector: 'app-membership-set-password-page',
-  imports: [NextSteps, PageShell, FormsModule],
+  imports: [NextSteps, PageShell, FormsModule, RouterLink, AuthSplitLayout, PasswordField],
   template: `
     <app-page-shell title="Set password" [parent]="{ path: '/membership/login', labelKey: 'nav.memberLogin' }">
-      <section class="bg-cream py-16 sm:py-24">
-        <div class="mx-auto max-w-md px-5 sm:px-8" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-          <h1 class="font-display text-3xl font-bold text-forest">{{ i18n.t('memberSetPassword.title') }}</h1>
-          <p class="mt-4 text-sm leading-relaxed text-slate-warm">{{ i18n.t('memberSetPassword.lead') }}</p>
-          @if (!token()) {
-            <p class="mt-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
-              {{ i18n.t('memberSetPassword.missingToken') }}
-            </p>
-          } @else {
-            <form class="mt-8 space-y-4 rounded-[1.5rem] border border-mist bg-white px-5 py-8 shadow-soft" (submit)="$event.preventDefault(); submit()">
-              <label class="block text-sm font-medium text-forest">
-                {{ i18n.t('memberSetPassword.password') }}
-                <input type="password" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="password" name="password" autocomplete="new-password" />
-              </label>
-              <label class="block text-sm font-medium text-forest">
-                {{ i18n.t('memberSetPassword.confirm') }}
-                <input type="password" class="mt-1.5 w-full min-h-12 rounded-2xl border border-mist bg-sand/40 px-4" [(ngModel)]="confirm" name="confirm" autocomplete="new-password" />
-              </label>
-              @if (error()) {
-                <p class="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">{{ error() }}</p>
-              }
-              <button type="submit" [disabled]="loading()" class="w-full min-h-12 rounded-full bg-forest text-sm font-semibold text-cream disabled:opacity-60">
-                {{ loading() ? i18n.t('memberSetPassword.saving') : i18n.t('memberSetPassword.save') }}
-              </button>
-            </form>
-          }
-        </div>
-      </section>
+      <app-auth-split-layout
+        [eyebrow]="i18n.t('auth.welcomeEyebrow')"
+        [heading]="i18n.t('memberSetPassword.title')"
+        [lead]="i18n.t('memberSetPassword.lead')"
+      >
+        @if (!token()) {
+          <div class="banner-error" role="alert">{{ i18n.t('memberSetPassword.missingToken') }}</div>
+          <a routerLink="/membership/forgot-password" class="btn btn-secondary-light mt-6">{{ i18n.t('auth.requestNewLink') }}</a>
+        } @else {
+          <form class="space-y-5" (submit)="$event.preventDefault(); submit()" novalidate>
+            <app-password-field
+              [label]="i18n.t('memberSetPassword.password')"
+              [(value)]="password"
+              name="password"
+              autocomplete="new-password"
+              [minlength]="8"
+              [hint]="i18n.t('auth.passwordRule')"
+            />
+            <app-password-field
+              [label]="i18n.t('memberSetPassword.confirm')"
+              [(value)]="confirm"
+              name="confirm"
+              autocomplete="new-password"
+            />
+            @if (error(); as err) {
+              <p class="banner-error" role="alert">{{ err }}</p>
+            }
+            <button type="submit" [disabled]="loading()" class="btn btn-primary btn-lg w-full">
+              {{ loading() ? i18n.t('memberSetPassword.saving') : i18n.t('memberSetPassword.save') }}
+            </button>
+          </form>
+        }
+      </app-auth-split-layout>
       <app-next-steps page="/membership/login" />
     </app-page-shell>
   `,
@@ -54,9 +62,12 @@ export class MembershipSetPasswordPage implements OnInit {
   protected readonly token = signal('');
   protected readonly loading = signal(false);
   protected readonly error = signal<string | null>(null);
+  private returnUrl: string | null = null;
 
   ngOnInit(): void {
-    this.token.set(this.route.snapshot.queryParamMap.get('token')?.trim() ?? '');
+    const params = this.route.snapshot.queryParamMap;
+    this.token.set(params.get('token')?.trim() ?? '');
+    this.returnUrl = safeReturnUrl(params.get('returnUrl'));
   }
 
   protected async submit(): Promise<void> {
@@ -72,7 +83,7 @@ export class MembershipSetPasswordPage implements OnInit {
     this.error.set(null);
     try {
       await this.auth.setPassword(this.token(), this.password);
-      await this.router.navigate(['/membership/home']);
+      await this.router.navigateByUrl(this.returnUrl ?? '/membership/home', { replaceUrl: true });
     } catch (err) {
       this.error.set(this.auth.error() ?? (err instanceof Error ? err.message : null));
     } finally {

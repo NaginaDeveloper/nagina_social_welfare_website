@@ -4,6 +4,7 @@ import type { Auth, User } from 'firebase/auth';
 import { firstValueFrom } from 'rxjs';
 import { FIREBASE_WEB_CONFIG } from '../config/firebase.config';
 import {
+  MEMBER_AUTH_EMULATOR_URL,
   MEMBER_HINT_KEY,
   MEMBER_SESSION_KEY,
   MEMBERSHIP_API_BASE,
@@ -31,7 +32,14 @@ export class MemberAuthService {
    */
   private ensureFirebase(): Promise<Auth> {
     this.firebaseAuth ??= Promise.all([import('firebase/app'), import('firebase/auth')]).then(
-      ([{ initializeApp }, { getAuth }]) => getAuth(initializeApp(FIREBASE_WEB_CONFIG, 'nagina-member')),
+      ([{ initializeApp }, { getAuth, connectAuthEmulator }]) => {
+        const auth = getAuth(initializeApp(FIREBASE_WEB_CONFIG, 'nagina-member'));
+        // Dev only (localhost + nagina-emu flag): sign in against the Auth emulator.
+        if (MEMBER_AUTH_EMULATOR_URL) {
+          connectAuthEmulator(auth, MEMBER_AUTH_EMULATOR_URL, { disableWarnings: true });
+        }
+        return auth;
+      },
     );
     return this.firebaseAuth;
   }
