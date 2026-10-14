@@ -2,7 +2,7 @@ import { Component, ElementRef, signal, viewChild } from '@angular/core';
 import { PageShell } from '../../page-shell';
 
 /** Chapter start times (seconds) in the order they appear in the template. */
-const CHAPTERS = [0, 16, 26, 38, 51, 75, 85, 108, 124, 136, 147, 164, 177, 199, 212, 223, 233, 250, 264];
+const CHAPTERS = [0, 19, 29, 41, 54, 78, 89, 111, 127, 139, 150, 167, 180, 202, 215, 226, 236, 253, 279];
 
 /** Template and styles are generated from the standalone video page by scripts/import-guide-pages.mjs. */
 @Component({

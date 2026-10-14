@@ -73,7 +73,7 @@ export const PORTAL_GUIDES: readonly PortalGuide[] = [
     videoUrl: '/guides/student-portal-video/',
     videoPoster: '/guides/student-portal-video/poster.jpg',
     videoFile: '/guides/student-portal-video/Student-Portal-Guide.mp4',
-    videoLength: '4:39',
+    videoLength: '4:53',
     manualUrl: '/guides/student-portal-manual/',
     pdfUrl: '/guides/student-portal-manual/Student-Portal-User-Manual.pdf',
     signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/student',
