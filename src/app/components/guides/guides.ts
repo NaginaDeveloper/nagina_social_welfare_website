@@ -66,7 +66,6 @@ export class Guides {
       manualUrl: '/guides/teacher-portal-manual/',
       pdfUrl: '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf',
       signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/teacher',
-      appUrl: 'https://play.google.com/store/apps/details?id=com.education.markaz_e_deen_islam',
     },
     {
       id: 'student',

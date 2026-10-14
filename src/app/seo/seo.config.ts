@@ -337,9 +337,9 @@ export const SERMONS_SEO: PageSeo = {
 };
 
 export const APPS_SEO: PageSeo = {
-  title: 'Madrasa Apps for Parents & Teachers | Google Play',
+  title: 'Madrasa Apps for Parents, Admins & Collectors | Google Play',
   description:
-    'Purpose-built mobile apps for parents, teachers, administrators and collectors of Nagina Social Welfare UK, available on the Google Play Store.',
+    'Purpose-built mobile apps for parents, administrators and collectors of Nagina Social Welfare UK, available on the Google Play Store. Teacher and student apps are coming soon.',
   path: '/apps/',
   keywords: 'Nagina apps, NSW Parent Portal, NSW Admin Portal, NSW Collector Portal, Markaz Deen-e-Islam app, Islamic school app UK',
   type: 'website',
@@ -403,9 +403,9 @@ export const STUDENT_PORTAL_MANUAL_SEO: PageSeo = {
 export const TEACHER_PORTAL_MANUAL_SEO: PageSeo = {
   title: 'Teacher Portal User Manual | Nagina Social Welfare',
   description:
-    'How teachers at Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester) use the Teacher Portal and Android app: register, fees, leave, incidents and behaviour, activities, Star of the Week, the daily checklist and Teaching Resources.',
+    'How teachers at Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester) use the Teacher Portal: register, fees, leave, incidents and behaviour, activities, Star of the Week, the daily checklist and Teaching Resources.',
   path: '/guides/teacher-portal-manual/',
-  keywords: 'Teacher Portal manual, Madrasa teacher app, NSW Teacher Portal, NSW Admin Portal app, Nagina Social Welfare',
+  keywords: 'Teacher Portal manual, Madrasa teacher app, NSW Teacher Portal, Nagina Social Welfare',
   image: '/guides/teacher-portal-manual/screenshots/05-dashboard.png',
   type: 'article',
   breadcrumb: 'Teacher Portal manual',
@@ -444,7 +444,7 @@ export const TEACHER_PORTAL_VIDEO_SEO: PageSeo = {
   description:
     'A 6-minute video guide to the Teacher Portal for Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester): sign in, register, fees, leave, incidents and behaviour, activities, Star of the Week, daily checklist and Teaching Resources.',
   path: '/guides/teacher-portal-video/',
-  keywords: 'Teacher Portal video, Madrasa teacher portal tutorial, NSW Teacher Portal, NSW Admin Portal, Nagina Social Welfare',
+  keywords: 'Teacher Portal video, Madrasa teacher portal tutorial, NSW Teacher Portal, Nagina Social Welfare',
   image: '/guides/teacher-portal-video/poster.jpg',
   type: 'article',
   breadcrumb: 'Teacher Portal video',

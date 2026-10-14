@@ -1179,7 +1179,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'apps.eyebrow': 'Our Apps',
   'apps.title': 'Manage Everything, Right from',
   'apps.titleAccent': 'Your Pocket',
-  'apps.lead': 'Purpose-built mobile apps for parents, teachers, administrators and collectors — available now on the Google Play Store.',
+  'apps.lead': 'Purpose-built mobile apps for parents, administrators and collectors — available now on the Google Play Store. Apps for teachers and students are coming soon.',
   'apps.play': 'Get it on Google Play',
   'apps.guidesLead': 'New to the portal?',
   'apps.guidesLink': 'Watch the Videos and Read the User Manuals',

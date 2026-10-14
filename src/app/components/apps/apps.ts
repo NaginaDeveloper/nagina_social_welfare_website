@@ -37,8 +37,8 @@ export class Apps {
     {
       id: 'mdi',
       name: 'NSW Admin Portal',
-      role: 'For Admins & Teachers',
-      roleUr: 'منتظمین اور اساتذہ کے لیے',
+      role: 'For Admins',
+      roleUr: 'منتظمین کے لیے',
       description:
         'Digitally manage classes, students, teachers, attendance and fees with secure, role-based access for the educational institution.',
       descriptionUr:
