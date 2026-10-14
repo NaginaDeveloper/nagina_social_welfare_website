@@ -1,6 +1,6 @@
 {
   "/": {
-    "hash": "59695409524974cc",
+    "hash": "7391b93a9bb1269c",
     "lastmod": "2026-10-15"
   },
   "/about/": {
@@ -80,11 +80,11 @@
     "lastmod": "2026-10-09"
   },
   "/namaz/": {
-    "hash": "04ca1754460df3a1",
+    "hash": "e14a01bb98f19572",
     "lastmod": "2026-10-15"
   },
   "/zakat/": {
-    "hash": "dac2a61ac32da8d4",
+    "hash": "c4fb646bda5cdea3",
     "lastmod": "2026-10-15"
   },
   "/zakat/what-is-zakat/": {
@@ -140,8 +140,8 @@
     "lastmod": "2026-10-09"
   },
   "/guides/": {
-    "hash": "d56e53092b40cb3e",
-    "lastmod": "2026-10-14"
+    "hash": "a6586471a21f2e95",
+    "lastmod": "2026-10-15"
   },
   "/guides/parent-portal-manual/": {
     "hash": "e9c8288bc39ca5db",
@@ -156,8 +156,8 @@
     "lastmod": "2026-10-14"
   },
   "/guides/collector-portal-manual/": {
-    "hash": "0057ae9c22e46de3",
-    "lastmod": "2026-10-14"
+    "hash": "df852131fd22f106",
+    "lastmod": "2026-10-15"
   },
   "/guides/parent-portal-video/": {
     "hash": "a3011199e6456670",
@@ -170,6 +170,10 @@
   "/guides/teacher-portal-video/": {
     "hash": "d8a4a7b9c1863391",
     "lastmod": "2026-10-14"
+  },
+  "/guides/collector-portal-video/": {
+    "hash": "d1f8baad144aae97",
+    "lastmod": "2026-10-15"
   },
   "/events/": {
     "hash": "314316f6598aba34",
@@ -208,7 +212,7 @@
     "lastmod": "2026-10-09"
   },
   "/ur/": {
-    "hash": "4779e059252b2249",
+    "hash": "19e7fe24f8706823",
     "lastmod": "2026-10-15"
   },
   "/ur/about/": {
@@ -276,7 +280,7 @@
     "lastmod": "2026-10-13"
   },
   "/ur/namaz/": {
-    "hash": "ca81905e6f2c2351",
+    "hash": "5bbc515d2670d096",
     "lastmod": "2026-10-15"
   },
   "/ur/duas/": {
