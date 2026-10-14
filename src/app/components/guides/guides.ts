@@ -15,6 +15,8 @@ interface PortalGuide {
   readonly descriptionUr: string;
   readonly videoUrl?: string;
   readonly videoPoster?: string;
+  /** MP4 played inside the card; the video page adds the step list. */
+  readonly videoFile?: string;
   readonly videoLength?: string;
   readonly manualUrl?: string;
   readonly pdfUrl?: string;
@@ -44,6 +46,7 @@ export class Guides {
         'سائن ان کریں، مدرسہ کے پیغامات پڑھیں، فیس دیکھیں اور ادا کریں، اپنے بچے کی حاضری، چیک لسٹ اور تعلیم دیکھیں، اور چھٹی کی درخواست دیں۔',
       videoUrl: '/guides/parent-portal-video/',
       videoPoster: '/guides/parent-portal-video/poster.jpg',
+      videoFile: '/guides/parent-portal-video/Parent-Portal-Guide.mp4',
       videoLength: '5:23',
       manualUrl: '/guides/parent-portal-manual/',
       pdfUrl: '/guides/parent-portal-manual/Parent-Portal-User-Manual.pdf',
@@ -62,6 +65,7 @@ export class Guides {
         'حاضری لگائیں، فیس وصول کریں، چھٹی کی درخواستیں دیکھیں، واقعات اور رویہ درج کریں، سرگرمیاں درج کریں، ہفتے کا ستارہ چنیں، اور لیٹس لرن اسلام سے پڑھائیں۔',
       videoUrl: '/guides/teacher-portal-video/',
       videoPoster: '/guides/teacher-portal-video/poster.jpg',
+      videoFile: '/guides/teacher-portal-video/Teacher-Portal-Guide.mp4',
       videoLength: '6:05',
       manualUrl: '/guides/teacher-portal-manual/',
       pdfUrl: '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf',
@@ -79,6 +83,7 @@ export class Guides {
         'لیٹس لرن اسلام میں سائن ان کریں، اسباق اور کارڈز مکمل کریں، روزانہ چیک لسٹ پر نشان لگائیں، اور سرٹیفکیٹ حاصل کریں۔',
       videoUrl: '/guides/student-portal-video/',
       videoPoster: '/guides/student-portal-video/poster.jpg',
+      videoFile: '/guides/student-portal-video/Student-Portal-Guide.mp4',
       videoLength: '4:39',
       manualUrl: '/guides/student-portal-manual/',
       pdfUrl: '/guides/student-portal-manual/Student-Portal-User-Manual.pdf',

@@ -1190,6 +1190,8 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'guides.lead':
     'Step-by-step videos and user manuals for the Madrasa portals. Watch online, read the manual, or save the PDF to keep.',
   'guides.watch': 'Watch the video',
+  'guides.steps': 'Video page: jump to any step',
+  'guides.videoMeta': 'Full HD with voiceover',
   'guides.read': 'Read the manual',
   'guides.pdf': 'Download PDF',
   'guides.videoSoon': 'Video guide coming soon',

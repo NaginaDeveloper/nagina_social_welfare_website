@@ -62,33 +62,22 @@
             {{ i18n.pick(guide.description, guide.descriptionUr) }}
           </p>
 
-          @if (guide.videoUrl && guide.videoPoster) {
-            <a
-              [routerLink]="guide.videoUrl"
-              class="group relative mt-6 block overflow-hidden rounded-2xl border border-mist bg-forest"
-              [attr.aria-label]="i18n.t('guides.watch') + ': ' + guide.name"
-            >
-              <img
-                [src]="guide.videoPoster"
-                alt=""
-                width="1920"
-                height="1080"
-                loading="lazy"
-                class="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              />
-              <span class="absolute inset-0 flex items-center justify-center bg-forest/25 transition-colors group-hover:bg-forest/10">
-                <span class="flex h-14 w-14 items-center justify-center rounded-full bg-cream/95 text-forest shadow-portal">
-                  <svg class="ms-1 h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />
-                  </svg>
-                </span>
-              </span>
-              @if (guide.videoLength) {
-                <span class="absolute bottom-2 end-2 rounded-md bg-ink/80 px-2 py-0.5 text-xs font-semibold text-cream">
-                  {{ guide.videoLength }}
-                </span>
-              }
-            </a>
+          @if (guide.videoFile && guide.videoPoster) {
+            <div class="mt-6 overflow-hidden rounded-2xl border border-mist bg-forest">
+              <video
+                controls
+                playsinline
+                preload="none"
+                [poster]="guide.videoPoster"
+                class="block aspect-video w-full bg-forest"
+                [attr.aria-label]="i18n.t('guides.watch') + ': ' + guide.name"
+              >
+                <source [src]="guide.videoFile" type="video/mp4" />
+              </video>
+            </div>
+            @if (guide.videoLength) {
+              <p class="mt-2 text-xs text-slate-warm">{{ guide.videoLength }} · {{ i18n.t('guides.videoMeta') }}</p>
+            }
           }
 
           <div class="mt-6 flex flex-1 flex-col justify-end gap-3">
@@ -100,7 +89,7 @@
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />
                 </svg>
-                {{ i18n.t('guides.watch') }}
+                {{ i18n.t('guides.steps') }}
               </a>
             }
             @if (guide.manualUrl) {
