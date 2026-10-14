@@ -439,6 +439,19 @@ export const STUDENT_PORTAL_VIDEO_SEO: PageSeo = {
   priority: 0.6,
 };
 
+export const TEACHER_PORTAL_VIDEO_SEO: PageSeo = {
+  title: 'Teacher Portal Video Guide | Nagina Social Welfare',
+  description:
+    'A 6-minute video guide to the Teacher Portal for Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester): sign in, register, fees, leave, incidents and behaviour, activities, Star of the Week, daily checklist and Teaching Resources.',
+  path: '/guides/teacher-portal-video/',
+  keywords: 'Teacher Portal video, Madrasa teacher portal tutorial, NSW Teacher Portal, NSW Admin Portal, Nagina Social Welfare',
+  image: '/guides/teacher-portal-video/poster.jpg',
+  type: 'article',
+  breadcrumb: 'Teacher Portal video',
+  changefreq: 'monthly',
+  priority: 0.6,
+};
+
 export const EVENTS_SEO: PageSeo = {
   title: 'Events in Peterborough & Manchester | Nagina Social Welfare',
   description:
@@ -729,6 +742,7 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   TEACHER_PORTAL_MANUAL_SEO,
   PARENT_PORTAL_VIDEO_SEO,
   STUDENT_PORTAL_VIDEO_SEO,
+  TEACHER_PORTAL_VIDEO_SEO,
   EVENTS_SEO,
   DONATE_SEO,
   ASSISTANT_SEO,
