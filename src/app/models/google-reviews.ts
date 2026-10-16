@@ -4,6 +4,10 @@ export interface GoogleReview {
   readonly rating: number;
   readonly text: string;
   readonly when: string;
+  /** ISO time it was written; the page formats it in the visitor's language. */
+  readonly publishTime: string | null;
+  /** The centre's public reply, when there is one. */
+  readonly reply: string | null;
 }
 
 export interface GoogleReviewsData {
@@ -20,6 +24,12 @@ function httpsUrl(value: unknown): string | null {
   } catch {
     return null;
   }
+}
+
+function replyText(value: unknown): string | null {
+  if (!value || typeof value !== 'object') return null;
+  const text = (value as Record<string, unknown>)['text'];
+  return typeof text === 'string' && text.trim() ? text.trim() : null;
 }
 
 /** Accepts only what the page can show; anything else (an error body, an old shape) is null. */
@@ -39,6 +49,8 @@ export function parseGoogleReviews(raw: unknown): GoogleReviewsData | null {
       rating: Math.round(rating),
       text: typeof r['text'] === 'string' ? r['text'].trim() : '',
       when: typeof r['when'] === 'string' ? r['when'].trim() : '',
+      publishTime: typeof r['publishTime'] === 'string' && Number.isFinite(Date.parse(r['publishTime'])) ? r['publishTime'] : null,
+      reply: replyText(r['reply']),
     });
   }
   const rating = typeof body['rating'] === 'number' ? body['rating'] : null;
@@ -59,4 +71,27 @@ export function starString(rating: number): string {
 /** First letter for the avatar circle. */
 export function authorInitial(author: string): string {
   return (author.trim().charAt(0) || '?').toUpperCase();
+}
+
+const UNITS: readonly [Intl.RelativeTimeFormatUnit, number][] = [
+  ['year', 365],
+  ['month', 30],
+  ['week', 7],
+  ['day', 1],
+];
+
+/** "3 weeks ago" / "3 ہفتے پہلے" from an ISO time; falls back to the server's English text. */
+export function reviewAge(publishTime: string | null, fallback: string, lang: string, now = new Date()): string {
+  const at = publishTime ? Date.parse(publishTime) : NaN;
+  if (!Number.isFinite(at)) return fallback;
+  const days = Math.max(0, Math.floor((now.getTime() - at) / 86_400_000));
+  try {
+    const fmt = new Intl.RelativeTimeFormat(lang, { numeric: 'auto' });
+    for (const [unit, size] of UNITS) {
+      if (days >= size) return fmt.format(-Math.floor(days / size), unit);
+    }
+    return fmt.format(0, 'day');
+  } catch {
+    return fallback;
+  }
 }

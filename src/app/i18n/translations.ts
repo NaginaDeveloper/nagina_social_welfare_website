@@ -1373,6 +1373,9 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'reviews.starsLabel': '{n} out of 5 stars',
   'reviews.attribution': 'Reviews are shown as posted on Google.',
   'reviews.readAll': 'Read all reviews on Google',
+  'reviews.showAll': 'Show all {n} reviews',
+  'reviews.showFewer': 'Show fewer reviews',
+  'reviews.reply': 'Reply from the centre',
   'centreStory.englishOnly': 'This introduction was written by the centre in English.',
 
   'whatIsZakat.eyebrow': 'Zakat Guide',

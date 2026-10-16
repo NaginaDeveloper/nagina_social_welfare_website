@@ -1,10 +1,10 @@
 import { Component, OnInit, computed, inject, input, signal } from '@angular/core';
 import { centreReviewUrl } from '../../config/centre-pages.config';
 import { LanguageService } from '../../i18n/language.service';
-import { authorInitial, starString, type GoogleReviewsData } from '../../models/google-reviews';
+import { authorInitial, reviewAge, starString, type GoogleReview, type GoogleReviewsData } from '../../models/google-reviews';
 import { GoogleReviewsService } from '../../services/google-reviews.service';
 
-/** A centre's Google rating and recent written reviews, with links to read them all and add one. */
+/** A centre's Google rating and its written reviews (newest first), with links to read them on Google and add one. */
 @Component({
   selector: 'app-google-reviews',
   template: `
@@ -29,12 +29,18 @@ import { GoogleReviewsService } from '../../services/google-reviews.service';
 
         @if (data.reviews.length) {
           <ul class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            @for (review of data.reviews; track $index) {
+            @for (review of visible(); track $index) {
               <li class="flex flex-col rounded-2xl border border-mist bg-white p-5 shadow-soft">
                 <p class="text-gold" [attr.aria-label]="starsLabel(review.rating)">
                   <span aria-hidden="true">{{ stars(review.rating) }}</span>
                 </p>
                 <p class="mt-3 line-clamp-6 text-sm leading-relaxed text-slate-warm">{{ review.text }}</p>
+                @if (review.reply) {
+                  <div class="mt-3 rounded-xl bg-mist/40 p-3 text-xs leading-relaxed text-slate-warm" data-testid="google-review-reply">
+                    <p class="font-semibold text-forest">{{ i18n.t('reviews.reply') }}</p>
+                    <p class="mt-1 line-clamp-4">{{ review.reply }}</p>
+                  </div>
+                }
                 <div class="mt-auto flex items-center gap-3 pt-4">
                   <span
                     class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest text-sm font-semibold text-white"
@@ -53,12 +59,25 @@ import { GoogleReviewsService } from '../../services/google-reviews.service';
                     } @else {
                       <span class="block truncate font-semibold text-forest">{{ review.author }}</span>
                     }
-                    <span class="text-slate-warm">{{ review.when }}</span>
+                    <span class="text-slate-warm">{{ age(review) }}</span>
                   </div>
                 </div>
               </li>
             }
           </ul>
+          @if (data.reviews.length > preview) {
+            <div class="mt-6 text-center">
+              <button
+                type="button"
+                class="btn btn-ghost btn-sm"
+                [attr.aria-expanded]="expanded()"
+                (click)="expanded.set(!expanded())"
+                data-testid="google-reviews-toggle"
+              >
+                {{ expanded() ? i18n.t('reviews.showFewer') : showAllLabel(data.reviews.length) }}
+              </button>
+            </div>
+          }
         }
 
         <p class="mt-6 text-center text-xs text-slate-warm">{{ i18n.t('reviews.attribution') }}</p>
@@ -93,6 +112,10 @@ export class GoogleReviews implements OnInit {
   protected readonly i18n = inject(LanguageService);
   private readonly service = inject(GoogleReviewsService);
 
+  /** Cards shown before "Show all"; two rows on desktop. */
+  protected readonly preview = 6;
+  protected readonly expanded = signal(false);
+
   private readonly loaded = signal<GoogleReviewsData | null>(null);
   protected readonly reviewUrl = computed(() => centreReviewUrl(this.campusId()));
 
@@ -101,6 +124,11 @@ export class GoogleReviews implements OnInit {
     const data = this.loaded();
     if (!data || !this.reviewUrl() || (data.rating === null && !data.reviews.length)) return null;
     return { ...data, reviews: data.reviews.filter((r) => r.text) };
+  });
+
+  protected readonly visible = computed<readonly GoogleReview[]>(() => {
+    const reviews = this.shown()?.reviews ?? [];
+    return this.expanded() ? reviews : reviews.slice(0, this.preview);
   });
 
   ngOnInit(): void {
@@ -113,6 +141,14 @@ export class GoogleReviews implements OnInit {
 
   protected initial(author: string): string {
     return authorInitial(author);
+  }
+
+  protected age(review: GoogleReview): string {
+    return reviewAge(review.publishTime, review.when, this.i18n.isUr() ? 'ur' : 'en-GB');
+  }
+
+  protected showAllLabel(n: number): string {
+    return this.i18n.t('reviews.showAll').replace('{n}', String(n));
   }
 
   protected countLabel(data: GoogleReviewsData): string {
