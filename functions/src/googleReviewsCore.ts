@@ -31,6 +31,8 @@ export type GoogleReview = {
   readonly text: string;
   readonly when: string;
   readonly publishTime: string | null;
+  /** The centre's public reply (Business Profile API only). */
+  readonly reply?: { readonly text: string; readonly publishTime: string | null } | null;
 };
 
 export type GoogleReviewsPayload = {
@@ -40,6 +42,8 @@ export type GoogleReviewsPayload = {
   readonly mapsUri: string | null;
   readonly reviews: readonly GoogleReview[];
   readonly fetchedAt: string;
+  /** "business-profile": every review, newest first. "places": Google's five most relevant. */
+  readonly source?: 'business-profile' | 'places';
 };
 
 type RawReview = {
@@ -110,6 +114,7 @@ export function normalizePlace(campus: string, raw: RawPlace, now = new Date()):
     mapsUri: safeUrl(raw.googleMapsUri),
     reviews,
     fetchedAt: now.toISOString(),
+    source: 'places',
   };
 }
 

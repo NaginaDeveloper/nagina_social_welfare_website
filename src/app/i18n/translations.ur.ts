@@ -1228,6 +1228,9 @@ export const TRANSLATIONS_UR: Record<string, string> = {
   'reviews.starsLabel': '5 میں سے {n} ستارے',
   'reviews.attribution': 'یہ جائزے گوگل پر جیسے پوسٹ ہوئے ویسے ہی دکھائے گئے ہیں۔',
   'reviews.readAll': 'گوگل پر تمام جائزے پڑھیں',
+  'reviews.showAll': 'تمام {n} جائزے دکھائیں',
+  'reviews.showFewer': 'کم جائزے دکھائیں',
+  'reviews.reply': 'مرکز کی جانب سے جواب',
   'centreStory.englishOnly': 'یہ تعارف مرکز نے انگریزی میں لکھا ہے۔',
 
   'whatIsZakat.eyebrow': 'زکوٰۃ رہنمائی',

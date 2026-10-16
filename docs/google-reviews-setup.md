@@ -1,13 +1,20 @@
 # Google reviews on the centre pages
 
-The Peterborough page shows its Google rating and Google's most relevant written reviews. The
-site calls a Firebase function, `googleReviews`, which asks the Google Places API (New) and
-returns a small JSON payload. New reviews appear without a website release.
+The Peterborough page shows its Google rating and written reviews. The site calls a Firebase
+function, `googleReviews`, which returns a small JSON payload, so new reviews appear without a
+website release. The function uses two Google APIs:
+
+- **Business Profile API** (preferred): every review, newest first, with the centre's replies.
+  Project `nagina-social-welfare-uk` (number 1049510950065) was approved for it on
+  16 Oct 2026 (case 6-1895000042089, 300 queries a minute). It signs in as a manager of the
+  profile, so it needs the one-time OAuth setup below.
+- **Places API (New)** (fallback): Google's five "most relevant" reviews. Used when the OAuth
+  secret is missing or the Business Profile call fails, so the section never goes blank.
 
 Until the function is deployed with a key, the site shows nothing in that section (only the
 "Leave a Google review" button), so the page is never broken.
 
-## One-time setup (owner)
+## Places API setup (owner, done)
 
 1. **Billing + API key.** In Google Cloud console, project `nagina-social-welfare-uk`:
    enable **Places API (New)**, then APIs & Services > Credentials > Create credentials >
@@ -29,16 +36,62 @@ Until the function is deployed with a key, the site shows nothing in that sectio
 4. Check `https://nagina-donations.web.app/googleReviews?campus=peterborough` returns
    `rating`, `count` and `reviews`, then reload `/peterborough/`.
 
+## Business Profile API setup (owner, done 16 Oct 2026)
+
+Done as below: the profile is `accounts/114532475424737784955/locations/14060717556184244161`,
+signed in as info@naginasocialwelfare.co.uk, OAuth client "googleReviews function".
+
+Do these in order: the function deploy fails until the secret in step 4 exists.
+
+1. **Enable the APIs.** Google Cloud console, project `nagina-social-welfare-uk`, APIs & Services
+   > Library. Enable all three (they appear only for approved projects):
+   - My Business Account Management API
+   - My Business Business Information API
+   - Google My Business API (the v4 API that serves reviews)
+2. **OAuth consent screen.** Google Auth Platform > Get started: app name "Nagina Social Welfare
+   website", support and contact email info@naginasocialwelfare.co.uk, audience **Internal**
+   (Workspace accounts only). Internal apps need no verification and their refresh tokens do
+   not expire after 7 days, so the profile manager must sign in with an
+   @naginasocialwelfare.co.uk account.
+3. **OAuth client.** APIs & Services > Credentials > Create credentials > OAuth client ID >
+   *Desktop app*, name "googleReviews function". Download the JSON. Keep it private; never commit it.
+4. **Sign in and save the secret.** Sign in to the Firebase CLI first (`firebase login --reauth`),
+   then run this and sign in with a Google account that is an **owner or manager of the
+   Peterborough Business Profile**. It lists the profiles that account manages, then saves
+   `GOOGLE_BUSINESS_PROFILE_OAUTH` (client id, client secret, refresh token) as a Firebase secret:
+
+   ```bash
+   node scripts/google-business-profile-token.mjs --client ~/Downloads/client_secret_XXX.json
+   ```
+
+   Delete the downloaded client JSON afterwards.
+5. **Deploy** the function:
+
+   ```bash
+   firebase deploy --only functions:donations:googleReviews
+   ```
+
+6. Check `https://nagina-donations.web.app/googleReviews?campus=peterborough` returns
+   `"source":"business-profile"` and all the reviews, then reload `/peterborough/`.
+
+If the response says `"source":"places"`, the function fell back: check the function log
+(`firebase functions:log --only googleReviews`) for the Business Profile error. If the profile
+manager leaves or the password changes, run step 4 again and redeploy.
+
 ## How it behaves
 
-- Shows the live rating and review count (all reviews count towards these) and up to five
-  written reviews. **Google's API returns at most five reviews, chosen by Google as "most
-  relevant"; it cannot return all of them or sort by newest.** "Read all reviews on Google"
-  opens the full list.
-- Google's terms do not allow storing Places content, so nothing is saved: the function keeps
-  a 30-minute in-memory copy and the CDN caches the response for an hour.
-- Reviews are shown as posted, with the author linked to their Google profile and a
-  "shown as posted on Google" note. Reviews with a rating but no text are not listed.
+- Shows the live rating and review count. With the Business Profile API it lists every written
+  review (up to 100), newest first, six at a time behind "Show all N reviews", with the
+  centre's reply under a review. With the Places fallback it shows Google's five "most
+  relevant". "Read all reviews on Google" opens the full list on Maps.
+- Dates are formatted in the page language from each review's publish time.
+- Nothing is saved: the function keeps a 30-minute in-memory copy and the CDN caches the
+  response for an hour (Google's Places terms do not allow storing its content).
+- Google's API policies: do not announce or imply a partnership with, or endorsement by,
+  Google because we use the Business Profile API.
+- Reviews are shown as posted (Google's machine translation is removed), with a "shown as
+  posted on Google" note. The author links to their Google profile only on the Places fallback;
+  the Business Profile API does not give that link. Anonymous reviewers show as "Google user". Reviews with a rating but no text are not listed.
 - No review or rating structured data is added to the page (Google disallows self-published
   review markup).
 
@@ -46,4 +99,6 @@ Until the function is deployed with a key, the site shows nothing in that sectio
 
 When Quran Academy Manchester has a Business Profile: add its review link and place id to
 `GOOGLE_PROFILES` in `src/app/config/centre-pages.config.ts`, and its `cid` and search text to
-`CAMPUS_PLACES` in `functions/src/googleReviewsCore.ts`, then redeploy the function.
+`CAMPUS_PLACES` in `functions/src/googleReviewsCore.ts`, then redeploy the function. The
+Business Profile path finds the location by that `cid`, so if the same Google account manages
+both profiles nothing else is needed.
