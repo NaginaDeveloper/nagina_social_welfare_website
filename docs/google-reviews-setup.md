@@ -36,7 +36,10 @@ Until the function is deployed with a key, the site shows nothing in that sectio
 4. Check `https://nagina-donations.web.app/googleReviews?campus=peterborough` returns
    `rating`, `count` and `reviews`, then reload `/peterborough/`.
 
-## Business Profile API setup (owner, one time)
+## Business Profile API setup (owner, done 16 Oct 2026)
+
+Done as below: the profile is `accounts/114532475424737784955/locations/14060717556184244161`,
+signed in as info@naginasocialwelfare.co.uk, OAuth client "googleReviews function".
 
 Do these in order: the function deploy fails until the secret in step 4 exists.
 
@@ -45,12 +48,11 @@ Do these in order: the function deploy fails until the secret in step 4 exists.
    - My Business Account Management API
    - My Business Business Information API
    - Google My Business API (the v4 API that serves reviews)
-2. **OAuth consent screen.** APIs & Services > OAuth consent screen (Google Auth Platform):
-   User type *External*, app name "Nagina Social Welfare website", support email
-   info@naginasocialwelfare.co.uk. Add the scope `https://www.googleapis.com/auth/business.manage`.
-   Then **Publish app** (set it to *In production*). While it is in *Testing*, Google expires the
-   refresh token after 7 days and the reviews quietly fall back to the Places API. An unverified
-   app is fine here: only we sign in, and Google shows a "not verified" warning you can continue past.
+2. **OAuth consent screen.** Google Auth Platform > Get started: app name "Nagina Social Welfare
+   website", support and contact email info@naginasocialwelfare.co.uk, audience **Internal**
+   (Workspace accounts only). Internal apps need no verification and their refresh tokens do
+   not expire after 7 days, so the profile manager must sign in with an
+   @naginasocialwelfare.co.uk account.
 3. **OAuth client.** APIs & Services > Credentials > Create credentials > OAuth client ID >
    *Desktop app*, name "googleReviews function". Download the JSON. Keep it private; never commit it.
 4. **Sign in and save the secret.** Sign in to the Firebase CLI first (`firebase login --reauth`),

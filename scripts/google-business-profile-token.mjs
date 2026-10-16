@@ -49,6 +49,7 @@ const code = await new Promise((resolve, reject) => {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(ok ? '<p>Signed in. You can close this tab and return to the terminal.</p>' : '<p>Sign-in failed.</p>');
     server.close();
+    server.closeAllConnections();
     ok ? resolve({ code: url.searchParams.get('code'), redirect: redirectUri }) : reject(new Error(url.searchParams.get('error') ?? 'bad state'));
   });
   let redirectUri = '';
