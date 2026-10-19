@@ -9,13 +9,6 @@ import {
   ASSISTANT_SEO,
   APPS_SEO,
   PORTALS_SEO,
-  GUIDES_SEO,
-  PARENT_PORTAL_MANUAL_SEO,
-  STUDENT_PORTAL_MANUAL_SEO,
-  COLLECTOR_PORTAL_MANUAL_SEO,
-  PARENT_PORTAL_VIDEO_SEO,
-  STUDENT_PORTAL_VIDEO_SEO,
-  COLLECTOR_PORTAL_VIDEO_SEO,
   BOOKS_SEO,
   CALENDAR_SEO,
   CONTACT_SEO,
@@ -340,66 +333,6 @@ const siteRoutes: Routes = [
     loadComponent: () => import('./pages/portals/portals-page').then((m) => m.PortalsPage),
     title: PORTALS_SEO.title,
     data: { seo: PORTALS_SEO },
-  },
-  {
-    path: 'guides',
-    loadComponent: () => import('./pages/guides/guides-page').then((m) => m.GuidesPage),
-    title: GUIDES_SEO.title,
-    data: { seo: GUIDES_SEO },
-  },
-  {
-    path: 'guides/parent-portal-manual',
-    loadComponent: () =>
-      import('./pages/guides/parent-portal-manual/parent-portal-manual-page').then(
-        (m) => m.ParentPortalManualPage,
-      ),
-    title: PARENT_PORTAL_MANUAL_SEO.title,
-    data: { seo: PARENT_PORTAL_MANUAL_SEO },
-  },
-  {
-    path: 'guides/student-portal-manual',
-    loadComponent: () =>
-      import('./pages/guides/student-portal-manual/student-portal-manual-page').then(
-        (m) => m.StudentPortalManualPage,
-      ),
-    title: STUDENT_PORTAL_MANUAL_SEO.title,
-    data: { seo: STUDENT_PORTAL_MANUAL_SEO },
-  },
-  {
-    path: 'guides/collector-portal-manual',
-    loadComponent: () =>
-      import('./pages/guides/collector-portal-manual/collector-portal-manual-page').then(
-        (m) => m.CollectorPortalManualPage,
-      ),
-    title: COLLECTOR_PORTAL_MANUAL_SEO.title,
-    data: { seo: COLLECTOR_PORTAL_MANUAL_SEO },
-  },
-  {
-    path: 'guides/parent-portal-video',
-    loadComponent: () =>
-      import('./pages/guides/parent-portal-video/parent-portal-video-page').then(
-        (m) => m.ParentPortalVideoPage,
-      ),
-    title: PARENT_PORTAL_VIDEO_SEO.title,
-    data: { seo: PARENT_PORTAL_VIDEO_SEO },
-  },
-  {
-    path: 'guides/student-portal-video',
-    loadComponent: () =>
-      import('./pages/guides/student-portal-video/student-portal-video-page').then(
-        (m) => m.StudentPortalVideoPage,
-      ),
-    title: STUDENT_PORTAL_VIDEO_SEO.title,
-    data: { seo: STUDENT_PORTAL_VIDEO_SEO },
-  },
-  {
-    path: 'guides/collector-portal-video',
-    loadComponent: () =>
-      import('./pages/guides/collector-portal-video/collector-portal-video-page').then(
-        (m) => m.CollectorPortalVideoPage,
-      ),
-    title: COLLECTOR_PORTAL_VIDEO_SEO.title,
-    data: { seo: COLLECTOR_PORTAL_VIDEO_SEO },
   },
   {
     path: 'events',

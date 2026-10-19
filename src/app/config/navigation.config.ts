@@ -237,7 +237,6 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
           labelKey: 'nav.section.parents',
           items: [
             { labelKey: 'nav.safeDropOff', path: '/safe-drop-off', hintKey: 'nav.safeDropOffHint', icon: 'privacy' },
-            { labelKey: 'nav.guides', path: '/guides', hintKey: 'nav.guidesHint', icon: 'guides' },
             { labelKey: 'nav.apps', path: '/apps', hintKey: 'nav.appsHint', icon: 'apps' },
           ],
         },
@@ -306,7 +305,6 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
       { labelKey: 'nav.applyOnline', path: '/apply', icon: 'contact' },
       { labelKey: 'nav.applyTrack', path: '/apply/track', icon: 'guides' },
       { labelKey: 'nav.madrasa', path: '/madrasa', icon: 'mosque' },
-      { labelKey: 'nav.guides', path: '/guides', icon: 'guides' },
       { labelKey: 'nav.apps', path: '/apps', icon: 'apps' },
       { labelKey: 'header.signIn', path: '/portals', icon: 'privacy' },
     ],

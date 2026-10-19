@@ -390,98 +390,6 @@ export const PORTALS_SEO: PageSeo = {
   priority: 0.7,
 };
 
-export const GUIDES_SEO: PageSeo = {
-  title: 'Portal Guides: Videos & Manuals | Nagina Social Welfare',
-  description:
-    'Video guides and user manuals for the Parent, Student and Collector portals: sign in, messages, fees, attendance, leave, charity box collections and more.',
-  path: '/guides/',
-  keywords:
-    'Parent Portal guide, Markaz Deen-e-Islam portal, Madrasa parent app help, student portal manual, Nagina guides',
-  image: `${SITE_ORIGIN}/guides/parent-portal-video/poster.jpg`,
-  type: 'website',
-  breadcrumb: 'Guides',
-  changefreq: 'monthly',
-  priority: 0.7,
-};
-
-export const PARENT_PORTAL_MANUAL_SEO: PageSeo = {
-  title: 'Parent Portal User Manual | Nagina Social Welfare',
-  description:
-    'Page-by-page guide to the NSW Parent Portal app and web portal: sign in, messages, fees, attendance, leave, daily checklist, Let’s Learn Islam and your profile. Peterborough and Manchester.',
-  path: '/guides/parent-portal-manual/',
-  keywords: 'Parent Portal manual, NSW Parent Portal app, Madrasa parent portal guide, Markaz Deen-e-Islam, Quran Academy Manchester',
-  image: '/guides/parent-portal-manual/screenshots/05-home.png',
-  type: 'article',
-  breadcrumb: 'Parent Portal manual',
-  changefreq: 'monthly',
-  priority: 0.6,
-};
-
-export const STUDENT_PORTAL_MANUAL_SEO: PageSeo = {
-  title: 'Student Portal User Manual | Nagina Social Welfare',
-  description:
-    'How students use the Student Portal: sign in, daily checklist, Let’s Learn Islam, rewards, messages, records, leave and profile. For Markaz Deen-e-Islam and Quran Academy.',
-  path: '/guides/student-portal-manual/',
-  keywords: 'Student Portal manual, Madrasa student portal, Let’s Learn Islam, daily checklist, Nagina Social Welfare',
-  image: '/guides/student-portal-manual/screenshots/05-home.png',
-  type: 'article',
-  breadcrumb: 'Student Portal manual',
-  changefreq: 'monthly',
-  priority: 0.6,
-};
-
-export const COLLECTOR_PORTAL_MANUAL_SEO: PageSeo = {
-  title: 'Collector Portal User Manual | Nagina Social Welfare',
-  description:
-    'How charity box collectors use the NSW Collector Portal app and web portal: find a box by number or QR code, Collect Cash, Send Receipt, My Collections and My Profile. For Peterborough and Manchester.',
-  path: '/guides/collector-portal-manual/',
-  keywords: 'Collector Portal manual, NSW Collector Portal, charity box collection app, Nagina Social Welfare',
-  image: '/guides/collector-portal-manual/screenshots/05-home.png',
-  type: 'article',
-  breadcrumb: 'Collector Portal manual',
-  changefreq: 'monthly',
-  priority: 0.6,
-};
-
-export const PARENT_PORTAL_VIDEO_SEO: PageSeo = {
-  title: 'Parent Portal Video Guide | Nagina Social Welfare',
-  description:
-    'A 5-minute video guide to the NSW Parent Portal for Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester): sign in, messages, fees, your child’s progress, leave, your details and the Android app.',
-  path: '/guides/parent-portal-video/',
-  keywords: 'Parent Portal video, Madrasa parent portal tutorial, NSW Parent Portal app, Nagina Social Welfare',
-  image: '/guides/parent-portal-video/poster.jpg',
-  type: 'article',
-  breadcrumb: 'Parent Portal video',
-  changefreq: 'monthly',
-  priority: 0.6,
-};
-
-export const STUDENT_PORTAL_VIDEO_SEO: PageSeo = {
-  title: 'Student Portal Video Guide | Nagina Social Welfare',
-  description:
-    'A 5-minute video guide to the Student Portal for Markaz Deen-e-Islam (Peterborough) and Quran Academy (Manchester): sign in, daily checklist, Let’s Learn Islam, rewards, messages, records, leave and My Space.',
-  path: '/guides/student-portal-video/',
-  keywords: 'Student Portal video, Madrasa student portal tutorial, Let’s Learn Islam, daily checklist, Nagina Social Welfare',
-  image: '/guides/student-portal-video/poster.jpg',
-  type: 'article',
-  breadcrumb: 'Student Portal video',
-  changefreq: 'monthly',
-  priority: 0.6,
-};
-
-export const COLLECTOR_PORTAL_VIDEO_SEO: PageSeo = {
-  title: 'Collector Portal Video Guide | Nagina Social Welfare',
-  description:
-    'A 4-minute video guide to the NSW Collector Portal for charity box collectors in Peterborough and Manchester: sign in, find a box by number or QR code, Collect Cash, Send Receipt, All Boxes, My Collections and the Android app.',
-  path: '/guides/collector-portal-video/',
-  keywords: 'Collector Portal video, NSW Collector Portal, charity box collection app tutorial, Nagina Social Welfare',
-  image: '/guides/collector-portal-video/poster.jpg',
-  type: 'article',
-  breadcrumb: 'Collector Portal video',
-  changefreq: 'monthly',
-  priority: 0.6,
-};
-
 export const EVENTS_SEO: PageSeo = {
   title: 'Events in Peterborough & Manchester | Nagina Social Welfare',
   description:
@@ -766,13 +674,6 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   SERMONS_SEO,
   APPS_SEO,
   PORTALS_SEO,
-  GUIDES_SEO,
-  PARENT_PORTAL_MANUAL_SEO,
-  STUDENT_PORTAL_MANUAL_SEO,
-  COLLECTOR_PORTAL_MANUAL_SEO,
-  PARENT_PORTAL_VIDEO_SEO,
-  STUDENT_PORTAL_VIDEO_SEO,
-  COLLECTOR_PORTAL_VIDEO_SEO,
   EVENTS_SEO,
   DONATE_SEO,
   APPEALS_SEO,
