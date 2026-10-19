@@ -16,8 +16,11 @@ describe('PORTAL_GUIDES', () => {
     }
   });
 
-  it('links the apps live on Google Play: parent, student and collector, not teacher yet', () => {
-    expect(PORTAL_GUIDES.filter((g) => g.appUrl).map((g) => g.id)).toEqual(['parent', 'student', 'collector']);
+  it('links every portal app on Google Play', () => {
+    expect(PORTAL_GUIDES.filter((g) => g.appUrl).map((g) => g.id)).toEqual(['parent', 'teacher', 'student', 'collector']);
+    expect(PORTAL_GUIDES.find((g) => g.id === 'teacher')?.appUrl).toBe(
+      'https://play.google.com/store/apps/details?id=com.learning.mdi_teacher_app',
+    );
   });
 
   it('gives every portal a manual and its PDF', () => {

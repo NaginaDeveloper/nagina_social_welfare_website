@@ -59,6 +59,7 @@ export const PORTAL_GUIDES: readonly PortalGuide[] = [
     manualUrl: '/guides/teacher-portal-manual/',
     pdfUrl: '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf',
     signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/teacher',
+    appUrl: 'https://play.google.com/store/apps/details?id=com.learning.mdi_teacher_app',
   },
   {
     id: 'student',

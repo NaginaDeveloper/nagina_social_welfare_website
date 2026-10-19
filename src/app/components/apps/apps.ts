@@ -10,7 +10,7 @@ interface AppLink {
   readonly description: string;
   readonly descriptionUr: string;
   readonly url: string;
-  readonly icon: 'parent' | 'student' | 'teacher' | 'charity';
+  readonly icon: 'parent' | 'student' | 'register' | 'teacher' | 'charity';
 }
 
 @Component({
@@ -45,6 +45,18 @@ export class Apps {
         'روزانہ چیک لسٹ پر نشان لگائیں، لیٹس لرن اسلام سے سیکھیں، ستارے اور بیجز جمع کریں، اور مدرسہ کے پیغامات پڑھیں۔ لاگ ان تفصیلات مدرسہ کا دفتر جاری کرتا ہے۔',
       url: 'https://play.google.com/store/apps/details?id=com.learning.mdi_student_app',
       icon: 'student',
+    },
+    {
+      id: 'mdi-teacher',
+      name: 'NSW Teacher Portal',
+      role: 'For Teachers',
+      roleUr: 'اساتذہ کے لیے',
+      description:
+        "Take the register, give extra or minus stars, receive fees, review leave, record incidents and activities, choose Star of the Week, and teach from Let's Learn Islam. Login details are issued by the madrasa office.",
+      descriptionUr:
+        'حاضری لگائیں، اضافی یا منفی ستارے دیں، فیس وصول کریں، چھٹی کی درخواستیں دیکھیں، واقعات اور سرگرمیاں درج کریں، ہفتے کا ستارہ چنیں، اور لیٹس لرن اسلام سے پڑھائیں۔ لاگ ان تفصیلات مدرسہ کا دفتر جاری کرتا ہے۔',
+      url: 'https://play.google.com/store/apps/details?id=com.learning.mdi_teacher_app',
+      icon: 'register',
     },
     {
       id: 'mdi',
