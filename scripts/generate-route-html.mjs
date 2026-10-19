@@ -320,7 +320,10 @@ const LEGACY_REDIRECTS = {
   // The portal guides were standalone HTML at the site root until October 2026.
   '/parent-portal-manual/': '/guides/parent-portal-manual/',
   '/student-portal-manual/': '/guides/student-portal-manual/',
-  '/teacher-portal-manual/': '/guides/teacher-portal-manual/',
+  '/teacher-portal-manual/': '/guides/',
+  // The Teacher Portal guide became staff-only (inside the portal) on 19 October 2026.
+  '/guides/teacher-portal-manual/': '/guides/',
+  '/guides/teacher-portal-video/': '/guides/',
   '/parent-portal-video/': '/guides/parent-portal-video/',
 };
 

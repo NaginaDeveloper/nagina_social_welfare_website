@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { PORTAL_GUIDES } from './portal-guides.config';
 
 describe('PORTAL_GUIDES', () => {
-  it('lists the parent, teacher, student and collector portals once each', () => {
-    expect(PORTAL_GUIDES.map((g) => g.id)).toEqual(['parent', 'teacher', 'student', 'collector']);
+  it('lists the parent, student and collector portals once each', () => {
+    expect(PORTAL_GUIDES.map((g) => g.id)).toEqual(['parent', 'student', 'collector']);
   });
 
   it('serves each video, poster and manual from the portal guide pages', () => {
@@ -16,11 +16,12 @@ describe('PORTAL_GUIDES', () => {
     }
   });
 
-  it('links every portal app on Google Play', () => {
-    expect(PORTAL_GUIDES.filter((g) => g.appUrl).map((g) => g.id)).toEqual(['parent', 'teacher', 'student', 'collector']);
-    expect(PORTAL_GUIDES.find((g) => g.id === 'teacher')?.appUrl).toBe(
-      'https://play.google.com/store/apps/details?id=com.learning.mdi_teacher_app',
-    );
+  it('links every public portal app on Google Play', () => {
+    expect(PORTAL_GUIDES.filter((g) => g.appUrl).map((g) => g.id)).toEqual(['parent', 'student', 'collector']);
+  });
+
+  it('keeps the staff-only Teacher guide off the public website', () => {
+    expect(PORTAL_GUIDES.some((g) => g.id === 'teacher')).toBe(false);
   });
 
   it('gives every portal a manual and its PDF', () => {

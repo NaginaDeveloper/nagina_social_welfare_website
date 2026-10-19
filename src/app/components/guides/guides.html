@@ -147,8 +147,15 @@
       }
     </div>
 
+    <p
+      class="mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-slate-warm"
+      [attr.dir]="i18n.isUr() ? 'rtl' : null"
+    >
+      {{ i18n.t('guides.teacherNote') }}
+    </p>
+
     <div
-      class="mx-auto mt-12 max-w-3xl rounded-2xl border border-gold/30 bg-white/80 p-5 text-center text-sm leading-relaxed text-slate-warm sm:p-6"
+      class="mx-auto mt-8 max-w-3xl rounded-2xl border border-gold/30 bg-white/80 p-5 text-center text-sm leading-relaxed text-slate-warm sm:p-6"
       [attr.dir]="i18n.isUr() ? 'rtl' : null"
     >
       <p class="font-semibold text-forest">{{ i18n.t('guides.helpTitle') }}</p>

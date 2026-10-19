@@ -1191,7 +1191,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
 
   'guides.eyebrow': 'Help & Guides',
   'guides.title': 'Portal Guides for',
-  'guides.titleAccent': 'Parents, Teachers, Students and Collectors',
+  'guides.titleAccent': 'Parents, Students and Collectors',
   'guides.lead':
     'Step-by-step videos and user manuals for the Madrasa and charity portals. Watch online, read the manual, or save the PDF to keep.',
   'guides.watch': 'Watch the video',
@@ -1203,6 +1203,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'guides.guideSoon': 'Video and manual coming soon',
   'guides.signIn': 'Sign in',
   'guides.app': 'Android app',
+  'guides.teacherNote': 'Teachers: your manual and video guide are inside the Teacher Portal and app. Sign in and open My Profile, then How to use the Teacher Portal.',
   'guides.helpTitle': 'Need Help?',
   'guides.help': 'Contact the Madrasa office:',
   'guides.appsLink': 'See All Our Mobile Apps',

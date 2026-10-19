@@ -43,25 +43,6 @@ export const PORTAL_GUIDES: readonly PortalGuide[] = [
     appUrl: 'https://play.google.com/store/apps/details?id=com.learning.mdi_parent_app',
   },
   {
-    id: 'teacher',
-    icon: 'teacher',
-    role: 'For Teachers',
-    roleUr: 'اساتذہ کے لیے',
-    name: 'Teacher Portal',
-    description:
-      'Take the register, receive fees, review leave, report incidents and behaviour, mark activities, choose Star of the Week, and teach from Let’s Learn Islam.',
-    descriptionUr:
-      'حاضری لگائیں، فیس وصول کریں، چھٹی کی درخواستیں دیکھیں، واقعات اور رویہ درج کریں، سرگرمیاں درج کریں، ہفتے کا ستارہ چنیں، اور لیٹس لرن اسلام سے پڑھائیں۔',
-    videoUrl: '/guides/teacher-portal-video/',
-    videoPoster: '/guides/teacher-portal-video/poster.jpg',
-    videoFile: '/guides/teacher-portal-video/Teacher-Portal-Guide.mp4',
-    videoLength: '6:05',
-    manualUrl: '/guides/teacher-portal-manual/',
-    pdfUrl: '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf',
-    signInUrl: 'https://admin.naginasocialwelfare.co.uk/login/teacher',
-    appUrl: 'https://play.google.com/store/apps/details?id=com.learning.mdi_teacher_app',
-  },
-  {
     id: 'student',
     icon: 'student',
     role: 'For Students',

@@ -1049,7 +1049,7 @@ export const TRANSLATIONS_UR: Record<string, string> = {
 
   'guides.eyebrow': 'مدد اور رہنمائی',
   'guides.title': 'پورٹل رہنمائی',
-  'guides.titleAccent': 'والدین، اساتذہ، طلبہ اور کلیکٹرز کے لیے',
+  'guides.titleAccent': 'والدین، طلبہ اور کلیکٹرز کے لیے',
   'guides.lead':
     'مدرسہ پورٹلز کے لیے مرحلہ وار ویڈیوز اور دستی کتابچے۔ آن لائن دیکھیں، کتابچہ پڑھیں، یا محفوظ رکھنے کے لیے پی ڈی ایف ڈاؤن لوڈ کریں۔',
   'guides.watch': 'ویڈیو دیکھیں',
@@ -1061,6 +1061,7 @@ export const TRANSLATIONS_UR: Record<string, string> = {
   'guides.guideSoon': 'ویڈیو اور کتابچہ جلد آ رہے ہیں',
   'guides.signIn': 'سائن ان',
   'guides.app': 'اینڈرائیڈ ایپ',
+  'guides.teacherNote': 'اساتذہ: آپ کا کتابچہ اور ویڈیو رہنمائی ٹیچر پورٹل اور ایپ کے اندر ہیں۔ سائن ان کریں اور My Profile میں How to use the Teacher Portal کھولیں۔',
   'guides.helpTitle': 'مدد چاہیے؟',
   'guides.help': 'مدرسہ کے دفتر سے رابطہ کریں:',
   'guides.appsLink': 'ہماری تمام موبائل ایپس دیکھیں',

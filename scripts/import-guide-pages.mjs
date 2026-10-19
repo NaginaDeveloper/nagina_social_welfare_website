@@ -36,12 +36,6 @@ const GUIDES = [
     title: 'Student Portal User Manual',
   },
   {
-    id: 'teacher-portal-manual',
-    kind: 'manual',
-    source: join(adminRepo, 'docs/teacher-portal-manual/index.html'),
-    title: 'Teacher Portal User Manual',
-  },
-  {
     id: 'collector-portal-manual',
     kind: 'manual',
     source: join(adminRepo, 'docs/collector-portal-manual/index.html'),
@@ -60,12 +54,6 @@ const GUIDES = [
     title: 'Student Portal Video Guide',
   },
   {
-    id: 'teacher-portal-video',
-    kind: 'video',
-    source: join(root, 'guide-sources/teacher-portal-video.html'),
-    title: 'Teacher Portal Video Guide',
-  },
-  {
     id: 'collector-portal-video',
     kind: 'video',
     source: join(root, 'guide-sources/collector-portal-video.html'),
@@ -77,15 +65,11 @@ const GUIDES = [
 const LINK_REWRITES = [
   ['https://www.naginasocialwelfare.co.uk/parent-portal-manual/', '/guides/parent-portal-manual/'],
   ['https://www.naginasocialwelfare.co.uk/student-portal-manual/', '/guides/student-portal-manual/'],
-  ['https://www.naginasocialwelfare.co.uk/teacher-portal-manual/', '/guides/teacher-portal-manual/'],
   ['https://www.naginasocialwelfare.co.uk/parent-portal-video/', '/guides/parent-portal-video/'],
   ['https://www.naginasocialwelfare.co.uk/guides/student-portal-video/', '/guides/student-portal-video/'],
-  ['https://www.naginasocialwelfare.co.uk/guides/teacher-portal-video/', '/guides/teacher-portal-video/'],
   ['https://www.naginasocialwelfare.co.uk/guides/collector-portal-video/', '/guides/collector-portal-video/'],
   ['../collector-portal-manual/Collector-Portal-User-Manual.pdf', '/guides/collector-portal-manual/Collector-Portal-User-Manual.pdf'],
   ['../collector-portal-manual/', '/guides/collector-portal-manual/'],
-  ['../teacher-portal-manual/Teacher-Portal-User-Manual.pdf', '/guides/teacher-portal-manual/Teacher-Portal-User-Manual.pdf'],
-  ['../teacher-portal-manual/', '/guides/teacher-portal-manual/'],
   ['../student-portal-manual/Student-Portal-User-Manual.pdf', '/guides/student-portal-manual/Student-Portal-User-Manual.pdf'],
   ['../student-portal-manual/', '/guides/student-portal-manual/'],
   ['https://www.naginasocialwelfare.co.uk/guides/', '/guides/'],
