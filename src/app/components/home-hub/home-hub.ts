@@ -285,16 +285,6 @@ export class HomeHub implements OnInit {
       keywords: ['apps', 'mobile', 'android'],
     },
     {
-      id: 'guides',
-      icon: 'guides',
-      labelKey: 'nav.guides',
-      hintKey: 'nav.guidesHint',
-      path: '/guides',
-      tone: 'default',
-      groupKey: 'hub.group.learn',
-      keywords: ['guide', 'manual', 'video', 'help', 'portal', 'parent', 'teacher', 'student', 'how to'],
-    },
-    {
       id: 'membership',
       icon: 'about',
       labelKey: 'nav.membership',

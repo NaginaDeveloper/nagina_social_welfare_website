@@ -10,6 +10,8 @@ interface AppLink {
   readonly description: string;
   readonly descriptionUr: string;
   readonly url: string;
+  /** Web portal sign-in, for iPhone and computers. */
+  readonly portalUrl: string;
   readonly icon: 'parent' | 'student' | 'register' | 'teacher' | 'charity';
 }
 
@@ -32,6 +34,7 @@ export class Apps {
       descriptionUr:
         'براہِ راست باخبر رہیں — اپنے بچے کی یومیہ حاضری اور فیس کے ریکارڈ دیکھیں۔ لاگ ان تفصیلات ادارہ جاری کرتا ہے۔',
       url: 'https://play.google.com/store/apps/details?id=com.learning.mdi_parent_app',
+      portalUrl: 'https://admin.naginasocialwelfare.co.uk/login/parent',
       icon: 'parent',
     },
     {
@@ -44,6 +47,7 @@ export class Apps {
       descriptionUr:
         'روزانہ چیک لسٹ پر نشان لگائیں، لیٹس لرن اسلام سے سیکھیں، ستارے اور بیجز جمع کریں، اور مدرسہ کے پیغامات پڑھیں۔ لاگ ان تفصیلات مدرسہ کا دفتر جاری کرتا ہے۔',
       url: 'https://play.google.com/store/apps/details?id=com.learning.mdi_student_app',
+      portalUrl: 'https://admin.naginasocialwelfare.co.uk/login/student',
       icon: 'student',
     },
     {
@@ -56,6 +60,7 @@ export class Apps {
       descriptionUr:
         'حاضری لگائیں، اضافی یا منفی ستارے دیں، فیس وصول کریں، چھٹی کی درخواستیں دیکھیں، واقعات اور سرگرمیاں درج کریں، ہفتے کا ستارہ چنیں، اور لیٹس لرن اسلام سے پڑھائیں۔ لاگ ان تفصیلات مدرسہ کا دفتر جاری کرتا ہے۔',
       url: 'https://play.google.com/store/apps/details?id=com.learning.mdi_teacher_app',
+      portalUrl: 'https://admin.naginasocialwelfare.co.uk/login/teacher',
       icon: 'register',
     },
     {
@@ -68,6 +73,7 @@ export class Apps {
       descriptionUr:
         'تعلیمی ادارے کے لیے محفوظ، کردار پر مبنی رسائی کے ساتھ کلاسز، طلبہ، اساتذہ، حاضری اور فیس کو ڈیجیٹل طور پر سنبھالیں۔',
       url: 'https://play.google.com/store/apps/details?id=com.education.markaz_e_deen_islam',
+      portalUrl: 'https://admin.naginasocialwelfare.co.uk/login/admin',
       icon: 'teacher',
     },
     {
@@ -80,6 +86,7 @@ export class Apps {
       descriptionUr:
         'خیراتی ڈبے کا کیو آر کوڈ اسکین کریں، وصولی درج کریں، رسید ٹیکسٹ کریں، اور اپنی وصولیوں کی تاریخ دیکھیں۔ لاگ ان تفصیلات دفتر جاری کرتا ہے۔',
       url: 'https://play.google.com/store/apps/details?id=com.naginaorganization.charity_collection_app',
+      portalUrl: 'https://admin.naginasocialwelfare.co.uk/login/collector',
       icon: 'charity',
     },
   ];

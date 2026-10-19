@@ -80,7 +80,6 @@ describe('App', () => {
       ['/books', '#books'],
       ['/sermons', '#sermons'],
       ['/apps', '#apps'],
-      ['/guides', '#guides'],
       ['/events', '#events'],
       ['/donate', '#donate'],
       ['/contact', '#contact'],

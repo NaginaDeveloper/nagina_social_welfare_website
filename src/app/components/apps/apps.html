@@ -87,13 +87,21 @@
               <span class="font-semibold">{{ i18n.t('apps.play') }}</span>
             </span>
           </a>
+          <a
+            [href]="app.portalUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-3 inline-flex items-center gap-3 rounded-xl border border-forest/25 px-4 py-3 font-semibold text-forest transition-colors duration-300 hover:border-forest hover:bg-forest/5"
+            [attr.aria-label]="'Open the ' + app.name + ' web portal (opens in a new tab)'"
+          >
+            <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path stroke-linecap="round" d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18" />
+            </svg>
+            <span [attr.dir]="i18n.isUr() ? 'rtl' : null">{{ i18n.t('apps.web') }}</span>
+          </a>
         </article>
       }
     </div>
-
-    <p class="mt-10 text-center text-sm text-slate-warm" [attr.dir]="i18n.isUr() ? 'rtl' : null">
-      {{ i18n.t('apps.guidesLead') }}
-      <a routerLink="/guides" class="font-semibold text-forest underline-offset-4 hover:underline">{{ i18n.t('apps.guidesLink') }}</a>
-    </p>
   </div>
 </section>

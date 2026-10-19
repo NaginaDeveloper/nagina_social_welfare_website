@@ -160,7 +160,7 @@ function injectSearchConsoleMeta(html) {
   );
 }
 
-/** Static HTML pages in public/ that are not Angular routes (none at present; the guides moved under /guides/). */
+/** Static HTML pages in public/ that are not Angular routes (none at present). */
 const STATIC_SITEMAP_PAGES = [];
 
 const URDU_PATHS = new Set(URDU_PAGE_PATHS);
@@ -317,11 +317,21 @@ const LEGACY_REDIRECTS = {
   '/contact-us/': '/contact/',
   '/privacy-policy/': '/privacy/',
   '/about-us/': '/about/',
-  // The portal guides were standalone HTML at the site root until October 2026.
-  '/parent-portal-manual/': '/guides/parent-portal-manual/',
-  '/student-portal-manual/': '/guides/student-portal-manual/',
-  '/teacher-portal-manual/': '/guides/teacher-portal-manual/',
-  '/parent-portal-video/': '/guides/parent-portal-video/',
+  // Portal guides were public until 19 October 2026; they now open inside each
+  // portal and app after sign-in, so every old guide address goes to the apps page.
+  '/parent-portal-manual/': '/apps/',
+  '/student-portal-manual/': '/apps/',
+  '/teacher-portal-manual/': '/apps/',
+  '/parent-portal-video/': '/apps/',
+  '/guides/': '/apps/',
+  '/guides/parent-portal-manual/': '/apps/',
+  '/guides/student-portal-manual/': '/apps/',
+  '/guides/teacher-portal-manual/': '/apps/',
+  '/guides/collector-portal-manual/': '/apps/',
+  '/guides/parent-portal-video/': '/apps/',
+  '/guides/student-portal-video/': '/apps/',
+  '/guides/teacher-portal-video/': '/apps/',
+  '/guides/collector-portal-video/': '/apps/',
 };
 
 for (const [from, to] of Object.entries(LEGACY_REDIRECTS)) {
