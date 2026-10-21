@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { isUrduPage, toUrduPath } from './i18n/urdu-routes';
+import { blogArticleSeoResolver } from './seo/blog-article-seo.resolver';
 import {
   ABOUT_SEO,
   APPEALS_SEO,
@@ -34,6 +35,8 @@ import {
   SAHABA_IKRAM_SEO,
   AULIA_KARAM_SEO,
   BASIC_BELIEFS_SEO,
+  BLOG_SEO,
+  TERMS_SEO,
   SERMONS_SEO,
   SEEDHA_RASTAH_SEO,
   SPIRITUAL_GUIDE_SEO,
@@ -377,6 +380,24 @@ const siteRoutes: Routes = [
     loadComponent: () => import('./pages/contact/contact-page').then((m) => m.ContactPage),
     title: CONTACT_SEO.title,
     data: { seo: CONTACT_SEO },
+  },
+  {
+    path: 'blog',
+    loadComponent: () => import('./pages/blog/blog-page').then((m) => m.BlogPage),
+    title: BLOG_SEO.title,
+    data: { seo: BLOG_SEO },
+  },
+  {
+    path: 'blog/:slug',
+    loadComponent: () =>
+      import('./pages/blog-article/blog-article-page').then((m) => m.BlogArticlePage),
+    resolve: { seo: blogArticleSeoResolver },
+  },
+  {
+    path: 'terms-and-conditions',
+    loadComponent: () => import('./pages/terms/terms-page').then((m) => m.TermsPage),
+    title: TERMS_SEO.title,
+    data: { seo: TERMS_SEO },
   },
   {
     path: 'privacy',

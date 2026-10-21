@@ -21,6 +21,11 @@ export interface PageSeo {
   readonly changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   /** Sitemap priority 0–1 when indexed. */
   readonly priority?: number;
+  /** Articles: publish and last-change times (ISO), topic and author for Open Graph and schema. */
+  readonly publishedTime?: string;
+  readonly modifiedTime?: string;
+  readonly section?: string;
+  readonly authorName?: string;
 }
 
 /** "/" -> "home", "/zakat/rules/" -> "zakat-rules". */
@@ -64,6 +69,8 @@ export const OG_CARD_SLUGS: readonly string[] = [
   'assistant',
   'contact',
   'privacy',
+  'terms-and-conditions',
+  'blog',
   'safeguarding',
 ];
 // OG_CARD_SLUGS:end
@@ -638,6 +645,71 @@ export const DONATE_THANKS_SEO: PageSeo = {
  * Include every public route that should get a crawlable shell.
  * Indexed pages (no robots noindex) are written to sitemap.xml at build time.
  */
+export const BLOG_SEO: PageSeo = {
+  title: 'Blog: Zakat, Sadaqah & Islamic Education | Nagina',
+  description:
+    'Articles on Zakat, Sadaqah, Islamic education and community life from Nagina Social Welfare UK, a charity with Madrasas in Peterborough and Manchester.',
+  path: '/blog/',
+  keywords:
+    'Islamic blog UK, Zakat guide UK, Sadaqah, Islamic education articles, Nagina Social Welfare blog',
+  type: 'website',
+  breadcrumb: 'Blog',
+  changefreq: 'weekly',
+  priority: 0.7,
+};
+
+/** Search-result title of an article: with the site name when it fits, else the title alone. */
+export function blogArticleTitle(title: string): string {
+  const full = `${title} | ${SITE_NAME} UK`;
+  return full.length <= 60 ? full : title;
+}
+
+/** Search, social and schema details of one published article. */
+export function blogArticleSeo(post: {
+  readonly slug: string;
+  readonly title: string;
+  readonly excerpt: string;
+  readonly topic: string;
+  readonly author: string;
+  readonly publishedAt: string;
+  readonly updatedAt?: string;
+  readonly image: { readonly url: string };
+}): PageSeo {
+  return {
+    title: blogArticleTitle(post.title),
+    description: post.excerpt || post.title,
+    path: `/blog/${post.slug}/`,
+    image: post.image.url,
+    type: 'article',
+    breadcrumb: post.title,
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt ?? post.publishedAt,
+    section: post.topic || undefined,
+    authorName: post.author || undefined,
+  };
+}
+
+/** Fallback for an article address before its own details load; real articles set their own tags. */
+export const BLOG_ARTICLE_SEO: PageSeo = {
+  title: 'Article | Nagina Social Welfare UK',
+  description: 'An article from the Nagina Social Welfare UK blog.',
+  path: '/blog/',
+  type: 'article',
+  breadcrumb: 'Article',
+  robots: 'noindex, follow',
+};
+
+export const TERMS_SEO: PageSeo = {
+  title: 'Terms & Conditions | Nagina Social Welfare UK',
+  description:
+    'The terms for using the Nagina Social Welfare UK website, our donation options and online services. Registered charity 1196514.',
+  path: '/terms-and-conditions/',
+  type: 'website',
+  breadcrumb: 'Terms & Conditions',
+  changefreq: 'yearly',
+  priority: 0.3,
+};
+
 export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   HOME_SEO,
   ABOUT_SEO,
@@ -681,6 +753,8 @@ export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   DONATE_THANKS_SEO,
   CONTACT_SEO,
   PRIVACY_SEO,
+  TERMS_SEO,
+  BLOG_SEO,
   SAFEGUARDING_SEO,
   SAFE_DROP_OFF_SEO,
 ];
