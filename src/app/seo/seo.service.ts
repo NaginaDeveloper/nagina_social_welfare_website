@@ -86,6 +86,7 @@ export class SeoService {
     this.upsertProperty('og:url', url);
     this.upsertProperty('og:image', image);
     this.upsertProperty('og:locale', urdu ? 'ur_PK' : 'en_GB');
+    this.setArticleMeta(seo);
 
     this.upsertName('twitter:card', 'summary_large_image');
     this.upsertName('twitter:title', seo.title);
@@ -135,6 +136,21 @@ export class SeoService {
       this.doc.head.appendChild(link);
     }
     link.setAttribute('href', url);
+  }
+
+  /** Open Graph article tags for blog posts; removed on every other page. */
+  private setArticleMeta(seo: PageSeo): void {
+    const article = seo.type === 'article';
+    const tags: readonly [string, string | undefined][] = [
+      ['article:published_time', article ? seo.publishedTime : undefined],
+      ['article:modified_time', article ? seo.modifiedTime : undefined],
+      ['article:section', article ? seo.section : undefined],
+      ['article:author', article ? seo.authorName : undefined],
+    ];
+    for (const [property, content] of tags) {
+      if (content) this.meta.updateTag({ property, content });
+      else this.meta.removeTag(`property='${property}'`);
+    }
   }
 
   /** hreflang pair for pages with an Urdu twin; removed again on pages without one. */
@@ -263,7 +279,15 @@ export class SeoService {
         description: seo.description,
         image: seo.image ?? DEFAULT_OG_IMAGE,
         mainEntityOfPage: { '@id': `${url}#webpage` },
-        author: { '@id': `${SITE_ORIGIN}/#organization` },
+        ...(seo.publishedTime ? { datePublished: seo.publishedTime } : {}),
+        ...(seo.modifiedTime || seo.publishedTime
+          ? { dateModified: seo.modifiedTime ?? seo.publishedTime }
+          : {}),
+        ...(seo.section ? { articleSection: seo.section } : {}),
+        author:
+          seo.authorName && seo.authorName !== ORGANIZATION.charityName
+            ? { '@type': 'Person', name: seo.authorName }
+            : { '@id': `${SITE_ORIGIN}/#organization` },
         publisher: { '@id': `${SITE_ORIGIN}/#organization` },
         inLanguage: 'en-GB',
       });

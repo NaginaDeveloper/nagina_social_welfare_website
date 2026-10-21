@@ -99,6 +99,7 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
           items: [
             { labelKey: 'nav.spiritualGuide', path: '/spiritual-guide', hintKey: 'nav.spiritualGuideHint', icon: 'guide' },
             { labelKey: 'nav.events', path: '/events', hintKey: 'nav.eventsHint', icon: 'events' },
+            { labelKey: 'nav.blog', path: '/blog', hintKey: 'nav.blogHint', icon: 'book' },
             { labelKey: 'nav.safeguarding', path: '/safeguarding', hintKey: 'nav.safeguardingHint', icon: 'shield' },
           ],
         },

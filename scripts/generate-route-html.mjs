@@ -176,12 +176,12 @@ function alternateLinks(englishPath) {
     <xhtml:link rel="alternate" hreflang="x-default" href="${en}"/>`;
 }
 
-function writeSitemap(lastmods = {}) {
+function writeSitemap(lastmods = {}, extraPages = []) {
   const indexed = PUBLIC_SEO_PAGES.filter(isIndexed);
   const urduPages = indexed
     .filter((page) => URDU_PATHS.has(page.path))
     .map((page) => ({ ...page, path: toUrduPath(page.path), englishPath: page.path }));
-  const urls = [...indexed.map((p) => ({ ...p, englishPath: p.path })), ...urduPages, ...STATIC_SITEMAP_PAGES]
+  const urls = [...indexed.map((p) => ({ ...p, englishPath: p.path })), ...urduPages, ...STATIC_SITEMAP_PAGES, ...extraPages]
     .map((page) => {
       const loc = escapeXml(canonicalUrl(page.path));
       const changefreq = page.changefreq ?? 'monthly';
@@ -208,7 +208,7 @@ ${body}
   if (existsSync(outDir)) {
     writeFileSync(join(outDir, 'sitemap.xml'), xml);
   }
-  console.log(`SEO sitemap: ${indexed.length} indexed URLs + ${urduPages.length} Urdu twins`);
+  console.log(`SEO sitemap: ${indexed.length} indexed URLs + ${urduPages.length} Urdu twins + ${extraPages.length} articles`);
 }
 
 if (!existsSync(join(outDir, 'index.html'))) {
@@ -357,7 +357,34 @@ for (const [from, to] of Object.entries(LEGACY_REDIRECTS)) {
   console.log(`SEO redirect: ${from} -> ${to}`);
 }
 
-writeSitemap(lastmods);
+// Blog articles come from the admin panel's Website Blog; each published one gets a sitemap entry.
+const BLOG_CATALOG_URL =
+  'https://firebasestorage.googleapis.com/v0/b/nagina-social-welfare-uk.firebasestorage.app/o/blog%2Fcatalog.json?alt=media';
+
+async function loadBlogPosts() {
+  try {
+    const res = await fetch(BLOG_CATALOG_URL, { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const body = await res.json();
+    return (body.posts ?? []).filter((p) => p.slug && p.title && p.image?.url && p.publishedAt);
+  } catch (err) {
+    console.warn(`SEO blog: could not read the article catalog (${err.message}); no article URLs in the sitemap`);
+    return [];
+  }
+}
+
+const blogPosts = await loadBlogPosts();
+const blogPages = [];
+for (const post of blogPosts) {
+  const path = `/blog/${post.slug}/`;
+  if (!existsSync(join(outDir, 'blog', post.slug, 'index.html'))) {
+    console.warn(`SEO blog: ${path} was not prerendered; it will load in the browser only`);
+  }
+  lastmods[path] = String(post.updatedAt ?? post.publishedAt).slice(0, 10);
+  blogPages.push({ path, changefreq: 'monthly', priority: 0.6 });
+}
+
+writeSitemap(lastmods, blogPages);
 
 // SPA fallback for client-side routes / deep links
 copyFileSync(existsSync(csrPath) ? csrPath : join(outDir, 'index.html'), join(outDir, '404.html'));
