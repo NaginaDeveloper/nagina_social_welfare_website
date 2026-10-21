@@ -52,14 +52,14 @@ export class OurWork {
       description:
         'Nurturing the next generation in the knowledge and love of Islam. Through structured classes, dedicated teachers and a caring environment, we guide students of every age in the Qur\u2019an and the Islamic sciences.',
       descriptionUr:
-        'اگلی نسل کو علمِ اسلام اور محبتِ دین کی پرورش۔ منظم کلاسز، محنتی اساتذہ اور شفیق ماحول کے ساتھ ہر عمر کے طلبہ کو قرآن اور اسلامی علوم کی راہ دکھاتے ہیں۔',
+        'اگلی نسل کو علمِ اسلام اور محبتِ دین کی پرورش۔ منظم کلاسز، محنتی اساتذہ اور شفیق ماحول کے ساتھ ہر عمر کے طلبہ کو قرآنِ مجید اور اسلامی علوم کی راہ دکھاتے ہیں۔',
       highlights: [
         "Qur'an & Islamic Studies",
         'Structured Classes',
         'Dedicated Teachers',
         'Progress & Attendance',
       ],
-      highlightsUr: ['قرآن و اسلامی تعلیم', 'منظم کلاسز', 'محنتی اساتذہ', 'پیش رفت و حاضری'],
+      highlightsUr: ['قرآنِ مجید و اسلامی تعلیم', 'منظم کلاسز', 'محنتی اساتذہ', 'پیش رفت و حاضری'],
       logo: '/brand/markaz-256.webp',
     },
     {

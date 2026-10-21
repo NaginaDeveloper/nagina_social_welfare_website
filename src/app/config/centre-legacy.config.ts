@@ -79,7 +79,7 @@ export const LEGACY = {
     {
       icon: 'quran' as UiIconName,
       title: 'Qur’an, Fiqh and Islamic teachings',
-      text: 'Thousands of children have had the opportunity to learn the Qur’an, Fiqh and Islamic teachings.',
+      text: 'Thousands of children have had the opportunity to learn the Holy Qur’an, Fiqh and Islamic teachings.',
     },
     {
       icon: 'learn' as UiIconName,
@@ -92,7 +92,7 @@ export const LEGACY = {
 } as const;
 
 export const PURPOSE = [
-  'Our purpose is not simply to teach children to read the Qur’an. We aspire to nurture a generation that understands the Qur’an, lives by its teachings and reflects its values through beautiful character and conduct.',
+  'Our purpose is not simply to teach children to read the Holy Qur’an. We aspire to nurture a generation that understands the Holy Qur’an, lives by its teachings and reflects its values through beautiful character and conduct.',
   'We believe that when knowledge enters the heart and is reflected in character, it becomes a source of benefit for the individual, the family and the wider community.',
 ] as const;
 
@@ -110,8 +110,8 @@ export const COMMITMENT = {
 
 export function duaText(centreName: string): readonly string[] {
   return [
-    `We pray that ${centreName} becomes a sadaqah jariyah — a continuous source of benefit — by nurturing generations who carry the Qur’an in their hearts, embody the Sunnah in their character and dedicate themselves to serving humanity.`,
-    'Our inspiration comes from the Qur’an, the Sunnah and the legacy of scholars who dedicated their lives to spreading knowledge and serving the Ummah.',
+    `We pray that ${centreName} becomes a sadaqah jariyah — a continuous source of benefit — by nurturing generations who carry the Holy Qur’an in their hearts, embody the Sunnah in their character and dedicate themselves to serving humanity.`,
+    'Our inspiration comes from the Holy Qur’an, the Sunnah and the legacy of scholars who dedicated their lives to spreading knowledge and serving the Ummah.',
     'May Allah ﷻ accept this humble effort, bless our teachers and students, preserve the legacy of our scholars, and allow future generations to carry the light of Qur’an and Sunnah forward. Ameen.',
   ];
 }
