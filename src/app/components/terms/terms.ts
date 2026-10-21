@@ -38,7 +38,7 @@ export class Terms {
     {
       title: 'Religious and educational content',
       body: [
-        'Articles, pages, books, sermons and other material on this website are shared in good faith for education and reflection, in line with the beliefs of the charity. They are general information, not a fatwa and not a substitute for advice on your own situation. For a ruling that applies to you, please ask a qualified scholar.',
+        'Articles, pages, books, sermons and other material on this website are shared in good faith for education and reflection, in line with the beliefs of the charity. They are general information, not a fatwa and not a substitute for advice on your own situation. For a ruling that applies to you, please respectfully consult a qualified scholar.',
         'Tools such as the Zakat calculator, prayer times and the Islamic calendar give estimates based on the figures and methods stated on those pages. Please check them against your own circumstances, and confirm congregation (jamat) times with the centre.',
       ],
     },
@@ -61,13 +61,13 @@ export class Terms {
     {
       title: 'Links and third-party services',
       body: [
-        'This website links to, and loads content from, other services, for example YouTube, TikTok, Google Maps, payment providers and sources of Quran, Hadith and prayer-time data. We do not control those services and are not responsible for their content or availability.',
+        'This website links to, and loads content from, other services, for example YouTube, TikTok, Google Maps, payment providers and sources of Holy Qur’an, Hadith and prayer-time data. We do not control those services and are not responsible for their content or availability.',
       ],
     },
     {
       title: 'Ownership of content',
       body: [
-        'The website, its design, text, images and the Nagina Social Welfare name and logos belong to the charity or are used with permission. Quran, Hadith and other source texts remain the property of their respective publishers and providers. You may view and share links to our pages for personal and non-commercial use. Please ask us before copying or republishing our material elsewhere.',
+        'The website, its design, text, images and the Nagina Social Welfare name and logos belong to the charity or are used with permission. The Holy Qur’an, Hadith and other source texts remain the property of their respective publishers and providers. You may view and share links to our pages for personal and non-commercial use. Please ask us before copying or republishing our material elsewhere.',
       ],
     },
     {
@@ -110,7 +110,7 @@ export class Terms {
     {
       title: 'دینی اور تعلیمی مواد',
       body: [
-        'اس ویب سائٹ پر موجود مضامین، صفحات، کتابیں، خطبات اور دیگر مواد چیریٹی کے عقائد کے مطابق، نیک نیتی سے تعلیم اور غور و فکر کے لیے پیش کیے گئے ہیں۔ یہ عمومی معلومات ہیں، فتویٰ نہیں، اور آپ کے اپنے معاملے کے مشورے کا بدل نہیں۔ اپنے معاملے کے حکم کے لیے براہِ کرم کسی مستند عالم سے پوچھیں۔',
+        'اس ویب سائٹ پر موجود مضامین، صفحات، کتابیں، خطبات اور دیگر مواد چیریٹی کے عقائد کے مطابق، نیک نیتی سے تعلیم اور غور و فکر کے لیے پیش کیے گئے ہیں۔ یہ عمومی معلومات ہیں، فتویٰ نہیں، اور آپ کے اپنے معاملے کے مشورے کا بدل نہیں۔ اپنے معاملے کے حکم کے لیے براہِ کرم کسی مستند عالمِ دین سے ادب کے ساتھ رجوع فرمائیں۔',
         'زکوٰۃ کیلکولیٹر، نمازوں کے اوقات اور اسلامی کیلنڈر جیسے ٹولز ان صفحات پر بیان کردہ اعداد و شمار اور طریقوں کی بنیاد پر اندازے دیتے ہیں۔ براہِ کرم انہیں اپنے حالات کے مطابق جانچ لیں، اور جماعت کے اوقات مرکز سے تصدیق کر لیں۔',
       ],
     },
@@ -133,13 +133,13 @@ export class Terms {
     {
       title: 'روابط اور تیسرے فریق کی خدمات',
       body: [
-        'یہ ویب سائٹ دیگر خدمات سے جڑتی ہے اور ان سے مواد لوڈ کرتی ہے، مثلاً یوٹیوب، ٹک ٹاک، گوگل میپس، ادائیگی فراہم کرنے والے، اور قرآن، حدیث اور نمازوں کے اوقات کے ذرائع۔ ہم ان خدمات کو کنٹرول نہیں کرتے اور ان کے مواد یا دستیابی کے ذمہ دار نہیں ہیں۔',
+        'یہ ویب سائٹ دیگر خدمات سے جڑتی ہے اور ان سے مواد لوڈ کرتی ہے، مثلاً یوٹیوب، ٹک ٹاک، گوگل میپس، ادائیگی فراہم کرنے والے، اور قرآنِ مجید، احادیثِ مبارکہ اور نمازوں کے اوقات کے ذرائع۔ ہم ان خدمات کو کنٹرول نہیں کرتے اور ان کے مواد یا دستیابی کے ذمہ دار نہیں ہیں۔',
       ],
     },
     {
       title: 'مواد کی ملکیت',
       body: [
-        'ویب سائٹ، اس کا ڈیزائن، تحریریں، تصاویر اور نگینہ سوشل ویلفیئر کا نام اور لوگو چیریٹی کی ملکیت ہیں یا اجازت سے استعمال ہو رہے ہیں۔ قرآن، حدیث اور دیگر ماخذی متون اپنے اپنے ناشرین اور فراہم کنندگان کی ملکیت رہتے ہیں۔ آپ ذاتی اور غیر تجارتی استعمال کے لیے ہمارے صفحات دیکھ سکتے ہیں اور ان کے لنک شیئر کر سکتے ہیں۔ ہمارا مواد کہیں اور نقل یا دوبارہ شائع کرنے سے پہلے براہِ کرم ہم سے اجازت لیں۔',
+        'ویب سائٹ، اس کا ڈیزائن، تحریریں، تصاویر اور نگینہ سوشل ویلفیئر کا نام اور لوگو چیریٹی کی ملکیت ہیں یا اجازت سے استعمال ہو رہے ہیں۔ قرآنِ مجید، احادیثِ مبارکہ اور دیگر ماخذی متون اپنے اپنے ناشرین اور فراہم کنندگان کی ملکیت رہتے ہیں۔ آپ ذاتی اور غیر تجارتی استعمال کے لیے ہمارے صفحات دیکھ سکتے ہیں اور ان کے لنک شیئر کر سکتے ہیں۔ ہمارا مواد کہیں اور نقل یا دوبارہ شائع کرنے سے پہلے براہِ کرم ہم سے اجازت لیں۔',
       ],
     },
     {
