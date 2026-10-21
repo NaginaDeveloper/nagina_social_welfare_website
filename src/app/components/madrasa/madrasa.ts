@@ -82,9 +82,9 @@ export class Madrasa implements OnInit {
   protected readonly offerings: readonly Offering[] = [
     {
       title: 'Quran & Tajweed',
-      titleUr: 'قرآن اور تجوید',
+      titleUr: 'قرآنِ مجید اور تجوید',
       text: 'Structured Qur’an reading and recitation, with caring teachers and clear progress.',
-      textUr: 'منظم قرآن خوانی اور تجوید، شفیق اساتذہ اور واضح پیش رفت کے ساتھ۔',
+      textUr: 'منظم قرآنِ مجید خوانی اور تجوید، شفیق اساتذہ اور واضح پیش رفت کے ساتھ۔',
     },
     {
       title: 'Islamic Teachings',

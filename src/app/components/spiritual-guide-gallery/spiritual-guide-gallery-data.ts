@@ -147,16 +147,16 @@ export const SPIRITUAL_GUIDE_PHOTOS: readonly SpiritualGuidePhoto[] = [
   {
     id: 'tafsir-reading',
     src: '/gallery/munir/17-tafsir-reading.jpg',
-    alt: 'Allama Munir Ahmed Yusufi reading during Tafsir of the Quran',
+    alt: 'Allama Munir Ahmed Yusufi reading during Tafsir of the Holy Quran',
     caption: 'Tafsir — reading',
     captionUr: 'تفسیر — تلاوت',
   },
   {
     id: 'quran',
     src: '/gallery/munir/18-quran.jpg',
-    alt: 'Allama Munir Ahmed Yusufi reading from the Quran',
-    caption: 'With the Quran',
-    captionUr: 'قرآن کے ساتھ',
+    alt: 'Allama Munir Ahmed Yusufi reading from the Holy Quran',
+    caption: 'With the Holy Quran',
+    captionUr: 'قرآنِ مجید کے ساتھ',
   },
   {
     id: 'tafsir-teaching',
@@ -224,7 +224,7 @@ export const SPIRITUAL_GUIDE_SAYINGS: readonly SpiritualGuidePhoto[] = [
   {
     id: 'saying-love-enemies',
     src: '/gallery/munir-sayings/02-love-enemies.webp',
-    alt: 'Saying of Muneer-ul-Islam RA: The Messenger of Allah would show love even to his mortal enemies, yet we desert even our dearest friends',
+    alt: 'Saying of Muneer-ul-Islam RA: The Messenger of Allah ﷺ would show love even to his mortal enemies, yet we desert even our dearest friends',
     caption:
       'The Messenger of Allah ﷺ would show love even to his mortal enemies, yet we desert even our dearest friends.',
     captionUr:

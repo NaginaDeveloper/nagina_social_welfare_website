@@ -416,7 +416,7 @@ export class HomeHub implements OnInit {
     width: i % 2 === 0 ? 7 : 4.5,
   }));
 
-  /** Small gold stars that twinkle around the Qur'an. */
+  /** Small gold stars that twinkle around the Holy Qur'an. */
   protected readonly quranStars = [
     { x: 92, y: 62, s: 0.9, delay: '0s' },
     { x: 318, y: 48, s: 0.7, delay: '1.2s' },
@@ -425,7 +425,7 @@ export class HomeHub implements OnInit {
     { x: 262, y: 18, s: 0.5, delay: '1.7s' },
   ];
 
-  /** Specks of light that rise from the Qur'an's pages. */
+  /** Specks of light that rise from the Holy Qur'an's pages. */
   protected readonly quranSparks = [
     { x: 168, r: 2.2, delay: '0s', duration: '4.2s' },
     { x: 186, r: 1.6, delay: '1.1s', duration: '3.6s' },

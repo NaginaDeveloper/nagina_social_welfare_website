@@ -1045,7 +1045,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
     'Belief in the absolute finality of the Prophethood of Muhammad ﷺ is not merely a doctrine; it is the cornerstone of Islamic faith, the seal of divine guidance, and the eternal bond unifying the global Muslim community (Ummah).',
   'khatme.caption': 'Finality of Prophethood — the Seal of the Prophets ﷺ',
   'khatme.body1':
-    'Allah Almighty declared the completion of His message to humanity through the Last of the Prophets. Through Prophet Muhammad ﷺ, divine revelation reached its pinnacle. The religion was perfected, the Quran preserved for all time, and the path to righteousness forever illuminated.',
+    'Allah Almighty declared the completion of His message to humanity through the Last of the Prophets. Through Prophet Muhammad ﷺ, divine revelation reached its pinnacle. The religion was perfected, the Holy Quran preserved for all time, and the path to righteousness forever illuminated.',
   'khatme.body2':
     'The Messenger of Allah ﷺ affirmed this fundamental truth in explicit terms — completing the house of prophethood as its final brick, and leaving no prophet after him.',
   'khatme.whyEyebrow': 'Why It Matters',
@@ -1057,7 +1057,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'ahle.eyebrow': 'Ahl al-Bayt — the Blessed Household',
   'ahle.title': 'The Elevated Status of',
   'ahle.titleAccent': 'Ahl al-Bayt',
-  'ahle.subtitle': 'In the Light of the Quran and Sunnah — a Sunni Perspective',
+  'ahle.subtitle': 'In the Light of the Holy Quran and Sunnah — a Sunni Perspective',
   'ahle.lead':
     'In Sunni Islamic theology (Ahl al-Sunnah wa’l-Jamā‘ah), the love, honor, and reverence for the noble family of the Prophet Muhammad ﷺ — known as the Ahl al-Bayt (the Blessed Household) — forms an indispensable pillar of faith. True devotion to the Messenger of Allah ﷺ is incomplete without sincere affection, respect, and loyalty toward his sanctified family and descendants.',
   'ahle.tathirCaption': 'Allah describes the purity of Ahl al-Bayt',
@@ -1067,14 +1067,14 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'sahaba.title': 'Belief Regarding the',
   'sahaba.titleAccent': 'Companions (Sahabah)',
   'sahaba.lead':
-    'According to the consensus of Sunni Islam (Ahl al-Sunnah wal-Jama’ah), all Companions (Sahabah) of the Messenger of Allah ﷺ (peace be upon him) are considered upright (‘adil), sincere, and the noble generation of the Muslim community (Ummah). Loving and respecting them is regarded as an integral part of Islamic faith.',
+    'According to the consensus of Sunni Islam (Ahl al-Sunnah wal-Jama’ah), all Companions (Sahabah) of the Messenger of Allah ﷺ are considered upright (‘adil), sincere, and the noble generation of the Muslim community (Ummah). Loving and respecting them is regarded as an integral part of Islamic faith.',
   'sahaba.caption': 'Love for the Companions of the Prophet ﷺ is part of faith',
 
   'aulia.eyebrow': 'Friends of Allah',
   'aulia.title': 'Belief Regarding the',
   'aulia.titleAccent': 'Awliya Allah',
   'aulia.lead':
-    'According to the consensus of Ahl al-Sunnah wal-Jama’ah, the Awliya Allah are the righteous friends of Allah — honoured through faith, God-consciousness (taqwa), and sincere obedience. Loving and respecting them is part of authentic Sunni spirituality, always within the bounds of the Quran and Sunnah.',
+    'According to the consensus of Ahl al-Sunnah wal-Jama’ah, the Awliya Allah are the righteous friends of Allah — honoured through faith, God-consciousness (taqwa), and sincere obedience. Loving and respecting them is part of authentic Sunni spirituality, always within the bounds of the Holy Quran and Sunnah.',
   'aulia.caption': 'The Awliya Allah — no fear upon them, nor shall they grieve',
 
   'beliefs.eyebrow': 'Creed (Aqidah)',
@@ -1338,7 +1338,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'aulia.creedEyebrow': 'Sunni Creed',
   'aulia.creedTitle': 'What Ahl al-Sunnah Believes About',
   'aulia.creedAccent': 'Awliya Allah',
-  'aulia.closing': 'In summary, the Awliya are beloved servants of Allah — role models of piety whose lives inspire us toward worship, humility, and steadfastness upon the path of Quran and Sunnah. Love them, learn from them, and always keep Allah alone as the source of all help and wilayah.',
+  'aulia.closing': 'In summary, the Awliya are beloved servants of Allah Ta’ala — role models of piety whose lives inspire us toward worship, humility, and steadfastness upon the path of Quran and Sunnah. Love them, learn from them, and always keep Allah alone as the source of all help and wilayah.',
 
   'related.heading': 'Related Pages',
   'related.lead': 'Continue with a useful next step.',

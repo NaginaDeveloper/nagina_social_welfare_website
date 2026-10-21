@@ -26,10 +26,10 @@ export class SahabaIkram {
       lead: 'Ahl al-Sunnah holds that God expressed His pleasure with the Sahabah and promised them Paradise.',
       leadUr: 'اہلِ سنت کا عقیدہ ہے کہ اللہ تعالیٰ نے صحابہ سے اپنی رضا کا اظہار فرمایا اور انہیں جنت کا وعدہ دیا۔',
       details: [
-        'Quranic foundation: The Quran praises the early migrants (Muhajirun), the helpers of Madinah (Ansar), and those who followed them in righteousness, declaring that God is pleased with them and they are pleased with Him (e.g., Surah At-Tawbah 9:100, Surah Al-Hadid 57:10).',
+        'Quranic foundation: The Holy Quran praises the early migrants (Muhajirun), the helpers of Madinah (Ansar), and those who followed them in righteousness, declaring that God is pleased with them and they are pleased with Him (e.g., Surah At-Tawbah 9:100, Surah Al-Hadid 57:10).',
       ],
       detailsUr: [
-        'قرآنی بنیاد: قرآن مہاجرین، انصار، اور جو نیکی میں ان کی پیروی کریں ان کی تعریف کرتا ہے، اور فرماتا ہے کہ اللہ ان سے راضی ہے اور وہ اللہ سے راضی ہیں (مثلاً سورۃ التوبہ ۹:۱۰۰، سورۃ الحدید ۵۷:۱۰)۔',
+        'قرآنی بنیاد: قرآنِ مجید مہاجرین، انصار، اور جو نیکی میں ان کی پیروی کریں ان کی تعریف کرتا ہے، اور فرماتا ہے کہ اللہ تعالیٰ ان سے راضی ہے اور وہ اللہ تعالیٰ سے راضی ہیں (مثلاً سورۃ التوبہ ۹:۱۰۰، سورۃ الحدید ۵۷:۱۰)۔',
       ],
     },
     {
