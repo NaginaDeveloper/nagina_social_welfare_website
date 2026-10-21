@@ -282,12 +282,18 @@
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/terms-and-conditions/</loc>
     <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/terms-and-conditions/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/terms-and-conditions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/terms-and-conditions/"/>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/blog/</loc>
     <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/blog/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/blog/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -493,21 +499,75 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.naginasocialwelfare.co.uk/ur/terms-and-conditions/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/terms-and-conditions/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/terms-and-conditions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/terms-and-conditions/"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/ur/blog/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/blog/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/blog/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.naginasocialwelfare.co.uk/blog/why-islamic-education-matters-for-children-in-the-uk/</loc>
     <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/blog/why-islamic-education-matters-for-children-in-the-uk/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/blog/why-islamic-education-matters-for-children-in-the-uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/blog/why-islamic-education-matters-for-children-in-the-uk/"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/ur/blog/why-islamic-education-matters-for-children-in-the-uk/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/blog/why-islamic-education-matters-for-children-in-the-uk/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/blog/why-islamic-education-matters-for-children-in-the-uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/blog/why-islamic-education-matters-for-children-in-the-uk/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.naginasocialwelfare.co.uk/blog/why-sadaqah-matters-small-acts-that-add-up/</loc>
     <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/blog/why-sadaqah-matters-small-acts-that-add-up/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/blog/why-sadaqah-matters-small-acts-that-add-up/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/blog/why-sadaqah-matters-small-acts-that-add-up/"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.naginasocialwelfare.co.uk/ur/blog/why-sadaqah-matters-small-acts-that-add-up/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/blog/why-sadaqah-matters-small-acts-that-add-up/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/blog/why-sadaqah-matters-small-acts-that-add-up/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/blog/why-sadaqah-matters-small-acts-that-add-up/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.naginasocialwelfare.co.uk/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/</loc>
     <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/ur/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.naginasocialwelfare.co.uk/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/"/>
+    <xhtml:link rel="alternate" hreflang="ur" href="https://www.naginasocialwelfare.co.uk/ur/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naginasocialwelfare.co.uk/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

@@ -1,6 +1,6 @@
 {
   "/": {
-    "hash": "799c945f093838f2",
+    "hash": "e6f5d3e464b8aeab",
     "lastmod": "2026-10-21"
   },
   "/about/": {
@@ -80,11 +80,11 @@
     "lastmod": "2026-10-21"
   },
   "/namaz/": {
-    "hash": "174b058512f0a64e",
+    "hash": "7b992d540d17ad00",
     "lastmod": "2026-10-21"
   },
   "/zakat/": {
-    "hash": "87efede5cc211a58",
+    "hash": "d37ef2655337eb7a",
     "lastmod": "2026-10-21"
   },
   "/zakat/what-is-zakat/": {
@@ -184,7 +184,7 @@
     "lastmod": "2026-10-21"
   },
   "/ur/": {
-    "hash": "999f3748b542473f",
+    "hash": "725f3442407ec0ce",
     "lastmod": "2026-10-21"
   },
   "/ur/about/": {
@@ -252,7 +252,7 @@
     "lastmod": "2026-10-21"
   },
   "/ur/namaz/": {
-    "hash": "a02424ddf4cf5b8b",
+    "hash": "df6995592efec394",
     "lastmod": "2026-10-21"
   },
   "/ur/duas/": {
@@ -265,6 +265,14 @@
   },
   "/ur/contact/": {
     "hash": "1221e8c0cf9d70a5",
+    "lastmod": "2026-10-21"
+  },
+  "/ur/blog/": {
+    "hash": "74a385ac68e8c0fd",
+    "lastmod": "2026-10-21"
+  },
+  "/ur/terms-and-conditions/": {
+    "hash": "aea242596524cace",
     "lastmod": "2026-10-21"
   }
 }
