@@ -492,4 +492,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/blog/why-islamic-education-matters-for-children-in-the-uk/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/blog/why-sadaqah-matters-small-acts-that-add-up/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.naginasocialwelfare.co.uk/blog/zakat-in-the-uk-who-pays-what-counts-and-how-to-give/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
