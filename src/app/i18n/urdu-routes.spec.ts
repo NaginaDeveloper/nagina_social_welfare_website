@@ -33,6 +33,14 @@ describe('urdu-routes', () => {
     expect(isUrduPage('/ur/donate/')).toBe(false);
   });
 
+  it('treats every blog article address as a possible Urdu twin', () => {
+    expect(isUrduPage('/blog/')).toBe(true);
+    expect(isUrduPage('/blog/zakat-in-the-uk')).toBe(true);
+    expect(isUrduPage('/blog/a/b/')).toBe(false);
+    expect(toUrduPath('/blog/zakat-in-the-uk/')).toBe('/ur/blog/zakat-in-the-uk/');
+    expect(withoutUrduPrefix('/ur/blog/zakat-in-the-uk/')).toBe('/blog/zakat-in-the-uk/');
+  });
+
   it('strips the prefix only from real Urdu twins, keeping query and hash', () => {
     expect(withoutUrduPrefix('/ur/donate/?x=1#top')).toBe('/donate/?x=1#top');
     expect(withoutUrduPrefix('/ur/')).toBe('/');

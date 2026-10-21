@@ -35,4 +35,21 @@ describe('blog and terms SEO', () => {
     expect(seo.section).toBe('Zakat');
     expect(seo.robots).toBeUndefined();
   });
+
+  it('adds Urdu details only when the article has a full Urdu version', () => {
+    const base = {
+      slug: 'zakat-guide',
+      title: 'Zakat guide',
+      excerpt: 'A short guide.',
+      topic: 'Zakat',
+      author: 'Nagina Social Welfare UK',
+      publishedAt: '2026-10-20',
+      image: { url: 'https://example.com/a.jpg' },
+    };
+    expect(blogArticleSeo(base).ur).toBeUndefined();
+    expect(blogArticleSeo({ ...base, titleUr: 'زکوٰۃ' }).ur).toBeUndefined();
+    const seo = blogArticleSeo({ ...base, titleUr: 'زکوٰۃ کی رہنمائی', excerptUr: 'مختصر رہنمائی۔', contentHtmlUr: '<p>متن</p>' });
+    expect(seo.ur?.title).toBe('زکوٰۃ کی رہنمائی | نگینہ');
+    expect(seo.ur?.description).toBe('مختصر رہنمائی۔');
+  });
 });

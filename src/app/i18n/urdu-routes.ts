@@ -33,7 +33,12 @@ export const URDU_PAGE_PATHS: readonly string[] = [
   '/duas/',
   '/calendar/',
   '/contact/',
+  '/blog/',
+  '/terms-and-conditions/',
 ];
+
+/** Blog articles are dynamic: any "/blog/<slug>/" can have an Urdu twin (only those with Urdu text are prerendered and indexed). */
+const BLOG_ARTICLE_PATH = /^\/blog\/[^/]+\/$/;
 
 /** "/about", "/about/", "about/" → "/about/"; "/" stays "/". */
 export function normalisePath(path: string): string {
@@ -42,7 +47,8 @@ export function normalisePath(path: string): string {
 }
 
 export function isUrduPage(path: string): boolean {
-  return URDU_PAGE_PATHS.includes(normalisePath(path));
+  const normal = normalisePath(path);
+  return URDU_PAGE_PATHS.includes(normal) || BLOG_ARTICLE_PATH.test(normal);
 }
 
 /** "/ur/about/" → { ur: true, path: "/about/" }; anything else → { ur: false, path }. */
