@@ -78,9 +78,9 @@ export function pageOgImage(page: PageSeo): string {
 }
 
 export const HOME_SEO: PageSeo = {
-  title: 'Nagina Social Welfare UK | Madrasa & Islamic Education',
+  title: 'Nagina Social Welfare (UK) | Official Website',
   description:
-    'Nagina Social Welfare UK supports Islamic education and community welfare, with Madrasas in Peterborough and Manchester, trusted resources and charitable work.',
+    'Discover Nagina Social Welfare (UK), supporting Islamic education, community welfare and those in need. Learn about our work and how to support our charitable mission.',
   path: '/',
   keywords:
     'Nagina Social Welfare, UK based charity, Markaz Deen-e-Islam, Madrasa Peterborough, Madrasa Manchester, Quran Academy Manchester, Islamic education UK, Peterborough Islamic institute, Ahl al-Sunnah, community welfare, charity 1196514',
@@ -91,9 +91,9 @@ export const HOME_SEO: PageSeo = {
 };
 
 export const ABOUT_SEO: PageSeo = {
-  title: 'About Us & Our Vision | Nagina Social Welfare UK',
+  title: 'Nagina Social Welfare UK | About Our Charity',
   description:
-    'About Nagina Social Welfare UK (charity 1196514): our vision for Islamic knowledge, compassion and character, with Madrasas in Peterborough and Manchester.',
+    'Learn about Nagina Social Welfare (UK), our Islamic values, charitable mission, community welfare initiatives and commitment to supporting those in need.',
   path: '/about/',
   keywords: 'About Nagina Social Welfare, UK based charity 1196514, Islamic charity UK vision',
   type: 'website',
@@ -487,9 +487,9 @@ export const IMPACT_SEO: PageSeo = {
 };
 
 export const DONATE_SEO: PageSeo = {
-  title: 'Donate Zakat & Sadaqah Online | Nagina Social Welfare UK',
+  title: 'Donate Zakat UK | Nagina Social Welfare',
   description:
-    'Donate Zakat, Sadaqah, Lillah or Fitrana to Nagina Social Welfare UK (charity 1196514), as a general gift or for our Peterborough or Manchester centre.',
+    'Donate Zakat, Sadaqah, Lillah and Fitrana with Nagina Social Welfare (UK). Support charitable work and help make a positive difference in people\'s lives.',
   path: '/donate/',
   keywords: 'Donate Nagina Social Welfare, Zakat, SumUp donation UK, Islamic charity Peterborough, Islamic charity Manchester',
   type: 'website',
@@ -511,9 +511,9 @@ export const ASSISTANT_SEO: PageSeo = {
 };
 
 export const CONTACT_SEO: PageSeo = {
-  title: 'Contact Nagina Social Welfare UK | Peterborough & Manchester',
+  title: 'Contact Nagina Social Welfare UK | Get in Touch',
   description:
-    'Contact Nagina Social Welfare UK by WhatsApp, phone or email for our Peterborough and Manchester Madrasas, donations and general enquiries.',
+    'Contact Nagina Social Welfare (UK) for charity enquiries, donations, Islamic education and community support. Get in touch with our team today.',
   path: '/contact/',
   keywords: 'Contact Nagina Social Welfare, Peterborough Islamic centre contact, Manchester Madrasa contact, Madrasa admission',
   type: 'website',
