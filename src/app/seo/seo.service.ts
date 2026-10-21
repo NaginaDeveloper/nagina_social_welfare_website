@@ -64,9 +64,16 @@ export class SeoService {
 
   apply(english: PageSeo): void {
     // Pages with an Urdu twin are described in Urdu (and canonical to /ur/…) while Urdu is active.
-    const urdu = this.language.isUr() && isUrduPage(english.path) ? URDU_SEO[normalisePath(english.path)] : undefined;
+    const urdu = this.language.isUr() && isUrduPage(english.path) ? (english.ur ?? URDU_SEO[normalisePath(english.path)]) : undefined;
     const seo: PageSeo = urdu
-      ? { ...english, title: urdu.title, description: urdu.description, path: toUrduPath(english.path), keywords: undefined }
+      ? {
+          ...english,
+          title: urdu.title,
+          description: urdu.description,
+          path: toUrduPath(english.path),
+          keywords: undefined,
+          breadcrumb: english.ur ? urdu.title.split('|')[0].trim() : english.breadcrumb,
+        }
       : english;
     const url = this.absoluteUrl(seo.path);
     const image = pageOgImage(english);
@@ -94,7 +101,7 @@ export class SeoService {
     this.upsertName('twitter:image', image);
 
     this.setCanonical(url);
-    this.setAlternates(english.path);
+    this.setAlternates(english);
     this.setJsonLd(seo, url, !!urdu);
   }
 
@@ -154,9 +161,11 @@ export class SeoService {
   }
 
   /** hreflang pair for pages with an Urdu twin; removed again on pages without one. */
-  private setAlternates(englishPath: string): void {
+  private setAlternates(page: PageSeo): void {
+    const englishPath = page.path;
     this.doc.querySelectorAll("link[rel='alternate'][hreflang]").forEach((el) => el.remove());
-    if (!isUrduPage(englishPath)) return;
+    // An article only has a twin when it has Urdu text; the other pages have one when they are listed.
+    if (!isUrduPage(englishPath) || (!page.ur && !URDU_SEO[normalisePath(englishPath)])) return;
     const english = this.absoluteUrl(normalisePath(englishPath));
     const urdu = this.absoluteUrl(toUrduPath(englishPath));
     for (const [hreflang, href] of [
@@ -289,7 +298,7 @@ export class SeoService {
             ? { '@type': 'Person', name: seo.authorName }
             : { '@id': `${SITE_ORIGIN}/#organization` },
         publisher: { '@id': `${SITE_ORIGIN}/#organization` },
-        inLanguage: 'en-GB',
+        inLanguage,
       });
     }
 

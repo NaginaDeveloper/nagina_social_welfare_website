@@ -1,14 +1,14 @@
 import { PrerenderFallback, RenderMode, ServerRoute } from '@angular/ssr';
 import { BLOG_CATALOG_URL } from './config/blog.config';
-import { parseBlogCatalog, type BlogCatalog } from './models/blog';
+import { hasUrdu, parseBlogCatalog, type BlogCatalog } from './models/blog';
 
-/** Slugs of the published articles, read from the live catalog at build time. */
-async function blogSlugs(): Promise<Record<string, string>[]> {
+/** Slugs of the published articles, read from the live catalog at build time (only those with Urdu text when `urdu`). */
+async function blogSlugs(urdu = false): Promise<Record<string, string>[]> {
   try {
     const res = await fetch(BLOG_CATALOG_URL);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const posts = parseBlogCatalog((await res.json()) as BlogCatalog);
-    return posts.map((p) => ({ slug: p.slug }));
+    return posts.filter((p) => !urdu || hasUrdu(p)).map((p) => ({ slug: p.slug }));
   } catch (err) {
     // No catalog at build time: articles still load in the browser, they just are not prerendered.
     console.warn('blog: could not read the article catalog for prerendering', err);
@@ -37,7 +37,13 @@ export const serverRoutes: ServerRoute[] = [
   {
     path: 'blog/:slug',
     renderMode: RenderMode.Prerender,
-    getPrerenderParams: blogSlugs,
+    getPrerenderParams: () => blogSlugs(),
+    fallback: PrerenderFallback.Client,
+  },
+  {
+    path: 'ur/blog/:slug',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: () => blogSlugs(true),
     fallback: PrerenderFallback.Client,
   },
   { path: '**', renderMode: RenderMode.Prerender },

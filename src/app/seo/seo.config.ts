@@ -26,6 +26,8 @@ export interface PageSeo {
   readonly modifiedTime?: string;
   readonly section?: string;
   readonly authorName?: string;
+  /** Urdu title and description of a page whose Urdu twin is not in the static list (blog articles). */
+  readonly ur?: { readonly title: string; readonly description: string };
 }
 
 /** "/" -> "home", "/zakat/rules/" -> "zakat-rules". */
@@ -664,6 +666,12 @@ export function blogArticleTitle(title: string): string {
   return full.length <= 60 ? full : title;
 }
 
+/** Urdu search-result title: with the short site name when it fits. */
+export function blogArticleTitleUr(title: string): string {
+  const full = `${title} | نگینہ`;
+  return full.length <= 60 ? full : title;
+}
+
 /** Search, social and schema details of one published article. */
 export function blogArticleSeo(post: {
   readonly slug: string;
@@ -674,6 +682,9 @@ export function blogArticleSeo(post: {
   readonly publishedAt: string;
   readonly updatedAt?: string;
   readonly image: { readonly url: string };
+  readonly titleUr?: string;
+  readonly excerptUr?: string;
+  readonly contentHtmlUr?: string;
 }): PageSeo {
   return {
     title: blogArticleTitle(post.title),
@@ -686,6 +697,10 @@ export function blogArticleSeo(post: {
     modifiedTime: post.updatedAt ?? post.publishedAt,
     section: post.topic || undefined,
     authorName: post.author || undefined,
+    ur:
+      post.titleUr && post.excerptUr && post.contentHtmlUr
+        ? { title: blogArticleTitleUr(post.titleUr), description: post.excerptUr }
+        : undefined,
   };
 }
 

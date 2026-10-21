@@ -163,7 +163,7 @@ function injectSearchConsoleMeta(html) {
 /** Static HTML pages in public/ that are not Angular routes (none at present). */
 const STATIC_SITEMAP_PAGES = [];
 
-const URDU_PATHS = new Set(URDU_PAGE_PATHS);
+const URDU_PATHS = new Set(URDU_PAGE_PATHS); // blog articles with Urdu text are added once the catalog is read
 
 /** hreflang pair for a page that has an Urdu twin (empty string otherwise). */
 function alternateLinks(englishPath) {
@@ -382,6 +382,28 @@ for (const post of blogPosts) {
   }
   lastmods[path] = String(post.updatedAt ?? post.publishedAt).slice(0, 10);
   blogPages.push({ path, changefreq: 'monthly', priority: 0.6 });
+
+  // Articles with a full Urdu version also get an indexed Urdu twin with the hreflang pair.
+  if (post.titleUr?.trim() && post.excerptUr?.trim() && post.contentHtmlUr?.trim()) {
+    const urduPath = toUrduPath(path);
+    const target = join(outDir, pathToDir(urduPath), 'index.html');
+    if (!existsSync(target)) {
+      console.error(`SEO blog: Urdu article missing from the build: ${urduPath}`);
+      process.exit(1);
+    }
+    const html = readFileSync(target, 'utf8');
+    const problems = [];
+    if (!html.includes('<html lang="ur" dir="rtl"')) problems.push('html lang/dir');
+    if (!html.includes(`<link rel="canonical" href="${canonicalUrl(urduPath)}">`)) problems.push('canonical');
+    if (!html.includes('hreflang="ur"') || !html.includes('hreflang="en-GB"')) problems.push('hreflang');
+    if (problems.length) {
+      console.error(`SEO blog: Urdu article ${urduPath} is missing: ${problems.join(', ')}`);
+      process.exit(1);
+    }
+    URDU_PATHS.add(path);
+    lastmods[urduPath] = lastmods[path];
+    blogPages.push({ path: urduPath, englishPath: path, changefreq: 'monthly', priority: 0.5 });
+  }
 }
 
 writeSitemap(lastmods, blogPages);

@@ -12,6 +12,10 @@ export interface BlogPost {
   readonly publishedAt: string;
   readonly updatedAt?: string;
   readonly image: { readonly url: string; readonly alt: string };
+  /** Optional Urdu version of the article (all three are written together). */
+  readonly titleUr?: string;
+  readonly excerptUr?: string;
+  readonly contentHtmlUr?: string;
 }
 
 export interface BlogCatalog {
@@ -31,15 +35,20 @@ export function parseBlogCatalog(catalog: BlogCatalog | null | undefined): BlogP
 }
 
 /** "2026-10-21" -> "21 October 2026" (no time zone surprises). */
-export function formatBlogDate(isoDate: string): string {
+export function formatBlogDate(isoDate: string, urdu = false): string {
   const [y, m, d] = isoDate.split('-').map(Number);
   if (!y || !m || !d) return isoDate;
-  return new Intl.DateTimeFormat('en-GB', {
+  return new Intl.DateTimeFormat(urdu ? 'ur-PK-u-nu-latn' : 'en-GB', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
     timeZone: 'UTC',
   }).format(new Date(Date.UTC(y, m - 1, d)));
+}
+
+/** True when the article has a full Urdu version (title, summary and body). */
+export function hasUrdu(post: Pick<BlogPost, 'titleUr' | 'excerptUr' | 'contentHtmlUr'>): boolean {
+  return !!post.titleUr?.trim() && !!post.excerptUr?.trim() && !!post.contentHtmlUr?.trim();
 }
 
 /** Words in the article body (tags and entities removed). */
