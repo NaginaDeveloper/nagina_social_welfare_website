@@ -66,7 +66,7 @@ export class Madrasa implements OnInit {
     { en: '2026 intake open', ur: '۲۰۲۶ داخلے جاری' },
     { en: 'Peterborough · 3 evening classes', ur: 'پیٹربرا · ۳ شام کی کلاسیں' },
     { en: 'Manchester · Mon–Fri, 5–6 PM', ur: 'مانچسٹر · پیر تا جمعہ، شام ۵ تا ۶' },
-    { en: 'Ahl al-Sunnah / Hanafi Barelvi', ur: 'اہلِ سنت / حنفی بریلوی' },
+    { en: 'Ahl al-Sunnah wa\'l-Jama\'ah', ur: 'اہلِ سنت والجماعت' },
   ] as const;
 
   /** The paths in the vision poster, in English and Urdu. */
@@ -89,8 +89,8 @@ export class Madrasa implements OnInit {
     {
       title: 'Islamic Teachings',
       titleUr: 'اسلامی تعلیمات',
-      text: 'Prayer, manners and belief — age-appropriate Islamic education in a Hanafi Barelvi / Ahl al-Sunnah setting.',
-      textUr: 'نماز، اخلاق اور عقیدہ — حنفی بریلوی / اہلِ سنت ماحول میں عمر کے مطابق اسلامی تعلیم۔',
+      text: 'Prayer, manners and belief — age-appropriate Islamic education in an Ahl al-Sunnah wa’l-Jama‘ah setting.',
+      textUr: 'نماز، اخلاق اور عقیدہ — اہلِ سنت والجماعت ماحول میں عمر کے مطابق اسلامی تعلیم۔',
     },
     {
       title: 'Hadith Studies',

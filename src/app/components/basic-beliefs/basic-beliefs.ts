@@ -48,8 +48,8 @@ export class BasicBeliefs {
 
   protected readonly beliefCategories: readonly BeliefCategory[] = [
     {
-      title: 'Who We Are — Ahl al-Sunnah / Hanafi Barelvi',
-      titleUr: 'ہم کون ہیں — اہلِ سنت / حنفی بریلوی',
+      title: 'Who We Are — Ahl al-Sunnah wa\'l-Jama\'ah',
+      titleUr: 'ہم کون ہیں — اہلِ سنت والجماعت',
       lead: 'The starting point of our creed is belonging to the mainstream Sunni Ummah with the spiritual emphasis taught at Markaz.',
       leadUr: 'ہمارے عقیدے کا نقطۂ آغاز مرکزی سنی امت سے تعلق ہے، اس روحانی تاکید کے ساتھ جو مرکز میں سکھائی جاتی ہے۔',
       faqs: [
@@ -62,12 +62,12 @@ export class BasicBeliefs {
             'اہلِ سنت والجماعت وہ مسلمان ہیں جو قرآن، حضور محمد ﷺ کی صحیح سنت، اور سلفِ صالحین کی فہم کی پیروی کرتے ہیں۔ ان کا عقیدہ متوازن ہے، رسول ﷺ سے محبت ہے، اور اسلام کی بنیادیات پر اتحاد ہے۔',
         },
         {
-          question: 'What does Hanafi Barelvi mean at Nagina Social Welfare?',
-          questionUr: 'نگینہ سوشل ویلفیئر میں حنفی بریلوی کا کیا مطلب ہے؟',
+          question: 'Which fiqh and spiritual path do we follow at Nagina Social Welfare?',
+          questionUr: 'نگینہ سوشل ویلفیئر میں ہم کس فقہ اور روحانی راستے پر چلتے ہیں؟',
           answer:
-            'Hanafi means we follow the Islamic jurisprudence (fiqh) of Imam Abu Hanifah (may Allah have mercy on him) in worship and daily Islamic practice. Barelvi refers to the spiritual emphasis of love for the Prophet ﷺ, Finality of Prophethood, respect for Ahl al-Bayt, Companions, and Awliya, and Markaz-style guidance rooted in Ahl al-Sunnah — not a separate religion, but a recognised Sunni spiritual tradition.',
+            'In worship and daily Islamic practice we follow the Islamic jurisprudence (fiqh) of Imam Abu Hanifah (may Allah have mercy on him). Our spiritual path centres on love for the Prophet ﷺ, Finality of Prophethood, and respect for Ahl al-Bayt, the Companions, and the Awliya, with Markaz-style guidance — the way of Ahl al-Sunnah wa\'l-Jama\'ah, not a separate religion.',
           answerUr:
-            'حنفی کا مطلب یہ ہے کہ عبادات اور روزمرہ عمل میں امام ابو حنیفہ رحمۃ اللہ علیہ کی فقہ کی پیروی کرتے ہیں۔ بریلوی سے مراد محبتِ رسول ﷺ، ختمِ نبوت، اہل بیت و صحابہ و اولیاء کا احترام، اور اہلِ سنت پر مبنی مرکز طرزِ ہدایت ہے — الگ دین نہیں، بلکہ تسلیم شدہ سنی روحانی روایت۔',
+            'عبادات اور روزمرہ عمل میں ہم امام ابو حنیفہ رحمۃ اللہ علیہ کی فقہ کی پیروی کرتے ہیں۔ ہمارا روحانی راستہ محبتِ رسول ﷺ، ختمِ نبوت، اور اہل بیت، صحابہ کرام و اولیاء کے احترام پر مبنی ہے، مرکز کی رہنمائی کے ساتھ — یہی اہلِ سنت والجماعت کا راستہ ہے، کوئی الگ دین نہیں۔',
         },
         {
           question: 'What are the six pillars of iman (faith)?',
@@ -191,8 +191,8 @@ export class BasicBeliefs {
       ],
     },
     {
-      title: 'Hanafi Barelvi Worship and Spirituality',
-      titleUr: 'حنفی بریلوی عبادت اور روحانیت',
+      title: 'Worship and Spirituality',
+      titleUr: 'عبادت اور روحانیت',
       lead: 'Daily practice and spiritual life follow Hanafi fiqh and the gentle Sunni tradition taught at Markaz.',
       leadUr: 'روزمرہ عمل اور روحانی زندگی حنفی فقہ اور مرکز کی نرم سنی روایت پر قائم ہے۔',
       faqs: [
@@ -238,9 +238,9 @@ export class BasicBeliefs {
           question: 'What is our view on Milad and expressing joy at the birth of the Prophet ﷺ?',
           questionUr: 'میلاد اور ولادتِ نبوی ﷺ پر خوشی کے اظہار پر ہمارا نظریہ؟',
           answer:
-            'Many scholars of Ahl al-Sunnah, including the Barelvi tradition, permit expressing joy and gratitude for the birth of the Prophet Muhammad ﷺ when the gathering remains within Shari\'ah — with blessings upon the Prophet ﷺ (salawat / durood), praise of the Prophet ﷺ, and without forbidden mixing or innovations that contradict clear Islamic law. Markaz encourages love and remembrance rooted in authentic teaching.',
+            'Many scholars of Ahl al-Sunnah permit expressing joy and gratitude for the birth of the Prophet Muhammad ﷺ when the gathering remains within Shari\'ah — with blessings upon the Prophet ﷺ (salawat / durood), praise of the Prophet ﷺ, and without forbidden mixing or innovations that contradict clear Islamic law. Markaz encourages love and remembrance rooted in authentic teaching.',
           answerUr:
-            'اہلِ سنت کے بہت سے علماء، بشمول بریلوی روایت، ولادتِ نبوی ﷺ پر خوشی اور شکر کا اظہار جائز رکھتے ہیں جب محفل شریعت میں رہے — درود، نعت، بغیر حرام اختلاط یا ایسی بدعات کے جو صریح شریعت کے خلاف ہوں۔ مرکز مستند تعلیم پر مبنی محبت و یاد کی ترغیب دیتا ہے۔',
+            'اہلِ سنت کے بہت سے علماء ولادتِ نبوی ﷺ پر خوشی اور شکر کا اظہار جائز رکھتے ہیں جب محفل شریعت میں رہے — درود، نعت، بغیر حرام اختلاط یا ایسی بدعات کے جو صریح شریعت کے خلاف ہوں۔ مرکز مستند تعلیم پر مبنی محبت و یاد کی ترغیب دیتا ہے۔',
         },
       ],
     },
@@ -265,9 +265,9 @@ export class BasicBeliefs {
           question: 'Does Nagina present all Islamic groups as equally valid?',
           questionUr: 'کیا نگینہ تمام اسلامی گروہوں کو یکساں درست پیش کرتی ہے؟',
           answer:
-            'Nagina Social Welfare teaches and publishes from the Hanafi Barelvi / Ahl al-Sunnah wa\'l-Jama\'ah perspective. We explain our beliefs with respect and without harsh sectarian language, but we do not treat every maslak or modern claim as equally valid for our community.',
+            'Nagina Social Welfare teaches and publishes from the Ahl al-Sunnah wa\'l-Jama\'ah perspective. We explain our beliefs with respect and without harsh sectarian language, but we do not treat every maslak or modern claim as equally valid for our community.',
           answerUr:
-            'نگینہ سوشل ویلفیئر حنفی بریلوی / اہلِ سنت والجماعت کے نقطۂ نظر سے تعلیم دیتی اور شائع کرتی ہے۔ ہم اپنے عقائد احترام سے بیان کرتے ہیں بغیر تلخ فرقہ وارانہ زبان کے، مگر ہر مسلک یا جدید دعوے کو اپنی کمیونٹی کے لیے یکساں درست نہیں سمجھتے۔',
+            'نگینہ سوشل ویلفیئر اہلِ سنت والجماعت کے نقطۂ نظر سے تعلیم دیتی اور شائع کرتی ہے۔ ہم اپنے عقائد احترام سے بیان کرتے ہیں بغیر تلخ فرقہ وارانہ زبان کے، مگر ہر مسلک یا جدید دعوے کو اپنی کمیونٹی کے لیے یکساں درست نہیں سمجھتے۔',
         },
         {
           question: 'Where can I read the detailed creed pages?',

@@ -732,7 +732,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'nav.auliaKaram': 'Awliya Allah',
   'nav.auliaKaramHint': 'Friends of Allah',
   'nav.basicBeliefs': 'Basic Beliefs',
-  'nav.basicBeliefsHint': 'Hanafi Barelvi creed FAQ',
+  'nav.basicBeliefsHint': 'Ahl-e-Sunnat creed FAQ',
   'nav.guidance': 'Guidance',
   'nav.guidanceHint': 'Teachings & counsel',
   'nav.namazTimes': 'Prayer Times (Salah)',
@@ -1079,7 +1079,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
 
   'beliefs.eyebrow': 'Creed (Aqidah)',
   'beliefs.title': 'Basic Beliefs of',
-  'beliefs.titleAccent': 'Hanafi Barelvi Ahl al-Sunnah',
+  'beliefs.titleAccent': 'Ahl al-Sunnah wa’l-Jama‘ah',
   'beliefs.contactCta': 'Contact Markaz for Personal Guidance',
 
   'namaz.eyebrow': 'Prayer Times (Salah)',
@@ -1236,7 +1236,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'assistant.references': 'References',
   'assistant.thinking': 'Thinking…',
   'assistant.welcome':
-    'Assalamu alaikum (peace be upon you). I can gently help with Hanafi Barelvi / Ahl al-Sunnah creed and guidance — first from our published Nagina pages, and when needed from broader Gemini Islamic knowledge within the same school of thought — plus website questions such as donations, contact, and prayer (Salah) times, in English or Urdu.',
+    'Assalamu alaikum (peace be upon you). I can gently help with Ahl al-Sunnah wa’l-Jama‘ah creed and guidance — first from our published Nagina pages, and when needed from broader Gemini Islamic knowledge within the same school of thought — plus website questions such as donations, contact, and prayer (Salah) times, in English or Urdu.',
   'assistant.disclaimer':
     'I am not a mufti (a scholar who issues personal rulings). For personal religious rulings, please contact Markaz directly.',
   'assistant.call': 'Call',
@@ -1312,7 +1312,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'madrasa.titleAccent': 'the UK',
   'madrasa.lead':
     'Nagina Social Welfare UK runs Madrasas in {towns}. The 2026 intake is open — Peterborough runs three evening classes; Manchester runs one weekday class, 5–6 PM. Choose your nearest Madrasa below and apply online.',
-  'madrasa.body': 'Parents searching for a local Madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At our Madrasas we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teaching.',
+  'madrasa.body': 'Parents searching for a local Madrasa, Islamic school, or Islamic classes for kids often want a trusted place close to home. At our Madrasas we welcome children and families for structured Qur’an learning and Islamic studies in a warm, disciplined environment — aligned with Ahl al-Sunnah wa’l-Jama‘ah teaching.',
   'madrasa.body2':
     'Class times for each Madrasa are listed below. Please apply online, or contact your Madrasa with questions.',
   'madrasa.offeringsTitle': 'What Children Learn with Us',
