@@ -157,14 +157,14 @@ export function gentleScopeReply(scope: QuestionScope, query: string): string | 
 
   if (scope === 'off_topic') {
     return language === 'ur'
-      ? 'جزاک اللہ! میں Nagina Assistant ہوں اور نرمی سے اسلامی رہنمائی (حنفی بریلوی / اہلِ سنت والجماعت کے مطابق) اور Nagina Social Welfare کی ویب سائٹ سے متعلق معلومات میں مدد کر سکتا ہوں — جیسے عقائد، رہنمائی، عطیات، رابطہ اور نماز کے اوقات۔\n\nاگر آپ کو کتابوں یا Seedha Rasta library سے متعلق سوال ہو تو براہِ کرم واضح طور پر پوچھیں۔ ذاتی شرعی فیصلے کے لیے Markaz سے رابطہ کریں۔'
-      : 'JazakAllah. I am here gently to help with Islamic guidance from our published Hanafi Barelvi / Ahl al-Sunnah wa’l-Jama‘ah creed and guidance pages, and with Nagina Social Welfare website information such as donations, contact, and namaz times.\n\nIf your question is about the Seedha Rasta book library specifically, please ask about books directly. For personal religious rulings, please contact Markaz — I am not a mufti.';
+      ? 'جزاک اللہ! میں Nagina Assistant ہوں اور نرمی سے اسلامی رہنمائی (اہلِ سنت والجماعت کے مطابق) اور Nagina Social Welfare کی ویب سائٹ سے متعلق معلومات میں مدد کر سکتا ہوں — جیسے عقائد، رہنمائی، عطیات، رابطہ اور نماز کے اوقات۔\n\nاگر آپ کو کتابوں یا Seedha Rasta library سے متعلق سوال ہو تو براہِ کرم واضح طور پر پوچھیں۔ ذاتی شرعی فیصلے کے لیے Markaz سے رابطہ کریں۔'
+      : 'JazakAllah. I am here gently to help with Islamic guidance from our published Ahl al-Sunnah wa’l-Jama‘ah creed and guidance pages, and with Nagina Social Welfare website information such as donations, contact, and namaz times.\n\nIf your question is about the Seedha Rasta book library specifically, please ask about books directly. For personal religious rulings, please contact Markaz — I am not a mufti.';
   }
 
   if (scope === 'personal_fatwa') {
     return language === 'ur'
       ? 'جزاک اللہ، آپ کا سوال سمجھ میں آ گیا۔ ذاتی یا پیچیدہ شرعی معاملات — جیسے طلاق، نکاح، طبی یا خاندانی فیصلے — کے لیے میں یہاں مفتی کی جگہ نہیں لے سکتا۔\n\nبراہِ کرم Markaz Deen-e-Islam سے براہِ راست رابطہ کریں تاکہ آپ کو مناسب رہنمائی مل سکے۔ میں عام اسلامی معلومات اور ویب سائٹ سے متعلق سوالات میں مدد کر سکتا ہوں۔'
-      : 'JazakAllah — I understand your question. For personal or sensitive religious matters such as marriage, divorce, or individual rulings, I cannot replace speaking with a scholar at Markaz.\n\nPlease contact Markaz Deen-e-Islam directly for proper guidance. I can still help with general Islamic information from our published Hanafi Barelvi material and with website questions.';
+      : 'JazakAllah — I understand your question. For personal or sensitive religious matters such as marriage, divorce, or individual rulings, I cannot replace speaking with a scholar at Markaz.\n\nPlease contact Markaz Deen-e-Islam directly for proper guidance. I can still help with general Islamic information from our published Ahl al-Sunnah material and with website questions.';
   }
 
   return null;
@@ -172,12 +172,12 @@ export function gentleScopeReply(scope: QuestionScope, query: string): string | 
 
 export function standardDisclaimer(query: string): string {
   return detectQuestionLanguage(query) === 'ur'
-    ? 'یہ معاون مفتی نہیں ہے۔ ہماری شائع شدہ اہلِ سنت والجماعت / حنفی بریلوی معلومات اور ویب سائٹ کے مطابق عام رہنمائی دیتا ہے۔ ذاتی شرعی فیصلوں کے لیے براہِ راست Markaz سے رابطہ کریں۔'
-    : 'This assistant is not a mufti. It offers gentle general guidance from our published Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi material and website information. For personal religious rulings, please contact Markaz directly.';
+    ? 'یہ معاون مفتی نہیں ہے۔ ہماری شائع شدہ اہلِ سنت والجماعت کی معلومات اور ویب سائٹ کے مطابق عام رہنمائی دیتا ہے۔ ذاتی شرعی فیصلوں کے لیے براہِ راست Markaz سے رابطہ کریں۔'
+    : 'This assistant is not a mufti. It offers gentle general guidance from our published Ahl al-Sunnah wa’l-Jama‘ah material and website information. For personal religious rulings, please contact Markaz directly.';
 }
 
 export function generalGuidanceDisclaimer(query: string): string {
   return detectQuestionLanguage(query) === 'ur'
-    ? 'یہ معاون مفتی نہیں ہے۔ یہ جواب عمومی حنفی بریلوی / اہلِ سنت والجماعت رہنمائی پر مبنی ہے، نہ کہ ذاتی فتوی۔ مزید یقین یا تفصیل کے لیے Markaz سے رابطہ کریں۔'
-    : 'This assistant is not a mufti. This answer offers gentle general Hanafi Barelvi / Ahl al-Sunnah guidance rather than a personal ruling. Please contact Markaz for certainty or personal matters.';
+    ? 'یہ معاون مفتی نہیں ہے۔ یہ جواب عمومی اہلِ سنت والجماعت رہنمائی پر مبنی ہے، نہ کہ ذاتی فتوی۔ مزید یقین یا تفصیل کے لیے Markaz سے رابطہ کریں۔'
+    : 'This assistant is not a mufti. This answer offers gentle general Ahl al-Sunnah wa’l-Jama‘ah guidance rather than a personal ruling. Please contact Markaz for certainty or personal matters.';
 }

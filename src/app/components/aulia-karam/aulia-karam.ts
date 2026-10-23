@@ -177,12 +177,12 @@ export class AuliaKaram {
       leadUr: 'اسلامی تاریخ میں اولیاء عقیدت، قربانی اور امت کی خدمت کے روشن نمونے ہیں۔',
       details: [
         'They remind believers that nearness to Allah Ta’ala is achieved through worship, good deeds, and purification of the heart.',
-        'Their lives inspire us toward dhikr, fikr, charity, and steadfastness upon the Hanafi Barelvi / Ahl al-Sunnah path.',
+        'Their lives inspire us toward dhikr, fikr, charity, and steadfastness upon the path of Ahl al-Sunnah wa’l-Jama‘ah.',
         'When in doubt about any matter of creed or personal ruling, consult Markaz Deen-e-Islam for guidance rooted in authentic scholarship.',
       ],
       detailsUr: [
         'وہ یاد دلاتے ہیں کہ قربِ الٰہی عبادت، نیک اعمال اور تزکیۂ قلب سے حاصل ہوتا ہے۔',
-        'ان کی زندگیاں ذکر، فکر، خیرات اور حنفی بریلوی / اہلِ سنت کے راستے پر استقامت کی طرف بلاتی ہیں۔',
+        'ان کی زندگیاں ذکر، فکر، خیرات اور اہلِ سنت والجماعت کے راستے پر استقامت کی طرف بلاتی ہیں۔',
         'عقیدہ یا ذاتی حکم میں شک ہو تو مرکز دینِ اسلام سے مستند رہنمائی لیں۔',
       ],
     },

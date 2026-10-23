@@ -221,7 +221,7 @@ async function buildCuratedChunks() {
   );
   chunks.push(
     makeChunk({
-      title: 'Basic Beliefs: Hanafi Barelvi Ahl al-Sunnah overview',
+      title: 'Basic Beliefs: Ahl al-Sunnah wa’l-Jama‘ah overview',
       sourceType: 'creed',
       path: '/basic-beliefs',
       text: [basicBeliefsIntro, basicBeliefsDisclaimer, basicBeliefsClosing].join(' '),
@@ -345,7 +345,7 @@ async function buildCuratedChunks() {
     {
       title: 'Assistant scope and disclaimer',
       path: '/assistant',
-      text: 'Nagina Assistant gently helps with published Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi creed pages, guidance, books, donations, and site information in English and Urdu. It is not a mufti and should not be used for binding rulings or personal legal, medical, or marital decisions.',
+      text: 'Nagina Assistant gently helps with published Ahl al-Sunnah wa’l-Jama‘ah creed pages, guidance, books, donations, and site information in English and Urdu. It is not a mufti and should not be used for binding rulings or personal legal, medical, or marital decisions.',
       tags: ['assistant', 'disclaimer', 'maslak'],
       maslak: 'site',
     },

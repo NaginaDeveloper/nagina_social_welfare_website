@@ -334,17 +334,18 @@ export async function generateHybridAnswer(
     'The user asked a question that was not fully covered by our published Nagina pages, so answer using your broader Islamic knowledge.',
     'Write a warm, respectful, complete answer in plain language — not just a list of sources.',
     'Always finish the full answer. Never stop mid-sentence. Use bullet points when listing obligations or steps.',
-    'Stay aligned with Hanafi fiqh and Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teachings.',
+    'Stay aligned with Ahl al-Sunnah wa’l-Jama‘ah teaching and follow Hanafi fiqh in rulings.',
+    'Do not label answers by maslak: never write "according to the Hanafi Barelvi maslak" or call the answer Hanafi or Barelvi. When you need to attribute a view, say "According to Ahl-e-Sunnat…" (Urdu: "اہلِ سنت کے نزدیک…").',
     'Love for the Prophet ﷺ, Khatme Nabuwwat, respect for Ahle Bait, Sahaba, and Awliya (Aulia Karam), and Markaz-style spiritual guidance are important.',
     'Do not present Salafi, Deobandi, Shia, Ahmadi, or secular views as equally valid for Nagina.',
     'Do not mention Seedha Rasta or the books library unless the question is clearly about books.',
     'Do not issue binding fatwas or personal rulings. Gently suggest Markaz for personal matters.',
     scope === 'site_help'
       ? 'This is a website help question. Give practical Nagina website guidance when you can.'
-      : 'This is an Islamic guidance question. Give helpful general Hanafi Barelvi guidance.',
+      : 'This is an Islamic guidance question. Give helpful general Ahl al-Sunnah wa’l-Jama‘ah guidance.',
     optionalContext
       ? 'Optional Nagina references are provided below. Use them if helpful, but you may go beyond them when needed.'
-      : 'No strong Nagina reference was found. Answer from general Hanafi Barelvi guidance.',
+      : 'No strong Nagina reference was found. Answer from general Ahl al-Sunnah wa’l-Jama‘ah guidance.',
     language === 'ur'
       ? 'User wrote in Urdu or Roman Urdu. Reply in clear, complete Urdu script (not Roman Urdu). For contact details: put email, phone, WhatsApp and address each on their own line; keep phone digits and Latin addresses in normal left-to-right order (for example +44 7831 684738 and 103 Burmer Road, Peterborough PE1 3HT) — never reverse digit order.'
       : 'Reply in clear English unless the user clearly wrote in Urdu.',
@@ -356,7 +357,7 @@ export async function generateHybridAnswer(
     .join('\n\n');
 
   const systemInstruction =
-    'Be warm, gentle, and trustworthy. Provide fuller Islamic guidance when published Nagina references are weak, while staying within Hanafi Barelvi / Ahl al-Sunnah wa’l-Jama‘ah teaching. Never be harsh. This is general guidance, not a personal fatwa. Always complete your answer.';
+    'Be warm, gentle, and trustworthy. Provide fuller Islamic guidance when published Nagina references are weak, while staying within Ahl al-Sunnah wa’l-Jama‘ah teaching. Never label answers by maslak. Never be harsh. This is general guidance, not a personal fatwa. Always complete your answer.';
 
   const answer = await runGeminiGeneration(apiKey, systemInstruction, prompt, 0.35);
   if (!answer || answer.length < 48) {
@@ -393,14 +394,15 @@ export async function generateAnswer(
     'Always finish the full answer. Never stop mid-sentence.',
     'Answer only from the provided references when possible.',
     'When a reference is labelled Let’s Learn Islam, treat its direct question-and-answer content as the primary approved answer. Preserve its meaning faithfully and do not replace it with conflicting general model knowledge.',
-    'Stay within published Ahl al-Sunnah wa’l-Jama‘ah / Hanafi Barelvi teachings on this site. Do not present other masalik as equally valid for Nagina.',
+    'Stay within published Ahl al-Sunnah wa’l-Jama‘ah teachings on this site and follow Hanafi fiqh in rulings. Do not present other masalik as equally valid for Nagina.',
+    'Do not label answers by maslak: never write "according to the Hanafi Barelvi maslak" or call the answer Hanafi or Barelvi. When you need to attribute a view, say "According to Ahl-e-Sunnat…" (Urdu: "اہلِ سنت کے نزدیک…").',
     'For general Islamic questions, prefer the Basic Beliefs FAQ (/basic-beliefs), creed pages, guidance, and published Nagina material. Do not mention the Seedha Rasta book library unless the question is clearly about books, PDFs, or a specific library title.',
     'Do not answer non-Islamic general knowledge, coding, entertainment, politics, or unrelated worldly topics unless the question is clearly about this website.',
     'If the references are weak or missing, gently say you are not fully certain and direct the user to Contact, the relevant page, or Markaz.',
     'Do not issue binding fatwas or personal rulings. For personal religious rulings, kindly direct the user to speak to Markaz directly.',
     scope === 'site_help'
       ? 'This is a website help question. Answer practically from site references. Mention books or Seedha Rasta only if the user asked about books.'
-      : 'This is an Islamic guidance question. Answer from the Basic Beliefs FAQ, creed, guidance, and approved Hanafi Barelvi references. Mention Seedha Rasta or the books library only if the references or question are clearly book-related.',
+      : 'This is an Islamic guidance question. Answer from the Basic Beliefs FAQ, creed, guidance, and approved Ahl al-Sunnah references. Mention Seedha Rasta or the books library only if the references or question are clearly book-related.',
     language === 'ur'
       ? 'User wrote in Urdu or mixed Urdu. Reply in clear, complete Urdu script. For contact details in Urdu: put email, phone, WhatsApp and address each on their own line; keep phone digits and Latin addresses in normal left-to-right order (for example +44 7831 684738 and 103 Burmer Road, Peterborough PE1 3HT) — never reverse digit order.'
       : 'Reply in clear English unless the user clearly wrote in Urdu.',
@@ -412,7 +414,7 @@ export async function generateAnswer(
     .join('\n\n');
 
   const systemInstruction =
-    'Be warm, gentle, concise, and trustworthy. Always write the full answer in plain language. Stay within Hanafi Barelvi / Ahl al-Sunnah wa’l-Jama‘ah material from the references. Never be harsh when declining. Source links are shown separately in the UI, so never answer with only a bibliography.';
+    'Be warm, gentle, concise, and trustworthy. Always write the full answer in plain language. Stay within Ahl al-Sunnah wa’l-Jama‘ah material from the references and never label answers by maslak. Never be harsh when declining. Source links are shown separately in the UI, so never answer with only a bibliography.';
 
   const answer = await runGeminiGeneration(apiKey, systemInstruction, prompt, 0.25);
   if (!answer || answer.length < 48) {

@@ -612,7 +612,7 @@ export const AULIA_KARAM_SEO: PageSeo = {
   description:
     'The belief of Ahl al-Sunnah wal-Jama’ah regarding the Awliya Allah, the friends of Allah, honoured through faith and taqwa.',
   path: '/aulia-karam/',
-  keywords: 'Awliya Allah, friends of Allah, Yunus 10:62, Ahl al-Sunnah, Hanafi Barelvi',
+  keywords: 'Awliya Allah, friends of Allah, Yunus 10:62, Ahl al-Sunnah',
   image: `${SITE_ORIGIN}/media/aulia-karam.webp`,
   type: 'article',
   breadcrumb: 'Awliya Allah',
@@ -621,11 +621,11 @@ export const AULIA_KARAM_SEO: PageSeo = {
 };
 
 export const BASIC_BELIEFS_SEO: PageSeo = {
-  title: 'Basic Beliefs of Ahl al-Sunnah | Hanafi Barelvi FAQ',
+  title: 'Basic Beliefs of Ahl al-Sunnah wa’l-Jama‘ah | Creed FAQ',
   description:
-    'FAQ on the basic creed of Hanafi Barelvi Ahl al-Sunnah: Tawhid, Finality of Prophethood, Ahl al-Bayt, Companions and Awliya.',
+    'FAQ on the basic creed of Ahl al-Sunnah wa’l-Jama‘ah: Tawhid, Finality of Prophethood, Ahl al-Bayt, Companions and Awliya.',
   path: '/basic-beliefs/',
-  keywords: 'Basic beliefs, aqidah, Hanafi Barelvi, Ahl al-Sunnah, iman, Tawhid',
+  keywords: 'Basic beliefs, aqidah, Ahl al-Sunnah, Ahl-e-Sunnat, iman, Tawhid',
   type: 'article',
   breadcrumb: 'Basic Beliefs',
   changefreq: 'monthly',
