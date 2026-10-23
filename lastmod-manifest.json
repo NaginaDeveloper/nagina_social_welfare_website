@@ -1,7 +1,7 @@
 {
   "/": {
-    "hash": "3830cb1d6d3ee5e2",
-    "lastmod": "2026-10-22"
+    "hash": "b9d7197e0f43a75e",
+    "lastmod": "2026-10-23"
   },
   "/about/": {
     "hash": "acf0c87d1cafe23a",
@@ -20,8 +20,8 @@
     "lastmod": "2026-10-21"
   },
   "/madrasa/": {
-    "hash": "ec4607d79efc2213",
-    "lastmod": "2026-10-21"
+    "hash": "87b2a1ebdf1f0172",
+    "lastmod": "2026-10-23"
   },
   "/apply/": {
     "hash": "c44baa995a1a55f0",
@@ -56,32 +56,32 @@
     "lastmod": "2026-10-21"
   },
   "/khatme-nabuwwat/": {
-    "hash": "43bce137feff2a88",
-    "lastmod": "2026-10-21"
+    "hash": "04a7ae253d0a2bbd",
+    "lastmod": "2026-10-23"
   },
   "/ahle-bait/": {
-    "hash": "2a1e91a64a4c1477",
-    "lastmod": "2026-10-21"
+    "hash": "139c7fa507c193a3",
+    "lastmod": "2026-10-23"
   },
   "/sahaba-ikram/": {
-    "hash": "fd88491db29b4ded",
-    "lastmod": "2026-10-21"
+    "hash": "9747ef74b73fafbb",
+    "lastmod": "2026-10-23"
   },
   "/aulia-karam/": {
-    "hash": "016562e9918d1a63",
-    "lastmod": "2026-10-21"
+    "hash": "bcf813c267865d64",
+    "lastmod": "2026-10-23"
   },
   "/basic-beliefs/": {
-    "hash": "2db248fa9491773f",
-    "lastmod": "2026-10-21"
+    "hash": "4e9a35980e7fc08c",
+    "lastmod": "2026-10-23"
   },
   "/guidance/": {
     "hash": "93929ae6fab3a11d",
     "lastmod": "2026-10-21"
   },
   "/namaz/": {
-    "hash": "23ff64502fe3c822",
-    "lastmod": "2026-10-22"
+    "hash": "aee5f67afb0b1d43",
+    "lastmod": "2026-10-23"
   },
   "/zakat/": {
     "hash": "87efede5cc211a58",
@@ -100,8 +100,8 @@
     "lastmod": "2026-10-21"
   },
   "/calendar/": {
-    "hash": "8f0562a9ce45715e",
-    "lastmod": "2026-10-22"
+    "hash": "a3b94a51f117d011",
+    "lastmod": "2026-10-23"
   },
   "/ramadan/": {
     "hash": "9b43099c52d4f3d0",
@@ -152,8 +152,8 @@
     "lastmod": "2026-10-21"
   },
   "/assistant/": {
-    "hash": "90b417c364fb5e0f",
-    "lastmod": "2026-10-21"
+    "hash": "e8d4ffd9269d9d9d",
+    "lastmod": "2026-10-23"
   },
   "/donate/thanks/": {
     "hash": "da39a3ee5e6b4b0d",
@@ -184,8 +184,8 @@
     "lastmod": "2026-10-21"
   },
   "/ur/": {
-    "hash": "73194f6224bff27b",
-    "lastmod": "2026-10-22"
+    "hash": "16fcb40218bfa33d",
+    "lastmod": "2026-10-23"
   },
   "/ur/about/": {
     "hash": "c8cc1a5002da0adf",
@@ -196,16 +196,16 @@
     "lastmod": "2026-10-21"
   },
   "/ur/madrasa/": {
-    "hash": "bb886e10ef6933ae",
-    "lastmod": "2026-10-21"
+    "hash": "031c9b3842ba6058",
+    "lastmod": "2026-10-23"
   },
   "/ur/donate/": {
     "hash": "ae46e4103a4552ca",
     "lastmod": "2026-10-21"
   },
   "/ur/zakat/": {
-    "hash": "541fa318c1a8c35b",
-    "lastmod": "2026-10-21"
+    "hash": "645fea5c818436a8",
+    "lastmod": "2026-10-23"
   },
   "/ur/zakat/what-is-zakat/": {
     "hash": "ed11a51222c6edda",
@@ -232,36 +232,36 @@
     "lastmod": "2026-10-21"
   },
   "/ur/basic-beliefs/": {
-    "hash": "fc674f7d671b906a",
-    "lastmod": "2026-10-21"
+    "hash": "0c2848618da9825d",
+    "lastmod": "2026-10-23"
   },
   "/ur/khatme-nabuwwat/": {
-    "hash": "e015ca98118126b9",
-    "lastmod": "2026-10-21"
+    "hash": "4ca11157d04c77a7",
+    "lastmod": "2026-10-23"
   },
   "/ur/ahle-bait/": {
-    "hash": "3419c71a22c0c0d2",
-    "lastmod": "2026-10-21"
+    "hash": "6f84cc0547655001",
+    "lastmod": "2026-10-23"
   },
   "/ur/sahaba-ikram/": {
-    "hash": "08d9dd943acf1df8",
-    "lastmod": "2026-10-21"
+    "hash": "df31616001070c1f",
+    "lastmod": "2026-10-23"
   },
   "/ur/aulia-karam/": {
-    "hash": "5a919c46a388c5eb",
-    "lastmod": "2026-10-21"
+    "hash": "3fa93d449e8035ca",
+    "lastmod": "2026-10-23"
   },
   "/ur/namaz/": {
-    "hash": "317301ded6c87c9c",
-    "lastmod": "2026-10-22"
+    "hash": "4cdcd49fe1fbfe32",
+    "lastmod": "2026-10-23"
   },
   "/ur/duas/": {
     "hash": "b30e2df4fc7e777c",
     "lastmod": "2026-10-21"
   },
   "/ur/calendar/": {
-    "hash": "c69c3f2c0f283211",
-    "lastmod": "2026-10-22"
+    "hash": "e132e29e8c8c5ace",
+    "lastmod": "2026-10-23"
   },
   "/ur/contact/": {
     "hash": "1221e8c0cf9d70a5",
