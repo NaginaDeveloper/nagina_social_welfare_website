@@ -31,7 +31,7 @@ import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
         @if (title()) {
           <span [class]="dark() ? 'font-semibold text-white' : 'font-semibold text-forest'">{{ title() }}</span>
         }
-        @for (campus of campusService.campuses(); track campus.id) {
+        @for (campus of campusService.contactCampuses(); track campus.id) {
           <span class="inline-flex flex-wrap items-center gap-2" [attr.data-campus]="campus.id">
             <span [class]="dark() ? 'font-semibold text-gold-300' : 'font-semibold text-gold-600'">{{ town(campus) }}</span>
             <a [href]="whatsapp(campus)" target="_blank" rel="noopener noreferrer" [class]="primaryClass()">
@@ -56,9 +56,9 @@ import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
       @if (title()) {
         <p [class]="dark() ? 'text-sm font-semibold text-white' : 'text-sm font-semibold text-forest'">{{ title() }}</p>
       }
-      @if (campusService.campuses().length > 0) {
+      @if (campusService.contactCampuses().length > 0) {
         <div class="grid gap-3 sm:grid-cols-2" [class.mt-3]="!!title()">
-          @for (campus of campusService.campuses(); track campus.id) {
+          @for (campus of campusService.contactCampuses(); track campus.id) {
             <div [class]="cardClass()" [attr.data-campus]="campus.id">
               <p class="text-[0.62rem] font-semibold uppercase tracking-[0.2em]" [class]="dark() ? 'text-gold-300' : 'text-gold-600'">
                 {{ town(campus) }}

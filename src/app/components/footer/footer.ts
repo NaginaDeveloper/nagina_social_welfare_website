@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ORGANIZATION, whatsappHref } from '../../config/organization.config';
 import { centrePath } from '../../config/centre-pages.config';
 import { LanguageService } from '../../i18n/language.service';
-import { campusTown, campusWhatsappHref, fillTowns, type Campus } from '../../models/campus';
+import { campusContactIsPublic, campusTown, campusWhatsappHref, fillTowns, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
 import { VisitorStats } from '../visitor-stats/visitor-stats';
@@ -18,6 +18,7 @@ export class Footer implements OnInit {
   protected readonly org = ORGANIZATION;
   protected readonly i18n = inject(LanguageService);
   protected readonly campusService = inject(CampusService);
+  protected readonly contactIsPublic = campusContactIsPublic;
   protected readonly tagline = computed(() =>
     fillTowns(this.i18n.t('footer.tagline'), this.campusService.towns()),
   );

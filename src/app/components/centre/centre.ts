@@ -30,7 +30,7 @@ export class Centre implements OnInit {
   private readonly prayer = inject(PrayerTimesService);
   protected readonly org = ORGANIZATION;
 
-  protected readonly campus = computed(() => this.campusService.byId(this.campusId()));
+  protected readonly campus = computed(() => this.campusService.ownContactById(this.campusId()));
   protected readonly logo = computed(() => centreLogo(this.campusId()));
   /** Google's review form for this centre's Business Profile; none until the centre has one. */
   protected readonly reviewUrl = computed(() => centreReviewUrl(this.campusId()));

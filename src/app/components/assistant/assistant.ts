@@ -41,7 +41,7 @@ export class Assistant {
   private readonly campusService = inject(CampusService);
   /** One Call / WhatsApp pair per centre; empty until the campus list loads. */
   protected readonly contactCentres = computed(() =>
-    this.campusService.campuses().map((campus) => ({
+    this.campusService.contactCampuses().map((campus) => ({
       id: campus.id,
       town: campusTown(campus),
       callHref: `tel:${campus.phoneE164}`,

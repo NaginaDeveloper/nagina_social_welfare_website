@@ -1,3 +1,5 @@
+import { ORGANIZATION } from '../config/organization.config';
+
 /** A madrasa campus as published by the admissions API (office-editable in Control Center). */
 export interface Campus {
   readonly id: string;
@@ -15,6 +17,25 @@ export interface Campus {
   /** Present in the build snapshot; the live API leaves these out and the postcode is looked up. */
   readonly latitude?: number | null;
   readonly longitude?: number | null;
+}
+
+/** Madrasas whose own phone, WhatsApp and email appear only on their own centre page. */
+const OWN_PAGE_CONTACT_ONLY: ReadonlySet<string> = new Set(['manchester']);
+
+export function campusContactIsPublic(campus: Pick<Campus, 'id'>): boolean {
+  return !OWN_PAGE_CONTACT_ONLY.has(campus.id);
+}
+
+/** Everywhere but its own page, such a madrasa shows the charity's main contact instead. */
+export function withPublicContact(campus: Campus): Campus {
+  if (campusContactIsPublic(campus)) return campus;
+  return {
+    ...campus,
+    phoneDisplay: ORGANIZATION.phoneDisplay,
+    phoneE164: ORGANIZATION.phoneTel,
+    whatsappDigits: ORGANIZATION.whatsappDigits,
+    email: ORGANIZATION.email,
+  };
 }
 
 export interface CampusCoords {

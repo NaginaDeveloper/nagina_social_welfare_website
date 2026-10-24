@@ -66,9 +66,11 @@
               <li class="leading-relaxed">
                 <span class="font-semibold text-white">{{ campus.displayName }}</span>
                 <span class="text-cream/60"> · {{ campus.addressLine }}</span>
-                <a [href]="'tel:' + campus.phoneE164" class="block text-gold-300 tabular-nums hover:text-white sm:inline sm:ps-1">
-                  {{ campus.phoneDisplay }}
-                </a>
+                @if (contactIsPublic(campus)) {
+                  <a [href]="'tel:' + campus.phoneE164" class="block text-gold-300 tabular-nums hover:text-white sm:inline sm:ps-1">
+                    {{ campus.phoneDisplay }}
+                  </a>
+                }
                 @if (campus.email && campus.email !== 'info@naginasocialwelfare.co.uk') {
                   <a [href]="'mailto:' + campus.email" class="block text-gold-300 hover:text-white sm:inline sm:ps-1">
                     {{ campus.email }}

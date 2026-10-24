@@ -7,7 +7,7 @@ import { ORGANIZATION } from '../config/organization.config';
 import { LanguageService } from '../i18n/language.service';
 import { isUrduPage, normalisePath, toUrduPath } from '../i18n/urdu-routes';
 import { centreMapsProfileUrl, centrePath } from '../config/centre-pages.config';
-import { campusLocation, campusTown, type Campus } from '../models/campus';
+import { campusContactIsPublic, campusLocation, campusTown, type Campus } from '../models/campus';
 import { CampusService } from '../services/campus.service';
 import {
   DEFAULT_OG_IMAGE,
@@ -359,8 +359,9 @@ export function madrasaNode(campus: Campus): Record<string, unknown> {
       postalCode: campus.postcode,
       addressCountry: 'GB',
     },
-    telephone: campus.phoneE164,
-    ...(campus.email ? { email: campus.email } : {}),
+    ...(campusContactIsPublic(campus)
+      ? { telephone: campus.phoneE164, ...(campus.email ? { email: campus.email } : {}) }
+      : {}),
     ...(mapsProfile ? { hasMap: mapsProfile, sameAs: [mapsProfile] } : {}),
     ...(coords
       ? { geo: { '@type': 'GeoCoordinates', latitude: coords.latitude, longitude: coords.longitude } }

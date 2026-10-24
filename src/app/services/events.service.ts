@@ -11,7 +11,7 @@ import {
 } from '../config/upcoming-events.config';
 import { firebaseStorageUrl } from './books.service';
 import { CampusService } from './campus.service';
-import { campusTown, type Campus } from '../models/campus';
+import { campusContactIsPublic, campusTown, type Campus } from '../models/campus';
 
 /** Events published before the madrasa choice carry no campus; they were all at this one. */
 const LEGACY_EVENT_CAMPUS_ID = 'peterborough';
@@ -127,7 +127,8 @@ export function toUpcomingEvent(item: EventsCatalogItem, campus: Campus | null):
   const images = (item.images ?? []).filter((img) => !!img.url);
   const primary = images[0];
   const whenLabel = formatWhenLabel(item.date, item.time);
-  const digits = eventWhatsappDigits(item) || campus?.whatsappDigits || '';
+  const ownDigits = campus && !campusContactIsPublic(campus) ? '' : eventWhatsappDigits(item);
+  const digits = ownDigits || campus?.whatsappDigits || '';
   return {
     id: item.id,
     title: item.title,

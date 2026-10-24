@@ -14,6 +14,8 @@ import {
   parsePostcodeLookup,
   type Campus,
   type CampusCoords,
+  campusContactIsPublic,
+  withPublicContact,
 } from '../models/campus';
 
 /**
@@ -41,11 +43,20 @@ export class CampusService {
     }
   }
 
-  readonly campuses = this.campusesSignal.asReadonly();
+  /** Campuses as shown across the site; see `withPublicContact`. */
+  readonly campuses = computed(() => this.campusesSignal().map(withPublicContact));
+  /** Campuses whose own contact details may be listed side by side (footer, assistant, contact). */
+  readonly contactCampuses = computed(() => this.campusesSignal().filter(campusContactIsPublic));
   readonly loaded = this.loadedSignal.asReadonly();
   readonly towns = computed(() => joinTowns(this.campusesSignal()));
 
   byId(id: string | null | undefined): Campus | null {
+    const campus = this.ownContactById(id);
+    return campus ? withPublicContact(campus) : null;
+  }
+
+  /** Only for the campus's own centre page, which keeps its own phone, WhatsApp and email. */
+  ownContactById(id: string | null | undefined): Campus | null {
     const key = String(id ?? '').trim().toLowerCase();
     return this.campusesSignal().find((c) => c.id === key) ?? null;
   }
