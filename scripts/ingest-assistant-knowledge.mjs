@@ -464,6 +464,11 @@ async function buildLegacyFaq() {
   return items;
 }
 
+const OWN_PAGE_CONTACT_ONLY = new Set(['manchester']);
+const OFFICE_PHONE = '07831 684738';
+const OFFICE_WHATSAPP = '447831684738';
+const OFFICE_EMAIL = 'info@naginasocialwelfare.co.uk';
+
 /** One entry per madrasa from the office-editable campus list, so edits reach the assistant on the next ingest. */
 async function buildCampusFaq() {
   const res = await fetch(CAMPUSES_URL, { headers: { Origin: 'https://www.naginasocialwelfare.co.uk' } });
@@ -471,10 +476,14 @@ async function buildCampusFaq() {
   const campuses = (await res.json())?.campuses ?? [];
   return campuses.map((c) => {
     const fee = typeof c.monthlyFeeGbp === 'number' ? ` Fees are £${c.monthlyFeeGbp} a month.` : '';
+    // Manchester's own number is shown only on its centre page; the assistant gives the main office instead.
+    const contact = OWN_PAGE_CONTACT_ONLY.has(c.id)
+      ? ` For questions, contact the main office on ${OFFICE_PHONE} (https://wa.me/${OFFICE_WHATSAPP}) or ${OFFICE_EMAIL}.`
+      : ` Phone or WhatsApp ${c.phoneDisplay} (https://wa.me/${c.whatsappDigits}).`;
     return {
       title: `Madrasa: ${c.displayName}`,
       path: '/madrasa',
-      text: `${c.displayName} is a Nagina Social Welfare Madrasa at ${c.addressLine}. Phone or WhatsApp ${c.phoneDisplay} (https://wa.me/${c.whatsappDigits}).${fee} Apply online at https://www.naginasocialwelfare.co.uk/apply/?campus=${c.id} and choose ${c.displayName}.`,
+      text: `${c.displayName} is a Nagina Social Welfare Madrasa at ${c.addressLine}.${contact}${fee} Apply online at https://www.naginasocialwelfare.co.uk/apply/?campus=${c.id} and choose ${c.displayName}.`,
       tags: ['madrasa', 'campus', c.id],
     };
   });

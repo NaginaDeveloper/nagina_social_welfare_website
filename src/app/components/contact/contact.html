@@ -22,7 +22,7 @@
         <a routerLink="/apply" class="btn btn-lg btn-primary">
           {{ i18n.t('contact.applyCta') }}
         </a>
-        @for (campus of campusService.campuses(); track campus.id) {
+        @for (campus of campusService.contactCampuses(); track campus.id) {
           <a
             [href]="campusWhatsapp(campus)"
             target="_blank"
@@ -42,7 +42,7 @@
             {{ i18n.t('contact.phone') }} · {{ org.phoneDisplay }}
           </a>
         }
-        @for (campus of campusService.campuses(); track campus.id) {
+        @for (campus of campusService.contactCampuses(); track campus.id) {
           <a [href]="'mailto:' + (campus.email || org.email)" class="btn btn-lg btn-ghost" [attr.data-campus-email]="campus.id">
             {{ i18n.t('contact.email') }} · {{ town(campus) }}
           </a>

@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { madrasaSessions, type MadrasaSession } from '../../config/madrasa-timetable.config';
 import { LanguageService } from '../../i18n/language.service';
-import type { Campus } from '../../models/campus';
+import { campusContactIsPublic, type Campus } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { CampusService } from '../../services/campus.service';
 export class ApplyIntake implements OnInit {
   protected readonly i18n = inject(LanguageService);
   protected readonly campusService = inject(CampusService);
+  protected readonly contactIsPublic = campusContactIsPublic;
   protected readonly posterHref = '/posters/madrasa-admission-2026.jpg';
 
   ngOnInit(): void {
