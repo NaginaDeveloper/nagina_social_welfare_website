@@ -43,6 +43,33 @@ export interface UpcomingEvent {
  */
 export const LOCAL_DATED_EVENTS: readonly UpcomingEvent[] = [
   {
+    id: 'zikr-fikr-2026-10-25',
+    title: 'Zikr & Fikr — Following the Prophet ﷺ: The True Path',
+    titleUr: 'محفلِ ذکر و فکر — اسوۂ رسول ﷺ: ہماری منزل',
+    date: '2026-10-25',
+    time: '18:30',
+    endTime: '20:00',
+    whenLabel: 'Sunday, 25 October 2026 · 6:30–8:00pm',
+    whenLabelUr: 'اتوار، ۲۵ اکتوبر ۲۰۲۶ · ۶:۳۰–۸:۰۰ شام',
+    highlights: 'Topic: Following the Prophet ﷺ — The True Path (Uswa-e-Rasool ﷺ: Hamari Manzil)',
+    highlightsUr: 'عنوان: اسوۂ رسول ﷺ: ہماری منزل',
+    summary:
+      '<p><strong>Weekly spiritual &amp; reflection gathering</strong> for brothers and youngsters.</p>' +
+      '<p>Topic: <strong>Following the Prophet ﷺ: The True Path</strong>.</p>' +
+      '<p>A blessed gathering to remember Allah and to learn and act on the Sunnah of Prophet Muhammad ﷺ. All brothers, and especially young people, are warmly invited.</p>' +
+      '<p>Sunday 25 October · 6:30pm–8:00pm · Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT</p>',
+    summaryUr:
+      '<p><strong>ہفتہ وار محفلِ ذکر و فکر</strong> — صرف بھائیوں اور نوجوانوں کے لیے۔</p>' +
+      '<p>عنوان: <strong>اسوۂ رسول ﷺ: ہماری منزل</strong>۔</p>' +
+      '<p>اللہ تعالیٰ کی یاد اور نبی کریم ﷺ کی مبارک سنتوں کو سیکھنے اور ان پر عمل کرنے کی نیت سے ایک با برکت محفل۔ آپ تمام حضرات اور بالخصوص نوجوانوں سے شرکت کی پرخلوص درخواست ہے۔</p>' +
+      '<p>اتوار ۲۵ اکتوبر · شام ۶:۳۰–۸:۰۰ · مرکز دین اسلام، ۱۰۳ برمر روڈ، پیٹربرو</p>',
+    audience: 'Brothers & youngsters only',
+    audienceUr: 'صرف بھائیوں اور نوجوانوں کے لیے',
+    venue: 'Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT',
+    whatsappPrefill:
+      'Assalamu alaikum, I would like to attend Zikr & Fikr (Following the Prophet ﷺ: The True Path) on Sunday 25 October at Markaz Deen-e-Islam.',
+  },
+  {
     id: 'zikr-fikr-2026-09-27',
     title: 'Zikr & Fikr — Remembrance & Reflection',
     titleUr: 'ذکر و فکر — یاد اور غور',
