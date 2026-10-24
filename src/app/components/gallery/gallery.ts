@@ -22,6 +22,7 @@ export class Gallery implements OnInit {
   protected readonly events = inject(EventsService);
   protected readonly facebookUrl = ORGANIZATION.facebookUrl;
   protected readonly facebookPhotosUrl = ORGANIZATION.facebookPhotosUrl;
+  protected readonly facebookPageUrl = ORGANIZATION.facebookPageUrl;
   protected readonly instagramUrl = ORGANIZATION.instagramUrl;
   protected readonly youtubeUrl = ORGANIZATION.youtubeUrl;
 

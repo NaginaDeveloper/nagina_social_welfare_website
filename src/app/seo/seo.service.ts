@@ -221,6 +221,7 @@ export class SeoService {
       ],
       sameAs: [
         ORGANIZATION.facebookUrl,
+        ORGANIZATION.facebookPageUrl,
         ORGANIZATION.instagramUrl,
         ORGANIZATION.youtubeUrl,
         ORGANIZATION.tiktokUrl,

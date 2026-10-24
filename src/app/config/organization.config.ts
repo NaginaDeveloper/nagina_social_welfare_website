@@ -33,6 +33,8 @@ export const ORGANIZATION = {
   halalCheckerUrl: 'https://admin.naginasocialwelfare.co.uk/halal-checker',
   facebookUrl: 'https://www.facebook.com/naginasocial.welfare.5',
   facebookPhotosUrl: 'https://www.facebook.com/naginasocial.welfare.5/photos',
+  /** The charity's Facebook page (separate from the profile above). */
+  facebookPageUrl: 'https://www.facebook.com/NaginaSocial',
   instagramUrl: 'https://www.instagram.com/naginasocialwelfare/',
   youtubeUrl: 'https://www.youtube.com/@naginasocialwelfareuk7419',
   tiktokUrl: 'https://www.tiktok.com/@nagina.social.wel',
