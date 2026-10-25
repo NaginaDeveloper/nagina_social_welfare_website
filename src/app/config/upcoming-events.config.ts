@@ -63,6 +63,16 @@ export const LOCAL_DATED_EVENTS: readonly UpcomingEvent[] = [
       '<p>عنوان: <strong>اسوۂ رسول ﷺ: ہماری منزل</strong>۔</p>' +
       '<p>اللہ تعالیٰ کی یاد اور نبی کریم ﷺ کی مبارک سنتوں کو سیکھنے اور ان پر عمل کرنے کی نیت سے ایک با برکت محفل۔ آپ تمام حضرات اور بالخصوص نوجوانوں سے شرکت کی پرخلوص درخواست ہے۔</p>' +
       '<p>اتوار ۲۵ اکتوبر · شام ۶:۳۰–۸:۰۰ · مرکز دین اسلام، ۱۰۳ برمر روڈ، پیٹربرو</p>',
+    image: '/gallery/poster-zikr-fikr-oct-2026.webp',
+    imageAlt:
+      'Zikr and Fikr poster — Following the Prophet ﷺ: The True Path, Sunday 25 October 2026, 6:30–8:00pm at Markaz Deen-e-Islam',
+    images: [
+      {
+        id: 'zikr-fikr-2026-10-25-poster',
+        url: '/gallery/poster-zikr-fikr-oct-2026.webp',
+        alt: 'Zikr and Fikr — Following the Prophet ﷺ: The True Path, 25 October 2026',
+      },
+    ],
     audience: 'Brothers & youngsters only',
     audienceUr: 'صرف بھائیوں اور نوجوانوں کے لیے',
     venue: 'Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT',
