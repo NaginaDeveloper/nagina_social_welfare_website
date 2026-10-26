@@ -13,6 +13,9 @@ export interface BlogPost {
   readonly updatedAt?: string;
   readonly image: { readonly url: string; readonly alt: string };
   /** Optional Urdu version of the article (all three are written together). */
+  /** Optional search-result title and keywords (focus keyword first), set in the admin form. */
+  readonly seoTitle?: string;
+  readonly seoKeywords?: string;
   readonly titleUr?: string;
   readonly excerptUr?: string;
   readonly contentHtmlUr?: string;

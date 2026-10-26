@@ -52,4 +52,22 @@ describe('blog and terms SEO', () => {
     expect(seo.ur?.title).toBe('زکوٰۃ کی رہنمائی | نگینہ');
     expect(seo.ur?.description).toBe('مختصر رہنمائی۔');
   });
+
+  it('uses the SEO title and keywords set for an article, else the default title', () => {
+    const base = {
+      slug: 'a-guide',
+      title: 'A very long article heading that would not fit in a search result title',
+      excerpt: 'A short guide.',
+      topic: '',
+      author: 'Nagina Social Welfare UK',
+      publishedAt: '2026-10-26',
+      image: { url: 'https://example.com/a.jpg' },
+    };
+    const plain = blogArticleSeo(base);
+    expect(plain.title).toBe(base.title);
+    expect(plain.keywords).toBeUndefined();
+    const set = blogArticleSeo({ ...base, seoTitle: 'Short title | Nagina', seoKeywords: 'quran classes, madrasa' });
+    expect(set.title).toBe('Short title | Nagina');
+    expect(set.keywords).toBe('quran classes, madrasa');
+  });
 });

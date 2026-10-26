@@ -682,13 +682,16 @@ export function blogArticleSeo(post: {
   readonly publishedAt: string;
   readonly updatedAt?: string;
   readonly image: { readonly url: string };
+  readonly seoTitle?: string;
+  readonly seoKeywords?: string;
   readonly titleUr?: string;
   readonly excerptUr?: string;
   readonly contentHtmlUr?: string;
 }): PageSeo {
   return {
-    title: blogArticleTitle(post.title),
+    title: post.seoTitle?.trim() || blogArticleTitle(post.title),
     description: post.excerpt || post.title,
+    keywords: post.seoKeywords?.trim() || undefined,
     path: `/blog/${post.slug}/`,
     image: post.image.url,
     type: 'article',
