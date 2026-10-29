@@ -23,6 +23,13 @@
         <p class="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-slate-warm sm:text-lg">
           {{ i18n.t('about.lead') }}
         </p>
+        <a
+          routerLink="/blog/our-mission-and-vision"
+          class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 underline-offset-4 transition-colors hover:text-forest hover:underline"
+        >
+          {{ i18n.t('about.missionLink') }}
+          <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
+        </a>
       } @else {
         <span class="eyebrow mb-4 inline-block">{{ i18n.t('about.homeEyebrow') }}</span>
         <h2 class="page-title">{{ i18n.t('about.homeTitle') }}</h2>

@@ -878,6 +878,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'home.glimpse.welfareHint': 'Langar, support and donation drives',
   'about.homeLead': 'Faith, compassion and knowledge, serving families across the UK.',
   'about.readMore': 'Read More About Us',
+  'about.missionLink': 'Read our Mission & Vision',
   'contact.homeLead': 'Questions, donations or class enquiries — message us on WhatsApp.',
 
   'about.eyebrow': 'Our Vision',

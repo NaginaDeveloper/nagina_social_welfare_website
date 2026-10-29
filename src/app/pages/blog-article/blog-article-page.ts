@@ -1,11 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { PageShell } from '../page-shell';
 import { BlogService } from '../../services/blog.service';
 import { LanguageService } from '../../i18n/language.service';
-import { formatBlogDate, hasUrdu, readingMinutes, relatedPosts, type BlogPost } from '../../models/blog';
+import { SeoService } from '../../seo/seo.service';
+import { SITE_ORIGIN } from '../../seo/seo.config';
+import { faqPageJsonLd } from '../../seo/structured-data';
+import { blogFaqEntries, formatBlogDate, hasUrdu, readingMinutes, relatedPosts, type BlogPost } from '../../models/blog';
 
 @Component({
   selector: 'app-blog-article-page',
@@ -163,5 +166,14 @@ export class BlogArticlePage {
 
   constructor() {
     void this.blog.ready();
+    // FAQ structured data mirrors the visible "Frequently Asked Questions" section of the article.
+    const seo = inject(SeoService);
+    effect(() => {
+      const p = this.post();
+      const prefix = this.i18n.isUr() ? '/ur' : '';
+      const node = p ? faqPageJsonLd(blogFaqEntries(this.body(p)), `${SITE_ORIGIN}${prefix}/blog/${p.slug}/`) : null;
+      seo.setExtraJsonLd('faq', node ? [node] : null);
+    });
+    inject(DestroyRef).onDestroy(() => seo.setExtraJsonLd('faq', null));
   }
 }
