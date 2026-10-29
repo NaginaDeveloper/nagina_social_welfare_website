@@ -27,10 +27,16 @@ import { Icon } from '../ui/icon';
               </li>
             }
           </ul>
-          <a routerLink="/about" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-700 hover:text-forest">
-            {{ i18n.t('about.readMore') }}
-            <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
-          </a>
+          <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <a routerLink="/about" class="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-700 hover:text-forest">
+              {{ i18n.t('about.readMore') }}
+              <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
+            </a>
+            <a routerLink="/blog/our-mission-and-vision" class="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-700 hover:text-forest">
+              {{ i18n.t('about.missionLink') }}
+              <app-icon name="arrow" size="h-4 w-4 rtl:-scale-x-100" />
+            </a>
+          </div>
         </article>
 
         <article class="relative overflow-hidden rounded-[1.25rem] bg-forest p-6 text-cream shadow-portal sm:p-8" [appReveal]="100">

@@ -747,6 +747,7 @@ export const TRANSLATIONS_UR: Record<string, string> = {
   'home.glimpse.welfareHint': 'لنگر، مدد اور عطیہ مہمات',
   'about.homeLead': 'ایمان، ہمدردی اور علم — برطانیہ بھر کے خاندانوں کی خدمت میں۔',
   'about.readMore': 'ہمارے بارے میں مزید پڑھیں',
+  'about.missionLink': 'ہمارا مشن اور وژن پڑھیں',
   'contact.homeLead': 'سوالات، عطیات یا کلاس کے استفسار — ہمیں واٹس ایپ پر پیغام بھیجیں۔',
 
   'about.eyebrow': 'ہمارا ویژن',

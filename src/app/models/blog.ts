@@ -76,3 +76,37 @@ export function relatedPosts(posts: readonly BlogPost[], current: BlogPost, limi
   const rest = others.filter((p) => !sameTopic.includes(p));
   return [...sameTopic, ...rest].slice(0, limit);
 }
+
+const decodeEntities = (t: string): string =>
+  t.replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#39;|&rsquo;/gi, '’').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
+
+const plainText = (html: string): string => decodeEntities(html.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+
+/**
+ * Questions and answers from the article's "Frequently Asked Questions" section
+ * (an h2 followed by an h3 per question and the answer paragraphs), for FAQ structured data.
+ */
+export function blogFaqEntries(html: string): { question: string; answer: string }[] {
+  const source = String(html ?? '');
+  const heading = /<h2[^>]*>([\s\S]*?)<\/h2>/gi;
+  let start = -1;
+  let end = source.length;
+  for (let m = heading.exec(source); m; m = heading.exec(source)) {
+    if (start >= 0) {
+      end = m.index;
+      break;
+    }
+    if (/frequently asked questions|\bfaqs?\b/i.test(plainText(m[1]))) start = m.index + m[0].length;
+  }
+  if (start < 0) return [];
+  const entries: { question: string; answer: string }[] = [];
+  const parts = source.slice(start, end).split(/<h3[^>]*>/i).slice(1);
+  for (const part of parts) {
+    const close = part.search(/<\/h3>/i);
+    if (close < 0) continue;
+    const question = plainText(part.slice(0, close));
+    const answer = plainText(part.slice(close + 5));
+    if (question && answer) entries.push({ question, answer });
+  }
+  return entries;
+}

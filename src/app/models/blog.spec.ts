@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  blogFaqEntries,
   blogWordCount,
   formatBlogDate,
   parseBlogCatalog,
@@ -60,5 +61,22 @@ describe('blog model', () => {
     ];
     expect(relatedPosts(posts, current, 3).map((p) => p.slug)).toEqual(['same', 'new-other', 'older']);
     expect(relatedPosts(posts, current, 1).map((p) => p.slug)).toEqual(['same']);
+  });
+});
+
+describe('blogFaqEntries', () => {
+  it('reads question and answer pairs from the FAQ section only', () => {
+    const html =
+      '<h2>Intro</h2><h3>Not a question</h3><p>x</p><h2>Frequently Asked Questions</h2>' +
+      '<h3>What is Zakat?</h3><p>An <a href="/zakat/">obligation</a> &amp; a pillar.</p><p>Paid yearly.</p>' +
+      '<h3>Who gives?</h3><p>Every eligible Muslim.</p><h2>Join Us</h2><h3>Later</h3><p>y</p>';
+    expect(blogFaqEntries(html)).toEqual([
+      { question: 'What is Zakat?', answer: 'An obligation & a pillar. Paid yearly.' },
+      { question: 'Who gives?', answer: 'Every eligible Muslim.' },
+    ]);
+  });
+
+  it('returns nothing when there is no FAQ section', () => {
+    expect(blogFaqEntries('<h2>A</h2><h3>B</h3><p>c</p>')).toEqual([]);
   });
 });
