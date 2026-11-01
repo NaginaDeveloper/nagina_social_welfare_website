@@ -693,6 +693,36 @@ html.urdu .spotlight-label {
   }
 }
 
+/* Home hero: the Holy Qur'an medallion, its names turning around the photo. */
+.quran-medallion {
+  position: relative;
+  display: block;
+  width: 11.5rem;
+  height: 11.5rem;
+}
+.quran-ring {
+  font-family: 'Amiri Hero', var(--font-arabic);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.quran-medallion .guide-gap img {
+  object-position: 50% 50%;
+}
+@media (min-width: 640px) {
+  .quran-medallion {
+    width: 14rem;
+    height: 14rem;
+  }
+}
+@media (min-width: 1280px) {
+  .quran-medallion {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
+
 /* Home hero: the illuminated Qur'an. */
 @keyframes hqSpin {
   to {
