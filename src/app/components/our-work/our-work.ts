@@ -80,7 +80,7 @@ export class OurWork {
         'Monthly Summaries',
       ],
       highlightsUr: ['عطیہ مہمات', 'کمیونٹی کی مدد', 'شفاف رسیدیں', 'ماہانہ خلاصے'],
-      logo: '/brand/nagina-256.webp',
+      logo: '/brand/nagina-social-welfare-uk-logo-256.webp',
     },
   ];
 }

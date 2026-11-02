@@ -25,7 +25,8 @@
         <span class="block overflow-hidden rounded-[1.2rem] bg-sand p-3 sm:p-4">
           <img
             [src]="coverSrc"
-            alt="Cover of Kashkool e Yousufi, the book from which these Shajra pages are shown"
+            [attr.title]="imageTitle(coverSrc)"
+            alt="Blue cover of the book Kashkool e Yousufi, with its title in gold Urdu lettering"
             width="896"
             height="1200"
             class="mx-auto w-full bg-white object-contain shadow-soft"
@@ -73,7 +74,8 @@
         <span class="block overflow-hidden rounded-[1.2rem] bg-forest">
           <img
             [src]="heroSrc"
-            alt="Shajra hero banner: Faiz-e-Nagina, Munir-e-Islam, and the mashayikh of Nagina TV"
+            [attr.title]="imageTitle(heroSrc)"
+            alt="Nagina TV banner: Faiz-e-Nagina and Munir-e-Islam with two mashayikh, with Urdu text"
             width="1024"
             height="384"
             class="h-auto w-full object-cover object-center"
@@ -133,6 +135,7 @@
           <img
             [src]="titlePage.src"
             [alt]="titlePage.alt"
+            [attr.title]="imageTitle(titlePage.src)"
             width="396"
             height="526"
             class="mx-auto w-full bg-white object-contain shadow-soft"
@@ -242,6 +245,7 @@
                         <img
                           [src]="page.src"
                           [alt]="page.alt"
+            [attr.title]="imageTitle(page.src)"
                           width="561"
                           height="1024"
                           class="mx-auto w-full bg-white object-contain shadow-soft"
@@ -349,6 +353,7 @@
               <img
                 [src]="honour.src"
                 [alt]="honour.alt"
+            [attr.title]="imageTitle(honour.src)"
                 width="706"
                 height="824"
                 class="mx-auto w-full bg-white object-contain shadow-soft"
@@ -408,7 +413,8 @@
     </button>
     <img
       [src]="heroSrc"
-      alt="Shajra hero banner: Faiz-e-Nagina, Munir-e-Islam, and the mashayikh of Nagina TV"
+            [attr.title]="imageTitle(heroSrc)"
+      alt="Nagina TV banner: Faiz-e-Nagina and Munir-e-Islam with two mashayikh, with Urdu text"
       class="max-h-[min(90vh,900px)] w-auto max-w-full rounded-lg object-contain shadow-portal ring-2 ring-gold/40"
       (click)="$event.stopPropagation()"
     />
@@ -467,6 +473,7 @@
       <img
         [src]="page.src"
         [alt]="page.alt"
+            [attr.title]="imageTitle(page.src)"
         class="max-h-[min(82vh,960px)] w-auto max-w-full rounded-lg bg-sand object-contain shadow-portal ring-2 ring-gold/40"
       />
       <figcaption

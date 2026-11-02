@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { CENTRE_PAGE_PATHS, centrePath } from '../../config/centre-pages.config';
 import type { NavIcon } from '../../config/navigation.config';
 import { ORGANIZATION } from '../../config/organization.config';
+import { imageTitle } from '../../config/image-seo.config';
 import { LanguageService } from '../../i18n/language.service';
 import { campusTown } from '../../models/campus';
 import { CampusService } from '../../services/campus.service';
@@ -43,6 +44,7 @@ export interface HeroCentreChip {
   templateUrl: './home-hub.html',
 })
 export class HomeHub implements OnInit {
+  protected readonly imageTitle = imageTitle;
   protected readonly org = ORGANIZATION;
   protected readonly i18n = inject(LanguageService);
   protected readonly prayer = inject(PrayerTimesService);
@@ -383,25 +385,28 @@ export class HomeHub implements OnInit {
    */
   protected readonly haramain = [
     {
-      src: '/media/haramain-makkah-arch-400.webp',
+      src: '/media/kaaba-masjid-al-haram-makkah.webp',
       alt: 'The Holy Kaaba seen through an arch of Masjid al-Haram, Makkah',
       name: 'Holy Makkah',
+      detail: 'The Kaaba',
       width: 400,
       height: 533,
       focus: '50% 55%',
     },
     {
-      src: '/media/haramain-madinah-400.webp',
+      src: '/media/green-dome-masjid-an-nabawi-madinah.webp',
       alt: 'The Green Dome and a minaret of Masjid an-Nabawi, Madinah, against a blue sky',
       name: 'Blessed Madinah',
+      detail: 'Green Dome',
       width: 400,
       height: 533,
       focus: '40% 100%',
     },
     {
-      src: '/media/haramain-aqsa-400.webp',
+      src: '/media/dome-of-the-rock-al-aqsa-jerusalem.webp',
       alt: 'The golden Dome of the Rock in the Al-Aqsa compound, Jerusalem',
       name: 'Sacred Al-Aqsa',
+      detail: 'Dome of the Rock',
       width: 400,
       height: 533,
       focus: '50% 45%',

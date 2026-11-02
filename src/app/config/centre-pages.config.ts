@@ -16,7 +16,7 @@ export const CENTRE_LOGOS: Readonly<Record<string, string>> = {
 
 /** The centre's seal, or the charity mark for a centre without one. */
 export function centreLogo(campusId: string): string {
-  return CENTRE_LOGOS[campusId] ?? '/brand/nagina-256.webp';
+  return CENTRE_LOGOS[campusId] ?? '/brand/nagina-social-welfare-uk-logo-256.webp';
 }
 
 /**

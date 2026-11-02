@@ -96,6 +96,7 @@
                 <img
                   [src]="place.src"
                   [alt]="place.alt"
+                  [attr.title]="imageTitle(place.src)"
                   [attr.width]="place.width"
                   [attr.height]="place.height"
                   [attr.fetchpriority]="i === 0 ? 'high' : null"
@@ -109,6 +110,7 @@
               <!-- Name under the arch, so it never sits on the photo. -->
               <figcaption class="mt-1.5 text-center font-display text-[0.72rem] font-semibold leading-tight text-gold-300 sm:mt-3 sm:text-lg">
                 {{ place.name }}
+                <span class="block text-[0.6rem] font-normal leading-tight text-cream/70 sm:text-sm">{{ place.detail }}</span>
               </figcaption>
             </figure>
           }
@@ -180,7 +182,7 @@
           <span
             class="flex h-10 w-10 shrink-0 sm:order-last items-center justify-center rounded-full bg-white p-1 shadow-portal ring-2 ring-gold-300/60 sm:h-20 sm:w-20 lg:h-[4.5rem] lg:w-[4.5rem] 2xl:h-24 2xl:w-24"
           >
-            <img src="/brand/nagina-256.webp" alt="" width="256" height="266" class="h-full w-full object-contain" decoding="async" />
+            <img src="/brand/nagina-social-welfare-uk-logo-256.webp" alt="Nagina Social Welfare UK logo" width="256" height="266" class="h-full w-full object-contain" decoding="async" />
           </span>
           <span class="text-shimmer">Nagina Social Welfare UK</span>
         </span>
