@@ -29,6 +29,7 @@
           <img
             [src]="photo.src"
             [alt]="photo.alt"
+            [attr.title]="imageTitle(photo.src)"
             class="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
             loading="eager"
             decoding="async"
@@ -54,6 +55,7 @@
           <img
             [src]="photo.src"
             [alt]="photo.alt"
+            [attr.title]="imageTitle(photo.src)"
             class="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
             decoding="async"
@@ -118,10 +120,13 @@
           <img
             [src]="saying.src"
             [alt]="saying.alt"
+            [attr.title]="imageTitle(saying.src)"
             class="h-full w-full object-contain object-center transition-transform duration-700 group-hover:scale-[1.02]"
             loading="lazy"
             decoding="async"
           />
+          <!-- The full saying, in the language of the page, for readers and search engines. -->
+          <span class="sr-only" [attr.lang]="i18n.isUr() ? 'ur' : null">{{ i18n.pick(saying.caption, saying.captionUr) }}</span>
         </button>
       }
     </div>
@@ -154,6 +159,7 @@
       <img
         [src]="photo.src"
         [alt]="photo.alt"
+            [attr.title]="imageTitle(photo.src)"
         class="max-h-[min(85vh,900px)] w-auto max-w-full rounded-xl object-contain shadow-portal ring-1 ring-white/15"
       />
       <figcaption

@@ -30,7 +30,7 @@ import { WhatsappIcon } from '../whatsapp-icon/whatsapp-icon';
             <div class="flex h-full flex-col">
               <a routerLink="/" class="inline-flex items-center gap-3" [attr.aria-label]="org.charityName">
                 <img
-                  src="/brand/nagina-128.webp"
+                  src="/brand/nagina-social-welfare-uk-logo-128.webp" srcset="/brand/nagina-social-welfare-uk-logo-128.webp 1x, /brand/nagina-social-welfare-uk-logo-256.webp 2x"
                   alt=""
                   width="48"
                   height="48"

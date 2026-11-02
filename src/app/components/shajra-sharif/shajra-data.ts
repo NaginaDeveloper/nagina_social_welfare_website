@@ -69,7 +69,7 @@ function s(
 }
 
 function kashkool(n: number): string {
-  return `/gallery/shajra/kashkool/${n}.jpg`;
+  return `/gallery/shajra/kashkool/shajra-sharif-kashkool-e-yousufi-page-${n}.jpg`;
 }
 
 export function toEasternDigits(n: number): string {
@@ -80,7 +80,7 @@ export const SHAJRA_TITLE_PAGE: ShajraPage = {
   id: 'kashkool-208',
   src: kashkool(208),
   kashkoolPage: 208,
-  alt: 'Kashkool e Yousufi page 208: ornamental title Shajra-haye Mubarakah, the blessed spiritual lineages',
+  alt: 'Kashkool e Yousufi page 208 (Urdu): ornamental title Shajra-haye Mubarakah, the blessed spiritual lineages',
   caption: 'The blessed spiritual lineages',
   captionUr: 'شجرہ ہائے مبارکہ',
   saints: [],
@@ -89,9 +89,9 @@ export const SHAJRA_TITLE_PAGE: ShajraPage = {
 const mukhtasarPages: readonly ShajraPage[] = [
   {
     id: 'kashkool-218',
-    src: '/gallery/shajra/01.jpg',
+    src: '/gallery/shajra/shajra-sharif-kashkool-e-yousufi-page-218.jpg',
     kashkoolPage: 218,
-    alt: 'Kashkool page 218: opening of the shorter Naqshbandi Mujaddidi Yusufi Shajra',
+    alt: 'Kashkool e Yousufi page 218 (Urdu): opening of the shorter Naqshbandi Mujaddidi Yusufi Shajra',
     caption: 'Opening — the Prophet ﷺ, Ahl-e-Bait and Sahaba',
     captionUr: 'آغاز — حضور ﷺ، اہل بیت اور صحابہ',
     saints: [
@@ -123,9 +123,9 @@ const mukhtasarPages: readonly ShajraPage[] = [
   },
   {
     id: 'kashkool-219',
-    src: '/gallery/shajra/02.jpg',
+    src: '/gallery/shajra/shajra-sharif-kashkool-e-yousufi-page-219.jpg',
     kashkoolPage: 219,
-    alt: 'Kashkool page 219: Imam Jafar Sadiq through Darwish Muhammad',
+    alt: 'Kashkool e Yousufi page 219 (Urdu): Imam Jafar Sadiq through Darwish Muhammad',
     caption: 'Imam Jafar Sadiq to Darwish Muhammad',
     captionUr: 'امام جعفر صادق تا خواجہ درویش',
     saints: [
@@ -152,9 +152,9 @@ const mukhtasarPages: readonly ShajraPage[] = [
   },
   {
     id: 'kashkool-220',
-    src: '/gallery/shajra/03.jpg',
+    src: '/gallery/shajra/shajra-sharif-kashkool-e-yousufi-page-220.jpg',
     kashkoolPage: 220,
-    alt: 'Kashkool page 220: Mujaddid Alf Thani through the saints of Chora Sharif',
+    alt: 'Kashkool e Yousufi page 220 (Urdu): Mujaddid Alf Thani through the saints of Chora Sharif',
     caption: 'Mujaddid Alf Thani to Noor Muhammad Chorahi',
     captionUr: 'مجدد الف ثانی تا نور محمد چوراہی',
     saints: [
@@ -187,9 +187,9 @@ const mukhtasarPages: readonly ShajraPage[] = [
   },
   {
     id: 'kashkool-221',
-    src: '/gallery/shajra/04.jpg',
+    src: '/gallery/shajra/shajra-sharif-kashkool-e-yousufi-page-221.jpg',
     kashkoolPage: 221,
-    alt: 'Kashkool page 221: later mashayikh of the Yusufi Nagina chain',
+    alt: 'Kashkool e Yousufi page 221 (Urdu): later mashayikh of the Yusufi Nagina chain',
     caption: 'The later mashayikh',
     captionUr: 'بعد کے مشائخ',
     saints: [
@@ -231,7 +231,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-209',
         src: kashkool(209),
         kashkoolPage: 209,
-        alt: 'Kashkool page 209: opening of the longer Naqshbandi Mujaddidi Yusufi Shajra',
+        alt: 'Kashkool e Yousufi page 209 (Urdu): opening of the longer Naqshbandi Mujaddidi Yusufi Shajra',
         caption: 'Opening hamd — the Prophet ﷺ and the Panjtan',
         captionUr: 'آغاز حمد — حضور ﷺ اور پنجتن',
         saints: [
@@ -253,7 +253,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-210',
         src: kashkool(210),
         kashkoolPage: 210,
-        alt: 'Kashkool page 210: verses for the Companions and Abu Bakr Siddiq',
+        alt: 'Kashkool e Yousufi page 210 (Urdu): verses for the Companions and Abu Bakr Siddiq',
         caption: 'The Companions and Abu Bakr Siddiq',
         captionUr: 'صحابہ اور ابو بکر صدیق',
         saints: [
@@ -272,7 +272,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-211',
         src: kashkool(211),
         kashkoolPage: 211,
-        alt: 'Kashkool page 211: Salman Farsi, Imam Qasim and Imam Jafar Sadiq',
+        alt: 'Kashkool e Yousufi page 211 (Urdu): Salman Farsi, Imam Qasim and Imam Jafar Sadiq',
         caption: 'Salman Farsi to Imam Jafar Sadiq',
         captionUr: 'سلمان فارسی تا امام جعفر صادق',
         saints: [
@@ -294,7 +294,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-212',
         src: kashkool(212),
         kashkoolPage: 212,
-        alt: 'Kashkool page 212: Bayazid, Abul Hasan, Yusuf Hamdani and the early Khwajagan',
+        alt: 'Kashkool e Yousufi page 212 (Urdu): Bayazid, Abul Hasan, Yusuf Hamdani and the early Khwajagan',
         caption: 'Bayazid to the Khwajagan',
         captionUr: 'بایزید تا خواجگان',
         saints: [
@@ -317,7 +317,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-213',
         src: kashkool(213),
         kashkoolPage: 213,
-        alt: 'Kashkool page 213: Ali Ramitani through Yaqub Charkhi',
+        alt: 'Kashkool e Yousufi page 213 (Urdu): Ali Ramitani through Yaqub Charkhi',
         caption: 'Ali Ramitani to Yaqub Charkhi',
         captionUr: 'علی رامیتنی تا یعقوب چرخی',
         saints: [
@@ -339,7 +339,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-214',
         src: kashkool(214),
         kashkoolPage: 214,
-        alt: 'Kashkool page 214: Ubaidullah Ahrar through Mujaddid Alf Thani',
+        alt: 'Kashkool e Yousufi page 214 (Urdu): Ubaidullah Ahrar through Mujaddid Alf Thani',
         caption: 'Ubaidullah Ahrar to Mujaddid Alf Thani',
         captionUr: 'عبید اللہ احرار تا مجدد الف ثانی',
         saints: [
@@ -358,7 +358,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-215',
         src: kashkool(215),
         kashkoolPage: 215,
-        alt: 'Kashkool page 215: Muhammad Masoom through Shah Jamalullah',
+        alt: 'Kashkool e Yousufi page 215 (Urdu): Muhammad Masoom through Shah Jamalullah',
         caption: 'Muhammad Masoom to Shah Jamalullah',
         captionUr: 'محمد معصوم تا شاہ جمال اللہ',
         saints: [
@@ -382,7 +382,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-216',
         src: kashkool(216),
         kashkoolPage: 216,
-        alt: 'Kashkool page 216: Shah Isa, Noor Muhammad Chorahi and the saints of Chora',
+        alt: 'Kashkool e Yousufi page 216 (Urdu): Shah Isa, Noor Muhammad Chorahi and the saints of Chora',
         caption: 'Shah Isa to the saints of Chora Sharif',
         captionUr: 'شاہ عیسیٰ تا اولیاء چورا شریف',
         saints: [
@@ -406,7 +406,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-217',
         src: kashkool(217),
         kashkoolPage: 217,
-        alt: 'Kashkool page 217: later mashayikh ending with Murshid Yusuf Nagina',
+        alt: 'Kashkool e Yousufi page 217 (Urdu): later mashayikh ending with Murshid Yusuf Nagina',
         caption: 'The later mashayikh, to Murshid Yusuf Nagina',
         captionUr: 'بعد کے مشائخ، تا مرشد یوسف نگینہ',
         saints: [
@@ -448,7 +448,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-222',
         src: kashkool(222),
         kashkoolPage: 222,
-        alt: 'Kashkool page 222: opening of the Chishti Sabri Siraji Sardari Yusufi Shajra',
+        alt: 'Kashkool e Yousufi page 222 (Urdu): opening of the Chishti Sabri Siraji Sardari Yusufi Shajra',
         caption: 'Opening — the Prophet ﷺ, Ahl-e-Bait and the early mashayikh',
         captionUr: 'آغاز — حضور ﷺ، اہل بیت اور اوائل مشائخ',
         saints: [
@@ -479,7 +479,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-223',
         src: kashkool(223),
         kashkoolPage: 223,
-        alt: 'Kashkool page 223: Ibrahim Adham through Baba Farid',
+        alt: 'Kashkool e Yousufi page 223 (Urdu): Ibrahim Adham through Baba Farid',
         caption: 'Ibrahim Adham to Fariduddin Ganjshakar',
         captionUr: 'ابراہیم ادہم تا فرید الدین گنج شکر',
         saints: [
@@ -505,7 +505,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-224',
         src: kashkool(224),
         kashkoolPage: 224,
-        alt: 'Kashkool page 224: Alauddin Sabir through Abu Saeed',
+        alt: 'Kashkool e Yousufi page 224 (Urdu): Alauddin Sabir through Abu Saeed',
         caption: 'Alauddin Sabir to Abu Saeed',
         captionUr: 'علاؤ الدین صابر تا ابو سعید',
         saints: [
@@ -529,7 +529,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-225',
         src: kashkool(225),
         kashkoolPage: 225,
-        alt: 'Kashkool page 225: later Chishti mashayikh ending with Murshid Yusuf Nagina',
+        alt: 'Kashkool e Yousufi page 225 (Urdu): later Chishti mashayikh ending with Murshid Yusuf Nagina',
         caption: 'The later mashayikh, to Murshid Yusuf Nagina',
         captionUr: 'بعد کے مشائخ، تا مرشد یوسف نگینہ',
         saints: [
@@ -563,7 +563,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-226',
         src: kashkool(226),
         kashkoolPage: 226,
-        alt: 'Kashkool page 226: opening of the Qadri Razawi Yusufi Shajra',
+        alt: 'Kashkool e Yousufi page 226 (Urdu): opening of the Qadri Razawi Yusufi Shajra',
         caption: 'Opening — the Prophet ﷺ and the Imams of the Ahl-e-Bait',
         captionUr: 'آغاز — حضور ﷺ اور ائمہ اہل بیت',
         saints: [
@@ -595,7 +595,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-227',
         src: kashkool(227),
         kashkoolPage: 227,
-        alt: 'Kashkool page 227: Imam Jafar Sadiq through Abdul Wahid',
+        alt: 'Kashkool e Yousufi page 227 (Urdu): Imam Jafar Sadiq through Abdul Wahid',
         caption: 'Imam Jafar Sadiq to Abdul Wahid',
         captionUr: 'امام جعفر صادق تا عبد الواحد',
         saints: [
@@ -613,7 +613,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-228',
         src: kashkool(228),
         kashkoolPage: 228,
-        alt: 'Kashkool page 228: Abu al-Farah through Shaykh Abdul Qadir Jilani',
+        alt: 'Kashkool e Yousufi page 228 (Urdu): Abu al-Farah through Shaykh Abdul Qadir Jilani',
         caption: 'Abu al-Farah to Shaykh Abdul Qadir Jilani',
         captionUr: 'ابو الفرح تا شیخ عبد القادر جیلانی',
         saints: [
@@ -630,7 +630,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-229',
         src: kashkool(229),
         kashkoolPage: 229,
-        alt: 'Kashkool page 229: later Qadri mashayikh',
+        alt: 'Kashkool e Yousufi page 229 (Urdu): later Qadri mashayikh',
         caption: 'The later Qadri mashayikh',
         captionUr: 'بعد کے قادری مشائخ',
         saints: [
@@ -644,7 +644,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-230',
         src: kashkool(230),
         kashkoolPage: 230,
-        alt: 'Kashkool page 230: Jamal al-Awliya and the table of grace',
+        alt: 'Kashkool e Yousufi page 230 (Urdu): Jamal al-Awliya and the table of grace',
         caption: 'Jamal al-Awliya',
         captionUr: 'جمال الاولیاء',
         saints: [
@@ -656,7 +656,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-231',
         src: kashkool(231),
         kashkoolPage: 231,
-        alt: 'Kashkool page 231: Hamza, Shams-ud-Din and the family of the Messenger',
+        alt: 'Kashkool e Yousufi page 231 (Urdu): Hamza, Shams-ud-Din and the family of the Messenger',
         caption: 'Hamza, Shams-ud-Din and the family of the Messenger',
         captionUr: 'حمزہ، شمس الدین اور آل رسول',
         saints: [
@@ -675,7 +675,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-232',
         src: kashkool(232),
         kashkoolPage: 232,
-        alt: 'Kashkool page 232: Abul Hussain Ahmad Noori, Imam Ahmad Raza and Hamid Raza',
+        alt: 'Kashkool e Yousufi page 232 (Urdu): Abul Hussain Ahmad Noori, Imam Ahmad Raza and Hamid Raza',
         caption: 'Ahmad Noori to Hamid Raza',
         captionUr: 'احمد نوری تا حامد رضا',
         saints: [
@@ -688,7 +688,7 @@ export const SHAJRA_SILSILAS: readonly ShajraSilsila[] = [
         id: 'kashkool-233',
         src: kashkool(233),
         kashkoolPage: 233,
-        alt: 'Kashkool page 233: closing verses for Sarfaraz Ahmad and Murshid Yusuf Nagina',
+        alt: 'Kashkool e Yousufi page 233 (Urdu): closing verses for Sarfaraz Ahmad and Murshid Yusuf Nagina',
         caption: 'Closing — Sarfaraz Ahmad and Murshid Yusuf Nagina',
         captionUr: 'اختتام — سرفراز احمد اور مرشد یوسف نگینہ',
         saints: [
@@ -725,8 +725,8 @@ export const SHAJRA_ORDERS: readonly ShajraOrder[] = [
 
 export const SHAJRA_HONOUR: ShajraPage = {
   id: 'nagina',
-  src: '/gallery/shajra/05-haji-muhammad-yusuf-ali-nagina.jpg',
-  alt: 'Commemorative poster of Pir-e-Tariqat, Rehbar-e-Shariat Haji Muhammad Yusuf Ali Nagina',
+  src: '/gallery/shajra/haji-muhammad-yusuf-ali-nagina-commemorative-poster.jpg',
+  alt: 'Commemorative poster for Pir-e-Tariqat Haji Muhammad Yusuf Ali Nagina, with Urdu text and the Green Dome of Madinah',
   caption: 'Pir-e-Tariqat, Rehbar-e-Shariat Haji Muhammad Yusuf Ali Nagina',
   captionUr: 'پیر طریقت رہبر شریعت حضرت حاجی محمد یوسف علی نگینہ رضی اللہ تعالیٰ عنہ',
   honour: true,

@@ -105,7 +105,7 @@ export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
         'A beloved scholar and Sufi guide whose teaching of sweet manner, patience, knowledge and charity continues to light the work of Markaz Deen-e-Islam.',
         'His sermons and books, preserved from the Seedha Rastah archive, are free to watch and read on this website.',
       ],
-      image: '/gallery/munir/01-portrait.jpg',
+      image: '/gallery/munir/portrait-of-allama-munir-ahmed-yusufi.jpg',
       links: [
         { path: '/spiritual-guide', label: 'Our spiritual guide' },
         { path: '/sermons', label: 'Sermons' },

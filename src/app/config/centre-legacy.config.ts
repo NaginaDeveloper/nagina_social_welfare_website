@@ -40,7 +40,7 @@ export const INSPIRATION = {
     { path: '/sermons', label: 'Sermons' },
     { path: '/seedha-rastah', label: 'Seedha Rastah' },
   ],
-  portrait: '/gallery/munir/01-portrait.jpg',
+  portrait: '/gallery/munir/portrait-of-allama-munir-ahmed-yusufi.jpg',
 } as const;
 
 export const CHAIN_NODES: readonly ChainNode[] = [
@@ -48,7 +48,7 @@ export const CHAIN_NODES: readonly ChainNode[] = [
     id: 'pakistan',
     name: 'Nagina Social Welfare, Pakistan',
     role: `Founded by ${SHAYKH_NAME}`,
-    logo: '/brand/nagina-256.webp',
+    logo: '/brand/nagina-social-welfare-uk-logo-256.webp',
   },
   {
     id: 'peterborough',

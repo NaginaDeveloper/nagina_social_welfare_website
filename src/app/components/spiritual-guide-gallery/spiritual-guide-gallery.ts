@@ -1,4 +1,5 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
+import { imageTitle } from '../../config/image-seo.config';
 import { LanguageService } from '../../i18n/language.service';
 import {
   SPIRITUAL_GUIDE_PHOTOS,
@@ -12,6 +13,7 @@ import {
 })
 export class SpiritualGuideGallery {
   protected readonly i18n = inject(LanguageService);
+  protected readonly imageTitle = imageTitle;
   protected readonly featured = SPIRITUAL_GUIDE_PHOTOS.slice(0, 3);
   protected readonly photos = SPIRITUAL_GUIDE_PHOTOS.slice(3);
   protected readonly sayings = SPIRITUAL_GUIDE_SAYINGS;

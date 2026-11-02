@@ -1,4 +1,5 @@
 import { Component, HostListener, computed, inject, signal } from '@angular/core';
+import { imageTitle } from '../../config/image-seo.config';
 import { LanguageService } from '../../i18n/language.service';
 import {
   SHAJRA_HONOUR,
@@ -30,8 +31,9 @@ export class ShajraSharif {
   protected readonly silsilas = SHAJRA_SILSILAS;
   protected readonly titlePage = SHAJRA_TITLE_PAGE;
   protected readonly honour = SHAJRA_HONOUR;
-  protected readonly heroSrc = '/gallery/shajra/00-hero.jpg';
-  protected readonly coverSrc = '/gallery/shajra/kashkool-e-yousufi-cover.jpg';
+  protected readonly imageTitle = imageTitle;
+  protected readonly heroSrc = '/gallery/shajra/faiz-e-nagina-munir-e-islam-banner.jpg';
+  protected readonly coverSrc = '/gallery/shajra/kashkool-e-yousufi-book-cover.jpg';
   protected readonly lightbox = signal<Lightbox | null>(null);
 
   protected readonly activePage = computed((): ShajraPage | null => {
@@ -43,7 +45,7 @@ export class ShajraSharif {
       return {
         id: 'kashkool-cover',
         src: this.coverSrc,
-        alt: 'Cover of Kashkool e Yousufi, the book from which these Shajra pages are shown',
+        alt: 'Blue cover of the book Kashkool e Yousufi, with its title in gold Urdu lettering',
         caption: 'Kashkool e Yousufi',
         captionUr: 'کشکول یوسفی',
         saints: [],
