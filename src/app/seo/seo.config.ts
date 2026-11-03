@@ -124,12 +124,12 @@ export const WORK_SEO: PageSeo = {
 };
 
 export const PETERBOROUGH_SEO: PageSeo = {
-  title: 'Markaz Deen-e-Islam Peterborough | Nagina Social Welfare UK',
+  title: 'Madrasa in Peterborough | Markaz Deen-e-Islam, Burmer Road',
   description:
-    'Madrasa and Quran classes at Markaz Deen-e-Islam, 103 Burmer Road, Peterborough: evening classes by age, Let’s Learn Salah, sisters’ gatherings and Zikr & Fikr.',
+    'Madrasa in Peterborough: daily evening Quran and Islamic studies classes for children by age at Markaz Deen-e-Islam, 103 Burmer Road PE1 3HT.',
   path: '/peterborough/',
   keywords:
-    'Markaz Deen-e-Islam, Nagina Social Welfare Peterborough, Madrasa Peterborough, Burmer Road, Mehfil-e-Naat Peterborough, Zikr and Fikr, sisters gathering Peterborough, learn Salah Peterborough, Islamic community Peterborough',
+    'madrasa in Peterborough, best madrasa Peterborough, Quran classes Peterborough, Markaz Deen-e-Islam, Nagina Social Welfare Peterborough, Madrasa Peterborough, Burmer Road, Mehfil-e-Naat Peterborough, Zikr and Fikr, sisters gathering Peterborough, learn Salah Peterborough, Islamic community Peterborough',
   type: 'website',
   breadcrumb: 'Peterborough',
   changefreq: 'weekly',

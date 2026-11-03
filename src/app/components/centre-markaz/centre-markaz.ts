@@ -1,8 +1,11 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, DestroyRef, effect, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import type { MarkazAbout } from '../../config/centre-about.config';
 import { Reveal } from '../../directives/reveal';
 import { LanguageService } from '../../i18n/language.service';
+import { SITE_ORIGIN } from '../../seo/seo.config';
+import { SeoService } from '../../seo/seo.service';
+import { faqPageJsonLd } from '../../seo/structured-data';
 import { CentreLegacy } from '../centre-legacy/centre-legacy';
 import { Icon } from '../ui/icon';
 
@@ -16,4 +19,14 @@ export class CentreMarkaz {
   readonly about = input.required<MarkazAbout>();
 
   protected readonly i18n = inject(LanguageService);
+
+  constructor() {
+    const seo = inject(SeoService);
+    // Mirrors the visible questions and answers so the markup matches the page.
+    effect(() => {
+      const node = faqPageJsonLd(this.about().faqs, `${SITE_ORIGIN}/peterborough/`);
+      seo.setExtraJsonLd('faq', node ? [node] : null);
+    });
+    inject(DestroyRef).onDestroy(() => seo.setExtraJsonLd('faq', null));
+  }
 }
