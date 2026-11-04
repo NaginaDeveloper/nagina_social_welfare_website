@@ -68,6 +68,19 @@
     </ol>
   </div>
 
+  <!-- Plain answers about the madrasa -->
+  <div class="mx-auto mt-20 max-w-3xl" appReveal data-testid="markaz-faq">
+    <h2 class="text-center font-display text-2xl font-bold text-forest sm:text-3xl">Madrasa in Peterborough: Frequently Asked Questions</h2>
+    <dl class="mt-8 space-y-3">
+      @for (faq of about().faqs; track faq.question) {
+        <div class="rounded-2xl border border-mist bg-white px-5 py-4 shadow-soft">
+          <dt class="font-display text-lg font-bold text-forest">{{ faq.question }}</dt>
+          <dd class="mt-1 text-sm leading-relaxed text-slate-warm sm:text-base">{{ faq.answer }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+
   <!-- Head office -->
   <div class="mt-20 text-center" appReveal data-testid="markaz-head-office">
     <h2 class="font-display text-2xl font-bold text-forest sm:text-3xl">The Charity’s Head Office</h2>

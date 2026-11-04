@@ -27,6 +27,8 @@ export interface MarkazAbout {
     readonly image: string;
     readonly links: readonly { readonly path: string; readonly label: string }[];
   };
+  /** Plain questions and answers about the madrasa, shown on the page and as FAQPage markup. */
+  readonly faqs: readonly { readonly question: string; readonly answer: string }[];
   readonly headOffice: {
     readonly text: string;
     readonly links: readonly { readonly path: string; readonly label: string; readonly icon: UiIconName }[];
@@ -112,6 +114,33 @@ export const MARKAZ_ABOUT: Readonly<Record<string, MarkazAbout>> = {
         { path: '/seedha-rastah', label: 'Seedha Rastah' },
       ],
     },
+    faqs: [
+      {
+        question: 'Where is the madrasa in Peterborough?',
+        answer:
+          'Our madrasa is at Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT. It is the head office of Nagina Social Welfare UK, a registered charity (1196514).',
+      },
+      {
+        question: 'What are the madrasa class times?',
+        answer:
+          'Classes run daily in the evening: Class 1 from 4:30 to 5:30 PM and Class 2 from 5:30 to 6:30 PM, both for children under 10, and Class 3 from 6:30 to 7:30 PM for ages 10 and above.',
+      },
+      {
+        question: 'What do children learn at the madrasa?',
+        answer:
+          'Children study the Qur’an and Islamic studies in a calm, caring setting, guided by the teaching of Munir-e-Islam: sweet manner, patience, knowledge and charity.',
+      },
+      {
+        question: 'How do I enrol my child?',
+        answer:
+          'Use the admission form on this website, or message or call us on 07831 684738. We will confirm the class that suits your child’s age.',
+      },
+      {
+        question: 'Is there anything for adults and families?',
+        answer:
+          'Yes. We run a weekly Let’s Learn Salah course, a monthly sisters’ gathering, Zikr & Fikr evenings, a Grand Annual Mehfil-e-Naat and a Hajj training seminar.',
+      },
+    ],
     headOffice: {
       text: 'Markaz Deen-e-Islam is the registered head office of Nagina Social Welfare UK (charity 1196514), which runs Madrasas in Peterborough and Manchester. Giving, community membership and requests for help can all start here.',
       links: [
