@@ -41,6 +41,7 @@ export const TRANSLATIONS_UR: Record<string, string> = {
   'footer.company': 'کمپنی',
   'footer.registered': 'انگلینڈ اور ویلز میں رجسٹرڈ',
   'footer.copyright': 'جملہ حقوق محفوظ ہیں۔',
+  'footer.developedBy': 'تیار کردہ:',
   'footer.giftAid': 'گیفٹ ایڈ فی الحال کلیم نہیں کیا جاتا۔',
   'footer.gdprNote': 'ذاتی معلومات UK GDPR کے مطابق سنبھالی جاتی ہیں۔',
   'footer.explore': 'مزید دیکھیں',

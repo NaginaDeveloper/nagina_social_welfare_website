@@ -43,6 +43,7 @@ export const TRANSLATIONS_EN: Record<string, string> = {
   'footer.company': 'Company',
   'footer.registered': 'Registered in England and Wales',
   'footer.copyright': 'All rights reserved.',
+  'footer.developedBy': 'Developed by',
   'footer.giftAid': 'Gift Aid is not currently claimed.',
   'footer.gdprNote': 'Personal data handled in line with UK GDPR.',
   'footer.explore': 'Explore',
