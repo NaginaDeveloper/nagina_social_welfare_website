@@ -16,11 +16,26 @@ export class MembershipService {
   private readonly http = inject(HttpClient);
 
   async submit(payload: MembershipSubmitPayload): Promise<SubmitMembershipResponse> {
+    let lostResponse = false;
     try {
-      return await firstValueFrom(
-        this.http.post<SubmitMembershipResponse>(SUBMIT_MEMBERSHIP_URL, payload),
-      );
+      return await withRetry(async () => {
+        try {
+          return await firstValueFrom(
+            this.http.post<SubmitMembershipResponse>(SUBMIT_MEMBERSHIP_URL, payload),
+          );
+        } catch (err) {
+          if (err instanceof HttpErrorResponse && err.status === 0) lostResponse = true;
+          throw err;
+        }
+      });
     } catch (err) {
+      // An earlier attempt may have been saved before its reply was lost, so the
+      // retry then hits the duplicate-email check.
+      if (lostResponse && err instanceof HttpErrorResponse && err.status === 409) {
+        throw new Error(
+          'Your application may already have been received. Please check your email for a confirmation before trying again.',
+        );
+      }
       throw new Error(messageFromHttp(err, 'submit'));
     }
   }
@@ -40,6 +55,34 @@ export class MembershipService {
       );
     } catch (err) {
       throw new Error(messageFromHttp(err, 'lookup'));
+    }
+  }
+}
+
+/** Waits before each retry; the server cold-starts in a few seconds. */
+export const SUBMIT_RETRY_DELAYS_MS = [1500, 3500];
+
+/**
+ * True for failures where the request never got a real answer: no response at all
+ * (status 0 — network drop, or a server error without CORS headers) or a server-side
+ * 5xx. 4xx answers (validation, duplicate, rate limit) are final.
+ */
+export function isRetryableHttpError(err: unknown): boolean {
+  if (!(err instanceof HttpErrorResponse)) return false;
+  return err.status === 0 || [500, 502, 503, 504].includes(err.status);
+}
+
+export async function withRetry<T>(
+  run: () => Promise<T>,
+  delaysMs: readonly number[] = SUBMIT_RETRY_DELAYS_MS,
+  sleep: (ms: number) => Promise<void> = (ms) => new Promise((r) => setTimeout(r, ms)),
+): Promise<T> {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await run();
+    } catch (err) {
+      if (attempt >= delaysMs.length || !isRetryableHttpError(err)) throw err;
+      await sleep(delaysMs[attempt]);
     }
   }
 }
