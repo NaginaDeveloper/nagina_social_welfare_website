@@ -43,6 +43,43 @@ export interface UpcomingEvent {
  */
 export const LOCAL_DATED_EVENTS: readonly UpcomingEvent[] = [
   {
+    id: 'monthly-gathering-2026-11-08',
+    title: 'Monthly Gathering — The Perfect Example ﷺ: The Pathway to Success',
+    titleUr: 'ماہانہ محفل — اُسوۂ حسنہ ﷺ: کامیابی کا راستہ',
+    date: '2026-11-08',
+    time: '18:00',
+    endTime: '20:00',
+    whenLabel: 'Sunday, 8 November 2026 · 6:00–8:00pm',
+    whenLabelUr: 'اتوار، ۸ نومبر ۲۰۲۶ · ۶:۰۰–۸:۰۰ شام',
+    highlights: 'Topic: The Perfect Example ﷺ — The Pathway to Success (Uswa-e-Hasana ﷺ: Kamyabi ka Rasta)',
+    highlightsUr: 'عنوان: اُسوۂ حسنہ ﷺ: کامیابی کا راستہ',
+    summary:
+      '<p><strong>Monthly spiritual gathering</strong> for brothers and youngsters (male youth).</p>' +
+      '<p>Topic: <strong>The Perfect Example ﷺ: The Pathway to Success</strong>.</p>' +
+      '<p>A blessed monthly gathering dedicated to the remembrance of Allah ﷻ and learning the Sunnah of Prophet Muhammad ﷺ. All brothers, and especially young people, are warmly invited.</p>' +
+      '<p>Sunday 8 November · 6:00pm–8:00pm · Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT</p>',
+    summaryUr:
+      '<p><strong>ماہانہ روحانی محفل</strong> — صرف بھائیوں اور نوجوانوں کے لیے۔</p>' +
+      '<p>عنوان: <strong>اُسوۂ حسنہ ﷺ: کامیابی کا راستہ</strong>۔</p>' +
+      '<p>اللہ سبحانہ و تعالیٰ کی یاد اور نبی کریم ﷺ کی سنتوں کو سیکھنے کے لیے ایک بابرکت محفل۔ آپ تمام حضرات اور بالخصوص نوجوانوں سے شرکت کی پرخلوص درخواست ہے۔</p>' +
+      '<p>اتوار ۸ نومبر · شام ۶:۰۰–۸:۰۰ · مرکز دین اسلام، ۱۰۳ برمر روڈ، پیٹربرو</p>',
+    image: '/gallery/poster-monthly-gathering-nov-2026.webp',
+    imageAlt:
+      'Monthly Gathering poster — The Perfect Example ﷺ: The Pathway to Success, Sunday 8 November 2026, 6:00–8:00pm at Markaz Deen-e-Islam',
+    images: [
+      {
+        id: 'monthly-gathering-2026-11-08-poster',
+        url: '/gallery/poster-monthly-gathering-nov-2026.webp',
+        alt: 'Monthly Gathering — The Perfect Example ﷺ: The Pathway to Success, 8 November 2026',
+      },
+    ],
+    audience: 'Brothers & youngsters (male youth) only',
+    audienceUr: 'صرف بھائیوں اور نوجوانوں کے لیے',
+    venue: 'Markaz Deen-e-Islam, 103 Burmer Road, Peterborough PE1 3HT',
+    whatsappPrefill:
+      'Assalamu alaikum, I would like to attend the Monthly Gathering (The Perfect Example ﷺ: The Pathway to Success) on Sunday 8 November at Markaz Deen-e-Islam.',
+  },
+  {
     id: 'zikr-fikr-2026-10-25',
     title: 'Zikr & Fikr — Following the Prophet ﷺ: The True Path',
     titleUr: 'محفلِ ذکر و فکر — اسوۂ رسول ﷺ: ہماری منزل',
