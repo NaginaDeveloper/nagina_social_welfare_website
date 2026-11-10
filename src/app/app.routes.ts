@@ -26,6 +26,8 @@ import {
   KHATME_NABUWWAT_SEO,
   NAMAZ_SEO,
   PETERBOROUGH_SEO,
+  LOCATION_PETERBOROUGH_SEO,
+  LOCATION_MANCHESTER_SEO,
   MANCHESTER_SEO,
   CENTRE_SEO,
   PRIVACY_SEO,
@@ -78,6 +80,18 @@ const siteRoutes: Routes = [
     loadComponent: () => import('./pages/centre/centre-page').then((m) => m.CentrePage),
     title: PETERBOROUGH_SEO.title,
     data: { seo: PETERBOROUGH_SEO, campusId: 'peterborough', breadcrumb: 'Peterborough' },
+  },
+  {
+    path: 'locations/peterborough',
+    loadComponent: () => import('./pages/locations/location-page').then((m) => m.LocationPage),
+    title: LOCATION_PETERBOROUGH_SEO.title,
+    data: { seo: LOCATION_PETERBOROUGH_SEO, locationId: 'peterborough', breadcrumb: 'Peterborough' },
+  },
+  {
+    path: 'locations/manchester',
+    loadComponent: () => import('./pages/locations/location-page').then((m) => m.LocationPage),
+    title: LOCATION_MANCHESTER_SEO.title,
+    data: { seo: LOCATION_MANCHESTER_SEO, locationId: 'manchester', breadcrumb: 'Manchester' },
   },
   {
     path: 'manchester',

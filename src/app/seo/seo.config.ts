@@ -44,6 +44,8 @@ export const OG_CARD_SLUGS: readonly string[] = [
   'work',
   'peterborough',
   'manchester',
+  'locations-peterborough',
+  'locations-manchester',
   'madrasa',
   'apply',
   'membership',
@@ -728,12 +730,40 @@ export const TERMS_SEO: PageSeo = {
   priority: 0.3,
 };
 
+export const LOCATION_PETERBOROUGH_SEO: PageSeo = {
+  title: 'Islamic Charity Peterborough | Donate Zakat & Sadaqah',
+  description:
+    'Donate to Nagina Social Welfare, a registered Islamic charity in Peterborough. Give Zakat, Sadaqah, Lillah or Fitrana to help education and people in need.',
+  path: '/locations/peterborough/',
+  keywords:
+    'Islamic charity Peterborough, Nagina Social Welfare Peterborough, donate Zakat Peterborough, Sadaqah donation Peterborough, Muslim charity Peterborough, Islamic education Peterborough, Quran classes Peterborough, charity donations Peterborough, community welfare Peterborough',
+  type: 'website',
+  breadcrumb: 'Peterborough',
+  changefreq: 'monthly',
+  priority: 0.8,
+};
+
+export const LOCATION_MANCHESTER_SEO: PageSeo = {
+  title: 'Islamic Charity Manchester | Donate Zakat & Sadaqah',
+  description:
+    'Donate to Nagina Social Welfare, a registered Islamic charity in Manchester. Give Zakat, Sadaqah, Lillah or Fitrana to help education and people in need.',
+  path: '/locations/manchester/',
+  keywords:
+    'Islamic charity Manchester, Nagina Social Welfare Manchester, Quran academy Manchester, Quran classes Partington, donate Zakat Manchester, Sadaqah donation Manchester, Muslim charity Manchester, Islamic education Manchester, charity donations Manchester',
+  type: 'website',
+  breadcrumb: 'Manchester',
+  changefreq: 'monthly',
+  priority: 0.8,
+};
+
 export const PUBLIC_SEO_PAGES: readonly PageSeo[] = [
   HOME_SEO,
   ABOUT_SEO,
   WORK_SEO,
   PETERBOROUGH_SEO,
   MANCHESTER_SEO,
+  LOCATION_PETERBOROUGH_SEO,
+  LOCATION_MANCHESTER_SEO,
   MADRASA_SEO,
   APPLY_SEO,
   APPLY_SUCCESS_SEO,

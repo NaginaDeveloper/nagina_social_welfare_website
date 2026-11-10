@@ -251,6 +251,20 @@ export function buildNavGroups(centreLinks: readonly NavLink[]): readonly NavGro
       },
     }),
     group({
+      id: 'locations',
+      labelKey: 'nav.locations',
+      icon: 'pin',
+      sections: [
+        {
+          labelKey: 'nav.section.locations',
+          items: [
+            { labelKey: 'nav.locationPeterborough', path: '/locations/peterborough', hintKey: 'nav.locationPeterboroughHint', icon: 'pin' },
+            { labelKey: 'nav.locationManchester', path: '/locations/manchester', hintKey: 'nav.locationManchesterHint', icon: 'pin' },
+          ],
+        },
+      ],
+    }),
+    group({
       id: 'connect',
       labelKey: 'nav.connect',
       icon: 'connect',
@@ -306,6 +320,8 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
       { labelKey: 'nav.applyOnline', path: '/apply', icon: 'contact' },
       { labelKey: 'nav.applyTrack', path: '/apply/track', icon: 'guides' },
       { labelKey: 'nav.madrasa', path: '/madrasa', icon: 'mosque' },
+      { labelKey: 'nav.locationPeterborough', path: '/locations/peterborough', icon: 'pin' },
+      { labelKey: 'nav.locationManchester', path: '/locations/manchester', icon: 'pin' },
       { labelKey: 'nav.apps', path: '/apps', icon: 'apps' },
       { labelKey: 'header.signIn', path: '/portals', icon: 'privacy' },
     ],
