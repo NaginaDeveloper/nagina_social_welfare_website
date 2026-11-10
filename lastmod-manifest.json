@@ -1,31 +1,39 @@
 {
   "/": {
-    "hash": "a8a2071aedabec80",
-    "lastmod": "2026-11-07"
+    "hash": "becd56e0e4ff0eae",
+    "lastmod": "2026-11-10"
   },
   "/about/": {
-    "hash": "abb18ff381a79174",
-    "lastmod": "2026-11-07"
+    "hash": "aae22dcf3151b52b",
+    "lastmod": "2026-11-10"
   },
   "/work/": {
-    "hash": "4c76f5a5017e95c1",
-    "lastmod": "2026-11-07"
+    "hash": "e09666aca368a1c8",
+    "lastmod": "2026-11-10"
   },
   "/peterborough/": {
-    "hash": "65fae5a419e62f25",
-    "lastmod": "2026-11-07"
+    "hash": "e1108403fb1faa92",
+    "lastmod": "2026-11-10"
   },
   "/manchester/": {
-    "hash": "61b84e40a6fc7976",
-    "lastmod": "2026-11-07"
+    "hash": "a6a1ba410bad8e0c",
+    "lastmod": "2026-11-10"
+  },
+  "/locations/peterborough/": {
+    "hash": "ad49475df87dc4e1",
+    "lastmod": "2026-11-10"
+  },
+  "/locations/manchester/": {
+    "hash": "dc0d3c6739fe47a6",
+    "lastmod": "2026-11-10"
   },
   "/madrasa/": {
-    "hash": "d75047424f146310",
-    "lastmod": "2026-11-07"
+    "hash": "99a81dbcf05e3ea4",
+    "lastmod": "2026-11-10"
   },
   "/apply/": {
-    "hash": "169db17f0c8e4a41",
-    "lastmod": "2026-11-07"
+    "hash": "5765ce29549cb9ec",
+    "lastmod": "2026-11-10"
   },
   "/apply/success/": {
     "hash": "da39a3ee5e6b4b0d",
@@ -36,8 +44,8 @@
     "lastmod": "2026-10-09"
   },
   "/membership/": {
-    "hash": "d95b3ca725b115fd",
-    "lastmod": "2026-11-07"
+    "hash": "e82083c68f59ac24",
+    "lastmod": "2026-11-10"
   },
   "/membership/success/": {
     "hash": "da39a3ee5e6b4b0d",
@@ -52,227 +60,227 @@
     "lastmod": "2026-10-09"
   },
   "/spiritual-guide/": {
-    "hash": "ea85781b10f75dce",
-    "lastmod": "2026-11-07"
+    "hash": "895f0c90a9d35660",
+    "lastmod": "2026-11-10"
   },
   "/khatme-nabuwwat/": {
-    "hash": "3efa99886692bb53",
-    "lastmod": "2026-11-07"
+    "hash": "60f9869849dd749c",
+    "lastmod": "2026-11-10"
   },
   "/ahle-bait/": {
-    "hash": "08fb436d11377c4b",
-    "lastmod": "2026-11-07"
+    "hash": "d13174c03c03cd4b",
+    "lastmod": "2026-11-10"
   },
   "/sahaba-ikram/": {
-    "hash": "63158d48f5d0914c",
-    "lastmod": "2026-11-07"
+    "hash": "0ca9619b90bfe881",
+    "lastmod": "2026-11-10"
   },
   "/aulia-karam/": {
-    "hash": "2407b08f0e1d956a",
-    "lastmod": "2026-11-07"
+    "hash": "964ded855024df03",
+    "lastmod": "2026-11-10"
   },
   "/basic-beliefs/": {
-    "hash": "c9ec10547da2156b",
-    "lastmod": "2026-11-07"
+    "hash": "dc360a0d963397b3",
+    "lastmod": "2026-11-10"
   },
   "/guidance/": {
-    "hash": "69cdfac12453c844",
-    "lastmod": "2026-11-07"
+    "hash": "1c05d9abb8e86630",
+    "lastmod": "2026-11-10"
   },
   "/namaz/": {
-    "hash": "3a5b4886514e1e79",
-    "lastmod": "2026-11-07"
+    "hash": "98600e4a3ede259d",
+    "lastmod": "2026-11-10"
   },
   "/zakat/": {
-    "hash": "74e382b30e30145a",
-    "lastmod": "2026-11-07"
+    "hash": "2ce2acbc291b4c9e",
+    "lastmod": "2026-11-10"
   },
   "/zakat/what-is-zakat/": {
-    "hash": "ec556e31b5e0bc34",
-    "lastmod": "2026-11-07"
+    "hash": "cd4455418bef3422",
+    "lastmod": "2026-11-10"
   },
   "/zakat/rules/": {
-    "hash": "06245a033499907e",
-    "lastmod": "2026-11-07"
+    "hash": "621dba25fb14978c",
+    "lastmod": "2026-11-10"
   },
   "/duas/": {
-    "hash": "d3c9cfa8017266f1",
-    "lastmod": "2026-11-07"
+    "hash": "3af9548a1ade04fa",
+    "lastmod": "2026-11-10"
   },
   "/calendar/": {
-    "hash": "6b5b83cb988c9758",
-    "lastmod": "2026-11-07"
+    "hash": "437cda0edf4584e1",
+    "lastmod": "2026-11-10"
   },
   "/ramadan/": {
-    "hash": "7f3b910c0df6e108",
-    "lastmod": "2026-11-07"
+    "hash": "f9db76a7737fbe14",
+    "lastmod": "2026-11-10"
   },
   "/impact/": {
-    "hash": "b25eb0ab86488401",
-    "lastmod": "2026-11-07"
+    "hash": "ddc9b9b769e7318c",
+    "lastmod": "2026-11-10"
   },
   "/quran/": {
-    "hash": "1345244d218e8a16",
-    "lastmod": "2026-11-07"
+    "hash": "1579f1cce80a6d29",
+    "lastmod": "2026-11-10"
   },
   "/hadith/": {
-    "hash": "08b5fec4d1378baf",
-    "lastmod": "2026-11-07"
+    "hash": "65bff7830921f043",
+    "lastmod": "2026-11-10"
   },
   "/seedha-rastah/": {
-    "hash": "62705e70173133f7",
-    "lastmod": "2026-11-07"
+    "hash": "9b57cccef6341c42",
+    "lastmod": "2026-11-10"
   },
   "/books/": {
-    "hash": "a1ce14eb5420a2dc",
-    "lastmod": "2026-11-07"
+    "hash": "5271647b38190064",
+    "lastmod": "2026-11-10"
   },
   "/sermons/": {
-    "hash": "a38129fe344773f5",
-    "lastmod": "2026-11-07"
+    "hash": "77d4dacf1ed3e23b",
+    "lastmod": "2026-11-10"
   },
   "/apps/": {
-    "hash": "4517dcb124605063",
-    "lastmod": "2026-11-07"
+    "hash": "ec9bd027e248efe2",
+    "lastmod": "2026-11-10"
   },
   "/portals/": {
-    "hash": "6561b6770a9504e3",
-    "lastmod": "2026-11-07"
+    "hash": "928a4c306531f6b2",
+    "lastmod": "2026-11-10"
   },
   "/events/": {
-    "hash": "5d3532335392241b",
-    "lastmod": "2026-11-07"
+    "hash": "ee0f53764e6c9e34",
+    "lastmod": "2026-11-10"
   },
   "/donate/": {
-    "hash": "7e9206fdbd9d17b7",
-    "lastmod": "2026-11-07"
+    "hash": "cb80e4be53e697f0",
+    "lastmod": "2026-11-10"
   },
   "/appeals/": {
-    "hash": "acdbe8e688a8ee0d",
-    "lastmod": "2026-11-07"
+    "hash": "b61b807767089586",
+    "lastmod": "2026-11-10"
   },
   "/assistant/": {
-    "hash": "8c076be2a6a9a9eb",
-    "lastmod": "2026-11-07"
+    "hash": "be302ada539c24bb",
+    "lastmod": "2026-11-10"
   },
   "/donate/thanks/": {
     "hash": "da39a3ee5e6b4b0d",
     "lastmod": "2026-10-09"
   },
   "/contact/": {
-    "hash": "20f2faa40991e5b1",
-    "lastmod": "2026-11-07"
+    "hash": "73128e05d0f66991",
+    "lastmod": "2026-11-10"
   },
   "/privacy/": {
-    "hash": "2480c7254977b2fc",
-    "lastmod": "2026-11-07"
+    "hash": "eae228be1932590c",
+    "lastmod": "2026-11-10"
   },
   "/terms-and-conditions/": {
-    "hash": "b4b17d37ec1ee59f",
-    "lastmod": "2026-11-07"
+    "hash": "77aa1c8470d7da2e",
+    "lastmod": "2026-11-10"
   },
   "/blog/": {
-    "hash": "15428384bd24efc8",
-    "lastmod": "2026-11-07"
+    "hash": "8afee25ba04ddd74",
+    "lastmod": "2026-11-10"
   },
   "/safeguarding/": {
-    "hash": "9c0f906ca191513a",
-    "lastmod": "2026-11-07"
+    "hash": "081c8733de30aedc",
+    "lastmod": "2026-11-10"
   },
   "/safe-drop-off/": {
-    "hash": "a5177b142fd20f7d",
-    "lastmod": "2026-11-07"
+    "hash": "9e64118229e4094e",
+    "lastmod": "2026-11-10"
   },
   "/ur/": {
-    "hash": "27a3565425ccf472",
-    "lastmod": "2026-11-07"
+    "hash": "ddbee10558b80dfb",
+    "lastmod": "2026-11-10"
   },
   "/ur/about/": {
-    "hash": "71265dc503eea7ee",
-    "lastmod": "2026-11-07"
+    "hash": "ce47821ab6a8d5fd",
+    "lastmod": "2026-11-10"
   },
   "/ur/work/": {
-    "hash": "914140fef64430f7",
-    "lastmod": "2026-11-07"
+    "hash": "2965e204a594e82d",
+    "lastmod": "2026-11-10"
   },
   "/ur/madrasa/": {
-    "hash": "8d64408ec47baf70",
-    "lastmod": "2026-11-07"
+    "hash": "3deb27ac79cc62dd",
+    "lastmod": "2026-11-10"
   },
   "/ur/donate/": {
-    "hash": "dcb4886ede3fd877",
-    "lastmod": "2026-11-07"
+    "hash": "61c42599fdbd53ac",
+    "lastmod": "2026-11-10"
   },
   "/ur/zakat/": {
-    "hash": "901ac47d0381386c",
-    "lastmod": "2026-11-07"
+    "hash": "3545de3734c03797",
+    "lastmod": "2026-11-10"
   },
   "/ur/zakat/what-is-zakat/": {
-    "hash": "e72582f10e10373f",
-    "lastmod": "2026-11-07"
+    "hash": "43f991117f88a9e2",
+    "lastmod": "2026-11-10"
   },
   "/ur/zakat/rules/": {
-    "hash": "5640d1ee516945aa",
-    "lastmod": "2026-11-07"
+    "hash": "2e851941e3c1e03a",
+    "lastmod": "2026-11-10"
   },
   "/ur/spiritual-guide/": {
-    "hash": "19c65e949c451a93",
-    "lastmod": "2026-11-07"
+    "hash": "33cde1ccc368ae86",
+    "lastmod": "2026-11-10"
   },
   "/ur/sermons/": {
-    "hash": "ed434d1f14a707ba",
-    "lastmod": "2026-11-07"
+    "hash": "83df76e348471d67",
+    "lastmod": "2026-11-10"
   },
   "/ur/seedha-rastah/": {
-    "hash": "0403b9e032e7392d",
-    "lastmod": "2026-11-07"
+    "hash": "129ddd84795cb754",
+    "lastmod": "2026-11-10"
   },
   "/ur/guidance/": {
-    "hash": "826b8a49acfcaeca",
-    "lastmod": "2026-11-07"
+    "hash": "835cbc3f6e3adf0a",
+    "lastmod": "2026-11-10"
   },
   "/ur/basic-beliefs/": {
-    "hash": "fac886766874aa91",
-    "lastmod": "2026-11-07"
+    "hash": "2f196a094d0a00f9",
+    "lastmod": "2026-11-10"
   },
   "/ur/khatme-nabuwwat/": {
-    "hash": "41b12724c0f302b1",
-    "lastmod": "2026-11-07"
+    "hash": "7248c9a511888f22",
+    "lastmod": "2026-11-10"
   },
   "/ur/ahle-bait/": {
-    "hash": "6d5d8521304545f2",
-    "lastmod": "2026-11-07"
+    "hash": "f991c9c4a532b75a",
+    "lastmod": "2026-11-10"
   },
   "/ur/sahaba-ikram/": {
-    "hash": "23f7050da565fbfa",
-    "lastmod": "2026-11-07"
+    "hash": "c855bb353e4b0807",
+    "lastmod": "2026-11-10"
   },
   "/ur/aulia-karam/": {
-    "hash": "3c00bb2cd7716773",
-    "lastmod": "2026-11-07"
+    "hash": "0c8652665f5a0513",
+    "lastmod": "2026-11-10"
   },
   "/ur/namaz/": {
-    "hash": "f82c6d1bbde6f692",
-    "lastmod": "2026-11-07"
+    "hash": "e7e0823630ebc132",
+    "lastmod": "2026-11-10"
   },
   "/ur/duas/": {
-    "hash": "6622edd1653dd4cc",
-    "lastmod": "2026-11-07"
+    "hash": "054c03112449929b",
+    "lastmod": "2026-11-10"
   },
   "/ur/calendar/": {
-    "hash": "6215f9667712405e",
-    "lastmod": "2026-11-07"
+    "hash": "2735e30b9605a491",
+    "lastmod": "2026-11-10"
   },
   "/ur/contact/": {
-    "hash": "10cf32e008ef9ed3",
-    "lastmod": "2026-11-07"
+    "hash": "b409ff3e95eff9fb",
+    "lastmod": "2026-11-10"
   },
   "/ur/blog/": {
-    "hash": "ed60af125c7ccfdd",
-    "lastmod": "2026-11-07"
+    "hash": "a73e1ae7f1103511",
+    "lastmod": "2026-11-10"
   },
   "/ur/terms-and-conditions/": {
-    "hash": "fae651528cf8d5c3",
-    "lastmod": "2026-11-07"
+    "hash": "ea2d0620b7ee6611",
+    "lastmod": "2026-11-10"
   }
 }
