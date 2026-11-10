@@ -570,6 +570,12 @@ export const TRANSLATIONS_UR: Record<string, string> = {
 
   'nav.about': 'تعارف',
   'nav.admissions': 'داخلے',
+  'nav.locations': 'مقامات',
+  'nav.section.locations': 'ہمارے مراکز',
+  'nav.locationPeterborough': 'پیٹربورو',
+  'nav.locationPeterboroughHint': 'مرکزِ دینِ اسلام · عطیہ',
+  'nav.locationManchester': 'مانچسٹر',
+  'nav.locationManchesterHint': 'قرآن اکیڈمی، پارٹنگٹن · عطیہ',
   'nav.applyOnline': 'داخلے کی درخواست',
   'nav.applyOnlineHint': 'دونوں مدارس کے لیے آن لائن فارم',
   'nav.applyTrack': 'درخواست کی حیثیت',

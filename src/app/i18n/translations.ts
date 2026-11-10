@@ -700,6 +700,12 @@ export const TRANSLATIONS_EN: Record<string, string> = {
 
   'nav.about': 'About',
   'nav.admissions': 'Admissions',
+  'nav.locations': 'Locations',
+  'nav.section.locations': 'Our centres',
+  'nav.locationPeterborough': 'Peterborough',
+  'nav.locationPeterboroughHint': 'Markaz Deen-e-Islam · donate',
+  'nav.locationManchester': 'Manchester',
+  'nav.locationManchesterHint': 'Quran Academy, Partington · donate',
   'nav.applyOnline': 'Apply for Admission',
   'nav.applyOnlineHint': 'Online form for both Madrasas',
   'nav.applyTrack': 'Track Application',
